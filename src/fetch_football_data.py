@@ -85,6 +85,10 @@ def flatten_matches(raw: dict) -> pd.DataFrame:
                 "status": m.get("status"),
                 "home_team": m.get("homeTeam", {}).get("name"),
                 "away_team": m.get("awayTeam", {}).get("name"),
+                # nombres cortos de la propia API (ej. "Sunderland" en vez de "Sunderland AFC"):
+                # para etiquetas de gráficos, donde el nombre oficial completo no cabe.
+                "home_team_short": m.get("homeTeam", {}).get("shortName") or m.get("homeTeam", {}).get("name"),
+                "away_team_short": m.get("awayTeam", {}).get("shortName") or m.get("awayTeam", {}).get("name"),
                 "home_goals": score.get("home"),
                 "away_goals": score.get("away"),
                 "winner": m.get("score", {}).get("winner"),

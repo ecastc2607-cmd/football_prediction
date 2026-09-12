@@ -39,6 +39,12 @@ if not API_KEY:
     )
     st.stop()
 
+# Misma lógica para la key de Highlightly (corners/faltas/tarjetas) — es opcional,
+# así que si falta simplemente se desactiva ese bloque más abajo, sin error.
+HIGHLIGHTLY_KEY = os.getenv("HIGHLIGHTLY_API_KEY") or HIGHLIGHTLY_API_KEY
+if not HIGHLIGHTLY_KEY and "HIGHLIGHTLY_API_KEY" in st.secrets:
+    HIGHLIGHTLY_KEY = st.secrets["HIGHLIGHTLY_API_KEY"]
+
 
 @st.cache_data(ttl=1800, show_spinner="Descargando datos de football-data.org...")
 def load_competition(code: str, season: int) -> pd.DataFrame:
@@ -70,7 +76,7 @@ def load_live_matches(codes: tuple[str, ...]) -> pd.DataFrame:
 
 @st.cache_data(ttl=3600, show_spinner=False)
 def load_match_stats(home: str, away: str, date_iso: str, competition_code: str):
-    return get_match_stats(home, away, date_iso, competition_code)
+    return get_match_stats(home, away, date_iso, competition_code, api_key=HIGHLIGHTLY_KEY)
 
 
 @st.cache_data(ttl=1800)
@@ -148,26 +154,30 @@ with tab_jornada:
 
         # --- Gráfico 1X2 ---
         melt = df.melt(
-            id_vars=["home_team", "away_team"],
+            id_vars=["home_team", "away_team", "home_team_short", "away_team_short"],
             value_vars=["home_win", "draw", "away_win"],
             var_name="resultado", value_name="probabilidad",
         )
-        melt["partido"] = melt["home_team"] + " vs " + melt["away_team"]
+        # Nombres cortos ("Sunderland vs Leeds Utd") para que el eje no trunque ni
+        # encime etiquetas; el nombre oficial completo queda en el tooltip.
+        melt["partido"] = melt["home_team_short"] + " vs " + melt["away_team_short"]
+        melt["partido_completo"] = melt["home_team"] + " vs " + melt["away_team"]
         orden_map = {"home_win": (0, "Local"), "draw": (1, "Empate"), "away_win": (2, "Visitante")}
         melt["orden"] = melt["resultado"].map(lambda k: orden_map[k][0])
         melt["resultado"] = melt["resultado"].map(lambda k: orden_map[k][1])
 
-        chart = alt.Chart(melt).mark_bar().encode(
+        chart = alt.Chart(melt).mark_bar(height=18).encode(
             x=alt.X("probabilidad:Q", stack="zero", axis=alt.Axis(format=".0f", title="Probabilidad (%)")),
-            y=alt.Y("partido:N", sort=None, title=None),
+            y=alt.Y("partido:N", sort=None, title=None,
+                    axis=alt.Axis(labelLimit=220, labelFontSize=12, labelPadding=8)),
             color=alt.Color(
                 "resultado:N",
                 scale=alt.Scale(domain=["Local", "Empate", "Visitante"], range=["#2a78d6", "#eb6834", "#1baf7a"]),
                 legend=alt.Legend(title=None, orient="top"),
             ),
             order=alt.Order("orden:Q"),
-            tooltip=["partido", "resultado", alt.Tooltip("probabilidad:Q", format=".1f")],
-        ).properties(height=28 * len(df) + 40)
+            tooltip=["partido_completo", "resultado", alt.Tooltip("probabilidad:Q", format=".1f")],
+        ).properties(height=40 * len(df) + 40)
 
         st.altair_chart(chart, use_container_width=True)
 
@@ -188,7 +198,7 @@ with tab_jornada:
     # --- Corners, faltas y tarjetas (partidos ya jugados de la jornada) ---
     st.divider()
     st.subheader("📐 Corners, faltas y tarjetas")
-    if not HIGHLIGHTLY_API_KEY:
+    if not HIGHLIGHTLY_KEY:
         st.caption(
             "Falta HIGHLIGHTLY_API_KEY en el .env — regístrate gratis (sin tarjeta) en "
             "highlightly.net para activar este bloque."

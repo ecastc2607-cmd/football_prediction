@@ -33,7 +33,8 @@ LEAGUE_NAME_MAP = {
 
 
 class HighlightlyClient:
-    def __init__(self, api_key: str = HIGHLIGHTLY_API_KEY):
+    def __init__(self, api_key: str = ""):
+        api_key = api_key or HIGHLIGHTLY_API_KEY
         if not api_key:
             raise RuntimeError(
                 "Falta HIGHLIGHTLY_API_KEY. Regístrate gratis (sin tarjeta) en "
@@ -96,17 +97,20 @@ class HighlightlyClient:
 
 
 def get_match_stats(home_team: str, away_team: str, date_iso: str,
-                     competition_code: str | None = None) -> dict | None:
+                     competition_code: str | None = None, api_key: str = "") -> dict | None:
     """Punto de entrada simple: nunca revienta el dashboard — devuelve None si
     falta la key, no se encuentra el partido, o la API falla.
 
     `competition_code` es el código de football-data.org (PL, PD, SA, BL1, FL1,
     CL) — se traduce al nombre de liga de Highlightly para acotar la búsqueda.
+    `api_key`: pásala explícita cuando la key viene de st.secrets (Streamlit
+    Cloud) en vez del .env local — os.getenv no ve los secrets de Streamlit.
     """
-    if not HIGHLIGHTLY_API_KEY:
+    key = api_key or HIGHLIGHTLY_API_KEY
+    if not key:
         return None
     try:
-        client = HighlightlyClient()
+        client = HighlightlyClient(api_key=key)
         league_name = LEAGUE_NAME_MAP.get(competition_code) if competition_code else None
         match_id = client.find_match_id(home_team, away_team, date_iso, league_name)
         if match_id is None:
