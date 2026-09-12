@@ -114,6 +114,7 @@ def get_live_matches(client: FootballDataClient, codes: list[str], ensure_data=N
                 "competition": code,
                 "competition_name": config.COMPETITIONS.get(code, code),
                 "home_team": home, "away_team": away,
+                "utc_date": m["utcDate"],
                 "home_goals": hg, "away_goals": ag,
                 "status": m.get("status"),
                 "minuto_estimado": minute,

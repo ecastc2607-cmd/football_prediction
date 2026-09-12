@@ -19,11 +19,12 @@ import streamlit as st
 from src import config
 from src.competition_status import resolve_current_season_and_matchday
 from src.fetch_football_data import FootballDataClient, fetch_competition
-from src.highlightly_client import HIGHLIGHTLY_API_KEY, get_match_stats
+from src.highlightly_client import HIGHLIGHTLY_API_KEY, HighlightlyRateLimited, get_match_stats
 from src.live_matches import get_live_matches
+from src.match_stats_log import log_match_stats
+from src.match_context import get_standings_map, rivalry_label
 from src.matchday_predictions import matchday_predictions_df
 from src.parlay_builder import build_parlays
-from src.predict_matchday import finished_fixtures
 
 st.set_page_config(page_title="Football Analytics · Jornada", page_icon="⚽", layout="wide")
 
@@ -77,6 +78,18 @@ def load_live_matches(codes: tuple[str, ...]) -> pd.DataFrame:
 @st.cache_data(ttl=3600, show_spinner=False)
 def load_match_stats(home: str, away: str, date_iso: str, competition_code: str):
     return get_match_stats(home, away, date_iso, competition_code, api_key=HIGHLIGHTLY_KEY)
+
+
+@st.cache_data(ttl=3600, show_spinner=False)
+def load_standings(code: str, season: int) -> dict:
+    client = FootballDataClient(api_key=API_KEY)
+    return get_standings_map(client, code, season)
+
+
+@st.cache_data(ttl=1800, show_spinner="Armando combinadas...")
+def load_parlays(code: str, season: int, matchday: int) -> list:
+    df = get_predictions(code, season, matchday)
+    return build_parlays(df) if not df.empty else []
 
 
 @st.cache_data(ttl=1800)
@@ -183,54 +196,39 @@ with tab_jornada:
 
         # --- Tabla detallada ---
         st.subheader("Detalle por partido")
+        standings = load_standings(comp_code, int(season))
         show = df.copy()
         show["Partido"] = show["home_team"] + " vs " + show["away_team"]
         show["1X2"] = show.apply(lambda r: f"{r.home_win:.0f}% / {r.draw:.0f}% / {r.away_win:.0f}%", axis=1)
         show["xG"] = show.apply(lambda r: f"{r.home_xg} - {r.away_xg}", axis=1)
         show["⚠"] = show["low_confidence"].map({True: "Baja confianza", False: ""})
+        show["Posiciones"] = show.apply(
+            lambda r: f"{standings.get(r.home_team, '-')}° vs {standings.get(r.away_team, '-')}°"
+            if standings else "-",
+            axis=1,
+        )
+        show["Contexto"] = show.apply(
+            lambda r: rivalry_label(r.home_team_short, r.away_team_short) or "", axis=1,
+        )
         st.dataframe(
-            show[["Partido", "xG", "1X2", "over_2_5", "btts", "top_score", "⚠"]].rename(columns={
-                "over_2_5": "Over 2.5 %", "btts": "BTTS %", "top_score": "Marcador top",
-            }),
+            show[["Partido", "Posiciones", "Contexto", "xG", "1X2", "over_2_5", "btts", "top_score", "⚠"]].rename(
+                columns={"over_2_5": "Over 2.5 %", "btts": "BTTS %", "top_score": "Marcador top"}
+            ),
             width="stretch", hide_index=True,
         )
-
-    # --- Corners, faltas y tarjetas (partidos ya jugados de la jornada) ---
-    st.divider()
-    st.subheader("📐 Corners, faltas y tarjetas")
-    if not HIGHLIGHTLY_KEY:
-        st.caption(
-            "Falta HIGHLIGHTLY_API_KEY en el .env — regístrate gratis (sin tarjeta) en "
-            "highlightly.net para activar este bloque."
-        )
-    else:
-        played = finished_fixtures(comp_code, int(season), int(matchday))
-        if played.empty:
-            st.caption("Ningún partido de esta jornada ha terminado todavía.")
-        else:
-            for _, row in played.iterrows():
-                label = f"{row['home_team']} {int(row['home_goals'])}-{int(row['away_goals'])} {row['away_team']}"
-                with st.expander(label):
-                    stats = load_match_stats(row["home_team"], row["away_team"], row["utc_date"], comp_code)
-                    if not stats:
-                        st.caption("Sin estadísticas disponibles para este partido en Highlightly.")
-                    else:
-                        stat_df = pd.DataFrame(stats).T[
-                            ["corners", "faltas", "tarjetas_amarillas", "tarjetas_rojas"]
-                        ]
-                        stat_df.columns = ["Corners", "Faltas", "T. amarillas", "T. rojas"]
-                        st.dataframe(stat_df, width="stretch")
 
     # --- Combinadas sugeridas ---
     st.divider()
     st.subheader("🎯 Combinadas sugeridas")
     st.caption(
-        "Cuota propia del modelo (1/probabilidad, sin margen de casa de apuestas), combinando el "
-        "mejor pick 1X2 de cada partido. Solo se muestran combinadas entre 6x y 30x, máximo 6 "
-        "partidos. El riesgo se calcula por la probabilidad combinada real, no por cantidad de "
-        "selecciones — esto es estadística sobre datos históricos, no una garantía de resultado."
+        "Cuota propia del modelo (1/probabilidad, sin margen de casa de apuestas). Cada partido "
+        "aporta como mucho un pick — 1X2, Más/Menos de 2.5 goles, o Ambos anotan, el que mejor "
+        "calce — nunca dos mercados del mismo partido juntos (estarían correlacionados). Solo se "
+        "muestran combinadas entre 6x y 30x, máximo 6 partidos. El riesgo se calcula por la "
+        "probabilidad combinada real, no por cantidad de selecciones — esto es estadística sobre "
+        "datos históricos, no una garantía de resultado."
     )
-    parlays = build_parlays(df)
+    parlays = load_parlays(comp_code, int(season), int(matchday))
     if not parlays:
         st.caption("No se armó ninguna combinada en el rango de cuota 6x-30x con esta jornada.")
     else:
@@ -281,25 +279,44 @@ with tab_vivo:
 
     if st.button("🔄 Actualizar en vivo"):
         load_live_matches.clear()
+        st.rerun()
 
     live_df = load_live_matches(tuple(config.COMPETITIONS.keys()))
 
     if live_df.empty:
         st.info("No hay partidos en juego ahora mismo en las 6 competiciones.")
     else:
-        live_show = live_df.copy()
-        live_show["Partido"] = (
-            live_show["home_team"] + " " + live_show["home_goals"].astype(str) + " - "
-            + live_show["away_goals"].astype(str) + " " + live_show["away_team"]
-        )
-        live_show["1X2 en vivo"] = live_show.apply(
-            lambda r: f"{r.live_home_win:.0f}% / {r.live_draw:.0f}% / {r.live_away_win:.0f}%"
-            if pd.notna(r.live_home_win) else "sin datos suficientes",
-            axis=1,
-        )
-        st.dataframe(
-            live_show[["competition_name", "Partido", "minuto_estimado", "1X2 en vivo"]].rename(columns={
-                "competition_name": "Liga", "minuto_estimado": "Minuto (est.)",
-            }),
-            width="stretch", hide_index=True,
-        )
+        for _, row in live_df.iterrows():
+            live_1x2 = (
+                f"{row.live_home_win:.0f}% / {row.live_draw:.0f}% / {row.live_away_win:.0f}%"
+                if pd.notna(row.live_home_win) else "sin datos suficientes"
+            )
+            c_liga, c_local, c_marcador, c_visitante, c_1x2 = st.columns([1.3, 2, 1, 2, 1.6])
+            c_liga.caption(f"{row.competition_name} · min. {row.minuto_estimado}'")
+            c_local.write(row.home_team)
+            c_marcador.markdown(f"**{row.home_goals} - {row.away_goals}**")
+            c_visitante.write(row.away_team)
+            c_1x2.caption(f"1X2: {live_1x2}")
+
+            if HIGHLIGHTLY_KEY:
+                with st.expander("📐 Corners, faltas y tarjetas"):
+                    rate_limited = False
+                    try:
+                        stats = load_match_stats(row.home_team, row.away_team, row.utc_date, row.competition)
+                    except HighlightlyRateLimited as e:
+                        stats, rate_limited = None, True
+                        st.warning(f"⏳ {e}")
+
+                    if stats:
+                        log_match_stats(
+                            row.competition, 0, 0,  # jornada/temporada no siempre conocidas para las 6 ligas a la vez
+                            row.utc_date, row.home_team, row.away_team, stats,
+                        )
+                        stat_df = pd.DataFrame(stats).T[
+                            ["corners", "faltas", "tarjetas_amarillas", "tarjetas_rojas"]
+                        ]
+                        stat_df.columns = ["Corners", "Faltas", "T. amarillas", "T. rojas"]
+                        st.dataframe(stat_df, width="stretch")
+                    elif not rate_limited:
+                        st.caption("Sin estadísticas disponibles todavía para este partido en Highlightly.")
+            st.divider()

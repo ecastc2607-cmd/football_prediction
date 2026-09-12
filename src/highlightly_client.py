@@ -19,6 +19,12 @@ import requests
 BASE_URL = "https://soccer.highlightly.net"
 HIGHLIGHTLY_API_KEY = os.getenv("HIGHLIGHTLY_API_KEY", "")
 
+
+class HighlightlyRateLimited(Exception):
+    """Se agotaron las 100 peticiones/día del plan gratis. Se distingue de un
+    error cualquiera para poder avisarlo en la UI en vez de mostrar
+    silenciosamente "sin datos" (que es justo lo que pasaba antes)."""
+
 # football-data.org usa nombres oficiales completos ("Real Madrid CF",
 # "FC Internazionale Milano"); Highlightly usa nombres cortos ("Real Madrid",
 # "Inter") y un nombre de liga propio para filtrar — verificado a mano por liga.
@@ -45,6 +51,11 @@ class HighlightlyClient:
 
     def _get(self, path: str, params: dict) -> dict | list:
         resp = self.session.get(f"{BASE_URL}{path}", params=params, timeout=20)
+        if resp.status_code == 429:
+            raise HighlightlyRateLimited(
+                "Se agotaron las 100 peticiones/día del plan gratis de Highlightly. "
+                "Se restablece a medianoche UTC."
+            )
         resp.raise_for_status()
         return resp.json()
 
@@ -109,12 +120,14 @@ def get_match_stats(home_team: str, away_team: str, date_iso: str,
     key = api_key or HIGHLIGHTLY_API_KEY
     if not key:
         return None
+    client = HighlightlyClient(api_key=key)  # deja pasar HighlightlyRateLimited sin atrapar
+    league_name = LEAGUE_NAME_MAP.get(competition_code) if competition_code else None
     try:
-        client = HighlightlyClient(api_key=key)
-        league_name = LEAGUE_NAME_MAP.get(competition_code) if competition_code else None
         match_id = client.find_match_id(home_team, away_team, date_iso, league_name)
         if match_id is None:
             return None
         return client.match_statistics(match_id)
+    except HighlightlyRateLimited:
+        raise
     except Exception:
         return None
