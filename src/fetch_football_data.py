@@ -56,6 +56,11 @@ class FootballDataClient:
         resp.raise_for_status()
         return resp.json()
 
+    def get_competition_meta(self, competition_code: str) -> dict:
+        """Metadatos de la competición, incluyendo currentSeason (startDate, endDate,
+        currentMatchday) tal como los calcula football-data.org."""
+        return self._get(f"/competitions/{competition_code}")
+
     def get_matches(self, competition_code: str, season: int | None = None) -> dict:
         params = {"season": season} if season else {}
         return self._get(f"/competitions/{competition_code}/matches", params)

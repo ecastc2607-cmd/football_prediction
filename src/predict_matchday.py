@@ -30,6 +30,15 @@ def upcoming_fixtures(competition_code: str, season: int, matchday: int | None =
     return df.sort_values(["matchday", "utc_date"])
 
 
+def finished_fixtures(competition_code: str, season: int, matchday: int | None = None) -> pd.DataFrame:
+    path = config.PROCESSED_DIR / f"matches_{competition_code}_{season}.csv"
+    df = pd.read_csv(path)
+    df = df[df["status"] == "FINISHED"]
+    if matchday is not None:
+        df = df[df["matchday"] == matchday]
+    return df.sort_values(["matchday", "utc_date"])
+
+
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--comp", required=True, help="Código de competición, ej. PL")
