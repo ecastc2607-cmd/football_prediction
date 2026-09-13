@@ -24,6 +24,12 @@ MIN_LEGS = 2
 MAX_LEGS = 6
 MIN_ODDS = 6.0
 MAX_ODDS = 30.0
+# Cuando quedan pocos partidos por jugar en la jornada (ej. los últimos 3 de una
+# fecha), puede ser matemáticamente imposible llegar a MIN_ODDS combinando lo que
+# hay: 3 partidos con favoritos claros no multiplican lo suficiente. En vez de no
+# mostrar nada, se repite la búsqueda con este piso más bajo — la UI deja claro
+# que son combinadas de cuota reducida, no las de siempre.
+FALLBACK_MIN_ODDS = 2.0
 MAX_SUGGESTIONS_PER_TIER = 4
 MAX_MATCHES_CONSIDERED = 8  # acota la explosión combinatoria con muchos partidos/mercados
 
@@ -42,6 +48,7 @@ class Parlay:
     combined_probability: float
     combined_odds: float
     risk: str  # "Bajo", "Medio", "Alto"
+    reduced_quota: bool = False  # True si no se llegó a MIN_ODDS y se usó el piso de respaldo
 
     def describe(self) -> str:
         return " + ".join(f"{l.match} ({l.market})" for l in self.legs)
@@ -107,6 +114,23 @@ def _classify_risk(probabilities: list[float]) -> dict[int, str]:
     return labels
 
 
+def _candidates_in_range(matches: list[str], legs_by_match: dict[str, list[Leg]],
+                          min_odds: float, max_odds: float) -> list[tuple[list[Leg], float, float]]:
+    candidates = []
+    for size in range(MIN_LEGS, min(MAX_LEGS, len(matches)) + 1):
+        for match_combo in combinations(matches, size):
+            leg_options = [legs_by_match[m] for m in match_combo]
+            for combo in product(*leg_options):
+                combined_odds = 1.0
+                combined_prob = 1.0
+                for leg in combo:
+                    combined_odds *= leg.fair_odds
+                    combined_prob *= leg.probability
+                if min_odds <= combined_odds <= max_odds:
+                    candidates.append((list(combo), combined_prob, combined_odds))
+    return candidates
+
+
 def build_parlays(predictions: pd.DataFrame) -> list[Parlay]:
     legs_by_match = candidate_legs_per_match(predictions)
     if len(legs_by_match) < MIN_LEGS:
@@ -119,18 +143,14 @@ def build_parlays(predictions: pd.DataFrame) -> list[Parlay]:
         legs_by_match, key=lambda m: max(l.probability for l in legs_by_match[m]), reverse=True
     )[:MAX_MATCHES_CONSIDERED]
 
-    candidates: list[tuple[list[Leg], float, float]] = []
-    for size in range(MIN_LEGS, min(MAX_LEGS, len(matches)) + 1):
-        for match_combo in combinations(matches, size):
-            leg_options = [legs_by_match[m] for m in match_combo]
-            for combo in product(*leg_options):
-                combined_odds = 1.0
-                combined_prob = 1.0
-                for leg in combo:
-                    combined_odds *= leg.fair_odds
-                    combined_prob *= leg.probability
-                if MIN_ODDS <= combined_odds <= MAX_ODDS:
-                    candidates.append((list(combo), combined_prob, combined_odds))
+    candidates = _candidates_in_range(matches, legs_by_match, MIN_ODDS, MAX_ODDS)
+    reduced_quota = False
+    if not candidates:
+        # No alcanzó MIN_ODDS con los partidos disponibles (típico cuando quedan
+        # pocos por jugar en la jornada) — se repite desde un piso más bajo en
+        # vez de dejar la sección vacía.
+        candidates = _candidates_in_range(matches, legs_by_match, FALLBACK_MIN_ODDS, MAX_ODDS)
+        reduced_quota = bool(candidates)
 
     if not candidates:
         return []
@@ -138,7 +158,8 @@ def build_parlays(predictions: pd.DataFrame) -> list[Parlay]:
     risk_labels = _classify_risk([c[1] for c in candidates])
 
     parlays = [
-        Parlay(legs=legs_, combined_probability=prob, combined_odds=round(odds, 2), risk=risk_labels[i])
+        Parlay(legs=legs_, combined_probability=prob, combined_odds=round(odds, 2),
+               risk=risk_labels[i], reduced_quota=reduced_quota)
         for i, (legs_, prob, odds) in enumerate(candidates)
     ]
 

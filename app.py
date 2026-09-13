@@ -407,8 +407,14 @@ with tab_jornada:
     )
     parlays = load_parlays(comp_code, int(season), int(matchday))
     if not parlays:
-        st.caption("No se armó ninguna combinada en el rango de cuota 6x-30x con esta jornada.")
+        st.caption("No se armó ninguna combinada ni siquiera bajando la cuota mínima — muy pocos partidos disponibles.")
     else:
+        if parlays[0].reduced_quota:
+            st.warning(
+                "⚠ Quedan pocos partidos por jugar en esta jornada y no alcanzan para llegar a 6x "
+                "combinando lo disponible — estas combinadas se armaron con una cuota mínima más "
+                "baja para no dejar la sección vacía."
+            )
         risk_color = {"Bajo": "🟢", "Medio": "🟡", "Alto": "🔴"}
         for risk in ("Bajo", "Medio", "Alto"):
             tier = [p for p in parlays if p.risk == risk]
