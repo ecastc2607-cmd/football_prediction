@@ -19,7 +19,17 @@ import streamlit as st
 from src import config
 from src.competition_status import resolve_current_season_and_matchday
 from src.fetch_football_data import FootballDataClient, fetch_competition
-from src.highlightly_client import HIGHLIGHTLY_API_KEY, HighlightlyRateLimited, get_match_stats
+from src.goal_api_client import (
+    GOAL_API_KEY,
+    GoalApiClient,
+    GoalApiRateLimited,
+    get_match_stats as goal_get_match_stats,
+)
+from src.highlightly_client import (
+    HIGHLIGHTLY_API_KEY,
+    HighlightlyRateLimited,
+    get_match_stats as highlightly_get_match_stats,
+)
 from src.live_matches import get_live_matches
 from src.match_stats_log import log_match_stats
 from src.match_context import get_standings_map, rivalry_label
@@ -40,11 +50,19 @@ if not API_KEY:
     )
     st.stop()
 
-# Misma lógica para la key de Highlightly (corners/faltas/tarjetas) — es opcional,
-# así que si falta simplemente se desactiva ese bloque más abajo, sin error.
+# Corners, faltas y tarjetas: Goal API es la fuente principal (1.000 peticiones/día
+# gratis contra las 100 de Highlightly, y una sola petición por partido en vez de
+# dos). Highlightly queda como respaldo automático. Ambas son opcionales: si faltan
+# las dos, ese bloque simplemente no se muestra, sin error.
+GOAL_KEY = os.getenv("GOAL_API_KEY") or GOAL_API_KEY
+if not GOAL_KEY and "GOAL_API_KEY" in st.secrets:
+    GOAL_KEY = st.secrets["GOAL_API_KEY"]
+
 HIGHLIGHTLY_KEY = os.getenv("HIGHLIGHTLY_API_KEY") or HIGHLIGHTLY_API_KEY
 if not HIGHLIGHTLY_KEY and "HIGHLIGHTLY_API_KEY" in st.secrets:
     HIGHLIGHTLY_KEY = st.secrets["HIGHLIGHTLY_API_KEY"]
+
+STATS_KEY_PRESENT = bool(GOAL_KEY or HIGHLIGHTLY_KEY)
 
 
 @st.cache_data(ttl=1800, show_spinner="Descargando datos de football-data.org...")
@@ -75,9 +93,36 @@ def load_live_matches(codes: tuple[str, ...]) -> pd.DataFrame:
     return get_live_matches(client, list(codes), ensure_data=load_competition)
 
 
-@st.cache_data(ttl=3600, show_spinner=False)
+@st.cache_data(ttl=600, show_spinner=False)
+def load_day_fixtures(competition_code: str, date: str) -> list:
+    """IDs de Goal API de TODOS los partidos de esa liga y fecha, en una sola
+    petición. Se cachea aparte para que consultar 8 partidos en vivo de la misma
+    liga cueste 1 + 8 peticiones y no 8 + 8."""
+    if not GOAL_KEY:
+        return []
+    try:
+        return GoalApiClient(api_key=GOAL_KEY).fixtures_by_date(date, competition_code)
+    except GoalApiRateLimited:
+        raise
+    except Exception:
+        return []
+
+
+@st.cache_data(ttl=300, show_spinner=False)
 def load_match_stats(home: str, away: str, date_iso: str, competition_code: str):
-    return get_match_stats(home, away, date_iso, competition_code, api_key=HIGHLIGHTLY_KEY)
+    """Goal API primero; si no devuelve nada, se intenta con Highlightly."""
+    if GOAL_KEY:
+        fixtures = load_day_fixtures(competition_code, date_iso[:10])
+        stats = goal_get_match_stats(
+            home, away, date_iso, competition_code, api_key=GOAL_KEY, fixtures=fixtures
+        )
+        if stats:
+            return stats
+    if HIGHLIGHTLY_KEY:
+        return highlightly_get_match_stats(
+            home, away, date_iso, competition_code, api_key=HIGHLIGHTLY_KEY
+        )
+    return None
 
 
 @st.cache_data(ttl=3600, show_spinner=False)
@@ -298,12 +343,12 @@ with tab_vivo:
             c_visitante.write(row.away_team)
             c_1x2.caption(f"1X2: {live_1x2}")
 
-            if HIGHLIGHTLY_KEY:
+            if STATS_KEY_PRESENT:
                 with st.expander("📐 Corners, faltas y tarjetas"):
                     rate_limited = False
                     try:
                         stats = load_match_stats(row.home_team, row.away_team, row.utc_date, row.competition)
-                    except HighlightlyRateLimited as e:
+                    except (GoalApiRateLimited, HighlightlyRateLimited) as e:
                         stats, rate_limited = None, True
                         st.warning(f"⏳ {e}")
 
@@ -312,11 +357,19 @@ with tab_vivo:
                             row.competition, 0, 0,  # jornada/temporada no siempre conocidas para las 6 ligas a la vez
                             row.utc_date, row.home_team, row.away_team, stats,
                         )
-                        stat_df = pd.DataFrame(stats).T[
-                            ["corners", "faltas", "tarjetas_amarillas", "tarjetas_rojas"]
-                        ]
-                        stat_df.columns = ["Corners", "Faltas", "T. amarillas", "T. rojas"]
+                        # Solo las columnas que la fuente realmente entregó: Goal API
+                        # trae posesión y remates además de lo básico, Highlightly no
+                        # siempre, y no queremos mostrar columnas vacías.
+                        etiquetas = {
+                            "corners": "Corners", "faltas": "Faltas",
+                            "tarjetas_amarillas": "T. amarillas", "tarjetas_rojas": "T. rojas",
+                            "posesion": "Posesión %", "remates_a_puerta": "Remates a puerta",
+                        }
+                        stat_df = pd.DataFrame(stats).T
+                        columnas = [c for c in etiquetas if c in stat_df.columns
+                                    and stat_df[c].notna().any()]
+                        stat_df = stat_df[columnas].rename(columns=etiquetas)
                         st.dataframe(stat_df, width="stretch")
                     elif not rate_limited:
-                        st.caption("Sin estadísticas disponibles todavía para este partido en Highlightly.")
+                        st.caption("Sin estadísticas disponibles todavía para este partido.")
             st.divider()

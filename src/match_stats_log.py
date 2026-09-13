@@ -30,22 +30,27 @@ def load_log() -> pd.DataFrame:
     return pd.read_csv(LOG_PATH)
 
 
-def log_match_stats(competition: str, season: int, matchday: int, utc_date: str,
-                     home_team: str, away_team: str, stats: dict) -> None:
-    """Guarda las stats de un partido (dict como lo devuelve highlightly_client:
-    {nombre_equipo: {corners, faltas, tarjetas_amarillas, tarjetas_rojas}}).
-    No duplica si ese partido ya estaba guardado.
-    """
-    if not stats:
-        return
-    log = load_log()
-    key_mask = (
-        (log["competition"] == competition) & (log["season"] == season)
-        & (log["home_team"] == home_team) & (log["away_team"] == away_team)
-    ) if not log.empty else pd.Series(dtype=bool)
-    if key_mask.any():
-        return  # ya lo teníamos
+def match_key(competition: str, season, home_team: str, away_team: str) -> tuple:
+    """Identidad de un partido dentro del log. `season` se normaliza a texto
+    porque al releer el CSV puede volver como int o como str."""
+    return (str(competition), str(season), str(home_team), str(away_team))
 
+
+def existing_keys(log: pd.DataFrame | None = None) -> set[tuple]:
+    """Partidos ya guardados. Sirve para saltárselos sin releer el CSV en cada
+    iteración (el backfill recorre miles)."""
+    log = load_log() if log is None else log
+    if log.empty:
+        return set()
+    return {
+        match_key(r.competition, r.season, r.home_team, r.away_team)
+        for r in log.itertuples()
+    }
+
+
+def build_rows(competition: str, season: int, matchday: int, utc_date: str,
+                home_team: str, away_team: str, stats: dict) -> list[dict]:
+    """Convierte el dict de stats en filas del log (una por equipo)."""
     rows = []
     for team_name, team_stats in stats.items():
         is_home = team_name == home_team or team_name in home_team or home_team in team_name
@@ -58,12 +63,43 @@ def log_match_stats(competition: str, season: int, matchday: int, utc_date: str,
             "tarjetas_amarillas": team_stats.get("tarjetas_amarillas"),
             "tarjetas_rojas": team_stats.get("tarjetas_rojas"),
         })
-    if not rows:
-        return
+    return rows
 
+
+def append_rows(rows: list[dict]) -> int:
+    """Añade filas ya construidas al CSV de una sola escritura. Devuelve cuántas
+    escribió. Pensado para el backfill: guardar partido por partido reescribiría
+    el archivo entero miles de veces."""
+    if not rows:
+        return 0
+    log = load_log()
     config.ROOT_DIR.joinpath("data", "tracking").mkdir(parents=True, exist_ok=True)
-    log = pd.concat([log, pd.DataFrame(rows)], ignore_index=True)
-    log.to_csv(LOG_PATH, index=False, encoding="utf-8")
+    nuevas = pd.DataFrame(rows)
+    # Concatenar contra un DataFrame vacío ensucia los dtypes (y pandas avisa),
+    # así que en la primera escritura se guardan las filas tal cual.
+    combinado = nuevas if log.empty else pd.concat([log, nuevas], ignore_index=True)
+    combinado.to_csv(LOG_PATH, index=False, encoding="utf-8")
+    return len(rows)
+
+
+def log_match_stats(competition: str, season: int, matchday: int, utc_date: str,
+                     home_team: str, away_team: str, stats: dict) -> None:
+    """Guarda las stats de un partido (dict como lo devuelven goal_api_client o
+    highlightly_client: {nombre_equipo: {corners, faltas, ...}}).
+    No duplica si ese partido ya estaba guardado.
+    """
+    if not stats:
+        return
+    log = load_log()
+    key_mask = (
+        (log["competition"] == competition) & (log["season"] == season)
+        & (log["home_team"] == home_team) & (log["away_team"] == away_team)
+    ) if not log.empty else pd.Series(dtype=bool)
+    if key_mask.any():
+        return  # ya lo teníamos
+
+    rows = build_rows(competition, season, matchday, utc_date, home_team, away_team, stats)
+    append_rows(rows)
 
 
 def team_averages(competition: str | None = None) -> pd.DataFrame:
