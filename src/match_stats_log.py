@@ -19,7 +19,14 @@ COLUMNS = [
     "competition", "season", "matchday", "utc_date",
     "home_team", "away_team", "team", "is_home",
     "corners", "faltas", "tarjetas_amarillas", "tarjetas_rojas",
+    "posesion", "remates_a_puerta", "remates_totales", "fueras_de_juego",
 ]
+
+# Campos "bonus" que trae Goal API además de corners/faltas/tarjetas — se
+# guardan también para que una consulta cacheada (get_cached_stats) se vea
+# igual de completa que una fresca, y porque sirven igual para calibración.
+EXTRA_FIELDS = ["posesion", "remates_a_puerta", "remates_totales", "fueras_de_juego"]
+CORE_FIELDS = ["corners", "faltas", "tarjetas_amarillas", "tarjetas_rojas"]
 
 MIN_SAMPLE_FOR_CONFIDENCE = 5  # partidos mínimos por equipo antes de confiar en el promedio
 
@@ -54,15 +61,14 @@ def build_rows(competition: str, season: int, matchday: int, utc_date: str,
     rows = []
     for team_name, team_stats in stats.items():
         is_home = team_name == home_team or team_name in home_team or home_team in team_name
-        rows.append({
+        fila = {
             "competition": competition, "season": season, "matchday": matchday,
             "utc_date": utc_date, "home_team": home_team, "away_team": away_team,
             "team": team_name, "is_home": is_home,
-            "corners": team_stats.get("corners"),
-            "faltas": team_stats.get("faltas"),
-            "tarjetas_amarillas": team_stats.get("tarjetas_amarillas"),
-            "tarjetas_rojas": team_stats.get("tarjetas_rojas"),
-        })
+        }
+        for campo in CORE_FIELDS + EXTRA_FIELDS:
+            fila[campo] = team_stats.get(campo)
+        rows.append(fila)
     return rows
 
 
@@ -75,9 +81,22 @@ def append_rows(rows: list[dict]) -> int:
     log = load_log()
     config.ROOT_DIR.joinpath("data", "tracking").mkdir(parents=True, exist_ok=True)
     nuevas = pd.DataFrame(rows)
-    # Concatenar contra un DataFrame vacío ensucia los dtypes (y pandas avisa),
-    # así que en la primera escritura se guardan las filas tal cual.
-    combinado = nuevas if log.empty else pd.concat([log, nuevas], ignore_index=True)
+    if log.empty:
+        combinado = nuevas
+    else:
+        # No siempre las nuevas filas traen los campos "bonus" (Highlightly no
+        # da remates_totales/fueras_de_juego, y un partido guardado antes de
+        # agregar estos campos tampoco los tiene), así que esa columna puede
+        # llegar completamente en NaN de un lado del concat. Fijar el dtype a
+        # float64 en ambos lados evita que pandas tenga que "adivinar" el tipo
+        # de una columna totalmente vacía (y avise de un cambio futuro por eso).
+        columnas = sorted(set(log.columns) | set(nuevas.columns), key=COLUMNS.index)
+        log = log.reindex(columns=columnas)
+        nuevas = nuevas.reindex(columns=columnas)
+        for campo in CORE_FIELDS + EXTRA_FIELDS:
+            log[campo] = pd.to_numeric(log[campo], errors="coerce")
+            nuevas[campo] = pd.to_numeric(nuevas[campo], errors="coerce")
+        combinado = pd.concat([log, nuevas], ignore_index=True)
     combinado.to_csv(LOG_PATH, index=False, encoding="utf-8")
     return len(rows)
 
@@ -100,6 +119,46 @@ def log_match_stats(competition: str, season: int, matchday: int, utc_date: str,
 
     rows = build_rows(competition, season, matchday, utc_date, home_team, away_team, stats)
     append_rows(rows)
+
+
+def get_cached_stats(competition: str, home_team: str, away_team: str, utc_date: str) -> dict | None:
+    """Estadísticas ya guardadas para ESTE partido exacto, en el mismo formato
+    que devuelven goal_api_client/highlightly_client ({equipo: {corners, ...}}),
+    o None si no está en el log.
+
+    Identifica el partido por competición + equipos + fecha/hora de inicio, NO
+    por season/jornada: un mismo partido puede haber quedado guardado con
+    season=0 si se vio primero desde "En vivo" (ahí no siempre se conoce la
+    jornada de las 6 competiciones a la vez), y esta función debe encontrarlo
+    igual, sin importar con qué season se guardó.
+
+    Pensado para PARTIDOS YA TERMINADOS ("Resultados ya jugados"): antes, cada
+    vez que se abría esa sección se volvía a pedir el dato al API sin importar
+    si ya se tenía guardado, lo que agotó la cuota diaria de Goal API en un
+    solo día de uso normal. Con esto, un partido consultado una vez no vuelve
+    a gastar cuota — y de paso esta misma tabla queda lista para comparar,
+    más adelante, corners/faltas/tarjetas reales contra lo que predijo el
+    modelo (calibración), igual que ya se hace con el resultado 1X2.
+    """
+    log = load_log()
+    if log.empty:
+        return None
+    # Compara solo hasta el minuto: nuestra propia fuente siempre guarda
+    # 'YYYY-MM-DDTHH:MM:SSZ', pero por si acaso llega con milisegundos u otro
+    # sufijo no vale la pena que eso rompa el match.
+    fecha = str(utc_date)[:16]
+    mask = (
+        (log["competition"] == competition)
+        & (log["home_team"] == home_team) & (log["away_team"] == away_team)
+        & (log["utc_date"].astype(str).str[:16] == fecha)
+    )
+    rows = log[mask]
+    if rows.empty:
+        return None
+    return {
+        r.team: {campo: getattr(r, campo, None) for campo in CORE_FIELDS + EXTRA_FIELDS}
+        for r in rows.itertuples()
+    }
 
 
 def team_averages(competition: str | None = None) -> pd.DataFrame:

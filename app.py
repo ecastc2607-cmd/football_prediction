@@ -31,7 +31,7 @@ from src.highlightly_client import (
     get_match_stats as highlightly_get_match_stats,
 )
 from src.live_matches import get_live_matches
-from src.match_stats_log import log_match_stats
+from src.match_stats_log import get_cached_stats, log_match_stats
 from src.match_context import get_standings_map, rivalry_label
 from src.match_tendencies import load_team_averages, pick_tendencies
 from src.matchday_predictions import matchday_predictions_df
@@ -143,17 +143,37 @@ def load_tendency_averages(code: str) -> pd.DataFrame:
     return load_team_averages(code)
 
 
+def _render_stats_table(stats: dict) -> None:
+    """Solo el dibujo de la tabla a partir de un dict de stats ya obtenido —
+    sin tocar la API ni el log. Compartido por el camino "fresco" (API) y el
+    camino "cacheado" (log persistente)."""
+    # Solo las columnas que la fuente realmente entregó: Goal API trae
+    # posesión y remates además de lo básico, Highlightly no siempre, y un
+    # resultado cacheado antiguo puede no tener los campos "bonus".
+    etiquetas = {
+        "corners": "Corners", "faltas": "Faltas",
+        "tarjetas_amarillas": "T. amarillas", "tarjetas_rojas": "T. rojas",
+        "posesion": "Posesión %", "remates_a_puerta": "Remates a puerta",
+    }
+    stat_df = pd.DataFrame(stats).T
+    columnas = [c for c in etiquetas if c in stat_df.columns and stat_df[c].notna().any()]
+    st.dataframe(stat_df[columnas].rename(columns=etiquetas), width="stretch")
+
+
 def render_stats_block(home_team: str, away_team: str, utc_date: str, competition_code: str,
                         season: int = 0, matchday: int = 0) -> None:
-    """Corners/faltas/tarjetas REALES de un partido ya jugado o en curso (no la
-    tendencia histórica — esa es pick_tendencies, para partidos sin jugar). De
-    paso deja el resultado guardado en el log, así que cada vez que se abre esto
-    se retroalimenta el promedio que usan las tendencias de jornadas futuras.
+    """Corners/faltas/tarjetas REALES de un partido EN VIVO: siempre pide el
+    dato fresco al API (el marcador y las estadísticas cambian mientras se
+    juega, así que cachear de más mostraría un dato viejo) — el único límite es
+    el caché corto de 5 min de load_match_stats. De paso deja el resultado
+    guardado en el log, así que retroalimenta el promedio que usan las
+    tendencias de jornadas futuras (pick_tendencies) y, cuando el partido
+    termine, sirve como caché permanente vía render_finished_stats_block.
 
-    Se usa tanto en "En vivo" como en "Resultados ya jugados"; `season`/`matchday`
-    quedan en 0 cuando no se conocen con certeza (la pestaña en vivo mezcla varias
-    competiciones a la vez), lo cual no afecta a team_averages (agrupa por equipo,
-    no por jornada).
+    `season`/`matchday` quedan en 0 cuando no se conocen con certeza (esta
+    pestaña mezcla varias competiciones a la vez), lo cual no afecta a
+    team_averages (agrupa por equipo, no por jornada) ni a get_cached_stats
+    (busca por fecha, no por season).
     """
     if not STATS_KEY_PRESENT:
         st.caption("Configura GOAL_API_KEY (o HIGHLIGHTLY_API_KEY) para ver corners/faltas/tarjetas.")
@@ -168,18 +188,30 @@ def render_stats_block(home_team: str, away_team: str, utc_date: str, competitio
 
     if stats:
         log_match_stats(competition_code, season, matchday, utc_date, home_team, away_team, stats)
-        # Solo las columnas que la fuente realmente entregó: Goal API trae
-        # posesión y remates además de lo básico, Highlightly no siempre.
-        etiquetas = {
-            "corners": "Corners", "faltas": "Faltas",
-            "tarjetas_amarillas": "T. amarillas", "tarjetas_rojas": "T. rojas",
-            "posesion": "Posesión %", "remates_a_puerta": "Remates a puerta",
-        }
-        stat_df = pd.DataFrame(stats).T
-        columnas = [c for c in etiquetas if c in stat_df.columns and stat_df[c].notna().any()]
-        st.dataframe(stat_df[columnas].rename(columns=etiquetas), width="stretch")
+        _render_stats_table(stats)
     elif not rate_limited:
         st.caption("Sin estadísticas disponibles todavía para este partido.")
+
+
+def render_finished_stats_block(home_team: str, away_team: str, utc_date: str, competition_code: str,
+                                 season: int, matchday: int) -> None:
+    """Igual que render_stats_block, pero para un partido YA TERMINADO: el
+    resultado y las estadísticas ya no cambian, así que primero se busca en el
+    log persistente (data/tracking/match_stats_log.csv) y solo si NO está ahí
+    se llama al API.
+
+    Antes, "Resultados ya jugados" pedía el dato al API cada vez que se abría
+    esa sección — un mismo partido consultado dos veces (por ejemplo, verlo una
+    vez y volver más tarde) gastaba cuota dos veces, y eso agotó las 1.000
+    peticiones/día de Goal API en un solo día de uso normal. Con esto, un
+    partido consultado una vez no vuelve a tocar el API nunca más.
+    """
+    cached = get_cached_stats(competition_code, home_team, away_team, utc_date)
+    if cached:
+        st.caption("📦 Desde el histórico guardado — no gastó cuota de API.")
+        _render_stats_table(cached)
+        return
+    render_stats_block(home_team, away_team, utc_date, competition_code, season, matchday)
 
 
 @st.cache_data(ttl=1800, show_spinner="Armando combinadas...")
@@ -312,7 +344,7 @@ with tab_jornada:
         # --- Tendencias de corners/faltas/tarjetas (promedio histórico, no del
         # modelo de goles) para partidos que TODAVÍA no se juegan. ---
         tendency_averages = load_tendency_averages(comp_code)
-        columnas_tabla = ["Partido", "Fecha", "Posiciones", "Contexto", "xG", "1X2",
+        columnas_tabla = ["Partido", "Fecha", "Posiciones", "xG", "1X2",
                            "over_2_5", "btts", "top_score", "⚠"]
         if tendency_averages.empty:
             st.caption(
@@ -333,6 +365,8 @@ with tab_jornada:
                 "equipo (no es el modelo de goles). ⚠ = alguno de los dos equipos tiene menos de "
                 "5 partidos registrados todavía — el número es orientativo, no confiable aún."
             )
+
+        columnas_tabla.append("Contexto")  # al final: es información de ambiente, no del modelo
 
         st.dataframe(
             show[columnas_tabla].rename(
@@ -355,7 +389,7 @@ with tab_jornada:
             )
             label = f"{row['home_team']} {marcador} {row['away_team']} · {format_bogota(row['utc_date'])}"
             with st.expander(label):
-                render_stats_block(
+                render_finished_stats_block(
                     row["home_team"], row["away_team"], row["utc_date"], comp_code,
                     season=int(season), matchday=int(matchday),
                 )
