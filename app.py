@@ -33,8 +33,11 @@ from src.highlightly_client import (
 from src.live_matches import get_live_matches
 from src.match_stats_log import log_match_stats
 from src.match_context import get_standings_map, rivalry_label
+from src.match_tendencies import load_team_averages, pick_tendencies
 from src.matchday_predictions import matchday_predictions_df
 from src.parlay_builder import build_parlays
+from src.predict_matchday import finished_fixtures
+from src.timezones import format_bogota
 
 st.set_page_config(page_title="Football Analytics · Jornada", page_icon="⚽", layout="wide")
 
@@ -131,6 +134,54 @@ def load_standings(code: str, season: int) -> dict:
     return get_standings_map(client, code, season)
 
 
+@st.cache_data(ttl=1800, show_spinner=False)
+def load_tendency_averages(code: str) -> pd.DataFrame:
+    """Promedios de corners/faltas/tarjetas por equipo, desde el log histórico
+    (data/tracking/match_stats_log.csv). Se cachea 30 min porque el archivo
+    solo crece cuando alguien mira "En vivo" o corre el backfill — no hace
+    falta releerlo en cada interacción."""
+    return load_team_averages(code)
+
+
+def render_stats_block(home_team: str, away_team: str, utc_date: str, competition_code: str,
+                        season: int = 0, matchday: int = 0) -> None:
+    """Corners/faltas/tarjetas REALES de un partido ya jugado o en curso (no la
+    tendencia histórica — esa es pick_tendencies, para partidos sin jugar). De
+    paso deja el resultado guardado en el log, así que cada vez que se abre esto
+    se retroalimenta el promedio que usan las tendencias de jornadas futuras.
+
+    Se usa tanto en "En vivo" como en "Resultados ya jugados"; `season`/`matchday`
+    quedan en 0 cuando no se conocen con certeza (la pestaña en vivo mezcla varias
+    competiciones a la vez), lo cual no afecta a team_averages (agrupa por equipo,
+    no por jornada).
+    """
+    if not STATS_KEY_PRESENT:
+        st.caption("Configura GOAL_API_KEY (o HIGHLIGHTLY_API_KEY) para ver corners/faltas/tarjetas.")
+        return
+
+    rate_limited = False
+    try:
+        stats = load_match_stats(home_team, away_team, utc_date, competition_code)
+    except (GoalApiRateLimited, HighlightlyRateLimited) as e:
+        stats, rate_limited = None, True
+        st.warning(f"⏳ {e}")
+
+    if stats:
+        log_match_stats(competition_code, season, matchday, utc_date, home_team, away_team, stats)
+        # Solo las columnas que la fuente realmente entregó: Goal API trae
+        # posesión y remates además de lo básico, Highlightly no siempre.
+        etiquetas = {
+            "corners": "Corners", "faltas": "Faltas",
+            "tarjetas_amarillas": "T. amarillas", "tarjetas_rojas": "T. rojas",
+            "posesion": "Posesión %", "remates_a_puerta": "Remates a puerta",
+        }
+        stat_df = pd.DataFrame(stats).T
+        columnas = [c for c in etiquetas if c in stat_df.columns and stat_df[c].notna().any()]
+        st.dataframe(stat_df[columnas].rename(columns=etiquetas), width="stretch")
+    elif not rate_limited:
+        st.caption("Sin estadísticas disponibles todavía para este partido.")
+
+
 @st.cache_data(ttl=1800, show_spinner="Armando combinadas...")
 def load_parlays(code: str, season: int, matchday: int) -> list:
     df = get_predictions(code, season, matchday)
@@ -173,6 +224,7 @@ if st.sidebar.button("🔄 Forzar actualización de datos"):
     get_predictions.clear()
     auto_status.clear()
     load_live_matches.clear()
+    load_tendency_averages.clear()
     st.rerun()
 
 st.sidebar.divider()
@@ -197,8 +249,8 @@ with tab_jornada:
     if df.empty:
         st.info(
             "Esta jornada ya terminó por completo (sin partidos por jugar), así que no hay "
-            "predicciones que mostrar aquí — pero sí puedes ver corners/faltas/tarjetas de sus "
-            "partidos más abajo."
+            "predicciones que mostrar aquí — pero sí puedes ver sus resultados y estadísticas "
+            "más abajo, en 'Resultados ya jugados'."
         )
     else:
         # --- Métricas resumen ---
@@ -244,6 +296,7 @@ with tab_jornada:
         standings = load_standings(comp_code, int(season))
         show = df.copy()
         show["Partido"] = show["home_team"] + " vs " + show["away_team"]
+        show["Fecha"] = show["utc_date"].map(lambda d: format_bogota(d))
         show["1X2"] = show.apply(lambda r: f"{r.home_win:.0f}% / {r.draw:.0f}% / {r.away_win:.0f}%", axis=1)
         show["xG"] = show.apply(lambda r: f"{r.home_xg} - {r.away_xg}", axis=1)
         show["⚠"] = show["low_confidence"].map({True: "Baja confianza", False: ""})
@@ -255,12 +308,57 @@ with tab_jornada:
         show["Contexto"] = show.apply(
             lambda r: rivalry_label(r.home_team_short, r.away_team_short) or "", axis=1,
         )
+
+        # --- Tendencias de corners/faltas/tarjetas (promedio histórico, no del
+        # modelo de goles) para partidos que TODAVÍA no se juegan. ---
+        tendency_averages = load_tendency_averages(comp_code)
+        columnas_tabla = ["Partido", "Fecha", "Posiciones", "Contexto", "xG", "1X2",
+                           "over_2_5", "btts", "top_score", "⚠"]
+        if tendency_averages.empty:
+            st.caption(
+                "📐 Corners/faltas/tarjetas: todavía no hay historial guardado para esta "
+                "competición (se acumula automáticamente al ver la pestaña 'En vivo', o de una "
+                "vez con `python scripts/backfill_match_stats.py`)."
+            )
+        else:
+            picks_por_partido = [
+                pick_tendencies(tendency_averages, r.home_team, r.away_team) for r in show.itertuples()
+            ]
+            for i, label in enumerate(("Corners", "Faltas", "Tarjetas")):
+                linea = picks_por_partido[0][i].line
+                show[f"{label} (+{linea})"] = [p[i].describe() for p in picks_por_partido]
+            columnas_tabla += [c for c in show.columns if c.startswith(("Corners (", "Faltas (", "Tarjetas ("))]
+            st.caption(
+                "📐 Corners/faltas/tarjetas: tendencia a partir del promedio histórico real de cada "
+                "equipo (no es el modelo de goles). ⚠ = alguno de los dos equipos tiene menos de "
+                "5 partidos registrados todavía — el número es orientativo, no confiable aún."
+            )
+
         st.dataframe(
-            show[["Partido", "Posiciones", "Contexto", "xG", "1X2", "over_2_5", "btts", "top_score", "⚠"]].rename(
+            show[columnas_tabla].rename(
                 columns={"over_2_5": "Over 2.5 %", "btts": "BTTS %", "top_score": "Marcador top"}
             ),
             width="stretch", hide_index=True,
         )
+
+    # --- Resultados ya jugados en esta jornada ---
+    st.divider()
+    st.subheader("✅ Resultados ya jugados en esta jornada")
+    played = finished_fixtures(comp_code, int(season), int(matchday))
+    if played.empty:
+        st.caption("Ningún partido de esta jornada ha terminado todavía.")
+    else:
+        for _, row in played.iterrows():
+            marcador = (
+                f"{int(row['home_goals'])}-{int(row['away_goals'])}"
+                if pd.notna(row["home_goals"]) else "?-?"
+            )
+            label = f"{row['home_team']} {marcador} {row['away_team']} · {format_bogota(row['utc_date'])}"
+            with st.expander(label):
+                render_stats_block(
+                    row["home_team"], row["away_team"], row["utc_date"], comp_code,
+                    season=int(season), matchday=int(matchday),
+                )
 
     # --- Combinadas sugeridas ---
     st.divider()
@@ -337,7 +435,7 @@ with tab_vivo:
                 if pd.notna(row.live_home_win) else "sin datos suficientes"
             )
             c_liga, c_local, c_marcador, c_visitante, c_1x2 = st.columns([1.3, 2, 1, 2, 1.6])
-            c_liga.caption(f"{row.competition_name} · min. {row.minuto_estimado}'")
+            c_liga.caption(f"{row.competition_name} · {format_bogota(row.utc_date)} · min. {row.minuto_estimado}'")
             c_local.write(row.home_team)
             c_marcador.markdown(f"**{row.home_goals} - {row.away_goals}**")
             c_visitante.write(row.away_team)
@@ -345,31 +443,7 @@ with tab_vivo:
 
             if STATS_KEY_PRESENT:
                 with st.expander("📐 Corners, faltas y tarjetas"):
-                    rate_limited = False
-                    try:
-                        stats = load_match_stats(row.home_team, row.away_team, row.utc_date, row.competition)
-                    except (GoalApiRateLimited, HighlightlyRateLimited) as e:
-                        stats, rate_limited = None, True
-                        st.warning(f"⏳ {e}")
-
-                    if stats:
-                        log_match_stats(
-                            row.competition, 0, 0,  # jornada/temporada no siempre conocidas para las 6 ligas a la vez
-                            row.utc_date, row.home_team, row.away_team, stats,
-                        )
-                        # Solo las columnas que la fuente realmente entregó: Goal API
-                        # trae posesión y remates además de lo básico, Highlightly no
-                        # siempre, y no queremos mostrar columnas vacías.
-                        etiquetas = {
-                            "corners": "Corners", "faltas": "Faltas",
-                            "tarjetas_amarillas": "T. amarillas", "tarjetas_rojas": "T. rojas",
-                            "posesion": "Posesión %", "remates_a_puerta": "Remates a puerta",
-                        }
-                        stat_df = pd.DataFrame(stats).T
-                        columnas = [c for c in etiquetas if c in stat_df.columns
-                                    and stat_df[c].notna().any()]
-                        stat_df = stat_df[columnas].rename(columns=etiquetas)
-                        st.dataframe(stat_df, width="stretch")
-                    elif not rate_limited:
-                        st.caption("Sin estadísticas disponibles todavía para este partido.")
+                    # jornada/temporada quedan en 0: no siempre se conocen con certeza
+                    # cuando se mezclan las 6 competiciones a la vez en esta pestaña.
+                    render_stats_block(row.home_team, row.away_team, row.utc_date, row.competition)
             st.divider()

@@ -1,91 +1,1125 @@
 competition,season,matchday,utc_date,home_team,away_team,team,is_home,corners,faltas,tarjetas_amarillas,tarjetas_rojas
-PD,2026,5.0,2026-09-12T14:15:00Z,CA Osasuna,RCD Espanyol de Barcelona,CA Osasuna,True,3,8,2,0
-PD,2026,5.0,2026-09-12T14:15:00Z,CA Osasuna,RCD Espanyol de Barcelona,RCD Espanyol de Barcelona,False,4,20,2,0
-PD,2026,5.0,2026-09-12T12:00:00Z,Real Racing Club de Santander,Deportivo Alavés,Real Racing Club de Santander,True,4,16,2,1
-PD,2026,5.0,2026-09-12T12:00:00Z,Real Racing Club de Santander,Deportivo Alavés,Deportivo Alavés,False,6,17,3,0
-PL,2026,4.0,2026-09-12T14:00:00Z,AFC Bournemouth,Brentford FC,AFC Bournemouth,True,2,10,5,0
-PL,2026,4.0,2026-09-12T14:00:00Z,AFC Bournemouth,Brentford FC,Brentford FC,False,1,12,1,0
-PL,2026,4.0,2026-09-12T14:00:00Z,Crystal Palace FC,Ipswich Town FC,Crystal Palace FC,True,6,5,1,1
-PL,2026,4.0,2026-09-12T14:00:00Z,Crystal Palace FC,Ipswich Town FC,Ipswich Town FC,False,3,15,3,0
-PL,2026,4.0,2026-09-12T14:00:00Z,Liverpool FC,Fulham FC,Liverpool FC,True,5,11,0,0
-PL,2026,4.0,2026-09-12T14:00:00Z,Liverpool FC,Fulham FC,Fulham FC,False,8,8,1,0
-PL,2026,4.0,2026-09-12T14:00:00Z,Aston Villa FC,Nottingham Forest FC,Aston Villa FC,True,6,10,2,0
-PL,2026,4.0,2026-09-12T14:00:00Z,Aston Villa FC,Nottingham Forest FC,Nottingham Forest FC,False,1,14,5,0
-PL,2026,4.0,2026-09-12T14:00:00Z,Chelsea FC,Hull City AFC,Chelsea FC,True,10,7,1,0
-PL,2026,4.0,2026-09-12T14:00:00Z,Chelsea FC,Hull City AFC,Hull City AFC,False,4,11,5,0
-BL1,2026,3.0,2026-09-12T13:30:00Z,TSG 1899 Hoffenheim,VfB Stuttgart,TSG 1899 Hoffenheim,True,5,15,1,0
-BL1,2026,3.0,2026-09-12T13:30:00Z,TSG 1899 Hoffenheim,VfB Stuttgart,VfB Stuttgart,False,7,8,0,0
-BL1,2026,3.0,2026-09-12T13:30:00Z,Borussia Dortmund,SC Paderborn 07,Borussia Dortmund,True,7,11,1,0
-BL1,2026,3.0,2026-09-12T13:30:00Z,Borussia Dortmund,SC Paderborn 07,SC Paderborn 07,False,3,7,1,0
-BL1,2026,3.0,2026-09-12T13:30:00Z,FC Augsburg,Bayer 04 Leverkusen,FC Augsburg,True,2,6,1,0
-BL1,2026,3.0,2026-09-12T13:30:00Z,FC Augsburg,Bayer 04 Leverkusen,Bayer 04 Leverkusen,False,14,13,1,0
-BL1,2026,3.0,2026-09-12T13:30:00Z,1. FSV Mainz 05,Eintracht Frankfurt,1. FSV Mainz 05,True,4,11,0,0
-BL1,2026,3.0,2026-09-12T13:30:00Z,1. FSV Mainz 05,Eintracht Frankfurt,Eintracht Frankfurt,False,5,9,2,0
-BL1,2026,3.0,2026-09-12T13:30:00Z,SC Freiburg,Borussia Mönchengladbach,SC Freiburg,True,6,7,1,0
-BL1,2026,3.0,2026-09-12T13:30:00Z,SC Freiburg,Borussia Mönchengladbach,Borussia Mönchengladbach,False,2,16,4,1
-SA,2026,4.0,2026-09-12T13:00:00Z,Genoa CFC,Frosinone Calcio,Genoa CFC,True,8,12,3,1
-SA,2026,4.0,2026-09-12T13:00:00Z,Genoa CFC,Frosinone Calcio,Frosinone Calcio,False,9,12,2,0
-PD,2026,5.0,2026-09-11T19:00:00Z,Sevilla FC,Valencia CF,Sevilla FC,True,6,8,1,0
-PD,2026,5.0,2026-09-11T19:00:00Z,Sevilla FC,Valencia CF,Valencia CF,False,4,12,2,0
-FL1,2026,4.0,2026-09-11T18:45:00Z,Stade Rennais FC 1901,Olympique de Marseille,Stade Rennais FC 1901,True,3,15,1,0
-FL1,2026,4.0,2026-09-11T18:45:00Z,Stade Rennais FC 1901,Olympique de Marseille,Olympique de Marseille,False,5,13,4,0
-SA,2026,4.0,2026-09-11T18:45:00Z,Venezia FC,ACF Fiorentina,Venezia FC,True,2,10,2,0
-SA,2026,4.0,2026-09-11T18:45:00Z,Venezia FC,ACF Fiorentina,ACF Fiorentina,False,4,6,1,0
-BL1,2026,3.0,2026-09-11T18:30:00Z,1. FC Union Berlin,FC Schalke 04,1. FC Union Berlin,True,4,11,3,0
-BL1,2026,3.0,2026-09-11T18:30:00Z,1. FC Union Berlin,FC Schalke 04,FC Schalke 04,False,5,10,1,0
-CL,2026,1.0,2026-09-10T19:00:00Z,Manchester United FC,Sabah FK,Manchester United FC,True,7,12,1,0
-CL,2026,1.0,2026-09-10T19:00:00Z,Manchester United FC,Sabah FK,Sabah FK,False,2,13,1,0
-CL,2026,1.0,2026-09-10T19:00:00Z,FC Bayern München,FK Bodø/Glimt,FC Bayern München,True,6,5,0,0
-CL,2026,1.0,2026-09-10T19:00:00Z,FC Bayern München,FK Bodø/Glimt,FK Bodø/Glimt,False,3,8,1,1
-CL,2026,1.0,2026-09-10T19:00:00Z,SK Slavia Praha,Racing Club de Lens,SK Slavia Praha,True,6,8,0,1
-CL,2026,1.0,2026-09-10T19:00:00Z,SK Slavia Praha,Racing Club de Lens,Racing Club de Lens,False,9,8,1,0
-CL,2026,1.0,2026-09-10T19:00:00Z,Como 1907,RB Leipzig,Como 1907,True,1,9,2,0
-CL,2026,1.0,2026-09-10T19:00:00Z,Como 1907,RB Leipzig,RB Leipzig,False,5,10,3,0
-CL,2026,1.0,2026-09-10T16:45:00Z,PSV,FK Shakhtar Donetsk,PSV,True,3,14,3,0
-CL,2026,1.0,2026-09-10T16:45:00Z,PSV,FK Shakhtar Donetsk,FK Shakhtar Donetsk,False,3,15,6,0
-CL,2026,1.0,2026-09-10T16:45:00Z,Fenerbahçe SK,AS Roma,Fenerbahçe SK,True,1,12,4,0
-CL,2026,1.0,2026-09-10T16:45:00Z,Fenerbahçe SK,AS Roma,AS Roma,False,3,19,2,0
-CL,2026,1.0,2026-09-09T19:00:00Z,Liverpool FC,Club Atlético de Madrid,Liverpool FC,True,7,11,1,0
-CL,2026,1.0,2026-09-09T19:00:00Z,Liverpool FC,Club Atlético de Madrid,Club Atlético de Madrid,False,5,10,1,0
-CL,2026,1.0,2026-09-09T19:00:00Z,Sporting Clube de Portugal,Galatasaray SK,Sporting Clube de Portugal,True,1,13,3,0
-CL,2026,1.0,2026-09-09T19:00:00Z,Sporting Clube de Portugal,Galatasaray SK,Galatasaray SK,False,2,11,2,0
-CL,2026,1.0,2026-09-09T19:00:00Z,Paris Saint-Germain FC,ŠK Slovan Bratislava,Paris Saint-Germain FC,True,7,8,0,0
-CL,2026,1.0,2026-09-09T19:00:00Z,Paris Saint-Germain FC,ŠK Slovan Bratislava,ŠK Slovan Bratislava,False,2,6,1,0
-CL,2026,1.0,2026-09-09T19:00:00Z,SSC Napoli,Arsenal FC,SSC Napoli,True,0,12,2,0
-CL,2026,1.0,2026-09-09T19:00:00Z,SSC Napoli,Arsenal FC,Arsenal FC,False,6,11,1,0
-CL,2026,1.0,2026-09-09T16:45:00Z,FC Barcelona,Feyenoord Rotterdam,FC Barcelona,True,4,10,1,0
-CL,2026,1.0,2026-09-09T16:45:00Z,FC Barcelona,Feyenoord Rotterdam,Feyenoord Rotterdam,False,1,12,1,0
-CL,2026,1.0,2026-09-09T16:45:00Z,VfB Stuttgart,Viking FK,VfB Stuttgart,True,3,13,0,0
-CL,2026,1.0,2026-09-09T16:45:00Z,VfB Stuttgart,Viking FK,Viking FK,False,5,13,3,0
-CL,2026,1.0,2026-09-08T19:00:00Z,Borussia Dortmund,Villarreal CF,Borussia Dortmund,True,9,15,1,0
-CL,2026,1.0,2026-09-08T19:00:00Z,Borussia Dortmund,Villarreal CF,Villarreal CF,False,7,10,3,0
-CL,2026,1.0,2026-09-08T19:00:00Z,FC Porto,Manchester City FC,FC Porto,True,2,10,1,0
-CL,2026,1.0,2026-09-08T19:00:00Z,FC Porto,Manchester City FC,Manchester City FC,False,5,17,3,0
-CL,2026,1.0,2026-09-08T19:00:00Z,Real Madrid CF,FC Internazionale Milano,Real Madrid CF,True,4,12,1,0
-CL,2026,1.0,2026-09-08T19:00:00Z,Real Madrid CF,FC Internazionale Milano,FC Internazionale Milano,False,11,10,3,0
-CL,2026,1.0,2026-09-08T19:00:00Z,Lille OSC,Real Betis Balompié,Lille OSC,True,5,11,1,1
-CL,2026,1.0,2026-09-08T19:00:00Z,Lille OSC,Real Betis Balompié,Real Betis Balompié,False,5,13,3,0
-CL,2026,1.0,2026-09-08T16:45:00Z,Club Brugge KV,Aston Villa FC,Club Brugge KV,True,4,17,3,0
-CL,2026,1.0,2026-09-08T16:45:00Z,Club Brugge KV,Aston Villa FC,Aston Villa FC,False,5,15,3,0
-PD,2026,4.0,2026-09-07T19:30:00Z,Elche CF,Real Sociedad de Fútbol,Elche CF,True,6,9,4,0
-PD,2026,4.0,2026-09-07T19:30:00Z,Elche CF,Real Sociedad de Fútbol,Real Sociedad de Fútbol,False,7,8,1,1
-PD,2026,4.0,2026-09-07T17:00:00Z,Getafe CF,RC Celta de Vigo,Getafe CF,True,3,8,4,1
-PD,2026,4.0,2026-09-07T17:00:00Z,Getafe CF,RC Celta de Vigo,RC Celta de Vigo,False,5,9,2,0
-SA,2026,3.0,2026-09-07T18:45:00Z,Udinese Calcio,SS Lazio,Udinese Calcio,True,2,13,5,0
-SA,2026,3.0,2026-09-07T18:45:00Z,Udinese Calcio,SS Lazio,SS Lazio,False,8,9,1,0
-SA,2026,3.0,2026-09-07T16:30:00Z,Cagliari Calcio,US Lecce,Cagliari Calcio,True,7,9,1,0
-SA,2026,3.0,2026-09-07T16:30:00Z,Cagliari Calcio,US Lecce,US Lecce,False,5,13,3,0
-PD,2026,4.0,2026-09-06T19:00:00Z,RCD Espanyol de Barcelona,Sevilla FC,RCD Espanyol de Barcelona,True,0,17,2,0
-PD,2026,4.0,2026-09-06T19:00:00Z,RCD Espanyol de Barcelona,Sevilla FC,Sevilla FC,False,4,13,3,1
-PD,2026,4.0,2026-09-06T16:30:00Z,Málaga CF,Levante UD,Málaga CF,True,6,15,4,0
-PD,2026,4.0,2026-09-06T16:30:00Z,Málaga CF,Levante UD,Levante UD,False,4,11,2,0
-PD,2026,4.0,2026-09-06T16:30:00Z,Deportivo Alavés,CA Osasuna,Deportivo Alavés,True,4,14,1,0
-PD,2026,4.0,2026-09-06T16:30:00Z,Deportivo Alavés,CA Osasuna,CA Osasuna,False,1,13,2,0
-PD,2026,4.0,2026-09-06T14:15:00Z,Valencia CF,FC Barcelona,Valencia CF,True,1,7,1,0
-PD,2026,4.0,2026-09-06T14:15:00Z,Valencia CF,FC Barcelona,FC Barcelona,False,4,6,3,0
-SA,2026,3.0,2026-09-06T18:45:00Z,Juventus FC,AC Milan,Juventus FC,True,7,10,1,0
-SA,2026,3.0,2026-09-06T18:45:00Z,Juventus FC,AC Milan,AC Milan,False,1,11,3,0
-SA,2026,3.0,2026-09-06T16:00:00Z,Bologna FC 1909,US Sassuolo Calcio,Bologna FC 1909,True,10,14,3,0
-SA,2026,3.0,2026-09-06T16:00:00Z,Bologna FC 1909,US Sassuolo Calcio,US Sassuolo Calcio,False,7,9,1,0
-SA,2026,3.0,2026-09-06T13:00:00Z,Frosinone Calcio,Venezia FC,Frosinone Calcio,True,5,18,2,0
-SA,2026,3.0,2026-09-06T13:00:00Z,Frosinone Calcio,Venezia FC,Venezia FC,False,2,14,4,0
+PD,2026,5.0,2026-09-12T14:15:00Z,CA Osasuna,RCD Espanyol de Barcelona,CA Osasuna,True,3,8.0,2,0
+PD,2026,5.0,2026-09-12T14:15:00Z,CA Osasuna,RCD Espanyol de Barcelona,RCD Espanyol de Barcelona,False,4,20.0,2,0
+PD,2026,5.0,2026-09-12T12:00:00Z,Real Racing Club de Santander,Deportivo Alavés,Real Racing Club de Santander,True,4,16.0,2,1
+PD,2026,5.0,2026-09-12T12:00:00Z,Real Racing Club de Santander,Deportivo Alavés,Deportivo Alavés,False,6,17.0,3,0
+PL,2026,4.0,2026-09-12T14:00:00Z,AFC Bournemouth,Brentford FC,AFC Bournemouth,True,2,10.0,5,0
+PL,2026,4.0,2026-09-12T14:00:00Z,AFC Bournemouth,Brentford FC,Brentford FC,False,1,12.0,1,0
+PL,2026,4.0,2026-09-12T14:00:00Z,Crystal Palace FC,Ipswich Town FC,Crystal Palace FC,True,6,5.0,1,1
+PL,2026,4.0,2026-09-12T14:00:00Z,Crystal Palace FC,Ipswich Town FC,Ipswich Town FC,False,3,15.0,3,0
+PL,2026,4.0,2026-09-12T14:00:00Z,Liverpool FC,Fulham FC,Liverpool FC,True,5,11.0,0,0
+PL,2026,4.0,2026-09-12T14:00:00Z,Liverpool FC,Fulham FC,Fulham FC,False,8,8.0,1,0
+PL,2026,4.0,2026-09-12T14:00:00Z,Aston Villa FC,Nottingham Forest FC,Aston Villa FC,True,6,10.0,2,0
+PL,2026,4.0,2026-09-12T14:00:00Z,Aston Villa FC,Nottingham Forest FC,Nottingham Forest FC,False,1,14.0,5,0
+PL,2026,4.0,2026-09-12T14:00:00Z,Chelsea FC,Hull City AFC,Chelsea FC,True,10,7.0,1,0
+PL,2026,4.0,2026-09-12T14:00:00Z,Chelsea FC,Hull City AFC,Hull City AFC,False,4,11.0,5,0
+BL1,2026,3.0,2026-09-12T13:30:00Z,TSG 1899 Hoffenheim,VfB Stuttgart,TSG 1899 Hoffenheim,True,5,15.0,1,0
+BL1,2026,3.0,2026-09-12T13:30:00Z,TSG 1899 Hoffenheim,VfB Stuttgart,VfB Stuttgart,False,7,8.0,0,0
+BL1,2026,3.0,2026-09-12T13:30:00Z,Borussia Dortmund,SC Paderborn 07,Borussia Dortmund,True,7,11.0,1,0
+BL1,2026,3.0,2026-09-12T13:30:00Z,Borussia Dortmund,SC Paderborn 07,SC Paderborn 07,False,3,7.0,1,0
+BL1,2026,3.0,2026-09-12T13:30:00Z,FC Augsburg,Bayer 04 Leverkusen,FC Augsburg,True,2,6.0,1,0
+BL1,2026,3.0,2026-09-12T13:30:00Z,FC Augsburg,Bayer 04 Leverkusen,Bayer 04 Leverkusen,False,14,13.0,1,0
+BL1,2026,3.0,2026-09-12T13:30:00Z,1. FSV Mainz 05,Eintracht Frankfurt,1. FSV Mainz 05,True,4,11.0,0,0
+BL1,2026,3.0,2026-09-12T13:30:00Z,1. FSV Mainz 05,Eintracht Frankfurt,Eintracht Frankfurt,False,5,9.0,2,0
+BL1,2026,3.0,2026-09-12T13:30:00Z,SC Freiburg,Borussia Mönchengladbach,SC Freiburg,True,6,7.0,1,0
+BL1,2026,3.0,2026-09-12T13:30:00Z,SC Freiburg,Borussia Mönchengladbach,Borussia Mönchengladbach,False,2,16.0,4,1
+SA,2026,4.0,2026-09-12T13:00:00Z,Genoa CFC,Frosinone Calcio,Genoa CFC,True,8,12.0,3,1
+SA,2026,4.0,2026-09-12T13:00:00Z,Genoa CFC,Frosinone Calcio,Frosinone Calcio,False,9,12.0,2,0
+PD,2026,5.0,2026-09-11T19:00:00Z,Sevilla FC,Valencia CF,Sevilla FC,True,6,8.0,1,0
+PD,2026,5.0,2026-09-11T19:00:00Z,Sevilla FC,Valencia CF,Valencia CF,False,4,12.0,2,0
+FL1,2026,4.0,2026-09-11T18:45:00Z,Stade Rennais FC 1901,Olympique de Marseille,Stade Rennais FC 1901,True,3,15.0,1,0
+FL1,2026,4.0,2026-09-11T18:45:00Z,Stade Rennais FC 1901,Olympique de Marseille,Olympique de Marseille,False,5,13.0,4,0
+SA,2026,4.0,2026-09-11T18:45:00Z,Venezia FC,ACF Fiorentina,Venezia FC,True,2,10.0,2,0
+SA,2026,4.0,2026-09-11T18:45:00Z,Venezia FC,ACF Fiorentina,ACF Fiorentina,False,4,6.0,1,0
+BL1,2026,3.0,2026-09-11T18:30:00Z,1. FC Union Berlin,FC Schalke 04,1. FC Union Berlin,True,4,11.0,3,0
+BL1,2026,3.0,2026-09-11T18:30:00Z,1. FC Union Berlin,FC Schalke 04,FC Schalke 04,False,5,10.0,1,0
+CL,2026,1.0,2026-09-10T19:00:00Z,Manchester United FC,Sabah FK,Manchester United FC,True,7,12.0,1,0
+CL,2026,1.0,2026-09-10T19:00:00Z,Manchester United FC,Sabah FK,Sabah FK,False,2,13.0,1,0
+CL,2026,1.0,2026-09-10T19:00:00Z,FC Bayern München,FK Bodø/Glimt,FC Bayern München,True,6,5.0,0,0
+CL,2026,1.0,2026-09-10T19:00:00Z,FC Bayern München,FK Bodø/Glimt,FK Bodø/Glimt,False,3,8.0,1,1
+CL,2026,1.0,2026-09-10T19:00:00Z,SK Slavia Praha,Racing Club de Lens,SK Slavia Praha,True,6,8.0,0,1
+CL,2026,1.0,2026-09-10T19:00:00Z,SK Slavia Praha,Racing Club de Lens,Racing Club de Lens,False,9,8.0,1,0
+CL,2026,1.0,2026-09-10T19:00:00Z,Como 1907,RB Leipzig,Como 1907,True,1,9.0,2,0
+CL,2026,1.0,2026-09-10T19:00:00Z,Como 1907,RB Leipzig,RB Leipzig,False,5,10.0,3,0
+CL,2026,1.0,2026-09-10T16:45:00Z,PSV,FK Shakhtar Donetsk,PSV,True,3,14.0,3,0
+CL,2026,1.0,2026-09-10T16:45:00Z,PSV,FK Shakhtar Donetsk,FK Shakhtar Donetsk,False,3,15.0,6,0
+CL,2026,1.0,2026-09-10T16:45:00Z,Fenerbahçe SK,AS Roma,Fenerbahçe SK,True,1,12.0,4,0
+CL,2026,1.0,2026-09-10T16:45:00Z,Fenerbahçe SK,AS Roma,AS Roma,False,3,19.0,2,0
+CL,2026,1.0,2026-09-09T19:00:00Z,Liverpool FC,Club Atlético de Madrid,Liverpool FC,True,7,11.0,1,0
+CL,2026,1.0,2026-09-09T19:00:00Z,Liverpool FC,Club Atlético de Madrid,Club Atlético de Madrid,False,5,10.0,1,0
+CL,2026,1.0,2026-09-09T19:00:00Z,Sporting Clube de Portugal,Galatasaray SK,Sporting Clube de Portugal,True,1,13.0,3,0
+CL,2026,1.0,2026-09-09T19:00:00Z,Sporting Clube de Portugal,Galatasaray SK,Galatasaray SK,False,2,11.0,2,0
+CL,2026,1.0,2026-09-09T19:00:00Z,Paris Saint-Germain FC,ŠK Slovan Bratislava,Paris Saint-Germain FC,True,7,8.0,0,0
+CL,2026,1.0,2026-09-09T19:00:00Z,Paris Saint-Germain FC,ŠK Slovan Bratislava,ŠK Slovan Bratislava,False,2,6.0,1,0
+CL,2026,1.0,2026-09-09T19:00:00Z,SSC Napoli,Arsenal FC,SSC Napoli,True,0,12.0,2,0
+CL,2026,1.0,2026-09-09T19:00:00Z,SSC Napoli,Arsenal FC,Arsenal FC,False,6,11.0,1,0
+CL,2026,1.0,2026-09-09T16:45:00Z,FC Barcelona,Feyenoord Rotterdam,FC Barcelona,True,4,10.0,1,0
+CL,2026,1.0,2026-09-09T16:45:00Z,FC Barcelona,Feyenoord Rotterdam,Feyenoord Rotterdam,False,1,12.0,1,0
+CL,2026,1.0,2026-09-09T16:45:00Z,VfB Stuttgart,Viking FK,VfB Stuttgart,True,3,13.0,0,0
+CL,2026,1.0,2026-09-09T16:45:00Z,VfB Stuttgart,Viking FK,Viking FK,False,5,13.0,3,0
+CL,2026,1.0,2026-09-08T19:00:00Z,Borussia Dortmund,Villarreal CF,Borussia Dortmund,True,9,15.0,1,0
+CL,2026,1.0,2026-09-08T19:00:00Z,Borussia Dortmund,Villarreal CF,Villarreal CF,False,7,10.0,3,0
+CL,2026,1.0,2026-09-08T19:00:00Z,FC Porto,Manchester City FC,FC Porto,True,2,10.0,1,0
+CL,2026,1.0,2026-09-08T19:00:00Z,FC Porto,Manchester City FC,Manchester City FC,False,5,17.0,3,0
+CL,2026,1.0,2026-09-08T19:00:00Z,Real Madrid CF,FC Internazionale Milano,Real Madrid CF,True,4,12.0,1,0
+CL,2026,1.0,2026-09-08T19:00:00Z,Real Madrid CF,FC Internazionale Milano,FC Internazionale Milano,False,11,10.0,3,0
+CL,2026,1.0,2026-09-08T19:00:00Z,Lille OSC,Real Betis Balompié,Lille OSC,True,5,11.0,1,1
+CL,2026,1.0,2026-09-08T19:00:00Z,Lille OSC,Real Betis Balompié,Real Betis Balompié,False,5,13.0,3,0
+CL,2026,1.0,2026-09-08T16:45:00Z,Club Brugge KV,Aston Villa FC,Club Brugge KV,True,4,17.0,3,0
+CL,2026,1.0,2026-09-08T16:45:00Z,Club Brugge KV,Aston Villa FC,Aston Villa FC,False,5,15.0,3,0
+PD,2026,4.0,2026-09-07T19:30:00Z,Elche CF,Real Sociedad de Fútbol,Elche CF,True,6,9.0,4,0
+PD,2026,4.0,2026-09-07T19:30:00Z,Elche CF,Real Sociedad de Fútbol,Real Sociedad de Fútbol,False,7,8.0,1,1
+PD,2026,4.0,2026-09-07T17:00:00Z,Getafe CF,RC Celta de Vigo,Getafe CF,True,3,8.0,4,1
+PD,2026,4.0,2026-09-07T17:00:00Z,Getafe CF,RC Celta de Vigo,RC Celta de Vigo,False,5,9.0,2,0
+SA,2026,3.0,2026-09-07T18:45:00Z,Udinese Calcio,SS Lazio,Udinese Calcio,True,2,13.0,5,0
+SA,2026,3.0,2026-09-07T18:45:00Z,Udinese Calcio,SS Lazio,SS Lazio,False,8,9.0,1,0
+SA,2026,3.0,2026-09-07T16:30:00Z,Cagliari Calcio,US Lecce,Cagliari Calcio,True,7,9.0,1,0
+SA,2026,3.0,2026-09-07T16:30:00Z,Cagliari Calcio,US Lecce,US Lecce,False,5,13.0,3,0
+PD,2026,4.0,2026-09-06T19:00:00Z,RCD Espanyol de Barcelona,Sevilla FC,RCD Espanyol de Barcelona,True,0,17.0,2,0
+PD,2026,4.0,2026-09-06T19:00:00Z,RCD Espanyol de Barcelona,Sevilla FC,Sevilla FC,False,4,13.0,3,1
+PD,2026,4.0,2026-09-06T16:30:00Z,Málaga CF,Levante UD,Málaga CF,True,6,15.0,4,0
+PD,2026,4.0,2026-09-06T16:30:00Z,Málaga CF,Levante UD,Levante UD,False,4,11.0,2,0
+PD,2026,4.0,2026-09-06T16:30:00Z,Deportivo Alavés,CA Osasuna,Deportivo Alavés,True,4,14.0,1,0
+PD,2026,4.0,2026-09-06T16:30:00Z,Deportivo Alavés,CA Osasuna,CA Osasuna,False,1,13.0,2,0
+PD,2026,4.0,2026-09-06T14:15:00Z,Valencia CF,FC Barcelona,Valencia CF,True,1,7.0,1,0
+PD,2026,4.0,2026-09-06T14:15:00Z,Valencia CF,FC Barcelona,FC Barcelona,False,4,6.0,3,0
+SA,2026,3.0,2026-09-06T18:45:00Z,Juventus FC,AC Milan,Juventus FC,True,7,10.0,1,0
+SA,2026,3.0,2026-09-06T18:45:00Z,Juventus FC,AC Milan,AC Milan,False,1,11.0,3,0
+SA,2026,3.0,2026-09-06T16:00:00Z,Bologna FC 1909,US Sassuolo Calcio,Bologna FC 1909,True,10,14.0,3,0
+SA,2026,3.0,2026-09-06T16:00:00Z,Bologna FC 1909,US Sassuolo Calcio,US Sassuolo Calcio,False,7,9.0,1,0
+SA,2026,3.0,2026-09-06T13:00:00Z,Frosinone Calcio,Venezia FC,Frosinone Calcio,True,5,18.0,2,0
+SA,2026,3.0,2026-09-06T13:00:00Z,Frosinone Calcio,Venezia FC,Venezia FC,False,2,14.0,4,0
+PL,2026,4.0,2026-09-12T16:30:00Z,Tottenham Hotspur FC,Everton FC,Tottenham Hotspur FC,True,5,14.0,0,0
+PL,2026,4.0,2026-09-12T16:30:00Z,Tottenham Hotspur FC,Everton FC,Everton FC,False,6,8.0,2,0
+PL,2026,4.0,2026-09-12T19:00:00Z,Sunderland AFC,Arsenal FC,Sunderland AFC,True,4,18.0,6,1
+PL,2026,4.0,2026-09-12T19:00:00Z,Sunderland AFC,Arsenal FC,Arsenal FC,False,2,11.0,2,0
+FL1,2026,3.0,2026-09-06T18:45:00Z,Olympique de Marseille,Paris FC,Olympique de Marseille,True,5,10.0,0,0
+FL1,2026,3.0,2026-09-06T18:45:00Z,Olympique de Marseille,Paris FC,Paris FC,False,4,12.0,2,0
+FL1,2026,3.0,2026-09-06T15:15:00Z,Angers SCO,Stade Rennais FC 1901,Angers SCO,True,12,10.0,1,0
+FL1,2026,3.0,2026-09-06T15:15:00Z,Angers SCO,Stade Rennais FC 1901,Stade Rennais FC 1901,False,6,15.0,1,0
+FL1,2026,3.0,2026-09-06T13:00:00Z,ES Troyes AC,RC Strasbourg Alsace,ES Troyes AC,True,11,6.0,1,0
+FL1,2026,3.0,2026-09-06T13:00:00Z,ES Troyes AC,RC Strasbourg Alsace,RC Strasbourg Alsace,False,0,16.0,1,0
+PL,2026,3.0,2026-09-06T15:30:00Z,Arsenal FC,Chelsea FC,Arsenal FC,True,5,13.0,2,0
+PL,2026,3.0,2026-09-06T15:30:00Z,Arsenal FC,Chelsea FC,Chelsea FC,False,3,16.0,4,0
+PL,2026,3.0,2026-09-06T13:00:00Z,Everton FC,Manchester United FC,Everton FC,True,4,7.0,3,0
+PL,2026,3.0,2026-09-06T13:00:00Z,Everton FC,Manchester United FC,Manchester United FC,False,3,11.0,3,0
+BL1,2026,2.0,2026-09-06T15:30:00Z,Eintracht Frankfurt,FC Augsburg,Eintracht Frankfurt,True,9,10.0,1,0
+BL1,2026,2.0,2026-09-06T15:30:00Z,Eintracht Frankfurt,FC Augsburg,FC Augsburg,False,4,12.0,1,0
+BL1,2026,2.0,2026-09-06T13:30:00Z,Hamburger SV,1. FSV Mainz 05,Hamburger SV,True,4,14.0,1,0
+BL1,2026,2.0,2026-09-06T13:30:00Z,Hamburger SV,1. FSV Mainz 05,1. FSV Mainz 05,False,5,19.0,3,0
+SA,2026,3.0,2026-09-06T13:00:00Z,Parma Calcio 1913,AC Monza,Parma Calcio 1913,True,6,16.0,2,0
+SA,2026,3.0,2026-09-06T13:00:00Z,Parma Calcio 1913,AC Monza,AC Monza,False,3,16.0,2,0
+PD,2026,4.0,2026-09-05T19:00:00Z,Villarreal CF,RC Deportivo La Coruña,Villarreal CF,True,7,,0,0
+PD,2026,4.0,2026-09-05T19:00:00Z,Villarreal CF,RC Deportivo La Coruña,RC Deportivo La Coruña,False,1,,0,0
+PD,2026,4.0,2026-09-05T16:30:00Z,Rayo Vallecano de Madrid,Real Racing Club de Santander,Rayo Vallecano de Madrid,True,9,15.0,3,2
+PD,2026,4.0,2026-09-05T16:30:00Z,Rayo Vallecano de Madrid,Real Racing Club de Santander,Real Racing Club de Santander,False,6,12.0,2,0
+PD,2026,4.0,2026-09-05T14:15:00Z,Athletic Club,Club Atlético de Madrid,Athletic Club,True,3,7.0,0,0
+PD,2026,4.0,2026-09-05T14:15:00Z,Athletic Club,Club Atlético de Madrid,Club Atlético de Madrid,False,8,6.0,1,0
+FL1,2026,3.0,2026-09-05T18:45:00Z,OGC Nice,Le Mans FC,OGC Nice,True,5,,0,0
+FL1,2026,3.0,2026-09-05T18:45:00Z,OGC Nice,Le Mans FC,Le Mans FC,False,2,,0,0
+FL1,2026,3.0,2026-09-05T18:45:00Z,Le Havre AC,Stade Brestois 29,Le Havre AC,True,5,,0,0
+FL1,2026,3.0,2026-09-05T18:45:00Z,Le Havre AC,Stade Brestois 29,Stade Brestois 29,False,5,,0,0
+FL1,2026,3.0,2026-09-05T15:15:00Z,Racing Club de Lens,FC Lorient,Racing Club de Lens,True,8,18.0,4,1
+FL1,2026,3.0,2026-09-05T15:15:00Z,Racing Club de Lens,FC Lorient,FC Lorient,False,0,6.0,1,0
+SA,2026,3.0,2026-09-05T18:45:00Z,AS Roma,Atalanta BC,AS Roma,True,14,,0,0
+SA,2026,3.0,2026-09-05T18:45:00Z,AS Roma,Atalanta BC,Atalanta BC,False,1,,0,0
+SA,2026,3.0,2026-09-05T16:00:00Z,FC Internazionale Milano,SSC Napoli,FC Internazionale Milano,True,10,7.0,1,0
+SA,2026,3.0,2026-09-05T16:00:00Z,FC Internazionale Milano,SSC Napoli,SSC Napoli,False,5,7.0,2,0
+SA,2026,3.0,2026-09-05T13:00:00Z,ACF Fiorentina,Torino FC,ACF Fiorentina,True,3,13.0,0,0
+SA,2026,3.0,2026-09-05T13:00:00Z,ACF Fiorentina,Torino FC,Torino FC,False,5,9.0,0,0
+PL,2026,3.0,2026-09-05T16:30:00Z,Hull City AFC,Aston Villa FC,Hull City AFC,True,3,10.0,2,0
+PL,2026,3.0,2026-09-05T16:30:00Z,Hull City AFC,Aston Villa FC,Aston Villa FC,False,4,5.0,0,0
+PL,2026,3.0,2026-09-05T14:00:00Z,Brentford FC,Sunderland AFC,Brentford FC,True,4,19.0,3,0
+PL,2026,3.0,2026-09-05T14:00:00Z,Brentford FC,Sunderland AFC,Sunderland AFC,False,3,8.0,2,0
+PL,2026,3.0,2026-09-05T14:00:00Z,Nottingham Forest FC,Tottenham Hotspur FC,Nottingham Forest FC,True,2,21.0,2,0
+PL,2026,3.0,2026-09-05T14:00:00Z,Nottingham Forest FC,Tottenham Hotspur FC,Tottenham Hotspur FC,False,10,12.0,2,0
+PL,2026,3.0,2026-09-05T14:00:00Z,Fulham FC,Crystal Palace FC,Fulham FC,True,7,6.0,0,0
+PL,2026,3.0,2026-09-05T14:00:00Z,Fulham FC,Crystal Palace FC,Crystal Palace FC,False,1,6.0,0,0
+PL,2026,3.0,2026-09-05T14:00:00Z,Brighton & Hove Albion FC,Leeds United FC,Brighton & Hove Albion FC,True,7,13.0,3,0
+PL,2026,3.0,2026-09-05T14:00:00Z,Brighton & Hove Albion FC,Leeds United FC,Leeds United FC,False,6,16.0,3,0
+PL,2026,3.0,2026-09-05T14:00:00Z,Manchester City FC,Coventry City FC,Manchester City FC,True,4,5.0,1,0
+PL,2026,3.0,2026-09-05T14:00:00Z,Manchester City FC,Coventry City FC,Coventry City FC,False,5,16.0,2,0
+PL,2026,3.0,2026-09-05T11:30:00Z,Newcastle United FC,AFC Bournemouth,Newcastle United FC,True,4,19.0,2,0
+PL,2026,3.0,2026-09-05T11:30:00Z,Newcastle United FC,AFC Bournemouth,AFC Bournemouth,False,3,17.0,3,0
+BL1,2026,2.0,2026-09-05T16:30:00Z,FC Schalke 04,FC Bayern München,FC Schalke 04,True,0,5.0,2,0
+BL1,2026,2.0,2026-09-05T16:30:00Z,FC Schalke 04,FC Bayern München,FC Bayern München,False,11,12.0,2,0
+BL1,2026,2.0,2026-09-05T13:30:00Z,SV Werder Bremen,RB Leipzig,SV Werder Bremen,True,2,13.0,1,0
+BL1,2026,2.0,2026-09-05T13:30:00Z,SV Werder Bremen,RB Leipzig,RB Leipzig,False,7,8.0,0,0
+BL1,2026,2.0,2026-09-05T13:30:00Z,TSG 1899 Hoffenheim,Borussia Dortmund,TSG 1899 Hoffenheim,True,10,13.0,4,0
+BL1,2026,2.0,2026-09-05T13:30:00Z,TSG 1899 Hoffenheim,Borussia Dortmund,Borussia Dortmund,False,3,7.0,2,0
+BL1,2026,2.0,2026-09-05T13:30:00Z,Borussia Mönchengladbach,SV 07 Elversberg,Borussia Mönchengladbach,True,13,18.0,3,0
+BL1,2026,2.0,2026-09-05T13:30:00Z,Borussia Mönchengladbach,SV 07 Elversberg,SV 07 Elversberg,False,4,9.0,1,0
+BL1,2026,2.0,2026-09-05T13:30:00Z,SC Paderborn 07,SC Freiburg,SC Paderborn 07,True,5,15.0,3,0
+BL1,2026,2.0,2026-09-05T13:30:00Z,SC Paderborn 07,SC Freiburg,SC Freiburg,False,4,10.0,3,0
+BL1,2026,2.0,2026-09-05T13:30:00Z,Bayer 04 Leverkusen,1. FC Union Berlin,Bayer 04 Leverkusen,True,11,11.0,2,0
+BL1,2026,2.0,2026-09-05T13:30:00Z,Bayer 04 Leverkusen,1. FC Union Berlin,1. FC Union Berlin,False,1,12.0,2,0
+FL1,2026,3.0,2026-09-04T19:05:00Z,Paris Saint-Germain FC,AS Monaco FC,Paris Saint-Germain FC,True,6,9.0,1,0
+FL1,2026,3.0,2026-09-04T19:05:00Z,Paris Saint-Germain FC,AS Monaco FC,AS Monaco FC,False,0,11.0,1,0
+FL1,2026,3.0,2026-09-04T17:00:00Z,Olympique Lyonnais,AJ Auxerre,Olympique Lyonnais,True,9,11.0,2,0
+FL1,2026,3.0,2026-09-04T17:00:00Z,Olympique Lyonnais,AJ Auxerre,AJ Auxerre,False,5,8.0,2,0
+PL,2026,3.0,2026-09-04T19:00:00Z,Ipswich Town FC,Liverpool FC,Ipswich Town FC,True,4,6.0,1,0
+PL,2026,3.0,2026-09-04T19:00:00Z,Ipswich Town FC,Liverpool FC,Liverpool FC,False,3,13.0,3,0
+PD,2026,4.0,2026-09-04T19:00:00Z,Real Betis Balompié,Real Madrid CF,Real Betis Balompié,True,6,11.0,3,0
+PD,2026,4.0,2026-09-04T19:00:00Z,Real Betis Balompié,Real Madrid CF,Real Madrid CF,False,10,13.0,3,0
+SA,2026,3.0,2026-09-04T18:45:00Z,Genoa CFC,Como 1907,Genoa CFC,True,5,8.0,2,0
+SA,2026,3.0,2026-09-04T18:45:00Z,Genoa CFC,Como 1907,Como 1907,False,4,7.0,1,0
+BL1,2026,2.0,2026-09-04T18:30:00Z,VfB Stuttgart,1. FC Köln,VfB Stuttgart,True,10,5.0,1,0
+BL1,2026,2.0,2026-09-04T18:30:00Z,VfB Stuttgart,1. FC Köln,1. FC Köln,False,8,6.0,3,0
+PD,2026,6.0,2026-09-03T19:00:00Z,Real Sociedad de Fútbol,RC Celta de Vigo,Real Sociedad de Fútbol,True,11,15.0,2,0
+PD,2026,6.0,2026-09-03T19:00:00Z,Real Sociedad de Fútbol,RC Celta de Vigo,RC Celta de Vigo,False,3,11.0,3,0
+FL1,2026,3.0,2026-09-03T18:45:00Z,Toulouse FC,Lille OSC,Toulouse FC,True,6,16.0,1,0
+FL1,2026,3.0,2026-09-03T18:45:00Z,Toulouse FC,Lille OSC,Lille OSC,False,2,9.0,0,0
+PD,2026,3.0,2026-08-31T19:30:00Z,FC Barcelona,Rayo Vallecano de Madrid,FC Barcelona,True,9,4.0,0,0
+PD,2026,3.0,2026-08-31T19:30:00Z,FC Barcelona,Rayo Vallecano de Madrid,Rayo Vallecano de Madrid,False,5,11.0,1,0
+PD,2026,3.0,2026-08-31T17:30:00Z,CA Osasuna,Getafe CF,CA Osasuna,True,1,17.0,5,0
+PD,2026,3.0,2026-08-31T17:30:00Z,CA Osasuna,Getafe CF,Getafe CF,False,3,14.0,4,0
+PL,2026,2.0,2026-08-31T19:00:00Z,Aston Villa FC,Arsenal FC,Aston Villa FC,True,2,17.0,3,0
+PL,2026,2.0,2026-08-31T19:00:00Z,Aston Villa FC,Arsenal FC,Arsenal FC,False,4,6.0,1,0
+SA,2026,2.0,2026-08-31T18:45:00Z,Atalanta BC,Bologna FC 1909,Atalanta BC,True,1,10.0,1,0
+SA,2026,2.0,2026-08-31T18:45:00Z,Atalanta BC,Bologna FC 1909,Bologna FC 1909,False,2,13.0,0,0
+SA,2026,2.0,2026-08-31T16:30:00Z,US Lecce,AS Roma,US Lecce,True,2,9.0,1,0
+SA,2026,2.0,2026-08-31T16:30:00Z,US Lecce,AS Roma,AS Roma,False,1,8.0,1,0
+PD,2026,3.0,2026-08-30T19:30:00Z,RC Celta de Vigo,Athletic Club,RC Celta de Vigo,True,4,8.0,0,0
+PD,2026,3.0,2026-08-30T19:30:00Z,RC Celta de Vigo,Athletic Club,Athletic Club,False,7,17.0,3,0
+PD,2026,3.0,2026-08-30T17:30:00Z,RC Deportivo La Coruña,Valencia CF,RC Deportivo La Coruña,True,5,14.0,2,1
+PD,2026,3.0,2026-08-30T17:30:00Z,RC Deportivo La Coruña,Valencia CF,Valencia CF,False,5,5.0,1,0
+PD,2026,3.0,2026-08-30T15:00:00Z,Real Madrid CF,Málaga CF,Real Madrid CF,True,9,6.0,0,0
+PD,2026,3.0,2026-08-30T15:00:00Z,Real Madrid CF,Málaga CF,Málaga CF,False,6,9.0,2,0
+SA,2026,2.0,2026-08-30T18:45:00Z,SS Lazio,Genoa CFC,SS Lazio,True,4,18.0,1,0
+SA,2026,2.0,2026-08-30T18:45:00Z,SS Lazio,Genoa CFC,Genoa CFC,False,2,6.0,2,0
+SA,2026,2.0,2026-08-30T18:45:00Z,Cagliari Calcio,FC Internazionale Milano,Cagliari Calcio,True,8,6.0,2,0
+SA,2026,2.0,2026-08-30T18:45:00Z,Cagliari Calcio,FC Internazionale Milano,FC Internazionale Milano,False,6,5.0,1,0
+SA,2026,2.0,2026-08-30T16:30:00Z,SSC Napoli,Como 1907,SSC Napoli,True,2,9.0,1,0
+SA,2026,2.0,2026-08-30T16:30:00Z,SSC Napoli,Como 1907,Como 1907,False,7,5.0,0,0
+FL1,2026,2.0,2026-08-30T18:45:00Z,AS Monaco FC,Olympique de Marseille,AS Monaco FC,True,5,9.0,4,0
+FL1,2026,2.0,2026-08-30T18:45:00Z,AS Monaco FC,Olympique de Marseille,Olympique de Marseille,False,7,10.0,0,0
+FL1,2026,2.0,2026-08-30T15:15:00Z,Stade Rennais FC 1901,Le Mans FC,Stade Rennais FC 1901,True,8,15.0,3,0
+FL1,2026,2.0,2026-08-30T15:15:00Z,Stade Rennais FC 1901,Le Mans FC,Le Mans FC,False,6,15.0,2,1
+FL1,2026,2.0,2026-08-30T13:00:00Z,Paris FC,OGC Nice,Paris FC,True,2,7.0,0,0
+FL1,2026,2.0,2026-08-30T13:00:00Z,Paris FC,OGC Nice,OGC Nice,False,4,7.0,1,0
+BL1,2026,1.0,2026-08-30T15:30:00Z,FC Augsburg,FC Schalke 04,FC Augsburg,True,11,5.0,1,0
+BL1,2026,1.0,2026-08-30T15:30:00Z,FC Augsburg,FC Schalke 04,FC Schalke 04,False,3,6.0,0,1
+BL1,2026,1.0,2026-08-30T13:30:00Z,SC Freiburg,SV Werder Bremen,SC Freiburg,True,6,13.0,1,0
+BL1,2026,1.0,2026-08-30T13:30:00Z,SC Freiburg,SV Werder Bremen,SV Werder Bremen,False,5,16.0,1,0
+PL,2026,2.0,2026-08-30T15:30:00Z,Manchester United FC,Ipswich Town FC,Manchester United FC,True,8,7.0,1,0
+PL,2026,2.0,2026-08-30T15:30:00Z,Manchester United FC,Ipswich Town FC,Ipswich Town FC,False,4,12.0,3,0
+PL,2026,2.0,2026-08-30T13:00:00Z,Sunderland AFC,Fulham FC,Sunderland AFC,True,3,10.0,0,0
+PL,2026,2.0,2026-08-30T13:00:00Z,Sunderland AFC,Fulham FC,Fulham FC,False,4,15.0,2,0
+PL,2026,2.0,2026-08-30T13:00:00Z,Chelsea FC,Brighton & Hove Albion FC,Chelsea FC,True,4,6.0,1,0
+PL,2026,2.0,2026-08-30T13:00:00Z,Chelsea FC,Brighton & Hove Albion FC,Brighton & Hove Albion FC,False,7,12.0,3,0
+PL,2026,2.0,2026-08-30T13:00:00Z,Leeds United FC,Brentford FC,Leeds United FC,True,5,5.0,0,0
+PL,2026,2.0,2026-08-30T13:00:00Z,Leeds United FC,Brentford FC,Brentford FC,False,6,13.0,4,0
+PD,2026,3.0,2026-08-29T19:30:00Z,Sevilla FC,Club Atlético de Madrid,Sevilla FC,True,4,20.0,2,0
+PD,2026,3.0,2026-08-29T19:30:00Z,Sevilla FC,Club Atlético de Madrid,Club Atlético de Madrid,False,2,16.0,2,0
+PD,2026,3.0,2026-08-29T17:00:00Z,Real Sociedad de Fútbol,RCD Espanyol de Barcelona,Real Sociedad de Fútbol,True,7,19.0,2,0
+PD,2026,3.0,2026-08-29T17:00:00Z,Real Sociedad de Fútbol,RCD Espanyol de Barcelona,RCD Espanyol de Barcelona,False,3,14.0,4,0
+PD,2026,3.0,2026-08-29T15:00:00Z,Levante UD,Real Betis Balompié,Levante UD,True,5,9.0,1,0
+PD,2026,3.0,2026-08-29T15:00:00Z,Levante UD,Real Betis Balompié,Real Betis Balompié,False,8,7.0,1,0
+SA,2026,2.0,2026-08-29T18:45:00Z,Juventus FC,Parma Calcio 1913,Juventus FC,True,10,23.0,2,0
+SA,2026,2.0,2026-08-29T18:45:00Z,Juventus FC,Parma Calcio 1913,Parma Calcio 1913,False,2,12.0,3,0
+SA,2026,2.0,2026-08-29T16:30:00Z,AC Monza,Udinese Calcio,AC Monza,True,3,10.0,1,0
+SA,2026,2.0,2026-08-29T16:30:00Z,AC Monza,Udinese Calcio,Udinese Calcio,False,3,12.0,0,0
+SA,2026,2.0,2026-08-29T16:30:00Z,ACF Fiorentina,Frosinone Calcio,ACF Fiorentina,True,8,14.0,3,0
+SA,2026,2.0,2026-08-29T16:30:00Z,ACF Fiorentina,Frosinone Calcio,Frosinone Calcio,False,5,21.0,3,0
+SA,2026,2.0,2026-08-29T16:30:00Z,US Sassuolo Calcio,Torino FC,US Sassuolo Calcio,True,4,12.0,3,0
+SA,2026,2.0,2026-08-29T16:30:00Z,US Sassuolo Calcio,Torino FC,Torino FC,False,3,9.0,1,0
+FL1,2026,2.0,2026-08-29T18:45:00Z,Stade Brestois 29,Toulouse FC,Stade Brestois 29,True,7,19.0,2,0
+FL1,2026,2.0,2026-08-29T18:45:00Z,Stade Brestois 29,Toulouse FC,Toulouse FC,False,2,18.0,3,0
+FL1,2026,2.0,2026-08-29T18:45:00Z,FC Lorient,ES Troyes AC,FC Lorient,True,2,9.0,0,0
+FL1,2026,2.0,2026-08-29T18:45:00Z,FC Lorient,ES Troyes AC,ES Troyes AC,False,5,11.0,0,0
+FL1,2026,2.0,2026-08-29T18:45:00Z,AJ Auxerre,Angers SCO,AJ Auxerre,True,7,16.0,3,0
+FL1,2026,2.0,2026-08-29T18:45:00Z,AJ Auxerre,Angers SCO,Angers SCO,False,10,6.0,2,0
+FL1,2026,2.0,2026-08-29T18:45:00Z,Olympique Lyonnais,Le Havre AC,Olympique Lyonnais,True,5,7.0,0,0
+FL1,2026,2.0,2026-08-29T18:45:00Z,Olympique Lyonnais,Le Havre AC,Le Havre AC,False,5,16.0,2,0
+FL1,2026,2.0,2026-08-29T15:15:00Z,RC Strasbourg Alsace,Racing Club de Lens,RC Strasbourg Alsace,True,3,10.0,2,0
+FL1,2026,2.0,2026-08-29T15:15:00Z,RC Strasbourg Alsace,Racing Club de Lens,Racing Club de Lens,False,6,11.0,2,0
+BL1,2026,1.0,2026-08-29T16:30:00Z,Borussia Dortmund,Hamburger SV,Borussia Dortmund,True,3,13.0,2,1
+BL1,2026,1.0,2026-08-29T16:30:00Z,Borussia Dortmund,Hamburger SV,Hamburger SV,False,1,19.0,1,0
+BL1,2026,1.0,2026-08-29T13:30:00Z,1. FC Union Berlin,Eintracht Frankfurt,1. FC Union Berlin,True,5,11.0,2,0
+BL1,2026,1.0,2026-08-29T13:30:00Z,1. FC Union Berlin,Eintracht Frankfurt,Eintracht Frankfurt,False,2,10.0,4,0
+BL1,2026,1.0,2026-08-29T13:30:00Z,1. FSV Mainz 05,SC Paderborn 07,1. FSV Mainz 05,True,11,8.0,1,0
+BL1,2026,1.0,2026-08-29T13:30:00Z,1. FSV Mainz 05,SC Paderborn 07,SC Paderborn 07,False,2,10.0,2,0
+BL1,2026,1.0,2026-08-29T13:30:00Z,RB Leipzig,Borussia Mönchengladbach,RB Leipzig,True,7,10.0,1,0
+BL1,2026,1.0,2026-08-29T13:30:00Z,RB Leipzig,Borussia Mönchengladbach,Borussia Mönchengladbach,False,6,13.0,0,0
+BL1,2026,1.0,2026-08-29T13:30:00Z,1. FC Köln,TSG 1899 Hoffenheim,1. FC Köln,True,6,11.0,0,0
+BL1,2026,1.0,2026-08-29T13:30:00Z,1. FC Köln,TSG 1899 Hoffenheim,TSG 1899 Hoffenheim,False,7,14.0,2,0
+BL1,2026,1.0,2026-08-29T13:30:00Z,SV 07 Elversberg,Bayer 04 Leverkusen,SV 07 Elversberg,True,4,18.0,3,0
+BL1,2026,1.0,2026-08-29T13:30:00Z,SV 07 Elversberg,Bayer 04 Leverkusen,Bayer 04 Leverkusen,False,3,15.0,2,0
+PL,2026,2.0,2026-08-29T16:30:00Z,Tottenham Hotspur FC,Newcastle United FC,Tottenham Hotspur FC,True,9,15.0,1,0
+PL,2026,2.0,2026-08-29T16:30:00Z,Tottenham Hotspur FC,Newcastle United FC,Newcastle United FC,False,7,9.0,2,0
+PL,2026,2.0,2026-08-29T14:00:00Z,AFC Bournemouth,Everton FC,AFC Bournemouth,True,10,11.0,3,0
+PL,2026,2.0,2026-08-29T14:00:00Z,AFC Bournemouth,Everton FC,Everton FC,False,7,14.0,2,0
+PL,2026,2.0,2026-08-29T14:00:00Z,Coventry City FC,Hull City AFC,Coventry City FC,True,6,11.0,1,0
+PL,2026,2.0,2026-08-29T14:00:00Z,Coventry City FC,Hull City AFC,Hull City AFC,False,2,8.0,4,0
+PL,2026,2.0,2026-08-29T11:30:00Z,Liverpool FC,Nottingham Forest FC,Liverpool FC,True,3,13.0,4,0
+PL,2026,2.0,2026-08-29T11:30:00Z,Liverpool FC,Nottingham Forest FC,Nottingham Forest FC,False,5,10.0,2,0
+PD,2026,3.0,2026-08-28T19:30:00Z,Deportivo Alavés,Villarreal CF,Deportivo Alavés,True,5,15.0,3,0
+PD,2026,3.0,2026-08-28T19:30:00Z,Deportivo Alavés,Villarreal CF,Villarreal CF,False,9,8.0,2,0
+PD,2026,3.0,2026-08-28T17:00:00Z,Real Racing Club de Santander,Elche CF,Real Racing Club de Santander,True,5,17.0,2,0
+PD,2026,3.0,2026-08-28T17:00:00Z,Real Racing Club de Santander,Elche CF,Elche CF,False,10,19.0,1,0
+PL,2026,2.0,2026-08-28T19:00:00Z,Crystal Palace FC,Manchester City FC,Crystal Palace FC,True,2,8.0,1,0
+PL,2026,2.0,2026-08-28T19:00:00Z,Crystal Palace FC,Manchester City FC,Manchester City FC,False,6,10.0,2,0
+SA,2026,2.0,2026-08-28T18:45:00Z,AC Milan,Venezia FC,AC Milan,True,2,8.0,1,0
+SA,2026,2.0,2026-08-28T18:45:00Z,AC Milan,Venezia FC,Venezia FC,False,3,11.0,3,0
+BL1,2026,1.0,2026-08-28T18:30:00Z,FC Bayern München,VfB Stuttgart,FC Bayern München,True,9,10.0,1,0
+BL1,2026,1.0,2026-08-28T18:30:00Z,FC Bayern München,VfB Stuttgart,VfB Stuttgart,False,3,17.0,3,0
+PD,2026,1.0,2026-08-27T19:00:00Z,FC Barcelona,Athletic Club,FC Barcelona,True,12,13.0,1,0
+PD,2026,1.0,2026-08-27T19:00:00Z,FC Barcelona,Athletic Club,Athletic Club,False,5,6.0,2,0
+PD,2026,1.0,2026-08-27T18:30:00Z,RC Celta de Vigo,CA Osasuna,RC Celta de Vigo,True,5,7.0,1,1
+PD,2026,1.0,2026-08-27T18:30:00Z,RC Celta de Vigo,CA Osasuna,CA Osasuna,False,3,16.0,1,0
+PD,2026,1.0,2026-08-26T19:00:00Z,Real Madrid CF,Real Sociedad de Fútbol,Real Madrid CF,True,4,10.0,3,0
+PD,2026,1.0,2026-08-26T19:00:00Z,Real Madrid CF,Real Sociedad de Fútbol,Real Sociedad de Fútbol,False,7,8.0,3,0
+PD,2026,1.0,2026-08-25T19:00:00Z,Valencia CF,Real Betis Balompié,Valencia CF,True,8,10.0,2,0
+PD,2026,1.0,2026-08-25T19:00:00Z,Valencia CF,Real Betis Balompié,Real Betis Balompié,False,2,11.0,1,0
+PD,2026,2.0,2026-08-24T19:30:00Z,Málaga CF,RC Deportivo La Coruña,Málaga CF,True,7,12.0,1,0
+PD,2026,2.0,2026-08-24T19:30:00Z,Málaga CF,RC Deportivo La Coruña,RC Deportivo La Coruña,False,4,12.0,4,0
+PD,2026,2.0,2026-08-24T17:30:00Z,CA Osasuna,Levante UD,CA Osasuna,True,9,9.0,2,0
+PD,2026,2.0,2026-08-24T17:30:00Z,CA Osasuna,Levante UD,Levante UD,False,4,12.0,1,0
+PL,2026,1.0,2026-08-24T19:00:00Z,Fulham FC,Chelsea FC,Fulham FC,True,6,12.0,2,0
+PL,2026,1.0,2026-08-24T19:00:00Z,Fulham FC,Chelsea FC,Chelsea FC,False,4,7.0,3,0
+SA,2026,1.0,2026-08-24T18:45:00Z,AS Roma,ACF Fiorentina,AS Roma,True,2,15.0,2,0
+SA,2026,1.0,2026-08-24T18:45:00Z,AS Roma,ACF Fiorentina,ACF Fiorentina,False,3,11.0,2,0
+SA,2026,1.0,2026-08-24T16:30:00Z,Bologna FC 1909,SS Lazio,Bologna FC 1909,True,8,18.0,4,0
+SA,2026,1.0,2026-08-24T16:30:00Z,Bologna FC 1909,SS Lazio,SS Lazio,False,6,19.0,4,0
+PD,2026,2.0,2026-08-23T19:30:00Z,Elche CF,FC Barcelona,Elche CF,True,3,13.0,1,0
+PD,2026,2.0,2026-08-23T19:30:00Z,Elche CF,FC Barcelona,FC Barcelona,False,1,12.0,0,0
+PD,2026,2.0,2026-08-23T17:30:00Z,Getafe CF,Real Racing Club de Santander,Getafe CF,True,8,14.0,1,0
+PD,2026,2.0,2026-08-23T17:30:00Z,Getafe CF,Real Racing Club de Santander,Real Racing Club de Santander,False,6,17.0,3,0
+PD,2026,2.0,2026-08-23T15:00:00Z,Club Atlético de Madrid,Villarreal CF,Club Atlético de Madrid,True,5,12.0,3,1
+PD,2026,2.0,2026-08-23T15:00:00Z,Club Atlético de Madrid,Villarreal CF,Villarreal CF,False,3,13.0,2,0
+SA,2026,1.0,2026-08-23T18:45:00Z,Atalanta BC,US Sassuolo Calcio,Atalanta BC,True,4,9.0,0,0
+SA,2026,1.0,2026-08-23T18:45:00Z,Atalanta BC,US Sassuolo Calcio,US Sassuolo Calcio,False,4,10.0,0,0
+SA,2026,1.0,2026-08-23T18:45:00Z,Torino FC,AC Milan,Torino FC,True,2,10.0,0,0
+SA,2026,1.0,2026-08-23T18:45:00Z,Torino FC,AC Milan,AC Milan,False,4,9.0,1,0
+SA,2026,1.0,2026-08-23T16:30:00Z,Frosinone Calcio,Juventus FC,Frosinone Calcio,True,3,15.0,2,0
+SA,2026,1.0,2026-08-23T16:30:00Z,Frosinone Calcio,Juventus FC,Juventus FC,False,12,18.0,2,0
+SA,2026,1.0,2026-08-23T16:30:00Z,Venezia FC,US Lecce,Venezia FC,True,5,8.0,1,0
+SA,2026,1.0,2026-08-23T16:30:00Z,Venezia FC,US Lecce,US Lecce,False,3,12.0,3,0
+FL1,2026,1.0,2026-08-23T18:45:00Z,Stade Rennais FC 1901,Paris Saint-Germain FC,Stade Rennais FC 1901,True,0,7.0,2,0
+FL1,2026,1.0,2026-08-23T18:45:00Z,Stade Rennais FC 1901,Paris Saint-Germain FC,Paris Saint-Germain FC,False,10,6.0,2,0
+FL1,2026,1.0,2026-08-23T15:15:00Z,Le Havre AC,AS Monaco FC,Le Havre AC,True,7,13.0,3,0
+FL1,2026,1.0,2026-08-23T15:15:00Z,Le Havre AC,AS Monaco FC,AS Monaco FC,False,4,12.0,2,0
+FL1,2026,1.0,2026-08-23T13:00:00Z,Angers SCO,Lille OSC,Angers SCO,True,8,11.0,2,0
+FL1,2026,1.0,2026-08-23T13:00:00Z,Angers SCO,Lille OSC,Lille OSC,False,3,13.0,2,0
+PL,2026,1.0,2026-08-23T15:30:00Z,Newcastle United FC,Liverpool FC,Newcastle United FC,True,2,16.0,5,0
+PL,2026,1.0,2026-08-23T15:30:00Z,Newcastle United FC,Liverpool FC,Liverpool FC,False,6,15.0,3,0
+PL,2026,1.0,2026-08-23T13:00:00Z,Manchester City FC,AFC Bournemouth,Manchester City FC,True,8,11.0,1,0
+PL,2026,1.0,2026-08-23T13:00:00Z,Manchester City FC,AFC Bournemouth,AFC Bournemouth,False,3,11.0,2,0
+PL,2026,1.0,2026-08-23T13:00:00Z,Brighton & Hove Albion FC,Aston Villa FC,Brighton & Hove Albion FC,True,5,12.0,2,0
+PL,2026,1.0,2026-08-23T13:00:00Z,Brighton & Hove Albion FC,Aston Villa FC,Aston Villa FC,False,2,9.0,3,1
+PD,2026,2.0,2026-08-22T19:30:00Z,RCD Espanyol de Barcelona,Real Madrid CF,RCD Espanyol de Barcelona,True,0,7.0,1,0
+PD,2026,2.0,2026-08-22T19:30:00Z,RCD Espanyol de Barcelona,Real Madrid CF,Real Madrid CF,False,8,1.0,1,0
+PD,2026,2.0,2026-08-22T17:30:00Z,Valencia CF,RC Celta de Vigo,Valencia CF,True,1,16.0,2,0
+PD,2026,2.0,2026-08-22T17:30:00Z,Valencia CF,RC Celta de Vigo,RC Celta de Vigo,False,2,16.0,3,0
+PD,2026,2.0,2026-08-22T15:00:00Z,Athletic Club,Sevilla FC,Athletic Club,True,10,2.0,0,0
+PD,2026,2.0,2026-08-22T15:00:00Z,Athletic Club,Sevilla FC,Sevilla FC,False,3,1.0,0,0
+FL1,2026,1.0,2026-08-22T18:45:00Z,Toulouse FC,Olympique Lyonnais,Toulouse FC,True,6,11.0,1,0
+FL1,2026,1.0,2026-08-22T18:45:00Z,Toulouse FC,Olympique Lyonnais,Olympique Lyonnais,False,5,10.0,1,0
+FL1,2026,1.0,2026-08-22T18:45:00Z,ES Troyes AC,Paris FC,ES Troyes AC,True,6,4.0,1,0
+FL1,2026,1.0,2026-08-22T18:45:00Z,ES Troyes AC,Paris FC,Paris FC,False,2,10.0,1,0
+FL1,2026,1.0,2026-08-22T18:45:00Z,Le Mans FC,Stade Brestois 29,Le Mans FC,True,1,11.0,1,0
+FL1,2026,1.0,2026-08-22T18:45:00Z,Le Mans FC,Stade Brestois 29,Stade Brestois 29,False,10,9.0,1,0
+FL1,2026,1.0,2026-08-22T18:45:00Z,OGC Nice,FC Lorient,OGC Nice,True,9,10.0,1,0
+FL1,2026,1.0,2026-08-22T18:45:00Z,OGC Nice,FC Lorient,FC Lorient,False,3,6.0,0,0
+FL1,2026,1.0,2026-08-22T15:15:00Z,Racing Club de Lens,AJ Auxerre,Racing Club de Lens,True,4,6.0,1,0
+FL1,2026,1.0,2026-08-22T15:15:00Z,Racing Club de Lens,AJ Auxerre,AJ Auxerre,False,7,21.0,1,1
+SA,2026,1.0,2026-08-22T18:45:00Z,Parma Calcio 1913,Cagliari Calcio,Parma Calcio 1913,True,3,4.0,0,0
+SA,2026,1.0,2026-08-22T18:45:00Z,Parma Calcio 1913,Cagliari Calcio,Cagliari Calcio,False,2,13.0,2,0
+SA,2026,1.0,2026-08-22T18:45:00Z,Genoa CFC,SSC Napoli,Genoa CFC,True,5,7.0,0,0
+SA,2026,1.0,2026-08-22T18:45:00Z,Genoa CFC,SSC Napoli,SSC Napoli,False,5,7.0,1,0
+SA,2026,1.0,2026-08-22T16:30:00Z,Udinese Calcio,Como 1907,Udinese Calcio,True,1,13.0,3,0
+SA,2026,1.0,2026-08-22T16:30:00Z,Udinese Calcio,Como 1907,Como 1907,False,10,11.0,0,0
+SA,2026,1.0,2026-08-22T16:30:00Z,FC Internazionale Milano,AC Monza,FC Internazionale Milano,True,3,5.0,2,0
+SA,2026,1.0,2026-08-22T16:30:00Z,FC Internazionale Milano,AC Monza,AC Monza,False,3,14.0,2,0
+PL,2026,1.0,2026-08-22T16:30:00Z,Brentford FC,Tottenham Hotspur FC,Brentford FC,True,7,17.0,1,0
+PL,2026,1.0,2026-08-22T16:30:00Z,Brentford FC,Tottenham Hotspur FC,Tottenham Hotspur FC,False,3,14.0,1,0
+PL,2026,1.0,2026-08-22T14:00:00Z,Nottingham Forest FC,Leeds United FC,Nottingham Forest FC,True,3,12.0,2,0
+PL,2026,1.0,2026-08-22T14:00:00Z,Nottingham Forest FC,Leeds United FC,Leeds United FC,False,2,7.0,1,0
+PL,2026,1.0,2026-08-22T14:00:00Z,Everton FC,Crystal Palace FC,Everton FC,True,4,3.0,0,0
+PL,2026,1.0,2026-08-22T14:00:00Z,Everton FC,Crystal Palace FC,Crystal Palace FC,False,0,9.0,1,0
+PL,2026,1.0,2026-08-22T14:00:00Z,Ipswich Town FC,Sunderland AFC,Ipswich Town FC,True,3,12.0,0,0
+PL,2026,1.0,2026-08-22T14:00:00Z,Ipswich Town FC,Sunderland AFC,Sunderland AFC,False,5,14.0,3,0
+PL,2026,1.0,2026-08-22T11:30:00Z,Hull City AFC,Manchester United FC,Hull City AFC,True,1,9.0,1,0
+PL,2026,1.0,2026-08-22T11:30:00Z,Hull City AFC,Manchester United FC,Manchester United FC,False,6,8.0,1,0
+PL,2026,1.0,2026-08-21T19:00:00Z,Arsenal FC,Coventry City FC,Arsenal FC,True,8,10.0,1,0
+PL,2026,1.0,2026-08-21T19:00:00Z,Arsenal FC,Coventry City FC,Coventry City FC,False,2,13.0,1,0
+PD,2026,2.0,2026-08-21T19:00:00Z,Real Betis Balompié,Real Sociedad de Fútbol,Real Betis Balompié,True,4,9.0,3,0
+PD,2026,2.0,2026-08-21T19:00:00Z,Real Betis Balompié,Real Sociedad de Fútbol,Real Sociedad de Fútbol,False,5,12.0,3,0
+FL1,2026,1.0,2026-08-21T18:45:00Z,Olympique de Marseille,RC Strasbourg Alsace,Olympique de Marseille,True,3,6.0,1,0
+FL1,2026,1.0,2026-08-21T18:45:00Z,Olympique de Marseille,RC Strasbourg Alsace,RC Strasbourg Alsace,False,4,12.0,2,1
+PD,2026,2.0,2026-08-20T19:00:00Z,Rayo Vallecano de Madrid,Deportivo Alavés,Rayo Vallecano de Madrid,True,9,14.0,1,0
+PD,2026,2.0,2026-08-20T19:00:00Z,Rayo Vallecano de Madrid,Deportivo Alavés,Deportivo Alavés,False,7,13.0,2,0
+PD,2026,1.0,2026-08-19T19:00:00Z,Club Atlético de Madrid,Málaga CF,Club Atlético de Madrid,True,6,17.0,2,0
+PD,2026,1.0,2026-08-19T19:00:00Z,Club Atlético de Madrid,Málaga CF,Málaga CF,False,1,11.0,3,0
+PD,2026,1.0,2026-08-17T19:00:00Z,RC Deportivo La Coruña,Elche CF,RC Deportivo La Coruña,True,2,17.0,2,0
+PD,2026,1.0,2026-08-17T19:00:00Z,RC Deportivo La Coruña,Elche CF,Elche CF,False,6,12.0,2,0
+PD,2026,1.0,2026-08-16T17:00:00Z,RCD Espanyol de Barcelona,Levante UD,RCD Espanyol de Barcelona,True,0,17.0,3,0
+PD,2026,1.0,2026-08-16T17:00:00Z,RCD Espanyol de Barcelona,Levante UD,Levante UD,False,1,7.0,0,0
+PD,2026,1.0,2026-08-16T15:00:00Z,Real Racing Club de Santander,Villarreal CF,Real Racing Club de Santander,True,6,14.0,2,0
+PD,2026,1.0,2026-08-16T15:00:00Z,Real Racing Club de Santander,Villarreal CF,Villarreal CF,False,10,14.0,4,0
+PD,2026,1.0,2026-08-15T19:30:00Z,Sevilla FC,Rayo Vallecano de Madrid,Sevilla FC,True,1,18.0,4,1
+PD,2026,1.0,2026-08-15T19:30:00Z,Sevilla FC,Rayo Vallecano de Madrid,Rayo Vallecano de Madrid,False,2,18.0,4,0
+PD,2026,1.0,2026-08-15T17:30:00Z,Deportivo Alavés,Getafe CF,Deportivo Alavés,True,5,16.0,4,0
+PD,2026,1.0,2026-08-15T17:30:00Z,Deportivo Alavés,Getafe CF,Getafe CF,False,3,13.0,3,1
+CL,2025,,2026-05-30T16:00:00Z,Paris Saint-Germain FC,Arsenal FC,Paris Saint-Germain FC,True,11,11.0,2,0
+CL,2025,,2026-05-30T16:00:00Z,Paris Saint-Germain FC,Arsenal FC,Arsenal FC,False,3,17.0,4,0
+SA,2025,38.0,2026-05-24T19:45:00Z,Torino FC,Juventus FC,Torino FC,True,6,10.0,1,0
+SA,2025,38.0,2026-05-24T19:45:00Z,Torino FC,Juventus FC,Juventus FC,False,6,10.0,2,0
+SA,2025,38.0,2026-05-24T18:45:00Z,US Lecce,Genoa CFC,US Lecce,True,1,11.0,2,0
+SA,2025,38.0,2026-05-24T18:45:00Z,US Lecce,Genoa CFC,Genoa CFC,False,6,6.0,0,0
+SA,2025,38.0,2026-05-24T18:45:00Z,US Cremonese,Como 1907,US Cremonese,True,2,14.0,4,3
+SA,2025,38.0,2026-05-24T18:45:00Z,US Cremonese,Como 1907,Como 1907,False,4,12.0,2,0
+SA,2025,38.0,2026-05-24T18:45:00Z,Hellas Verona FC,AS Roma,Hellas Verona FC,True,6,12.0,3,1
+SA,2025,38.0,2026-05-24T18:45:00Z,Hellas Verona FC,AS Roma,AS Roma,False,6,10.0,1,0
+SA,2025,38.0,2026-05-24T18:45:00Z,AC Milan,Cagliari Calcio,AC Milan,True,5,8.0,2,0
+SA,2025,38.0,2026-05-24T18:45:00Z,AC Milan,Cagliari Calcio,Cagliari Calcio,False,5,9.0,2,0
+SA,2025,38.0,2026-05-24T16:00:00Z,SSC Napoli,Udinese Calcio,SSC Napoli,True,3,3.0,0,0
+SA,2025,38.0,2026-05-24T16:00:00Z,SSC Napoli,Udinese Calcio,Udinese Calcio,False,3,13.0,3,1
+SA,2025,38.0,2026-05-24T13:00:00Z,Parma Calcio 1913,US Sassuolo Calcio,Parma Calcio 1913,True,1,10.0,2,0
+SA,2025,38.0,2026-05-24T13:00:00Z,Parma Calcio 1913,US Sassuolo Calcio,US Sassuolo Calcio,False,1,14.0,2,0
+PD,2025,38.0,2026-05-24T19:00:00Z,Villarreal CF,Club Atlético de Madrid,Villarreal CF,True,5,3.0,0,0
+PD,2025,38.0,2026-05-24T19:00:00Z,Villarreal CF,Club Atlético de Madrid,Club Atlético de Madrid,False,9,12.0,1,0
+PL,2025,38.0,2026-05-24T15:00:00Z,Sunderland AFC,Chelsea FC,Sunderland AFC,True,6,15.0,5,0
+PL,2025,38.0,2026-05-24T15:00:00Z,Sunderland AFC,Chelsea FC,Chelsea FC,False,2,12.0,5,1
+PL,2025,38.0,2026-05-24T15:00:00Z,Burnley FC,Wolverhampton Wanderers FC,Burnley FC,True,7,10.0,2,0
+PL,2025,38.0,2026-05-24T15:00:00Z,Burnley FC,Wolverhampton Wanderers FC,Wolverhampton Wanderers FC,False,7,11.0,2,0
+PL,2025,38.0,2026-05-24T15:00:00Z,Brighton & Hove Albion FC,Manchester United FC,Brighton & Hove Albion FC,True,0,11.0,0,0
+PL,2025,38.0,2026-05-24T15:00:00Z,Brighton & Hove Albion FC,Manchester United FC,Manchester United FC,False,3,8.0,1,0
+PL,2025,38.0,2026-05-24T15:00:00Z,Crystal Palace FC,Arsenal FC,Crystal Palace FC,True,3,9.0,0,0
+PL,2025,38.0,2026-05-24T15:00:00Z,Crystal Palace FC,Arsenal FC,Arsenal FC,False,4,12.0,1,0
+PL,2025,38.0,2026-05-24T15:00:00Z,West Ham United FC,Leeds United FC,West Ham United FC,True,6,11.0,0,0
+PL,2025,38.0,2026-05-24T15:00:00Z,West Ham United FC,Leeds United FC,Leeds United FC,False,4,14.0,3,0
+PL,2025,38.0,2026-05-24T15:00:00Z,Fulham FC,Newcastle United FC,Fulham FC,True,6,13.0,2,0
+PL,2025,38.0,2026-05-24T15:00:00Z,Fulham FC,Newcastle United FC,Newcastle United FC,False,6,6.0,2,0
+PL,2025,38.0,2026-05-24T15:00:00Z,Manchester City FC,Aston Villa FC,Manchester City FC,True,9,8.0,1,0
+PL,2025,38.0,2026-05-24T15:00:00Z,Manchester City FC,Aston Villa FC,Aston Villa FC,False,4,4.0,0,0
+PL,2025,38.0,2026-05-24T15:00:00Z,Nottingham Forest FC,AFC Bournemouth,Nottingham Forest FC,True,6,11.0,1,0
+PL,2025,38.0,2026-05-24T15:00:00Z,Nottingham Forest FC,AFC Bournemouth,AFC Bournemouth,False,3,7.0,1,0
+PL,2025,38.0,2026-05-24T15:00:00Z,Tottenham Hotspur FC,Everton FC,Tottenham Hotspur FC,True,7,15.0,2,0
+PL,2025,38.0,2026-05-24T15:00:00Z,Tottenham Hotspur FC,Everton FC,Everton FC,False,7,18.0,2,0
+PL,2025,38.0,2026-05-24T15:00:00Z,Liverpool FC,Brentford FC,Liverpool FC,True,14,9.0,2,0
+PL,2025,38.0,2026-05-24T15:00:00Z,Liverpool FC,Brentford FC,Brentford FC,False,2,9.0,3,0
+PD,2025,38.0,2026-05-23T19:00:00Z,Real Betis Balompié,Levante UD,Real Betis Balompié,True,4,11.0,1,0
+PD,2025,38.0,2026-05-23T19:00:00Z,Real Betis Balompié,Levante UD,Levante UD,False,8,7.0,2,0
+PD,2025,38.0,2026-05-23T19:00:00Z,Getafe CF,CA Osasuna,Getafe CF,True,2,17.0,1,0
+PD,2025,38.0,2026-05-23T19:00:00Z,Getafe CF,CA Osasuna,CA Osasuna,False,4,20.0,2,0
+PD,2025,38.0,2026-05-23T19:00:00Z,Deportivo Alavés,Rayo Vallecano de Madrid,Deportivo Alavés,True,10,13.0,3,0
+PD,2025,38.0,2026-05-23T19:00:00Z,Deportivo Alavés,Rayo Vallecano de Madrid,Rayo Vallecano de Madrid,False,5,14.0,3,0
+PD,2025,38.0,2026-05-23T19:00:00Z,Girona FC,Elche CF,Girona FC,True,2,20.0,4,0
+PD,2025,38.0,2026-05-23T19:00:00Z,Girona FC,Elche CF,Elche CF,False,1,20.0,4,0
+PD,2025,38.0,2026-05-23T19:00:00Z,Valencia CF,FC Barcelona,Valencia CF,True,7,11.0,2,0
+PD,2025,38.0,2026-05-23T19:00:00Z,Valencia CF,FC Barcelona,FC Barcelona,False,8,8.0,2,0
+PD,2025,38.0,2026-05-23T19:00:00Z,Real Madrid CF,Athletic Club,Real Madrid CF,True,2,6.0,2,0
+PD,2025,38.0,2026-05-23T19:00:00Z,Real Madrid CF,Athletic Club,Athletic Club,False,1,20.0,0,0
+PD,2025,38.0,2026-05-23T19:00:00Z,RCD Mallorca,Real Oviedo,RCD Mallorca,True,5,10.0,2,0
+PD,2025,38.0,2026-05-23T19:00:00Z,RCD Mallorca,Real Oviedo,Real Oviedo,False,5,8.0,1,0
+PD,2025,38.0,2026-05-23T19:00:00Z,RCD Espanyol de Barcelona,Real Sociedad de Fútbol,RCD Espanyol de Barcelona,True,3,11.0,1,0
+PD,2025,38.0,2026-05-23T19:00:00Z,RCD Espanyol de Barcelona,Real Sociedad de Fútbol,Real Sociedad de Fútbol,False,5,17.0,3,0
+PD,2025,38.0,2026-05-23T19:00:00Z,RC Celta de Vigo,Sevilla FC,RC Celta de Vigo,True,4,11.0,1,0
+PD,2025,38.0,2026-05-23T19:00:00Z,RC Celta de Vigo,Sevilla FC,Sevilla FC,False,3,20.0,1,0
+SA,2025,38.0,2026-05-23T18:45:00Z,SS Lazio,AC Pisa 1909,SS Lazio,True,5,9.0,2,0
+SA,2025,38.0,2026-05-23T18:45:00Z,SS Lazio,AC Pisa 1909,AC Pisa 1909,False,1,8.0,1,0
+SA,2025,38.0,2026-05-23T16:00:00Z,Bologna FC 1909,FC Internazionale Milano,Bologna FC 1909,True,1,,0,0
+SA,2025,38.0,2026-05-23T16:00:00Z,Bologna FC 1909,FC Internazionale Milano,FC Internazionale Milano,False,4,,0,0
+SA,2025,38.0,2026-05-22T18:45:00Z,ACF Fiorentina,Atalanta BC,ACF Fiorentina,True,3,11.0,0,0
+SA,2025,38.0,2026-05-22T18:45:00Z,ACF Fiorentina,Atalanta BC,Atalanta BC,False,3,14.0,2,0
+PL,2025,37.0,2026-05-19T19:15:00Z,Chelsea FC,Tottenham Hotspur FC,Chelsea FC,True,3,11.0,4,0
+PL,2025,37.0,2026-05-19T19:15:00Z,Chelsea FC,Tottenham Hotspur FC,Tottenham Hotspur FC,False,4,18.0,3,0
+PL,2025,37.0,2026-05-19T18:30:00Z,AFC Bournemouth,Manchester City FC,AFC Bournemouth,True,7,16.0,4,0
+PL,2025,37.0,2026-05-19T18:30:00Z,AFC Bournemouth,Manchester City FC,Manchester City FC,False,6,7.0,1,0
+PL,2025,37.0,2026-05-18T19:00:00Z,Arsenal FC,Burnley FC,Arsenal FC,True,3,7.0,1,0
+PL,2025,37.0,2026-05-18T19:00:00Z,Arsenal FC,Burnley FC,Burnley FC,False,3,16.0,3,0
+PD,2025,37.0,2026-05-17T19:15:00Z,FC Barcelona,Real Betis Balompié,FC Barcelona,True,6,7.0,1,0
+PD,2025,37.0,2026-05-17T19:15:00Z,FC Barcelona,Real Betis Balompié,Real Betis Balompié,False,4,8.0,0,0
+PD,2025,37.0,2026-05-17T17:00:00Z,CA Osasuna,RCD Espanyol de Barcelona,CA Osasuna,True,9,10.0,1,0
+PD,2025,37.0,2026-05-17T17:00:00Z,CA Osasuna,RCD Espanyol de Barcelona,RCD Espanyol de Barcelona,False,2,13.0,2,0
+PD,2025,37.0,2026-05-17T17:00:00Z,Club Atlético de Madrid,Girona FC,Club Atlético de Madrid,True,9,7.0,2,0
+PD,2025,37.0,2026-05-17T17:00:00Z,Club Atlético de Madrid,Girona FC,Girona FC,False,8,9.0,0,0
+PD,2025,37.0,2026-05-17T17:00:00Z,Rayo Vallecano de Madrid,Villarreal CF,Rayo Vallecano de Madrid,True,1,12.0,2,0
+PD,2025,37.0,2026-05-17T17:00:00Z,Rayo Vallecano de Madrid,Villarreal CF,Villarreal CF,False,9,10.0,1,0
+PD,2025,37.0,2026-05-17T17:00:00Z,Levante UD,RCD Mallorca,Levante UD,True,4,11.0,2,1
+PD,2025,37.0,2026-05-17T17:00:00Z,Levante UD,RCD Mallorca,RCD Mallorca,False,6,15.0,1,1
+PD,2025,37.0,2026-05-17T17:00:00Z,Elche CF,Getafe CF,Elche CF,True,4,18.0,3,0
+PD,2025,37.0,2026-05-17T17:00:00Z,Elche CF,Getafe CF,Getafe CF,False,0,13.0,0,1
+PD,2025,37.0,2026-05-17T17:00:00Z,Sevilla FC,Real Madrid CF,Sevilla FC,True,4,18.0,4,0
+PD,2025,37.0,2026-05-17T17:00:00Z,Sevilla FC,Real Madrid CF,Real Madrid CF,False,4,12.0,0,0
+PD,2025,37.0,2026-05-17T17:00:00Z,Athletic Club,RC Celta de Vigo,Athletic Club,True,5,14.0,2,0
+PD,2025,37.0,2026-05-17T17:00:00Z,Athletic Club,RC Celta de Vigo,RC Celta de Vigo,False,0,11.0,2,0
+PD,2025,37.0,2026-05-17T17:00:00Z,Real Sociedad de Fútbol,Valencia CF,Real Sociedad de Fútbol,True,3,13.0,4,0
+PD,2025,37.0,2026-05-17T17:00:00Z,Real Sociedad de Fútbol,Valencia CF,Valencia CF,False,2,11.0,0,1
+PD,2025,37.0,2026-05-17T17:00:00Z,Real Oviedo,Deportivo Alavés,Real Oviedo,True,5,13.0,3,0
+PD,2025,37.0,2026-05-17T17:00:00Z,Real Oviedo,Deportivo Alavés,Deportivo Alavés,False,2,18.0,1,0
+FL1,2025,34.0,2026-05-17T19:00:00Z,FC Lorient,Le Havre AC,FC Lorient,True,5,11.0,2,0
+FL1,2025,34.0,2026-05-17T19:00:00Z,FC Lorient,Le Havre AC,Le Havre AC,False,1,11.0,1,0
+FL1,2025,34.0,2026-05-17T19:00:00Z,Stade Brestois 29,Angers SCO,Stade Brestois 29,True,6,9.0,1,0
+FL1,2025,34.0,2026-05-17T19:00:00Z,Stade Brestois 29,Angers SCO,Angers SCO,False,3,8.0,1,0
+FL1,2025,34.0,2026-05-17T19:00:00Z,RC Strasbourg Alsace,AS Monaco FC,RC Strasbourg Alsace,True,4,7.0,1,0
+FL1,2025,34.0,2026-05-17T19:00:00Z,RC Strasbourg Alsace,AS Monaco FC,AS Monaco FC,False,6,11.0,2,0
+FL1,2025,34.0,2026-05-17T19:00:00Z,Lille OSC,AJ Auxerre,Lille OSC,True,4,9.0,3,0
+FL1,2025,34.0,2026-05-17T19:00:00Z,Lille OSC,AJ Auxerre,AJ Auxerre,False,2,16.0,2,0
+FL1,2025,34.0,2026-05-17T19:00:00Z,Olympique de Marseille,Stade Rennais FC 1901,Olympique de Marseille,True,4,11.0,3,0
+FL1,2025,34.0,2026-05-17T19:00:00Z,Olympique de Marseille,Stade Rennais FC 1901,Stade Rennais FC 1901,False,11,10.0,1,0
+FL1,2025,34.0,2026-05-17T19:00:00Z,Olympique Lyonnais,Racing Club de Lens,Olympique Lyonnais,True,20,10.0,1,0
+FL1,2025,34.0,2026-05-17T19:00:00Z,Olympique Lyonnais,Racing Club de Lens,Racing Club de Lens,False,8,11.0,4,0
+FL1,2025,34.0,2026-05-17T19:00:00Z,OGC Nice,FC Metz,OGC Nice,True,10,11.0,2,0
+FL1,2025,34.0,2026-05-17T19:00:00Z,OGC Nice,FC Metz,FC Metz,False,4,15.0,1,0
+FL1,2025,34.0,2026-05-17T19:00:00Z,Paris FC,Paris Saint-Germain FC,Paris FC,True,3,8.0,2,0
+FL1,2025,34.0,2026-05-17T19:00:00Z,Paris FC,Paris Saint-Germain FC,Paris Saint-Germain FC,False,3,9.0,0,0
+SA,2025,37.0,2026-05-17T18:45:00Z,Cagliari Calcio,Torino FC,Cagliari Calcio,True,5,8.0,1,0
+SA,2025,37.0,2026-05-17T18:45:00Z,Cagliari Calcio,Torino FC,Torino FC,False,1,13.0,1,0
+SA,2025,37.0,2026-05-17T18:45:00Z,US Sassuolo Calcio,US Lecce,US Sassuolo Calcio,True,2,7.0,1,0
+SA,2025,37.0,2026-05-17T18:45:00Z,US Sassuolo Calcio,US Lecce,US Lecce,False,8,13.0,4,0
+SA,2025,37.0,2026-05-17T18:45:00Z,Udinese Calcio,US Cremonese,Udinese Calcio,True,5,10.0,1,0
+SA,2025,37.0,2026-05-17T18:45:00Z,Udinese Calcio,US Cremonese,US Cremonese,False,5,9.0,3,0
+SA,2025,37.0,2026-05-17T16:00:00Z,Atalanta BC,Bologna FC 1909,Atalanta BC,True,2,17.0,1,0
+SA,2025,37.0,2026-05-17T16:00:00Z,Atalanta BC,Bologna FC 1909,Bologna FC 1909,False,5,6.0,1,0
+SA,2025,37.0,2026-05-17T13:00:00Z,FC Internazionale Milano,Hellas Verona FC,FC Internazionale Milano,True,10,9.0,0,0
+SA,2025,37.0,2026-05-17T13:00:00Z,FC Internazionale Milano,Hellas Verona FC,Hellas Verona FC,False,2,12.0,2,0
+SA,2025,37.0,2026-05-17T10:00:00Z,AS Roma,SS Lazio,AS Roma,True,8,15.0,2,1
+SA,2025,37.0,2026-05-17T10:00:00Z,AS Roma,SS Lazio,SS Lazio,False,3,17.0,3,1
+SA,2025,37.0,2026-05-17T10:00:00Z,AC Pisa 1909,SSC Napoli,AC Pisa 1909,True,1,13.0,2,0
+SA,2025,37.0,2026-05-17T10:00:00Z,AC Pisa 1909,SSC Napoli,SSC Napoli,False,6,8.0,2,0
+SA,2025,37.0,2026-05-17T10:00:00Z,Juventus FC,ACF Fiorentina,Juventus FC,True,6,16.0,1,0
+SA,2025,37.0,2026-05-17T10:00:00Z,Juventus FC,ACF Fiorentina,ACF Fiorentina,False,2,12.0,3,1
+SA,2025,37.0,2026-05-17T10:00:00Z,Como 1907,Parma Calcio 1913,Como 1907,True,15,10.0,2,0
+SA,2025,37.0,2026-05-17T10:00:00Z,Como 1907,Parma Calcio 1913,Parma Calcio 1913,False,2,14.0,0,0
+SA,2025,37.0,2026-05-17T10:00:00Z,Genoa CFC,AC Milan,Genoa CFC,True,4,8.0,2,0
+SA,2025,37.0,2026-05-17T10:00:00Z,Genoa CFC,AC Milan,AC Milan,False,4,19.0,3,0
+PL,2025,37.0,2026-05-17T16:30:00Z,Newcastle United FC,West Ham United FC,Newcastle United FC,True,9,8.0,1,0
+PL,2025,37.0,2026-05-17T16:30:00Z,Newcastle United FC,West Ham United FC,West Ham United FC,False,1,11.0,3,0
+PL,2025,37.0,2026-05-17T14:00:00Z,Wolverhampton Wanderers FC,Fulham FC,Wolverhampton Wanderers FC,True,3,20.0,1,0
+PL,2025,37.0,2026-05-17T14:00:00Z,Wolverhampton Wanderers FC,Fulham FC,Fulham FC,False,6,8.0,0,0
+PL,2025,37.0,2026-05-17T14:00:00Z,Leeds United FC,Brighton & Hove Albion FC,Leeds United FC,True,7,9.0,1,0
+PL,2025,37.0,2026-05-17T14:00:00Z,Leeds United FC,Brighton & Hove Albion FC,Brighton & Hove Albion FC,False,8,7.0,0,0
+PL,2025,37.0,2026-05-17T14:00:00Z,Brentford FC,Crystal Palace FC,Brentford FC,True,9,7.0,1,0
+PL,2025,37.0,2026-05-17T14:00:00Z,Brentford FC,Crystal Palace FC,Crystal Palace FC,False,4,5.0,3,0
+PL,2025,37.0,2026-05-17T14:00:00Z,Everton FC,Sunderland AFC,Everton FC,True,3,14.0,3,0
+PL,2025,37.0,2026-05-17T14:00:00Z,Everton FC,Sunderland AFC,Sunderland AFC,False,2,9.0,0,0
+PL,2025,37.0,2026-05-17T11:30:00Z,Manchester United FC,Nottingham Forest FC,Manchester United FC,True,7,11.0,2,0
+PL,2025,37.0,2026-05-17T11:30:00Z,Manchester United FC,Nottingham Forest FC,Nottingham Forest FC,False,6,5.0,1,0
+BL1,2025,34.0,2026-05-16T13:30:00Z,1. FC Union Berlin,FC Augsburg,1. FC Union Berlin,True,5,6.0,3,0
+BL1,2025,34.0,2026-05-16T13:30:00Z,1. FC Union Berlin,FC Augsburg,FC Augsburg,False,9,7.0,1,0
+BL1,2025,34.0,2026-05-16T13:30:00Z,FC St. Pauli 1910,VfL Wolfsburg,FC St. Pauli 1910,True,8,6.0,2,0
+BL1,2025,34.0,2026-05-16T13:30:00Z,FC St. Pauli 1910,VfL Wolfsburg,VfL Wolfsburg,False,9,9.0,3,0
+BL1,2025,34.0,2026-05-16T13:30:00Z,Eintracht Frankfurt,VfB Stuttgart,Eintracht Frankfurt,True,6,14.0,2,0
+BL1,2025,34.0,2026-05-16T13:30:00Z,Eintracht Frankfurt,VfB Stuttgart,VfB Stuttgart,False,6,12.0,3,0
+BL1,2025,34.0,2026-05-16T13:30:00Z,SC Freiburg,RB Leipzig,SC Freiburg,True,1,13.0,0,0
+BL1,2025,34.0,2026-05-16T13:30:00Z,SC Freiburg,RB Leipzig,RB Leipzig,False,2,7.0,1,0
+BL1,2025,34.0,2026-05-16T13:30:00Z,1. FC Heidenheim 1846,1. FSV Mainz 05,1. FC Heidenheim 1846,True,6,8.0,1,0
+BL1,2025,34.0,2026-05-16T13:30:00Z,1. FC Heidenheim 1846,1. FSV Mainz 05,1. FSV Mainz 05,False,3,12.0,1,0
+BL1,2025,34.0,2026-05-16T13:30:00Z,SV Werder Bremen,Borussia Dortmund,SV Werder Bremen,True,4,8.0,0,0
+BL1,2025,34.0,2026-05-16T13:30:00Z,SV Werder Bremen,Borussia Dortmund,Borussia Dortmund,False,5,5.0,0,0
+BL1,2025,34.0,2026-05-16T13:30:00Z,Bayer 04 Leverkusen,Hamburger SV,Bayer 04 Leverkusen,True,8,8.0,1,0
+BL1,2025,34.0,2026-05-16T13:30:00Z,Bayer 04 Leverkusen,Hamburger SV,Hamburger SV,False,3,11.0,2,0
+BL1,2025,34.0,2026-05-16T13:30:00Z,FC Bayern München,1. FC Köln,FC Bayern München,True,5,6.0,1,0
+BL1,2025,34.0,2026-05-16T13:30:00Z,FC Bayern München,1. FC Köln,1. FC Köln,False,5,4.0,1,0
+BL1,2025,34.0,2026-05-16T13:30:00Z,Borussia Mönchengladbach,TSG 1899 Hoffenheim,Borussia Mönchengladbach,True,2,11.0,4,0
+BL1,2025,34.0,2026-05-16T13:30:00Z,Borussia Mönchengladbach,TSG 1899 Hoffenheim,TSG 1899 Hoffenheim,False,9,15.0,6,1
+PL,2025,37.0,2026-05-15T19:00:00Z,Aston Villa FC,Liverpool FC,Aston Villa FC,True,4,12.0,3,0
+PL,2025,37.0,2026-05-15T19:00:00Z,Aston Villa FC,Liverpool FC,Liverpool FC,False,9,9.0,1,0
+PD,2025,36.0,2026-05-14T19:30:00Z,Real Madrid CF,Real Oviedo,Real Madrid CF,True,4,7.0,0,0
+PD,2025,36.0,2026-05-14T19:30:00Z,Real Madrid CF,Real Oviedo,Real Oviedo,False,5,14.0,0,0
+PD,2025,36.0,2026-05-14T18:00:00Z,Girona FC,Real Sociedad de Fútbol,Girona FC,True,6,13.0,2,0
+PD,2025,36.0,2026-05-14T18:00:00Z,Girona FC,Real Sociedad de Fútbol,Real Sociedad de Fútbol,False,3,19.0,7,0
+PD,2025,36.0,2026-05-14T17:00:00Z,Valencia CF,Rayo Vallecano de Madrid,Valencia CF,True,5,9.0,1,0
+PD,2025,36.0,2026-05-14T17:00:00Z,Valencia CF,Rayo Vallecano de Madrid,Rayo Vallecano de Madrid,False,1,20.0,1,0
+PD,2025,36.0,2026-05-13T19:30:00Z,Deportivo Alavés,FC Barcelona,Deportivo Alavés,True,6,14.0,1,0
+PD,2025,36.0,2026-05-13T19:30:00Z,Deportivo Alavés,FC Barcelona,FC Barcelona,False,4,8.0,2,0
+PD,2025,36.0,2026-05-13T19:30:00Z,Getafe CF,RCD Mallorca,Getafe CF,True,3,17.0,3,0
+PD,2025,36.0,2026-05-13T19:30:00Z,Getafe CF,RCD Mallorca,RCD Mallorca,False,3,18.0,4,0
+PD,2025,36.0,2026-05-13T17:00:00Z,Villarreal CF,Sevilla FC,Villarreal CF,True,6,11.0,2,0
+PD,2025,36.0,2026-05-13T17:00:00Z,Villarreal CF,Sevilla FC,Sevilla FC,False,4,9.0,1,0
+PD,2025,36.0,2026-05-13T17:00:00Z,RCD Espanyol de Barcelona,Athletic Club,RCD Espanyol de Barcelona,True,8,9.0,0,0
+PD,2025,36.0,2026-05-13T17:00:00Z,RCD Espanyol de Barcelona,Athletic Club,Athletic Club,False,9,14.0,0,0
+PL,2025,31.0,2026-05-13T19:00:00Z,Manchester City FC,Crystal Palace FC,Manchester City FC,True,9,10.0,0,0
+PL,2025,31.0,2026-05-13T19:00:00Z,Manchester City FC,Crystal Palace FC,Crystal Palace FC,False,4,7.0,2,0
+FL1,2025,29.0,2026-05-13T17:00:00Z,Stade Brestois 29,RC Strasbourg Alsace,Stade Brestois 29,True,5,10.0,0,0
+FL1,2025,29.0,2026-05-13T17:00:00Z,Stade Brestois 29,RC Strasbourg Alsace,RC Strasbourg Alsace,False,4,11.0,1,0
+PD,2025,36.0,2026-05-12T19:30:00Z,CA Osasuna,Club Atlético de Madrid,CA Osasuna,True,8,15.0,6,0
+PD,2025,36.0,2026-05-12T19:30:00Z,CA Osasuna,Club Atlético de Madrid,Club Atlético de Madrid,False,4,12.0,5,1
+PD,2025,36.0,2026-05-12T18:00:00Z,Real Betis Balompié,Elche CF,Real Betis Balompié,True,8,16.0,3,0
+PD,2025,36.0,2026-05-12T18:00:00Z,Real Betis Balompié,Elche CF,Elche CF,False,1,13.0,2,1
+PD,2025,36.0,2026-05-12T17:00:00Z,RC Celta de Vigo,Levante UD,RC Celta de Vigo,True,4,7.0,0,0
+PD,2025,36.0,2026-05-12T17:00:00Z,RC Celta de Vigo,Levante UD,Levante UD,False,4,10.0,2,0
+PD,2025,35.0,2026-05-11T19:00:00Z,Rayo Vallecano de Madrid,Girona FC,Rayo Vallecano de Madrid,True,9,10.0,1,0
+PD,2025,35.0,2026-05-11T19:00:00Z,Rayo Vallecano de Madrid,Girona FC,Girona FC,False,5,9.0,1,0
+PL,2025,36.0,2026-05-11T19:00:00Z,Tottenham Hotspur FC,Leeds United FC,Tottenham Hotspur FC,True,14,12.0,3,0
+PL,2025,36.0,2026-05-11T19:00:00Z,Tottenham Hotspur FC,Leeds United FC,Leeds United FC,False,2,7.0,1,0
+SA,2025,36.0,2026-05-11T18:45:00Z,SSC Napoli,Bologna FC 1909,SSC Napoli,True,7,10.0,1,0
+SA,2025,36.0,2026-05-11T18:45:00Z,SSC Napoli,Bologna FC 1909,Bologna FC 1909,False,1,12.0,4,0
+FL1,2025,33.0,2026-05-10T19:00:00Z,Le Havre AC,Olympique de Marseille,Le Havre AC,True,3,20.0,4,0
+FL1,2025,33.0,2026-05-10T19:00:00Z,Le Havre AC,Olympique de Marseille,Olympique de Marseille,False,0,22.0,2,0
+FL1,2025,33.0,2026-05-10T19:00:00Z,AS Monaco FC,Lille OSC,AS Monaco FC,True,5,13.0,1,0
+FL1,2025,33.0,2026-05-10T19:00:00Z,AS Monaco FC,Lille OSC,Lille OSC,False,2,10.0,3,0
+FL1,2025,33.0,2026-05-10T19:00:00Z,Stade Rennais FC 1901,Paris FC,Stade Rennais FC 1901,True,8,13.0,0,0
+FL1,2025,33.0,2026-05-10T19:00:00Z,Stade Rennais FC 1901,Paris FC,Paris FC,False,2,11.0,1,0
+FL1,2025,33.0,2026-05-10T19:00:00Z,Paris Saint-Germain FC,Stade Brestois 29,Paris Saint-Germain FC,True,13,5.0,0,0
+FL1,2025,33.0,2026-05-10T19:00:00Z,Paris Saint-Germain FC,Stade Brestois 29,Stade Brestois 29,False,2,12.0,0,0
+FL1,2025,33.0,2026-05-10T19:00:00Z,Toulouse FC,Olympique Lyonnais,Toulouse FC,True,7,20.0,6,1
+FL1,2025,33.0,2026-05-10T19:00:00Z,Toulouse FC,Olympique Lyonnais,Olympique Lyonnais,False,8,9.0,2,0
+FL1,2025,33.0,2026-05-10T19:00:00Z,FC Metz,FC Lorient,FC Metz,True,7,8.0,2,0
+FL1,2025,33.0,2026-05-10T19:00:00Z,FC Metz,FC Lorient,FC Lorient,False,4,8.0,2,0
+FL1,2025,33.0,2026-05-10T19:00:00Z,Angers SCO,RC Strasbourg Alsace,Angers SCO,True,0,16.0,2,0
+FL1,2025,33.0,2026-05-10T19:00:00Z,Angers SCO,RC Strasbourg Alsace,RC Strasbourg Alsace,False,2,14.0,2,0
+FL1,2025,33.0,2026-05-10T19:00:00Z,AJ Auxerre,OGC Nice,AJ Auxerre,True,10,15.0,1,0
+FL1,2025,33.0,2026-05-10T19:00:00Z,AJ Auxerre,OGC Nice,OGC Nice,False,1,9.0,0,0
+PD,2025,35.0,2026-05-10T19:00:00Z,FC Barcelona,Real Madrid CF,FC Barcelona,True,4,18.0,2,0
+PD,2025,35.0,2026-05-10T19:00:00Z,FC Barcelona,Real Madrid CF,Real Madrid CF,False,8,9.0,4,0
+PD,2025,35.0,2026-05-10T16:30:00Z,Real Oviedo,Getafe CF,Real Oviedo,True,1,9.0,2,2
+PD,2025,35.0,2026-05-10T16:30:00Z,Real Oviedo,Getafe CF,Getafe CF,False,9,16.0,2,0
+PD,2025,35.0,2026-05-10T14:15:00Z,Athletic Club,Valencia CF,Athletic Club,True,13,9.0,2,0
+PD,2025,35.0,2026-05-10T14:15:00Z,Athletic Club,Valencia CF,Valencia CF,False,5,7.0,3,0
+PD,2025,35.0,2026-05-10T12:00:00Z,RCD Mallorca,Villarreal CF,RCD Mallorca,True,5,17.0,2,0
+PD,2025,35.0,2026-05-10T12:00:00Z,RCD Mallorca,Villarreal CF,Villarreal CF,False,4,13.0,0,0
+SA,2025,36.0,2026-05-10T18:45:00Z,AC Milan,Atalanta BC,AC Milan,True,2,8.0,4,0
+SA,2025,36.0,2026-05-10T18:45:00Z,AC Milan,Atalanta BC,Atalanta BC,False,2,17.0,3,0
+SA,2025,36.0,2026-05-10T16:00:00Z,Parma Calcio 1913,AS Roma,Parma Calcio 1913,True,3,14.0,4,1
+SA,2025,36.0,2026-05-10T16:00:00Z,Parma Calcio 1913,AS Roma,AS Roma,False,6,8.0,0,0
+SA,2025,36.0,2026-05-10T13:00:00Z,ACF Fiorentina,Genoa CFC,ACF Fiorentina,True,4,13.0,0,0
+SA,2025,36.0,2026-05-10T13:00:00Z,ACF Fiorentina,Genoa CFC,Genoa CFC,False,3,14.0,0,0
+SA,2025,36.0,2026-05-10T13:00:00Z,US Cremonese,AC Pisa 1909,US Cremonese,True,7,10.0,0,0
+SA,2025,36.0,2026-05-10T13:00:00Z,US Cremonese,AC Pisa 1909,AC Pisa 1909,False,1,12.0,4,2
+SA,2025,36.0,2026-05-10T10:30:00Z,Hellas Verona FC,Como 1907,Hellas Verona FC,True,7,17.0,1,0
+SA,2025,36.0,2026-05-10T10:30:00Z,Hellas Verona FC,Como 1907,Como 1907,False,7,14.0,1,0
+BL1,2025,33.0,2026-05-10T17:30:00Z,1. FSV Mainz 05,1. FC Union Berlin,1. FSV Mainz 05,True,7,11.0,2,0
+BL1,2025,33.0,2026-05-10T17:30:00Z,1. FSV Mainz 05,1. FC Union Berlin,1. FC Union Berlin,False,8,10.0,1,0
+BL1,2025,33.0,2026-05-10T15:30:00Z,1. FC Köln,1. FC Heidenheim 1846,1. FC Köln,True,6,9.0,2,0
+BL1,2025,33.0,2026-05-10T15:30:00Z,1. FC Köln,1. FC Heidenheim 1846,1. FC Heidenheim 1846,False,4,8.0,2,0
+BL1,2025,33.0,2026-05-10T13:30:00Z,Hamburger SV,SC Freiburg,Hamburger SV,True,2,14.0,2,0
+BL1,2025,33.0,2026-05-10T13:30:00Z,Hamburger SV,SC Freiburg,SC Freiburg,False,4,8.0,2,0
+PL,2025,36.0,2026-05-10T15:30:00Z,West Ham United FC,Arsenal FC,West Ham United FC,True,4,14.0,3,0
+PL,2025,36.0,2026-05-10T15:30:00Z,West Ham United FC,Arsenal FC,Arsenal FC,False,3,12.0,4,0
+PL,2025,36.0,2026-05-10T13:00:00Z,Crystal Palace FC,Everton FC,Crystal Palace FC,True,5,5.0,0,0
+PL,2025,36.0,2026-05-10T13:00:00Z,Crystal Palace FC,Everton FC,Everton FC,False,10,13.0,2,0
+PL,2025,36.0,2026-05-10T13:00:00Z,Burnley FC,Aston Villa FC,Burnley FC,True,2,17.0,1,0
+PL,2025,36.0,2026-05-10T13:00:00Z,Burnley FC,Aston Villa FC,Aston Villa FC,False,8,8.0,1,0
+PL,2025,36.0,2026-05-10T13:00:00Z,Nottingham Forest FC,Newcastle United FC,Nottingham Forest FC,True,2,16.0,2,0
+PL,2025,36.0,2026-05-10T13:00:00Z,Nottingham Forest FC,Newcastle United FC,Newcastle United FC,False,1,11.0,0,0
+PD,2025,35.0,2026-05-09T19:00:00Z,Real Sociedad de Fútbol,Real Betis Balompié,Real Sociedad de Fútbol,True,4,12.0,2,0
+PD,2025,35.0,2026-05-09T19:00:00Z,Real Sociedad de Fútbol,Real Betis Balompié,Real Betis Balompié,False,3,9.0,3,1
+PD,2025,35.0,2026-05-09T16:30:00Z,Club Atlético de Madrid,RC Celta de Vigo,Club Atlético de Madrid,True,10,11.0,1,0
+PD,2025,35.0,2026-05-09T16:30:00Z,Club Atlético de Madrid,RC Celta de Vigo,RC Celta de Vigo,False,0,13.0,2,0
+PD,2025,35.0,2026-05-09T14:15:00Z,Sevilla FC,RCD Espanyol de Barcelona,Sevilla FC,True,4,14.0,5,0
+PD,2025,35.0,2026-05-09T14:15:00Z,Sevilla FC,RCD Espanyol de Barcelona,RCD Espanyol de Barcelona,False,6,17.0,4,0
+PD,2025,35.0,2026-05-09T12:00:00Z,Elche CF,Deportivo Alavés,Elche CF,True,7,15.0,3,0
+PD,2025,35.0,2026-05-09T12:00:00Z,Elche CF,Deportivo Alavés,Deportivo Alavés,False,3,13.0,6,0
+SA,2025,36.0,2026-05-09T18:45:00Z,US Lecce,Juventus FC,US Lecce,True,1,7.0,1,0
+SA,2025,36.0,2026-05-09T18:45:00Z,US Lecce,Juventus FC,Juventus FC,False,7,18.0,1,0
+SA,2025,36.0,2026-05-09T16:00:00Z,SS Lazio,FC Internazionale Milano,SS Lazio,True,5,10.0,2,1
+SA,2025,36.0,2026-05-09T16:00:00Z,SS Lazio,FC Internazionale Milano,FC Internazionale Milano,False,1,8.0,1,0
+SA,2025,36.0,2026-05-09T13:00:00Z,Cagliari Calcio,Udinese Calcio,Cagliari Calcio,True,8,10.0,1,0
+SA,2025,36.0,2026-05-09T13:00:00Z,Cagliari Calcio,Udinese Calcio,Udinese Calcio,False,4,13.0,2,0
+PL,2025,36.0,2026-05-09T16:30:00Z,Manchester City FC,Brentford FC,Manchester City FC,True,10,8.0,4,0
+PL,2025,36.0,2026-05-09T16:30:00Z,Manchester City FC,Brentford FC,Brentford FC,False,2,14.0,2,0
+PL,2025,36.0,2026-05-09T14:00:00Z,Fulham FC,AFC Bournemouth,Fulham FC,True,11,12.0,4,1
+PL,2025,36.0,2026-05-09T14:00:00Z,Fulham FC,AFC Bournemouth,AFC Bournemouth,False,2,21.0,2,1
+PL,2025,36.0,2026-05-09T14:00:00Z,Sunderland AFC,Manchester United FC,Sunderland AFC,True,6,12.0,0,0
+PL,2025,36.0,2026-05-09T14:00:00Z,Sunderland AFC,Manchester United FC,Manchester United FC,False,7,11.0,3,0
+PL,2025,36.0,2026-05-09T11:30:00Z,Liverpool FC,Chelsea FC,Liverpool FC,True,5,17.0,2,0
+PL,2025,36.0,2026-05-09T11:30:00Z,Liverpool FC,Chelsea FC,Chelsea FC,False,2,17.0,4,0
+BL1,2025,33.0,2026-05-09T16:30:00Z,VfL Wolfsburg,FC Bayern München,VfL Wolfsburg,True,6,8.0,1,0
+BL1,2025,33.0,2026-05-09T16:30:00Z,VfL Wolfsburg,FC Bayern München,FC Bayern München,False,3,5.0,0,0
+BL1,2025,33.0,2026-05-09T13:30:00Z,TSG 1899 Hoffenheim,SV Werder Bremen,TSG 1899 Hoffenheim,True,8,4.0,1,0
+BL1,2025,33.0,2026-05-09T13:30:00Z,TSG 1899 Hoffenheim,SV Werder Bremen,SV Werder Bremen,False,3,3.0,2,1
+BL1,2025,33.0,2026-05-09T13:30:00Z,VfB Stuttgart,Bayer 04 Leverkusen,VfB Stuttgart,True,7,13.0,2,0
+BL1,2025,33.0,2026-05-09T13:30:00Z,VfB Stuttgart,Bayer 04 Leverkusen,Bayer 04 Leverkusen,False,6,8.0,1,0
+BL1,2025,33.0,2026-05-09T13:30:00Z,RB Leipzig,FC St. Pauli 1910,RB Leipzig,True,3,5.0,2,0
+BL1,2025,33.0,2026-05-09T13:30:00Z,RB Leipzig,FC St. Pauli 1910,FC St. Pauli 1910,False,5,9.0,0,0
+BL1,2025,33.0,2026-05-09T13:30:00Z,FC Augsburg,Borussia Mönchengladbach,FC Augsburg,True,3,11.0,2,0
+BL1,2025,33.0,2026-05-09T13:30:00Z,FC Augsburg,Borussia Mönchengladbach,Borussia Mönchengladbach,False,2,9.0,2,0
+PD,2025,35.0,2026-05-08T19:00:00Z,Levante UD,CA Osasuna,Levante UD,True,15,11.0,2,0
+PD,2025,35.0,2026-05-08T19:00:00Z,Levante UD,CA Osasuna,CA Osasuna,False,1,13.0,0,1
+SA,2025,36.0,2026-05-08T18:45:00Z,Torino FC,US Sassuolo Calcio,Torino FC,True,7,13.0,4,0
+SA,2025,36.0,2026-05-08T18:45:00Z,Torino FC,US Sassuolo Calcio,US Sassuolo Calcio,False,5,9.0,2,0
+FL1,2025,33.0,2026-05-08T18:45:00Z,Racing Club de Lens,FC Nantes,Racing Club de Lens,True,8,15.0,2,0
+FL1,2025,33.0,2026-05-08T18:45:00Z,Racing Club de Lens,FC Nantes,FC Nantes,False,3,15.0,1,0
+BL1,2025,33.0,2026-05-08T18:30:00Z,Borussia Dortmund,Eintracht Frankfurt,Borussia Dortmund,True,6,14.0,3,0
+BL1,2025,33.0,2026-05-08T18:30:00Z,Borussia Dortmund,Eintracht Frankfurt,Eintracht Frankfurt,False,2,8.0,0,0
+CL,2025,2.0,2026-05-06T19:00:00Z,FC Bayern München,Paris Saint-Germain FC,FC Bayern München,True,1,11.0,3,0
+CL,2025,2.0,2026-05-06T19:00:00Z,FC Bayern München,Paris Saint-Germain FC,Paris Saint-Germain FC,False,8,12.0,3,0
+CL,2025,2.0,2026-05-05T19:00:00Z,Arsenal FC,Club Atlético de Madrid,Arsenal FC,True,5,10.0,1,0
+CL,2025,2.0,2026-05-05T19:00:00Z,Arsenal FC,Club Atlético de Madrid,Club Atlético de Madrid,False,2,13.0,2,0
+PL,2025,35.0,2026-05-04T19:00:00Z,Everton FC,Manchester City FC,Everton FC,True,5,15.0,4,0
+PL,2025,35.0,2026-05-04T19:00:00Z,Everton FC,Manchester City FC,Manchester City FC,False,9,5.0,1,0
+PL,2025,35.0,2026-05-04T14:00:00Z,Chelsea FC,Nottingham Forest FC,Chelsea FC,True,10,12.0,3,0
+PL,2025,35.0,2026-05-04T14:00:00Z,Chelsea FC,Nottingham Forest FC,Nottingham Forest FC,False,1,10.0,1,0
+PD,2025,34.0,2026-05-04T19:00:00Z,Sevilla FC,Real Sociedad de Fútbol,Sevilla FC,True,3,19.0,2,0
+PD,2025,34.0,2026-05-04T19:00:00Z,Sevilla FC,Real Sociedad de Fútbol,Real Sociedad de Fútbol,False,3,11.0,1,0
+SA,2025,35.0,2026-05-04T18:45:00Z,AS Roma,ACF Fiorentina,AS Roma,True,4,12.0,2,0
+SA,2025,35.0,2026-05-04T18:45:00Z,AS Roma,ACF Fiorentina,ACF Fiorentina,False,5,10.0,2,0
+SA,2025,35.0,2026-05-04T16:30:00Z,US Cremonese,SS Lazio,US Cremonese,True,3,16.0,1,0
+SA,2025,35.0,2026-05-04T16:30:00Z,US Cremonese,SS Lazio,SS Lazio,False,3,13.0,2,0
+PD,2025,34.0,2026-05-03T19:00:00Z,RCD Espanyol de Barcelona,Real Madrid CF,RCD Espanyol de Barcelona,True,5,19.0,3,0
+PD,2025,34.0,2026-05-03T19:00:00Z,RCD Espanyol de Barcelona,Real Madrid CF,Real Madrid CF,False,6,16.0,4,0
+PD,2025,34.0,2026-05-03T16:30:00Z,Real Betis Balompié,Real Oviedo,Real Betis Balompié,True,5,9.0,0,0
+PD,2025,34.0,2026-05-03T16:30:00Z,Real Betis Balompié,Real Oviedo,Real Oviedo,False,4,4.0,0,0
+PD,2025,34.0,2026-05-03T14:15:00Z,Getafe CF,Rayo Vallecano de Madrid,Getafe CF,True,4,7.0,3,0
+PD,2025,34.0,2026-05-03T14:15:00Z,Getafe CF,Rayo Vallecano de Madrid,Rayo Vallecano de Madrid,False,1,22.0,5,0
+PD,2025,34.0,2026-05-03T12:00:00Z,RC Celta de Vigo,Elche CF,RC Celta de Vigo,True,4,14.0,2,0
+PD,2025,34.0,2026-05-03T12:00:00Z,RC Celta de Vigo,Elche CF,Elche CF,False,2,15.0,1,0
+SA,2025,35.0,2026-05-03T18:45:00Z,FC Internazionale Milano,Parma Calcio 1913,FC Internazionale Milano,True,8,9.0,1,0
+SA,2025,35.0,2026-05-03T18:45:00Z,FC Internazionale Milano,Parma Calcio 1913,Parma Calcio 1913,False,3,7.0,0,0
+SA,2025,35.0,2026-05-03T16:00:00Z,Juventus FC,Hellas Verona FC,Juventus FC,True,14,9.0,1,0
+SA,2025,35.0,2026-05-03T16:00:00Z,Juventus FC,Hellas Verona FC,Hellas Verona FC,False,1,19.0,4,0
+SA,2025,35.0,2026-05-03T13:00:00Z,US Sassuolo Calcio,AC Milan,US Sassuolo Calcio,True,2,16.0,4,0
+SA,2025,35.0,2026-05-03T13:00:00Z,US Sassuolo Calcio,AC Milan,AC Milan,False,3,16.0,4,1
+SA,2025,35.0,2026-05-03T10:30:00Z,Bologna FC 1909,Cagliari Calcio,Bologna FC 1909,True,7,13.0,2,0
+SA,2025,35.0,2026-05-03T10:30:00Z,Bologna FC 1909,Cagliari Calcio,Cagliari Calcio,False,2,12.0,1,0
+FL1,2025,32.0,2026-05-03T18:45:00Z,Olympique Lyonnais,Stade Rennais FC 1901,Olympique Lyonnais,True,7,10.0,0,0
+FL1,2025,32.0,2026-05-03T18:45:00Z,Olympique Lyonnais,Stade Rennais FC 1901,Stade Rennais FC 1901,False,5,14.0,3,0
+FL1,2025,32.0,2026-05-03T15:15:00Z,AJ Auxerre,Angers SCO,AJ Auxerre,True,4,12.0,2,0
+FL1,2025,32.0,2026-05-03T15:15:00Z,AJ Auxerre,Angers SCO,Angers SCO,False,6,2.0,4,1
+FL1,2025,32.0,2026-05-03T15:15:00Z,Paris FC,Stade Brestois 29,Paris FC,True,7,10.0,2,0
+FL1,2025,32.0,2026-05-03T15:15:00Z,Paris FC,Stade Brestois 29,Stade Brestois 29,False,3,8.0,1,0
+FL1,2025,32.0,2026-05-03T15:15:00Z,RC Strasbourg Alsace,Toulouse FC,RC Strasbourg Alsace,True,8,7.0,1,0
+FL1,2025,32.0,2026-05-03T15:15:00Z,RC Strasbourg Alsace,Toulouse FC,Toulouse FC,False,3,15.0,3,0
+FL1,2025,32.0,2026-05-03T13:00:00Z,Lille OSC,Le Havre AC,Lille OSC,True,14,9.0,2,0
+FL1,2025,32.0,2026-05-03T13:00:00Z,Lille OSC,Le Havre AC,Le Havre AC,False,5,15.0,3,0
+PL,2025,35.0,2026-05-03T18:00:00Z,Aston Villa FC,Tottenham Hotspur FC,Aston Villa FC,True,5,12.0,2,0
+PL,2025,35.0,2026-05-03T18:00:00Z,Aston Villa FC,Tottenham Hotspur FC,Tottenham Hotspur FC,False,5,12.0,5,0
+PL,2025,35.0,2026-05-03T14:30:00Z,Manchester United FC,Liverpool FC,Manchester United FC,True,3,12.0,2,0
+PL,2025,35.0,2026-05-03T14:30:00Z,Manchester United FC,Liverpool FC,Liverpool FC,False,2,11.0,2,0
+PL,2025,35.0,2026-05-03T13:00:00Z,AFC Bournemouth,Crystal Palace FC,AFC Bournemouth,True,7,10.0,0,0
+PL,2025,35.0,2026-05-03T13:00:00Z,AFC Bournemouth,Crystal Palace FC,Crystal Palace FC,False,1,11.0,2,0
+BL1,2025,32.0,2026-05-03T17:30:00Z,SC Freiburg,VfL Wolfsburg,SC Freiburg,True,1,5.0,1,0
+BL1,2025,32.0,2026-05-03T17:30:00Z,SC Freiburg,VfL Wolfsburg,VfL Wolfsburg,False,7,11.0,1,0
+BL1,2025,32.0,2026-05-03T15:30:00Z,Borussia Mönchengladbach,Borussia Dortmund,Borussia Mönchengladbach,True,1,14.0,3,0
+BL1,2025,32.0,2026-05-03T15:30:00Z,Borussia Mönchengladbach,Borussia Dortmund,Borussia Dortmund,False,1,17.0,1,0
+BL1,2025,32.0,2026-05-03T13:30:00Z,FC St. Pauli 1910,1. FSV Mainz 05,FC St. Pauli 1910,True,7,10.0,3,0
+BL1,2025,32.0,2026-05-03T13:30:00Z,FC St. Pauli 1910,1. FSV Mainz 05,1. FSV Mainz 05,False,7,8.0,1,0
+FL1,2025,32.0,2026-05-02T19:05:00Z,OGC Nice,Racing Club de Lens,OGC Nice,True,7,11.0,2,0
+FL1,2025,32.0,2026-05-02T19:05:00Z,OGC Nice,Racing Club de Lens,Racing Club de Lens,False,8,10.0,3,1
+FL1,2025,32.0,2026-05-02T17:00:00Z,FC Metz,AS Monaco FC,FC Metz,True,5,10.0,0,0
+FL1,2025,32.0,2026-05-02T17:00:00Z,FC Metz,AS Monaco FC,AS Monaco FC,False,9,15.0,2,0
+FL1,2025,32.0,2026-05-02T15:00:00Z,Paris Saint-Germain FC,FC Lorient,Paris Saint-Germain FC,True,12,9.0,1,0
+FL1,2025,32.0,2026-05-02T15:00:00Z,Paris Saint-Germain FC,FC Lorient,FC Lorient,False,2,7.0,1,0
+FL1,2025,32.0,2026-05-02T13:00:00Z,FC Nantes,Olympique de Marseille,FC Nantes,True,7,12.0,1,0
+FL1,2025,32.0,2026-05-02T13:00:00Z,FC Nantes,Olympique de Marseille,Olympique de Marseille,False,8,11.0,3,0
+PD,2025,34.0,2026-05-02T19:00:00Z,CA Osasuna,FC Barcelona,CA Osasuna,True,3,9.0,1,0
+PD,2025,34.0,2026-05-02T19:00:00Z,CA Osasuna,FC Barcelona,FC Barcelona,False,7,10.0,2,0
+PD,2025,34.0,2026-05-02T14:15:00Z,Valencia CF,Club Atlético de Madrid,Valencia CF,True,1,9.0,1,0
+PD,2025,34.0,2026-05-02T14:15:00Z,Valencia CF,Club Atlético de Madrid,Club Atlético de Madrid,False,7,12.0,3,0
+PD,2025,34.0,2026-05-02T12:00:00Z,Villarreal CF,Levante UD,Villarreal CF,True,7,14.0,3,0
+PD,2025,34.0,2026-05-02T12:00:00Z,Villarreal CF,Levante UD,Levante UD,False,3,7.0,1,0
+SA,2025,35.0,2026-05-02T18:45:00Z,Atalanta BC,Genoa CFC,Atalanta BC,True,6,14.0,2,0
+SA,2025,35.0,2026-05-02T18:45:00Z,Atalanta BC,Genoa CFC,Genoa CFC,False,2,10.0,1,0
+SA,2025,35.0,2026-05-02T16:00:00Z,Como 1907,SSC Napoli,Como 1907,True,3,11.0,1,0
+SA,2025,35.0,2026-05-02T16:00:00Z,Como 1907,SSC Napoli,SSC Napoli,False,2,10.0,1,0
+SA,2025,35.0,2026-05-02T13:00:00Z,Udinese Calcio,Torino FC,Udinese Calcio,True,5,11.0,1,0
+SA,2025,35.0,2026-05-02T13:00:00Z,Udinese Calcio,Torino FC,Torino FC,False,2,18.0,1,0
+BL1,2025,32.0,2026-05-02T16:30:00Z,Bayer 04 Leverkusen,RB Leipzig,Bayer 04 Leverkusen,True,7,7.0,1,0
+BL1,2025,32.0,2026-05-02T16:30:00Z,Bayer 04 Leverkusen,RB Leipzig,RB Leipzig,False,3,12.0,3,0
+BL1,2025,32.0,2026-05-02T13:30:00Z,FC Bayern München,1. FC Heidenheim 1846,FC Bayern München,True,13,6.0,3,0
+BL1,2025,32.0,2026-05-02T13:30:00Z,FC Bayern München,1. FC Heidenheim 1846,1. FC Heidenheim 1846,False,5,7.0,2,0
+BL1,2025,32.0,2026-05-02T13:30:00Z,1. FC Union Berlin,1. FC Köln,1. FC Union Berlin,True,2,7.0,2,0
+BL1,2025,32.0,2026-05-02T13:30:00Z,1. FC Union Berlin,1. FC Köln,1. FC Köln,False,5,10.0,3,0
+BL1,2025,32.0,2026-05-02T13:30:00Z,SV Werder Bremen,FC Augsburg,SV Werder Bremen,True,8,11.0,1,0
+BL1,2025,32.0,2026-05-02T13:30:00Z,SV Werder Bremen,FC Augsburg,FC Augsburg,False,2,4.0,1,0
+BL1,2025,32.0,2026-05-02T13:30:00Z,Eintracht Frankfurt,Hamburger SV,Eintracht Frankfurt,True,9,13.0,6,1
+BL1,2025,32.0,2026-05-02T13:30:00Z,Eintracht Frankfurt,Hamburger SV,Hamburger SV,False,4,5.0,1,0
+BL1,2025,32.0,2026-05-02T13:30:00Z,TSG 1899 Hoffenheim,VfB Stuttgart,TSG 1899 Hoffenheim,True,4,18.0,3,0
+BL1,2025,32.0,2026-05-02T13:30:00Z,TSG 1899 Hoffenheim,VfB Stuttgart,VfB Stuttgart,False,5,9.0,1,1
+PL,2025,35.0,2026-05-02T16:30:00Z,Arsenal FC,Fulham FC,Arsenal FC,True,3,7.0,0,0
+PL,2025,35.0,2026-05-02T16:30:00Z,Arsenal FC,Fulham FC,Fulham FC,False,4,12.0,1,0
+PL,2025,35.0,2026-05-02T14:00:00Z,Wolverhampton Wanderers FC,Sunderland AFC,Wolverhampton Wanderers FC,True,6,11.0,0,0
+PL,2025,35.0,2026-05-02T14:00:00Z,Wolverhampton Wanderers FC,Sunderland AFC,Sunderland AFC,False,3,11.0,4,1
+PL,2025,35.0,2026-05-02T14:00:00Z,Brentford FC,West Ham United FC,Brentford FC,True,2,8.0,1,0
+PL,2025,35.0,2026-05-02T14:00:00Z,Brentford FC,West Ham United FC,West Ham United FC,False,6,12.0,3,0
+PL,2025,35.0,2026-05-02T14:00:00Z,Newcastle United FC,Brighton & Hove Albion FC,Newcastle United FC,True,2,10.0,3,0
+PL,2025,35.0,2026-05-02T14:00:00Z,Newcastle United FC,Brighton & Hove Albion FC,Brighton & Hove Albion FC,False,10,12.0,3,0
+PL,2025,35.0,2026-05-01T19:00:00Z,Leeds United FC,Burnley FC,Leeds United FC,True,5,12.0,4,0
+PL,2025,35.0,2026-05-01T19:00:00Z,Leeds United FC,Burnley FC,Burnley FC,False,0,11.0,3,0
+PD,2025,34.0,2026-05-01T19:00:00Z,Girona FC,RCD Mallorca,Girona FC,True,5,8.0,3,0
+PD,2025,34.0,2026-05-01T19:00:00Z,Girona FC,RCD Mallorca,RCD Mallorca,False,2,25.0,2,0
+SA,2025,35.0,2026-05-01T18:45:00Z,AC Pisa 1909,US Lecce,AC Pisa 1909,True,6,15.0,4,0
+SA,2025,35.0,2026-05-01T18:45:00Z,AC Pisa 1909,US Lecce,US Lecce,False,1,13.0,2,0
+CL,2025,1.0,2026-04-29T19:00:00Z,Club Atlético de Madrid,Arsenal FC,Club Atlético de Madrid,True,6,7.0,1,0
+CL,2025,1.0,2026-04-29T19:00:00Z,Club Atlético de Madrid,Arsenal FC,Arsenal FC,False,1,11.0,0,0
+CL,2025,1.0,2026-04-28T19:00:00Z,Paris Saint-Germain FC,FC Bayern München,Paris Saint-Germain FC,True,2,12.0,3,0
+CL,2025,1.0,2026-04-28T19:00:00Z,Paris Saint-Germain FC,FC Bayern München,FC Bayern München,False,5,10.0,0,0
+PL,2025,34.0,2026-04-27T19:00:00Z,Manchester United FC,Brentford FC,Manchester United FC,True,7,6.0,2,0
+PL,2025,34.0,2026-04-27T19:00:00Z,Manchester United FC,Brentford FC,Brentford FC,False,8,9.0,4,0
+PD,2025,32.0,2026-04-27T19:00:00Z,RCD Espanyol de Barcelona,Levante UD,RCD Espanyol de Barcelona,True,4,12.0,3,1
+PD,2025,32.0,2026-04-27T19:00:00Z,RCD Espanyol de Barcelona,Levante UD,Levante UD,False,4,15.0,3,0
+SA,2025,34.0,2026-04-27T18:45:00Z,SS Lazio,Udinese Calcio,SS Lazio,True,4,17.0,3,0
+SA,2025,34.0,2026-04-27T18:45:00Z,SS Lazio,Udinese Calcio,Udinese Calcio,False,5,14.0,1,0
+SA,2025,34.0,2026-04-27T16:30:00Z,Cagliari Calcio,Atalanta BC,Cagliari Calcio,True,4,8.0,0,0
+SA,2025,34.0,2026-04-27T16:30:00Z,Cagliari Calcio,Atalanta BC,Atalanta BC,False,6,11.0,0,0
+PD,2025,32.0,2026-04-26T19:00:00Z,Villarreal CF,RC Celta de Vigo,Villarreal CF,True,7,13.0,3,0
+PD,2025,32.0,2026-04-26T19:00:00Z,Villarreal CF,RC Celta de Vigo,RC Celta de Vigo,False,5,16.0,5,0
+PD,2025,32.0,2026-04-26T16:30:00Z,CA Osasuna,Sevilla FC,CA Osasuna,True,4,11.0,2,0
+PD,2025,32.0,2026-04-26T16:30:00Z,CA Osasuna,Sevilla FC,Sevilla FC,False,4,13.0,2,0
+PD,2025,32.0,2026-04-26T14:15:00Z,Real Oviedo,Elche CF,Real Oviedo,True,6,21.0,2,0
+PD,2025,32.0,2026-04-26T14:15:00Z,Real Oviedo,Elche CF,Elche CF,False,1,14.0,0,1
+PD,2025,32.0,2026-04-26T12:00:00Z,Rayo Vallecano de Madrid,Real Sociedad de Fútbol,Rayo Vallecano de Madrid,True,6,14.0,6,1
+PD,2025,32.0,2026-04-26T12:00:00Z,Rayo Vallecano de Madrid,Real Sociedad de Fútbol,Real Sociedad de Fútbol,False,4,12.0,4,0
+SA,2025,34.0,2026-04-26T18:45:00Z,AC Milan,Juventus FC,AC Milan,True,1,12.0,2,0
+SA,2025,34.0,2026-04-26T18:45:00Z,AC Milan,Juventus FC,Juventus FC,False,3,8.0,3,0
+SA,2025,34.0,2026-04-26T16:00:00Z,Torino FC,FC Internazionale Milano,Torino FC,True,5,10.0,1,0
+SA,2025,34.0,2026-04-26T16:00:00Z,Torino FC,FC Internazionale Milano,FC Internazionale Milano,False,5,8.0,2,0
+SA,2025,34.0,2026-04-26T13:00:00Z,Genoa CFC,Como 1907,Genoa CFC,True,2,12.0,1,0
+SA,2025,34.0,2026-04-26T13:00:00Z,Genoa CFC,Como 1907,Como 1907,False,3,15.0,3,0
+SA,2025,34.0,2026-04-26T10:30:00Z,ACF Fiorentina,US Sassuolo Calcio,ACF Fiorentina,True,7,13.0,2,0
+SA,2025,34.0,2026-04-26T10:30:00Z,ACF Fiorentina,US Sassuolo Calcio,US Sassuolo Calcio,False,4,12.0,1,0
+FL1,2025,31.0,2026-04-26T18:45:00Z,Olympique de Marseille,OGC Nice,Olympique de Marseille,True,7,14.0,4,0
+FL1,2025,31.0,2026-04-26T18:45:00Z,Olympique de Marseille,OGC Nice,OGC Nice,False,1,7.0,1,0
+FL1,2025,31.0,2026-04-26T15:15:00Z,Paris FC,Lille OSC,Paris FC,True,7,12.0,6,1
+FL1,2025,31.0,2026-04-26T15:15:00Z,Paris FC,Lille OSC,Lille OSC,False,3,10.0,3,0
+FL1,2025,31.0,2026-04-26T15:15:00Z,Stade Rennais FC 1901,FC Nantes,Stade Rennais FC 1901,True,6,15.0,3,0
+FL1,2025,31.0,2026-04-26T15:15:00Z,Stade Rennais FC 1901,FC Nantes,FC Nantes,False,8,15.0,2,0
+FL1,2025,31.0,2026-04-26T15:15:00Z,Le Havre AC,FC Metz,Le Havre AC,True,6,12.0,3,0
+FL1,2025,31.0,2026-04-26T15:15:00Z,Le Havre AC,FC Metz,FC Metz,False,4,12.0,1,0
+FL1,2025,31.0,2026-04-26T13:00:00Z,FC Lorient,RC Strasbourg Alsace,FC Lorient,True,9,9.0,1,0
+FL1,2025,31.0,2026-04-26T13:00:00Z,FC Lorient,RC Strasbourg Alsace,RC Strasbourg Alsace,False,7,16.0,2,0
+BL1,2025,31.0,2026-04-26T15:30:00Z,Borussia Dortmund,SC Freiburg,Borussia Dortmund,True,5,19.0,1,0
+BL1,2025,31.0,2026-04-26T15:30:00Z,Borussia Dortmund,SC Freiburg,SC Freiburg,False,0,10.0,0,0
+BL1,2025,31.0,2026-04-26T13:30:00Z,VfB Stuttgart,SV Werder Bremen,VfB Stuttgart,True,14,8.0,0,0
+BL1,2025,31.0,2026-04-26T13:30:00Z,VfB Stuttgart,SV Werder Bremen,SV Werder Bremen,False,2,10.0,1,0
+FL1,2025,31.0,2026-04-25T19:05:00Z,Toulouse FC,AS Monaco FC,Toulouse FC,True,4,17.0,3,0
+FL1,2025,31.0,2026-04-25T19:05:00Z,Toulouse FC,AS Monaco FC,AS Monaco FC,False,2,10.0,2,0
+FL1,2025,31.0,2026-04-25T17:00:00Z,Angers SCO,Paris Saint-Germain FC,Angers SCO,True,5,9.0,0,0
+FL1,2025,31.0,2026-04-25T17:00:00Z,Angers SCO,Paris Saint-Germain FC,Paris Saint-Germain FC,False,4,3.0,2,1
+FL1,2025,31.0,2026-04-25T13:00:00Z,Olympique Lyonnais,AJ Auxerre,Olympique Lyonnais,True,6,11.0,1,0
+FL1,2025,31.0,2026-04-25T13:00:00Z,Olympique Lyonnais,AJ Auxerre,AJ Auxerre,False,3,15.0,2,0
+PD,2025,32.0,2026-04-25T19:00:00Z,Club Atlético de Madrid,Athletic Club,Club Atlético de Madrid,True,3,8.0,0,0
+PD,2025,32.0,2026-04-25T19:00:00Z,Club Atlético de Madrid,Athletic Club,Athletic Club,False,4,12.0,0,0
+PD,2025,32.0,2026-04-25T16:30:00Z,Valencia CF,Girona FC,Valencia CF,True,4,22.0,2,0
+PD,2025,32.0,2026-04-25T16:30:00Z,Valencia CF,Girona FC,Girona FC,False,4,8.0,2,0
+PD,2025,32.0,2026-04-25T14:15:00Z,Getafe CF,FC Barcelona,Getafe CF,True,6,15.0,2,0
+PD,2025,32.0,2026-04-25T14:15:00Z,Getafe CF,FC Barcelona,FC Barcelona,False,3,8.0,2,0
+PD,2025,32.0,2026-04-25T12:00:00Z,Deportivo Alavés,RCD Mallorca,Deportivo Alavés,True,9,15.0,2,0
+PD,2025,32.0,2026-04-25T12:00:00Z,Deportivo Alavés,RCD Mallorca,RCD Mallorca,False,4,14.0,1,0
+SA,2025,34.0,2026-04-25T18:45:00Z,Hellas Verona FC,US Lecce,Hellas Verona FC,True,2,15.0,2,0
+SA,2025,34.0,2026-04-25T18:45:00Z,Hellas Verona FC,US Lecce,US Lecce,False,4,19.0,5,0
+SA,2025,34.0,2026-04-25T16:00:00Z,Bologna FC 1909,AS Roma,Bologna FC 1909,True,7,10.0,0,0
+SA,2025,34.0,2026-04-25T16:00:00Z,Bologna FC 1909,AS Roma,AS Roma,False,7,16.0,3,0
+SA,2025,34.0,2026-04-25T13:00:00Z,Parma Calcio 1913,AC Pisa 1909,Parma Calcio 1913,True,7,10.0,1,0
+SA,2025,34.0,2026-04-25T13:00:00Z,Parma Calcio 1913,AC Pisa 1909,AC Pisa 1909,False,4,19.0,2,0
+PL,2025,34.0,2026-04-25T16:30:00Z,Arsenal FC,Newcastle United FC,Arsenal FC,True,7,13.0,2,0
+PL,2025,34.0,2026-04-25T16:30:00Z,Arsenal FC,Newcastle United FC,Newcastle United FC,False,2,10.0,2,0
+PL,2025,34.0,2026-04-25T14:00:00Z,West Ham United FC,Everton FC,West Ham United FC,True,3,9.0,3,0
+PL,2025,34.0,2026-04-25T14:00:00Z,West Ham United FC,Everton FC,Everton FC,False,4,11.0,4,0
+PL,2025,34.0,2026-04-25T14:00:00Z,Liverpool FC,Crystal Palace FC,Liverpool FC,True,5,10.0,1,0
+PL,2025,34.0,2026-04-25T14:00:00Z,Liverpool FC,Crystal Palace FC,Crystal Palace FC,False,8,10.0,3,0
+PL,2025,34.0,2026-04-25T14:00:00Z,Wolverhampton Wanderers FC,Tottenham Hotspur FC,Wolverhampton Wanderers FC,True,5,8.0,3,0
+PL,2025,34.0,2026-04-25T14:00:00Z,Wolverhampton Wanderers FC,Tottenham Hotspur FC,Tottenham Hotspur FC,False,5,14.0,4,0
+PL,2025,34.0,2026-04-25T11:30:00Z,Fulham FC,Aston Villa FC,Fulham FC,True,2,14.0,2,0
+PL,2025,34.0,2026-04-25T11:30:00Z,Fulham FC,Aston Villa FC,Aston Villa FC,False,5,12.0,2,0
+BL1,2025,31.0,2026-04-25T16:30:00Z,Hamburger SV,TSG 1899 Hoffenheim,Hamburger SV,True,4,11.0,2,0
+BL1,2025,31.0,2026-04-25T16:30:00Z,Hamburger SV,TSG 1899 Hoffenheim,TSG 1899 Hoffenheim,False,9,18.0,4,0
+BL1,2025,31.0,2026-04-25T13:30:00Z,VfL Wolfsburg,Borussia Mönchengladbach,VfL Wolfsburg,True,8,11.0,1,0
+BL1,2025,31.0,2026-04-25T13:30:00Z,VfL Wolfsburg,Borussia Mönchengladbach,Borussia Mönchengladbach,False,5,5.0,3,1
+BL1,2025,31.0,2026-04-25T13:30:00Z,FC Augsburg,Eintracht Frankfurt,FC Augsburg,True,9,11.0,1,0
+BL1,2025,31.0,2026-04-25T13:30:00Z,FC Augsburg,Eintracht Frankfurt,Eintracht Frankfurt,False,7,13.0,2,0
+BL1,2025,31.0,2026-04-25T13:30:00Z,1. FC Köln,Bayer 04 Leverkusen,1. FC Köln,True,2,11.0,1,0
+BL1,2025,31.0,2026-04-25T13:30:00Z,1. FC Köln,Bayer 04 Leverkusen,Bayer 04 Leverkusen,False,5,5.0,2,0
+BL1,2025,31.0,2026-04-25T13:30:00Z,1. FSV Mainz 05,FC Bayern München,1. FSV Mainz 05,True,4,14.0,1,0
+BL1,2025,31.0,2026-04-25T13:30:00Z,1. FSV Mainz 05,FC Bayern München,FC Bayern München,False,4,10.0,2,0
+BL1,2025,31.0,2026-04-25T13:30:00Z,1. FC Heidenheim 1846,FC St. Pauli 1910,1. FC Heidenheim 1846,True,6,7.0,0,0
+BL1,2025,31.0,2026-04-25T13:30:00Z,1. FC Heidenheim 1846,FC St. Pauli 1910,FC St. Pauli 1910,False,6,6.0,1,0
+PL,2025,34.0,2026-04-24T19:00:00Z,Sunderland AFC,Nottingham Forest FC,Sunderland AFC,True,3,13.0,2,0
+PL,2025,34.0,2026-04-24T19:00:00Z,Sunderland AFC,Nottingham Forest FC,Nottingham Forest FC,False,6,15.0,5,0
+PD,2025,32.0,2026-04-24T19:00:00Z,Real Betis Balompié,Real Madrid CF,Real Betis Balompié,True,7,10.0,1,0
+PD,2025,32.0,2026-04-24T19:00:00Z,Real Betis Balompié,Real Madrid CF,Real Madrid CF,False,6,8.0,2,0
+SA,2025,34.0,2026-04-24T18:45:00Z,SSC Napoli,US Cremonese,SSC Napoli,True,7,7.0,0,0
+SA,2025,34.0,2026-04-24T18:45:00Z,SSC Napoli,US Cremonese,US Cremonese,False,5,11.0,0,0
+FL1,2025,31.0,2026-04-24T18:45:00Z,Stade Brestois 29,Racing Club de Lens,Stade Brestois 29,True,0,7.0,3,0
+FL1,2025,31.0,2026-04-24T18:45:00Z,Stade Brestois 29,Racing Club de Lens,Racing Club de Lens,False,6,11.0,3,0
+BL1,2025,31.0,2026-04-24T18:30:00Z,RB Leipzig,1. FC Union Berlin,RB Leipzig,True,10,6.0,1,0
+BL1,2025,31.0,2026-04-24T18:30:00Z,RB Leipzig,1. FC Union Berlin,1. FC Union Berlin,False,4,10.0,1,0
+PD,2025,33.0,2026-04-23T19:30:00Z,Real Oviedo,Villarreal CF,Real Oviedo,True,7,9.0,1,0
+PD,2025,33.0,2026-04-23T19:30:00Z,Real Oviedo,Villarreal CF,Villarreal CF,False,0,11.0,1,0
+PD,2025,33.0,2026-04-23T18:00:00Z,Rayo Vallecano de Madrid,RCD Espanyol de Barcelona,Rayo Vallecano de Madrid,True,6,12.0,2,0
+PD,2025,33.0,2026-04-23T18:00:00Z,Rayo Vallecano de Madrid,RCD Espanyol de Barcelona,RCD Espanyol de Barcelona,False,5,15.0,4,0
+PD,2025,33.0,2026-04-23T17:00:00Z,Levante UD,Sevilla FC,Levante UD,True,3,17.0,3,0
+PD,2025,33.0,2026-04-23T17:00:00Z,Levante UD,Sevilla FC,Sevilla FC,False,6,16.0,4,0
+PD,2025,33.0,2026-04-22T19:30:00Z,FC Barcelona,RC Celta de Vigo,FC Barcelona,True,5,13.0,1,0
+PD,2025,33.0,2026-04-22T19:30:00Z,FC Barcelona,RC Celta de Vigo,RC Celta de Vigo,False,3,10.0,1,0
+PD,2025,33.0,2026-04-22T18:00:00Z,Real Sociedad de Fútbol,Getafe CF,Real Sociedad de Fútbol,True,6,13.0,3,0
+PD,2025,33.0,2026-04-22T18:00:00Z,Real Sociedad de Fútbol,Getafe CF,Getafe CF,False,3,22.0,4,0
+PD,2025,33.0,2026-04-22T17:00:00Z,Elche CF,Club Atlético de Madrid,Elche CF,True,13,11.0,2,0
+PD,2025,33.0,2026-04-22T17:00:00Z,Elche CF,Club Atlético de Madrid,Club Atlético de Madrid,False,3,12.0,2,1
+PL,2025,34.0,2026-04-22T19:00:00Z,Burnley FC,Manchester City FC,Burnley FC,True,3,10.0,0,0
+PL,2025,34.0,2026-04-22T19:00:00Z,Burnley FC,Manchester City FC,Manchester City FC,False,11,12.0,0,0
+PL,2025,34.0,2026-04-22T19:00:00Z,AFC Bournemouth,Leeds United FC,AFC Bournemouth,True,12,7.0,3,0
+PL,2025,34.0,2026-04-22T19:00:00Z,AFC Bournemouth,Leeds United FC,Leeds United FC,False,1,10.0,0,0
+FL1,2025,26.0,2026-04-22T17:00:00Z,Paris Saint-Germain FC,FC Nantes,Paris Saint-Germain FC,True,7,11.0,2,0
+FL1,2025,26.0,2026-04-22T17:00:00Z,Paris Saint-Germain FC,FC Nantes,FC Nantes,False,6,8.0,1,0
+PD,2025,33.0,2026-04-21T19:30:00Z,Real Madrid CF,Deportivo Alavés,Real Madrid CF,True,9,14.0,1,0
+PD,2025,33.0,2026-04-21T19:30:00Z,Real Madrid CF,Deportivo Alavés,Deportivo Alavés,False,6,12.0,1,0
+PD,2025,33.0,2026-04-21T19:30:00Z,Girona FC,Real Betis Balompié,Girona FC,True,3,11.0,1,0
+PD,2025,33.0,2026-04-21T19:30:00Z,Girona FC,Real Betis Balompié,Real Betis Balompié,False,1,18.0,3,0
+PD,2025,33.0,2026-04-21T17:00:00Z,Athletic Club,CA Osasuna,Athletic Club,True,5,12.0,3,1
+PD,2025,33.0,2026-04-21T17:00:00Z,Athletic Club,CA Osasuna,CA Osasuna,False,4,11.0,2,0
+PD,2025,33.0,2026-04-21T17:00:00Z,RCD Mallorca,Valencia CF,RCD Mallorca,True,7,9.0,0,0
+PD,2025,33.0,2026-04-21T17:00:00Z,RCD Mallorca,Valencia CF,Valencia CF,False,4,12.0,2,0
+PL,2025,34.0,2026-04-21T19:00:00Z,Brighton & Hove Albion FC,Chelsea FC,Brighton & Hove Albion FC,True,6,15.0,1,0
+PL,2025,34.0,2026-04-21T19:00:00Z,Brighton & Hove Albion FC,Chelsea FC,Chelsea FC,False,5,5.0,1,0
+PL,2025,33.0,2026-04-20T19:00:00Z,Crystal Palace FC,West Ham United FC,Crystal Palace FC,True,4,13.0,2,0
+PL,2025,33.0,2026-04-20T19:00:00Z,Crystal Palace FC,West Ham United FC,West Ham United FC,False,6,12.0,1,0
+SA,2025,33.0,2026-04-20T18:45:00Z,US Lecce,ACF Fiorentina,US Lecce,True,5,8.0,2,0
+SA,2025,33.0,2026-04-20T18:45:00Z,US Lecce,ACF Fiorentina,ACF Fiorentina,False,2,13.0,4,0
+SA,2025,33.0,2026-04-19T18:45:00Z,Juventus FC,Bologna FC 1909,Juventus FC,True,6,10.0,1,0
+SA,2025,33.0,2026-04-19T18:45:00Z,Juventus FC,Bologna FC 1909,Bologna FC 1909,False,1,5.0,0,0
+SA,2025,33.0,2026-04-19T16:00:00Z,AC Pisa 1909,Genoa CFC,AC Pisa 1909,True,5,21.0,3,0
+SA,2025,33.0,2026-04-19T16:00:00Z,AC Pisa 1909,Genoa CFC,Genoa CFC,False,5,16.0,1,0
+SA,2025,33.0,2026-04-19T13:00:00Z,Hellas Verona FC,AC Milan,Hellas Verona FC,True,6,13.0,2,0
+SA,2025,33.0,2026-04-19T13:00:00Z,Hellas Verona FC,AC Milan,AC Milan,False,1,6.0,0,0
+SA,2025,33.0,2026-04-19T10:30:00Z,US Cremonese,Torino FC,US Cremonese,True,6,11.0,0,0
+SA,2025,33.0,2026-04-19T10:30:00Z,US Cremonese,Torino FC,Torino FC,False,1,12.0,3,0
+FL1,2025,30.0,2026-04-19T15:15:00Z,FC Metz,Paris FC,FC Metz,True,6,9.0,2,0
+FL1,2025,30.0,2026-04-19T15:15:00Z,FC Metz,Paris FC,Paris FC,False,5,8.0,2,0
+FL1,2025,30.0,2026-04-19T15:15:00Z,RC Strasbourg Alsace,Stade Rennais FC 1901,RC Strasbourg Alsace,True,2,10.0,0,0
+FL1,2025,30.0,2026-04-19T15:15:00Z,RC Strasbourg Alsace,Stade Rennais FC 1901,Stade Rennais FC 1901,False,9,12.0,1,0
+FL1,2025,30.0,2026-04-19T15:15:00Z,FC Nantes,Stade Brestois 29,FC Nantes,True,11,13.0,2,1
+FL1,2025,30.0,2026-04-19T15:15:00Z,FC Nantes,Stade Brestois 29,Stade Brestois 29,False,0,17.0,2,0
+FL1,2025,30.0,2026-04-19T13:00:00Z,AS Monaco FC,AJ Auxerre,AS Monaco FC,True,11,19.0,2,0
+FL1,2025,30.0,2026-04-19T13:00:00Z,AS Monaco FC,AJ Auxerre,AJ Auxerre,False,3,8.0,3,0
+BL1,2025,30.0,2026-04-19T17:30:00Z,Borussia Mönchengladbach,1. FSV Mainz 05,Borussia Mönchengladbach,True,0,12.0,5,0
+BL1,2025,30.0,2026-04-19T17:30:00Z,Borussia Mönchengladbach,1. FSV Mainz 05,1. FSV Mainz 05,False,6,8.0,2,0
+BL1,2025,30.0,2026-04-19T15:30:00Z,FC Bayern München,VfB Stuttgart,FC Bayern München,True,11,6.0,0,0
+BL1,2025,30.0,2026-04-19T15:30:00Z,FC Bayern München,VfB Stuttgart,VfB Stuttgart,False,3,3.0,0,0
+BL1,2025,30.0,2026-04-19T13:30:00Z,SC Freiburg,1. FC Heidenheim 1846,SC Freiburg,True,5,10.0,1,0
+BL1,2025,30.0,2026-04-19T13:30:00Z,SC Freiburg,1. FC Heidenheim 1846,1. FC Heidenheim 1846,False,4,9.0,0,0
+PL,2025,33.0,2026-04-19T15:30:00Z,Manchester City FC,Arsenal FC,Manchester City FC,True,8,5.0,2,0
+PL,2025,33.0,2026-04-19T15:30:00Z,Manchester City FC,Arsenal FC,Arsenal FC,False,5,12.0,2,0
+PL,2025,33.0,2026-04-19T13:00:00Z,Nottingham Forest FC,Burnley FC,Nottingham Forest FC,True,4,8.0,0,0
+PL,2025,33.0,2026-04-19T13:00:00Z,Nottingham Forest FC,Burnley FC,Burnley FC,False,4,12.0,2,0
+PL,2025,33.0,2026-04-19T13:00:00Z,Aston Villa FC,Sunderland AFC,Aston Villa FC,True,4,11.0,1,0
+PL,2025,33.0,2026-04-19T13:00:00Z,Aston Villa FC,Sunderland AFC,Sunderland AFC,False,5,11.0,3,0
+PL,2025,33.0,2026-04-19T13:00:00Z,Everton FC,Liverpool FC,Everton FC,True,1,8.0,2,0
+PL,2025,33.0,2026-04-19T13:00:00Z,Everton FC,Liverpool FC,Liverpool FC,False,6,12.0,0,0
+FL1,2025,30.0,2026-04-18T19:05:00Z,Lille OSC,OGC Nice,Lille OSC,True,5,9.0,2,0
+FL1,2025,30.0,2026-04-18T19:05:00Z,Lille OSC,OGC Nice,OGC Nice,False,3,10.0,1,0
+FL1,2025,30.0,2026-04-18T17:00:00Z,Angers SCO,Le Havre AC,Angers SCO,True,4,15.0,1,0
+FL1,2025,30.0,2026-04-18T17:00:00Z,Angers SCO,Le Havre AC,Le Havre AC,False,3,20.0,3,1
+FL1,2025,30.0,2026-04-18T15:00:00Z,FC Lorient,Olympique de Marseille,FC Lorient,True,1,6.0,0,0
+FL1,2025,30.0,2026-04-18T15:00:00Z,FC Lorient,Olympique de Marseille,Olympique de Marseille,False,7,10.0,3,0
+PL,2025,33.0,2026-04-18T19:00:00Z,Chelsea FC,Manchester United FC,Chelsea FC,True,7,12.0,1,0
+PL,2025,33.0,2026-04-18T19:00:00Z,Chelsea FC,Manchester United FC,Manchester United FC,False,1,13.0,2,0
+PL,2025,33.0,2026-04-18T16:30:00Z,Tottenham Hotspur FC,Brighton & Hove Albion FC,Tottenham Hotspur FC,True,7,14.0,3,0
+PL,2025,33.0,2026-04-18T16:30:00Z,Tottenham Hotspur FC,Brighton & Hove Albion FC,Brighton & Hove Albion FC,False,5,14.0,1,0
+PL,2025,33.0,2026-04-18T14:00:00Z,Leeds United FC,Wolverhampton Wanderers FC,Leeds United FC,True,5,9.0,2,0
+PL,2025,33.0,2026-04-18T14:00:00Z,Leeds United FC,Wolverhampton Wanderers FC,Wolverhampton Wanderers FC,False,6,17.0,1,0
+PL,2025,33.0,2026-04-18T14:00:00Z,Newcastle United FC,AFC Bournemouth,Newcastle United FC,True,2,11.0,2,0
+PL,2025,33.0,2026-04-18T14:00:00Z,Newcastle United FC,AFC Bournemouth,AFC Bournemouth,False,3,12.0,4,0
+PL,2025,33.0,2026-04-18T11:30:00Z,Brentford FC,Fulham FC,Brentford FC,True,9,8.0,0,0
+PL,2025,33.0,2026-04-18T11:30:00Z,Brentford FC,Fulham FC,Fulham FC,False,3,13.0,1,0
+SA,2025,33.0,2026-04-18T18:45:00Z,AS Roma,Atalanta BC,AS Roma,True,7,4.0,1,0
+SA,2025,33.0,2026-04-18T18:45:00Z,AS Roma,Atalanta BC,Atalanta BC,False,6,14.0,2,0
+SA,2025,33.0,2026-04-18T16:00:00Z,SSC Napoli,SS Lazio,SSC Napoli,True,12,11.0,1,0
+SA,2025,33.0,2026-04-18T16:00:00Z,SSC Napoli,SS Lazio,SS Lazio,False,0,9.0,3,0
+SA,2025,33.0,2026-04-18T13:00:00Z,Udinese Calcio,Parma Calcio 1913,Udinese Calcio,True,10,11.0,2,0
+SA,2025,33.0,2026-04-18T13:00:00Z,Udinese Calcio,Parma Calcio 1913,Parma Calcio 1913,False,5,8.0,0,0
+BL1,2025,30.0,2026-04-18T16:30:00Z,Eintracht Frankfurt,RB Leipzig,Eintracht Frankfurt,True,4,7.0,0,0
+BL1,2025,30.0,2026-04-18T16:30:00Z,Eintracht Frankfurt,RB Leipzig,RB Leipzig,False,6,7.0,1,0
+BL1,2025,30.0,2026-04-18T13:30:00Z,1. FC Union Berlin,VfL Wolfsburg,1. FC Union Berlin,True,11,13.0,1,0
+BL1,2025,30.0,2026-04-18T13:30:00Z,1. FC Union Berlin,VfL Wolfsburg,VfL Wolfsburg,False,4,15.0,1,0
+BL1,2025,30.0,2026-04-18T13:30:00Z,TSG 1899 Hoffenheim,Borussia Dortmund,TSG 1899 Hoffenheim,True,4,14.0,2,0
+BL1,2025,30.0,2026-04-18T13:30:00Z,TSG 1899 Hoffenheim,Borussia Dortmund,Borussia Dortmund,False,3,11.0,3,0
+BL1,2025,30.0,2026-04-18T13:30:00Z,Bayer 04 Leverkusen,FC Augsburg,Bayer 04 Leverkusen,True,11,5.0,2,0
+BL1,2025,30.0,2026-04-18T13:30:00Z,Bayer 04 Leverkusen,FC Augsburg,FC Augsburg,False,4,8.0,1,0
+BL1,2025,30.0,2026-04-18T13:30:00Z,SV Werder Bremen,Hamburger SV,SV Werder Bremen,True,7,14.0,4,0
+BL1,2025,30.0,2026-04-18T13:30:00Z,SV Werder Bremen,Hamburger SV,Hamburger SV,False,3,14.0,3,1
+SA,2025,33.0,2026-04-17T18:45:00Z,FC Internazionale Milano,Cagliari Calcio,FC Internazionale Milano,True,4,17.0,0,0
+SA,2025,33.0,2026-04-17T18:45:00Z,FC Internazionale Milano,Cagliari Calcio,Cagliari Calcio,False,9,6.0,2,0
+SA,2025,33.0,2026-04-17T16:30:00Z,US Sassuolo Calcio,Como 1907,US Sassuolo Calcio,True,5,14.0,3,0
+SA,2025,33.0,2026-04-17T16:30:00Z,US Sassuolo Calcio,Como 1907,Como 1907,False,8,11.0,3,0
+FL1,2025,30.0,2026-04-17T18:45:00Z,Racing Club de Lens,Toulouse FC,Racing Club de Lens,True,14,9.0,1,0
+FL1,2025,30.0,2026-04-17T18:45:00Z,Racing Club de Lens,Toulouse FC,Toulouse FC,False,1,15.0,1,1
+BL1,2025,30.0,2026-04-17T18:30:00Z,FC St. Pauli 1910,1. FC Köln,FC St. Pauli 1910,True,8,6.0,4,0
+BL1,2025,30.0,2026-04-17T18:30:00Z,FC St. Pauli 1910,1. FC Köln,1. FC Köln,False,5,2.0,1,0
+CL,2025,2.0,2026-04-15T19:00:00Z,Arsenal FC,Sporting Clube de Portugal,Arsenal FC,True,8,7.0,0,0
+CL,2025,2.0,2026-04-15T19:00:00Z,Arsenal FC,Sporting Clube de Portugal,Sporting Clube de Portugal,False,3,11.0,1,0
+CL,2025,2.0,2026-04-15T19:00:00Z,FC Bayern München,Real Madrid CF,FC Bayern München,True,9,10.0,1,0
+CL,2025,2.0,2026-04-15T19:00:00Z,FC Bayern München,Real Madrid CF,Real Madrid CF,False,2,12.0,4,1
+CL,2025,2.0,2026-04-14T19:00:00Z,Club Atlético de Madrid,FC Barcelona,Club Atlético de Madrid,True,2,15.0,0,0
+CL,2025,2.0,2026-04-14T19:00:00Z,Club Atlético de Madrid,FC Barcelona,FC Barcelona,False,4,8.0,1,1
+CL,2025,2.0,2026-04-14T19:00:00Z,Liverpool FC,Paris Saint-Germain FC,Liverpool FC,True,8,9.0,2,0
+CL,2025,2.0,2026-04-14T19:00:00Z,Liverpool FC,Paris Saint-Germain FC,Paris Saint-Germain FC,False,2,10.0,0,0
+PD,2025,31.0,2026-04-13T19:00:00Z,Levante UD,Getafe CF,Levante UD,True,8,12.0,2,0
+PD,2025,31.0,2026-04-13T19:00:00Z,Levante UD,Getafe CF,Getafe CF,False,2,24.0,7,1
+PL,2025,32.0,2026-04-13T19:00:00Z,Manchester United FC,Leeds United FC,Manchester United FC,True,11,12.0,3,1
+PL,2025,32.0,2026-04-13T19:00:00Z,Manchester United FC,Leeds United FC,Leeds United FC,False,4,15.0,2,0
+SA,2025,32.0,2026-04-13T18:45:00Z,ACF Fiorentina,SS Lazio,ACF Fiorentina,True,5,10.0,3,0
+SA,2025,32.0,2026-04-13T18:45:00Z,ACF Fiorentina,SS Lazio,SS Lazio,False,6,10.0,2,0
+PD,2025,31.0,2026-04-12T19:00:00Z,Athletic Club,Villarreal CF,Athletic Club,True,15,15.0,2,0
+PD,2025,31.0,2026-04-12T19:00:00Z,Athletic Club,Villarreal CF,Villarreal CF,False,3,8.0,3,0
+PD,2025,31.0,2026-04-12T16:30:00Z,RC Celta de Vigo,Real Oviedo,RC Celta de Vigo,True,4,9.0,1,0
+PD,2025,31.0,2026-04-12T16:30:00Z,RC Celta de Vigo,Real Oviedo,Real Oviedo,False,1,13.0,2,0
+PD,2025,31.0,2026-04-12T14:15:00Z,RCD Mallorca,Rayo Vallecano de Madrid,RCD Mallorca,True,6,13.0,1,0
+PD,2025,31.0,2026-04-12T14:15:00Z,RCD Mallorca,Rayo Vallecano de Madrid,Rayo Vallecano de Madrid,False,7,11.0,4,0
+PD,2025,31.0,2026-04-12T12:00:00Z,CA Osasuna,Real Betis Balompié,CA Osasuna,True,6,14.0,3,0
+PD,2025,31.0,2026-04-12T12:00:00Z,CA Osasuna,Real Betis Balompié,Real Betis Balompié,False,3,12.0,4,0
+SA,2025,32.0,2026-04-12T18:45:00Z,Como 1907,FC Internazionale Milano,Como 1907,True,1,12.0,3,0
+SA,2025,32.0,2026-04-12T18:45:00Z,Como 1907,FC Internazionale Milano,FC Internazionale Milano,False,1,17.0,7,0
+SA,2025,32.0,2026-04-12T16:00:00Z,Bologna FC 1909,US Lecce,Bologna FC 1909,True,8,15.0,0,0
+SA,2025,32.0,2026-04-12T16:00:00Z,Bologna FC 1909,US Lecce,US Lecce,False,6,19.0,2,0
+SA,2025,32.0,2026-04-12T13:00:00Z,Parma Calcio 1913,SSC Napoli,Parma Calcio 1913,True,3,4.0,1,0
+SA,2025,32.0,2026-04-12T13:00:00Z,Parma Calcio 1913,SSC Napoli,SSC Napoli,False,7,8.0,0,0
+SA,2025,32.0,2026-04-12T10:30:00Z,Genoa CFC,US Sassuolo Calcio,Genoa CFC,True,5,9.0,2,1
+SA,2025,32.0,2026-04-12T10:30:00Z,Genoa CFC,US Sassuolo Calcio,US Sassuolo Calcio,False,3,14.0,3,1
+FL1,2025,29.0,2026-04-12T18:45:00Z,Olympique Lyonnais,FC Lorient,Olympique Lyonnais,True,4,17.0,4,0
+FL1,2025,29.0,2026-04-12T18:45:00Z,Olympique Lyonnais,FC Lorient,FC Lorient,False,6,14.0,1,0
+FL1,2025,29.0,2026-04-12T15:15:00Z,OGC Nice,Le Havre AC,OGC Nice,True,5,20.0,1,0
+FL1,2025,29.0,2026-04-12T15:15:00Z,OGC Nice,Le Havre AC,Le Havre AC,False,2,14.0,1,0
+FL1,2025,29.0,2026-04-12T15:15:00Z,Toulouse FC,Lille OSC,Toulouse FC,True,4,13.0,2,1
+FL1,2025,29.0,2026-04-12T15:15:00Z,Toulouse FC,Lille OSC,Lille OSC,False,2,12.0,0,0
+BL1,2025,29.0,2026-04-12T17:30:00Z,1. FSV Mainz 05,SC Freiburg,1. FSV Mainz 05,True,6,10.0,1,0
+BL1,2025,29.0,2026-04-12T17:30:00Z,1. FSV Mainz 05,SC Freiburg,SC Freiburg,False,4,13.0,3,0
+BL1,2025,29.0,2026-04-12T15:30:00Z,VfB Stuttgart,Hamburger SV,VfB Stuttgart,True,8,10.0,2,0
+BL1,2025,29.0,2026-04-12T15:30:00Z,VfB Stuttgart,Hamburger SV,Hamburger SV,False,2,14.0,1,0
+BL1,2025,29.0,2026-04-12T13:30:00Z,1. FC Köln,SV Werder Bremen,1. FC Köln,True,8,16.0,3,0
+BL1,2025,29.0,2026-04-12T13:30:00Z,1. FC Köln,SV Werder Bremen,SV Werder Bremen,False,5,7.0,2,1
+PL,2025,32.0,2026-04-12T15:30:00Z,Chelsea FC,Manchester City FC,Chelsea FC,True,4,10.0,3,0
+PL,2025,32.0,2026-04-12T15:30:00Z,Chelsea FC,Manchester City FC,Manchester City FC,False,12,14.0,1,0
+PL,2025,32.0,2026-04-12T13:00:00Z,Nottingham Forest FC,Aston Villa FC,Nottingham Forest FC,True,7,15.0,2,0
+PL,2025,32.0,2026-04-12T13:00:00Z,Nottingham Forest FC,Aston Villa FC,Aston Villa FC,False,3,10.0,2,0
+PL,2025,32.0,2026-04-12T13:00:00Z,Crystal Palace FC,Newcastle United FC,Crystal Palace FC,True,2,17.0,0,0
+PL,2025,32.0,2026-04-12T13:00:00Z,Crystal Palace FC,Newcastle United FC,Newcastle United FC,False,4,12.0,3,0
+PL,2025,32.0,2026-04-12T13:00:00Z,Sunderland AFC,Tottenham Hotspur FC,Sunderland AFC,True,2,14.0,3,0
+PL,2025,32.0,2026-04-12T13:00:00Z,Sunderland AFC,Tottenham Hotspur FC,Tottenham Hotspur FC,False,6,15.0,3,0
+FL1,2025,29.0,2026-04-11T19:05:00Z,Stade Rennais FC 1901,Angers SCO,Stade Rennais FC 1901,True,11,9.0,0,0
+FL1,2025,29.0,2026-04-11T19:05:00Z,Stade Rennais FC 1901,Angers SCO,Angers SCO,False,3,15.0,2,0
+FL1,2025,29.0,2026-04-11T17:00:00Z,AJ Auxerre,FC Nantes,AJ Auxerre,True,3,20.0,0,0
+FL1,2025,29.0,2026-04-11T17:00:00Z,AJ Auxerre,FC Nantes,FC Nantes,False,2,15.0,4,0
+PD,2025,31.0,2026-04-11T19:00:00Z,Sevilla FC,Club Atlético de Madrid,Sevilla FC,True,6,7.0,4,0
+PD,2025,31.0,2026-04-11T19:00:00Z,Sevilla FC,Club Atlético de Madrid,Club Atlético de Madrid,False,6,12.0,4,0
+PD,2025,31.0,2026-04-11T16:30:00Z,FC Barcelona,RCD Espanyol de Barcelona,FC Barcelona,True,7,10.0,3,0
+PD,2025,31.0,2026-04-11T16:30:00Z,FC Barcelona,RCD Espanyol de Barcelona,RCD Espanyol de Barcelona,False,5,18.0,6,0
+PD,2025,31.0,2026-04-11T14:15:00Z,Elche CF,Valencia CF,Elche CF,True,5,15.0,1,0
+PD,2025,31.0,2026-04-11T14:15:00Z,Elche CF,Valencia CF,Valencia CF,False,9,18.0,1,0
+PD,2025,31.0,2026-04-11T12:00:00Z,Real Sociedad de Fútbol,Deportivo Alavés,Real Sociedad de Fútbol,True,9,11.0,2,1
+PD,2025,31.0,2026-04-11T12:00:00Z,Real Sociedad de Fútbol,Deportivo Alavés,Deportivo Alavés,False,5,18.0,3,0
+SA,2025,32.0,2026-04-11T18:45:00Z,Atalanta BC,Juventus FC,Atalanta BC,True,13,7.0,1,0
+SA,2025,32.0,2026-04-11T18:45:00Z,Atalanta BC,Juventus FC,Juventus FC,False,2,11.0,3,0
+SA,2025,32.0,2026-04-11T16:00:00Z,AC Milan,Udinese Calcio,AC Milan,True,4,9.0,1,0
+SA,2025,32.0,2026-04-11T16:00:00Z,AC Milan,Udinese Calcio,Udinese Calcio,False,3,14.0,1,0
+SA,2025,32.0,2026-04-11T13:00:00Z,Torino FC,Hellas Verona FC,Torino FC,True,3,13.0,1,0
+SA,2025,32.0,2026-04-11T13:00:00Z,Torino FC,Hellas Verona FC,Hellas Verona FC,False,6,17.0,4,0
+SA,2025,32.0,2026-04-11T13:00:00Z,Cagliari Calcio,US Cremonese,Cagliari Calcio,True,6,9.0,1,0
+SA,2025,32.0,2026-04-11T13:00:00Z,Cagliari Calcio,US Cremonese,US Cremonese,False,5,17.0,1,0
+BL1,2025,29.0,2026-04-11T16:30:00Z,FC St. Pauli 1910,FC Bayern München,FC St. Pauli 1910,True,3,9.0,1,0
+BL1,2025,29.0,2026-04-11T16:30:00Z,FC St. Pauli 1910,FC Bayern München,FC Bayern München,False,4,7.0,2,0
+BL1,2025,29.0,2026-04-11T13:30:00Z,RB Leipzig,Borussia Mönchengladbach,RB Leipzig,True,11,9.0,4,0
+BL1,2025,29.0,2026-04-11T13:30:00Z,RB Leipzig,Borussia Mönchengladbach,Borussia Mönchengladbach,False,4,6.0,1,0
+BL1,2025,29.0,2026-04-11T13:30:00Z,VfL Wolfsburg,Eintracht Frankfurt,VfL Wolfsburg,True,7,9.0,2,0
+BL1,2025,29.0,2026-04-11T13:30:00Z,VfL Wolfsburg,Eintracht Frankfurt,Eintracht Frankfurt,False,7,8.0,1,0
+BL1,2025,29.0,2026-04-11T13:30:00Z,Borussia Dortmund,Bayer 04 Leverkusen,Borussia Dortmund,True,5,5.0,3,0
+BL1,2025,29.0,2026-04-11T13:30:00Z,Borussia Dortmund,Bayer 04 Leverkusen,Bayer 04 Leverkusen,False,5,6.0,0,0
+BL1,2025,29.0,2026-04-11T13:30:00Z,1. FC Heidenheim 1846,1. FC Union Berlin,1. FC Heidenheim 1846,True,3,7.0,0,0
+BL1,2025,29.0,2026-04-11T13:30:00Z,1. FC Heidenheim 1846,1. FC Union Berlin,1. FC Union Berlin,False,5,13.0,2,0
+PL,2025,32.0,2026-04-11T16:30:00Z,Liverpool FC,Fulham FC,Liverpool FC,True,6,10.0,0,0
+PL,2025,32.0,2026-04-11T16:30:00Z,Liverpool FC,Fulham FC,Fulham FC,False,9,4.0,0,0
+PL,2025,32.0,2026-04-11T14:00:00Z,Burnley FC,Brighton & Hove Albion FC,Burnley FC,True,8,7.0,2,0
+PL,2025,32.0,2026-04-11T14:00:00Z,Burnley FC,Brighton & Hove Albion FC,Brighton & Hove Albion FC,False,2,11.0,1,0
+PL,2025,32.0,2026-04-11T14:00:00Z,Brentford FC,Everton FC,Brentford FC,True,2,6.0,0,0
+PL,2025,32.0,2026-04-11T14:00:00Z,Brentford FC,Everton FC,Everton FC,False,3,7.0,2,0
+PL,2025,32.0,2026-04-11T11:30:00Z,Arsenal FC,AFC Bournemouth,Arsenal FC,True,10,12.0,1,0
+PL,2025,32.0,2026-04-11T11:30:00Z,Arsenal FC,AFC Bournemouth,AFC Bournemouth,False,1,18.0,2,0
+FL1,2025,29.0,2026-04-10T19:05:00Z,Olympique de Marseille,FC Metz,Olympique de Marseille,True,7,12.0,1,0
+FL1,2025,29.0,2026-04-10T19:05:00Z,Olympique de Marseille,FC Metz,FC Metz,False,4,8.0,2,0
+FL1,2025,29.0,2026-04-10T17:00:00Z,Paris FC,AS Monaco FC,Paris FC,True,1,5.0,1,0
+FL1,2025,29.0,2026-04-10T17:00:00Z,Paris FC,AS Monaco FC,AS Monaco FC,False,11,6.0,0,0
+PD,2025,31.0,2026-04-10T19:00:00Z,Real Madrid CF,Girona FC,Real Madrid CF,True,10,9.0,2,0
+PD,2025,31.0,2026-04-10T19:00:00Z,Real Madrid CF,Girona FC,Girona FC,False,1,13.0,1,0
+PL,2025,32.0,2026-04-10T19:00:00Z,West Ham United FC,Wolverhampton Wanderers FC,West Ham United FC,True,5,11.0,2,0
+PL,2025,32.0,2026-04-10T19:00:00Z,West Ham United FC,Wolverhampton Wanderers FC,Wolverhampton Wanderers FC,False,2,7.0,2,0
+SA,2025,32.0,2026-04-10T18:45:00Z,AS Roma,AC Pisa 1909,AS Roma,True,1,11.0,1,0
+SA,2025,32.0,2026-04-10T18:45:00Z,AS Roma,AC Pisa 1909,AC Pisa 1909,False,3,12.0,1,0
+BL1,2025,29.0,2026-04-10T18:30:00Z,FC Augsburg,TSG 1899 Hoffenheim,FC Augsburg,True,4,6.0,5,0
+BL1,2025,29.0,2026-04-10T18:30:00Z,FC Augsburg,TSG 1899 Hoffenheim,TSG 1899 Hoffenheim,False,4,18.0,3,0
+CL,2025,1.0,2026-04-08T19:00:00Z,FC Barcelona,Club Atlético de Madrid,FC Barcelona,True,7,6.0,1,1
+CL,2025,1.0,2026-04-08T19:00:00Z,FC Barcelona,Club Atlético de Madrid,Club Atlético de Madrid,False,1,17.0,3,0
+CL,2025,1.0,2026-04-08T19:00:00Z,Paris Saint-Germain FC,Liverpool FC,Paris Saint-Germain FC,True,3,8.0,0,0
+CL,2025,1.0,2026-04-08T19:00:00Z,Paris Saint-Germain FC,Liverpool FC,Liverpool FC,False,1,12.0,2,0
+CL,2025,1.0,2026-04-07T19:00:00Z,Sporting Clube de Portugal,Arsenal FC,Sporting Clube de Portugal,True,3,11.0,1,0
+CL,2025,1.0,2026-04-07T19:00:00Z,Sporting Clube de Portugal,Arsenal FC,Arsenal FC,False,4,10.0,0,0
+CL,2025,1.0,2026-04-07T19:00:00Z,Real Madrid CF,FC Bayern München,Real Madrid CF,True,8,12.0,1,0
+CL,2025,1.0,2026-04-07T19:00:00Z,Real Madrid CF,FC Bayern München,FC Bayern München,False,11,12.0,4,0
+PD,2025,30.0,2026-04-06T19:00:00Z,Girona FC,Villarreal CF,Girona FC,True,7,8.0,2,0
+PD,2025,30.0,2026-04-06T19:00:00Z,Girona FC,Villarreal CF,Villarreal CF,False,4,9.0,2,0
+SA,2025,31.0,2026-04-06T18:45:00Z,SSC Napoli,AC Milan,SSC Napoli,True,4,7.0,2,0
+SA,2025,31.0,2026-04-06T18:45:00Z,SSC Napoli,AC Milan,AC Milan,False,3,6.0,0,0
+SA,2025,31.0,2026-04-06T16:00:00Z,Juventus FC,Genoa CFC,Juventus FC,True,5,10.0,4,0
+SA,2025,31.0,2026-04-06T16:00:00Z,Juventus FC,Genoa CFC,Genoa CFC,False,5,8.0,1,0
+SA,2025,31.0,2026-04-06T13:00:00Z,US Lecce,Atalanta BC,US Lecce,True,2,10.0,0,0
+SA,2025,31.0,2026-04-06T13:00:00Z,US Lecce,Atalanta BC,Atalanta BC,False,5,18.0,2,0
+SA,2025,31.0,2026-04-06T10:30:00Z,Udinese Calcio,Como 1907,Udinese Calcio,True,6,10.0,2,0
+SA,2025,31.0,2026-04-06T10:30:00Z,Udinese Calcio,Como 1907,Como 1907,False,2,12.0,3,0
+PD,2025,30.0,2026-04-05T19:00:00Z,Deportivo Alavés,CA Osasuna,Deportivo Alavés,True,7,7.0,2,0
+PD,2025,30.0,2026-04-05T19:00:00Z,Deportivo Alavés,CA Osasuna,CA Osasuna,False,1,17.0,5,1
+PD,2025,30.0,2026-04-05T16:30:00Z,Real Oviedo,Sevilla FC,Real Oviedo,True,5,11.0,5,0
+PD,2025,30.0,2026-04-05T16:30:00Z,Real Oviedo,Sevilla FC,Sevilla FC,False,9,12.0,3,1
+PD,2025,30.0,2026-04-05T14:15:00Z,Valencia CF,RC Celta de Vigo,Valencia CF,True,6,14.0,1,0
+PD,2025,30.0,2026-04-05T14:15:00Z,Valencia CF,RC Celta de Vigo,RC Celta de Vigo,False,0,21.0,3,0
+PD,2025,30.0,2026-04-05T12:00:00Z,Getafe CF,Athletic Club,Getafe CF,True,4,11.0,3,0
+PD,2025,30.0,2026-04-05T12:00:00Z,Getafe CF,Athletic Club,Athletic Club,False,3,11.0,1,0
+SA,2025,31.0,2026-04-05T18:45:00Z,FC Internazionale Milano,AS Roma,FC Internazionale Milano,True,7,11.0,0,0
+SA,2025,31.0,2026-04-05T18:45:00Z,FC Internazionale Milano,AS Roma,AS Roma,False,4,10.0,1,0
+SA,2025,31.0,2026-04-05T16:00:00Z,AC Pisa 1909,Torino FC,AC Pisa 1909,True,1,12.0,1,0
+SA,2025,31.0,2026-04-05T16:00:00Z,AC Pisa 1909,Torino FC,Torino FC,False,2,12.0,0,0
+SA,2025,31.0,2026-04-05T13:00:00Z,US Cremonese,Bologna FC 1909,US Cremonese,True,2,15.0,2,1
+SA,2025,31.0,2026-04-05T13:00:00Z,US Cremonese,Bologna FC 1909,Bologna FC 1909,False,4,15.0,3,1
+FL1,2025,28.0,2026-04-05T18:45:00Z,AS Monaco FC,Olympique de Marseille,AS Monaco FC,True,0,14.0,2,0
+FL1,2025,28.0,2026-04-05T18:45:00Z,AS Monaco FC,Olympique de Marseille,Olympique de Marseille,False,8,9.0,2,0
+FL1,2025,28.0,2026-04-05T15:15:00Z,Le Havre AC,AJ Auxerre,Le Havre AC,True,5,16.0,2,0
+FL1,2025,28.0,2026-04-05T15:15:00Z,Le Havre AC,AJ Auxerre,AJ Auxerre,False,5,21.0,2,0
+FL1,2025,28.0,2026-04-05T15:15:00Z,FC Lorient,Paris FC,FC Lorient,True,5,8.0,1,0
+FL1,2025,28.0,2026-04-05T15:15:00Z,FC Lorient,Paris FC,Paris FC,False,6,6.0,2,0
+FL1,2025,28.0,2026-04-05T15:15:00Z,FC Metz,FC Nantes,FC Metz,True,6,14.0,2,0
+FL1,2025,28.0,2026-04-05T15:15:00Z,FC Metz,FC Nantes,FC Nantes,False,3,10.0,1,1
+FL1,2025,28.0,2026-04-05T13:00:00Z,Angers SCO,Olympique Lyonnais,Angers SCO,True,3,14.0,3,0
+FL1,2025,28.0,2026-04-05T13:00:00Z,Angers SCO,Olympique Lyonnais,Olympique Lyonnais,False,7,13.0,0,0
+BL1,2025,28.0,2026-04-05T15:30:00Z,Eintracht Frankfurt,1. FC Köln,Eintracht Frankfurt,True,8,10.0,1,0
+BL1,2025,28.0,2026-04-05T15:30:00Z,Eintracht Frankfurt,1. FC Köln,1. FC Köln,False,0,7.0,2,0
+BL1,2025,28.0,2026-04-05T13:30:00Z,1. FC Union Berlin,FC St. Pauli 1910,1. FC Union Berlin,True,7,10.0,0,0
+BL1,2025,28.0,2026-04-05T13:30:00Z,1. FC Union Berlin,FC St. Pauli 1910,FC St. Pauli 1910,False,2,8.0,2,1
+FL1,2025,28.0,2026-04-04T19:05:00Z,Lille OSC,Racing Club de Lens,Lille OSC,True,3,9.0,3,0
+FL1,2025,28.0,2026-04-04T19:05:00Z,Lille OSC,Racing Club de Lens,Racing Club de Lens,False,3,13.0,2,0
+FL1,2025,28.0,2026-04-04T17:00:00Z,Stade Brestois 29,Stade Rennais FC 1901,Stade Brestois 29,True,3,13.0,2,0
+FL1,2025,28.0,2026-04-04T17:00:00Z,Stade Brestois 29,Stade Rennais FC 1901,Stade Rennais FC 1901,False,7,11.0,4,0
+FL1,2025,28.0,2026-04-04T15:00:00Z,RC Strasbourg Alsace,OGC Nice,RC Strasbourg Alsace,True,4,7.0,0,0
+FL1,2025,28.0,2026-04-04T15:00:00Z,RC Strasbourg Alsace,OGC Nice,OGC Nice,False,10,15.0,1,0
+PD,2025,30.0,2026-04-04T19:00:00Z,Club Atlético de Madrid,FC Barcelona,Club Atlético de Madrid,True,1,15.0,6,1
+PD,2025,30.0,2026-04-04T19:00:00Z,Club Atlético de Madrid,FC Barcelona,FC Barcelona,False,9,11.0,2,1
+PD,2025,30.0,2026-04-04T16:30:00Z,Real Betis Balompié,RCD Espanyol de Barcelona,Real Betis Balompié,True,4,12.0,1,0
+PD,2025,30.0,2026-04-04T16:30:00Z,Real Betis Balompié,RCD Espanyol de Barcelona,RCD Espanyol de Barcelona,False,3,18.0,3,0
+PD,2025,30.0,2026-04-04T14:15:00Z,RCD Mallorca,Real Madrid CF,RCD Mallorca,True,6,16.0,3,0
+PD,2025,30.0,2026-04-04T14:15:00Z,RCD Mallorca,Real Madrid CF,Real Madrid CF,False,4,13.0,2,0
+PD,2025,30.0,2026-04-04T12:00:00Z,Real Sociedad de Fútbol,Levante UD,Real Sociedad de Fútbol,True,11,11.0,2,0
+PD,2025,30.0,2026-04-04T12:00:00Z,Real Sociedad de Fútbol,Levante UD,Levante UD,False,5,15.0,3,0
+SA,2025,31.0,2026-04-04T18:45:00Z,SS Lazio,Parma Calcio 1913,SS Lazio,True,7,12.0,1,0
+SA,2025,31.0,2026-04-04T18:45:00Z,SS Lazio,Parma Calcio 1913,Parma Calcio 1913,False,2,8.0,2,0
+SA,2025,31.0,2026-04-04T16:00:00Z,Hellas Verona FC,ACF Fiorentina,Hellas Verona FC,True,9,15.0,3,1
+SA,2025,31.0,2026-04-04T16:00:00Z,Hellas Verona FC,ACF Fiorentina,ACF Fiorentina,False,1,7.0,1,1
+SA,2025,31.0,2026-04-04T13:00:00Z,US Sassuolo Calcio,Cagliari Calcio,US Sassuolo Calcio,True,2,14.0,1,0
+SA,2025,31.0,2026-04-04T13:00:00Z,US Sassuolo Calcio,Cagliari Calcio,Cagliari Calcio,False,2,11.0,0,0
+BL1,2025,28.0,2026-04-04T16:30:00Z,VfB Stuttgart,Borussia Dortmund,VfB Stuttgart,True,5,10.0,2,0
+BL1,2025,28.0,2026-04-04T16:30:00Z,VfB Stuttgart,Borussia Dortmund,Borussia Dortmund,False,2,12.0,4,0
+BL1,2025,28.0,2026-04-04T13:30:00Z,Bayer 04 Leverkusen,VfL Wolfsburg,Bayer 04 Leverkusen,True,12,8.0,1,0
+BL1,2025,28.0,2026-04-04T13:30:00Z,Bayer 04 Leverkusen,VfL Wolfsburg,VfL Wolfsburg,False,2,11.0,3,0
+BL1,2025,28.0,2026-04-04T13:30:00Z,SV Werder Bremen,RB Leipzig,SV Werder Bremen,True,1,13.0,2,0
+BL1,2025,28.0,2026-04-04T13:30:00Z,SV Werder Bremen,RB Leipzig,RB Leipzig,False,0,14.0,1,0
+BL1,2025,28.0,2026-04-04T13:30:00Z,TSG 1899 Hoffenheim,1. FSV Mainz 05,TSG 1899 Hoffenheim,True,7,11.0,4,0
+BL1,2025,28.0,2026-04-04T13:30:00Z,TSG 1899 Hoffenheim,1. FSV Mainz 05,1. FSV Mainz 05,False,3,5.0,1,0
+BL1,2025,28.0,2026-04-04T13:30:00Z,Borussia Mönchengladbach,1. FC Heidenheim 1846,Borussia Mönchengladbach,True,2,12.0,4,0
+BL1,2025,28.0,2026-04-04T13:30:00Z,Borussia Mönchengladbach,1. FC Heidenheim 1846,1. FC Heidenheim 1846,False,3,11.0,0,0
+BL1,2025,28.0,2026-04-04T13:30:00Z,Hamburger SV,FC Augsburg,Hamburger SV,True,8,12.0,2,1
+BL1,2025,28.0,2026-04-04T13:30:00Z,Hamburger SV,FC Augsburg,FC Augsburg,False,2,12.0,3,0
+BL1,2025,28.0,2026-04-04T13:30:00Z,SC Freiburg,FC Bayern München,SC Freiburg,True,5,9.0,2,0
+BL1,2025,28.0,2026-04-04T13:30:00Z,SC Freiburg,FC Bayern München,FC Bayern München,False,8,13.0,3,0
+PD,2025,30.0,2026-04-03T19:00:00Z,Rayo Vallecano de Madrid,Elche CF,Rayo Vallecano de Madrid,True,9,17.0,0,0
+PD,2025,30.0,2026-04-03T19:00:00Z,Rayo Vallecano de Madrid,Elche CF,Elche CF,False,4,9.0,4,1
+FL1,2025,28.0,2026-04-03T18:45:00Z,Paris Saint-Germain FC,Toulouse FC,Paris Saint-Germain FC,True,5,4.0,0,0
+FL1,2025,28.0,2026-04-03T18:45:00Z,Paris Saint-Germain FC,Toulouse FC,Toulouse FC,False,2,13.0,1,0
+PD,2025,29.0,2026-03-22T20:00:00Z,Real Madrid CF,Club Atlético de Madrid,Real Madrid CF,True,4,2.0,1,1
+PD,2025,29.0,2026-03-22T20:00:00Z,Real Madrid CF,Club Atlético de Madrid,Club Atlético de Madrid,False,1,15.0,4,0
+PD,2025,29.0,2026-03-22T15:15:00Z,RC Celta de Vigo,Deportivo Alavés,RC Celta de Vigo,True,4,13.0,2,0
+PD,2025,29.0,2026-03-22T15:15:00Z,RC Celta de Vigo,Deportivo Alavés,Deportivo Alavés,False,1,16.0,2,0
+PD,2025,29.0,2026-03-22T13:00:00Z,FC Barcelona,Rayo Vallecano de Madrid,FC Barcelona,True,6,12.0,3,0
+PD,2025,29.0,2026-03-22T13:00:00Z,FC Barcelona,Rayo Vallecano de Madrid,Rayo Vallecano de Madrid,False,9,11.0,4,0
+FL1,2025,27.0,2026-03-22T19:45:00Z,FC Nantes,RC Strasbourg Alsace,FC Nantes,True,3,15.0,3,0
+FL1,2025,27.0,2026-03-22T19:45:00Z,FC Nantes,RC Strasbourg Alsace,RC Strasbourg Alsace,False,6,17.0,3,0
+FL1,2025,27.0,2026-03-22T16:15:00Z,Paris FC,Le Havre AC,Paris FC,True,9,9.0,0,1
+FL1,2025,27.0,2026-03-22T16:15:00Z,Paris FC,Le Havre AC,Le Havre AC,False,5,13.0,1,0
