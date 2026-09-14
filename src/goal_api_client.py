@@ -48,6 +48,7 @@ LEAGUE_IDS = {
     "BL1": "cmr77dvgm0002rx06rt2uqxii",  # Bundesliga (Germany)
     "FL1": "cmr77dvqg007crx06q1kaceyo",  # Ligue 1 (France)
     "CL":  "cmr77dw3900f5rx06j05wgzv4",  # UEFA Champions League (Europe)
+    "EL":  "cmr77dw3900f6rx06tuqwft2d",  # UEFA Europa League (Europe)
 }
 
 # Nombres exactos de las filas de /statistics, verificados contra partidos reales

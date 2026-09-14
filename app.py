@@ -11,12 +11,13 @@ Desplegado en Streamlit Community Cloud: configura FOOTBALL_DATA_API_KEY en
 from __future__ import annotations
 
 import os
+from datetime import datetime, timezone
 
 import altair as alt
 import pandas as pd
 import streamlit as st
 
-from src import config
+from src import config, europa_league
 from src.competition_status import resolve_current_season_and_matchday
 from src.fetch_football_data import FootballDataClient, fetch_competition
 from src.goal_api_client import (
@@ -68,8 +69,15 @@ if not HIGHLIGHTLY_KEY and "HIGHLIGHTLY_API_KEY" in st.secrets:
 STATS_KEY_PRESENT = bool(GOAL_KEY or HIGHLIGHTLY_KEY)
 
 
-@st.cache_data(ttl=1800, show_spinner="Descargando datos de football-data.org...")
+@st.cache_data(ttl=1800, show_spinner="Descargando datos de la competición...")
 def load_competition(code: str, season: int) -> pd.DataFrame:
+    # La Europa League no está en el plan gratis de football-data.org (verificado
+    # contra su API y su tabla de cobertura), así que corre sobre Goal API en vez
+    # de football-data.org — ver src/europa_league.py. Si esto falla, la excepción
+    # sube tal cual y la queda contenida por el propio try/except de la pestaña
+    # Jornada (por competición, no afecta a las otras 6).
+    if code in config.GOAL_API_COMPETITIONS:
+        return europa_league.fetch_competition(season)
     client = FootballDataClient(api_key=API_KEY)
     return fetch_competition(client, code, season)
 
@@ -84,6 +92,8 @@ def get_predictions(code: str, season: int, matchday: int) -> pd.DataFrame:
 
 @st.cache_data(ttl=1800, show_spinner="Detectando jornada actual...")
 def auto_status(code: str):
+    if code in config.GOAL_API_COMPETITIONS:
+        return europa_league.resolve_current_season_and_matchday()
     client = FootballDataClient(api_key=API_KEY)
     return resolve_current_season_and_matchday(client, code)
 
@@ -91,9 +101,23 @@ def auto_status(code: str):
 @st.cache_data(ttl=180, show_spinner="Buscando partidos en vivo...")
 def load_live_matches(codes: tuple[str, ...]) -> pd.DataFrame:
     client = FootballDataClient(api_key=API_KEY)
+    football_data_codes = [c for c in codes if c not in config.GOAL_API_COMPETITIONS]
     # Reutiliza el caché de 30 min de load_competition en vez de re-descargar
     # la liga si la vista principal ya la trajo hace un momento.
-    return get_live_matches(client, list(codes), ensure_data=load_competition)
+    live_df = get_live_matches(client, football_data_codes, ensure_data=load_competition)
+
+    # La Europa League corre aparte, sobre Goal API (ver src/europa_league.py).
+    # Aislado a propósito: si esto falla, se ignora y las otras 6 ligas siguen
+    # mostrando su "en vivo" con total normalidad — nunca debe tumbar la pestaña.
+    if any(c in config.GOAL_API_COMPETITIONS for c in codes):
+        try:
+            el_live = europa_league.get_live_matches(ensure_data=load_competition)
+        except Exception:
+            el_live = pd.DataFrame()
+        if not el_live.empty:
+            live_df = pd.concat([live_df, el_live], ignore_index=True)
+
+    return live_df
 
 
 @st.cache_data(ttl=600, show_spinner=False)
@@ -130,6 +154,11 @@ def load_match_stats(home: str, away: str, date_iso: str, competition_code: str)
 
 @st.cache_data(ttl=3600, show_spinner=False)
 def load_standings(code: str, season: int) -> dict:
+    if code in config.GOAL_API_COMPETITIONS:
+        try:
+            return europa_league.get_standings_map(season)
+        except Exception:
+            return {}  # la columna "Posiciones" ya sabe mostrar "-" si esto viene vacío
     client = FootballDataClient(api_key=API_KEY)
     return get_standings_map(client, code, season)
 
@@ -241,10 +270,20 @@ comp_code = st.sidebar.selectbox(
 # Temporada/jornada se auto-detectan al cambiar de competición (football-data.org
 # ya calcula cuál está en curso); el usuario puede seguir ajustándolas a mano.
 if st.session_state.get("_last_comp") != comp_code:
-    status = auto_status(comp_code)
-    st.session_state["season_input"] = status.season
-    st.session_state["matchday_input"] = status.matchday
-    st.session_state["_status_reason"] = status.reason
+    try:
+        status = auto_status(comp_code)
+        st.session_state["season_input"] = status.season
+        st.session_state["matchday_input"] = status.matchday
+        st.session_state["_status_reason"] = status.reason
+    except Exception as e:
+        # Nunca debe tumbar TODA la app (las dos pestañas, las 7 competiciones):
+        # si la auto-detección falla (ej. un timeout puntual de la API), se cae a
+        # un valor por defecto razonable y se avisa, en vez de dejar todo en blanco.
+        st.session_state.setdefault("season_input", datetime.now(timezone.utc).year)
+        st.session_state.setdefault("matchday_input", 1)
+        st.session_state["_status_reason"] = (
+            f"No se pudo detectar la jornada automáticamente ({e}). Ajusta temporada/jornada a mano."
+        )
     st.session_state["_last_comp"] = comp_code
 
 season = st.sidebar.number_input("Temporada (año de inicio)", step=1, key="season_input")
@@ -467,7 +506,7 @@ with tab_vivo:
     live_df = load_live_matches(tuple(config.COMPETITIONS.keys()))
 
     if live_df.empty:
-        st.info("No hay partidos en juego ahora mismo en las 6 competiciones.")
+        st.info(f"No hay partidos en juego ahora mismo en las {len(config.COMPETITIONS)} competiciones.")
     else:
         for _, row in live_df.iterrows():
             live_1x2 = (
@@ -484,6 +523,6 @@ with tab_vivo:
             if STATS_KEY_PRESENT:
                 with st.expander("📐 Corners, faltas y tarjetas"):
                     # jornada/temporada quedan en 0: no siempre se conocen con certeza
-                    # cuando se mezclan las 6 competiciones a la vez en esta pestaña.
+                    # cuando se mezclan todas las competiciones a la vez en esta pestaña.
                     render_stats_block(row.home_team, row.away_team, row.utc_date, row.competition)
             st.divider()

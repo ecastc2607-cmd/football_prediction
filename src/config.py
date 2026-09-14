@@ -22,6 +22,11 @@ RAW_DIR = ROOT_DIR / "data" / "raw"
 PROCESSED_DIR = ROOT_DIR / "data" / "processed"
 
 # Códigos de competición de football-data.org para las 5 grandes ligas + Champions.
+# "EL" (Europa League) es la excepción: football-data.org no la incluye en su
+# plan gratis (verificado contra su API y su tabla de cobertura — hace falta su
+# plan de €49/mes), así que corre sobre Goal API en vez de football-data.org.
+# Ver src/europa_league.py: ahí vive TODO lo específico de esa fuente, aislado
+# a propósito para que un problema con ella nunca afecte a las otras 6.
 COMPETITIONS = {
     "PL": "Premier League",
     "PD": "LaLiga",
@@ -29,7 +34,11 @@ COMPETITIONS = {
     "BL1": "Bundesliga",
     "FL1": "Ligue 1",
     "CL": "Champions League",
+    "EL": "Europa League",
 }
+
+# Competiciones que NO vienen de football-data.org (ver comentario arriba).
+GOAL_API_COMPETITIONS = {"EL"}
 
 # Plan gratuito de football-data.org: 10 peticiones/minuto.
 REQUESTS_PER_MINUTE = 10

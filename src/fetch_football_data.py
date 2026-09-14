@@ -131,13 +131,20 @@ def main():
                          help="Año de inicio de temporada, ej. 2025 para 2025/26.")
     args = parser.parse_args()
 
-    client = FootballDataClient()
     codes = list(config.COMPETITIONS) if args.comp == "all" else [args.comp.upper()]
 
+    client = None
     for code in codes:
         try:
-            fetch_competition(client, code, args.season)
-        except requests.HTTPError as e:
+            if code in config.GOAL_API_COMPETITIONS:
+                # Europa League: no está en el plan gratis de football-data.org
+                # (verificado), así que corre sobre Goal API — ver europa_league.py.
+                from .europa_league import fetch_competition as fetch_europa_league
+                fetch_europa_league(args.season or datetime.now(timezone.utc).year)
+            else:
+                client = client or FootballDataClient()
+                fetch_competition(client, code, args.season)
+        except Exception as e:
             print(f"  ERROR en {code}: {e}", file=sys.stderr)
 
 

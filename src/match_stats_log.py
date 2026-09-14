@@ -129,7 +129,7 @@ def get_cached_stats(competition: str, home_team: str, away_team: str, utc_date:
     Identifica el partido por competición + equipos + fecha/hora de inicio, NO
     por season/jornada: un mismo partido puede haber quedado guardado con
     season=0 si se vio primero desde "En vivo" (ahí no siempre se conoce la
-    jornada de las 6 competiciones a la vez), y esta función debe encontrarlo
+    jornada de todas las competiciones a la vez), y esta función debe encontrarlo
     igual, sin importar con qué season se guardó.
 
     Pensado para PARTIDOS YA TERMINADOS ("Resultados ya jugados"): antes, cada

@@ -10,10 +10,22 @@ Uso:
 from __future__ import annotations
 
 import argparse
+import sys
 
-from . import config
+from . import config, europa_league
 from .fetch_football_data import FootballDataClient, fetch_competition
 from .prediction_log import favored_side, load_log, result_letter, save_log
+
+
+def _refresh_competition(client: FootballDataClient, code: str, season: int) -> None:
+    """Descarga los partidos frescos de una competición/temporada, sea cual sea
+    su fuente. La Europa League corre sobre Goal API (no está en el plan gratis
+    de football-data.org — ver src/europa_league.py); si SU descarga falla, no
+    debe impedir que se resuelvan las predicciones pendientes de las otras 6."""
+    if code in config.GOAL_API_COMPETITIONS:
+        europa_league.fetch_competition(season)
+    else:
+        fetch_competition(client, code, season)
 
 
 def main():
@@ -32,7 +44,12 @@ def main():
     if not args.no_fetch:
         client = FootballDataClient()
         for _, row in needed.iterrows():
-            fetch_competition(client, row["competition"], int(row["season"]))
+            try:
+                _refresh_competition(client, row["competition"], int(row["season"]))
+            except Exception as e:
+                # Aislado a propósito: si UNA competición falla al refrescar (ej.
+                # Europa League vía Goal API), las demás igual se resuelven.
+                print(f"  ERROR refrescando {row['competition']} {row['season']}: {e}", file=sys.stderr)
 
     import pandas as pd
     resolved_count = 0
