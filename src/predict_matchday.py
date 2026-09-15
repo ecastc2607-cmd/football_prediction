@@ -17,6 +17,7 @@ import argparse
 import pandas as pd
 
 from . import config
+from .cross_competition_strength import fill_missing_with_domestic_strength
 from .poisson_model import predict_match
 from .team_strength import confidence_note, team_strength_for_competition
 
@@ -57,6 +58,10 @@ def main():
     if fixtures.empty:
         print("No hay partidos programados que coincidan con el filtro.")
         return
+
+    if args.comp.upper() in config.CUP_STYLE_COMPETITIONS:
+        equipos = set(fixtures["home_team"]) | set(fixtures["away_team"])
+        strength, _ = fill_missing_with_domestic_strength(strength, equipos, seasons)
 
     comp_name = config.COMPETITIONS.get(args.comp, args.comp)
     print(f"\n== Predicciones · {comp_name} · fuerzas calculadas con temporadas {seasons} ==\n")

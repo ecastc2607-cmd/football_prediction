@@ -40,5 +40,13 @@ COMPETITIONS = {
 # Competiciones que NO vienen de football-data.org (ver comentario arriba).
 GOAL_API_COMPETITIONS = {"EL"}
 
+# Competiciones tipo copa donde, si un equipo no tiene NINGÚN partido propio
+# todavía (rotación normal del torneo), se usa su fuerza calculada en su liga
+# doméstica como respaldo en vez de omitir el partido — ver
+# src/cross_competition_strength.py. Distinto a GOAL_API_COMPETITIONS a
+# propósito: hoy coinciden en "EL", pero son dos decisiones independientes
+# (de dónde vienen los partidos vs. qué hacer si falta la fuerza de un equipo).
+CUP_STYLE_COMPETITIONS = {"EL"}
+
 # Plan gratuito de football-data.org: 10 peticiones/minuto.
 REQUESTS_PER_MINUTE = 10

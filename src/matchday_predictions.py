@@ -8,6 +8,7 @@ from __future__ import annotations
 import pandas as pd
 
 from . import config
+from .cross_competition_strength import fill_missing_with_domestic_strength
 from .poisson_model import predict_match
 from .predict_matchday import upcoming_fixtures
 from .team_strength import confidence_note, team_strength_for_competition
@@ -23,6 +24,18 @@ def matchday_predictions_df(competition_code: str, season: int, matchday: int,
     strength = team_strength_for_competition(competition_code, seasons)
     fixtures = upcoming_fixtures(competition_code, season, matchday)
 
+    # Copas con mucha rotación (Europa League): si un equipo no tiene NINGÚN
+    # partido propio en la copa (ni esta temporada ni la anterior), se usa su
+    # fuerza en su liga doméstica en vez de omitir el partido del todo — ver
+    # cross_competition_strength.py. Solo se activa para las competiciones
+    # explícitamente marcadas; las 6 restantes no pagan este costo extra.
+    fuente_prestada: dict[str, str] = {}
+    if competition_code in config.CUP_STYLE_COMPETITIONS and not fixtures.empty:
+        equipos_de_la_jornada = set(fixtures["home_team"]) | set(fixtures["away_team"])
+        strength, fuente_prestada = fill_missing_with_domestic_strength(
+            strength, equipos_de_la_jornada, seasons
+        )
+
     rows = []
     for _, row in fixtures.iterrows():
         try:
@@ -30,6 +43,13 @@ def matchday_predictions_df(competition_code: str, season: int, matchday: int,
         except KeyError:
             continue
         note = confidence_note(strength, row["home_team"], row["away_team"])
+        prestamos = [
+            f"{team} usa su forma en {liga} (sin historial propio en la copa)"
+            for team, liga in fuente_prestada.items()
+            if team in (row["home_team"], row["away_team"])
+        ]
+        if prestamos:
+            note = (note + " · " if note else "") + " · ".join(prestamos)
         top_score, top_prob = pred.top_scorelines(1)[0]
         rows.append({
             "competition": competition_code,

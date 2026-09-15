@@ -81,17 +81,19 @@ _NOISE_TOKENS = {
 }
 
 
-def _normalize_name(name: str) -> str:
+def normalize_team_name(name: str) -> str:
     """Minúsculas, sin acentos, sin puntuación, sin números de fundación ni
-    palabras genéricas de club."""
+    palabras genéricas de club. Público (sin "_"): también lo reutiliza
+    cross_competition_strength.py para emparejar nombres de Goal API contra
+    los de football-data.org."""
     txt = unicodedata.normalize("NFKD", str(name)).encode("ascii", "ignore").decode()
     txt = re.sub(r"[^A-Za-z0-9]+", " ", txt).lower().strip()
     tokens = [t for t in txt.split() if t not in _NOISE_TOKENS and not t.isdigit()]
     return " ".join(tokens) or txt
 
 
-def _name_similarity(a: str, b: str) -> float:
-    return SequenceMatcher(None, _normalize_name(a), _normalize_name(b)).ratio()
+def team_name_similarity(a: str, b: str) -> float:
+    return SequenceMatcher(None, normalize_team_name(a), normalize_team_name(b)).ratio()
 
 
 def _same_kickoff(fixture_kickoff: str, our_utc_date: str) -> bool:
@@ -217,8 +219,8 @@ class GoalApiClient:
             return None
 
         def score(f) -> float:
-            return (_name_similarity(f.get("homeTeamName", ""), home_team)
-                    + _name_similarity(f.get("awayTeamName", ""), away_team))
+            return (team_name_similarity(f.get("homeTeamName", ""), home_team)
+                    + team_name_similarity(f.get("awayTeamName", ""), away_team))
 
         misma_hora = [f for f in fixtures if _same_kickoff(f.get("kickoffUtc"), date_iso)]
         if misma_hora:
