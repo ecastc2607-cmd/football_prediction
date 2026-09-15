@@ -17,50 +17,50 @@ logged_at,resolved_at,competition,season,matchday,home_team,away_team,source,pre
 2026-09-07T00:00:00Z,2026-09-11T00:00:00Z,CL,2026,1,Bayern München,Bodø/Glimt,dashboard_v1_qualitative,78.0,14.0,8.0,,,,,False,resolved,5.0,0.0,H,H,True
 2026-09-07T00:00:00Z,2026-09-11T00:00:00Z,CL,2026,1,Manchester United,Sabah,dashboard_v1_qualitative,80.0,13.0,7.0,,,,,False,resolved,4.0,0.0,H,H,True
 2026-09-07T00:00:00Z,2026-09-11T00:00:00Z,CL,2026,1,Slavia Praha,Lens,dashboard_v1_qualitative,34.0,28.0,38.0,,,,,False,resolved,2.0,3.0,A,A,True
-2026-09-12T01:58:58Z,,PL,2026,4,Crystal Palace FC,Ipswich Town FC,model_poisson_v1,41.1,23.3,35.6,1.67,1.54,62.4,63.9,True,pending,,,,H,
-2026-09-12T01:58:58Z,,PL,2026,4,Liverpool FC,Fulham FC,model_poisson_v1,61.4,22.3,16.3,1.83,0.82,49.5,47.0,False,pending,,,,H,
-2026-09-12T01:58:58Z,,PL,2026,4,Aston Villa FC,Nottingham Forest FC,model_poisson_v1,41.7,24.4,33.9,1.56,1.39,56.5,59.3,False,pending,,,,H,
-2026-09-12T01:58:58Z,,PL,2026,4,AFC Bournemouth,Brentford FC,model_poisson_v1,50.0,25.4,24.6,1.56,1.02,47.6,50.4,False,pending,,,,H,
-2026-09-12T01:58:58Z,,PL,2026,4,Chelsea FC,Hull City AFC,model_poisson_v1,31.9,27.2,40.9,1.13,1.31,44.1,49.5,True,pending,,,,A,
-2026-09-12T01:58:58Z,,PL,2026,4,Tottenham Hotspur FC,Everton FC,model_poisson_v1,24.3,26.6,49.1,0.94,1.45,42.8,46.7,False,pending,,,,A,
-2026-09-12T01:58:58Z,,PL,2026,4,Sunderland AFC,Arsenal FC,model_poisson_v1,22.8,29.2,48.0,0.78,1.27,33.5,38.8,False,pending,,,,A,
-2026-09-12T01:58:58Z,,PL,2026,4,Coventry City FC,Brighton & Hove Albion FC,model_poisson_v1,34.4,28.2,37.4,1.13,1.19,40.9,47.0,True,pending,,,,A,
-2026-09-12T01:58:58Z,,PL,2026,4,Manchester United FC,Manchester City FC,model_poisson_v1,34.2,22.5,43.4,1.6,1.82,66.3,66.8,False,pending,,,,A,
-2026-09-12T01:58:58Z,,PL,2026,4,Leeds United FC,Newcastle United FC,model_poisson_v1,44.8,28.8,26.4,1.26,0.9,36.7,42.5,False,pending,,,,H,
-2026-09-12T01:59:01Z,,PD,2026,5,Real Racing Club de Santander,Deportivo Alavés,model_poisson_v1,52.3,21.9,25.8,1.97,1.33,63.9,63.2,True,pending,,,,H,
-2026-09-12T01:59:01Z,,PD,2026,5,CA Osasuna,RCD Espanyol de Barcelona,model_poisson_v1,47.2,24.9,27.8,1.58,1.16,51.6,54.5,False,pending,,,,H,
-2026-09-12T01:59:01Z,,PD,2026,5,Athletic Club,Elche CF,model_poisson_v1,49.1,25.2,25.7,1.57,1.07,49.1,52.0,False,pending,,,,H,
-2026-09-12T01:59:01Z,,PD,2026,5,Real Madrid CF,Rayo Vallecano de Madrid,model_poisson_v1,77.0,14.6,8.4,2.57,0.73,64.1,47.9,False,pending,,,,H,
-2026-09-12T01:59:01Z,,PD,2026,5,RC Celta de Vigo,Málaga CF,model_poisson_v1,62.6,21.2,16.2,1.96,0.88,54.2,50.5,True,pending,,,,H,
-2026-09-12T01:59:01Z,,PD,2026,5,Levante UD,FC Barcelona,model_poisson_v1,15.2,16.2,68.6,1.26,2.75,76.2,66.9,False,pending,,,,A,
-2026-09-12T01:59:01Z,,PD,2026,5,Getafe CF,RC Deportivo La Coruña,model_poisson_v1,32.5,29.7,37.7,1.01,1.11,35.6,42.6,True,pending,,,,A,
-2026-09-12T01:59:01Z,,PD,2026,5,Real Sociedad de Fútbol,Club Atlético de Madrid,model_poisson_v1,41.0,23.0,36.1,1.71,1.6,64.2,65.3,False,pending,,,,H,
-2026-09-12T01:59:01Z,,PD,2026,5,Villarreal CF,Real Betis Balompié,model_poisson_v1,62.7,18.5,18.8,2.42,1.28,71.4,65.7,False,pending,,,,H,
-2026-09-12T01:59:03Z,,SA,2026,4,Genoa CFC,Frosinone Calcio,model_poisson_v1,14.3,20.1,65.6,0.84,2.05,55.2,49.5,True,pending,,,,A,
-2026-09-12T01:59:03Z,,SA,2026,4,SS Lazio,AC Milan,model_poisson_v1,22.2,26.0,51.8,0.89,1.52,43.3,46.1,False,pending,,,,A,
-2026-09-12T01:59:03Z,,SA,2026,4,Atalanta BC,Cagliari Calcio,model_poisson_v1,57.7,25.8,16.5,1.53,0.68,37.8,38.5,False,pending,,,,H,
-2026-09-12T01:59:03Z,,SA,2026,4,US Lecce,AC Monza,model_poisson_v1,29.2,28.0,42.8,1.01,1.29,40.4,46.1,True,pending,,,,A,
-2026-09-12T01:59:03Z,,SA,2026,4,SSC Napoli,Bologna FC 1909,model_poisson_v1,44.1,24.9,31.1,1.56,1.27,53.6,56.7,False,pending,,,,H,
-2026-09-12T01:59:03Z,,SA,2026,4,US Sassuolo Calcio,Juventus FC,model_poisson_v1,25.1,26.0,48.8,0.99,1.5,45.4,48.9,False,pending,,,,A,
-2026-09-12T01:59:03Z,,SA,2026,4,Como 1907,Parma Calcio 1913,model_poisson_v1,65.3,24.0,10.8,1.61,0.48,34.8,30.7,False,pending,,,,H,
-2026-09-12T01:59:03Z,,SA,2026,4,Torino FC,AS Roma,model_poisson_v1,23.8,22.7,53.5,1.17,1.86,58.3,58.2,False,pending,,,,A,
-2026-09-12T01:59:03Z,,SA,2026,4,FC Internazionale Milano,Udinese Calcio,model_poisson_v1,71.8,15.2,13.0,2.83,1.16,76.0,64.7,False,pending,,,,H,
-2026-09-12T01:59:06Z,,BL1,2026,3,TSG 1899 Hoffenheim,VfB Stuttgart,model_poisson_v1,45.2,19.7,35.1,2.31,2.04,80.8,78.3,False,pending,,,,H,
-2026-09-12T01:59:06Z,,BL1,2026,3,Borussia Dortmund,SC Paderborn 07,model_poisson_v1,60.5,23.7,15.8,1.69,0.73,43.6,42.2,True,pending,,,,H,
-2026-09-12T01:59:06Z,,BL1,2026,3,FC Augsburg,Bayer 04 Leverkusen,model_poisson_v1,32.5,22.6,44.9,1.53,1.82,65.0,65.6,False,pending,,,,A,
-2026-09-12T01:59:06Z,,BL1,2026,3,1. FSV Mainz 05,Eintracht Frankfurt,model_poisson_v1,33.4,22.7,43.9,1.54,1.79,64.6,65.4,False,pending,,,,A,
-2026-09-12T01:59:06Z,,BL1,2026,3,SC Freiburg,Borussia Mönchengladbach,model_poisson_v1,61.6,21.1,17.3,1.99,0.95,56.3,52.9,False,pending,,,,H,
-2026-09-12T01:59:06Z,,BL1,2026,3,1. FC Köln,SV Werder Bremen,model_poisson_v1,50.0,22.7,27.3,1.85,1.32,61.3,61.7,False,pending,,,,H,
-2026-09-12T01:59:06Z,,BL1,2026,3,RB Leipzig,Hamburger SV,model_poisson_v1,74.3,16.2,9.5,2.39,0.73,60.4,47.1,False,pending,,,,H,
-2026-09-12T01:59:06Z,,BL1,2026,3,SV 07 Elversberg,FC Bayern München,model_poisson_v1,12.5,14.3,73.2,1.24,3.03,79.9,67.7,True,pending,,,,A,
-2026-09-12T01:59:09Z,,FL1,2026,4,RC Strasbourg Alsace,AS Monaco FC,model_poisson_v1,48.7,22.7,28.6,1.85,1.37,62.5,62.9,False,pending,,,,H,
-2026-09-12T01:59:09Z,,FL1,2026,4,FC Lorient,Toulouse FC,model_poisson_v1,37.9,23.4,38.7,1.59,1.61,62.0,63.7,False,pending,,,,A,
-2026-09-12T01:59:09Z,,FL1,2026,4,AJ Auxerre,OGC Nice,model_poisson_v1,47.6,27.3,25.1,1.39,0.93,40.8,45.4,False,pending,,,,H,
-2026-09-12T01:59:09Z,,FL1,2026,4,Le Havre AC,Angers SCO,model_poisson_v1,46.3,30.3,23.4,1.19,0.75,30.8,36.8,False,pending,,,,H,
-2026-09-12T01:59:09Z,,FL1,2026,4,Paris FC,Olympique Lyonnais,model_poisson_v1,33.1,24.3,42.6,1.37,1.59,56.8,59.4,False,pending,,,,A,
-2026-09-12T01:59:09Z,,FL1,2026,4,Lille OSC,ES Troyes AC,model_poisson_v1,38.8,26.5,34.7,1.33,1.24,47.5,52.3,True,pending,,,,H,
-2026-09-12T01:59:09Z,,FL1,2026,4,Le Mans FC,Racing Club de Lens,model_poisson_v1,28.9,21.9,49.1,1.46,1.95,66.2,65.9,True,pending,,,,A,
-2026-09-12T01:59:09Z,,FL1,2026,4,Stade Brestois 29,Paris Saint-Germain FC,model_poisson_v1,23.0,21.5,55.5,1.23,2.01,62.7,61.1,False,pending,,,,A,
+2026-09-12T01:58:58Z,2026-09-15T01:31:04Z,PL,2026,4,Crystal Palace FC,Ipswich Town FC,model_poisson_v1,41.1,23.3,35.6,1.67,1.54,62.4,63.9,True,resolved,2.0,3.0,A,H,False
+2026-09-12T01:58:58Z,2026-09-15T01:31:04Z,PL,2026,4,Liverpool FC,Fulham FC,model_poisson_v1,61.4,22.3,16.3,1.83,0.82,49.5,47.0,False,resolved,0.0,0.0,D,H,False
+2026-09-12T01:58:58Z,2026-09-15T01:31:04Z,PL,2026,4,Aston Villa FC,Nottingham Forest FC,model_poisson_v1,41.7,24.4,33.9,1.56,1.39,56.5,59.3,False,resolved,1.0,2.0,A,H,False
+2026-09-12T01:58:58Z,2026-09-15T01:31:04Z,PL,2026,4,AFC Bournemouth,Brentford FC,model_poisson_v1,50.0,25.4,24.6,1.56,1.02,47.6,50.4,False,resolved,2.0,2.0,D,H,False
+2026-09-12T01:58:58Z,2026-09-15T01:31:04Z,PL,2026,4,Chelsea FC,Hull City AFC,model_poisson_v1,31.9,27.2,40.9,1.13,1.31,44.1,49.5,True,resolved,2.0,2.0,D,A,False
+2026-09-12T01:58:58Z,2026-09-15T01:31:04Z,PL,2026,4,Tottenham Hotspur FC,Everton FC,model_poisson_v1,24.3,26.6,49.1,0.94,1.45,42.8,46.7,False,resolved,0.0,0.0,D,A,False
+2026-09-12T01:58:58Z,2026-09-15T01:31:04Z,PL,2026,4,Sunderland AFC,Arsenal FC,model_poisson_v1,22.8,29.2,48.0,0.78,1.27,33.5,38.8,False,resolved,0.0,2.0,A,A,True
+2026-09-12T01:58:58Z,2026-09-15T01:31:04Z,PL,2026,4,Coventry City FC,Brighton & Hove Albion FC,model_poisson_v1,34.4,28.2,37.4,1.13,1.19,40.9,47.0,True,resolved,0.0,5.0,A,A,True
+2026-09-12T01:58:58Z,2026-09-15T01:31:04Z,PL,2026,4,Manchester United FC,Manchester City FC,model_poisson_v1,34.2,22.5,43.4,1.6,1.82,66.3,66.8,False,resolved,0.0,1.0,A,A,True
+2026-09-12T01:58:58Z,2026-09-15T01:31:04Z,PL,2026,4,Leeds United FC,Newcastle United FC,model_poisson_v1,44.8,28.8,26.4,1.26,0.9,36.7,42.5,False,resolved,4.0,1.0,H,H,True
+2026-09-12T01:59:01Z,2026-09-15T01:31:04Z,PD,2026,5,Real Racing Club de Santander,Deportivo Alavés,model_poisson_v1,52.3,21.9,25.8,1.97,1.33,63.9,63.2,True,resolved,2.0,1.0,H,H,True
+2026-09-12T01:59:01Z,2026-09-15T01:31:04Z,PD,2026,5,CA Osasuna,RCD Espanyol de Barcelona,model_poisson_v1,47.2,24.9,27.8,1.58,1.16,51.6,54.5,False,resolved,0.0,2.0,A,H,False
+2026-09-12T01:59:01Z,2026-09-15T01:31:04Z,PD,2026,5,Athletic Club,Elche CF,model_poisson_v1,49.1,25.2,25.7,1.57,1.07,49.1,52.0,False,resolved,1.0,1.0,D,H,False
+2026-09-12T01:59:01Z,2026-09-15T01:31:04Z,PD,2026,5,Real Madrid CF,Rayo Vallecano de Madrid,model_poisson_v1,77.0,14.6,8.4,2.57,0.73,64.1,47.9,False,resolved,4.0,1.0,H,H,True
+2026-09-12T01:59:01Z,2026-09-15T01:31:04Z,PD,2026,5,RC Celta de Vigo,Málaga CF,model_poisson_v1,62.6,21.2,16.2,1.96,0.88,54.2,50.5,True,resolved,1.0,1.0,D,H,False
+2026-09-12T01:59:01Z,2026-09-15T01:31:04Z,PD,2026,5,Levante UD,FC Barcelona,model_poisson_v1,15.2,16.2,68.6,1.26,2.75,76.2,66.9,False,resolved,2.0,4.0,A,A,True
+2026-09-12T01:59:01Z,2026-09-15T01:31:04Z,PD,2026,5,Getafe CF,RC Deportivo La Coruña,model_poisson_v1,32.5,29.7,37.7,1.01,1.11,35.6,42.6,True,resolved,1.0,1.0,D,A,False
+2026-09-12T01:59:01Z,2026-09-15T01:31:04Z,PD,2026,5,Real Sociedad de Fútbol,Club Atlético de Madrid,model_poisson_v1,41.0,23.0,36.1,1.71,1.6,64.2,65.3,False,resolved,0.0,3.0,A,H,False
+2026-09-12T01:59:01Z,2026-09-15T01:31:04Z,PD,2026,5,Villarreal CF,Real Betis Balompié,model_poisson_v1,62.7,18.5,18.8,2.42,1.28,71.4,65.7,False,resolved,1.0,2.0,A,H,False
+2026-09-12T01:59:03Z,2026-09-15T01:31:04Z,SA,2026,4,Genoa CFC,Frosinone Calcio,model_poisson_v1,14.3,20.1,65.6,0.84,2.05,55.2,49.5,True,resolved,1.0,1.0,D,A,False
+2026-09-12T01:59:03Z,2026-09-15T01:31:04Z,SA,2026,4,SS Lazio,AC Milan,model_poisson_v1,22.2,26.0,51.8,0.89,1.52,43.3,46.1,False,resolved,2.0,2.0,D,A,False
+2026-09-12T01:59:03Z,2026-09-15T01:31:05Z,SA,2026,4,Atalanta BC,Cagliari Calcio,model_poisson_v1,57.7,25.8,16.5,1.53,0.68,37.8,38.5,False,resolved,1.0,2.0,A,H,False
+2026-09-12T01:59:03Z,2026-09-15T01:31:05Z,SA,2026,4,US Lecce,AC Monza,model_poisson_v1,29.2,28.0,42.8,1.01,1.29,40.4,46.1,True,resolved,3.0,2.0,H,A,False
+2026-09-12T01:59:03Z,2026-09-15T01:31:05Z,SA,2026,4,SSC Napoli,Bologna FC 1909,model_poisson_v1,44.1,24.9,31.1,1.56,1.27,53.6,56.7,False,resolved,1.0,0.0,H,H,True
+2026-09-12T01:59:03Z,2026-09-15T01:31:05Z,SA,2026,4,US Sassuolo Calcio,Juventus FC,model_poisson_v1,25.1,26.0,48.8,0.99,1.5,45.4,48.9,False,resolved,3.0,2.0,H,A,False
+2026-09-12T01:59:03Z,2026-09-15T01:31:05Z,SA,2026,4,Como 1907,Parma Calcio 1913,model_poisson_v1,65.3,24.0,10.8,1.61,0.48,34.8,30.7,False,resolved,2.0,1.0,H,H,True
+2026-09-12T01:59:03Z,2026-09-15T01:31:05Z,SA,2026,4,Torino FC,AS Roma,model_poisson_v1,23.8,22.7,53.5,1.17,1.86,58.3,58.2,False,resolved,0.0,2.0,A,A,True
+2026-09-12T01:59:03Z,2026-09-15T01:31:05Z,SA,2026,4,FC Internazionale Milano,Udinese Calcio,model_poisson_v1,71.8,15.2,13.0,2.83,1.16,76.0,64.7,False,resolved,5.0,3.0,H,H,True
+2026-09-12T01:59:06Z,2026-09-15T01:31:05Z,BL1,2026,3,TSG 1899 Hoffenheim,VfB Stuttgart,model_poisson_v1,45.2,19.7,35.1,2.31,2.04,80.8,78.3,False,resolved,2.0,1.0,H,H,True
+2026-09-12T01:59:06Z,2026-09-15T01:31:05Z,BL1,2026,3,Borussia Dortmund,SC Paderborn 07,model_poisson_v1,60.5,23.7,15.8,1.69,0.73,43.6,42.2,True,resolved,3.0,0.0,H,H,True
+2026-09-12T01:59:06Z,2026-09-15T01:31:05Z,BL1,2026,3,FC Augsburg,Bayer 04 Leverkusen,model_poisson_v1,32.5,22.6,44.9,1.53,1.82,65.0,65.6,False,resolved,2.0,2.0,D,A,False
+2026-09-12T01:59:06Z,2026-09-15T01:31:05Z,BL1,2026,3,1. FSV Mainz 05,Eintracht Frankfurt,model_poisson_v1,33.4,22.7,43.9,1.54,1.79,64.6,65.4,False,resolved,1.0,3.0,A,A,True
+2026-09-12T01:59:06Z,2026-09-15T01:31:05Z,BL1,2026,3,SC Freiburg,Borussia Mönchengladbach,model_poisson_v1,61.6,21.1,17.3,1.99,0.95,56.3,52.9,False,resolved,5.0,0.0,H,H,True
+2026-09-12T01:59:06Z,2026-09-15T01:31:05Z,BL1,2026,3,1. FC Köln,SV Werder Bremen,model_poisson_v1,50.0,22.7,27.3,1.85,1.32,61.3,61.7,False,resolved,1.0,1.0,D,H,False
+2026-09-12T01:59:06Z,2026-09-15T01:31:05Z,BL1,2026,3,RB Leipzig,Hamburger SV,model_poisson_v1,74.3,16.2,9.5,2.39,0.73,60.4,47.1,False,resolved,5.0,0.0,H,H,True
+2026-09-12T01:59:06Z,2026-09-15T01:31:05Z,BL1,2026,3,SV 07 Elversberg,FC Bayern München,model_poisson_v1,12.5,14.3,73.2,1.24,3.03,79.9,67.7,True,resolved,1.0,2.0,A,A,True
+2026-09-12T01:59:09Z,2026-09-15T01:31:05Z,FL1,2026,4,RC Strasbourg Alsace,AS Monaco FC,model_poisson_v1,48.7,22.7,28.6,1.85,1.37,62.5,62.9,False,resolved,1.0,1.0,D,H,False
+2026-09-12T01:59:09Z,2026-09-15T01:31:05Z,FL1,2026,4,FC Lorient,Toulouse FC,model_poisson_v1,37.9,23.4,38.7,1.59,1.61,62.0,63.7,False,resolved,2.0,2.0,D,A,False
+2026-09-12T01:59:09Z,2026-09-15T01:31:05Z,FL1,2026,4,AJ Auxerre,OGC Nice,model_poisson_v1,47.6,27.3,25.1,1.39,0.93,40.8,45.4,False,resolved,1.0,0.0,H,H,True
+2026-09-12T01:59:09Z,2026-09-15T01:31:05Z,FL1,2026,4,Le Havre AC,Angers SCO,model_poisson_v1,46.3,30.3,23.4,1.19,0.75,30.8,36.8,False,resolved,0.0,0.0,D,H,False
+2026-09-12T01:59:09Z,2026-09-15T01:31:05Z,FL1,2026,4,Paris FC,Olympique Lyonnais,model_poisson_v1,33.1,24.3,42.6,1.37,1.59,56.8,59.4,False,resolved,0.0,0.0,D,A,False
+2026-09-12T01:59:09Z,2026-09-15T01:31:05Z,FL1,2026,4,Lille OSC,ES Troyes AC,model_poisson_v1,38.8,26.5,34.7,1.33,1.24,47.5,52.3,True,resolved,2.0,0.0,H,H,True
+2026-09-12T01:59:09Z,2026-09-15T01:31:05Z,FL1,2026,4,Le Mans FC,Racing Club de Lens,model_poisson_v1,28.9,21.9,49.1,1.46,1.95,66.2,65.9,True,resolved,2.0,2.0,D,A,False
+2026-09-12T01:59:09Z,2026-09-15T01:31:05Z,FL1,2026,4,Stade Brestois 29,Paris Saint-Germain FC,model_poisson_v1,23.0,21.5,55.5,1.23,2.01,62.7,61.1,False,resolved,0.0,1.0,A,A,True
 2026-09-15T01:19:44Z,,PL,2026,5,Brentford FC,Chelsea FC,model_poisson_v1,43.7,23.6,32.7,1.69,1.43,60.3,62.0,False,pending,,,,H,
 2026-09-15T01:19:44Z,,PL,2026,5,Tottenham Hotspur FC,Aston Villa FC,model_poisson_v1,28.5,26.5,45.0,1.08,1.43,45.7,50.1,False,pending,,,,A,
 2026-09-15T01:19:44Z,,PL,2026,5,Everton FC,Ipswich Town FC,model_poisson_v1,45.0,20.3,34.7,2.19,1.92,77.7,75.8,True,pending,,,,H,
@@ -109,3 +109,12 @@ logged_at,resolved_at,competition,season,matchday,home_team,away_team,source,pre
 2026-09-15T01:19:45Z,,FL1,2026,5,AJ Auxerre,Stade Brestois 29,model_poisson_v1,45.9,28.5,25.7,1.29,0.89,37.3,42.8,False,pending,,,,H,
 2026-09-15T01:19:45Z,,FL1,2026,5,OGC Nice,Lille OSC,model_poisson_v1,16.1,22.5,61.4,0.8,1.82,48.7,46.3,False,pending,,,,A,
 2026-09-15T01:19:45Z,,FL1,2026,5,Olympique de Marseille,Paris Saint-Germain FC,model_poisson_v1,37.0,22.5,40.5,1.68,1.76,66.7,67.3,False,pending,,,,A,
+2026-09-15T01:31:37Z,,PD,2026,6,Rayo Vallecano de Madrid,RCD Espanyol de Barcelona,model_poisson_v1,46.8,27.7,25.5,1.36,0.92,39.9,44.8,False,pending,,,,H,
+2026-09-15T01:31:37Z,,PD,2026,6,Deportivo Alavés,Valencia CF,model_poisson_v1,52.0,24.4,23.6,1.66,1.04,50.6,52.3,False,pending,,,,H,
+2026-09-15T01:31:37Z,,PD,2026,6,Elche CF,Real Madrid CF,model_poisson_v1,22.7,23.8,53.5,1.04,1.73,52.2,53.1,False,pending,,,,A,
+2026-09-15T01:31:37Z,,PD,2026,6,RC Deportivo La Coruña,Sevilla FC,model_poisson_v1,55.0,22.1,22.8,1.92,1.16,59.6,58.7,True,pending,,,,H,
+2026-09-15T01:31:37Z,,PD,2026,6,Club Atlético de Madrid,CA Osasuna,model_poisson_v1,66.6,20.8,12.6,1.93,0.69,48.6,42.8,False,pending,,,,H,
+2026-09-15T01:31:37Z,,PD,2026,6,Levante UD,Athletic Club,model_poisson_v1,45.2,22.7,32.1,1.81,1.5,64.3,65.0,False,pending,,,,H,
+2026-09-15T01:31:37Z,,PD,2026,6,FC Barcelona,Real Racing Club de Santander,model_poisson_v1,86.4,9.4,4.2,3.17,0.61,72.6,43.8,True,pending,,,,H,
+2026-09-15T01:31:37Z,,PD,2026,6,Real Betis Balompié,Getafe CF,model_poisson_v1,56.0,27.9,16.0,1.37,0.59,31.4,33.4,False,pending,,,,H,
+2026-09-15T01:31:37Z,,PD,2026,6,Málaga CF,Villarreal CF,model_poisson_v1,37.2,30.4,32.4,1.07,0.97,33.5,40.8,True,pending,,,,H,
