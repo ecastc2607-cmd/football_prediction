@@ -186,7 +186,13 @@ def _render_stats_table(stats: dict) -> None:
     }
     stat_df = pd.DataFrame(stats).T
     columnas = [c for c in etiquetas if c in stat_df.columns and stat_df[c].notna().any()]
-    st.dataframe(stat_df[columnas].rename(columns=etiquetas), width="stretch")
+    st.dataframe(
+        stat_df[columnas].rename(columns=etiquetas), width="stretch",
+        # Fija el nombre del equipo (índice) para no perder la referencia al
+        # revisar las demás columnas — se usa igual en "En vivo" y en
+        # "Resultados ya jugados", que comparten esta misma función.
+        column_config={"_index": st.column_config.Column(pinned=True)},
+    )
 
 
 def render_stats_block(home_team: str, away_team: str, utc_date: str, competition_code: str,
@@ -412,6 +418,9 @@ with tab_jornada:
                 columns={"over_2_5": "Over 2.5 %", "btts": "BTTS %", "top_score": "Marcador top"}
             ),
             width="stretch", hide_index=True,
+            # Fija "Partido" para no perder la referencia de qué equipos son al
+            # revisar las columnas de pronóstico más a la derecha.
+            column_config={"Partido": st.column_config.Column(pinned=True)},
         )
 
     # --- Resultados ya jugados en esta jornada ---
