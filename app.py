@@ -38,6 +38,7 @@ from src.match_tendencies import load_team_averages, pick_tendencies
 from src.matchday_predictions import matchday_predictions_df
 from src.parlay_builder import build_parlays
 from src.predict_matchday import finished_fixtures
+from src.prediction_log import MARKETS
 from src.timezones import format_bogota
 
 st.set_page_config(page_title="Football Analytics · Jornada", page_icon="⚽", layout="wide")
@@ -263,6 +264,14 @@ def load_calibration_log() -> pd.DataFrame:
     return pd.read_csv(path)
 
 
+def _to_bool_series(s: pd.Series) -> pd.Series:
+    """'True'/'False' (como quedan tras pasar por CSV) -> booleano real, NaN
+    para lo que no se pudo resolver en ese mercado (no cuenta ni como acierto
+    ni como fallo — ver STAT_MARKETS en prediction_log.py)."""
+    texto = s.astype(str).str.strip().str.lower()
+    return texto.map({"true": True, "false": False})
+
+
 # --- Sidebar ---
 st.sidebar.title("⚽ Football Analytics")
 st.sidebar.caption("Modelo de Poisson sobre datos reales de football-data.org")
@@ -482,7 +491,7 @@ with tab_jornada:
         st.caption("Todavía no hay predicciones resueltas en el log.")
     else:
         resolved = resolved.copy()
-        resolved["hit"] = resolved["hit"].astype(str).str.lower().isin(["true", "1"])
+        resolved["hit"] = _to_bool_series(resolved["hit"])
         overall = resolved["hit"].mean()
         st.metric("Acierto histórico (todas las competiciones)", f"{overall:.0%}",
                    f"{int(resolved['hit'].sum())}/{len(resolved)}")
@@ -497,6 +506,37 @@ with tab_jornada:
             tooltip=["competencia", "aciertos", "total", alt.Tooltip("tasa:Q", format=".0f")],
         ).properties(height=280)
         st.altair_chart(bar, use_container_width=True)
+
+        # --- Tendencia por liga y por mercado ---
+        # El % de arriba mezcla en un solo número resultado/goles/córners/etc.
+        # Esta tabla abre esa caja: por liga, qué tan bien acierta CADA mercado
+        # por separado — para saber si un 75% de acierto viene sobre todo del
+        # ganador del partido, de los goles, o de otra cosa.
+        st.markdown("**Tendencia por liga y mercado**")
+        st.caption(
+            "% de acierto de cada mercado por separado. Corners/Faltas/Tarjetas solo tienen "
+            "datos desde que se empezó a registrar la tendencia junto con la predicción — "
+            "'—' significa que todavía no hay muestra para ese cruce, no que haya fallado."
+        )
+        filas = []
+        for comp, grupo in resolved.groupby("competition"):
+            fila = {"Liga": config.COMPETITIONS.get(comp, comp)}
+            for label, columna in MARKETS:
+                if columna == "hit":
+                    serie = grupo["hit"]  # ya convertida arriba
+                elif columna in grupo.columns:
+                    serie = _to_bool_series(grupo[columna])
+                else:
+                    serie = pd.Series(dtype=object)
+                validos = serie.dropna()
+                fila[label] = f"{validos.mean():.0%} ({len(validos)})" if len(validos) > 0 else "—"
+            filas.append(fila)
+
+        tabla_mercados = pd.DataFrame(filas)
+        st.dataframe(
+            tabla_mercados, width="stretch", hide_index=True,
+            column_config={"Liga": st.column_config.Column(pinned=True)},
+        )
 
 # ============================== PESTAÑA: EN VIVO ==============================
 with tab_vivo:

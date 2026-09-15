@@ -14,6 +14,8 @@ import argparse
 from datetime import datetime, timezone
 
 from . import config
+from .cross_competition_strength import fill_missing_with_domestic_strength
+from .match_tendencies import load_team_averages, pick_tendencies
 from .poisson_model import predict_match
 from .predict_matchday import upcoming_fixtures
 from .prediction_log import append_predictions, favored_side
@@ -25,6 +27,16 @@ def log_competition(code: str, season: int, matchday: int, seasons_back: int = 1
     strength = team_strength_for_competition(code, seasons)
     fixtures = upcoming_fixtures(code, season, matchday)
 
+    if code in config.CUP_STYLE_COMPETITIONS and not fixtures.empty:
+        equipos = set(fixtures["home_team"]) | set(fixtures["away_team"])
+        strength, _ = fill_missing_with_domestic_strength(strength, equipos, seasons)
+
+    # Tendencia de corners/faltas/tarjetas — mismo promedio histórico que ve el
+    # usuario en "Detalle por partido" al momento de loguear. Si la competición
+    # todavía no tiene historial en match_stats_log.csv, sale vacío y esos
+    # campos quedan en None para todos los partidos (no es un error).
+    tendency_averages = load_team_averages(code)
+
     now = datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
     rows = []
     for _, row in fixtures.iterrows():
@@ -33,7 +45,8 @@ def log_competition(code: str, season: int, matchday: int, seasons_back: int = 1
         except KeyError:
             continue
         note = confidence_note(strength, row["home_team"], row["away_team"])
-        rows.append({
+
+        fila = {
             "logged_at": now,
             "resolved_at": "",
             "competition": code,
@@ -56,7 +69,18 @@ def log_competition(code: str, season: int, matchday: int, seasons_back: int = 1
             "actual_result": "",
             "favored_side": favored_side(pred.home_win, pred.draw, pred.away_win),
             "hit": "",
-        })
+        }
+
+        # pick.label es "Corners"/"Faltas"/"Tarjetas" — en minúscula calza
+        # directo con las claves de prediction_log.STAT_MARKETS.
+        picks = pick_tendencies(tendency_averages, row["home_team"], row["away_team"])
+        for pick in picks:
+            prefijo = pick.label.lower()
+            fila[f"pred_{prefijo}_expected"] = pick.expected
+            fila[f"pred_{prefijo}_line"] = pick.line
+            fila[f"pred_{prefijo}_probable"] = pick.probable
+
+        rows.append(fila)
     return rows
 
 
