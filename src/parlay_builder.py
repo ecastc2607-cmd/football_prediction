@@ -36,8 +36,9 @@ MAX_MATCHES_CONSIDERED = 8  # acota la explosión combinatoria con muchos partid
 
 @dataclass
 class Leg:
-    match: str  # nombres cortos: "Sunderland vs Leeds Utd"
-    market: str  # "Local" / "Empate" / "Visitante" / "+2.5 goles" / "Ambos anotan: Sí" / ...
+    match: str  # nombres cortos: "Sunderland vs Leeds Utd" (local y visitante SIEMPRE juntos en un solo campo)
+    market: str  # familia del mercado: "Resultado" / "Goles" / "Ambos anotan"
+    pick: str  # selección concreta dentro de esa familia: "Local" / "+2.5 goles" / "Sí"
     probability: float  # 0-1
     fair_odds: float
 
@@ -51,14 +52,14 @@ class Parlay:
     reduced_quota: bool = False  # True si no se llegó a MIN_ODDS y se usó el piso de respaldo
 
     def describe(self) -> str:
-        return " + ".join(f"{l.match} ({l.market})" for l in self.legs)
+        return " + ".join(f"{l.match} ({l.market}: {l.pick})" for l in self.legs)
 
 
-def _leg(match: str, market: str, pct: float) -> Leg | None:
+def _leg(match: str, market: str, pick: str, pct: float) -> Leg | None:
     prob = pct / 100
     if prob <= 0 or prob >= 1:
         return None
-    return Leg(match=match, market=market, probability=prob, fair_odds=round(1 / prob, 2))
+    return Leg(match=match, market=market, pick=pick, probability=prob, fair_odds=round(1 / prob, 2))
 
 
 def candidate_legs_per_match(predictions: pd.DataFrame) -> dict[str, list[Leg]]:
@@ -78,20 +79,20 @@ def candidate_legs_per_match(predictions: pd.DataFrame) -> dict[str, list[Leg]]:
         legs = []
 
         opciones_1x2 = [("Local", row["home_win"]), ("Empate", row["draw"]), ("Visitante", row["away_win"])]
-        market, pct = max(opciones_1x2, key=lambda x: x[1])
-        leg = _leg(match, market, pct)
+        pick, pct = max(opciones_1x2, key=lambda x: x[1])
+        leg = _leg(match, "Resultado", pick, pct)
         if leg:
             legs.append(leg)
 
         over, under = row["over_2_5"], 100 - row["over_2_5"]
-        market, pct = ("+2.5 goles", over) if over >= under else ("-2.5 goles", under)
-        leg = _leg(match, market, pct)
+        pick, pct = ("+2.5 goles", over) if over >= under else ("-2.5 goles", under)
+        leg = _leg(match, "Goles", pick, pct)
         if leg:
             legs.append(leg)
 
         si, no = row["btts"], 100 - row["btts"]
-        market, pct = ("Ambos anotan: Sí", si) if si >= no else ("Ambos anotan: No", no)
-        leg = _leg(match, market, pct)
+        pick, pct = ("Sí", si) if si >= no else ("No", no)
+        leg = _leg(match, "Ambos anotan", pick, pct)
         if leg:
             legs.append(leg)
 

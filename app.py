@@ -482,22 +482,19 @@ with tab_jornada:
             if not tier:
                 continue
             emoji, titulo = risk_meta[risk]
-            # Un contenedor con borde por nivel de riesgo, para que se lean como
-            # bloques separados y no como una lista larga de líneas de texto.
-            with st.container(border=True):
-                st.markdown(f"**{emoji} {titulo}** · {len(tier)} combinada(s)")
-                tabla = pd.DataFrame([
-                    {
-                        "Cuota": f"{p.combined_odds}x",
-                        "Prob.": f"{p.combined_probability:.1%}",
-                        "Selecciones": " + ".join(f"{l.match} ({l.market})" for l in p.legs),
-                    }
-                    for p in tier
-                ])
-                st.dataframe(
-                    tabla, width="stretch", hide_index=True,
-                    column_config={"Selecciones": st.column_config.Column(width="large")},
-                )
+            st.markdown(f"**{emoji} {titulo}** · {len(tier)} combinada(s)")
+            # Cada combinada es su propio "cupón": un contenedor con borde con
+            # la cuota/probabilidad total arriba, y abajo una fila por partido
+            # (Partido | Mercado | Pick) — como un tiquete de apuesta, no una
+            # sola celda de texto con todo junto.
+            for p in tier:
+                with st.container(border=True):
+                    st.markdown(f"`{p.combined_odds}x` · prob. combinada **{p.combined_probability:.1%}**")
+                    tabla = pd.DataFrame([
+                        {"Partido": l.match, "Mercado": l.market, "Pick": l.pick}
+                        for l in p.legs
+                    ])
+                    st.dataframe(tabla, width="stretch", hide_index=True)
 
     # --- Calibración histórica ---
     st.divider()
