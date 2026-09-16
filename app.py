@@ -472,14 +472,32 @@ with tab_jornada:
                 "combinando lo disponible — estas combinadas se armaron con una cuota mínima más "
                 "baja para no dejar la sección vacía."
             )
-        risk_color = {"Bajo": "🟢", "Medio": "🟡", "Alto": "🔴"}
+        risk_meta = {
+            "Bajo": ("🟢", "Riesgo bajo"),
+            "Medio": ("🟡", "Riesgo medio"),
+            "Alto": ("🔴", "Riesgo alto"),
+        }
         for risk in ("Bajo", "Medio", "Alto"):
             tier = [p for p in parlays if p.risk == risk]
             if not tier:
                 continue
-            st.markdown(f"**{risk_color[risk]} Riesgo {risk}**")
-            for p in tier:
-                st.write(f"`{p.combined_odds}x` · prob. combinada {p.combined_probability:.1%} — {p.describe()}")
+            emoji, titulo = risk_meta[risk]
+            # Un contenedor con borde por nivel de riesgo, para que se lean como
+            # bloques separados y no como una lista larga de líneas de texto.
+            with st.container(border=True):
+                st.markdown(f"**{emoji} {titulo}** · {len(tier)} combinada(s)")
+                tabla = pd.DataFrame([
+                    {
+                        "Cuota": f"{p.combined_odds}x",
+                        "Prob.": f"{p.combined_probability:.1%}",
+                        "Selecciones": " + ".join(f"{l.match} ({l.market})" for l in p.legs),
+                    }
+                    for p in tier
+                ])
+                st.dataframe(
+                    tabla, width="stretch", hide_index=True,
+                    column_config={"Selecciones": st.column_config.Column(width="large")},
+                )
 
     # --- Calibración histórica ---
     st.divider()

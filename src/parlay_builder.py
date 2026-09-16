@@ -36,8 +36,8 @@ MAX_MATCHES_CONSIDERED = 8  # acota la explosión combinatoria con muchos partid
 
 @dataclass
 class Leg:
-    match: str
-    market: str  # "Local" / "Empate" / "Visitante" / "Más de 2.5 goles" / "Ambos anotan: Sí" / ...
+    match: str  # nombres cortos: "Sunderland vs Leeds Utd"
+    market: str  # "Local" / "Empate" / "Visitante" / "+2.5 goles" / "Ambos anotan: Sí" / ...
     probability: float  # 0-1
     fair_odds: float
 
@@ -69,7 +69,12 @@ def candidate_legs_per_match(predictions: pd.DataFrame) -> dict[str, list[Leg]]:
     """
     by_match: dict[str, list[Leg]] = {}
     for _, row in predictions.iterrows():
-        match = f"{row['home_team']} vs {row['away_team']}"
+        # Nombres cortos ("Sunderland vs Leeds Utd") para que la combinada se
+        # lea de un vistazo — el nombre oficial completo no hace falta acá,
+        # a diferencia del gráfico principal no hay tooltip que lo muestre.
+        home = row.get("home_team_short") or row["home_team"]
+        away = row.get("away_team_short") or row["away_team"]
+        match = f"{home} vs {away}"
         legs = []
 
         opciones_1x2 = [("Local", row["home_win"]), ("Empate", row["draw"]), ("Visitante", row["away_win"])]
@@ -79,7 +84,7 @@ def candidate_legs_per_match(predictions: pd.DataFrame) -> dict[str, list[Leg]]:
             legs.append(leg)
 
         over, under = row["over_2_5"], 100 - row["over_2_5"]
-        market, pct = ("Más de 2.5 goles", over) if over >= under else ("Menos de 2.5 goles", under)
+        market, pct = ("+2.5 goles", over) if over >= under else ("-2.5 goles", under)
         leg = _leg(match, market, pct)
         if leg:
             legs.append(leg)
