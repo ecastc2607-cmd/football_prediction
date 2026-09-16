@@ -399,7 +399,7 @@ with tab_jornada:
         # modelo de goles) para partidos que TODAVÍA no se juegan. ---
         tendency_averages = load_tendency_averages(comp_code)
         columnas_tabla = ["Partido", "Fecha", "Posiciones", "xG", "1X2",
-                           "over_2_5", "btts", "top_score", "⚠"]
+                           "over_2_5", "btts", "top_score"]
         if tendency_averages.empty:
             st.caption(
                 "📐 Corners/faltas/tarjetas: todavía no hay historial guardado para esta "
@@ -420,7 +420,7 @@ with tab_jornada:
                 "5 partidos registrados todavía — el número es orientativo, no confiable aún."
             )
 
-        columnas_tabla.append("Contexto")  # al final: es información de ambiente, no del modelo
+        columnas_tabla += ["Contexto", "⚠"]  # al final: son avisos/contexto, no el pronóstico en sí
 
         st.dataframe(
             show[columnas_tabla].rename(
