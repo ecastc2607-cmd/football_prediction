@@ -37,7 +37,7 @@ from src.match_context import get_standings_map, rivalry_label
 from src.match_tendencies import load_team_averages, pick_tendencies
 from src.matchday_predictions import matchday_predictions_df
 from src.parlay_builder import build_parlays
-from src.predict_matchday import finished_fixtures
+from src.predict_matchday import LIVE_STATUSES, finished_fixtures
 from src.prediction_log import MARKETS
 from src.timezones import format_bogota
 
@@ -89,6 +89,19 @@ def get_predictions(code: str, season: int, matchday: int) -> pd.DataFrame:
     load_competition(code, season)
     load_competition(code, season - 1)
     return matchday_predictions_df(code, season, matchday, seasons_back=1)
+
+
+@st.cache_data(ttl=300, show_spinner="Calculando predicciones...")
+def get_predictions_con_jugados(code: str, season: int, matchday: int) -> pd.DataFrame:
+    """Igual que get_predictions, pero también incluye los partidos ya en vivo
+    o terminados de la jornada (get_predictions se queda solo con lo pendiente,
+    a propósito, porque otros consumidores como log_predictions.py no deben
+    mezclar partidos ya jugados). Usada por "Detalle por partido" para no
+    hacer desaparecer un partido de la tabla apenas arranca o termina — TTL
+    más corto porque el estado en vivo cambia rápido."""
+    load_competition(code, season)
+    load_competition(code, season - 1)
+    return matchday_predictions_df(code, season, matchday, seasons_back=1, include_played=True)
 
 
 @st.cache_data(ttl=1800, show_spinner="Detectando jornada actual...")
@@ -308,6 +321,7 @@ st.sidebar.caption(f"🎯 {st.session_state.get('_status_reason', '')}")
 if st.sidebar.button("🔄 Forzar actualización de datos"):
     load_competition.clear()
     get_predictions.clear()
+    get_predictions_con_jugados.clear()
     auto_status.clear()
     load_live_matches.clear()
     load_tendency_averages.clear()
@@ -380,7 +394,10 @@ with tab_jornada:
         # --- Tabla detallada ---
         st.subheader("Detalle por partido")
         standings = load_standings(comp_code, int(season))
-        show = df.copy()
+        # A diferencia del gráfico de arriba (solo lo pendiente), esta tabla
+        # también trae los partidos ya en vivo o terminados de la jornada —
+        # matchday_predictions_df ya los deja ordenados al final.
+        show = get_predictions_con_jugados(comp_code, int(season), int(matchday)).copy()
         show["Partido"] = show["home_team"] + " vs " + show["away_team"]
         show["Fecha"] = show["utc_date"].map(lambda d: format_bogota(d))
         show["1X2"] = show.apply(lambda r: f"{r.home_win:.0f}% / {r.draw:.0f}% / {r.away_win:.0f}%", axis=1)
@@ -391,9 +408,20 @@ with tab_jornada:
             if standings else "-",
             axis=1,
         )
-        show["Contexto"] = show.apply(
-            lambda r: rivalry_label(r.home_team_short, r.away_team_short) or "", axis=1,
-        )
+
+        def _contexto(r):
+            rivalidad = rivalry_label(r.home_team_short, r.away_team_short) or ""
+            if r.status in LIVE_STATUSES:
+                estado = "🔴 En vivo"
+            elif r.status == "FINISHED":
+                estado = "✅ Finalizado"
+            else:
+                estado = ""
+            if estado and rivalidad:
+                return f"{estado} · {rivalidad}"
+            return estado or rivalidad
+
+        show["Contexto"] = show.apply(_contexto, axis=1)
 
         # --- Tendencias de corners/faltas/tarjetas (promedio histórico, no del
         # modelo de goles) para partidos que TODAVÍA no se juegan. ---

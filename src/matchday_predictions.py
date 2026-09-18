@@ -10,19 +10,33 @@ import pandas as pd
 from . import config
 from .cross_competition_strength import fill_missing_with_domestic_strength
 from .poisson_model import predict_match
-from .predict_matchday import upcoming_fixtures
+from .predict_matchday import LIVE_STATUSES, matchday_fixtures, upcoming_fixtures
 from .team_strength import confidence_note, team_strength_for_competition
 
 
 def matchday_predictions_df(competition_code: str, season: int, matchday: int,
-                             seasons_back: int = 1) -> pd.DataFrame:
-    """Devuelve un DataFrame con una fila por partido programado de esa jornada:
-    equipos, xG del modelo, 1X2, Over/Under 2.5, BTTS, marcador más probable y
-    aviso de baja confianza.
+                             seasons_back: int = 1, include_played: bool = False) -> pd.DataFrame:
+    """Devuelve un DataFrame con una fila por partido de esa jornada: equipos,
+    xG del modelo, 1X2, Over/Under 2.5, BTTS, marcador más probable y aviso de
+    baja confianza.
+
+    Por defecto (include_played=False, el comportamiento de siempre) solo trae
+    los partidos que faltan por jugar — así lo siguen usando log_predictions.py
+    (no debe sesgarse con partidos ya en juego) y el resto de consumidores que
+    no pidieron lo contrario. Con include_played=True (el dashboard) también
+    entran los que ya están en vivo o terminaron, con su "status" tal cual —
+    quien llama decide qué hacer con eso (ver app.py: los manda al final de la
+    tabla y marca el Contexto).
     """
     seasons = [season - i for i in range(seasons_back + 1)]
     strength = team_strength_for_competition(competition_code, seasons)
-    fixtures = upcoming_fixtures(competition_code, season, matchday)
+    if include_played:
+        fixtures = matchday_fixtures(competition_code, season, matchday)
+        # Deja afuera estados raros (POSTPONED/CANCELLED/SUSPENDED/AWARDED):
+        # predecir un partido que no se jugó o se jugó sin balón no aporta nada.
+        fixtures = fixtures[fixtures["status"].isin(["SCHEDULED", "TIMED", "FINISHED", *LIVE_STATUSES])]
+    else:
+        fixtures = upcoming_fixtures(competition_code, season, matchday)
 
     # Copas con mucha rotación (Europa League): si un equipo no tiene NINGÚN
     # partido propio en la copa (ni esta temporada ni la anterior), se usa su
@@ -58,6 +72,7 @@ def matchday_predictions_df(competition_code: str, season: int, matchday: int,
             "utc_date": row["utc_date"],
             "home_team": row["home_team"],
             "away_team": row["away_team"],
+            "status": row.get("status", "SCHEDULED"),
             "home_team_short": row.get("home_team_short", row["home_team"]),
             "away_team_short": row.get("away_team_short", row["away_team"]),
             "home_xg": round(pred.home_xg, 2),
@@ -72,4 +87,16 @@ def matchday_predictions_df(competition_code: str, season: int, matchday: int,
             "low_confidence": note is not None,
             "confidence_note": note,
         })
-    return pd.DataFrame(rows)
+
+    result = pd.DataFrame(rows)
+    if include_played and not result.empty:
+        # Los que faltan por jugar primero (en su orden cronológico de siempre);
+        # en vivo y terminados se mandan al final, en ese orden entre ellos —
+        # ya jugaron o están jugando, así que dejan de ser "lo próximo a mirar".
+        orden_estado = {"SCHEDULED": 0, "TIMED": 0, "FINISHED": 2}
+        for estado_en_vivo in LIVE_STATUSES:
+            orden_estado[estado_en_vivo] = 1
+        result["_orden_estado"] = result["status"].map(orden_estado).fillna(0)
+        result = result.sort_values(["_orden_estado", "utc_date"]).drop(columns="_orden_estado")
+        result = result.reset_index(drop=True)
+    return result

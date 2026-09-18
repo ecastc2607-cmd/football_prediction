@@ -22,6 +22,13 @@ from .poisson_model import predict_match
 from .team_strength import confidence_note, team_strength_for_competition
 
 
+# football-data.org usa IN_PLAY/PAUSED para partidos en juego; Goal API (la
+# fuente de Europa League — ver europa_league.py) usa literalmente "LIVE".
+# Se agrupan los tres bajo un solo set para no repetir esta lista en cada sitio
+# que necesita distinguir "en juego" del resto de estados.
+LIVE_STATUSES = ["IN_PLAY", "PAUSED", "LIVE"]
+
+
 def upcoming_fixtures(competition_code: str, season: int, matchday: int | None = None) -> pd.DataFrame:
     path = config.PROCESSED_DIR / f"matches_{competition_code}_{season}.csv"
     df = pd.read_csv(path)
@@ -35,6 +42,19 @@ def finished_fixtures(competition_code: str, season: int, matchday: int | None =
     path = config.PROCESSED_DIR / f"matches_{competition_code}_{season}.csv"
     df = pd.read_csv(path)
     df = df[df["status"] == "FINISHED"]
+    if matchday is not None:
+        df = df[df["matchday"] == matchday]
+    return df.sort_values(["matchday", "utc_date"])
+
+
+def matchday_fixtures(competition_code: str, season: int, matchday: int | None = None) -> pd.DataFrame:
+    """A diferencia de upcoming_fixtures (que SOLO trae lo que falta por jugar,
+    a propósito, para no sesgar el log de calibración), esta trae TODOS los
+    partidos de la jornada sin importar su estado — pensada para el dashboard,
+    que sí quiere poder mostrar en la misma tabla los que ya están en juego o
+    ya terminaron, no solo los pendientes."""
+    path = config.PROCESSED_DIR / f"matches_{competition_code}_{season}.csv"
+    df = pd.read_csv(path)
     if matchday is not None:
         df = df[df["matchday"] == matchday]
     return df.sort_values(["matchday", "utc_date"])
