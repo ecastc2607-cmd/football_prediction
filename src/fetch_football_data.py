@@ -137,10 +137,10 @@ def main():
     for code in codes:
         try:
             if code in config.GOAL_API_COMPETITIONS:
-                # Europa League: no está en el plan gratis de football-data.org
-                # (verificado), así que corre sobre Goal API — ver europa_league.py.
-                from .europa_league import fetch_competition as fetch_europa_league
-                fetch_europa_league(args.season or datetime.now(timezone.utc).year)
+                # Europa League y selecciones: no están en el plan gratis de
+                # football-data.org (o directamente no existen ahí) — corren
+                # sobre Goal API. Ver europa_league.py / national_teams.py.
+                config.goal_api_module(code).fetch_competition(args.season or datetime.now(timezone.utc).year)
             else:
                 client = client or FootballDataClient()
                 fetch_competition(client, code, args.season)

@@ -14,7 +14,7 @@ import sys
 
 import pandas as pd
 
-from . import config, europa_league
+from . import config
 from .fetch_football_data import FootballDataClient, fetch_competition
 from .match_stats_log import get_cached_stats
 from .prediction_log import MARKETS, STAT_MARKETS, load_log, result_letter, save_log
@@ -22,11 +22,11 @@ from .prediction_log import MARKETS, STAT_MARKETS, load_log, result_letter, save
 
 def _refresh_competition(client: FootballDataClient, code: str, season: int) -> None:
     """Descarga los partidos frescos de una competición/temporada, sea cual sea
-    su fuente. La Europa League corre sobre Goal API (no está en el plan gratis
-    de football-data.org — ver src/europa_league.py); si SU descarga falla, no
-    debe impedir que se resuelvan las predicciones pendientes de las otras 6."""
+    su fuente. Europa League y selecciones corren sobre Goal API (ver
+    src/europa_league.py y src/national_teams.py); si SU descarga falla, no
+    debe impedir que se resuelvan las predicciones pendientes de las demás."""
     if code in config.GOAL_API_COMPETITIONS:
-        europa_league.fetch_competition(season)
+        config.goal_api_module(code).fetch_competition(season)
     else:
         fetch_competition(client, code, season)
 

@@ -17,7 +17,7 @@ import altair as alt
 import pandas as pd
 import streamlit as st
 
-from src import config, europa_league
+from src import config, national_teams
 from src.competition_status import resolve_current_season_and_matchday
 from src.fetch_football_data import FootballDataClient, fetch_competition
 from src.goal_api_client import (
@@ -78,7 +78,7 @@ def load_competition(code: str, season: int) -> pd.DataFrame:
     # sube tal cual y la queda contenida por el propio try/except de la pestaña
     # Jornada (por competición, no afecta a las otras 6).
     if code in config.GOAL_API_COMPETITIONS:
-        return europa_league.fetch_competition(season)
+        return config.goal_api_module(code).fetch_competition(season)
     client = FootballDataClient(api_key=API_KEY)
     return fetch_competition(client, code, season)
 
@@ -107,7 +107,7 @@ def get_predictions_con_jugados(code: str, season: int, matchday: int) -> pd.Dat
 @st.cache_data(ttl=1800, show_spinner="Detectando jornada actual...")
 def auto_status(code: str):
     if code in config.GOAL_API_COMPETITIONS:
-        return europa_league.resolve_current_season_and_matchday()
+        return config.goal_api_module(code).resolve_current_season_and_matchday()
     client = FootballDataClient(api_key=API_KEY)
     return resolve_current_season_and_matchday(client, code)
 
@@ -120,16 +120,17 @@ def load_live_matches(codes: tuple[str, ...]) -> pd.DataFrame:
     # la liga si la vista principal ya la trajo hace un momento.
     live_df = get_live_matches(client, football_data_codes, ensure_data=load_competition)
 
-    # La Europa League corre aparte, sobre Goal API (ver src/europa_league.py).
-    # Aislado a propósito: si esto falla, se ignora y las otras 6 ligas siguen
-    # mostrando su "en vivo" con total normalidad — nunca debe tumbar la pestaña.
-    if any(c in config.GOAL_API_COMPETITIONS for c in codes):
+    # Europa League y selecciones corren aparte, sobre Goal API (ver
+    # src/europa_league.py y src/national_teams.py). Aisladas a propósito: si
+    # una de las dos falla, se ignora y el resto sigue mostrando su "en vivo"
+    # con total normalidad — nunca debe tumbar la pestaña.
+    for goal_code in (c for c in codes if c in config.GOAL_API_COMPETITIONS):
         try:
-            el_live = europa_league.get_live_matches(ensure_data=load_competition)
+            extra_live = config.goal_api_module(goal_code).get_live_matches(ensure_data=load_competition)
         except Exception:
-            el_live = pd.DataFrame()
-        if not el_live.empty:
-            live_df = pd.concat([live_df, el_live], ignore_index=True)
+            extra_live = pd.DataFrame()
+        if not extra_live.empty:
+            live_df = pd.concat([live_df, extra_live], ignore_index=True)
 
     return live_df
 
@@ -170,11 +171,28 @@ def load_match_stats(home: str, away: str, date_iso: str, competition_code: str)
 def load_standings(code: str, season: int) -> dict:
     if code in config.GOAL_API_COMPETITIONS:
         try:
-            return europa_league.get_standings_map(season)
+            return config.goal_api_module(code).get_standings_map(season)
         except Exception:
             return {}  # la columna "Posiciones" ya sabe mostrar "-" si esto viene vacío
     client = FootballDataClient(api_key=API_KEY)
     return get_standings_map(client, code, season)
+
+
+@st.cache_data(ttl=600, show_spinner="Buscando amistosos internacionales...")
+def load_friendlies() -> pd.DataFrame:
+    return national_teams.fetch_friendlies_window()
+
+
+@st.cache_data(ttl=1800, show_spinner="Calculando predicciones de amistosos...")
+def get_friendlies_predictions() -> pd.DataFrame:
+    fixtures = load_friendlies()
+    if fixtures.empty:
+        return pd.DataFrame()
+    season = national_teams.current_season()
+    load_competition("NT", season)
+    load_competition("NT", season - 1)
+    strength = national_teams.team_strength_for_competition_safe([season, season - 1])
+    return national_teams.predict_friendlies(fixtures, strength)
 
 
 @st.cache_data(ttl=1800, show_spinner=False)
@@ -325,6 +343,8 @@ if st.sidebar.button("🔄 Forzar actualización de datos"):
     auto_status.clear()
     load_live_matches.clear()
     load_tendency_averages.clear()
+    load_friendlies.clear()
+    get_friendlies_predictions.clear()
     st.rerun()
 
 st.sidebar.divider()
@@ -334,7 +354,7 @@ st.sidebar.caption(
     "sobre todo en el promedio de liga para ellos."
 )
 
-tab_jornada, tab_vivo = st.tabs(["📅 Jornada", "🔴 En vivo"])
+tab_jornada, tab_vivo, tab_amistosos = st.tabs(["📅 Jornada", "🔴 En vivo", "🌍 Amistosos"])
 
 # ============================== PESTAÑA: JORNADA ==============================
 with tab_jornada:
@@ -618,3 +638,68 @@ with tab_vivo:
                     # cuando se mezclan todas las competiciones a la vez en esta pestaña.
                     render_stats_block(row.home_team, row.away_team, row.utc_date, row.competition)
             st.divider()
+
+# ============================== PESTAÑA: AMISTOSOS ==============================
+with tab_amistosos:
+    st.title("🌍 Amistosos internacionales")
+    st.caption(
+        "Amistosos de selecciones absolutas (sin categorías juveniles ni femenino), de ayer a los "
+        "próximos 8 días. Sin jornada ni tabla — el modelo no tiene ese concepto acá, así que van "
+        "aparte de la pestaña 'Jornada'. Cada selección se predice con SU propio historial (Nations "
+        "League + amistosos previos, hasta ~2.5 años atrás) — si ninguna de las dos no tiene ese "
+        "historial, el partido se lista igual pero sin predicción."
+    )
+
+    if st.button("🔄 Actualizar amistosos"):
+        load_friendlies.clear()
+        get_friendlies_predictions.clear()
+        st.rerun()
+
+    try:
+        fixtures_amistosos = load_friendlies()
+        pred_amistosos = get_friendlies_predictions()
+    except Exception as e:
+        st.error(f"No se pudieron cargar los amistosos: {e}")
+        fixtures_amistosos, pred_amistosos = pd.DataFrame(), pd.DataFrame()
+
+    if fixtures_amistosos.empty:
+        st.info("No hay amistosos de selecciones absolutas en esta ventana de días.")
+    else:
+        st.caption(f"{len(fixtures_amistosos)} amistosos encontrados · "
+                   f"{len(pred_amistosos)} con predicción disponible.")
+        pred_by_match = (
+            {(r.home_team, r.away_team, r.utc_date): r for r in pred_amistosos.itertuples()}
+            if not pred_amistosos.empty else {}
+        )
+        estado_label = {"FINISHED": "✅ Finalizado", "CANCELLED": "🚫 Cancelado", "POSTPONED": "🚫 Aplazado"}
+        for s in LIVE_STATUSES:
+            estado_label[s] = "🔴 En vivo"
+
+        for _, row in fixtures_amistosos.iterrows():
+            pred_row = pred_by_match.get((row["home_team"], row["away_team"], row["utc_date"]))
+            with st.container(border=True):
+                estado = estado_label.get(row["status"], "")
+                cabecera = format_bogota(row["utc_date"])
+                if estado:
+                    cabecera += f" · {estado}"
+                st.caption(cabecera)
+
+                if row["status"] == "FINISHED" and pd.notna(row["home_goals"]):
+                    marcador = f"{int(row['home_goals'])}-{int(row['away_goals'])}"
+                    st.markdown(f"**{row['home_team']} {marcador} {row['away_team']}**")
+                else:
+                    st.markdown(f"**{row['home_team']} vs {row['away_team']}**")
+
+                if pred_row is None:
+                    st.caption("Sin historial suficiente (Nations League/amistosos) para predecir este cruce.")
+                else:
+                    st.write(
+                        f"xG modelo: {pred_row.home_xg} - {pred_row.away_xg}  ·  "
+                        f"1X2: {pred_row.home_win:.0f}% / {pred_row.draw:.0f}% / {pred_row.away_win:.0f}%"
+                    )
+                    st.caption(
+                        f"Over 2.5: {pred_row.over_2_5:.0f}% · BTTS: {pred_row.btts:.0f}% · "
+                        f"Marcador top: {pred_row.top_score} ({pred_row.top_score_prob:.0f}%)"
+                    )
+                    if pred_row.low_confidence:
+                        st.caption(f"⚠ {pred_row.confidence_note}")

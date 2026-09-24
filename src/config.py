@@ -35,10 +35,26 @@ COMPETITIONS = {
     "FL1": "Ligue 1",
     "CL": "Champions League",
     "EL": "Europa League",
+    "NT": "Selecciones (Nations League)",
 }
 
 # Competiciones que NO vienen de football-data.org (ver comentario arriba).
-GOAL_API_COMPETITIONS = {"EL"}
+# "NT" (selecciones) tampoco: football-data.org solo tiene Mundial/Eurocopa, y
+# nada de eso corre fuera de esos torneos — ver src/national_teams.py.
+GOAL_API_COMPETITIONS = {"EL", "NT"}
+
+# Qué módulo aislado resuelve cada competición fuera de football-data.org. Los
+# puntos de integración (app.py, resolve_predictions.py, fetch_football_data.py)
+# despachan por acá en vez de tener el nombre del módulo repetido/hardcodeado
+# en cada uno — agregar una fuente nueva es sumar una entrada acá.
+def goal_api_module(code: str):
+    if code == "EL":
+        from . import europa_league
+        return europa_league
+    if code == "NT":
+        from . import national_teams
+        return national_teams
+    raise KeyError(f"'{code}' no es una competición de Goal API conocida.")
 
 # Competiciones tipo copa donde, si un equipo no tiene NINGÚN partido propio
 # todavía (rotación normal del torneo), se usa su fuerza calculada en su liga
