@@ -19,6 +19,7 @@ from __future__ import annotations
 
 import os
 import re
+import time
 import unicodedata
 from difflib import SequenceMatcher
 
@@ -36,6 +37,39 @@ class GoalApiRateLimited(Exception):
     silenciosamente "sin datos"."""
 
 
+# Caché en memoria del proceso, compartido por europa_league.py y
+# national_teams.py. Existe porque una misma carga del dashboard pedía lo mismo
+# varias veces (temporada vigente, calendario completo de la liga) y eso, sumado
+# a los reinicios de Streamlit Cloud, agotó las 1.000 peticiones/día.
+_MEMO: dict[str, tuple[float, object]] = {}
+
+
+def memoized(key: str, ttl_seconds: float, producer):
+    ahora = time.time()
+    guardado = _MEMO.get(key)
+    if guardado and ahora - guardado[0] < ttl_seconds:
+        return guardado[1]
+    valor = producer()
+    _MEMO[key] = (ahora, valor)
+    return valor
+
+
+def clear_memo() -> None:
+    _MEMO.clear()
+
+
+LIVE_MEMO_SECONDS = 90
+
+
+def live_fixtures(api_key: str = "") -> list[dict]:
+    """/fixtures/live UNA vez para todas las fuentes (Europa League y
+    selecciones filtran de la misma lista) en vez de una petición cada una."""
+    def _pedir():
+        data = GoalApiClient(api_key=api_key)._get("/fixtures/live", {"limit": 100})
+        return data if isinstance(data, list) else []
+    return memoized("fixtures_live", LIVE_MEMO_SECONDS, _pedir)
+
+
 # IDs fijos de Goal API por competición. Se fijan a mano y NO se buscan por
 # nombre en caliente: hay 54 ligas llamadas "Premier League" en su catálogo
 # (Rusia, Ucrania, Kenia, Maldivas...) y 9 "Ligue 1" (Argelia, Túnez, Senegal...),
@@ -49,6 +83,11 @@ LEAGUE_IDS = {
     "FL1": "cmr77dvqg007crx06q1kaceyo",  # Ligue 1 (France)
     "CL":  "cmr77dw3900f5rx06j05wgzv4",  # UEFA Champions League (Europe)
     "EL":  "cmr77dw3900f6rx06tuqwft2d",  # UEFA Europa League (Europe)
+    # Sin esta entrada, fixtures_by_date pedía los partidos de TODAS las ligas
+    # del mundo ese día (solo la 1ª página de 100) y el de Nations League casi
+    # nunca aparecía: sin estadística, nada se guardaba en match_stats_log y
+    # cada consulta del mismo partido volvía a gastar cuota.
+    "NT":  "cmr77dw4800fgrx06rwmig2h8",  # UEFA Nations League (eurocups)
 }
 
 # Nombres exactos de las filas de /statistics, verificados contra partidos reales

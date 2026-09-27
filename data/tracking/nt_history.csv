@@ -1,0 +1,447 @@
+match_id,competition,season_start_year,matchday,utc_date,status,home_team,away_team,home_team_short,away_team_short,home_goals,away_goals,winner,fetched_at
+cmtwihi915efiqs07ozv1v9mi,NT,2025,1.0,2026-09-24T18:45:00Z,FINISHED,Kosovo,Republic of Ireland,Kosovo,Ireland,1,0,HOME_TEAM,2026-09-27T04:04:50Z
+cmrjfzswbentdt507wo686aqz,NT,2025,,2026-06-05T23:30:00Z,FINISHED,Canada,Republic of Ireland,Canada,Ireland,1,1,DRAW,2026-09-27T04:04:50Z
+cmrjg0mgcfy1bt507i0ylgvms,NT,2025,,2026-05-28T18:45:00Z,FINISHED,Republic of Ireland,Qatar,Ireland,Qatar,1,0,HOME_TEAM,2026-09-27T04:04:50Z
+cmrjg1etth4bot507k7xv7pua,NT,2025,,2026-05-16T16:00:00Z,FINISHED,Republic of Ireland,Grenada,Ireland,Grenada,5,0,HOME_TEAM,2026-09-27T04:04:50Z
+cmrjgywv5wvtso807oqucwh0m,NT,2025,,2026-03-31T18:45:00Z,FINISHED,Republic of Ireland,North Macedonia,Ireland,North Macedonia,0,0,DRAW,2026-09-27T04:04:50Z
+cmrjhykvz6030o8074wimei72,NT,2025,,2025-06-10T18:45:00Z,FINISHED,Luxembourg,Republic of Ireland,Luxembourg,Rep. Ireland,0,0,DRAW,2026-09-27T04:04:50Z
+cmrjhya925eido807xjkm6zu5,NT,2025,,2025-06-06T18:45:00Z,FINISHED,Republic of Ireland,Senegal,Rep. Ireland,Senegal,1,1,DRAW,2026-09-27T04:04:50Z
+cmrjib3p623ioo80741zo6m3f,NT,2025,,2025-03-23T19:45:00Z,FINISHED,Republic of Ireland,Bulgaria,Republic of Ireland,Bulgaria,2,1,HOME_TEAM,2026-09-27T04:04:50Z
+cmrjiahq20nhko80744x9d42h,NT,2025,,2025-03-20T19:45:00Z,FINISHED,Bulgaria,Republic of Ireland,Bulgaria,Republic of Ireland,1,2,AWAY_TEAM,2026-09-27T04:04:50Z
+cmrjir3dx7wvuo8074u2gdjdi,NT,2025,6.0,2024-11-17T17:00:00Z,FINISHED,England,Republic of Ireland,England,Republic of Ireland,5,0,HOME_TEAM,2026-09-27T04:04:50Z
+cmrjiqn8u6skio807fadniy6i,NT,2025,5.0,2024-11-14T19:45:00Z,FINISHED,Republic of Ireland,Finland,Republic of Ireland,Finland,1,0,HOME_TEAM,2026-09-27T04:04:50Z
+cmrjivcb6j58oo807du0kw9ep,NT,2025,4.0,2024-10-13T18:45:00Z,FINISHED,Greece,Republic of Ireland,Greece,Republic of Ireland,2,0,HOME_TEAM,2026-09-27T04:04:50Z
+cmrjiusmghs7xo8077p8vb29d,NT,2025,3.0,2024-10-10T18:45:00Z,FINISHED,Finland,Republic of Ireland,Finland,Republic of Ireland,1,2,AWAY_TEAM,2026-09-27T04:04:50Z
+cmrjizbhmtbiro807vawbcobp,NT,2025,2.0,2024-09-10T18:45:00Z,FINISHED,Republic of Ireland,Greece,Republic of Ireland,Greece,0,2,AWAY_TEAM,2026-09-27T04:04:50Z
+cmrjj1rl2ztovo807oicka6ej,NT,2025,1.0,2024-09-07T16:00:00Z,FINISHED,Republic of Ireland,England,Republic of Ireland,England,0,2,AWAY_TEAM,2026-09-27T04:04:50Z
+cmrjjac14jk4vo8078y73bb8o,NT,2025,,2024-06-11T18:45:00Z,FINISHED,Portugal,Republic of Ireland,Portugal,Republic of Ireland,3,0,HOME_TEAM,2026-09-27T04:04:50Z
+cmrjjba40lx2yo807q8wrs4i1,NT,2025,,2024-06-04T18:45:00Z,FINISHED,Republic of Ireland,Hungary,Republic of Ireland,Hungary,2,1,HOME_TEAM,2026-09-27T04:04:50Z
+cmrjfzy3tevqzt507w8unzrvk,NT,2025,,2026-06-07T18:00:00Z,FINISHED,Kosovo,Andorra CF,Kosovo,Andorra,3,0,HOME_TEAM,2026-09-27T04:04:50Z
+cmrjg0vxagcw0t50710readq2,NT,2025,,2026-05-31T14:00:00Z,FINISHED,Czechia,Kosovo,Czech Republic,Kosovo,2,1,HOME_TEAM,2026-09-27T04:04:50Z
+cmrjhyjib5wmbo8071d9qvzy6,NT,2025,,2025-06-09T17:00:00Z,FINISHED,Kosovo,Comoros,Kosovo,Comoros,4,2,HOME_TEAM,2026-09-27T04:04:50Z
+cmrjhy9zi5dxso8073zyifpyw,NT,2025,,2025-06-06T17:00:00Z,FINISHED,Kosovo,Armenia,Kosovo,Armenia,5,2,HOME_TEAM,2026-09-27T04:04:50Z
+cmrjib2zc21tho807awgsekfd,NT,2025,,2025-03-23T17:00:00Z,FINISHED,Iceland,Kosovo,Iceland,Kosovo,1,3,AWAY_TEAM,2026-09-27T04:04:50Z
+cmrjiahpu0nheo807fc2epeap,NT,2025,,2025-03-20T19:45:00Z,FINISHED,Kosovo,Iceland,Kosovo,Iceland,2,1,HOME_TEAM,2026-09-27T04:04:50Z
+cmrjioo9a1cw9o8072v2edrg8,NT,2025,6.0,2024-11-18T19:45:00Z,FINISHED,Kosovo,Lithuania,Kosovo,Lithuania,1,0,HOME_TEAM,2026-09-27T04:04:50Z
+cmrjiqp2j6xkko807bpio2969,NT,2025,5.0,2024-11-15T19:45:00Z,FINISHED,Romania,Kosovo,Romania,Kosovo,3,0,HOME_TEAM,2026-09-27T04:04:50Z
+cmrjivfikjftxo807ke5erisf,NT,2025,4.0,2024-10-15T18:45:00Z,FINISHED,Kosovo,Cyprus,Kosovo,Cyprus,3,0,HOME_TEAM,2026-09-27T04:04:50Z
+cmrjiuyj1i7pgo807xk596evh,NT,2025,3.0,2024-10-12T13:00:00Z,FINISHED,Lithuania,Kosovo,Lithuania,Kosovo,1,2,AWAY_TEAM,2026-09-27T04:04:50Z
+cmrjiz9ist4x5o8079fjj9ced,NT,2025,2.0,2024-09-09T16:00:00Z,FINISHED,Cyprus,Kosovo,Cyprus,Kosovo,0,4,AWAY_TEAM,2026-09-27T04:04:50Z
+cmrjj1k4azc5lo807cnpbyutf,NT,2025,1.0,2024-09-06T18:45:00Z,FINISHED,Kosovo,Romania,Kosovo,Romania,0,3,AWAY_TEAM,2026-09-27T04:04:50Z
+cmrjjbbcam0xno807m82qqyu5,NT,2025,,2024-06-05T17:00:00Z,FINISHED,Norway,Kosovo,Norway,Kosovo,3,0,HOME_TEAM,2026-09-27T04:04:50Z
+cmtwihi8z5efgqs074k59kcha,NT,2025,1.0,2026-09-24T18:45:00Z,FINISHED,Austria,Israel,Austria,Israel,3,1,HOME_TEAM,2026-09-27T04:04:50Z
+cmrjfzqd3ejuxt507kaycrau5,NT,2025,,2026-06-03T18:00:00Z,FINISHED,Albania,Israel,Albania,Israel,0,1,AWAY_TEAM,2026-09-27T04:04:50Z
+cmrjgy5txvdm5o807mqsdwrhb,NT,2025,,2026-03-26T17:00:00Z,FINISHED,Georgia,Israel,Georgia,Israel,2,2,DRAW,2026-09-27T04:04:50Z
+cmrjhdk2rv3wmo8079ysvjt92,NT,2025,,2025-11-13T17:00:00Z,FINISHED,Lithuania,Israel,Lithuania,Israel,0,0,DRAW,2026-09-27T04:04:50Z
+cmrjhykvr602to807rtwv8v7y,NT,2025,,2025-06-10T18:45:00Z,FINISHED,Israel,Slovakia,Israel,Slovakia,1,0,HOME_TEAM,2026-09-27T04:04:50Z
+cmrjir3v07yf8o807czflz4sy,NT,2025,6.0,2024-11-17T19:45:00Z,FINISHED,Israel,Belgium,Israel,Belgium,1,0,HOME_TEAM,2026-09-27T04:04:50Z
+cmrjiqn986skno807elch7pg6,NT,2025,5.0,2024-11-14T19:45:00Z,FINISHED,France,Israel,France,Israel,0,0,DRAW,2026-09-27T04:04:50Z
+cmrjivdc8j8oxo807ar8pnxq9,NT,2025,4.0,2024-10-14T18:45:00Z,FINISHED,Italy,Israel,Italy,Israel,4,1,HOME_TEAM,2026-09-27T04:04:50Z
+cmrjiusk8hs67o807d9zrz2rw,NT,2025,3.0,2024-10-10T18:45:00Z,FINISHED,Israel,France,Israel,France,1,4,AWAY_TEAM,2026-09-27T04:04:50Z
+cmrjiz9x1t686o807ogr8bg8d,NT,2025,2.0,2024-09-09T18:45:00Z,FINISHED,Israel,Italy,Israel,Italy,1,2,AWAY_TEAM,2026-09-27T04:04:50Z
+cmrjj1k42zc5fo807bhdey9y0,NT,2025,1.0,2024-09-06T18:45:00Z,FINISHED,Belgium,Israel,Belgium,Israel,3,1,HOME_TEAM,2026-09-27T04:04:50Z
+cmrjjabgyji5zo807xrjpwwxw,NT,2025,,2024-06-11T16:00:00Z,FINISHED,Belarus,Israel,Belarus,Israel,0,4,AWAY_TEAM,2026-09-27T04:04:50Z
+cmrjjbks0mis1o807lgkpqx87,NT,2025,,2024-06-08T16:00:00Z,FINISHED,Hungary,Israel,Hungary,Israel,3,0,HOME_TEAM,2026-09-27T04:04:50Z
+cmrjfzosiehtwt507yea76s5j,NT,2025,,2026-06-01T18:45:00Z,FINISHED,Austria,Tunisia,Austria,Tunisia,1,0,HOME_TEAM,2026-09-27T04:04:50Z
+cmrjgywwiwvuro807zoc4830z,NT,2025,,2026-03-31T18:45:00Z,FINISHED,Austria,Korea Republic,Austria,South Korea,1,0,HOME_TEAM,2026-09-27T04:04:50Z
+cmrjgy8h5vjlpo807ul3viwvw,NT,2025,,2026-03-27T17:00:00Z,FINISHED,Austria,Ghana,Austria,Ghana,5,1,HOME_TEAM,2026-09-27T04:04:50Z
+cmrjib2yy21t7o807k95y6hch,NT,2025,,2025-03-23T17:00:00Z,FINISHED,Serbia,Austria,Serbia,Austria,2,0,HOME_TEAM,2026-09-27T04:04:50Z
+cmrjiahpj0nh6o807wc8kx186,NT,2025,,2025-03-20T19:45:00Z,FINISHED,Austria,Serbia,Austria,Serbia,1,1,DRAW,2026-09-27T04:04:50Z
+cmrjir3e97ww4o807bzhkafjl,NT,2025,6.0,2024-11-17T17:00:00Z,FINISHED,Austria,Slovenia,Austria,Slovenia,1,1,DRAW,2026-09-27T04:04:50Z
+cmrjiqmrr6r3uo8078od39a8v,NT,2025,5.0,2024-11-14T15:00:00Z,FINISHED,Kazakhstan,Austria,Kazakhstan,Austria,0,2,AWAY_TEAM,2026-09-27T04:04:50Z
+cmrjivcbbj58so807efge3o6r,NT,2025,4.0,2024-10-13T18:45:00Z,FINISHED,Austria,Norway,Austria,Norway,5,1,HOME_TEAM,2026-09-27T04:04:50Z
+cmrjiusmkhs7zo807qqpp8sby,NT,2025,3.0,2024-10-10T18:45:00Z,FINISHED,Austria,Kazakhstan,Austria,Kazakhstan,4,0,HOME_TEAM,2026-09-27T04:04:50Z
+cmrjiz9w4t67go807x1boqvfi,NT,2025,2.0,2024-09-09T18:45:00Z,FINISHED,Norway,Austria,Norway,Austria,2,1,HOME_TEAM,2026-09-27T04:04:50Z
+cmrjj1k3izc56o807sbp5u54y,NT,2025,1.0,2024-09-06T18:45:00Z,FINISHED,Slovenia,Austria,Slovenia,Austria,1,1,DRAW,2026-09-27T04:04:50Z
+cmrjjbkrbmirpo8074lb81p0s,NT,2025,,2024-06-08T16:00:00Z,FINISHED,Switzerland,Austria,Switzerland,Austria,1,1,DRAW,2026-09-27T04:04:50Z
+cmrjjba49lx36o807wthovigx,NT,2025,,2024-06-04T18:45:00Z,FINISHED,Austria,Serbia,Austria,Serbia,2,1,HOME_TEAM,2026-09-27T04:04:50Z
+cmtybxybyogn1lc07fafc74yj,NT,2025,1.0,2026-09-25T18:45:00Z,FINISHED,Poland,Bosnia-Herzegovina,Poland,Bosnia & Herzegovina,0,0,DRAW,2026-09-27T04:04:50Z
+cmrjfzw0nesmgt507vdsxo7vq,NT,2025,,2026-06-06T19:00:00Z,FINISHED,Panama,Bosnia-Herzegovina,Panama,Bosnia & Herzegovina,1,1,DRAW,2026-09-27T04:04:50Z
+cmrjg0ntog0jnt5072nwof0gz,NT,2025,,2026-05-29T18:30:00Z,FINISHED,Bosnia-Herzegovina,North Macedonia,Bosnia & Herzegovina,North Macedonia,0,0,DRAW,2026-09-27T04:04:50Z
+cmrjhkuwhaz38o807gebb0zke,NT,2025,,2025-10-12T17:00:00Z,FINISHED,Malta,Bosnia-Herzegovina,Malta,Bosnia & Herzegovina,1,4,AWAY_TEAM,2026-09-27T04:04:50Z
+cmrjhykbi5yk3o807gujqg4xx,NT,2025,,2025-06-10T16:00:00Z,FINISHED,Slovenia,Bosnia-Herzegovina,Slovenia,Bosnia,2,1,HOME_TEAM,2026-09-27T04:04:50Z
+cmrjiopry1i78o807vx2gucq5,NT,2025,6.0,2024-11-19T19:45:00Z,FINISHED,Bosnia-Herzegovina,Netherlands,Bosnia-Herzegovina,Netherlands,1,1,DRAW,2026-09-27T04:04:50Z
+cmrjiqxyr7jqdo807ckv9hs8f,NT,2025,5.0,2024-11-16T19:45:00Z,FINISHED,Germany,Bosnia-Herzegovina,Germany,Bosnia-Herzegovina,7,0,HOME_TEAM,2026-09-27T04:04:50Z
+cmrjivdcmj8p7o807ummj2ubl,NT,2025,4.0,2024-10-14T18:45:00Z,FINISHED,Bosnia-Herzegovina,Hungary,Bosnia-Herzegovina,Hungary,0,2,AWAY_TEAM,2026-09-27T04:04:50Z
+cmrjiuvh1hzyho807i1ika7fn,NT,2025,3.0,2024-10-11T18:45:00Z,FINISHED,Bosnia-Herzegovina,Germany,Bosnia-Herzegovina,Germany,1,2,AWAY_TEAM,2026-09-27T04:04:50Z
+cmrjizbhotbito807q3k6cum3,NT,2025,2.0,2024-09-10T18:45:00Z,FINISHED,Hungary,Bosnia-Herzegovina,Hungary,Bosnia-Herzegovina,0,0,DRAW,2026-09-27T04:04:50Z
+cmrjj1tzn00ibo807bdbmpirv,NT,2025,1.0,2024-09-07T18:45:00Z,FINISHED,Netherlands,Bosnia-Herzegovina,Netherlands,Bosnia-Herzegovina,5,2,HOME_TEAM,2026-09-27T04:04:50Z
+cmrjjbqffmur9o807nzxqp76z,NT,2025,,2024-06-09T18:45:00Z,FINISHED,Italy,Bosnia-Herzegovina,Italy,Bosnia-Herzegovina,1,0,HOME_TEAM,2026-09-27T04:04:50Z
+cmrjjb98mluceo807d5tnc7le,NT,2025,,2024-06-03T18:45:00Z,FINISHED,England,Bosnia-Herzegovina,England,Bosnia-Herzegovina,3,0,HOME_TEAM,2026-09-27T04:04:50Z
+cmtybxyc0ogn3lc07jcklab2o,NT,2025,1.0,2026-09-25T18:45:00Z,FINISHED,Sweden,Romania,Sweden,Romania,2,1,HOME_TEAM,2026-09-27T04:04:50Z
+cmrjfzvc6erh0t507zp4xjw6e,NT,2025,,2026-06-06T17:45:00Z,FINISHED,Romania,Wales,Romania,Wales,2,1,HOME_TEAM,2026-09-27T04:04:50Z
+cmrjfzp6deihot50716c4fi39,NT,2025,,2026-06-02T17:00:00Z,FINISHED,Georgia,Romania,Georgia,Romania,1,1,DRAW,2026-09-27T04:04:50Z
+cmrjgywv5wvtto807knzaxdow,NT,2025,,2026-03-31T18:45:00Z,FINISHED,Slovakia,Romania,Slovakia,Romania,2,0,HOME_TEAM,2026-09-27T04:04:50Z
+cmrjhkc0la0gjo807ejwedz0s,NT,2025,,2025-10-09T18:00:00Z,FINISHED,Romania,Moldova,Romania,Moldova,2,1,HOME_TEAM,2026-09-27T04:04:50Z
+cmrjhonsgk6xio807p1187xuz,NT,2025,,2025-09-05T18:00:00Z,FINISHED,Romania,Canada,Romania,Canada,0,3,AWAY_TEAM,2026-09-27T04:04:50Z
+cmrjioo8p1cvro807blsxduua,NT,2025,6.0,2024-11-18T19:45:00Z,FINISHED,Romania,Cyprus,Romania,Cyprus,4,1,HOME_TEAM,2026-09-27T04:04:50Z
+cmrjivfiwjfu7o807mle8s5ej,NT,2025,4.0,2024-10-15T18:45:00Z,FINISHED,Lithuania,Romania,Lithuania,Romania,1,2,AWAY_TEAM,2026-09-27T04:04:50Z
+cmrjiv4r5ilexo807i6itelqi,NT,2025,3.0,2024-10-12T18:45:00Z,FINISHED,Cyprus,Romania,Cyprus,Romania,0,3,AWAY_TEAM,2026-09-27T04:04:50Z
+cmrjiz9xbt68eo8071n9q2790,NT,2025,2.0,2024-09-09T18:45:00Z,FINISHED,Romania,Lithuania,Romania,Lithuania,3,1,HOME_TEAM,2026-09-27T04:04:50Z
+cmrjjbfinm9qso807vxm8wtpg,NT,2025,,2024-06-07T18:00:00Z,FINISHED,Romania,Liechtenstein,Romania,Liechtenstein,0,0,DRAW,2026-09-27T04:04:50Z
+cmrjjba3slx2so807luia3ruw,NT,2025,,2024-06-04T18:30:00Z,FINISHED,Romania,Bulgaria,Romania,Bulgaria,0,0,DRAW,2026-09-27T04:04:50Z
+cmtybxybwogmzlc07nfhpcfmg,NT,2025,1.0,2026-09-25T18:45:00Z,FINISHED,Hungary,Ukraine,Hungary,Ukraine,0,1,AWAY_TEAM,2026-09-27T04:04:50Z
+cmrjfzzt6ez0nt507uayavpq9,NT,2025,,2026-06-09T17:00:00Z,FINISHED,Hungary,Kazakhstan,Hungary,Kazakhstan,3,1,HOME_TEAM,2026-09-27T04:04:50Z
+cmrjfzslken73t507uqeyshfb,NT,2025,,2026-06-05T17:45:00Z,FINISHED,Hungary,Finland,Hungary,Finland,2,1,HOME_TEAM,2026-09-27T04:04:50Z
+cmrjgywagwtueo807t4voi4zt,NT,2025,,2026-03-31T17:00:00Z,FINISHED,Hungary,Greece,Hungary,Greece,0,0,DRAW,2026-09-27T04:04:50Z
+cmrjgyky8w4c0o807zeuco71c,NT,2025,,2026-03-28T17:00:00Z,FINISHED,Hungary,Slovenia,Hungary,Slovenia,1,0,HOME_TEAM,2026-09-27T04:04:50Z
+cmrjhykej5ymio807flnwpdwr,NT,2025,,2025-06-10T16:00:00Z,FINISHED,Azerbaijan,Hungary,Azerbaijan,Hungary,1,2,AWAY_TEAM,2026-09-27T04:04:50Z
+cmrjhy9yd5dwyo8072jxndqt1,NT,2025,,2025-06-06T17:30:00Z,FINISHED,Hungary,Sweden,Hungary,Sweden,0,2,AWAY_TEAM,2026-09-27T04:04:50Z
+cmrjib2ys21t3o807vxdg1wzt,NT,2025,,2025-03-23T17:00:00Z,FINISHED,Hungary,Türkiye,Hungary,Türkiye,0,3,AWAY_TEAM,2026-09-27T04:04:50Z
+cmrjiah940lzno807nmg9n7yj,NT,2025,,2025-03-20T17:00:00Z,FINISHED,Türkiye,Hungary,Türkiye,Hungary,3,1,HOME_TEAM,2026-09-27T04:04:50Z
+cmrjiopqt1i6eo8071bgwrugj,NT,2025,6.0,2024-11-19T19:45:00Z,FINISHED,Hungary,Germany,Hungary,Germany,1,1,DRAW,2026-09-27T04:04:50Z
+cmrjiqxyx7jqho807wcxf9nnz,NT,2025,5.0,2024-11-16T19:45:00Z,FINISHED,Netherlands,Hungary,Netherlands,Hungary,4,0,HOME_TEAM,2026-09-27T04:04:50Z
+cmrjiuvh0hzyfo807xaipk768,NT,2025,3.0,2024-10-11T18:45:00Z,FINISHED,Hungary,Netherlands,Hungary,Netherlands,1,1,DRAW,2026-09-27T04:04:50Z
+cmrjj1tzk00i7o80788t8r44i,NT,2025,1.0,2024-09-07T18:45:00Z,FINISHED,Germany,Hungary,Germany,Hungary,5,0,HOME_TEAM,2026-09-27T04:04:50Z
+cmtybxxp5ogcflc07mvilawvl,NT,2025,1.0,2026-09-25T16:00:00Z,FINISHED,Georgia,Northern Ireland,Georgia,Northern Ireland,0,1,AWAY_TEAM,2026-09-27T04:04:50Z
+cmrjfzz5zexrmt507ec8r2r0l,NT,2025,,2026-06-08T19:10:00Z,FINISHED,France,Northern Ireland,France,Northern Ireland,3,1,HOME_TEAM,2026-09-27T04:04:50Z
+cmrjfzr9rekwpt507xjbhzb0h,NT,2025,,2026-06-04T16:00:00Z,FINISHED,Northern Ireland,Guinea,Northern Ireland,Guinea,1,0,HOME_TEAM,2026-09-27T04:04:50Z
+cmrjgywvkwvu3o807dc7dqjpf,NT,2025,,2026-03-31T18:45:00Z,FINISHED,Wales,Northern Ireland,Wales,Northern Ireland,1,1,DRAW,2026-09-27T04:04:50Z
+cmrjhykvm602ro807z0grpm5r,NT,2025,,2025-06-10T18:45:00Z,FINISHED,Northern Ireland,Iceland,N. Ireland,Iceland,1,0,HOME_TEAM,2026-09-27T04:04:50Z
+cmrjhydtc5l0uo807zyopvn18,NT,2025,,2025-06-07T17:00:00Z,FINISHED,Denmark,Northern Ireland,Denmark,N. Ireland,2,1,HOME_TEAM,2026-09-27T04:04:50Z
+cmrjib7mr2eyno807nm7tno60,NT,2025,,2025-03-25T18:00:00Z,FINISHED,Sweden,Northern Ireland,Sweden,Northern Ireland,5,1,HOME_TEAM,2026-09-27T04:04:50Z
+cmrjiak4b0tevo80795jamwf7,NT,2025,,2025-03-21T19:45:00Z,FINISHED,Northern Ireland,Switzerland,Northern Ireland,Switzerland,1,1,DRAW,2026-09-27T04:04:50Z
+cmrjioo8v1cvxo807i29jxll3,NT,2025,6.0,2024-11-18T19:45:00Z,FINISHED,Luxembourg,Northern Ireland,Luxembourg,Northern Ireland,2,2,DRAW,2026-09-27T04:04:50Z
+cmrjiqp316xl0o807cqcwtl4t,NT,2025,5.0,2024-11-15T19:45:00Z,FINISHED,Northern Ireland,Belarus,Northern Ireland,Belarus,2,0,HOME_TEAM,2026-09-27T04:04:50Z
+cmrjivfitjfu5o80702k8o1ch,NT,2025,4.0,2024-10-15T18:45:00Z,FINISHED,Northern Ireland,Bulgaria,Northern Ireland,Bulgaria,5,0,HOME_TEAM,2026-09-27T04:04:50Z
+cmrjiv4rcilf1o807pfja48kq,NT,2025,3.0,2024-10-12T18:45:00Z,FINISHED,Belarus,Northern Ireland,Belarus,Northern Ireland,0,0,DRAW,2026-09-27T04:04:50Z
+cmrjj1zrz0fu4o807ilxb2vgk,NT,2025,2.0,2024-09-08T16:00:00Z,FINISHED,Bulgaria,Northern Ireland,Bulgaria,Northern Ireland,1,0,HOME_TEAM,2026-09-27T04:04:50Z
+cmrjj1haez4jao8079zbhoidx,NT,2025,1.0,2024-09-05T18:45:00Z,FINISHED,Northern Ireland,Luxembourg,Northern Ireland,Luxembourg,2,0,HOME_TEAM,2026-09-27T04:04:50Z
+cmrjjac1ejk51o807v9cqhcdf,NT,2025,,2024-06-11T18:45:00Z,FINISHED,Northern Ireland,Andorra CF,Northern Ireland,Andorra,2,0,HOME_TEAM,2026-09-27T04:04:50Z
+cmrjjblv9mktqo807h5ebpuzw,NT,2025,,2024-06-08T19:30:00Z,FINISHED,Spain,Northern Ireland,Spain,Northern Ireland,5,1,HOME_TEAM,2026-09-27T04:04:50Z
+cmrjfzqghejx2t507tobsu4dr,NT,2025,,2026-06-03T18:45:00Z,FINISHED,Poland,Nigeria,Poland,Nigeria,2,2,DRAW,2026-09-27T04:04:50Z
+cmrjg0wjdgdjlt50735qnmeg6,NT,2025,,2026-05-31T15:30:00Z,FINISHED,Poland,Ukraine,Poland,Ukraine,0,2,AWAY_TEAM,2026-09-27T04:04:50Z
+cmrjhkck1a1uto807tfu3hxok,NT,2025,,2025-10-09T18:45:00Z,FINISHED,Poland,New Zealand,Poland,New Zealand,1,0,HOME_TEAM,2026-09-27T04:04:50Z
+cmrjhya8w5eibo807ev32vvm6,NT,2025,,2025-06-06T18:45:00Z,FINISHED,Poland,Moldova,Poland,Moldova,2,0,HOME_TEAM,2026-09-27T04:04:50Z
+cmrjioo8e1cvjo807hqcihsyw,NT,2025,6.0,2024-11-18T19:45:00Z,FINISHED,Poland,Scotland,Poland,Scotland,1,2,AWAY_TEAM,2026-09-27T04:04:50Z
+cmrjiqp1y6xk4o807neard78q,NT,2025,5.0,2024-11-15T19:45:00Z,FINISHED,Portugal,Poland,Portugal,Poland,5,1,HOME_TEAM,2026-09-27T04:04:50Z
+cmrjivfhsjftlo807fqaof72l,NT,2025,4.0,2024-10-15T18:45:00Z,FINISHED,Poland,Croatia,Poland,Croatia,3,3,DRAW,2026-09-27T04:04:50Z
+cmrjiv4qmilemo807y8kbhm5y,NT,2025,3.0,2024-10-12T18:45:00Z,FINISHED,Poland,Portugal,Poland,Portugal,1,3,AWAY_TEAM,2026-09-27T04:04:50Z
+cmrjj20yk0jnlo807ozodv3dh,NT,2025,2.0,2024-09-08T18:45:00Z,FINISHED,Croatia,Poland,Croatia,Poland,1,0,HOME_TEAM,2026-09-27T04:04:50Z
+cmrjj1h9lz4imo807ml7igtfb,NT,2025,1.0,2024-09-05T18:45:00Z,FINISHED,Scotland,Poland,Scotland,Poland,2,3,AWAY_TEAM,2026-09-27T04:04:50Z
+cmrjjbrv7myqfo8071n1r6k1x,NT,2025,,2024-06-10T18:45:00Z,FINISHED,Poland,Türkiye,Poland,Türkiye,2,1,HOME_TEAM,2026-09-27T04:04:50Z
+cmrjjbfv8ma4ro807qxvg0v5t,NT,2025,,2024-06-07T18:45:00Z,FINISHED,Poland,Ukraine,Poland,Ukraine,3,1,HOME_TEAM,2026-09-27T04:04:50Z
+cmrjfzrbaekxzt507qx162iw9,NT,2025,,2026-06-04T17:00:00Z,FINISHED,Sweden,Greece,Sweden,Greece,2,2,DRAW,2026-09-27T04:04:50Z
+cmrjfzofdeh53t5075n0abke0,NT,2025,,2026-06-01T17:00:00Z,FINISHED,Norway,Sweden,Norway,Sweden,3,1,HOME_TEAM,2026-09-27T04:04:50Z
+cmrjhykch5ykuo807qip0t4p1,NT,2025,,2025-06-10T17:00:00Z,FINISHED,Sweden,Algeria,Sweden,Algeria,4,3,HOME_TEAM,2026-09-27T04:04:50Z
+cmrjiaupy1hjqo80700uz1vl5,NT,2025,,2025-03-22T17:00:00Z,FINISHED,Luxembourg,Sweden,Luxembourg,Sweden,1,0,HOME_TEAM,2026-09-27T04:04:50Z
+cmrjiopre1i6uo807gyanlqvj,NT,2025,6.0,2024-11-19T19:45:00Z,FINISHED,Sweden,Azerbaijan,Sweden,Azerbaijan,6,0,HOME_TEAM,2026-09-27T04:04:50Z
+cmrjiqxz37jqlo8073a2w661a,NT,2025,5.0,2024-11-16T19:45:00Z,FINISHED,Sweden,Slovakia,Sweden,Slovakia,2,1,HOME_TEAM,2026-09-27T04:04:50Z
+cmrjivdcrj8pdo807lguor7hl,NT,2025,4.0,2024-10-14T18:45:00Z,FINISHED,Estonia,Sweden,Estonia,Sweden,0,3,AWAY_TEAM,2026-09-27T04:04:50Z
+cmrjiuvh4hzyjo807q12rybjd,NT,2025,3.0,2024-10-11T18:45:00Z,FINISHED,Slovakia,Sweden,Slovakia,Sweden,2,2,DRAW,2026-09-27T04:04:50Z
+cmrjj20y70jnao807k1i6zz29,NT,2025,2.0,2024-09-08T18:45:00Z,FINISHED,Sweden,Estonia,Sweden,Estonia,3,0,HOME_TEAM,2026-09-27T04:04:50Z
+cmrjj1h8ez4hxo807j0s4jioi,NT,2025,1.0,2024-09-05T16:00:00Z,FINISHED,Azerbaijan,Sweden,Azerbaijan,Sweden,1,3,AWAY_TEAM,2026-09-27T04:04:50Z
+cmrjjbkremirro807iyo8p9za,NT,2025,,2024-06-08T16:00:00Z,FINISHED,Sweden,Serbia,Sweden,Serbia,0,3,AWAY_TEAM,2026-09-27T04:04:50Z
+cmrjjbb2zm095o807sjobz1pe,NT,2025,,2024-06-05T17:00:00Z,FINISHED,Denmark,Sweden,Denmark,Sweden,2,1,HOME_TEAM,2026-09-27T04:04:50Z
+cmrjfzxwqevijt507himhp2gh,NT,2025,,2026-06-07T16:30:00Z,FINISHED,Denmark,Ukraine,Denmark,Ukraine,2,1,HOME_TEAM,2026-09-27T04:04:50Z
+cmrjgywudwvt7o807o4q8xbgt,NT,2025,,2026-03-31T18:45:00Z,FINISHED,Ukraine,Albania,Ukraine,Albania,1,0,HOME_TEAM,2026-09-27T04:04:50Z
+cmrjhyktj6017o8076nw9vuoj,NT,2025,,2025-06-10T21:00:00Z,FINISHED,New Zealand,Ukraine,New Zealand,Ukraine,1,2,AWAY_TEAM,2026-09-27T04:04:50Z
+cmrjhyeeu5m6no807p9cddyc8,NT,2025,,2025-06-07T19:35:00Z,FINISHED,Canada,Ukraine,Canada,Ukraine,4,2,HOME_TEAM,2026-09-27T04:04:50Z
+cmrjib3s923kso807n3bl72em,NT,2025,,2025-03-23T19:45:00Z,FINISHED,Belgium,Ukraine,Belgium,Ukraine,3,0,HOME_TEAM,2026-09-27T04:04:50Z
+cmrjiahp80ngyo807i73oju0q,NT,2025,,2025-03-20T19:45:00Z,FINISHED,Ukraine,Belgium,Ukraine,Belgium,3,1,HOME_TEAM,2026-09-27T04:04:50Z
+cmrjiopra1i6qo807awob5r3v,NT,2025,6.0,2024-11-19T19:45:00Z,FINISHED,Albania,Ukraine,Albania,Ukraine,1,2,AWAY_TEAM,2026-09-27T04:04:50Z
+cmrjiqwt87gk3o807sym9w8vk,NT,2025,5.0,2024-11-16T17:00:00Z,FINISHED,Georgia,Ukraine,Georgia,Ukraine,1,1,DRAW,2026-09-27T04:04:50Z
+cmrjivdc1j8oto8075spng3uc,NT,2025,4.0,2024-10-14T18:45:00Z,FINISHED,Ukraine,Czechia,Ukraine,Czechia,1,1,DRAW,2026-09-27T04:04:50Z
+cmrjiuv0hhyd3o807uwz1dsrh,NT,2025,3.0,2024-10-11T18:45:00Z,FINISHED,Ukraine,Georgia,Ukraine,Georgia,1,0,HOME_TEAM,2026-09-27T04:04:50Z
+cmrjizbhatbino8072u5o5nwc,NT,2025,2.0,2024-09-10T18:45:00Z,FINISHED,Czechia,Ukraine,Czechia,Ukraine,3,2,HOME_TEAM,2026-09-27T04:04:50Z
+cmrjj1u0100ilo807gvlgdzi5,NT,2025,1.0,2024-09-07T18:45:00Z,FINISHED,Ukraine,Albania,Ukraine,Albania,1,2,AWAY_TEAM,2026-09-27T04:04:50Z
+cmrjjabgmji5no807fh9tp9xz,NT,2025,,2024-06-11T16:00:00Z,FINISHED,Moldova,Ukraine,Moldova,Ukraine,0,4,AWAY_TEAM,2026-09-27T04:04:50Z
+cmrjjb98rlucio80779daenxx,NT,2025,,2024-06-03T18:45:00Z,FINISHED,Germany,Ukraine,Germany,Ukraine,0,0,DRAW,2026-09-27T04:04:50Z
+cmrjfzs87emn2t507onmy2spr,NT,2025,,2026-06-05T16:00:00Z,FINISHED,Georgia,Bahrain,Georgia,Bahrain,2,0,HOME_TEAM,2026-09-27T04:04:50Z
+cmrjgyqrcwg2ho807tsouwye6,NT,2025,,2026-03-29T13:00:00Z,FINISHED,Lithuania,Georgia,Lithuania,Georgia,0,2,AWAY_TEAM,2026-09-27T04:04:50Z
+cmrjhyhvc5t2ao807a6pvojp7,NT,2025,,2025-06-08T16:00:00Z,FINISHED,Georgia,Cabo Verde,Georgia,Cabo Verde,1,1,DRAW,2026-09-27T04:04:50Z
+cmrjhzqt38m7ao8073nptdw2f,NT,2025,,2025-06-05T16:00:00Z,FINISHED,Georgia,Faroe Islands,Georgia,Faroe Islands,1,0,HOME_TEAM,2026-09-27T04:04:50Z
+cmrjib1gg1y1xo807g4s6rw5s,NT,2025,,2025-03-23T14:00:00Z,FINISHED,Georgia,Armenia,Georgia,Armenia,6,1,HOME_TEAM,2026-09-27T04:04:50Z
+cmrjiah950lzpo80795qefqbm,NT,2025,,2025-03-20T17:00:00Z,FINISHED,Armenia,Georgia,Armenia,Georgia,0,3,AWAY_TEAM,2026-09-27T04:04:50Z
+cmrjioprd1i6so807i5xkbpap,NT,2025,6.0,2024-11-19T19:45:00Z,FINISHED,Czechia,Georgia,Czechia,Georgia,2,1,HOME_TEAM,2026-09-27T04:04:50Z
+cmrjivdcej8p3o807h213m57s,NT,2025,4.0,2024-10-14T16:00:00Z,FINISHED,Georgia,Albania,Georgia,Albania,0,1,AWAY_TEAM,2026-09-27T04:04:50Z
+cmrjizbh6tbiko8076v8m2hnt,NT,2025,2.0,2024-09-10T18:45:00Z,FINISHED,Albania,Georgia,Albania,Georgia,0,1,AWAY_TEAM,2026-09-27T04:04:50Z
+cmrjj1rkxztoto807cw7spa0w,NT,2025,1.0,2024-09-07T16:00:00Z,FINISHED,Georgia,Czechia,Georgia,Czechia,4,1,HOME_TEAM,2026-09-27T04:04:50Z
+cmrjjbqfbmur6o807ux7ydtmq,NT,2025,,2024-06-09T18:45:00Z,FINISHED,Montenegro,Georgia,Montenegro,Georgia,1,3,AWAY_TEAM,2026-09-27T04:04:50Z
+cmtwihi955efmqs07krxb1g5t,NT,2025,1.0,2026-09-24T18:45:00Z,FINISHED,Norway,Denmark,Norway,Denmark,3,2,HOME_TEAM,2026-09-27T04:04:50Z
+cmrjfzqd3ejuyt507soepradz,NT,2025,,2026-06-03T18:00:00Z,FINISHED,Congo DR,Denmark,D.R. Congo,Denmark,0,0,DRAW,2026-09-27T04:04:50Z
+cmrjhykc85ykoo8076u7hu3ki,NT,2025,,2025-06-10T17:00:00Z,FINISHED,Denmark,Lithuania,Denmark,Lithuania,5,0,HOME_TEAM,2026-09-27T04:04:50Z
+cmrjiahod0nglo807iujshbel,NT,2025,,2025-03-20T19:45:00Z,FINISHED,Denmark,Portugal,Denmark,Portugal,1,0,HOME_TEAM,2026-09-27T04:04:50Z
+cmrjioo8h1cvlo807an89wjqz,NT,2025,6.0,2024-11-18T19:45:00Z,FINISHED,Serbia,Denmark,Serbia,Denmark,0,0,DRAW,2026-09-27T04:04:50Z
+cmrjiqp296xkco807tb0w0cey,NT,2025,5.0,2024-11-15T19:45:00Z,FINISHED,Denmark,Spain,Denmark,Spain,1,2,AWAY_TEAM,2026-09-27T04:04:50Z
+cmrjivfi4jftto807hlkp3rib,NT,2025,4.0,2024-10-15T18:45:00Z,FINISHED,Switzerland,Denmark,Switzerland,Denmark,2,2,DRAW,2026-09-27T04:04:50Z
+cmrjiv4qzileto80758d7kcex,NT,2025,3.0,2024-10-12T18:45:00Z,FINISHED,Spain,Denmark,Spain,Denmark,1,0,HOME_TEAM,2026-09-27T04:04:50Z
+cmrjj1zrq0ftwo807grpgf4ux,NT,2025,2.0,2024-09-08T16:00:00Z,FINISHED,Denmark,Serbia,Denmark,Serbia,2,0,HOME_TEAM,2026-09-27T04:04:50Z
+cmrjj1h9tz4iso807lmdknqyb,NT,2025,1.0,2024-09-05T18:45:00Z,FINISHED,Denmark,Switzerland,Denmark,Switzerland,2,0,HOME_TEAM,2026-09-27T04:04:50Z
+cmrjjbkrymirzo80794aqjkze,NT,2025,,2024-06-08T17:30:00Z,FINISHED,Denmark,Norway,Denmark,Norway,3,1,HOME_TEAM,2026-09-27T04:04:50Z
+cmrjfzyj2ewiot507ww92x6uo,NT,2025,,2026-06-07T19:00:00Z,FINISHED,Morocco,Norway,Morocco,Norway,1,1,DRAW,2026-09-27T04:04:50Z
+cmrjgyw9jwttpo807l4ibarhh,NT,2025,,2026-03-31T16:00:00Z,FINISHED,Norway,Switzerland,Norway,Switzerland,0,0,DRAW,2026-09-27T04:04:50Z
+cmrjgy9nqvljro8071u14poda,NT,2025,,2026-03-27T19:45:00Z,FINISHED,Netherlands,Norway,Netherlands,Norway,2,1,HOME_TEAM,2026-09-27T04:04:50Z
+cmrjhi3f44zoqo807jqdl45u3,NT,2025,,2025-10-14T16:00:00Z,FINISHED,Norway,New Zealand,Norway,New Zealand,1,1,DRAW,2026-09-27T04:04:50Z
+cmrjhokyxk0kno807sllsyrrn,NT,2025,,2025-09-04T16:00:00Z,FINISHED,Norway,Finland,Norway,Finland,1,0,HOME_TEAM,2026-09-27T04:04:50Z
+cmrjir3ui7yf2o8078h7gq8ze,NT,2025,6.0,2024-11-17T17:00:00Z,FINISHED,Norway,Kazakhstan,Norway,Kazakhstan,5,0,HOME_TEAM,2026-09-27T04:04:50Z
+cmrjiqn8u6skjo807yhsrsq1b,NT,2025,5.0,2024-11-14T19:45:00Z,FINISHED,Slovenia,Norway,Slovenia,Norway,1,4,AWAY_TEAM,2026-09-27T04:04:50Z
+cmrjiusk2hs63o8078rqlt40e,NT,2025,3.0,2024-10-10T18:45:00Z,FINISHED,Norway,Slovenia,Norway,Slovenia,3,0,HOME_TEAM,2026-09-27T04:04:50Z
+cmrjj1if8z81yo807xwyrbp4h,NT,2025,1.0,2024-09-06T14:00:00Z,FINISHED,Kazakhstan,Norway,Kazakhstan,Norway,0,0,DRAW,2026-09-27T04:04:50Z
+cmtwihi965efoqs07u7pf5h0z,NT,2025,1.0,2026-09-24T18:45:00Z,FINISHED,Portugal,Wales,Portugal,Wales,1,0,HOME_TEAM,2026-09-27T04:04:50Z
+cmrjfzp94eijot507ks640iny,NT,2025,,2026-06-02T18:45:00Z,FINISHED,Wales,Ghana,Wales,Ghana,1,1,DRAW,2026-09-27T04:04:50Z
+cmrjhkc0ia0gho807kwpa8pvq,NT,2025,,2025-10-09T18:45:00Z,FINISHED,England,Wales,England,Wales,3,0,HOME_TEAM,2026-09-27T04:04:50Z
+cmrjhp9i8lhm7o8074aueev68,NT,2025,,2025-09-09T18:45:00Z,FINISHED,Wales,Canada,Wales,Canada,0,1,AWAY_TEAM,2026-09-27T04:04:50Z
+cmrjioprt1i74o807ly0mp2fq,NT,2025,6.0,2024-11-19T19:45:00Z,FINISHED,Wales,Iceland,Wales,Iceland,4,1,HOME_TEAM,2026-09-27T04:04:50Z
+cmrjiqwtm7gkbo8079qujnd37,NT,2025,5.0,2024-11-16T17:00:00Z,FINISHED,Türkiye,Wales,Türkiye,Wales,0,0,DRAW,2026-09-27T04:04:50Z
+cmrjivdc0j8oro807wdvywhuk,NT,2025,4.0,2024-10-14T18:45:00Z,FINISHED,Wales,Montenegro,Wales,Montenegro,1,0,HOME_TEAM,2026-09-27T04:04:50Z
+cmrjiuv0phyd9o8072p66vvmp,NT,2025,3.0,2024-10-11T18:45:00Z,FINISHED,Iceland,Wales,Iceland,Wales,2,2,DRAW,2026-09-27T04:04:50Z
+cmrjiz9wgt67oo807ur79v6yw,NT,2025,2.0,2024-09-09T18:45:00Z,FINISHED,Montenegro,Wales,Montenegro,Wales,1,2,AWAY_TEAM,2026-09-27T04:04:50Z
+cmrjj1k3zzc5do807v7lylb77,NT,2025,1.0,2024-09-06T18:45:00Z,FINISHED,Wales,Türkiye,Wales,Türkiye,0,0,DRAW,2026-09-27T04:04:50Z
+cmrjjbqgbmurro807jgya24zh,NT,2025,,2024-06-09T18:45:00Z,FINISHED,Slovakia,Wales,Slovakia,Wales,4,0,HOME_TEAM,2026-09-27T04:04:50Z
+cmrjjbczxm4xco807x7wy860g,NT,2025,,2024-06-06T16:00:00Z,FINISHED,Gibraltar,Wales,Gibraltar,Wales,0,0,DRAW,2026-09-27T04:04:50Z
+cmrjg0129f1d2t5071w0l0esn,NT,2025,,2026-06-10T19:45:00Z,FINISHED,Portugal,Nigeria,Portugal,Nigeria,2,1,HOME_TEAM,2026-09-27T04:04:50Z
+cmrjfzvbvergut507esea33mg,NT,2025,,2026-06-06T17:45:00Z,FINISHED,Portugal,Chile,Portugal,Chile,2,1,HOME_TEAM,2026-09-27T04:04:50Z
+cmrjgyxhkwxyko807mjlx9jhk,NT,2025,,2026-03-31T23:00:00Z,FINISHED,United States,Portugal,USA,Portugal,0,2,AWAY_TEAM,2026-09-27T04:04:50Z
+cmrjgyn4ywaabo8078mnudarv,NT,2025,,2026-03-29T01:00:00Z,FINISHED,Mexico,Portugal,Mexico,Portugal,0,0,DRAW,2026-09-27T04:04:50Z
+cmrjhzpsq8keso807iwu7w8e4,NT,2025,,2025-06-04T19:10:00Z,FINISHED,Portugal,Germany,Portugal,Germany,2,1,HOME_TEAM,2026-09-27T04:04:50Z
+cmrjioo8a1cvho807i3p2czrh,NT,2025,6.0,2024-11-18T19:45:00Z,FINISHED,Croatia,Portugal,Croatia,Portugal,1,1,DRAW,2026-09-27T04:04:50Z
+cmrjivfhwjftpo807t7gj9t5g,NT,2025,4.0,2024-10-15T18:45:00Z,FINISHED,Scotland,Portugal,Scotland,Portugal,0,0,DRAW,2026-09-27T04:04:50Z
+cmrjj20xw0jn2o807ljo91gcl,NT,2025,2.0,2024-09-08T18:45:00Z,FINISHED,Portugal,Scotland,Portugal,Scotland,2,1,HOME_TEAM,2026-09-27T04:04:50Z
+cmrjj1h9bz4igo807fzsh7w56,NT,2025,1.0,2024-09-05T18:45:00Z,FINISHED,Portugal,Croatia,Portugal,Croatia,2,1,HOME_TEAM,2026-09-27T04:04:50Z
+cmrjjbkvbmitvo8072dqocr3e,NT,2025,,2024-06-08T16:45:00Z,FINISHED,Portugal,Croatia,Portugal,Croatia,1,2,AWAY_TEAM,2026-09-27T04:04:50Z
+cmrjjba3wlx2uo807p02u3qst,NT,2025,,2024-06-04T18:45:00Z,FINISHED,Portugal,Finland,Portugal,Finland,4,2,HOME_TEAM,2026-09-27T04:04:50Z
+cmtx4epgrnccgqs07ex36sxgh,NT,2025,,2026-09-23T16:00:00Z,FINISHED,Gibraltar,São Tomé e Príncipe,Gibraltar,Sao Tome and Principe,0,0,DRAW,2026-09-27T04:04:50Z
+cmrjfzvfferiut507oidxr3x2,NT,2025,,2026-06-06T17:00:00Z,FINISHED,Gibraltar,Cayman Islands,Gibraltar,Cayman Islands,4,1,HOME_TEAM,2026-09-27T04:04:50Z
+cmrjfzq0jejigt507p5uklq0h,NT,2025,,2026-06-03T17:00:00Z,FINISHED,Gibraltar,British Virgin Islands,Gibraltar,British Virgin Islands,4,0,HOME_TEAM,2026-09-27T04:04:50Z
+cmrjgywcbwtvno807cdh3ctw0,NT,2025,,2026-03-31T16:00:00Z,FINISHED,Latvia,Gibraltar,Latvia,Gibraltar,1,0,HOME_TEAM,2026-09-27T04:04:50Z
+cmrjgy5vlvdnho8076zs3z0uw,NT,2025,,2026-03-26T17:00:00Z,FINISHED,Gibraltar,Latvia,Gibraltar,Latvia,0,1,AWAY_TEAM,2026-09-27T04:04:50Z
+cmrjhkatj9xzzo807y0zd1888,NT,2025,,2025-10-08T17:00:00Z,FINISHED,Gibraltar,New Caledonia,Gibraltar,New Caledonia,0,2,AWAY_TEAM,2026-09-27T04:04:50Z
+cmrjhol0ok0lzo807iykfw24l,NT,2025,,2025-09-04T16:00:00Z,FINISHED,Gibraltar,Albania,Gibraltar,Albania,0,1,AWAY_TEAM,2026-09-27T04:04:50Z
+cmrjiopt31i83o807ofqee966,NT,2025,,2024-11-19T17:00:00Z,FINISHED,Gibraltar,Moldova,Gibraltar,Moldova,1,1,DRAW,2026-09-27T04:04:50Z
+cmrjiqp376xl4o807x53g1qi0,NT,2025,5.0,2024-11-15T19:45:00Z,FINISHED,San Marino,Gibraltar,San Marino,Gibraltar,1,1,DRAW,2026-09-27T04:04:50Z
+cmrjivbduj25no807z9ztghhq,NT,2025,4.0,2024-10-13T16:00:00Z,FINISHED,Liechtenstein,Gibraltar,Liechtenstein,Gibraltar,0,0,DRAW,2026-09-27T04:04:50Z
+cmrjiuskkhs6ho807nczlymmv,NT,2025,3.0,2024-10-10T18:45:00Z,FINISHED,Gibraltar,San Marino,Gibraltar,San Marino,1,0,HOME_TEAM,2026-09-27T04:04:50Z
+cmrjj1zry0fu2o8071s5999mg,NT,2025,2.0,2024-09-08T16:00:00Z,FINISHED,Gibraltar,Liechtenstein,Gibraltar,Liechtenstein,2,2,DRAW,2026-09-27T04:04:50Z
+cmrjj1fs1z0q0o807bdudy68s,NT,2025,,2024-09-04T16:00:00Z,FINISHED,Gibraltar,Andorra CF,Gibraltar,Andorra,1,0,HOME_TEAM,2026-09-27T04:04:50Z
+cmrjjb8s4lt3eo807zi3fl0t0,NT,2025,,2024-06-03T16:00:00Z,FINISHED,Gibraltar,Scotland,Gibraltar,Scotland,0,2,AWAY_TEAM,2026-09-27T04:04:50Z
+cmrjjb996lucuo807oywi7ezv,NT,2025,,2024-06-03T16:00:00Z,FINISHED,Scotland,Gibraltar,Scotland,Gibraltar,2,0,HOME_TEAM,2026-09-27T04:04:50Z
+cmtwihhyl5eceqs07b162z0vo,NT,2025,1.0,2026-09-24T16:00:00Z,FINISHED,Andorra CF,Malta,Andorra,Malta,1,2,AWAY_TEAM,2026-09-27T04:04:50Z
+cmrjfzsm9en7jt5072gpqhapm,NT,2025,,2026-06-05T18:00:00Z,FINISHED,Azerbaijan,Malta,Azerbaijan,Malta,0,2,AWAY_TEAM,2026-09-27T04:04:50Z
+cmrjfzoj2eh77t507rwgvlo78,NT,2025,,2026-06-01T16:00:00Z,FINISHED,Slovakia,Malta,Slovakia,Malta,2,1,HOME_TEAM,2026-09-27T04:04:50Z
+cmrjgywcgwtvpo807n6r1vjxm,NT,2025,,2026-03-31T16:00:00Z,FINISHED,Luxembourg,Malta,Luxembourg,Malta,3,0,HOME_TEAM,2026-09-27T04:04:50Z
+cmrjgy5vpvdnlo8074p0u9xf7,NT,2025,,2026-03-26T17:00:00Z,FINISHED,Malta,Luxembourg,Malta,Luxembourg,0,2,AWAY_TEAM,2026-09-27T04:04:50Z
+cmrjhp9x2livfo807u1yth20m,NT,2025,,2025-09-09T19:00:00Z,FINISHED,Malta,San Marino,Malta,San Marino,3,1,HOME_TEAM,2026-09-27T04:04:50Z
+cmrjioprk1i6yo807fqz9yxh4,NT,2025,6.0,2024-11-19T19:45:00Z,FINISHED,Malta,Andorra CF,Malta,Andorra,0,0,DRAW,2026-09-27T04:04:50Z
+cmrjiqmso6r4io807sxw1t4qh,NT,2025,,2024-11-14T18:00:00Z,FINISHED,Malta,Liechtenstein,Malta,Liechtenstein,2,0,HOME_TEAM,2026-09-27T04:04:50Z
+cmrjivbdqj25jo807f1631qew,NT,2025,4.0,2024-10-13T16:00:00Z,FINISHED,Malta,Moldova,Malta,Moldova,1,0,HOME_TEAM,2026-09-27T04:04:50Z
+cmrjizbi0tbizo8072l2sn99y,NT,2025,2.0,2024-09-10T18:45:00Z,FINISHED,Andorra CF,Malta,Andorra,Malta,0,1,AWAY_TEAM,2026-09-27T04:04:50Z
+cmrjj1rlbztp3o807cos2ds5z,NT,2025,1.0,2024-09-07T16:00:00Z,FINISHED,Moldova,Malta,Moldova,Malta,2,0,HOME_TEAM,2026-09-27T04:04:50Z
+cmrjjabh9ji67o807jvfxdd63,NT,2025,,2024-06-11T16:00:00Z,FINISHED,Malta,Greece,Malta,Greece,0,2,AWAY_TEAM,2026-09-27T04:04:50Z
+cmrjjabhpji6jo807il4wn3x3,NT,2025,,2024-06-11T16:00:00Z,FINISHED,Greece,Malta,Greece,Malta,2,0,HOME_TEAM,2026-09-27T04:04:50Z
+cmrjjbelzm8a1o807da2rx9kr,NT,2025,,2024-06-07T15:30:00Z,FINISHED,Czechia,Malta,Czechia,Malta,7,1,HOME_TEAM,2026-09-27T04:04:50Z
+cmtyby86sokajlc07axzhp8ez,NT,2025,1.0,2026-09-26T18:45:00Z,FINISHED,North Macedonia,Switzerland,North Macedonia,Switzerland,0,3,AWAY_TEAM,2026-09-27T04:04:50Z
+cmrjfzofreh5ft507wldekw35,NT,2025,,2026-06-01T17:30:00Z,FINISHED,Türkiye,North Macedonia,Turkey,North Macedonia,4,0,HOME_TEAM,2026-09-27T04:04:50Z
+cmrjhdk2tv3woo807b7ym79w4,NT,2025,,2025-11-13T17:00:00Z,FINISHED,North Macedonia,Latvia,North Macedonia,Latvia,0,0,DRAW,2026-09-27T04:04:50Z
+cmrjhol1kk0mno807fpyt63h1,NT,2025,,2025-09-04T15:00:00Z,FINISHED,Saudi Arabia,North Macedonia,Saudi Arabia,N. Macedonia,2,1,HOME_TEAM,2026-09-27T04:04:50Z
+cmrjir21h7tsjo807etbbcojl,NT,2025,6.0,2024-11-17T14:00:00Z,FINISHED,North Macedonia,Faroe Islands,North Macedonia,Faroe Islands,1,0,HOME_TEAM,2026-09-27T04:04:50Z
+cmrjiqn9f6skro807uo3pg2ps,NT,2025,5.0,2024-11-14T19:45:00Z,FINISHED,North Macedonia,Latvia,North Macedonia,Latvia,1,0,HOME_TEAM,2026-09-27T04:04:50Z
+cmrjivbdjj25fo807pt8e59dr,NT,2025,4.0,2024-10-13T16:00:00Z,FINISHED,Armenia,North Macedonia,Armenia,North Macedonia,0,2,AWAY_TEAM,2026-09-27T04:04:50Z
+cmrjius64hqwjo807q7oh9h5l,NT,2025,3.0,2024-10-10T16:00:00Z,FINISHED,Latvia,North Macedonia,Latvia,North Macedonia,0,3,AWAY_TEAM,2026-09-27T04:04:50Z
+cmrjizbhytbiyo807lc1sny2x,NT,2025,2.0,2024-09-10T18:45:00Z,FINISHED,North Macedonia,Armenia,North Macedonia,Armenia,2,0,HOME_TEAM,2026-09-27T04:04:50Z
+cmrjj1msbzjl1o807r6vysdu2,NT,2025,1.0,2024-09-07T13:00:00Z,FINISHED,Faroe Islands,North Macedonia,Faroe Islands,North Macedonia,1,1,DRAW,2026-09-27T04:04:50Z
+cmrjjbrnnmy5no80704708fve,NT,2025,,2024-06-10T16:00:00Z,FINISHED,Czechia,North Macedonia,Czechia,North Macedonia,2,1,HOME_TEAM,2026-09-27T04:04:50Z
+cmrjjb9aaludso807u7zrhhet,NT,2025,,2024-06-03T17:00:00Z,FINISHED,Croatia,North Macedonia,Croatia,North Macedonia,3,0,HOME_TEAM,2026-09-27T04:04:50Z
+cmtyby2i2oim2lc075is3t6pc,NT,2025,1.0,2026-09-26T13:00:00Z,FINISHED,Slovenia,Scotland,Slovenia,Scotland,0,0,DRAW,2026-09-27T04:04:50Z
+cmrjfzyguewgwt507pkakrk4a,NT,2025,,2026-06-07T18:45:00Z,FINISHED,Croatia,Slovenia,Croatia,Slovenia,2,1,HOME_TEAM,2026-09-27T04:04:50Z
+cmrjfzr1kekjyt507g4g63sgv,NT,2025,,2026-06-04T16:00:00Z,FINISHED,Slovenia,Cyprus,Slovenia,Cyprus,1,1,DRAW,2026-09-27T04:04:50Z
+cmrjgywaiwtufo807ier14tol,NT,2025,,2026-03-31T16:00:00Z,FINISHED,Montenegro,Slovenia,Montenegro,Slovenia,2,3,AWAY_TEAM,2026-09-27T04:04:50Z
+cmrjhy9ys5dxao807ybxsq56c,NT,2025,,2025-06-06T17:00:00Z,FINISHED,Luxembourg,Slovenia,Luxembourg,Slovenia,0,1,AWAY_TEAM,2026-09-27T04:04:50Z
+cmrjiahq50nhmo807aulpecdo,NT,2025,,2025-03-20T19:45:00Z,FINISHED,Slovakia,Slovenia,Slovakia,Slovenia,0,0,DRAW,2026-09-27T04:04:50Z
+cmrjiv8eiivuqo8079t0ixqvq,NT,2025,4.0,2024-10-13T13:00:00Z,FINISHED,Kazakhstan,Slovenia,Kazakhstan,Slovenia,0,1,AWAY_TEAM,2026-09-27T04:04:50Z
+cmrjiz9wat67ko807q7ibs59v,NT,2025,2.0,2024-09-09T18:45:00Z,FINISHED,Slovenia,Kazakhstan,Slovenia,Kazakhstan,3,0,HOME_TEAM,2026-09-27T04:04:50Z
+cmrjjbix1mfeio807n6d7vpy9,NT,2025,,2024-06-08T13:00:00Z,FINISHED,Slovenia,Bulgaria,Slovenia,Bulgaria,1,1,DRAW,2026-09-27T04:04:50Z
+cmrjjba2zlx2bo807r95mwu2x,NT,2025,,2024-06-04T16:00:00Z,FINISHED,Slovenia,Armenia,Slovenia,Armenia,2,1,HOME_TEAM,2026-09-27T04:04:50Z
+cmrjfzw0eesm8t507lf0o329w,NT,2025,,2026-06-06T19:00:00Z,FINISHED,Switzerland,Australia,Switzerland,Australia,1,1,DRAW,2026-09-27T04:04:50Z
+cmrjg0vb9gbxwt507xg5cirb6,NT,2025,,2026-05-31T13:00:00Z,FINISHED,Switzerland,Jordan,Switzerland,Jordan,4,1,HOME_TEAM,2026-09-27T04:04:50Z
+cmrjgy9qvvlm5o8076w9eezbw,NT,2025,,2026-03-27T19:45:00Z,FINISHED,Switzerland,Germany,Switzerland,Germany,3,4,AWAY_TEAM,2026-09-27T04:04:50Z
+cmrjhylcg61sso807gd5pa2ax,NT,2025,,2025-06-11T00:00:00Z,FINISHED,United States,Switzerland,United States,Switzerland,0,4,AWAY_TEAM,2026-09-27T04:04:50Z
+cmrjhyet15n88o8073gctz881,NT,2025,,2025-06-07T20:00:00Z,FINISHED,Mexico,Switzerland,Mexico,Switzerland,2,4,AWAY_TEAM,2026-09-27T04:04:50Z
+cmrjib83b2ga2o807ujfdjna5,NT,2025,,2025-03-25T19:45:00Z,FINISHED,Switzerland,Luxembourg,Switzerland,Luxembourg,3,1,HOME_TEAM,2026-09-27T04:04:50Z
+cmrjioo8l1cvpo807o747tx9l,NT,2025,6.0,2024-11-18T19:45:00Z,FINISHED,Spain,Switzerland,Spain,Switzerland,3,2,HOME_TEAM,2026-09-27T04:04:50Z
+cmrjiqp2d6xkgo807zigp4kwt,NT,2025,5.0,2024-11-15T19:45:00Z,FINISHED,Switzerland,Serbia,Switzerland,Serbia,1,1,DRAW,2026-09-27T04:04:50Z
+cmrjiv4qqilepo8072kwkpdaq,NT,2025,3.0,2024-10-12T18:45:00Z,FINISHED,Serbia,Switzerland,Serbia,Switzerland,2,0,HOME_TEAM,2026-09-27T04:04:50Z
+cmrjj20y10jn6o8073osgm6r3,NT,2025,2.0,2024-09-08T18:45:00Z,FINISHED,Switzerland,Spain,Switzerland,Spain,1,4,AWAY_TEAM,2026-09-27T04:04:50Z
+cmrjjba3plx2oo807ydgr08pk,NT,2025,,2024-06-04T18:15:00Z,FINISHED,Switzerland,Estonia,Switzerland,Estonia,4,0,HOME_TEAM,2026-09-27T04:04:50Z
+cmrjfzw1sesnet5075epcg5m6,NT,2025,,2026-06-06T20:00:00Z,FINISHED,Bolivia,Scotland,Bolivia,Scotland,0,4,AWAY_TEAM,2026-09-27T04:04:50Z
+cmrjg0pv6g43vt507qnod3afu,NT,2025,,2026-05-30T12:00:00Z,FINISHED,Scotland,Curaçao,Scotland,Curacao,4,1,HOME_TEAM,2026-09-27T04:04:50Z
+cmrjgywxmwvvfo8075z5hrt28,NT,2025,,2026-03-31T18:30:00Z,FINISHED,Scotland,Ivory Coast,Scotland,Ivory Coast,0,1,AWAY_TEAM,2026-09-27T04:04:50Z
+cmrjgykxkw4bgo807lwqf9gfz,NT,2025,,2026-03-28T17:00:00Z,FINISHED,Scotland,Japan,Scotland,Japan,0,1,AWAY_TEAM,2026-09-27T04:04:50Z
+cmrjhyjko5wnvo807ehhvohbr,NT,2025,,2025-06-09T16:00:00Z,FINISHED,Liechtenstein,Scotland,Liechtenstein,Scotland,0,4,AWAY_TEAM,2026-09-27T04:04:50Z
+cmrjhyack5ekro807s1ys2w9h,NT,2025,,2025-06-06T18:45:00Z,FINISHED,Scotland,Iceland,Scotland,Iceland,1,3,AWAY_TEAM,2026-09-27T04:04:50Z
+cmrjib2z521tdo807oyzrcwjh,NT,2025,,2025-03-23T17:00:00Z,FINISHED,Scotland,Greece,Scotland,Greece,0,3,AWAY_TEAM,2026-09-27T04:04:50Z
+cmrjiahpp0nhao8074x9irrbz,NT,2025,,2025-03-20T19:45:00Z,FINISHED,Greece,Scotland,Greece,Scotland,0,1,AWAY_TEAM,2026-09-27T04:04:50Z
+cmrjiqp266xkao8072gwm0dag,NT,2025,5.0,2024-11-15T19:45:00Z,FINISHED,Scotland,Croatia,Scotland,Croatia,1,0,HOME_TEAM,2026-09-27T04:04:50Z
+cmrjiv39eihvho8072dft0yr5,NT,2025,3.0,2024-10-12T16:00:00Z,FINISHED,Croatia,Scotland,Croatia,Scotland,2,1,HOME_TEAM,2026-09-27T04:04:50Z
+cmrjjbfy1ma67o807kkzdtuf6,NT,2025,,2024-06-07T18:45:00Z,FINISHED,Scotland,Finland,Scotland,Finland,2,2,DRAW,2026-09-27T04:04:50Z
+cmtwihi925efkqs07pfggcxil,NT,2025,1.0,2026-09-24T18:45:00Z,FINISHED,Netherlands,Germany,Netherlands,Germany,1,1,DRAW,2026-09-27T04:04:50Z
+cmrjfzvpves4jt50749qaf06y,NT,2025,,2026-06-06T18:30:00Z,FINISHED,United States,Germany,USA,Germany,1,2,AWAY_TEAM,2026-09-27T04:04:50Z
+cmrjg0x7egf08t507cqh78ll6,NT,2025,,2026-05-31T18:45:00Z,FINISHED,Germany,Finland,Germany,Finland,4,0,HOME_TEAM,2026-09-27T04:04:50Z
+cmrjgyurowp99o80783zrylzs,NT,2025,,2026-03-30T18:45:00Z,FINISHED,Germany,Ghana,Germany,Ghana,2,1,HOME_TEAM,2026-09-27T04:04:50Z
+cmrjhyh9x5ry2o807dczxwm4o,NT,2025,,2025-06-08T13:00:00Z,FINISHED,Germany,France,Germany,France,0,2,AWAY_TEAM,2026-09-27T04:04:50Z
+cmrjib3s823kqo8077pb20g02,NT,2025,,2025-03-23T19:45:00Z,FINISHED,Germany,Italy,Germany,Italy,3,3,DRAW,2026-09-27T04:04:50Z
+cmrjiahoj0ngoo807f3xkqwbf,NT,2025,,2025-03-20T19:45:00Z,FINISHED,Italy,Germany,Italy,Germany,1,2,AWAY_TEAM,2026-09-27T04:04:50Z
+cmrjivdcpj8pbo807horap48b,NT,2025,4.0,2024-10-14T18:45:00Z,FINISHED,Germany,Netherlands,Germany,Netherlands,1,0,HOME_TEAM,2026-09-27T04:04:50Z
+cmrjizbhstbivo8077e4ugzt1,NT,2025,2.0,2024-09-10T18:45:00Z,FINISHED,Netherlands,Germany,Netherlands,Germany,2,2,DRAW,2026-09-27T04:04:50Z
+cmrjjbfvqma4zo807k9ic3miu,NT,2025,,2024-06-07T18:45:00Z,FINISHED,Germany,Greece,Germany,Greece,2,1,HOME_TEAM,2026-09-27T04:04:50Z
+cmrjfzz4hexqgt507vpaua92n,NT,2025,,2026-06-08T18:45:00Z,FINISHED,Netherlands,Uzbekistan,Netherlands,Uzbekistan,2,1,HOME_TEAM,2026-09-27T04:04:50Z
+cmrjfzqgeejx0t5078c10n6z6,NT,2025,,2026-06-03T18:45:00Z,FINISHED,Netherlands,Algeria,Netherlands,Algeria,0,1,AWAY_TEAM,2026-09-27T04:04:50Z
+cmrjgywwcwvumo8072c0w8xp6,NT,2025,,2026-03-31T18:45:00Z,FINISHED,Netherlands,Ecuador,Netherlands,Ecuador,1,1,DRAW,2026-09-27T04:04:50Z
+cmrjiah7c0lyro807tlxkankm,NT,2025,,2025-03-20T19:45:00Z,FINISHED,Netherlands,Spain,Netherlands,Spain,2,2,DRAW,2026-09-27T04:04:50Z
+cmrjjbrv2myq9o807x0l2txws,NT,2025,,2024-06-10T18:45:00Z,FINISHED,Netherlands,Iceland,Netherlands,Iceland,4,0,HOME_TEAM,2026-09-27T04:04:50Z
+cmrjjbcxvm4w8o807pbay0i9d,NT,2025,,2024-06-06T18:45:00Z,FINISHED,Netherlands,Canada,Netherlands,Canada,4,0,HOME_TEAM,2026-09-27T04:04:50Z
+cmtwihi985efqqs07rgedzxmt,NT,2025,1.0,2026-09-24T18:45:00Z,FINISHED,Serbia,Greece,Serbia,Greece,1,2,AWAY_TEAM,2026-09-27T04:04:50Z
+cmrjfzyiyewilt507cpgecdij,NT,2025,,2026-06-07T19:00:00Z,FINISHED,Greece,Italy,Greece,Italy,0,1,AWAY_TEAM,2026-09-27T04:04:50Z
+cmrjgy9omvlkfo807x0wkk7xn,NT,2025,,2026-03-27T19:00:00Z,FINISHED,Greece,Paraguay,Greece,Paraguay,0,1,AWAY_TEAM,2026-09-27T04:04:50Z
+cmrjhykv9602no807iezm6o4u,NT,2025,,2025-06-10T18:45:00Z,FINISHED,Greece,Bulgaria,Greece,Bulgaria,4,0,HOME_TEAM,2026-09-27T04:04:50Z
+cmrjhyed15m5po807atuxg3jz,NT,2025,,2025-06-07T18:45:00Z,FINISHED,Greece,Slovakia,Greece,Slovakia,4,1,HOME_TEAM,2026-09-27T04:04:50Z
+cmrjir3e47ww0o807ine85wek,NT,2025,6.0,2024-11-17T17:00:00Z,FINISHED,Finland,Greece,Finland,Greece,0,2,AWAY_TEAM,2026-09-27T04:04:50Z
+cmrjiqmu66r5ko807nhrcezjv,NT,2025,5.0,2024-11-14T19:45:00Z,FINISHED,Greece,England,Greece,England,0,3,AWAY_TEAM,2026-09-27T04:04:50Z
+cmrjiusm9hs7ro807jqqcmp3g,NT,2025,3.0,2024-10-10T18:45:00Z,FINISHED,England,Greece,England,Greece,1,2,AWAY_TEAM,2026-09-27T04:04:50Z
+cmrjj1tzf00i3o807kodk3ex2,NT,2025,1.0,2024-09-07T18:45:00Z,FINISHED,Greece,Finland,Greece,Finland,3,0,HOME_TEAM,2026-09-27T04:04:50Z
+cmrjfzrlfelgwt507ghdldmm7,NT,2025,,2026-06-05T02:00:00Z,FINISHED,Mexico,Serbia,Mexico,Serbia,5,1,HOME_TEAM,2026-09-27T04:04:50Z
+cmrjg0w6lgd2wt507551aiv3b,NT,2025,,2026-05-31T15:00:00Z,FINISHED,Cabo Verde,Serbia,Cape Verde,Serbia,3,0,HOME_TEAM,2026-09-27T04:04:50Z
+cmrjgyw9swttxo807ew6kw468,NT,2025,,2026-03-31T16:00:00Z,FINISHED,Serbia,Saudi Arabia,Serbia,Saudi Arabia,2,1,HOME_TEAM,2026-09-27T04:04:50Z
+cmrjgy9okvlkdo80731twxkko,NT,2025,,2026-03-27T20:00:00Z,FINISHED,Spain,Serbia,Spain,Serbia,3,0,HOME_TEAM,2026-09-27T04:04:50Z
+cmrjivfi4jftso80771d2u4uq,NT,2025,4.0,2024-10-15T18:45:00Z,FINISHED,Spain,Serbia,Spain,Serbia,3,0,HOME_TEAM,2026-09-27T04:04:50Z
+cmrjj1h9wz4iuo807mgjsjie8,NT,2025,1.0,2024-09-05T18:45:00Z,FINISHED,Serbia,Spain,Serbia,Spain,0,0,DRAW,2026-09-27T04:04:50Z
+cmtwihi7l5efeqs07j8rq6kji,NT,2025,1.0,2026-09-24T18:45:00Z,FINISHED,Liechtenstein,Lithuania,Liechtenstein,Lithuania,0,2,AWAY_TEAM,2026-09-27T04:04:50Z
+cmrjgy5wivdo9o807j81cr3ie,NT,2025,,2026-03-26T15:00:00Z,FINISHED,Moldova,Lithuania,Moldova,Lithuania,0,2,AWAY_TEAM,2026-09-27T04:04:50Z
+cmrjiqooa6wmwo807f5n1ik5k,NT,2025,5.0,2024-11-15T17:00:00Z,FINISHED,Cyprus,Lithuania,Cyprus,Lithuania,2,1,HOME_TEAM,2026-09-27T04:04:50Z
+cmrjj1ip8z8l6o807nenzjhut,NT,2025,1.0,2024-09-06T16:00:00Z,FINISHED,Lithuania,Cyprus,Lithuania,Cyprus,0,1,AWAY_TEAM,2026-09-27T04:04:50Z
+cmrjfzxeieuzct507iim47opt,NT,2025,,2026-06-07T13:00:00Z,FINISHED,Liechtenstein,Cyprus,Liechtenstein,Cyprus,0,2,AWAY_TEAM,2026-09-27T04:04:50Z
+cmrjfzrbleky7t5079xtcacse,NT,2025,,2026-06-04T17:00:00Z,FINISHED,Andorra CF,Liechtenstein,Andorra,Liechtenstein,2,0,HOME_TEAM,2026-09-27T04:04:50Z
+cmrjhkwzcb4keo807o30b0cvy,NT,2025,,2025-10-13T16:00:00Z,FINISHED,Montenegro,Liechtenstein,Montenegro,Liechtenstein,2,1,HOME_TEAM,2026-09-27T04:04:50Z
+cmrjioo941cw3o8078kt9sbjt,NT,2025,6.0,2024-11-18T19:45:00Z,FINISHED,Liechtenstein,San Marino,Liechtenstein,San Marino,1,3,AWAY_TEAM,2026-09-27T04:04:50Z
+cmrjiusknhs6jo80721ktqc6e,NT,2025,,2024-10-10T17:30:00Z,FINISHED,Liechtenstein,"Hong Kong, China",Liechtenstein,"Hong Kong, China",1,0,HOME_TEAM,2026-09-27T04:04:50Z
+cmrjj1hqoz67mo807t3g7rx12,NT,2025,1.0,2024-09-05T18:45:00Z,FINISHED,San Marino,Liechtenstein,San Marino,Liechtenstein,1,0,HOME_TEAM,2026-09-27T04:04:50Z
+cmrjjb9a4ludmo807h5mwm06y,NT,2025,,2024-06-03T18:00:00Z,FINISHED,Albania,Liechtenstein,Albania,Liechtenstein,3,0,HOME_TEAM,2026-09-27T04:04:50Z
+cmtyby6ttojy8lc07cchsw5z1,NT,2025,1.0,2026-09-26T16:00:00Z,FINISHED,Iceland,Estonia,Iceland,Estonia,1,1,DRAW,2026-09-27T04:04:50Z
+cmrjhe3wmw9vuo807rn0alt6x,NT,2025,,2025-11-18T17:00:00Z,FINISHED,Cyprus,Estonia,Cyprus,Estonia,2,4,AWAY_TEAM,2026-09-27T04:04:50Z
+cmrjhp8xhlg4do807g5fddcoj,NT,2025,,2025-09-09T16:00:00Z,FINISHED,Estonia,Andorra CF,Estonia,Andorra CF,0,0,DRAW,2026-09-27T04:04:50Z
+cmrjiopr51i6mo807lj35w8jx,NT,2025,6.0,2024-11-19T19:45:00Z,FINISHED,Slovakia,Estonia,Slovakia,Estonia,1,0,HOME_TEAM,2026-09-27T04:04:50Z
+cmrjiqt93779no807vpsis5mt,NT,2025,5.0,2024-11-16T14:00:00Z,FINISHED,Azerbaijan,Estonia,Azerbaijan,Estonia,0,0,DRAW,2026-09-27T04:04:50Z
+cmrjiuu5vhwfco8079m9a9lql,NT,2025,3.0,2024-10-11T16:00:00Z,FINISHED,Estonia,Azerbaijan,Estonia,Azerbaijan,3,1,HOME_TEAM,2026-09-27T04:04:50Z
+cmrjj1ha6z4j2o807idc8asov,NT,2025,1.0,2024-09-05T18:45:00Z,FINISHED,Estonia,Slovakia,Estonia,Slovakia,0,1,AWAY_TEAM,2026-09-27T04:04:50Z
+cmtyby6tpojy4lc07fkvsccja,NT,2025,1.0,2026-09-26T16:00:00Z,FINISHED,Bulgaria,Luxembourg,Bulgaria,Luxembourg,1,2,AWAY_TEAM,2026-09-27T04:04:50Z
+cmrjfzskjen69t507f2k3z95i,NT,2025,,2026-06-05T17:00:00Z,FINISHED,Moldova,Bulgaria,Moldova,Bulgaria,2,2,DRAW,2026-09-27T04:04:50Z
+cmrjfzoizeh75t507hkzr4djt,NT,2025,,2026-06-01T16:00:00Z,FINISHED,Bulgaria,Montenegro,Bulgaria,Montenegro,0,1,AWAY_TEAM,2026-09-27T04:04:50Z
+cmrjhy9o35ddbo807j8chde4p,NT,2025,,2025-06-06T16:00:00Z,FINISHED,Bulgaria,Cyprus,Bulgaria,Cyprus,2,2,DRAW,2026-09-27T04:04:50Z
+cmrjioo8q1cvto807deiw0t7e,NT,2025,6.0,2024-11-18T19:45:00Z,FINISHED,Bulgaria,Belarus,Bulgaria,Belarus,1,1,DRAW,2026-09-27T04:04:50Z
+cmrjiqp2s6xkso807g954n5p5,NT,2025,5.0,2024-11-15T19:45:00Z,FINISHED,Luxembourg,Bulgaria,Luxembourg,Bulgaria,0,1,AWAY_TEAM,2026-09-27T04:04:50Z
+cmrjiv39hihvjo807vozczeaf,NT,2025,3.0,2024-10-12T16:00:00Z,FINISHED,Bulgaria,Luxembourg,Bulgaria,Luxembourg,0,0,DRAW,2026-09-27T04:04:50Z
+cmrjj1habz4j8o807p5hjpy23,NT,2025,1.0,2024-09-05T18:45:00Z,FINISHED,Belarus,Bulgaria,Belarus,Bulgaria,0,0,DRAW,2026-09-27T04:04:50Z
+cmrjg00j8f0gat507ovkbfxti,NT,2025,,2026-06-10T01:00:00Z,FINISHED,Argentina,Iceland,Argentina,Iceland,3,0,HOME_TEAM,2026-09-27T04:04:50Z
+cmrjg0unrgapot507iao144i6,NT,2025,,2026-05-31T10:25:00Z,FINISHED,Japan,Iceland,Japan,Iceland,1,0,HOME_TEAM,2026-09-27T04:04:50Z
+cmrjgywu0wvt3o807w17hc9wb,NT,2025,,2026-03-31T17:30:00Z,FINISHED,Haiti,Iceland,Haiti,Iceland,1,1,DRAW,2026-09-27T04:04:50Z
+cmrjgykxuw4boo807bcpr3md5,NT,2025,,2026-03-28T17:00:00Z,FINISHED,Canada,Iceland,Canada,Iceland,2,2,DRAW,2026-09-27T04:04:50Z
+cmrjh3f6t73aao807su1wdxkn,NT,2025,,2026-02-26T02:00:00Z,FINISHED,Mexico,Iceland,Mexico,Iceland,4,0,HOME_TEAM,2026-09-27T04:04:50Z
+cmrjiqwtf7gk7o807ihenz2k0,NT,2025,5.0,2024-11-16T17:00:00Z,FINISHED,Montenegro,Iceland,Montenegro,Iceland,0,2,AWAY_TEAM,2026-09-27T04:04:50Z
+cmrjivdbsj8olo807tn7r3ibs,NT,2025,4.0,2024-10-14T18:45:00Z,FINISHED,Iceland,Türkiye,Iceland,Türkiye,2,4,AWAY_TEAM,2026-09-27T04:04:50Z
+cmrjiz9wlt67so807jytfcsvr,NT,2025,2.0,2024-09-09T18:45:00Z,FINISHED,Türkiye,Iceland,Türkiye,Iceland,3,1,HOME_TEAM,2026-09-27T04:04:50Z
+cmrjj1k3xzc5bo807gnek23fo,NT,2025,1.0,2024-09-06T18:45:00Z,FINISHED,Iceland,Montenegro,Iceland,Montenegro,2,0,HOME_TEAM,2026-09-27T04:04:50Z
+cmrjjbfv0ma4no807xnbh7ov1,NT,2025,,2024-06-07T18:45:00Z,FINISHED,England,Iceland,England,Iceland,0,1,AWAY_TEAM,2026-09-27T04:04:50Z
+cmrjfzvcoerhat50778msytjc,NT,2025,,2026-06-06T18:00:00Z,FINISHED,Albania,Luxembourg,Albania,Luxembourg,0,1,AWAY_TEAM,2026-09-27T04:04:50Z
+cmrjfzqgoejx6t507p91rb8by,NT,2025,,2026-06-03T18:45:00Z,FINISHED,Luxembourg,Italy,Luxembourg,Italy,0,1,AWAY_TEAM,2026-09-27T04:04:50Z
+cmrjivfipjfu1o807ss5xj9y6,NT,2025,4.0,2024-10-15T18:45:00Z,FINISHED,Belarus,Luxembourg,Belarus,Luxembourg,1,1,DRAW,2026-09-27T04:04:50Z
+cmrjj1x700a98o807talhm6rb,NT,2025,2.0,2024-09-08T13:00:00Z,FINISHED,Luxembourg,Belarus,Luxembourg,Belarus,0,1,AWAY_TEAM,2026-09-27T04:04:50Z
+cmrjjblfumk13o807o56rv3wv,NT,2025,,2024-06-08T18:00:00Z,FINISHED,Belgium,Luxembourg,Belgium,Luxembourg,3,0,HOME_TEAM,2026-09-27T04:04:50Z
+cmrjjbbcrm0xso807axe7tfpx,NT,2025,,2024-06-05T19:00:00Z,FINISHED,France,Luxembourg,France,Luxembourg,3,0,HOME_TEAM,2026-09-27T04:04:50Z
+cmtyby6tqojy6lc071s2gb1yu,NT,2025,1.0,2026-09-26T16:00:00Z,FINISHED,Faroe Islands,Kazakhstan,Faroe Islands,Kazakhstan,1,1,DRAW,2026-09-27T04:04:50Z
+cmrjgyfryvx4uo8070m6hzevo,NT,2025,,2026-03-28T14:00:00Z,FINISHED,San Marino,Faroe Islands,San Marino,Faroe Islands,1,2,AWAY_TEAM,2026-09-27T04:04:50Z
+cmrjhe3u3w9tmo807utrtovd1,NT,2025,,2025-11-18T17:00:00Z,FINISHED,Faroe Islands,Kazakhstan,Faroe Islands,Kazakhstan,1,0,HOME_TEAM,2026-09-27T04:04:50Z
+cmrjiqmrs6r3wo807hy22xv4g,NT,2025,5.0,2024-11-14T17:00:00Z,FINISHED,Armenia,Faroe Islands,Armenia,Faroe Islands,0,1,AWAY_TEAM,2026-09-27T04:04:50Z
+cmrjivcbgj58wo80736hozqsf,NT,2025,4.0,2024-10-13T18:45:00Z,FINISHED,Faroe Islands,Latvia,Faroe Islands,Latvia,1,1,DRAW,2026-09-27T04:04:50Z
+cmrjiuskihs6fo8079sk1cdn3,NT,2025,3.0,2024-10-10T18:45:00Z,FINISHED,Faroe Islands,Armenia,Faroe Islands,Armenia,2,2,DRAW,2026-09-27T04:04:50Z
+cmrjizaxnt9spo807lxbfiy0z,NT,2025,2.0,2024-09-10T16:00:00Z,FINISHED,Latvia,Faroe Islands,Latvia,Faroe Islands,1,0,HOME_TEAM,2026-09-27T04:04:50Z
+cmtyby87eokarlc074e1fmbrh,NT,2025,1.0,2026-09-26T18:45:00Z,FINISHED,Slovakia,Moldova,Slovakia,Moldova,2,0,HOME_TEAM,2026-09-27T04:04:50Z
+cmrjfzztqez12t507bxbv5vn9,NT,2025,,2026-06-09T15:00:00Z,FINISHED,Armenia,Moldova,Armenia,Moldova,1,1,DRAW,2026-09-27T04:04:50Z
+cmrjgyudywocuo807r0re1edx,NT,2025,,2026-03-30T16:00:00Z,FINISHED,Cyprus,Moldova,Cyprus,Moldova,3,2,HOME_TEAM,2026-09-27T04:04:50Z
+cmrjiqwts7gkfo807t5qpx1k1,NT,2025,5.0,2024-11-16T17:00:00Z,FINISHED,Andorra CF,Moldova,Andorra,Moldova,0,1,AWAY_TEAM,2026-09-27T04:04:50Z
+cmrjius69hqwno807fpsxzia0,NT,2025,3.0,2024-10-10T16:00:00Z,FINISHED,Moldova,Andorra CF,Moldova,Andorra,2,0,HOME_TEAM,2026-09-27T04:04:50Z
+cmrjizahht86jo8078uin07nu,NT,2025,,2024-09-10T11:00:00Z,FINISHED,Moldova,San Marino,Moldova,San Marino,1,0,HOME_TEAM,2026-09-27T04:04:50Z
+cmrjjbkrfmirto8071qumju9z,NT,2025,,2024-06-08T16:00:00Z,FINISHED,Moldova,Cyprus,Moldova,Cyprus,3,2,HOME_TEAM,2026-09-27T04:04:50Z
+cmrjfzum4eqqtt507efxy7dvk,NT,2025,,2026-06-06T14:00:00Z,FINISHED,Armenia,Kazakhstan,Armenia,Kazakhstan,1,1,DRAW,2026-09-27T04:04:50Z
+cmrjhzqto8m7so80706td4xgb,NT,2025,,2025-06-05T17:30:00Z,FINISHED,Belarus,Kazakhstan,Belarus,Kazakhstan,4,1,HOME_TEAM,2026-09-27T04:04:50Z
+cmrjiaf9l0h1eo8078u35rhlo,NT,2025,,2025-03-19T16:30:00Z,FINISHED,Kazakhstan,Curaçao,Kazakhstan,Curaçao,2,0,HOME_TEAM,2026-09-27T04:04:50Z
+cmrjif47gcnvwo807e7r581ed,NT,2025,,2025-02-17T14:00:00Z,FINISHED,Kazakhstan,Korea DPR,Kazakhstan,Korea DPR,0,2,AWAY_TEAM,2026-09-27T04:04:50Z
+cmrjjaayzjggvo80700fevfe3,NT,2025,,2024-06-11T14:00:00Z,FINISHED,Azerbaijan,Kazakhstan,Azerbaijan,Kazakhstan,3,2,HOME_TEAM,2026-09-27T04:04:50Z
+cmrjjbenpm8azo80739ruvaei,NT,2025,,2024-06-07T16:00:00Z,FINISHED,Armenia,Kazakhstan,Armenia,Kazakhstan,2,1,HOME_TEAM,2026-09-27T04:04:50Z
+cmrjfzsbcemp8t507nlouqu2i,NT,2025,,2026-06-05T16:30:00Z,FINISHED,Slovakia,Montenegro,Slovakia,Montenegro,2,2,DRAW,2026-09-27T04:04:50Z
+cmrjivdcmj8p9o807m68vvm7n,NT,2025,4.0,2024-10-14T16:00:00Z,FINISHED,Azerbaijan,Slovakia,Azerbaijan,Slovakia,1,3,AWAY_TEAM,2026-09-27T04:04:50Z
+cmrjj1zrv0fu0o807lcgviyie,NT,2025,2.0,2024-09-08T16:00:00Z,FINISHED,Slovakia,Azerbaijan,Slovakia,Azerbaijan,2,0,HOME_TEAM,2026-09-27T04:04:50Z
+cmrjjbb1zm08do807q7jj3qm5,NT,2025,,2024-06-05T16:00:00Z,FINISHED,Slovakia,San Marino,Slovakia,San Marino,4,0,HOME_TEAM,2026-09-27T04:04:50Z
+cmtybxyc4ogn7lc0714ddg14g,NT,2025,1.0,2026-09-25T18:45:00Z,FINISHED,Türkiye,France,Turkey,France,0,1,AWAY_TEAM,2026-09-27T04:04:50Z
+cmrjfzrk8elg7t507so3ligft,NT,2025,,2026-06-04T19:10:00Z,FINISHED,France,Ivory Coast,France,Ivory Coast,1,2,AWAY_TEAM,2026-09-27T04:04:50Z
+cmrjgyt3nwkcno807bzgmc969,NT,2025,,2026-03-29T19:00:00Z,FINISHED,Colombia,France,Colombia,France,1,3,AWAY_TEAM,2026-09-27T04:04:50Z
+cmrjgy6a1veyko807p53jvm9g,NT,2025,,2026-03-26T20:00:00Z,FINISHED,Brazil,France,Brazil,France,1,2,AWAY_TEAM,2026-09-27T04:04:50Z
+cmrjhzqt68m7eo8072r0vdbtv,NT,2025,,2025-06-05T19:00:00Z,FINISHED,Spain,France,Spain,France,5,4,HOME_TEAM,2026-09-27T04:04:50Z
+cmrjiahoe0ngmo807ph58r8i8,NT,2025,,2025-03-20T19:45:00Z,FINISHED,Croatia,France,Croatia,France,2,0,HOME_TEAM,2026-09-27T04:04:50Z
+cmrjir3v67yfco807tkplkzf9,NT,2025,6.0,2024-11-17T19:45:00Z,FINISHED,Italy,France,Italy,France,1,3,AWAY_TEAM,2026-09-27T04:04:50Z
+cmrjivdccj8p1o807ahiofn5t,NT,2025,4.0,2024-10-14T18:45:00Z,FINISHED,Belgium,France,Belgium,France,1,2,AWAY_TEAM,2026-09-27T04:04:50Z
+cmrjiz9wrt67yo807leirnsyq,NT,2025,2.0,2024-09-09T18:45:00Z,FINISHED,France,Belgium,France,Belgium,2,0,HOME_TEAM,2026-09-27T04:04:50Z
+cmrjj1k46zc5jo807neq0coce,NT,2025,1.0,2024-09-06T18:45:00Z,FINISHED,France,Italy,France,Italy,1,3,AWAY_TEAM,2026-09-27T04:04:50Z
+cmrjjbqgtmus7o807zjwv88hy,NT,2025,,2024-06-09T19:15:00Z,FINISHED,France,Canada,France,Canada,0,0,DRAW,2026-09-27T04:04:50Z
+cmrjfzw16esmwt507yl0v50fp,NT,2025,,2026-06-06T22:00:00Z,FINISHED,Venezuela,Türkiye,Venezuela,Turkey,1,2,AWAY_TEAM,2026-09-27T04:04:50Z
+cmrjhyldd61tio807u91wk5ds,NT,2025,,2025-06-11T01:00:00Z,FINISHED,Mexico,Türkiye,Mexico,Türkiye,1,0,HOME_TEAM,2026-09-27T04:04:50Z
+cmrjhyeeb5m6do807tdnyqhzl,NT,2025,,2025-06-07T19:30:00Z,FINISHED,United States,Türkiye,United States,Türkiye,1,2,AWAY_TEAM,2026-09-27T04:04:50Z
+cmrjiopri1i6wo8072fjsv3ql,NT,2025,6.0,2024-11-19T19:45:00Z,FINISHED,Montenegro,Türkiye,Montenegro,Türkiye,3,1,HOME_TEAM,2026-09-27T04:04:50Z
+cmrjiuv0shydbo807po4ew5iq,NT,2025,3.0,2024-10-11T18:45:00Z,FINISHED,Türkiye,Montenegro,Türkiye,Montenegro,1,0,HOME_TEAM,2026-09-27T04:04:50Z
+cmrjjba4flx3ao807h791hv8k,NT,2025,,2024-06-04T19:00:00Z,FINISHED,Italy,Türkiye,Italy,Türkiye,0,0,DRAW,2026-09-27T04:04:50Z
+cmtybxyc2ogn5lc076zmskfc3,NT,2025,1.0,2026-09-25T18:45:00Z,FINISHED,Italy,Belgium,Italy,Belgium,0,2,AWAY_TEAM,2026-09-27T04:04:50Z
+cmrjfzualeq62t507hnily3g2,NT,2025,,2026-06-06T13:00:00Z,FINISHED,Belgium,Tunisia,Belgium,Tunisia,5,0,HOME_TEAM,2026-09-27T04:04:50Z
+cmrjfzp8jeij6t507mb9unz0e,NT,2025,,2026-06-02T16:00:00Z,FINISHED,Croatia,Belgium,Croatia,Belgium,0,2,AWAY_TEAM,2026-09-27T04:04:50Z
+cmrjgyxggwxxmo8072nqwfwrj,NT,2025,,2026-04-01T01:00:00Z,FINISHED,Mexico,Belgium,Mexico,Belgium,1,1,DRAW,2026-09-27T04:04:50Z
+cmrjgym4pw70po8070gmgd0fl,NT,2025,,2026-03-28T19:30:00Z,FINISHED,United States,Belgium,USA,Belgium,2,5,AWAY_TEAM,2026-09-27T04:04:50Z
+cmrjiqn8z6sklo807uwrii7p6,NT,2025,5.0,2024-11-14T19:45:00Z,FINISHED,Belgium,Italy,Belgium,Italy,0,1,AWAY_TEAM,2026-09-27T04:04:50Z
+cmrjiuskchs6bo807h465sai3,NT,2025,3.0,2024-10-10T18:45:00Z,FINISHED,Italy,Belgium,Italy,Belgium,2,2,DRAW,2026-09-27T04:04:50Z
+cmrjjbbdvm0ylo807cmw1b9wg,NT,2025,,2024-06-05T18:30:00Z,FINISHED,Belgium,Montenegro,Belgium,Montenegro,2,0,HOME_TEAM,2026-09-27T04:04:50Z
+cmtyby878okanlc07qcg3s9d8,NT,2025,1.0,2026-09-26T18:45:00Z,FINISHED,England,Spain,England,Spain,2,3,AWAY_TEAM,2026-09-27T04:04:50Z
+cmrjfzziheyiht507hcfiqtr1,NT,2025,,2026-06-09T02:00:00Z,FINISHED,Peru,Spain,Peru,Spain,1,3,AWAY_TEAM,2026-09-27T04:04:50Z
+cmrjfzrbneky9t507z2mdch5t,NT,2025,,2026-06-04T19:00:00Z,FINISHED,Spain,Iraq,Spain,Iraq,1,1,DRAW,2026-09-27T04:04:50Z
+cmrjgywvewvtzo8073pfdkcgm,NT,2025,,2026-03-31T19:00:00Z,FINISHED,Spain,Egypt,Spain,Egypt,0,0,DRAW,2026-09-27T04:04:50Z
+cmrjjbbdqm0yho80793ahnkm8,NT,2025,,2024-06-05T19:30:00Z,FINISHED,Spain,Andorra CF,Spain,Andorra,5,0,HOME_TEAM,2026-09-27T04:04:50Z
+cmrjg0124f1cyt507n76mcqcp,NT,2025,,2026-06-10T20:00:00Z,FINISHED,England,Costa Rica,England,Costa Rica,3,0,HOME_TEAM,2026-09-27T04:04:50Z
+cmrjfzw15esmut507lf40wa7b,NT,2025,,2026-06-06T20:00:00Z,FINISHED,England,New Zealand,England,New Zealand,1,0,HOME_TEAM,2026-09-27T04:04:50Z
+cmrjgyww6wvujo8077x13cbqb,NT,2025,,2026-03-31T18:45:00Z,FINISHED,England,Japan,England,Japan,0,1,AWAY_TEAM,2026-09-27T04:04:50Z
+cmrjgy9qvvlm3o807a0hcts0t,NT,2025,,2026-03-27T19:45:00Z,FINISHED,England,Uruguay,England,Uruguay,1,1,DRAW,2026-09-27T04:04:50Z
+cmrjhykvt602vo807jc4tysry,NT,2025,,2025-06-10T18:45:00Z,FINISHED,England,Senegal,England,Senegal,1,3,AWAY_TEAM,2026-09-27T04:04:50Z
+cmrjivbdej25bo8071ng1n6or,NT,2025,4.0,2024-10-13T16:00:00Z,FINISHED,Finland,England,Finland,England,1,3,AWAY_TEAM,2026-09-27T04:04:50Z
+cmrjizbhktbipo807x41gtyp0,NT,2025,2.0,2024-09-10T18:45:00Z,FINISHED,England,Finland,England,Finland,2,0,HOME_TEAM,2026-09-27T04:04:50Z
+cmtyby873okallc076bkjczth,NT,2025,1.0,2026-09-26T18:45:00Z,FINISHED,Czechia,Croatia,Czech Republic,Croatia,1,2,AWAY_TEAM,2026-09-27T04:04:50Z
+cmrjgyxi8wxz6o807omqcuz2p,NT,2025,,2026-04-01T00:00:00Z,FINISHED,Brazil,Croatia,Brazil,Croatia,3,1,HOME_TEAM,2026-09-27T04:04:50Z
+cmrjgy6bqvezko807txbcmkut,NT,2025,,2026-03-26T23:30:00Z,FINISHED,Colombia,Croatia,Colombia,Croatia,1,2,AWAY_TEAM,2026-09-27T04:04:50Z
+cmrjfzrkxelgit5077mg23qlc,NT,2025,,2026-06-05T00:00:00Z,FINISHED,Czechia,Guatemala,Czech Republic,Guatemala,3,1,HOME_TEAM,2026-09-27T04:04:50Z
+cmrjhdk38v3wwo807nyzaatb8,NT,2025,,2025-11-13T17:00:00Z,FINISHED,Czechia,San Marino,Czech Republic,San Marino,1,0,HOME_TEAM,2026-09-27T04:04:50Z
+cmrjhp73ulbpko807axpf5se4,NT,2025,,2025-09-08T17:15:00Z,FINISHED,Czechia,Saudi Arabia,Czechia,Saudi Arabia,1,1,DRAW,2026-09-27T04:04:50Z
+cmrjiqxym7jq9o807ve3btpsd,NT,2025,5.0,2024-11-16T19:45:00Z,FINISHED,Albania,Czechia,Albania,Czechia,0,0,DRAW,2026-09-27T04:04:50Z
+cmrjiuv0fhyd1o807qetqohsw,NT,2025,3.0,2024-10-11T18:45:00Z,FINISHED,Czechia,Albania,Czechia,Albania,2,0,HOME_TEAM,2026-09-27T04:04:50Z
+cmtyby87bokaplc07ld908d2w,NT,2025,1.0,2026-09-26T18:45:00Z,FINISHED,Albania,Belarus,Albania,Belarus,2,0,HOME_TEAM,2026-09-27T04:04:50Z
+cmrjfzzuhez1nt507cwnzs43u,NT,2025,,2026-06-09T16:30:00Z,FINISHED,Belarus,Burkina Faso,Belarus,Burkina Faso,2,2,DRAW,2026-09-27T04:04:50Z
+cmrjfzs8femn8t507xllmd805,NT,2025,,2026-06-05T16:00:00Z,FINISHED,Belarus,Syria,Belarus,Syria,4,1,HOME_TEAM,2026-09-27T04:04:50Z
+cmrjgyrn8whfno807vsnfy535,NT,2025,,2026-03-29T14:00:00Z,FINISHED,Armenia,Belarus,Armenia,Belarus,1,2,AWAY_TEAM,2026-09-27T04:04:50Z
+cmrjgy5u3vdm9o807owr47meo,NT,2025,,2026-03-26T17:00:00Z,FINISHED,Cyprus,Belarus,Cyprus,Belarus,0,1,AWAY_TEAM,2026-09-27T04:04:50Z
+cmrjhykc35ykko807wi610hsr,NT,2025,,2025-06-10T17:00:00Z,FINISHED,Belarus,Russia,Belarus,Russia,1,4,AWAY_TEAM,2026-09-27T04:04:50Z
+cmrjib74a2d9yo807qq42h3dd,NT,2025,,2025-03-25T17:45:00Z,FINISHED,Azerbaijan,Belarus,Azerbaijan,Belarus,0,2,AWAY_TEAM,2026-09-27T04:04:50Z
+cmrjiagth0kwfo8077x5nf9sy,NT,2025,,2025-03-20T11:00:00Z,FINISHED,Tajikistan,Belarus,Tajikistan,Belarus,0,5,AWAY_TEAM,2026-09-27T04:04:50Z
+cmrjjbfikm9qoo8074ljp2q6q,NT,2025,,2024-06-07T17:00:00Z,FINISHED,Belarus,Russia,Belarus,Russia,0,4,AWAY_TEAM,2026-09-27T04:04:50Z
+cmrjhi3yk50n8o807h5r2ryor,NT,2025,,2025-10-14T17:00:00Z,FINISHED,Albania,Jordan,Albania,Jordan,4,2,HOME_TEAM,2026-09-27T04:04:50Z
+cmrjjbf4gm930o807j3x122f6,NT,2025,,2024-06-07T17:00:00Z,FINISHED,Albania,Azerbaijan,Albania,Azerbaijan,3,1,HOME_TEAM,2026-09-27T04:04:50Z
+cmtyby6tuojyalc075ewc6ifb,NT,2025,1.0,2026-09-26T16:00:00Z,FINISHED,San Marino,Finland,San Marino,Finland,0,7,AWAY_TEAM,2026-09-27T04:04:50Z
+cmrjhe2jxw5sso807szjubvt8,NT,2025,,2025-11-17T17:00:00Z,FINISHED,Finland,Andorra CF,Finland,Andorra,4,0,HOME_TEAM,2026-09-27T04:04:50Z
+cmrjg0047ezpet507jw6iqoth,NT,2025,,2026-06-09T18:00:00Z,FINISHED,Azerbaijan,San Marino,Azerbaijan,San Marino,2,1,HOME_TEAM,2026-09-27T04:04:50Z
+cmrjfzskcen61t507aq3ecfdf,NT,2025,,2026-06-05T17:00:00Z,FINISHED,San Marino,Bangladesh,San Marino,Bangladesh,1,2,AWAY_TEAM,2026-09-27T04:04:50Z
+cmrjgywalwtuho807vdsfyeqq,NT,2025,,2026-03-31T16:00:00Z,FINISHED,San Marino,Andorra CF,San Marino,Andorra,0,0,DRAW,2026-09-27T04:04:50Z
+cmrjhv6rez17bo807h5qj6rh1,NT,2025,,2025-08-02T15:30:00Z,FINISHED,Modena,San Marino,Modena,San Marino,4,1,HOME_TEAM,2026-09-27T04:04:50Z
+cmrjivbf2j26jo8070xrpkayy,NT,2025,,2024-10-13T16:00:00Z,FINISHED,Andorra CF,San Marino,Andorra,San Marino,2,0,HOME_TEAM,2026-09-27T04:04:50Z
+cmrjjabgcji5fo8077tr4qb9e,NT,2025,,2024-06-11T16:00:00Z,FINISHED,San Marino,Cyprus,San Marino,Cyprus,1,4,AWAY_TEAM,2026-09-27T04:04:50Z
+cmtybxyc6ogn9lc071bsz3gxe,NT,2025,1.0,2026-09-25T18:45:00Z,FINISHED,Montenegro,Cyprus,Montenegro,Cyprus,2,1,HOME_TEAM,2026-09-27T04:04:50Z
+cmrjgy8fyvjlko807v4wlrdlw,NT,2025,,2026-03-27T17:00:00Z,FINISHED,Montenegro,Andorra CF,Montenegro,Andorra,2,0,HOME_TEAM,2026-09-27T04:04:50Z
+cmrjhyjin5wmjo807ch1lf08e,NT,2025,,2025-06-09T18:00:00Z,FINISHED,Montenegro,Armenia,Montenegro,Armenia,2,2,DRAW,2026-09-27T04:04:50Z
+cmtybxxp7ogchlc07gaqdrgel,NT,2025,1.0,2026-09-25T16:00:00Z,FINISHED,Armenia,Latvia,Armenia,Latvia,2,0,HOME_TEAM,2026-09-27T04:04:50Z
+cmrjhycop5jgao807skycpzl2,NT,2025,,2025-06-07T13:00:00Z,FINISHED,Latvia,Azerbaijan,Latvia,Azerbaijan,0,0,DRAW,2026-09-27T04:04:50Z
+cmrjir21a7tseo807e52aydx6,NT,2025,6.0,2024-11-17T14:00:00Z,FINISHED,Latvia,Armenia,Latvia,Armenia,1,2,AWAY_TEAM,2026-09-27T04:04:50Z
+cmrjj1rl8ztozo807i1uijbhh,NT,2025,1.0,2024-09-07T16:00:00Z,FINISHED,Armenia,Latvia,Armenia,Latvia,4,1,HOME_TEAM,2026-09-27T04:04:50Z
+cmrjg0n5sfz8pt5079chcun11,NT,2025,,2026-05-29T16:00:00Z,FINISHED,Iraq,Andorra CF,Iraq,Andorra,1,0,HOME_TEAM,2026-09-27T04:04:50Z
+cmt71rpwvsym6t10753oza0um,NT,2025,,2026-09-23T16:00:00Z,FINISHED,Azerbaijan,Tajikistan,Azerbaijan,Tajikistan,1,0,HOME_TEAM,2026-09-27T04:04:50Z
+cmrjiav6p1ipco807q23tojx8,NT,2025,,2025-03-22T17:45:00Z,FINISHED,Azerbaijan,Haiti,Azerbaijan,Haiti,0,3,AWAY_TEAM,2026-09-27T04:04:50Z

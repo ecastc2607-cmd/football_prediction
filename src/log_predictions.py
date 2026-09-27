@@ -13,6 +13,8 @@ from __future__ import annotations
 import argparse
 from datetime import datetime, timezone
 
+import pandas as pd
+
 from . import config
 from .cross_competition_strength import fill_missing_with_domestic_strength
 from .match_tendencies import load_team_averages, pick_tendencies
@@ -26,6 +28,13 @@ def log_competition(code: str, season: int, matchday: int, seasons_back: int = 1
     seasons = [season - i for i in range(seasons_back + 1)]
     strength = team_strength_for_competition(code, seasons)
     fixtures = upcoming_fixtures(code, season, matchday)
+    # upcoming_fixtures se fía del "status" del CSV, que puede estar viejo (ej.
+    # descargado ayer): un partido ya jugado seguiría figurando SCHEDULED.
+    # Loguearlo metería en la calibración un resultado ya conocido, así que
+    # además se exige que el partido no haya empezado todavía.
+    if not fixtures.empty:
+        inicio = pd.to_datetime(fixtures["utc_date"], utc=True, errors="coerce")
+        fixtures = fixtures[inicio > pd.Timestamp.now(tz="UTC")]
 
     if code in config.CUP_STYLE_COMPETITIONS and not fixtures.empty:
         equipos = set(fixtures["home_team"]) | set(fixtures["away_team"])

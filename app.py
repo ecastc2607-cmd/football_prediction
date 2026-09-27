@@ -24,6 +24,7 @@ from src.goal_api_client import (
     GOAL_API_KEY,
     GoalApiClient,
     GoalApiRateLimited,
+    clear_memo as goal_clear_memo,
     get_match_stats as goal_get_match_stats,
 )
 from src.highlightly_client import (
@@ -90,9 +91,30 @@ def load_competition(code: str, season: int) -> pd.DataFrame:
     # sube tal cual y la queda contenida por el propio try/except de la pestaña
     # Jornada (por competición, no afecta a las otras 6).
     if code in config.GOAL_API_COMPETITIONS:
-        return config.goal_api_module(code).fetch_competition(season)
+        return _load_goal_api_competition(code, season)
     client = FootballDataClient(api_key=API_KEY)
     return fetch_competition(client, code, season)
+
+
+@st.cache_data(ttl=3 * 3600, show_spinner="Descargando datos de la competición...")
+def _load_goal_api_competition(code: str, season: int) -> pd.DataFrame:
+    """Europa League y selecciones: 3 h de caché en vez de 30 min, porque Goal
+    API da solo 1.000 peticiones/día para TODO (incluidos corners/faltas/tarjetas)
+    — el "en vivo" usa su propia consulta aparte, así que esto no atrasa marcadores.
+
+    Si la descarga falla (ej. cuota agotada) y hay una copia en disco, se usa
+    esa con un aviso, en vez de dejar toda la jornada sin predicciones."""
+    try:
+        return config.goal_api_module(code).fetch_competition(season)
+    except Exception as e:
+        path = config.PROCESSED_DIR / f"matches_{code}_{season}.csv"
+        if not path.exists():
+            raise
+        st.warning(
+            f"⏳ {config.COMPETITIONS.get(code, code)}: no se pudo actualizar desde Goal API "
+            f"({e}). Se muestran los últimos datos guardados."
+        )
+        return pd.read_csv(path)
 
 
 @st.cache_data(ttl=1800, show_spinner="Calculando predicciones...")
@@ -190,8 +212,10 @@ def load_standings(code: str, season: int) -> dict:
     return get_standings_map(client, code, season)
 
 
-@st.cache_data(ttl=600, show_spinner="Buscando amistosos internacionales...")
+@st.cache_data(ttl=3 * 3600, show_spinner="Buscando amistosos internacionales...")
 def load_friendlies() -> pd.DataFrame:
+    # 3 h: son ~10 peticiones a Goal API por consulta (una por día de la
+    # ventana), y esta pestaña se ejecuta en cada carga aunque nadie la mire.
     return national_teams.fetch_friendlies_window()
 
 
@@ -392,6 +416,8 @@ st.sidebar.caption(f"🎯 {st.session_state.get('_status_reason', '')}")
 
 if st.sidebar.button("🔄 Forzar actualización de datos"):
     load_competition.clear()
+    _load_goal_api_competition.clear()
+    goal_clear_memo()
     get_predictions.clear()
     get_predictions_con_jugados.clear()
     auto_status.clear()

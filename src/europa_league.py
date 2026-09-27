@@ -31,7 +31,7 @@ import requests
 
 from . import config
 from .competition_status import CompetitionStatus
-from .goal_api_client import GOAL_API_KEY, GoalApiClient, LEAGUE_IDS
+from .goal_api_client import GOAL_API_KEY, GoalApiClient, LEAGUE_IDS, live_fixtures, memoized
 from .live_matches import REGULATION_MINUTES, live_win_probabilities
 from .poisson_model import expected_goals
 from .team_strength import team_strength_for_competition
@@ -93,15 +93,22 @@ def current_season() -> int:
     """Temporada que Goal API considera vigente para la Europa League ahora
     mismo (su propio campo 'season' en /leagues/:id, ej. "2026/2027" -> 2026),
     igual de espíritu a currentSeason en football-data.org."""
-    data = _client()._get(f"/leagues/{LEAGUE_ID}", {})
-    season_label = (data or {}).get("season", "")
-    if not season_label or "/" not in season_label:
-        return datetime.now(timezone.utc).year
-    return int(season_label.split("/")[0])
+    def _pedir():
+        data = _client()._get(f"/leagues/{LEAGUE_ID}", {})
+        season_label = (data or {}).get("season", "")
+        if not season_label or "/" not in season_label:
+            return datetime.now(timezone.utc).year
+        return int(season_label.split("/")[0])
+    # En memoria 6 h: una carga del dashboard la pedía varias veces.
+    return memoized("el_current_season", 6 * 3600, _pedir)
 
 
 def _fetch_league_phase_fixtures(client: GoalApiClient, season: int) -> list[dict]:
-    all_fixtures = _paginate(client, f"/leagues/{LEAGUE_ID}/fixtures")
+    # El calendario completo (~12 páginas) se pide una vez y lo comparten la
+    # jornada actual y las dos temporadas que carga el dashboard.
+    all_fixtures = memoized(
+        "el_all_fixtures", 15 * 60, lambda: _paginate(client, f"/leagues/{LEAGUE_ID}/fixtures")
+    )
     year_label = f"{season}/{season + 1}"
     return [
         f for f in all_fixtures
@@ -230,8 +237,7 @@ def get_live_matches(ensure_data=None) -> pd.DataFrame:
     llama (app.py) espera poder ignorar esta fuente sin que rompa las demás.
     """
     try:
-        client = _client()
-        todos_en_vivo = client._get("/fixtures/live", {"limit": 100})
+        todos_en_vivo = live_fixtures(GOAL_API_KEY)
     except Exception:
         return pd.DataFrame()
 

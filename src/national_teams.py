@@ -35,7 +35,14 @@ import requests
 
 from . import config
 from .competition_status import CompetitionStatus
-from .goal_api_client import GOAL_API_KEY, GoalApiClient
+from .goal_api_client import (
+    GOAL_API_KEY,
+    LEAGUE_IDS,
+    GoalApiClient,
+    GoalApiRateLimited,
+    live_fixtures,
+    memoized,
+)
 from .live_matches import REGULATION_MINUTES, live_win_probabilities
 from .poisson_model import expected_goals, predict_match
 
@@ -44,7 +51,7 @@ COMPETITION_CODE = "NT"
 # IDs fijos de Goal API, verificados a mano contra /leagues junto con su país
 # (mismo cuidado que LEAGUE_IDS en goal_api_client.py: hay decenas de ligas con
 # nombres parecidos).
-NATIONS_LEAGUE_ID = "cmr77dw4800fgrx06rwmig2h8"  # UEFA Nations League
+NATIONS_LEAGUE_ID = LEAGUE_IDS[COMPETITION_CODE]  # UEFA Nations League
 FRIENDLIES_LEAGUE_ID = "cmr77dwv800nzrx06faqngjwh"  # Friendlies (World) — TODAS las categorías, se filtra por nombre
 
 # Fase de liga de la Nations League: la que tiene jornadas 1-6 con formato de
@@ -58,6 +65,15 @@ GROUP_STAGE_NAMES = {"League A", "League B", "League C", "League D"}
 # completa anterior de la Nations League (cada 2 años) más amistosos recientes,
 # sin arrastrar resultados demasiado viejos como para representar la plantilla actual.
 HISTORY_LOOKBACK_DAYS = 900
+
+# El historial (≈60 peticiones: una por selección) se guarda en un archivo
+# versionado en git, igual que match_stats_log.csv: sobrevive a los reinicios
+# de Streamlit Cloud (data/processed/ no se versiona y se pierde en cada uno)
+# y solo se vuelve a descargar si tiene más de HISTORY_REFRESH_DAYS. Son
+# resultados ya jugados de ~2.5 años: una semana de atraso no mueve la fuerza
+# de ninguna selección.
+HISTORY_TRACKED_PATH = config.ROOT_DIR / "data" / "tracking" / "nt_history.csv"
+HISTORY_REFRESH_DAYS = 7
 
 # Amistosos: Goal API mete en la misma liga selecciones absolutas y TODAS las
 # categorías juveniles/femeninas ("England U17", "Spain W"...). Sin esto,
@@ -114,16 +130,37 @@ def _normalize_utc(kickoff_iso: str) -> str:
 def current_season() -> int:
     """Temporada que Goal API considera vigente para la Nations League (su
     campo 'season', ej. "2026/2027" -> 2026) — mismo espíritu que
-    europa_league.current_season()."""
-    data = _client()._get(f"/leagues/{NATIONS_LEAGUE_ID}", {})
-    season_label = (data or {}).get("season", "")
-    if not season_label or "/" not in season_label:
-        return datetime.now(timezone.utc).year
-    return int(season_label.split("/")[0])
+    europa_league.current_season(). En memoria 6 h: una carga del dashboard
+    la pedía 5-6 veces y solo cambia una vez cada dos años."""
+    def _pedir():
+        try:
+            data = _client()._get(f"/leagues/{NATIONS_LEAGUE_ID}", {})
+        except Exception:
+            # Sin API (ej. cuota agotada): el historial versionado sabe de qué
+            # edición es, así que no hace falta el API para esto.
+            if HISTORY_TRACKED_PATH.exists():
+                guardado = pd.read_csv(HISTORY_TRACKED_PATH, usecols=["season_start_year"])
+                if not guardado.empty:
+                    return int(guardado["season_start_year"].max()) + 1
+            raise
+        season_label = (data or {}).get("season", "")
+        if not season_label or "/" not in season_label:
+            return datetime.now(timezone.utc).year
+        return int(season_label.split("/")[0])
+    return memoized("nt_current_season", 6 * 3600, _pedir)
+
+
+# Todo el calendario histórico de la Nations League (~6 páginas). Se pide una
+# vez y lo comparten la jornada actual, la temporada en curso y el historial —
+# antes cada uno lo descargaba por su cuenta en la misma carga.
+FIXTURES_MEMO_SECONDS = 15 * 60
 
 
 def _fetch_group_stage_fixtures(client: GoalApiClient, season: int) -> list[dict]:
-    all_fixtures = _paginate(client, f"/leagues/{NATIONS_LEAGUE_ID}/fixtures")
+    all_fixtures = memoized(
+        "nt_all_fixtures", FIXTURES_MEMO_SECONDS,
+        lambda: _paginate(client, f"/leagues/{NATIONS_LEAGUE_ID}/fixtures"),
+    )
     year_label = f"{season}/{season + 1}"
     return [
         f for f in all_fixtures
@@ -173,7 +210,23 @@ def resolve_current_season_and_matchday() -> CompetitionStatus:
     FINISHED todavía."""
     season = current_season()
     client = _client()
-    fixtures = _fetch_group_stage_fixtures(client, season)
+    try:
+        fixtures = _fetch_group_stage_fixtures(client, season)
+    except Exception:
+        # Sin API (ej. cuota agotada): el calendario guardado en disco basta —
+        # la primera jornada con algún partido que no haya empezado hace más
+        # de 3 h (margen para lo que está en juego).
+        path = config.PROCESSED_DIR / f"matches_{COMPETITION_CODE}_{season}.csv"
+        if not path.exists():
+            raise
+        cal = pd.read_csv(path)
+        inicio = pd.to_datetime(cal["utc_date"], utc=True, errors="coerce")
+        vigentes = cal[inicio > pd.Timestamp.now(tz="UTC") - pd.Timedelta(hours=3)]
+        md = int(vigentes["matchday"].min()) if not vigentes.empty else int(cal["matchday"].max())
+        return CompetitionStatus(
+            season=season, matchday=md, season_start="", season_end="",
+            reason=f"Jornada {md} según el calendario guardado (Goal API no disponible ahora).",
+        )
 
     if not fixtures:
         return CompetitionStatus(
@@ -213,13 +266,56 @@ def _fetch_current_edition(client: GoalApiClient, season: int) -> pd.DataFrame:
     return df
 
 
+def _load_tracked_history(season_label: int) -> pd.DataFrame | None:
+    """El historial versionado en git, o None si no existe o es de otra
+    edición (al cambiar de ciclo de la Nations League hay que rearmarlo)."""
+    if not HISTORY_TRACKED_PATH.exists():
+        return None
+    df = pd.read_csv(HISTORY_TRACKED_PATH)
+    if df.empty or "fetched_at" not in df or (df["season_start_year"] != season_label).any():
+        return None
+    return df
+
+
+def _history_age_days(df: pd.DataFrame) -> float:
+    descargado = pd.to_datetime(df["fetched_at"], utc=True, errors="coerce").max()
+    if pd.isna(descargado):
+        return float("inf")
+    return (pd.Timestamp.now(tz="UTC") - descargado).total_seconds() / 86400
+
+
 def _fetch_history_pool(client: GoalApiClient, current: int) -> pd.DataFrame:
     """Arma el "historial" que team_strength_for_competition pide como
-    respaldo (season - 1): resultados FINISHED de Nations League + amistosos
-    de cada selección que juega la edición en curso, vía /teams/:id/fixtures
-    (un pedido por selección, no por partido). Se guarda con la etiqueta
-    `current - 1` para que encaje sin tocar nada en team_strength.py/
-    matchday_predictions.py — son ellos los que ya piden [season, season-1]."""
+    respaldo (season - 1). Se guarda con la etiqueta `current - 1` para que
+    encaje sin tocar nada en team_strength.py/matchday_predictions.py — son
+    ellos los que ya piden [season, season-1].
+
+    Primero usa el archivo versionado (0 peticiones). Solo si tiene más de
+    HISTORY_REFRESH_DAYS lo vuelve a descargar; y si esa descarga falla (ej.
+    cuota agotada), sigue con el viejo en vez de dejar la jornada sin predecir."""
+    season_label = current - 1
+    guardado = _load_tracked_history(season_label)
+    if guardado is not None and _history_age_days(guardado) <= HISTORY_REFRESH_DAYS:
+        df = guardado
+    else:
+        try:
+            df = _download_history_pool(client, current)
+        except Exception:
+            if guardado is None:
+                raise
+            df = guardado  # desactualizado pero válido: mejor que nada
+
+    csv_path = config.PROCESSED_DIR / f"matches_{COMPETITION_CODE}_{season_label}.csv"
+    config.PROCESSED_DIR.mkdir(parents=True, exist_ok=True)
+    df.to_csv(csv_path, index=False, encoding="utf-8")
+    return df
+
+
+def _download_history_pool(client: GoalApiClient, current: int) -> pd.DataFrame:
+    """≈60 peticiones: resultados FINISHED de Nations League + amistosos de
+    cada selección de la edición en curso, vía /teams/:id/fixtures (un pedido
+    por selección, no por partido). Guarda el resultado en el archivo
+    versionado para no repetirlo en cada carga."""
     season_label = current - 1
     print("Descargando historial de selecciones (Nations League + amistosos) vía Goal API...")
     current_fixtures = _fetch_group_stage_fixtures(client, current)
@@ -237,6 +333,10 @@ def _fetch_history_pool(client: GoalApiClient, current: int) -> pd.DataFrame:
     for team_id in teams:
         try:
             historial = _team_history(client, team_id)
+        except GoalApiRateLimited:
+            # Cortar acá: guardar un historial a medias como "fresco" dejaría
+            # selecciones sin datos por una semana entera.
+            raise
         except Exception:
             continue  # una selección sin datos no debe tumbar a las demás (aislamiento)
         for f in historial:
@@ -253,11 +353,11 @@ def _fetch_history_pool(client: GoalApiClient, current: int) -> pd.DataFrame:
             rows.append(_row_from_fixture(f, season_label))
 
     df = pd.DataFrame(rows)
-    csv_path = config.PROCESSED_DIR / f"matches_{COMPETITION_CODE}_{season_label}.csv"
-    config.PROCESSED_DIR.mkdir(parents=True, exist_ok=True)
-    df.to_csv(csv_path, index=False, encoding="utf-8")
-    print(f"  {len(df)} partidos históricos guardados en {csv_path.relative_to(config.ROOT_DIR)} "
-          f"(de {len(teams)} selecciones).")
+    df["fetched_at"] = datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
+    HISTORY_TRACKED_PATH.parent.mkdir(parents=True, exist_ok=True)
+    df.to_csv(HISTORY_TRACKED_PATH, index=False, encoding="utf-8")
+    print(f"  {len(df)} partidos históricos guardados en "
+          f"{HISTORY_TRACKED_PATH.relative_to(config.ROOT_DIR)} (de {len(teams)} selecciones).")
     return df
 
 
@@ -323,8 +423,7 @@ def get_live_matches(ensure_data=None) -> pd.DataFrame:
     concatenar directo en app.py. Nunca lanza: cualquier problema devuelve un
     DataFrame vacío."""
     try:
-        client = _client()
-        todos_en_vivo = client._get("/fixtures/live", {"limit": 100})
+        todos_en_vivo = live_fixtures(GOAL_API_KEY)
     except Exception:
         return pd.DataFrame()
 
