@@ -17,7 +17,7 @@ import altair as alt
 import pandas as pd
 import streamlit as st
 
-from src import config, national_teams
+from src import config, national_teams, odds_api
 from src.competition_status import resolve_current_season_and_matchday
 from src.fetch_football_data import FootballDataClient, fetch_competition
 from src.goal_api_client import (
@@ -39,7 +39,8 @@ from src.matchday_predictions import matchday_predictions_df
 from src.parlay_builder import build_parlays
 from src.predict_matchday import LIVE_STATUSES, finished_fixtures
 from src.prediction_log import MARKETS
-from src.timezones import format_bogota
+from src.timezones import BOGOTA_TZ, format_bogota, to_bogota
+from src.value_tips import MIN_MODEL_PROB, candidate_picks, day_summary, evaluate
 
 st.set_page_config(page_title="Football Analytics · Jornada", page_icon="⚽", layout="wide")
 
@@ -68,6 +69,17 @@ if not HIGHLIGHTLY_KEY and "HIGHLIGHTLY_API_KEY" in st.secrets:
     HIGHLIGHTLY_KEY = st.secrets["HIGHLIGHTLY_API_KEY"]
 
 STATS_KEY_PRESENT = bool(GOAL_KEY or HIGHLIGHTLY_KEY)
+
+# Cuotas reales para "Tips" (The Odds API, plan gratis). Opcional: sin key, los
+# Tips funcionan igual con la cuota escrita a mano.
+ODDS_KEY = os.getenv("ODDS_API_KEY") or odds_api.ODDS_API_KEY
+if not ODDS_KEY:
+    # Opcional de verdad: en local sin secrets.toml, st.secrets lanza al solo
+    # preguntar por una clave, y eso no debe tumbar la app entera.
+    try:
+        ODDS_KEY = st.secrets.get("ODDS_API_KEY", "")
+    except Exception:
+        ODDS_KEY = ""
 
 
 @st.cache_data(ttl=1800, show_spinner="Descargando datos de la competición...")
@@ -193,6 +205,48 @@ def get_friendlies_predictions() -> pd.DataFrame:
     load_competition("NT", season - 1)
     strength = national_teams.team_strength_for_competition_safe([season, season - 1])
     return national_teams.predict_friendlies(fixtures, strength)
+
+
+@st.cache_data(ttl=1800, show_spinner="Reuniendo los partidos del día en todas las competiciones...")
+def load_day_predictions(fecha_iso: str) -> pd.DataFrame:
+    """Predicciones de TODOS los partidos por jugar en `fecha_iso` (día de
+    Colombia), de cualquier competición + amistosos. Mira la jornada actual y
+    la siguiente de cada liga: un mismo día puede caer en el cierre de una y
+    el arranque de la otra. Una competición que falle se salta sin afectar al resto."""
+    frames = []
+    for code in config.COMPETITIONS:
+        try:
+            estado = auto_status(code)
+        except Exception:
+            continue
+        for md in (estado.matchday, estado.matchday + 1):
+            try:
+                df = get_predictions(code, int(estado.season), int(md))
+            except Exception:
+                continue
+            if not df.empty:
+                frames.append(df)
+    try:
+        amistosos = get_friendlies_predictions()
+        if not amistosos.empty:
+            frames.append(amistosos.assign(competition="AMI", competition_name="Amistoso internacional"))
+    except Exception:
+        pass
+    if not frames:
+        return pd.DataFrame()
+
+    todo = pd.concat(frames, ignore_index=True)
+    dia_local = todo["utc_date"].map(lambda d: to_bogota(d).date().isoformat() if to_bogota(d) else "")
+    todo = todo[dia_local == fecha_iso]
+    todo = todo[todo["status"].isin(["SCHEDULED", "TIMED"])]
+    return todo.drop_duplicates(subset=["home_team", "away_team", "utc_date"]).sort_values("utc_date")
+
+
+@st.cache_data(ttl=3 * 3600, show_spinner="Consultando cuotas de las casas...")
+def load_odds(code: str, desde_utc: str, hasta_utc: str) -> odds_api.OddsResult:
+    """3 horas de caché: cada consulta gasta 2 de los 500 créditos/mes gratis,
+    y las cuotas previas al partido no cambian tanto como para pagar más."""
+    return odds_api.fetch_odds(code, desde_utc, hasta_utc, api_key=ODDS_KEY)
 
 
 @st.cache_data(ttl=1800, show_spinner=False)
@@ -354,7 +408,9 @@ st.sidebar.caption(
     "sobre todo en el promedio de liga para ellos."
 )
 
-tab_jornada, tab_vivo, tab_amistosos = st.tabs(["📅 Jornada", "🔴 En vivo", "🌍 Amistosos"])
+tab_jornada, tab_vivo, tab_amistosos, tab_tips = st.tabs(
+    ["📅 Jornada", "🔴 En vivo", "🌍 Amistosos", "💡 Tips"]
+)
 
 # ============================== PESTAÑA: JORNADA ==============================
 with tab_jornada:
@@ -703,3 +759,206 @@ with tab_amistosos:
                     )
                     if pred_row.low_confidence:
                         st.caption(f"⚠ {pred_row.confidence_note}")
+
+# ============================== PESTAÑA: TIPS ==============================
+with tab_tips:
+    st.title("💡 Tips de valor del día")
+    st.caption(
+        f"Picks de cualquier liga con probabilidad del modelo ≥{MIN_MODEL_PROB:.0%}, solo de partidos "
+        "sin baja confianza, comparados contra la mejor cuota disponible. Se sugiere apostar solo "
+        "si la cuota paga más de lo que el partido 'vale' — y aun así un pick de 75% falla 1 de cada 4."
+    )
+    with st.expander("¿Por qué la meta no es doblar la banca cada día?"):
+        st.markdown(
+            "- Una apuesta que paga **2x** se gana, en el mejor caso, el **50%** de las veces "
+            "(cuota justa 2.0 = 50%); con el margen de la casa, menos. Doblar = perder todo lo "
+            "apostado más de la mitad de los días.\n"
+            "- Combinar picks 'seguros' no lo evita: 3 picks de 78% dan ~2.1x con **47%** de acierto.\n"
+            "- Encadenado es peor: doblar 7 días seguidos a 50% tiene **0.8%** de probabilidad.\n"
+            "- Lo que sí hacen los apostadores profesionales: apuestas simples con valor, un "
+            "**cuarto de Kelly** por apuesta (máx. 5% de la banca) y máx. 20% expuesto por día. "
+            "Eso busca crecer unos puntos por semana, no 100% por día.\n"
+            "- Los días sin picks con valor, lo correcto es **no apostar** — ese día no cuenta."
+        )
+
+    col_banca, col_fecha, col_casas = st.columns([1, 1, 1.3])
+    banca = col_banca.number_input("Banca (COP)", min_value=10_000, value=50_000, step=10_000, key="tips_banca")
+    hoy_col = datetime.now(BOGOTA_TZ).date()
+    fecha_tips = col_fecha.date_input("Día", value=hoy_col, key="tips_fecha")
+    solo_colombia = col_casas.toggle(
+        "Solo casas que operan en Colombia", value=True, key="tips_solo_co",
+        help="Betsson, Codere, 1xBet, bwin, Betway, Stake... — cuotas de sus sitios europeos, "
+             "parecidas pero no idénticas a las de Colombia.",
+    )
+
+    # Reunir todas las ligas del día es pesado la primera vez (varias APIs con
+    # límite de peticiones), y Streamlit ejecuta todas las pestañas en cada
+    # interacción — por eso solo arranca a pedido.
+    # Sin st.rerun(): el análisis se dibuja en la misma ejecución del clic —
+    # un rerun forzado devolvía la vista a la pestaña "Jornada".
+    if not st.session_state.get("tips_on"):
+        if st.button("🔎 Analizar partidos del día", type="primary"):
+            st.session_state["tips_on"] = True
+        else:
+            st.caption("La primera vez puede tardar 1-3 minutos (junta todas las ligas); luego queda en caché.")
+    if st.session_state.get("tips_on"):
+        try:
+            dia = load_day_predictions(fecha_tips.isoformat())
+        except Exception as e:
+            st.error(f"No se pudieron reunir los partidos del día: {e}")
+            dia = pd.DataFrame()
+
+        candidatos = candidate_picks(dia) if not dia.empty else pd.DataFrame()
+        st.caption(f"{len(dia)} partidos por jugar ese día · {len(candidatos)} picks con ≥{MIN_MODEL_PROB:.0%} "
+                   "en partidos sin baja confianza.")
+
+        if dia.empty:
+            st.info("No hay partidos por jugar ese día en las competiciones que sigue el proyecto.")
+        elif candidatos.empty:
+            st.warning(
+                "🚫 **Hoy no hay opciones de muy bajo riesgo.** Ningún pick llega al "
+                f"{MIN_MODEL_PROB:.0%} en partidos con datos suficientes. Recomendación: no apostar — "
+                "este día no cuenta para la meta."
+            )
+        else:
+            # --- Mejor cuota automática (The Odds API) ---
+            candidatos["cuota_auto"] = None
+            candidatos["casa"] = ""
+            if not ODDS_KEY:
+                st.info(
+                    "Sin cuotas automáticas: falta `ODDS_API_KEY` (gratis en the-odds-api.com). "
+                    "Mientras tanto, escribe la cuota de tu casa en la columna 'Cuota manual'."
+                )
+            else:
+                inicio_local = datetime.combine(fecha_tips, datetime.min.time(), tzinfo=BOGOTA_TZ)
+                desde = inicio_local.astimezone(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
+                hasta = (inicio_local + pd.Timedelta(days=1)).astimezone(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
+                restante = None
+                for code in candidatos["competition"].unique():
+                    if code not in odds_api.SPORT_KEYS:
+                        continue  # amistosos: sin clave verificada en The Odds API -> cuota manual
+                    resultado = load_odds(code, desde, hasta)
+                    restante = resultado.remaining if resultado.remaining is not None else restante
+                    if resultado.error:
+                        st.caption(f"⚠ {config.COMPETITIONS.get(code, code)}: {resultado.error}")
+                        continue
+                    for idx, r in candidatos[candidatos["competition"] == code].iterrows():
+                        evento = odds_api.find_event(
+                            resultado.events, r.home_team, r.away_team, r.utc_date,
+                            r.home_team_short, r.away_team_short,
+                        )
+                        if evento is None:
+                            continue
+                        precio = odds_api.best_prices(evento, only_colombia=solo_colombia).get(r.odds_key)
+                        if precio:
+                            candidatos.at[idx, "cuota_auto"] = precio[0]
+                            candidatos.at[idx, "casa"] = precio[1]
+                if restante is not None:
+                    st.caption(f"Créditos de The Odds API restantes este mes: {restante}")
+
+            # --- Tabla editable: la cuota manual manda sobre la automática ---
+            editor = pd.DataFrame({
+                "Partido": candidatos["partido"],
+                "Liga": candidatos["competition_name"],
+                "Hora": candidatos["utc_date"].map(format_bogota),
+                "Mercado": candidatos["mercado"],
+                "Pick": candidatos["pick"],
+                "Prob. modelo": (candidatos["prob_modelo"] * 100).round(0),
+                "Cuota justa": candidatos["cuota_justa"],
+                "Mejor cuota": pd.to_numeric(candidatos["cuota_auto"], errors="coerce").astype(float),
+                "Casa": candidatos["casa"],
+                "Cuota manual": pd.Series([None] * len(candidatos), index=candidatos.index, dtype="float"),
+            })
+            st.markdown("**Picks candidatos** — corrige 'Cuota manual' con la de tu casa antes de apostar "
+                        "(decimales con coma, ej. 1,45):")
+            editado = st.data_editor(
+                editor, hide_index=True, width="stretch",
+                key=f"tips_editor_{fecha_tips.isoformat()}",
+                disabled=[c for c in editor.columns if c != "Cuota manual"],
+                column_config={
+                    "Partido": st.column_config.Column(pinned=True),
+                    "Prob. modelo": st.column_config.NumberColumn(format="%.0f%%"),
+                    "Mejor cuota": st.column_config.NumberColumn(format="%.2f"),
+                    # Sin max_value a propósito: recortaría un error de tipeo
+                    # (136) a un valor que parece real (20); value_tips lo marca.
+                    "Cuota manual": st.column_config.NumberColumn(
+                        min_value=1.01, step=0.01, format="%.2f",
+                        help="Cuota decimal de tu casa, ej. 1,45 (si tu navegador está en "
+                             "español usa coma: con punto puede guardarse como 145).",
+                    ),
+                },
+            )
+
+            manual = pd.to_numeric(editado["Cuota manual"], errors="coerce")
+            auto = pd.to_numeric(candidatos["cuota_auto"], errors="coerce")
+            # Una cuota manual fuera de rango NO cae a la automática en silencio:
+            # queda marcada como inválida para que se corrija a la vista.
+            candidatos["cuota"] = manual.where(manual.notna(), auto)
+            evaluado = evaluate(candidatos, float(banca))
+            resumen = day_summary(evaluado, float(banca))
+
+            st.divider()
+            if resumen["n"] == 0:
+                evaluados = evaluado["estado"].isin(["Sin valor", "Otro pick del mismo partido"]).sum()
+                pendientes = len(evaluado) - evaluados
+                if evaluados == 0:
+                    st.info(
+                        f"✍️ Falta la cuota de {pendientes} pick(s) para poder evaluarlos: escríbela en "
+                        "'Cuota manual' (o configura ODDS_API_KEY para traerla sola)."
+                    )
+                else:
+                    st.warning(
+                        "🚫 **Hoy no hay tips con valor.** Con las cuotas disponibles, ninguna apuesta "
+                        "paga lo suficiente para su riesgo"
+                        + (f" ({pendientes} pick(s) siguen sin cuota válida)" if pendientes else "")
+                        + ". Recomendación: no apostar — este día no cuenta para la meta."
+                    )
+            else:
+                st.subheader(f"✅ {resumen['n']} apuesta(s) sugerida(s)")
+                m1, m2, m3, m4 = st.columns(4)
+                m1.metric("Total a apostar", f"${resumen['apostado']:,.0f}",
+                          f"{resumen['apostado'] / banca:.0%} de la banca", delta_color="off")
+                m2.metric("Ganancia esperada", f"${resumen['esperado']:,.0f}")
+                m3.metric("Si todo acierta", f"${resumen['si_todo_acierta']:,.0f}",
+                          f"prob. {resumen['prob_todo_acierta']:.0%}", delta_color="off")
+                m4.metric("Si todo falla", f"${resumen['si_todo_falla']:,.0f}")
+
+                apuestas = evaluado[evaluado["monto"] > 0]
+                st.dataframe(
+                    pd.DataFrame({
+                        "Partido": apuestas["partido"],
+                        "Hora": apuestas["utc_date"].map(format_bogota),
+                        "Mercado": apuestas["mercado"],
+                        "Pick": apuestas["pick"],
+                        "Cuota": apuestas["cuota"].astype(float).round(2),
+                        "Casa": apuestas["casa"].where(manual.reindex(apuestas.index).isna(), "Tu casa (manual)"),
+                        "Valor": (apuestas["valor"] * 100).round(1),
+                        "Apostar": apuestas["monto"],
+                        "Ganancia si acierta": apuestas["ganancia"],
+                    }),
+                    hide_index=True, width="stretch",
+                    column_config={
+                        "Partido": st.column_config.Column(pinned=True),
+                        "Valor": st.column_config.NumberColumn(format="+%.1f%%"),
+                        "Apostar": st.column_config.NumberColumn(format="$%d"),
+                        "Ganancia si acierta": st.column_config.NumberColumn(format="$%d"),
+                    },
+                )
+                st.caption(
+                    "Apuestas simples, no combinadas. 'Valor' = ganancia esperada por cada peso apostado, "
+                    "ya descontando la mitad de la ventaja que ve el modelo (un modelo simple se equivoca "
+                    "más que el mercado). Montos: ¼ de Kelly, máx. 5% por apuesta y 20% por día."
+                )
+
+            descartes = evaluado[evaluado["estado"] != "Apostar"]
+            if not descartes.empty:
+                with st.expander(f"Picks descartados ({len(descartes)})"):
+                    st.dataframe(
+                        pd.DataFrame({
+                            "Partido": descartes["partido"],
+                            "Pick": descartes["mercado"] + ": " + descartes["pick"],
+                            "Cuota": pd.to_numeric(descartes["cuota"], errors="coerce").round(2),
+                            "Motivo": descartes["estado"],
+                        }),
+                        hide_index=True, width="stretch",
+                    )
