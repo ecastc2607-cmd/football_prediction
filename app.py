@@ -39,6 +39,7 @@ from src.match_tendencies import load_team_averages, pick_tendencies
 from src.matchday_predictions import matchday_predictions_df
 from src.parlay_builder import build_parlays
 from src.predict_matchday import LIVE_STATUSES, finished_fixtures
+from src.backtest_walkforward import SOURCE as BACKTEST_SOURCE
 from src.prediction_log import MARKETS
 from src.timezones import BOGOTA_TZ, format_bogota, to_bogota
 from src.value_tips import MIN_MODEL_PROB, candidate_picks, day_summary, evaluate
@@ -632,13 +633,30 @@ with tab_jornada:
     log = load_calibration_log()
     resolved = log[log["status"] == "resolved"] if not log.empty else pd.DataFrame()
 
+    # Backtest = partidos ya jugados predichos después, con datos anteriores a
+    # cada partido (ver src/backtest_walkforward.py). Útil como referencia, pero
+    # nunca mezclado por defecto con lo que de verdad se predijo antes.
+    origenes = {
+        "Antes del partido": lambda d: d[d["source"] != BACKTEST_SOURCE],
+        "Backtest (jornadas ya jugadas)": lambda d: d[d["source"] == BACKTEST_SOURCE],
+        "Todo": lambda d: d,
+    }
+    origen = st.radio(
+        "Origen de las predicciones", list(origenes), horizontal=True, key="calib_origen",
+        help="'Antes del partido': logueadas antes de jugarse (la medida honesta). 'Backtest': "
+             "Nations League y Europa League, integradas con la temporada en marcha — cada "
+             "partido se predijo después, pero solo con resultados anteriores a su inicio.",
+    )
+    if not resolved.empty:
+        resolved = origenes[origen](resolved)
+
     if resolved.empty:
-        st.caption("Todavía no hay predicciones resueltas en el log.")
+        st.caption("Todavía no hay predicciones resueltas para este origen.")
     else:
         resolved = resolved.copy()
         resolved["hit"] = _to_bool_series(resolved["hit"])
         overall = resolved["hit"].mean()
-        st.metric("Acierto histórico (todas las competiciones)", f"{overall:.0%}",
+        st.metric(f"Acierto 1X2 · {origen.lower()} (todas las competiciones)", f"{overall:.0%}",
                    f"{int(resolved['hit'].sum())}/{len(resolved)}")
 
         by_comp = resolved.groupby("competition")["hit"].agg(aciertos="sum", total="count").reset_index()

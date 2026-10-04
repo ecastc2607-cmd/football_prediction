@@ -67,10 +67,15 @@ def _domestic_teams_by_normalized_name(seasons: list[int]) -> dict[str, tuple[st
     return mapping
 
 
+# Nombres que ni normalizando se parecen entre fuentes (Goal API -> football-data.org).
+_ALIASES = {"rennes": "rennais"}  # "Rennes" vs "Stade Rennais FC 1901"
+
+
 def _match_domestic_team(team: str, domestic_by_norm: dict[str, tuple[str, str]]) -> tuple[str, str] | None:
     """(nombre_real, código_de_liga) del equipo doméstico que mejor calza con
     `team` (nombre de Goal API), o None si ninguno es lo bastante parecido."""
     normalizado = normalize_team_name(team)
+    normalizado = _ALIASES.get(normalizado, normalizado)
     exacto = domestic_by_norm.get(normalizado)
     if exacto:
         return exacto
@@ -84,9 +89,13 @@ def _match_domestic_team(team: str, domestic_by_norm: dict[str, tuple[str, str]]
 
 def fill_missing_with_domestic_strength(
     strength: pd.DataFrame, missing_teams: set[str], seasons: list[int],
+    before: pd.Timestamp | None = None,
 ) -> tuple[pd.DataFrame, dict[str, str]]:
     """Agrega al DataFrame de fuerzas una fila por cada equipo de `missing_teams`
     que no esté ya en el índice, tomada de su liga doméstica.
+
+    `before`: solo usa partidos de liga anteriores a ese instante (para el
+    backtest, que no debe "ver" resultados posteriores al partido que predice).
 
     Devuelve (strength_ampliado, {equipo: nombre_de_liga_usada}) — el segundo
     valor es justo para poder avisarlo en la UI, nunca en silencio.
@@ -109,6 +118,8 @@ def fill_missing_with_domestic_strength(
         if code not in cache_por_liga:
             try:
                 matches = load_finished_matches(code, seasons)
+                if before is not None:
+                    matches = matches[pd.to_datetime(matches["utc_date"], utc=True) < before]
                 cache_por_liga[code] = build_team_strength(matches) if not matches.empty else pd.DataFrame()
             except (FileNotFoundError, ValueError):
                 cache_por_liga[code] = pd.DataFrame()

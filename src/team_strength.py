@@ -38,6 +38,12 @@ def load_finished_matches(competition_code: str, seasons: list[int]) -> pd.DataF
     """
     frames = [_load_season_file(competition_code, s) for s in seasons]
     df = pd.concat(frames, ignore_index=True)
+    # Un mismo partido puede venir en dos archivos (ej. Nations League: el
+    # historial de cada selección incluye la edición en curso, que ya está en el
+    # archivo de la temporada actual) — sin esto contaba doble. Se conserva la
+    # primera aparición: `seasons` viene con la temporada más reciente primero.
+    if "match_id" in df.columns:
+        df = df.drop_duplicates(subset="match_id", keep="first")
     df = df[df["status"] == "FINISHED"].dropna(subset=["home_goals", "away_goals"]).copy()
     df["home_goals"] = df["home_goals"].astype(int)
     df["away_goals"] = df["away_goals"].astype(int)
