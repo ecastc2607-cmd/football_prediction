@@ -1,0 +1,307 @@
+match_id,competition,season_start_year,matchday,utc_date,status,home_team,away_team,home_team_short,away_team_short,home_goals,away_goals,winner
+567264,PPL,2026,1,2026-08-07T19:15:00Z,FINISHED,GD Estoril Praia,FC Famalicão,Estoril Praia,Famalicão,1.0,1.0,DRAW
+567263,PPL,2026,1,2026-08-08T14:30:00Z,FINISHED,CS Marítimo,Casa Pia AC,Marítimo,Casa Pia,1.0,0.0,HOME_TEAM
+567258,PPL,2026,1,2026-08-08T17:00:00Z,FINISHED,Vitória SC,FC Arouca,Vitória SC,Arouca,0.0,1.0,AWAY_TEAM
+567260,PPL,2026,1,2026-08-08T19:30:00Z,FINISHED,CF Estrela da Amadora,Sporting Clube de Portugal,Amadora,Sporting CP,2.0,2.0,DRAW
+567265,PPL,2026,1,2026-08-09T17:00:00Z,FINISHED,FC Porto,FC Alverca,Porto,Alverca,2.0,0.0,HOME_TEAM
+567259,PPL,2026,1,2026-08-09T19:30:00Z,FINISHED,Moreirense FC,Sporting Clube de Braga,Moreirense,Braga,2.0,2.0,DRAW
+567261,PPL,2026,1,2026-08-09T19:30:00Z,FINISHED,Gil Vicente FC,Rio Ave FC,Gil Vicente,Rio Ave,1.0,0.0,HOME_TEAM
+567262,PPL,2026,1,2026-08-09T19:30:00Z,FINISHED,Sport Lisboa e Benfica,Académico de Viseu FC,SL Benfica,Acad. Viseu,2.0,2.0,DRAW
+567257,PPL,2026,1,2026-08-10T19:15:00Z,FINISHED,CD Santa Clara,CD Nacional,Santa Clara,CD Nacional,2.0,2.0,DRAW
+567268,PPL,2026,2,2026-08-14T19:15:00Z,FINISHED,Sporting Clube de Portugal,Vitória SC,Sporting CP,Vitória SC,3.0,2.0,HOME_TEAM
+567266,PPL,2026,2,2026-08-15T14:30:00Z,FINISHED,FC Alverca,CF Estrela da Amadora,Alverca,Amadora,2.0,2.0,DRAW
+567273,PPL,2026,2,2026-08-15T17:00:00Z,FINISHED,Académico de Viseu FC,CD Santa Clara,Acad. Viseu,Santa Clara,0.0,1.0,AWAY_TEAM
+567274,PPL,2026,2,2026-08-15T19:30:00Z,FINISHED,Rio Ave FC,FC Porto,Rio Ave,Porto,0.0,2.0,AWAY_TEAM
+567270,PPL,2026,2,2026-08-16T14:30:00Z,FINISHED,CD Nacional,GD Estoril Praia,CD Nacional,Estoril Praia,2.0,0.0,HOME_TEAM
+567272,PPL,2026,2,2026-08-16T17:00:00Z,FINISHED,FC Arouca,Moreirense FC,Arouca,Moreirense,4.0,0.0,HOME_TEAM
+567269,PPL,2026,2,2026-08-16T19:30:00Z,FINISHED,FC Famalicão,CS Marítimo,Famalicão,Marítimo,1.0,2.0,AWAY_TEAM
+567267,PPL,2026,2,2026-08-17T19:15:00Z,FINISHED,Casa Pia AC,Sport Lisboa e Benfica,Casa Pia,SL Benfica,0.0,7.0,AWAY_TEAM
+567283,PPL,2026,3,2026-08-22T14:30:00Z,FINISHED,CS Marítimo,Académico de Viseu FC,Marítimo,Acad. Viseu,2.0,2.0,DRAW
+567279,PPL,2026,3,2026-08-22T17:00:00Z,FINISHED,GD Estoril Praia,Rio Ave FC,Estoril Praia,Rio Ave,0.0,2.0,AWAY_TEAM
+567275,PPL,2026,3,2026-08-22T19:30:00Z,FINISHED,Sporting Clube de Portugal,FC Alverca,Sporting CP,Alverca,3.0,1.0,HOME_TEAM
+567278,PPL,2026,3,2026-08-23T14:30:00Z,FINISHED,Vitória SC,CD Nacional,Vitória SC,CD Nacional,1.0,0.0,HOME_TEAM
+567281,PPL,2026,3,2026-08-23T17:00:00Z,FINISHED,CD Santa Clara,FC Famalicão,Santa Clara,Famalicão,1.0,0.0,HOME_TEAM
+567280,PPL,2026,3,2026-08-23T19:30:00Z,FINISHED,FC Porto,FC Arouca,Porto,Arouca,2.0,0.0,HOME_TEAM
+567277,PPL,2026,3,2026-08-24T19:15:00Z,FINISHED,Gil Vicente FC,Casa Pia AC,Gil Vicente,Casa Pia,2.0,0.0,HOME_TEAM
+567291,PPL,2026,4,2026-08-28T19:15:00Z,FINISHED,Rio Ave FC,Sporting Clube de Portugal,Rio Ave,Sporting CP,0.0,4.0,AWAY_TEAM
+567285,PPL,2026,4,2026-08-29T14:30:00Z,FINISHED,FC Alverca,CD Santa Clara,Alverca,Santa Clara,1.0,1.0,DRAW
+567287,PPL,2026,4,2026-08-29T14:30:00Z,FINISHED,FC Arouca,CS Marítimo,Arouca,Marítimo,2.0,1.0,HOME_TEAM
+567289,PPL,2026,4,2026-08-29T17:00:00Z,FINISHED,Académico de Viseu FC,FC Porto,Acad. Viseu,Porto,0.0,3.0,AWAY_TEAM
+567286,PPL,2026,4,2026-08-30T14:30:00Z,FINISHED,CD Nacional,CF Estrela da Amadora,CD Nacional,Amadora,2.0,3.0,AWAY_TEAM
+567290,PPL,2026,4,2026-08-30T17:00:00Z,FINISHED,Casa Pia AC,Moreirense FC,Casa Pia,Moreirense,0.0,1.0,AWAY_TEAM
+567284,PPL,2026,4,2026-08-30T19:30:00Z,FINISHED,FC Famalicão,Gil Vicente FC,Famalicão,Gil Vicente,0.0,0.0,DRAW
+567288,PPL,2026,4,2026-08-31T19:15:00Z,FINISHED,Sport Lisboa e Benfica,GD Estoril Praia,SL Benfica,Estoril Praia,2.0,1.0,HOME_TEAM
+567292,PPL,2026,4,2026-08-31T19:15:00Z,FINISHED,Sporting Clube de Braga,Vitória SC,Braga,Vitória SC,1.0,0.0,HOME_TEAM
+567299,PPL,2026,5,2026-09-04T19:15:00Z,FINISHED,FC Porto,Moreirense FC,Porto,Moreirense,2.0,1.0,HOME_TEAM
+567297,PPL,2026,5,2026-09-05T14:30:00Z,FINISHED,CF Estrela da Amadora,FC Famalicão,Amadora,Famalicão,2.0,2.0,DRAW
+567296,PPL,2026,5,2026-09-05T17:00:00Z,FINISHED,FC Alverca,Sporting Clube de Braga,Alverca,Braga,1.0,2.0,AWAY_TEAM
+567293,PPL,2026,5,2026-09-05T17:00:00Z,FINISHED,CS Marítimo,Sport Lisboa e Benfica,Marítimo,SL Benfica,0.0,3.0,AWAY_TEAM
+567298,PPL,2026,5,2026-09-05T19:30:00Z,FINISHED,Sporting Clube de Portugal,CD Nacional,Sporting CP,CD Nacional,2.0,0.0,HOME_TEAM
+567300,PPL,2026,5,2026-09-06T14:30:00Z,FINISHED,CD Santa Clara,Rio Ave FC,Santa Clara,Rio Ave,4.0,0.0,HOME_TEAM
+567294,PPL,2026,5,2026-09-06T17:00:00Z,FINISHED,Vitória SC,Casa Pia AC,Vitória SC,Casa Pia,0.0,0.0,DRAW
+567301,PPL,2026,5,2026-09-06T19:30:00Z,FINISHED,Gil Vicente FC,Académico de Viseu FC,Gil Vicente,Acad. Viseu,0.0,1.0,AWAY_TEAM
+567295,PPL,2026,5,2026-09-07T19:15:00Z,FINISHED,GD Estoril Praia,FC Arouca,Estoril Praia,Arouca,0.0,0.0,DRAW
+567282,PPL,2026,3,2026-09-09T19:45:00Z,FINISHED,Moreirense FC,Sport Lisboa e Benfica,Moreirense,SL Benfica,0.0,4.0,AWAY_TEAM
+567276,PPL,2026,3,2026-09-10T19:15:00Z,FINISHED,CF Estrela da Amadora,Sporting Clube de Braga,Amadora,Braga,2.0,1.0,HOME_TEAM
+567306,PPL,2026,6,2026-09-12T14:30:00Z,FINISHED,CD Nacional,FC Alverca,CD Nacional,Alverca,1.0,3.0,AWAY_TEAM
+567307,PPL,2026,6,2026-09-12T17:00:00Z,FINISHED,Casa Pia AC,FC Porto,Casa Pia,Porto,1.0,4.0,AWAY_TEAM
+567309,PPL,2026,6,2026-09-12T19:30:00Z,FINISHED,Académico de Viseu FC,Vitória SC,Acad. Viseu,Vitória SC,2.0,1.0,HOME_TEAM
+567304,PPL,2026,6,2026-09-13T17:00:00Z,FINISHED,Sport Lisboa e Benfica,Gil Vicente FC,SL Benfica,Gil Vicente,3.0,1.0,HOME_TEAM
+567310,PPL,2026,6,2026-09-13T17:00:00Z,FINISHED,FC Arouca,CD Santa Clara,Arouca,Santa Clara,1.0,2.0,AWAY_TEAM
+567305,PPL,2026,6,2026-09-13T19:30:00Z,FINISHED,FC Famalicão,Sporting Clube de Portugal,Famalicão,Sporting CP,1.0,1.0,DRAW
+567303,PPL,2026,6,2026-09-14T17:45:00Z,FINISHED,Rio Ave FC,CF Estrela da Amadora,Rio Ave,Amadora,3.0,3.0,DRAW
+567302,PPL,2026,6,2026-09-14T19:15:00Z,FINISHED,Moreirense FC,CS Marítimo,Moreirense,Marítimo,3.0,1.0,HOME_TEAM
+567308,PPL,2026,6,2026-09-14T19:45:00Z,FINISHED,Sporting Clube de Braga,GD Estoril Praia,Braga,Estoril Praia,1.0,0.0,HOME_TEAM
+567311,PPL,2026,7,2026-09-19T14:30:00Z,FINISHED,CD Nacional,FC Famalicão,CD Nacional,Famalicão,0.0,4.0,AWAY_TEAM
+567312,PPL,2026,7,2026-09-19T14:30:00Z,FINISHED,Gil Vicente FC,CS Marítimo,Gil Vicente,Marítimo,1.0,1.0,DRAW
+567318,PPL,2026,7,2026-09-19T17:00:00Z,FINISHED,FC Alverca,Rio Ave FC,Alverca,Rio Ave,1.0,0.0,HOME_TEAM
+567313,PPL,2026,7,2026-09-19T19:30:00Z,FINISHED,Sporting Clube de Portugal,FC Arouca,Sporting CP,Arouca,2.0,2.0,DRAW
+567315,PPL,2026,7,2026-09-20T14:30:00Z,FINISHED,Vitória SC,Moreirense FC,Vitória SC,Moreirense,1.0,1.0,DRAW
+567317,PPL,2026,7,2026-09-20T14:30:00Z,FINISHED,CF Estrela da Amadora,Académico de Viseu FC,Amadora,Acad. Viseu,0.0,2.0,AWAY_TEAM
+567314,PPL,2026,7,2026-09-20T17:00:00Z,FINISHED,CD Santa Clara,Sporting Clube de Braga,Santa Clara,Braga,0.0,0.0,DRAW
+567319,PPL,2026,7,2026-09-20T17:00:00Z,FINISHED,GD Estoril Praia,Casa Pia AC,Estoril Praia,Casa Pia,1.0,2.0,AWAY_TEAM
+567316,PPL,2026,7,2026-09-20T19:30:00Z,FINISHED,FC Porto,Sport Lisboa e Benfica,Porto,SL Benfica,3.0,1.0,HOME_TEAM
+567327,PPL,2026,8,2026-10-09T17:45:00Z,TIMED,Moreirense FC,Gil Vicente FC,Moreirense,Gil Vicente,,,
+567326,PPL,2026,8,2026-10-09T19:15:00Z,TIMED,Sporting Clube de Braga,Sporting Clube de Portugal,Braga,Sporting CP,,,
+567321,PPL,2026,8,2026-10-10T14:30:00Z,TIMED,Casa Pia AC,CD Santa Clara,Casa Pia,Santa Clara,,,
+567323,PPL,2026,8,2026-10-10T17:00:00Z,TIMED,CS Marítimo,FC Porto,Marítimo,Porto,,,
+567322,PPL,2026,8,2026-10-10T19:30:00Z,TIMED,Académico de Viseu FC,GD Estoril Praia,Acad. Viseu,Estoril Praia,,,
+567328,PPL,2026,8,2026-10-11T14:30:00Z,TIMED,Rio Ave FC,CD Nacional,Rio Ave,CD Nacional,,,
+567320,PPL,2026,8,2026-10-11T17:00:00Z,TIMED,Sport Lisboa e Benfica,Vitória SC,SL Benfica,Vitória SC,,,
+567324,PPL,2026,8,2026-10-11T19:30:00Z,TIMED,FC Arouca,CF Estrela da Amadora,Arouca,Amadora,,,
+567325,PPL,2026,8,2026-10-12T19:15:00Z,TIMED,FC Famalicão,FC Alverca,Famalicão,Alverca,,,
+567271,PPL,2026,2,2026-10-19T19:15:00Z,TIMED,Sporting Clube de Braga,Gil Vicente FC,Braga,Gil Vicente,,,
+567329,PPL,2026,9,2026-10-23T19:45:00Z,TIMED,Vitória SC,CS Marítimo,Vitória SC,Marítimo,,,
+567337,PPL,2026,9,2026-10-24T14:30:00Z,TIMED,CF Estrela da Amadora,Casa Pia AC,Amadora,Casa Pia,,,
+567333,PPL,2026,9,2026-10-24T17:00:00Z,TIMED,FC Alverca,FC Arouca,Alverca,Arouca,,,
+567335,PPL,2026,9,2026-10-24T19:30:00Z,TIMED,Gil Vicente FC,FC Porto,Gil Vicente,Porto,,,
+567336,PPL,2026,9,2026-10-25T15:30:00Z,TIMED,GD Estoril Praia,Moreirense FC,Estoril Praia,Moreirense,,,
+567330,PPL,2026,9,2026-10-25T18:00:00Z,TIMED,Rio Ave FC,FC Famalicão,Rio Ave,Famalicão,,,
+567334,PPL,2026,9,2026-10-25T18:00:00Z,TIMED,CD Nacional,Sporting Clube de Braga,CD Nacional,Braga,,,
+567332,PPL,2026,9,2026-10-25T20:30:00Z,TIMED,Sporting Clube de Portugal,Académico de Viseu FC,Sporting CP,Acad. Viseu,,,
+567331,PPL,2026,9,2026-10-26T18:45:00Z,TIMED,CD Santa Clara,Sport Lisboa e Benfica,Santa Clara,SL Benfica,,,
+567344,PPL,2026,10,2026-10-30T20:15:00Z,TIMED,Casa Pia AC,Sporting Clube de Portugal,Casa Pia,Sporting CP,,,
+567343,PPL,2026,10,2026-10-31T15:30:00Z,TIMED,Moreirense FC,CF Estrela da Amadora,Moreirense,Amadora,,,
+567338,PPL,2026,10,2026-10-31T20:30:00Z,TIMED,FC Porto,GD Estoril Praia,Porto,Estoril Praia,,,
+567341,PPL,2026,10,2026-11-01T15:30:00Z,TIMED,FC Arouca,CD Nacional,Arouca,CD Nacional,,,
+567340,PPL,2026,10,2026-11-01T18:00:00Z,TIMED,CS Marítimo,CD Santa Clara,Marítimo,Santa Clara,,,
+567345,PPL,2026,10,2026-11-01T18:00:00Z,TIMED,Académico de Viseu FC,Rio Ave FC,Acad. Viseu,Rio Ave,,,
+567339,PPL,2026,10,2026-11-01T20:30:00Z,TIMED,Sporting Clube de Braga,FC Famalicão,Braga,Famalicão,,,
+567342,PPL,2026,10,2026-11-02T20:15:00Z,TIMED,Sport Lisboa e Benfica,FC Alverca,SL Benfica,Alverca,,,
+567346,PPL,2026,10,2026-11-02T20:15:00Z,TIMED,Gil Vicente FC,Vitória SC,Gil Vicente,Vitória SC,,,
+567353,PPL,2026,11,2026-11-06T20:45:00Z,TIMED,FC Famalicão,FC Arouca,Famalicão,Arouca,,,
+567352,PPL,2026,11,2026-11-07T15:30:00Z,TIMED,CD Nacional,Académico de Viseu FC,CD Nacional,Acad. Viseu,,,
+567347,PPL,2026,11,2026-11-07T18:00:00Z,TIMED,FC Alverca,Casa Pia AC,Alverca,Casa Pia,,,
+567350,PPL,2026,11,2026-11-07T20:30:00Z,TIMED,Sporting Clube de Portugal,Moreirense FC,Sporting CP,Moreirense,,,
+567348,PPL,2026,11,2026-11-08T15:30:00Z,TIMED,GD Estoril Praia,CS Marítimo,Estoril Praia,Marítimo,,,
+567351,PPL,2026,11,2026-11-08T15:30:00Z,TIMED,CD Santa Clara,Gil Vicente FC,Santa Clara,Gil Vicente,,,
+567349,PPL,2026,11,2026-11-08T18:00:00Z,TIMED,Vitória SC,FC Porto,Vitória SC,Porto,,,
+567354,PPL,2026,11,2026-11-08T20:30:00Z,TIMED,Rio Ave FC,Sporting Clube de Braga,Rio Ave,Braga,,,
+567355,PPL,2026,11,2026-11-08T20:30:00Z,TIMED,CF Estrela da Amadora,Sport Lisboa e Benfica,Amadora,SL Benfica,,,
+567361,PPL,2026,12,2026-11-27T20:15:00Z,TIMED,CS Marítimo,CD Nacional,Marítimo,CD Nacional,,,
+567357,PPL,2026,12,2026-11-28T15:30:00Z,TIMED,Moreirense FC,CD Santa Clara,Moreirense,Santa Clara,,,
+567362,PPL,2026,12,2026-11-28T15:30:00Z,TIMED,FC Arouca,Rio Ave FC,Arouca,Rio Ave,,,
+567364,PPL,2026,12,2026-11-28T18:00:00Z,TIMED,Académico de Viseu FC,FC Alverca,Acad. Viseu,Alverca,,,
+567356,PPL,2026,12,2026-11-28T20:30:00Z,TIMED,Vitória SC,CF Estrela da Amadora,Vitória SC,Amadora,,,
+567363,PPL,2026,12,2026-11-29T18:00:00Z,TIMED,Gil Vicente FC,GD Estoril Praia,Gil Vicente,Estoril Praia,,,
+567358,PPL,2026,12,2026-11-29T20:30:00Z,TIMED,FC Porto,Sporting Clube de Portugal,Porto,Sporting CP,,,
+567359,PPL,2026,12,2026-11-30T20:15:00Z,TIMED,Casa Pia AC,Sporting Clube de Braga,Casa Pia,Braga,,,
+567360,PPL,2026,12,2026-11-30T20:15:00Z,TIMED,Sport Lisboa e Benfica,FC Famalicão,SL Benfica,Famalicão,,,
+567365,PPL,2026,13,2026-12-06T00:00:00Z,SCHEDULED,Sporting Clube de Portugal,CS Marítimo,Sporting CP,Marítimo,,,
+567366,PPL,2026,13,2026-12-06T00:00:00Z,SCHEDULED,CF Estrela da Amadora,Gil Vicente FC,Amadora,Gil Vicente,,,
+567367,PPL,2026,13,2026-12-06T00:00:00Z,SCHEDULED,FC Alverca,Moreirense FC,Alverca,Moreirense,,,
+567368,PPL,2026,13,2026-12-06T00:00:00Z,SCHEDULED,CD Santa Clara,FC Porto,Santa Clara,Porto,,,
+567369,PPL,2026,13,2026-12-06T00:00:00Z,SCHEDULED,CD Nacional,Sport Lisboa e Benfica,CD Nacional,SL Benfica,,,
+567370,PPL,2026,13,2026-12-06T00:00:00Z,SCHEDULED,GD Estoril Praia,Vitória SC,Estoril Praia,Vitória SC,,,
+567371,PPL,2026,13,2026-12-06T00:00:00Z,SCHEDULED,Rio Ave FC,Casa Pia AC,Rio Ave,Casa Pia,,,
+567372,PPL,2026,13,2026-12-06T00:00:00Z,SCHEDULED,Sporting Clube de Braga,FC Arouca,Braga,Arouca,,,
+567373,PPL,2026,13,2026-12-06T00:00:00Z,SCHEDULED,FC Famalicão,Académico de Viseu FC,Famalicão,Acad. Viseu,,,
+567374,PPL,2026,14,2026-12-13T00:00:00Z,SCHEDULED,CS Marítimo,Rio Ave FC,Marítimo,Rio Ave,,,
+567375,PPL,2026,14,2026-12-13T00:00:00Z,SCHEDULED,Académico de Viseu FC,FC Arouca,Acad. Viseu,Arouca,,,
+567376,PPL,2026,14,2026-12-13T00:00:00Z,SCHEDULED,Gil Vicente FC,Sporting Clube de Portugal,Gil Vicente,Sporting CP,,,
+567377,PPL,2026,14,2026-12-13T00:00:00Z,SCHEDULED,Casa Pia AC,CD Nacional,Casa Pia,CD Nacional,,,
+567378,PPL,2026,14,2026-12-13T00:00:00Z,SCHEDULED,Vitória SC,FC Alverca,Vitória SC,Alverca,,,
+567379,PPL,2026,14,2026-12-13T00:00:00Z,SCHEDULED,Moreirense FC,FC Famalicão,Moreirense,Famalicão,,,
+567380,PPL,2026,14,2026-12-13T00:00:00Z,SCHEDULED,GD Estoril Praia,CD Santa Clara,Estoril Praia,Santa Clara,,,
+567381,PPL,2026,14,2026-12-13T00:00:00Z,SCHEDULED,Sport Lisboa e Benfica,Sporting Clube de Braga,SL Benfica,Braga,,,
+567382,PPL,2026,14,2026-12-13T00:00:00Z,SCHEDULED,FC Porto,CF Estrela da Amadora,Porto,Amadora,,,
+567383,PPL,2026,15,2026-12-20T00:00:00Z,SCHEDULED,Rio Ave FC,Sport Lisboa e Benfica,Rio Ave,SL Benfica,,,
+567384,PPL,2026,15,2026-12-20T00:00:00Z,SCHEDULED,Sporting Clube de Braga,Académico de Viseu FC,Braga,Acad. Viseu,,,
+567385,PPL,2026,15,2026-12-20T00:00:00Z,SCHEDULED,Sporting Clube de Portugal,GD Estoril Praia,Sporting CP,Estoril Praia,,,
+567386,PPL,2026,15,2026-12-20T00:00:00Z,SCHEDULED,CF Estrela da Amadora,CS Marítimo,Amadora,Marítimo,,,
+567387,PPL,2026,15,2026-12-20T00:00:00Z,SCHEDULED,FC Famalicão,FC Porto,Famalicão,Porto,,,
+567388,PPL,2026,15,2026-12-20T00:00:00Z,SCHEDULED,FC Alverca,Gil Vicente FC,Alverca,Gil Vicente,,,
+567389,PPL,2026,15,2026-12-20T00:00:00Z,SCHEDULED,CD Santa Clara,Vitória SC,Santa Clara,Vitória SC,,,
+567390,PPL,2026,15,2026-12-20T00:00:00Z,SCHEDULED,CD Nacional,Moreirense FC,CD Nacional,Moreirense,,,
+567391,PPL,2026,15,2026-12-20T00:00:00Z,SCHEDULED,FC Arouca,Casa Pia AC,Arouca,Casa Pia,,,
+567392,PPL,2026,16,2026-12-27T00:00:00Z,SCHEDULED,Vitória SC,Rio Ave FC,Vitória SC,Rio Ave,,,
+567393,PPL,2026,16,2026-12-27T00:00:00Z,SCHEDULED,Casa Pia AC,FC Famalicão,Casa Pia,Famalicão,,,
+567394,PPL,2026,16,2026-12-27T00:00:00Z,SCHEDULED,FC Porto,CD Nacional,Porto,CD Nacional,,,
+567395,PPL,2026,16,2026-12-27T00:00:00Z,SCHEDULED,CD Santa Clara,CF Estrela da Amadora,Santa Clara,Amadora,,,
+567396,PPL,2026,16,2026-12-27T00:00:00Z,SCHEDULED,Moreirense FC,Académico de Viseu FC,Moreirense,Acad. Viseu,,,
+567397,PPL,2026,16,2026-12-27T00:00:00Z,SCHEDULED,Sport Lisboa e Benfica,Sporting Clube de Portugal,SL Benfica,Sporting CP,,,
+567398,PPL,2026,16,2026-12-27T00:00:00Z,SCHEDULED,Gil Vicente FC,FC Arouca,Gil Vicente,Arouca,,,
+567399,PPL,2026,16,2026-12-27T00:00:00Z,SCHEDULED,CS Marítimo,Sporting Clube de Braga,Marítimo,Braga,,,
+567400,PPL,2026,16,2026-12-27T00:00:00Z,SCHEDULED,GD Estoril Praia,FC Alverca,Estoril Praia,Alverca,,,
+567401,PPL,2026,17,2027-01-10T00:00:00Z,SCHEDULED,Sporting Clube de Braga,FC Porto,Braga,Porto,,,
+567402,PPL,2026,17,2027-01-10T00:00:00Z,SCHEDULED,CF Estrela da Amadora,GD Estoril Praia,Amadora,Estoril Praia,,,
+567403,PPL,2026,17,2027-01-10T00:00:00Z,SCHEDULED,FC Famalicão,Vitória SC,Famalicão,Vitória SC,,,
+567404,PPL,2026,17,2027-01-10T00:00:00Z,SCHEDULED,CD Nacional,Gil Vicente FC,CD Nacional,Gil Vicente,,,
+567405,PPL,2026,17,2027-01-10T00:00:00Z,SCHEDULED,Rio Ave FC,Moreirense FC,Rio Ave,Moreirense,,,
+567406,PPL,2026,17,2027-01-10T00:00:00Z,SCHEDULED,FC Arouca,Sport Lisboa e Benfica,Arouca,SL Benfica,,,
+567407,PPL,2026,17,2027-01-10T00:00:00Z,SCHEDULED,FC Alverca,CS Marítimo,Alverca,Marítimo,,,
+567408,PPL,2026,17,2027-01-10T00:00:00Z,SCHEDULED,Académico de Viseu FC,Casa Pia AC,Acad. Viseu,Casa Pia,,,
+567409,PPL,2026,17,2027-01-10T00:00:00Z,SCHEDULED,Sporting Clube de Portugal,CD Santa Clara,Sporting CP,Santa Clara,,,
+567410,PPL,2026,18,2027-01-17T00:00:00Z,SCHEDULED,FC Famalicão,GD Estoril Praia,Famalicão,Estoril Praia,,,
+567411,PPL,2026,18,2027-01-17T00:00:00Z,SCHEDULED,Sporting Clube de Portugal,CF Estrela da Amadora,Sporting CP,Amadora,,,
+567412,PPL,2026,18,2027-01-17T00:00:00Z,SCHEDULED,Sporting Clube de Braga,Moreirense FC,Braga,Moreirense,,,
+567413,PPL,2026,18,2027-01-17T00:00:00Z,SCHEDULED,Rio Ave FC,Gil Vicente FC,Rio Ave,Gil Vicente,,,
+567414,PPL,2026,18,2027-01-17T00:00:00Z,SCHEDULED,Casa Pia AC,CS Marítimo,Casa Pia,Marítimo,,,
+567415,PPL,2026,18,2027-01-17T00:00:00Z,SCHEDULED,CD Nacional,CD Santa Clara,CD Nacional,Santa Clara,,,
+567416,PPL,2026,18,2027-01-17T00:00:00Z,SCHEDULED,FC Alverca,FC Porto,Alverca,Porto,,,
+567417,PPL,2026,18,2027-01-17T00:00:00Z,SCHEDULED,Académico de Viseu FC,Sport Lisboa e Benfica,Acad. Viseu,SL Benfica,,,
+567418,PPL,2026,18,2027-01-17T00:00:00Z,SCHEDULED,FC Arouca,Vitória SC,Arouca,Vitória SC,,,
+567419,PPL,2026,19,2027-01-24T00:00:00Z,SCHEDULED,CF Estrela da Amadora,FC Alverca,Amadora,Alverca,,,
+567420,PPL,2026,19,2027-01-24T00:00:00Z,SCHEDULED,Moreirense FC,FC Arouca,Moreirense,Arouca,,,
+567421,PPL,2026,19,2027-01-24T00:00:00Z,SCHEDULED,GD Estoril Praia,CD Nacional,Estoril Praia,CD Nacional,,,
+567422,PPL,2026,19,2027-01-24T00:00:00Z,SCHEDULED,FC Porto,Rio Ave FC,Porto,Rio Ave,,,
+567423,PPL,2026,19,2027-01-24T00:00:00Z,SCHEDULED,Sport Lisboa e Benfica,Casa Pia AC,SL Benfica,Casa Pia,,,
+567424,PPL,2026,19,2027-01-24T00:00:00Z,SCHEDULED,CD Santa Clara,Académico de Viseu FC,Santa Clara,Acad. Viseu,,,
+567425,PPL,2026,19,2027-01-24T00:00:00Z,SCHEDULED,CS Marítimo,FC Famalicão,Marítimo,Famalicão,,,
+567426,PPL,2026,19,2027-01-24T00:00:00Z,SCHEDULED,Gil Vicente FC,Sporting Clube de Braga,Gil Vicente,Braga,,,
+567427,PPL,2026,19,2027-01-24T00:00:00Z,SCHEDULED,Vitória SC,Sporting Clube de Portugal,Vitória SC,Sporting CP,,,
+567428,PPL,2026,20,2027-01-31T00:00:00Z,SCHEDULED,Casa Pia AC,Gil Vicente FC,Casa Pia,Gil Vicente,,,
+567429,PPL,2026,20,2027-01-31T00:00:00Z,SCHEDULED,CD Nacional,Vitória SC,CD Nacional,Vitória SC,,,
+567430,PPL,2026,20,2027-01-31T00:00:00Z,SCHEDULED,Sport Lisboa e Benfica,Moreirense FC,SL Benfica,Moreirense,,,
+567431,PPL,2026,20,2027-01-31T00:00:00Z,SCHEDULED,Sporting Clube de Braga,CF Estrela da Amadora,Braga,Amadora,,,
+567432,PPL,2026,20,2027-01-31T00:00:00Z,SCHEDULED,FC Arouca,FC Porto,Arouca,Porto,,,
+567433,PPL,2026,20,2027-01-31T00:00:00Z,SCHEDULED,FC Famalicão,CD Santa Clara,Famalicão,Santa Clara,,,
+567434,PPL,2026,20,2027-01-31T00:00:00Z,SCHEDULED,Académico de Viseu FC,CS Marítimo,Acad. Viseu,Marítimo,,,
+567435,PPL,2026,20,2027-01-31T00:00:00Z,SCHEDULED,Rio Ave FC,GD Estoril Praia,Rio Ave,Estoril Praia,,,
+567436,PPL,2026,20,2027-01-31T00:00:00Z,SCHEDULED,FC Alverca,Sporting Clube de Portugal,Alverca,Sporting CP,,,
+567437,PPL,2026,21,2027-02-07T00:00:00Z,SCHEDULED,CS Marítimo,FC Arouca,Marítimo,Arouca,,,
+567438,PPL,2026,21,2027-02-07T00:00:00Z,SCHEDULED,CD Santa Clara,FC Alverca,Santa Clara,Alverca,,,
+567439,PPL,2026,21,2027-02-07T00:00:00Z,SCHEDULED,GD Estoril Praia,Sport Lisboa e Benfica,Estoril Praia,SL Benfica,,,
+567440,PPL,2026,21,2027-02-07T00:00:00Z,SCHEDULED,Sporting Clube de Portugal,Rio Ave FC,Sporting CP,Rio Ave,,,
+567441,PPL,2026,21,2027-02-07T00:00:00Z,SCHEDULED,FC Porto,Académico de Viseu FC,Porto,Acad. Viseu,,,
+567442,PPL,2026,21,2027-02-07T00:00:00Z,SCHEDULED,CF Estrela da Amadora,CD Nacional,Amadora,CD Nacional,,,
+567443,PPL,2026,21,2027-02-07T00:00:00Z,SCHEDULED,Vitória SC,Sporting Clube de Braga,Vitória SC,Braga,,,
+567444,PPL,2026,21,2027-02-07T00:00:00Z,SCHEDULED,Gil Vicente FC,FC Famalicão,Gil Vicente,Famalicão,,,
+567445,PPL,2026,21,2027-02-07T00:00:00Z,SCHEDULED,Moreirense FC,Casa Pia AC,Moreirense,Casa Pia,,,
+567446,PPL,2026,22,2027-02-14T00:00:00Z,SCHEDULED,FC Arouca,GD Estoril Praia,Arouca,Estoril Praia,,,
+567447,PPL,2026,22,2027-02-14T00:00:00Z,SCHEDULED,CD Nacional,Sporting Clube de Portugal,CD Nacional,Sporting CP,,,
+567448,PPL,2026,22,2027-02-14T00:00:00Z,SCHEDULED,Moreirense FC,FC Porto,Moreirense,Porto,,,
+567449,PPL,2026,22,2027-02-14T00:00:00Z,SCHEDULED,Sporting Clube de Braga,FC Alverca,Braga,Alverca,,,
+567450,PPL,2026,22,2027-02-14T00:00:00Z,SCHEDULED,Académico de Viseu FC,Gil Vicente FC,Acad. Viseu,Gil Vicente,,,
+567451,PPL,2026,22,2027-02-14T00:00:00Z,SCHEDULED,Sport Lisboa e Benfica,CS Marítimo,SL Benfica,Marítimo,,,
+567452,PPL,2026,22,2027-02-14T00:00:00Z,SCHEDULED,Casa Pia AC,Vitória SC,Casa Pia,Vitória SC,,,
+567453,PPL,2026,22,2027-02-14T00:00:00Z,SCHEDULED,FC Famalicão,CF Estrela da Amadora,Famalicão,Amadora,,,
+567454,PPL,2026,22,2027-02-14T00:00:00Z,SCHEDULED,Rio Ave FC,CD Santa Clara,Rio Ave,Santa Clara,,,
+567455,PPL,2026,23,2027-02-21T00:00:00Z,SCHEDULED,Vitória SC,Académico de Viseu FC,Vitória SC,Acad. Viseu,,,
+567456,PPL,2026,23,2027-02-21T00:00:00Z,SCHEDULED,CS Marítimo,Moreirense FC,Marítimo,Moreirense,,,
+567457,PPL,2026,23,2027-02-21T00:00:00Z,SCHEDULED,GD Estoril Praia,Sporting Clube de Braga,Estoril Praia,Braga,,,
+567458,PPL,2026,23,2027-02-21T00:00:00Z,SCHEDULED,Gil Vicente FC,Sport Lisboa e Benfica,Gil Vicente,SL Benfica,,,
+567459,PPL,2026,23,2027-02-21T00:00:00Z,SCHEDULED,FC Porto,Casa Pia AC,Porto,Casa Pia,,,
+567460,PPL,2026,23,2027-02-21T00:00:00Z,SCHEDULED,Sporting Clube de Portugal,FC Famalicão,Sporting CP,Famalicão,,,
+567461,PPL,2026,23,2027-02-21T00:00:00Z,SCHEDULED,CD Santa Clara,FC Arouca,Santa Clara,Arouca,,,
+567462,PPL,2026,23,2027-02-21T00:00:00Z,SCHEDULED,CF Estrela da Amadora,Rio Ave FC,Amadora,Rio Ave,,,
+567463,PPL,2026,23,2027-02-21T00:00:00Z,SCHEDULED,FC Alverca,CD Nacional,Alverca,CD Nacional,,,
+567464,PPL,2026,24,2027-02-28T00:00:00Z,SCHEDULED,Rio Ave FC,FC Alverca,Rio Ave,Alverca,,,
+567465,PPL,2026,24,2027-02-28T00:00:00Z,SCHEDULED,CS Marítimo,Gil Vicente FC,Marítimo,Gil Vicente,,,
+567466,PPL,2026,24,2027-02-28T00:00:00Z,SCHEDULED,Casa Pia AC,GD Estoril Praia,Casa Pia,Estoril Praia,,,
+567467,PPL,2026,24,2027-02-28T00:00:00Z,SCHEDULED,Moreirense FC,Vitória SC,Moreirense,Vitória SC,,,
+567468,PPL,2026,24,2027-02-28T00:00:00Z,SCHEDULED,Sport Lisboa e Benfica,FC Porto,SL Benfica,Porto,,,
+567469,PPL,2026,24,2027-02-28T00:00:00Z,SCHEDULED,FC Famalicão,CD Nacional,Famalicão,CD Nacional,,,
+567470,PPL,2026,24,2027-02-28T00:00:00Z,SCHEDULED,Sporting Clube de Braga,CD Santa Clara,Braga,Santa Clara,,,
+567471,PPL,2026,24,2027-02-28T00:00:00Z,SCHEDULED,FC Arouca,Sporting Clube de Portugal,Arouca,Sporting CP,,,
+567472,PPL,2026,24,2027-02-28T00:00:00Z,SCHEDULED,Académico de Viseu FC,CF Estrela da Amadora,Acad. Viseu,Amadora,,,
+567473,PPL,2026,25,2027-03-07T00:00:00Z,SCHEDULED,Gil Vicente FC,Moreirense FC,Gil Vicente,Moreirense,,,
+567474,PPL,2026,25,2027-03-07T00:00:00Z,SCHEDULED,FC Porto,CS Marítimo,Porto,Marítimo,,,
+567475,PPL,2026,25,2027-03-07T00:00:00Z,SCHEDULED,FC Alverca,FC Famalicão,Alverca,Famalicão,,,
+567476,PPL,2026,25,2027-03-07T00:00:00Z,SCHEDULED,CD Santa Clara,Casa Pia AC,Santa Clara,Casa Pia,,,
+567477,PPL,2026,25,2027-03-07T00:00:00Z,SCHEDULED,Sporting Clube de Portugal,Sporting Clube de Braga,Sporting CP,Braga,,,
+567478,PPL,2026,25,2027-03-07T00:00:00Z,SCHEDULED,CF Estrela da Amadora,FC Arouca,Amadora,Arouca,,,
+567479,PPL,2026,25,2027-03-07T00:00:00Z,SCHEDULED,Vitória SC,Sport Lisboa e Benfica,Vitória SC,SL Benfica,,,
+567480,PPL,2026,25,2027-03-07T00:00:00Z,SCHEDULED,CD Nacional,Rio Ave FC,CD Nacional,Rio Ave,,,
+567481,PPL,2026,25,2027-03-07T00:00:00Z,SCHEDULED,GD Estoril Praia,Académico de Viseu FC,Estoril Praia,Acad. Viseu,,,
+567482,PPL,2026,26,2027-03-14T00:00:00Z,SCHEDULED,CS Marítimo,Vitória SC,Marítimo,Vitória SC,,,
+567483,PPL,2026,26,2027-03-14T00:00:00Z,SCHEDULED,Sport Lisboa e Benfica,CD Santa Clara,SL Benfica,Santa Clara,,,
+567484,PPL,2026,26,2027-03-14T00:00:00Z,SCHEDULED,FC Arouca,FC Alverca,Arouca,Alverca,,,
+567485,PPL,2026,26,2027-03-14T00:00:00Z,SCHEDULED,Académico de Viseu FC,Sporting Clube de Portugal,Acad. Viseu,Sporting CP,,,
+567486,PPL,2026,26,2027-03-14T00:00:00Z,SCHEDULED,FC Porto,Gil Vicente FC,Porto,Gil Vicente,,,
+567487,PPL,2026,26,2027-03-14T00:00:00Z,SCHEDULED,Casa Pia AC,CF Estrela da Amadora,Casa Pia,Amadora,,,
+567488,PPL,2026,26,2027-03-14T00:00:00Z,SCHEDULED,Sporting Clube de Braga,CD Nacional,Braga,CD Nacional,,,
+567489,PPL,2026,26,2027-03-14T00:00:00Z,SCHEDULED,FC Famalicão,Rio Ave FC,Famalicão,Rio Ave,,,
+567490,PPL,2026,26,2027-03-14T00:00:00Z,SCHEDULED,Moreirense FC,GD Estoril Praia,Moreirense,Estoril Praia,,,
+567491,PPL,2026,27,2027-03-21T00:00:00Z,SCHEDULED,CD Nacional,FC Arouca,CD Nacional,Arouca,,,
+567492,PPL,2026,27,2027-03-21T00:00:00Z,SCHEDULED,Vitória SC,Gil Vicente FC,Vitória SC,Gil Vicente,,,
+567493,PPL,2026,27,2027-03-21T00:00:00Z,SCHEDULED,CF Estrela da Amadora,Moreirense FC,Amadora,Moreirense,,,
+567494,PPL,2026,27,2027-03-21T00:00:00Z,SCHEDULED,FC Alverca,Sport Lisboa e Benfica,Alverca,SL Benfica,,,
+567495,PPL,2026,27,2027-03-21T00:00:00Z,SCHEDULED,GD Estoril Praia,FC Porto,Estoril Praia,Porto,,,
+567496,PPL,2026,27,2027-03-21T00:00:00Z,SCHEDULED,CD Santa Clara,CS Marítimo,Santa Clara,Marítimo,,,
+567497,PPL,2026,27,2027-03-21T00:00:00Z,SCHEDULED,Sporting Clube de Portugal,Casa Pia AC,Sporting CP,Casa Pia,,,
+567498,PPL,2026,27,2027-03-21T00:00:00Z,SCHEDULED,Rio Ave FC,Académico de Viseu FC,Rio Ave,Acad. Viseu,,,
+567499,PPL,2026,27,2027-03-21T00:00:00Z,SCHEDULED,FC Famalicão,Sporting Clube de Braga,Famalicão,Braga,,,
+567500,PPL,2026,28,2027-04-04T00:00:00Z,SCHEDULED,FC Arouca,FC Famalicão,Arouca,Famalicão,,,
+567501,PPL,2026,28,2027-04-04T00:00:00Z,SCHEDULED,Gil Vicente FC,CD Santa Clara,Gil Vicente,Santa Clara,,,
+567502,PPL,2026,28,2027-04-04T00:00:00Z,SCHEDULED,Casa Pia AC,FC Alverca,Casa Pia,Alverca,,,
+567503,PPL,2026,28,2027-04-04T00:00:00Z,SCHEDULED,Moreirense FC,Sporting Clube de Portugal,Moreirense,Sporting CP,,,
+567504,PPL,2026,28,2027-04-04T00:00:00Z,SCHEDULED,Académico de Viseu FC,CD Nacional,Acad. Viseu,CD Nacional,,,
+567505,PPL,2026,28,2027-04-04T00:00:00Z,SCHEDULED,Sporting Clube de Braga,Rio Ave FC,Braga,Rio Ave,,,
+567506,PPL,2026,28,2027-04-04T00:00:00Z,SCHEDULED,CS Marítimo,GD Estoril Praia,Marítimo,Estoril Praia,,,
+567507,PPL,2026,28,2027-04-04T00:00:00Z,SCHEDULED,FC Porto,Vitória SC,Porto,Vitória SC,,,
+567508,PPL,2026,28,2027-04-04T00:00:00Z,SCHEDULED,Sport Lisboa e Benfica,CF Estrela da Amadora,SL Benfica,Amadora,,,
+567509,PPL,2026,29,2027-04-11T00:00:00Z,SCHEDULED,Sporting Clube de Portugal,FC Porto,Sporting CP,Porto,,,
+567510,PPL,2026,29,2027-04-11T00:00:00Z,SCHEDULED,FC Famalicão,Sport Lisboa e Benfica,Famalicão,SL Benfica,,,
+567511,PPL,2026,29,2027-04-11T00:00:00Z,SCHEDULED,CD Nacional,CS Marítimo,CD Nacional,Marítimo,,,
+567512,PPL,2026,29,2027-04-11T00:00:00Z,SCHEDULED,CD Santa Clara,Moreirense FC,Santa Clara,Moreirense,,,
+567513,PPL,2026,29,2027-04-11T00:00:00Z,SCHEDULED,Rio Ave FC,FC Arouca,Rio Ave,Arouca,,,
+567514,PPL,2026,29,2027-04-11T00:00:00Z,SCHEDULED,Sporting Clube de Braga,Casa Pia AC,Braga,Casa Pia,,,
+567515,PPL,2026,29,2027-04-11T00:00:00Z,SCHEDULED,FC Alverca,Académico de Viseu FC,Alverca,Acad. Viseu,,,
+567516,PPL,2026,29,2027-04-11T00:00:00Z,SCHEDULED,CF Estrela da Amadora,Vitória SC,Amadora,Vitória SC,,,
+567517,PPL,2026,29,2027-04-11T00:00:00Z,SCHEDULED,GD Estoril Praia,Gil Vicente FC,Estoril Praia,Gil Vicente,,,
+567518,PPL,2026,30,2027-04-18T00:00:00Z,SCHEDULED,Sport Lisboa e Benfica,CD Nacional,SL Benfica,CD Nacional,,,
+567519,PPL,2026,30,2027-04-18T00:00:00Z,SCHEDULED,FC Porto,CD Santa Clara,Porto,Santa Clara,,,
+567520,PPL,2026,30,2027-04-18T00:00:00Z,SCHEDULED,CS Marítimo,Sporting Clube de Portugal,Marítimo,Sporting CP,,,
+567521,PPL,2026,30,2027-04-18T00:00:00Z,SCHEDULED,Moreirense FC,FC Alverca,Moreirense,Alverca,,,
+567522,PPL,2026,30,2027-04-18T00:00:00Z,SCHEDULED,Académico de Viseu FC,FC Famalicão,Acad. Viseu,Famalicão,,,
+567523,PPL,2026,30,2027-04-18T00:00:00Z,SCHEDULED,Vitória SC,GD Estoril Praia,Vitória SC,Estoril Praia,,,
+567524,PPL,2026,30,2027-04-18T00:00:00Z,SCHEDULED,Casa Pia AC,Rio Ave FC,Casa Pia,Rio Ave,,,
+567525,PPL,2026,30,2027-04-18T00:00:00Z,SCHEDULED,Gil Vicente FC,CF Estrela da Amadora,Gil Vicente,Amadora,,,
+567526,PPL,2026,30,2027-04-18T00:00:00Z,SCHEDULED,FC Arouca,Sporting Clube de Braga,Arouca,Braga,,,
+567527,PPL,2026,31,2027-04-25T00:00:00Z,SCHEDULED,FC Alverca,Vitória SC,Alverca,Vitória SC,,,
+567528,PPL,2026,31,2027-04-25T00:00:00Z,SCHEDULED,Rio Ave FC,CS Marítimo,Rio Ave,Marítimo,,,
+567529,PPL,2026,31,2027-04-25T00:00:00Z,SCHEDULED,CD Nacional,Casa Pia AC,CD Nacional,Casa Pia,,,
+567530,PPL,2026,31,2027-04-25T00:00:00Z,SCHEDULED,CF Estrela da Amadora,FC Porto,Amadora,Porto,,,
+567531,PPL,2026,31,2027-04-25T00:00:00Z,SCHEDULED,Sporting Clube de Portugal,Gil Vicente FC,Sporting CP,Gil Vicente,,,
+567532,PPL,2026,31,2027-04-25T00:00:00Z,SCHEDULED,Sporting Clube de Braga,Sport Lisboa e Benfica,Braga,SL Benfica,,,
+567533,PPL,2026,31,2027-04-25T00:00:00Z,SCHEDULED,CD Santa Clara,GD Estoril Praia,Santa Clara,Estoril Praia,,,
+567534,PPL,2026,31,2027-04-25T00:00:00Z,SCHEDULED,FC Arouca,Académico de Viseu FC,Arouca,Acad. Viseu,,,
+567535,PPL,2026,31,2027-04-25T00:00:00Z,SCHEDULED,FC Famalicão,Moreirense FC,Famalicão,Moreirense,,,
+567536,PPL,2026,32,2027-05-02T00:00:00Z,SCHEDULED,Gil Vicente FC,FC Alverca,Gil Vicente,Alverca,,,
+567537,PPL,2026,32,2027-05-02T00:00:00Z,SCHEDULED,Vitória SC,CD Santa Clara,Vitória SC,Santa Clara,,,
+567538,PPL,2026,32,2027-05-02T00:00:00Z,SCHEDULED,GD Estoril Praia,Sporting Clube de Portugal,Estoril Praia,Sporting CP,,,
+567539,PPL,2026,32,2027-05-02T00:00:00Z,SCHEDULED,FC Porto,FC Famalicão,Porto,Famalicão,,,
+567540,PPL,2026,32,2027-05-02T00:00:00Z,SCHEDULED,Moreirense FC,CD Nacional,Moreirense,CD Nacional,,,
+567541,PPL,2026,32,2027-05-02T00:00:00Z,SCHEDULED,Casa Pia AC,FC Arouca,Casa Pia,Arouca,,,
+567542,PPL,2026,32,2027-05-02T00:00:00Z,SCHEDULED,Académico de Viseu FC,Sporting Clube de Braga,Acad. Viseu,Braga,,,
+567543,PPL,2026,32,2027-05-02T00:00:00Z,SCHEDULED,CS Marítimo,CF Estrela da Amadora,Marítimo,Amadora,,,
+567544,PPL,2026,32,2027-05-02T00:00:00Z,SCHEDULED,Sport Lisboa e Benfica,Rio Ave FC,SL Benfica,Rio Ave,,,
+567552,PPL,2026,33,2027-05-09T00:00:00Z,SCHEDULED,Sporting Clube de Portugal,Sport Lisboa e Benfica,Sporting CP,SL Benfica,,,
+567553,PPL,2026,33,2027-05-09T00:00:00Z,SCHEDULED,CF Estrela da Amadora,CD Santa Clara,Amadora,Santa Clara,,,
+567545,PPL,2026,33,2027-05-09T00:00:00Z,SCHEDULED,Rio Ave FC,Vitória SC,Rio Ave,Vitória SC,,,
+567546,PPL,2026,33,2027-05-09T00:00:00Z,SCHEDULED,Académico de Viseu FC,Moreirense FC,Acad. Viseu,Moreirense,,,
+567547,PPL,2026,33,2027-05-09T00:00:00Z,SCHEDULED,FC Famalicão,Casa Pia AC,Famalicão,Casa Pia,,,
+567548,PPL,2026,33,2027-05-09T00:00:00Z,SCHEDULED,Sporting Clube de Braga,CS Marítimo,Braga,Marítimo,,,
+567549,PPL,2026,33,2027-05-09T00:00:00Z,SCHEDULED,FC Alverca,GD Estoril Praia,Alverca,Estoril Praia,,,
+567550,PPL,2026,33,2027-05-09T00:00:00Z,SCHEDULED,FC Arouca,Gil Vicente FC,Arouca,Gil Vicente,,,
+567551,PPL,2026,33,2027-05-09T00:00:00Z,SCHEDULED,CD Nacional,FC Porto,CD Nacional,Porto,,,
+567554,PPL,2026,34,2027-05-16T00:00:00Z,SCHEDULED,CS Marítimo,FC Alverca,Marítimo,Alverca,,,
+567555,PPL,2026,34,2027-05-16T00:00:00Z,SCHEDULED,Gil Vicente FC,CD Nacional,Gil Vicente,CD Nacional,,,
+567556,PPL,2026,34,2027-05-16T00:00:00Z,SCHEDULED,Sport Lisboa e Benfica,FC Arouca,SL Benfica,Arouca,,,
+567557,PPL,2026,34,2027-05-16T00:00:00Z,SCHEDULED,GD Estoril Praia,CF Estrela da Amadora,Estoril Praia,Amadora,,,
+567558,PPL,2026,34,2027-05-16T00:00:00Z,SCHEDULED,FC Porto,Sporting Clube de Braga,Porto,Braga,,,
+567559,PPL,2026,34,2027-05-16T00:00:00Z,SCHEDULED,Casa Pia AC,Académico de Viseu FC,Casa Pia,Acad. Viseu,,,
+567560,PPL,2026,34,2027-05-16T00:00:00Z,SCHEDULED,Vitória SC,FC Famalicão,Vitória SC,Famalicão,,,
+567561,PPL,2026,34,2027-05-16T00:00:00Z,SCHEDULED,CD Santa Clara,Sporting Clube de Portugal,Santa Clara,Sporting CP,,,
+567562,PPL,2026,34,2027-05-16T00:00:00Z,SCHEDULED,Moreirense FC,Rio Ave FC,Moreirense,Rio Ave,,,

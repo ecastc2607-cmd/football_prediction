@@ -58,7 +58,7 @@ def matchday_predictions_df(competition_code: str, season: int, matchday: int,
             continue
         note = confidence_note(strength, row["home_team"], row["away_team"])
         prestamos = [
-            f"{team} usa su forma en {liga} (sin historial propio en la copa)"
+            f"{team} usa su forma en {liga} (poco o ningún historial propio en la copa)"
             for team, liga in fuente_prestada.items()
             if team in (row["home_team"], row["away_team"])
         ]

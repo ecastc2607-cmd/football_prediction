@@ -20,7 +20,7 @@ MIN_MATCHES_WARNING = 5  # bajo esta cantidad de partidos, la fuerza calculada e
 
 
 def _load_season_file(competition_code: str, season: int) -> pd.DataFrame:
-    path = config.PROCESSED_DIR / f"matches_{competition_code}_{season}.csv"
+    path = config.matches_path(competition_code, season)
     if not path.exists():
         raise FileNotFoundError(
             f"No existe {path}. Corre primero: "

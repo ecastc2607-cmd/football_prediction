@@ -26,7 +26,15 @@ import pandas as pd
 
 from . import config
 from .goal_api_client import normalize_team_name, team_name_similarity
-from .team_strength import build_team_strength, load_finished_matches
+from .team_strength import MIN_MATCHES_WARNING, build_team_strength, load_finished_matches
+
+# Partidos mínimos en la copa, por rol (local/visitante), para fiarse de la
+# fuerza propia — el mismo umbral con que confidence_note marca baja confianza.
+MIN_ROLE_MATCHES = MIN_MATCHES_WARNING
+
+
+def _league_name(code: str) -> str:
+    return config.COMPETITIONS.get(code) or config.SUPPORT_LEAGUES.get(code, code)
 
 # Por debajo de esto, dos nombres normalizados parecidos pero no idénticos se
 # consideran equipos DISTINTOS en vez de arriesgar un cruce falso — acá solo
@@ -38,7 +46,7 @@ FUZZY_THRESHOLD = 0.85
 # ya nos trae completas). No incluye "CL"/"EL": mezclar copa-con-copa no tiene el
 # mismo sustento (la razón de ser de esto es aprovechar datos de LIGA que sí
 # existen para casi cualquier equipo top).
-DOMESTIC_LEAGUES = ["PL", "PD", "SA", "BL1", "FL1"]
+DOMESTIC_LEAGUES = ["PL", "PD", "SA", "BL1", "FL1", *config.SUPPORT_LEAGUES]
 
 
 def _domestic_teams_by_normalized_name(seasons: list[int]) -> dict[str, tuple[str, str]]:
@@ -55,7 +63,7 @@ def _domestic_teams_by_normalized_name(seasons: list[int]) -> dict[str, tuple[st
     mapping: dict[str, tuple[str, str]] = {}
     for season in seasons:
         for code in DOMESTIC_LEAGUES:
-            path = config.PROCESSED_DIR / f"matches_{code}_{season}.csv"
+            path = config.matches_path(code, season)
             if not path.exists():
                 continue
             try:
@@ -68,7 +76,10 @@ def _domestic_teams_by_normalized_name(seasons: list[int]) -> dict[str, tuple[st
 
 
 # Nombres que ni normalizando se parecen entre fuentes (Goal API -> football-data.org).
-_ALIASES = {"rennes": "rennais"}  # "Rennes" vs "Stade Rennais FC 1901"
+_ALIASES = {
+    "rennes": "rennais",  # "Rennes" vs "Stade Rennais FC 1901"
+    "benfica": "sport lisboa e benfica",  # "Benfica" vs "Sport Lisboa e Benfica"
+}
 
 
 def _match_domestic_team(team: str, domestic_by_norm: dict[str, tuple[str, str]]) -> tuple[str, str] | None:
@@ -91,8 +102,10 @@ def fill_missing_with_domestic_strength(
     strength: pd.DataFrame, missing_teams: set[str], seasons: list[int],
     before: pd.Timestamp | None = None,
 ) -> tuple[pd.DataFrame, dict[str, str]]:
-    """Agrega al DataFrame de fuerzas una fila por cada equipo de `missing_teams`
-    que no esté ya en el índice, tomada de su liga doméstica.
+    """Para cada equipo de `missing_teams` (normalmente: todos los de la
+    jornada), usa su fuerza en su liga doméstica donde la de la copa no
+    alcanza: fila completa si no tiene ningún partido en la copa, o solo el
+    rol (local/visitante) con menos de MIN_ROLE_MATCHES partidos.
 
     `before`: solo usa partidos de liga anteriores a ese instante (para el
     backtest, que no debe "ver" resultados posteriores al partido que predice).
@@ -100,19 +113,32 @@ def fill_missing_with_domestic_strength(
     Devuelve (strength_ampliado, {equipo: nombre_de_liga_usada}) — el segundo
     valor es justo para poder avisarlo en la UI, nunca en silencio.
     """
-    faltantes = {t for t in missing_teams if t not in strength.index}
-    if not faltantes:
+    # Qué rol (local/visitante) de cada equipo tiene muy poca muestra en la
+    # copa. No basta con mirar si el equipo falta del todo: en Europa League,
+    # desde la jornada 2 todos tienen 1 partido, pero de un solo rol — y la
+    # jornada siguiente casi siempre les toca el otro, con 0 partidos, así que
+    # sin esto el modelo caía exacto al promedio de la copa para casi todos.
+    roles_flojos: dict[str, list[str]] = {}
+    for t in missing_teams:
+        if t not in strength.index:
+            roles_flojos[t] = ["home", "away"]
+            continue
+        flojos = [r for r in ("home", "away") if strength.loc[t, f"{r}_played"] < MIN_ROLE_MATCHES]
+        if flojos:
+            roles_flojos[t] = flojos
+    if not roles_flojos:
         return strength, {}
 
+    strength = strength.copy()  # se modifican filas: no tocar el DataFrame de quien llama
     domestic_by_norm = _domestic_teams_by_normalized_name(seasons)
     fuente_usada: dict[str, str] = {}
     filas_nuevas = []
     cache_por_liga: dict[str, pd.DataFrame] = {}
 
-    for team in faltantes:
+    for team, roles in roles_flojos.items():
         encontrado = _match_domestic_team(team, domestic_by_norm)
         if encontrado is None:
-            continue  # no juega ninguna de las 5 grandes ligas: no hay de dónde tomarlo
+            continue  # no juega ninguna liga que descargamos: no hay de dónde tomarlo
         nombre_domestico, code = encontrado
 
         if code not in cache_por_liga:
@@ -128,14 +154,24 @@ def fill_missing_with_domestic_strength(
         if domestic.empty or nombre_domestico not in domestic.index:
             continue
 
-        # .rename(team): la fila queda indexada con el nombre TAL COMO lo usa la
-        # copa (Goal API), que es como predict_match la va a buscar — aunque los
-        # datos de fondo vengan del nombre oficial de su liga doméstica.
-        filas_nuevas.append(domestic.loc[nombre_domestico].rename(team))
-        fuente_usada[team] = config.COMPETITIONS.get(code, code)
+        fila_domestica = domestic.loc[nombre_domestico]
+        if team in strength.index:
+            # Solo se reemplazan las fuerzas del rol flojo; los partidos jugados
+            # (home_played/away_played) quedan los de la copa, así confidence_note
+            # sigue avisando que la muestra propia es chica.
+            for rol in roles:
+                for col in (f"attack_{rol}", f"defense_{rol}"):
+                    strength.loc[team, col] = fila_domestica[col]
+        else:
+            # .rename(team): la fila queda indexada con el nombre TAL COMO lo usa
+            # la copa (Goal API), que es como predict_match la va a buscar.
+            filas_nuevas.append(fila_domestica.rename(team))
+        fuente_usada[team] = _league_name(code)
 
-    if not filas_nuevas:
+    if not fuente_usada:
         return strength, {}
+    if not filas_nuevas:
+        return strength, fuente_usada
 
     # Conserva los promedios de gol de LA COPA (no los de la liga doméstica): el
     # ratio prestado se multiplica por el promedio de Europa League, igual que

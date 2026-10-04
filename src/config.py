@@ -56,6 +56,26 @@ def goal_api_module(code: str):
         return national_teams
     raise KeyError(f"'{code}' no es una competición de Goal API conocida.")
 
+# Ligas "de apoyo": NO se muestran ni se predicen en el dashboard; solo aportan
+# la fuerza doméstica de equipos de Europa League que no juegan en las 5
+# grandes (AZ, NEC, Benfica...) — ver cross_competition_strength.py. Están en el
+# plan gratis de football-data.org. Se guardan versionadas en git (no en
+# data/processed/, que no se versiona y se pierde en cada reinicio de
+# Streamlit Cloud) — ver support_leagues.py.
+SUPPORT_LEAGUES = {"DED": "Eredivisie", "PPL": "Primeira Liga"}
+SUPPORT_LEAGUES_DIR = ROOT_DIR / "data" / "tracking" / "support_leagues"
+
+
+def matches_path(code: str, season: int) -> Path:
+    """CSV de partidos de una competición/temporada: data/processed/ si existe,
+    si no la copia versionada de las ligas de apoyo (si existe)."""
+    procesado = PROCESSED_DIR / f"matches_{code}_{season}.csv"
+    if procesado.exists():
+        return procesado
+    versionado = SUPPORT_LEAGUES_DIR / f"matches_{code}_{season}.csv"
+    return versionado if versionado.exists() else procesado
+
+
 # Competiciones tipo copa donde, si un equipo no tiene NINGÚN partido propio
 # todavía (rotación normal del torneo), se usa su fuerza calculada en su liga
 # doméstica como respaldo en vez de omitir el partido — ver

@@ -21,6 +21,7 @@ from .match_tendencies import load_team_averages, pick_tendencies
 from .poisson_model import predict_match
 from .predict_matchday import upcoming_fixtures
 from .prediction_log import append_predictions, favored_side
+from .support_leagues import ensure_support_leagues
 from .team_strength import confidence_note, team_strength_for_competition
 
 
@@ -37,6 +38,10 @@ def log_competition(code: str, season: int, matchday: int, seasons_back: int = 1
         fixtures = fixtures[inicio > pd.Timestamp.now(tz="UTC")]
 
     if code in config.CUP_STYLE_COMPETITIONS and not fixtures.empty:
+        try:
+            ensure_support_leagues(season)  # solo baja lo que falte o tenga >7 días
+        except Exception:
+            pass  # se sigue con las copias versionadas
         equipos = set(fixtures["home_team"]) | set(fixtures["away_team"])
         strength, _ = fill_missing_with_domestic_strength(strength, equipos, seasons)
 

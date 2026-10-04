@@ -40,6 +40,7 @@ from src.matchday_predictions import matchday_predictions_df
 from src.parlay_builder import build_parlays
 from src.predict_matchday import LIVE_STATUSES, finished_fixtures
 from src.backtest_walkforward import SOURCE as BACKTEST_SOURCE
+from src.support_leagues import ensure_support_leagues
 from src.prediction_log import MARKETS
 from src.timezones import BOGOTA_TZ, format_bogota, to_bogota
 from src.value_tips import MIN_MODEL_PROB, candidate_picks, day_summary, evaluate
@@ -118,11 +119,29 @@ def _load_goal_api_competition(code: str, season: int) -> pd.DataFrame:
         return pd.read_csv(path)
 
 
-@st.cache_data(ttl=1800, show_spinner="Calculando predicciones...")
-def get_predictions(code: str, season: int, matchday: int) -> pd.DataFrame:
+@st.cache_data(ttl=24 * 3600, show_spinner=False)
+def load_support_leagues(season: int) -> None:
+    """Eredivisie/Primeira Liga para el respaldo doméstico de Europa League.
+    Vienen versionadas en el repo; esto solo baja lo que falte o tenga más de
+    una semana (como mucho una vez al día por el caché). Si falla, se sigue
+    con lo guardado — nunca debe tumbar la jornada."""
+    try:
+        ensure_support_leagues(season, api_key=API_KEY)
+    except Exception:
+        pass
+
+
+def _prepare_competition(code: str, season: int) -> None:
     # Asegura que los datos de esta y la temporada anterior estén descargados.
     load_competition(code, season)
     load_competition(code, season - 1)
+    if code in config.CUP_STYLE_COMPETITIONS:
+        load_support_leagues(season)
+
+
+@st.cache_data(ttl=1800, show_spinner="Calculando predicciones...")
+def get_predictions(code: str, season: int, matchday: int) -> pd.DataFrame:
+    _prepare_competition(code, season)
     return matchday_predictions_df(code, season, matchday, seasons_back=1)
 
 
@@ -134,8 +153,7 @@ def get_predictions_con_jugados(code: str, season: int, matchday: int) -> pd.Dat
     mezclar partidos ya jugados). Usada por "Detalle por partido" para no
     hacer desaparecer un partido de la tabla apenas arranca o termina — TTL
     más corto porque el estado en vivo cambia rápido."""
-    load_competition(code, season)
-    load_competition(code, season - 1)
+    _prepare_competition(code, season)
     return matchday_predictions_df(code, season, matchday, seasons_back=1, include_played=True)
 
 
