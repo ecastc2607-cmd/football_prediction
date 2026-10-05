@@ -1149,3 +1149,21 @@ NT,0,0.0,2026-10-05T16:45:00Z,Northern Ireland,Georgia,Northern Ireland,True,0,,
 NT,0,0.0,2026-10-05T16:45:00Z,Northern Ireland,Georgia,Georgia,False,0,,0,0,51.0,,,0.0
 NT,0,0.0,2026-10-05T16:45:00Z,Montenegro,Armenia,Montenegro,True,1,,0,0,41.0,,,0.0
 NT,0,0.0,2026-10-05T16:45:00Z,Montenegro,Armenia,Armenia,False,1,,0,0,59.0,,,0.0
+NT,2026,4.0,2026-10-04T13:00:00Z,Azerbaijan,Lithuania,Azerbaijan,True,2,14.0,3,0,51.0,7.0,13.0,1.0
+NT,2026,4.0,2026-10-04T13:00:00Z,Azerbaijan,Lithuania,Lithuania,False,5,10.0,3,1,49.0,3.0,13.0,1.0
+NT,2026,4.0,2026-10-04T16:00:00Z,Malta,Andorra CF,Malta,True,6,14.0,2,0,63.0,6.0,12.0,1.0
+NT,2026,4.0,2026-10-04T16:00:00Z,Malta,Andorra CF,Andorra CF,False,5,16.0,3,0,37.0,3.0,12.0,1.0
+NT,2026,4.0,2026-10-04T16:00:00Z,Kosovo,Austria,Kosovo,True,3,6.0,1,0,44.0,5.0,10.0,1.0
+NT,2026,4.0,2026-10-04T16:00:00Z,Kosovo,Austria,Austria,False,5,15.0,0,0,56.0,4.0,13.0,4.0
+NT,2026,4.0,2026-10-04T18:45:00Z,Republic of Ireland,Israel,Republic of Ireland,True,3,13.0,1,0,55.0,4.0,16.0,1.0
+NT,2026,4.0,2026-10-04T18:45:00Z,Republic of Ireland,Israel,Israel,False,3,15.0,3,0,45.0,2.0,10.0,2.0
+NT,2026,4.0,2026-10-04T18:45:00Z,Greece,Germany,Greece,True,2,8.0,3,0,22.0,2.0,5.0,1.0
+NT,2026,4.0,2026-10-04T18:45:00Z,Greece,Germany,Germany,False,3,17.0,3,0,78.0,4.0,21.0,1.0
+NT,2026,4.0,2026-10-04T18:45:00Z,Netherlands,Serbia,Netherlands,True,6,14.0,1,0,75.0,7.0,22.0,1.0
+NT,2026,4.0,2026-10-04T18:45:00Z,Netherlands,Serbia,Serbia,False,4,13.0,4,0,25.0,4.0,14.0,2.0
+NT,2026,4.0,2026-10-04T18:45:00Z,Portugal,Norway,Portugal,True,6,8.0,4,1,59.0,7.0,20.0,2.0
+NT,2026,4.0,2026-10-04T18:45:00Z,Portugal,Norway,Norway,False,4,7.0,0,0,41.0,3.0,9.0,2.0
+NT,2026,4.0,2026-10-04T18:45:00Z,Wales,Denmark,Wales,True,3,11.0,3,0,84.0,1.0,6.0,0.0
+NT,2026,4.0,2026-10-04T18:45:00Z,Wales,Denmark,Denmark,False,3,9.0,1,0,16.0,4.0,13.0,3.0
+NT,2026,4.0,2026-10-05T16:00:00Z,Cyprus,Latvia,Cyprus,True,7,,0,0,62.0,,,0.0
+NT,2026,4.0,2026-10-05T16:00:00Z,Cyprus,Latvia,Latvia,False,3,,0,0,38.0,,,0.0

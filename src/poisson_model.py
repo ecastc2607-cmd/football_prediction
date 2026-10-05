@@ -76,14 +76,37 @@ def expected_goals(team_strength: pd.DataFrame, home_team: str, away_team: str) 
     return float(home_xg), float(away_xg)
 
 
-def predict_match(team_strength: pd.DataFrame, home_team: str, away_team: str) -> MatchPrediction:
+# Corrección de Dixon & Coles (1997) para marcadores bajos: dos Poisson
+# independientes subestiman 0-0 y 1-1 y sobreestiman 1-0/0-1 en el fútbol real.
+# rho < 0 corrige en esa dirección; 0 = Poisson puro. Elegido con model_eval.py
+# (236 partidos de las 5 ligas, oct-2026): -0.10 dio el menor log-loss total,
+# sobre todo en Ambos anotan (0.6861 -> 0.6837); Más/Menos 2.5 no cambia (el
+# ajuste solo mueve masa entre marcadores de menos de 3 goles). Mejora chica
+# pero en la dirección que reporta la literatura (rho entre -0.1 y -0.2).
+DC_RHO = -0.10
+
+
+def _dixon_coles_tau(matrix: np.ndarray, home_xg: float, away_xg: float, rho: float) -> np.ndarray:
+    if not rho:
+        return matrix
+    m = matrix.copy()
+    m[0, 0] *= max(1 - home_xg * away_xg * rho, 0)
+    m[0, 1] *= max(1 + home_xg * rho, 0)
+    m[1, 0] *= max(1 + away_xg * rho, 0)
+    m[1, 1] *= max(1 - rho, 0)
+    return m
+
+
+def predict_match(team_strength: pd.DataFrame, home_team: str, away_team: str,
+                  rho: float | None = None) -> MatchPrediction:
     home_xg, away_xg = expected_goals(team_strength, home_team, away_team)
 
     goals = np.arange(0, MAX_GOALS + 1)
     home_probs = poisson.pmf(goals, home_xg)
     away_probs = poisson.pmf(goals, away_xg)
     matrix = np.outer(home_probs, away_probs)
-    matrix /= matrix.sum()  # renormaliza por la masa recortada en MAX_GOALS
+    matrix = _dixon_coles_tau(matrix, home_xg, away_xg, DC_RHO if rho is None else rho)
+    matrix /= matrix.sum()  # renormaliza (masa recortada en MAX_GOALS y ajuste de Dixon-Coles)
 
     home_win = float(np.tril(matrix, -1).sum())
     draw = float(np.trace(matrix))

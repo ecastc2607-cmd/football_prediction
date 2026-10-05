@@ -25,6 +25,10 @@ from .support_leagues import ensure_support_leagues
 from .team_strength import confidence_note, team_strength_for_competition
 
 
+# v2 (oct-2026): Poisson + corrección de Dixon-Coles (poisson_model.DC_RHO).
+MODEL_SOURCE = "model_poisson_v2"
+
+
 def log_competition(code: str, season: int, matchday: int, seasons_back: int = 1) -> list[dict]:
     seasons = [season - i for i in range(seasons_back + 1)]
     strength = team_strength_for_competition(code, seasons)
@@ -68,7 +72,7 @@ def log_competition(code: str, season: int, matchday: int, seasons_back: int = 1
             "matchday": matchday,
             "home_team": row["home_team"],
             "away_team": row["away_team"],
-            "source": "model_poisson_v1",
+            "source": MODEL_SOURCE,
             "pred_home_pct": round(pred.home_win * 100, 1),
             "pred_draw_pct": round(pred.draw * 100, 1),
             "pred_away_pct": round(pred.away_win * 100, 1),

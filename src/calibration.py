@@ -27,6 +27,13 @@ import pandas as pd
 
 BINS = [0.0, 0.55, 0.60, 0.65, 0.70, 0.75, 0.80, 1.01]
 PRIOR_STRENGTH = 15
+# Segundo nivel: por competición y mercado. La tabla de arriba es global; pero
+# el modelo no rinde igual en todas (Nations League: 46% en Goles 2.5 contra
+# ~57% global). factor = (aciertos + K) / (esperados + K) sobre los picks de esa
+# competición y mercado, con K "aciertos fantasma" que lo acercan a 1 si hay
+# poca muestra. Se aplica multiplicando la probabilidad ya calibrada global, y
+# solo hacia abajo (ver competition_factor).
+COMPETITION_PRIOR = 10
 EXCLUDED_SOURCES = {"dashboard_v1_qualitative"}  # predicciones "a ojo", no del modelo
 
 MARKETS = ["Resultado", "Doble oportunidad", "Goles", "Ambos anotan"]
@@ -90,22 +97,50 @@ def _bin(p: float) -> int:
 class Calibrator:
     # {(mercado, tramo): [n, aciertos]}
     table: dict[tuple[str, int], list[int]] = field(default_factory=dict)
+    # {(competición, mercado): [aciertos, esperados_según_calibración_global]}
+    by_competition: dict[tuple[str, str], list[float]] = field(default_factory=dict)
 
     @classmethod
     def from_log(cls, log: pd.DataFrame) -> "Calibrator":
+        filas = resolved_rows(log)
+        picks = []
         tabla: dict[tuple[str, int], list[int]] = {}
-        for r in resolved_rows(log).itertuples():
+        for r in filas.itertuples():
             hg, ag = int(r.actual_home_goals), int(r.actual_away_goals)
             for mercado, pick, p in candidate_legs(r.pred_home_pct, r.pred_draw_pct, r.pred_away_pct,
                                                    r.over_2_5_pct, r.btts_pct):
+                gano = leg_won(mercado, pick, hg, ag)
+                picks.append((r.competition, mercado, p, gano))
                 celda = tabla.setdefault((mercado, _bin(p)), [0, 0])
                 celda[0] += 1
-                celda[1] += int(leg_won(mercado, pick, hg, ag))
-        return cls(tabla)
+                celda[1] += int(gano)
+        calibrador = cls(tabla)
+        por_comp: dict[tuple[str, str], list[float]] = {}
+        for comp, mercado, p, gano in picks:
+            celda = por_comp.setdefault((comp, mercado), [0.0, 0.0])
+            celda[0] += float(gano)
+            celda[1] += calibrador._global(mercado, p)
+        calibrador.by_competition = por_comp
+        return calibrador
 
-    def calibrate(self, market: str, p_model: float) -> float:
+    def _global(self, market: str, p_model: float) -> float:
         n, aciertos = self.table.get((market, _bin(p_model)), (0, 0))
         return (aciertos + PRIOR_STRENGTH * p_model) / (n + PRIOR_STRENGTH)
+
+    def competition_factor(self, competition: str | None, market: str) -> float:
+        """<=1 siempre: se acepta la evidencia de que el modelo rinde PEOR en
+        una competición, pero nunca se suben probabilidades por rachas buenas
+        de muestras chicas. Comparado con parlay_backtest (oct-2026, 16
+        jornadas): retorno promedio 1.13 (solo baja) vs 1.16 (sin factor) vs
+        1.02 (factor completo) — empate dentro del ruido, pero es la única
+        variante que evita el valor ficticio con cuotas reales en Nations
+        League (+100% esperado sin factor, +5% con él)."""
+        aciertos, esperados = self.by_competition.get((competition, market), (0.0, 0.0))
+        return min(1.0, (aciertos + COMPETITION_PRIOR) / (esperados + COMPETITION_PRIOR))
+
+    def calibrate(self, market: str, p_model: float, competition: str | None = None) -> float:
+        p = self._global(market, p_model) * self.competition_factor(competition, market)
+        return min(max(p, 0.01), 0.99)
 
     def sample_size(self, market: str, p_model: float) -> int:
         return self.table.get((market, _bin(p_model)), (0, 0))[0]

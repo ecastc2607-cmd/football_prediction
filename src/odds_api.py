@@ -184,4 +184,92 @@ def best_prices(event: dict, only_colombia: bool = True) -> dict[str, tuple[floa
                         _anotar("over", o.get("price"), casa)
                     elif str(nombre).lower() == "under":
                         _anotar("under", o.get("price"), casa)
+        # Doble oportunidad DERIVADA del 1X2 de la misma casa: 1/(1/local +
+        # 1/empate) es lo que esa casa pagaría por "1X" con el mismo margen.
+        # Pedir el mercado real costaría ~2 créditos por partido (endpoint por
+        # evento) y no entra en el plan gratis.
+        h2h = {o.get("name"): o.get("price") for m in book.get("markets", []) if m.get("key") == "h2h"
+               for o in m.get("outcomes", [])}
+        local, visita = h2h.get(home_name), h2h.get(away_name)
+        empate = next((v for k, v in h2h.items() if str(k).lower() == "draw"), None)
+        try:
+            if local and empate:
+                _anotar("dc_1x", 1 / (1 / float(local) + 1 / float(empate)), casa)
+            if visita and empate:
+                _anotar("dc_x2", 1 / (1 / float(visita) + 1 / float(empate)), casa)
+        except (TypeError, ValueError, ZeroDivisionError):
+            pass
     return mejores
+
+
+# --- Historial de cuotas (versionado en git, pedido explícito del usuario) ---
+# Una fila por evento y consulta, con la mejor cuota por pick (solo casas que
+# operan en Colombia, y entre todas). Sirve para (1) no volver a gastar créditos
+# en la misma ventana tras un reinicio de Streamlit Cloud y (2) medir después si
+# los picks recomendados de verdad pagaban más de lo que valían.
+SNAPSHOT_PATH = config.ROOT_DIR / "data" / "tracking" / "odds_snapshots.csv"
+PRICE_KEYS = ["home", "draw", "away", "over", "under", "dc_1x", "dc_x2"]
+# 6 h: las cuotas previas al partido se mueven poco y cada consulta nueva gasta
+# 2 de los 500 créditos/mes del plan gratis.
+SNAPSHOT_MAX_AGE_HOURS = 6
+
+
+def _event_row(event: dict, meta: dict) -> dict:
+    fila = dict(meta, event_id=event.get("id"), commence_time=str(event.get("commence_time", ""))[:19] + "Z",
+                home_team=event.get("home_team"), away_team=event.get("away_team"))
+    for filtro, solo_co in (("co", True), ("all", False)):
+        precios = best_prices(event, only_colombia=solo_co)
+        for k in PRICE_KEYS:
+            precio, casa = precios.get(k, (None, ""))
+            fila[f"{filtro}_{k}"] = round(precio, 3) if precio else None
+            fila[f"{filtro}_{k}_book"] = casa
+    return fila
+
+
+def get_odds_table(competition_code: str, date_from_utc: str, date_to_utc: str,
+                   api_key: str = "") -> tuple[list[dict], int | None, str | None]:
+    """(eventos, créditos_restantes, error). Cada evento es un dict con
+    home_team/away_team/commence_time (lo que usa find_event) y las mejores
+    cuotas. Si la misma ventana se consultó hace menos de SNAPSHOT_MAX_AGE_HOURS,
+    sale del historial sin gastar créditos."""
+    import pandas as pd  # local: el resto del módulo no depende de pandas
+
+    ahora = pd.Timestamp.now(tz="UTC")
+    if SNAPSHOT_PATH.exists():
+        hist = pd.read_csv(SNAPSHOT_PATH)
+        ventana = hist[(hist["competition"] == competition_code) & (hist["window_from"] == date_from_utc)
+                       & (hist["window_to"] == date_to_utc)]
+        if not ventana.empty:
+            ultima = ventana["fetched_at"].max()
+            if ahora - pd.Timestamp(ultima) < pd.Timedelta(hours=SNAPSHOT_MAX_AGE_HOURS):
+                filas = ventana[(ventana["fetched_at"] == ultima) & ventana["event_id"].notna()]
+                return filas.where(filas.notna(), None).to_dict("records"), None, None
+
+    resultado = fetch_odds(competition_code, date_from_utc, date_to_utc, api_key=api_key)
+    if resultado.error:
+        return [], resultado.remaining, resultado.error
+    meta = {"fetched_at": ahora.strftime("%Y-%m-%dT%H:%M:%SZ"), "competition": competition_code,
+            "window_from": date_from_utc, "window_to": date_to_utc}
+    filas = [_event_row(e, meta) for e in resultado.events]
+    # Una ventana sin partidos también se anota (fila sin event_id), para no
+    # volver a pagar créditos por descubrir de nuevo que está vacía.
+    a_guardar = filas or [dict(meta, event_id=None)]
+    nuevo = pd.DataFrame(a_guardar)
+    SNAPSHOT_PATH.parent.mkdir(parents=True, exist_ok=True)
+    if SNAPSHOT_PATH.exists():
+        nuevo = pd.concat([pd.read_csv(SNAPSHOT_PATH), nuevo], ignore_index=True)
+    nuevo.to_csv(SNAPSHOT_PATH, index=False, encoding="utf-8")
+    return filas, resultado.remaining, None
+
+
+def row_price(row: dict, key: str, only_colombia: bool = True) -> tuple[float, str] | None:
+    """(cuota, casa) de una fila de get_odds_table, o None si no hay."""
+    filtro = "co" if only_colombia else "all"
+    precio = row.get(f"{filtro}_{key}")
+    try:
+        precio = float(precio)
+    except (TypeError, ValueError):
+        return None
+    if precio != precio or precio <= 1:  # NaN o inválida
+        return None
+    return precio, row.get(f"{filtro}_{key}_book") or ""

@@ -18,6 +18,13 @@ from . import config
 
 MIN_MATCHES_WARNING = 5  # bajo esta cantidad de partidos, la fuerza calculada es poco fiable
 
+# Vida media del peso de un partido (días). None = sin decaimiento (todos pesan
+# igual). Probado con model_eval.py (oct-2026, 236 partidos): 365/180/90 días
+# EMPEORARON el log-loss de 1X2 (0.993 -> 0.994/0.998/1.009) — con solo la
+# temporada actual + la anterior cargadas, restarle peso a la anterior deja al
+# modelo con muy poca muestra. Queda apagado; re-evaluar con más temporadas.
+HALF_LIFE_DAYS: float | None = None
+
 
 def _load_season_file(competition_code: str, season: int) -> pd.DataFrame:
     path = config.matches_path(competition_code, season)
@@ -59,35 +66,65 @@ def _shrink(rate: pd.Series, played: pd.Series, league_avg: float, prior_games: 
     return (rate.fillna(0) * played + league_avg * prior_games) / (played + prior_games)
 
 
-def build_team_strength(matches: pd.DataFrame, prior_games: int = 3) -> pd.DataFrame:
+def match_weights(matches: pd.DataFrame, half_life_days: float | None,
+                  as_of: pd.Timestamp | None = None) -> pd.Series:
+    """Peso de cada partido: 1 para uno jugado `as_of`, 0.5 para uno de hace
+    `half_life_days`, 0.25 para el doble, etc. (decaimiento temporal, como en
+    Dixon & Coles 1997). None = todos pesan igual."""
+    if not half_life_days:
+        return pd.Series(1.0, index=matches.index)
+    fechas = pd.to_datetime(matches["utc_date"], utc=True, errors="coerce")
+    ref = as_of if as_of is not None else fechas.max()
+    edad = ((ref - fechas).dt.total_seconds() / 86400).clip(lower=0)
+    return (0.5 ** (edad / half_life_days)).fillna(0.5)
+
+
+def build_team_strength(matches: pd.DataFrame, prior_games: int = 3,
+                        half_life_days: float | None = None,
+                        as_of: pd.Timestamp | None = None) -> pd.DataFrame:
     """Devuelve un DataFrame indexado por equipo con sus 4 fuerzas + partidos jugados.
 
     `prior_games`: cuántos "partidos fantasma" al promedio de liga se mezclan en la
     estimación de cada equipo (suavizado bayesiano simple). 0 = sin suavizado.
+    `half_life_days`: si se da, los partidos viejos pesan menos (ver match_weights);
+    por defecto, HALF_LIFE_DAYS. `as_of`: fecha desde la que se mide la antigüedad
+    (el inicio del partido a predecir, en un backtest); por defecto, el último partido.
+
+    home_played/away_played siguen siendo CONTEOS reales (los usa confidence_note);
+    el suavizado usa en cambio el peso efectivo (home_weight/away_weight): un equipo
+    con muchos partidos pero todos viejos se acerca más al promedio.
     """
     if matches.empty:
         raise ValueError("No hay partidos finalizados para calcular fuerzas de equipo todavía.")
 
-    league_home_avg = matches["home_goals"].mean()
-    league_away_avg = matches["away_goals"].mean()
+    if half_life_days is None:
+        half_life_days = HALF_LIFE_DAYS
+    m = matches.assign(_w=match_weights(matches, half_life_days, as_of))
+    m["_w_hg"] = m["_w"] * m["home_goals"]
+    m["_w_ag"] = m["_w"] * m["away_goals"]
 
-    home = matches.groupby("home_team").agg(
-        home_played=("home_goals", "count"),
-        home_goals_for=("home_goals", "mean"),
-        home_goals_against=("away_goals", "mean"),
+    league_home_avg = m["_w_hg"].sum() / m["_w"].sum()
+    league_away_avg = m["_w_ag"].sum() / m["_w"].sum()
+
+    home = m.groupby("home_team").agg(
+        home_played=("home_goals", "count"), home_weight=("_w", "sum"),
+        _hgf=("_w_hg", "sum"), _hga=("_w_ag", "sum"),
     )
-    away = matches.groupby("away_team").agg(
-        away_played=("away_goals", "count"),
-        away_goals_for=("away_goals", "mean"),
-        away_goals_against=("home_goals", "mean"),
+    home["home_goals_for"] = home["_hgf"] / home["home_weight"]
+    home["home_goals_against"] = home["_hga"] / home["home_weight"]
+    away = m.groupby("away_team").agg(
+        away_played=("away_goals", "count"), away_weight=("_w", "sum"),
+        _agf=("_w_ag", "sum"), _aga=("_w_hg", "sum"),
     )
+    away["away_goals_for"] = away["_agf"] / away["away_weight"]
+    away["away_goals_against"] = away["_aga"] / away["away_weight"]
 
-    teams = home.join(away, how="outer").fillna(0)
+    teams = home.drop(columns=["_hgf", "_hga"]).join(away.drop(columns=["_agf", "_aga"]), how="outer").fillna(0)
 
-    home_goals_for = _shrink(teams["home_goals_for"], teams["home_played"], league_home_avg, prior_games)
-    home_goals_against = _shrink(teams["home_goals_against"], teams["home_played"], league_away_avg, prior_games)
-    away_goals_for = _shrink(teams["away_goals_for"], teams["away_played"], league_away_avg, prior_games)
-    away_goals_against = _shrink(teams["away_goals_against"], teams["away_played"], league_home_avg, prior_games)
+    home_goals_for = _shrink(teams["home_goals_for"], teams["home_weight"], league_home_avg, prior_games)
+    home_goals_against = _shrink(teams["home_goals_against"], teams["home_weight"], league_away_avg, prior_games)
+    away_goals_for = _shrink(teams["away_goals_for"], teams["away_weight"], league_away_avg, prior_games)
+    away_goals_against = _shrink(teams["away_goals_against"], teams["away_weight"], league_home_avg, prior_games)
 
     teams["attack_home"] = home_goals_for / league_home_avg
     teams["defense_home"] = home_goals_against / league_away_avg

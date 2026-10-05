@@ -290,11 +290,58 @@ def load_day_predictions(fecha_iso: str) -> pd.DataFrame:
     return todo.drop_duplicates(subset=["home_team", "away_team", "utc_date"]).sort_values("utc_date")
 
 
-@st.cache_data(ttl=3 * 3600, show_spinner="Consultando cuotas de las casas...")
-def load_odds(code: str, desde_utc: str, hasta_utc: str) -> odds_api.OddsResult:
-    """3 horas de caché: cada consulta gasta 2 de los 500 créditos/mes gratis,
-    y las cuotas previas al partido no cambian tanto como para pagar más."""
-    return odds_api.fetch_odds(code, desde_utc, hasta_utc, api_key=ODDS_KEY)
+@st.cache_data(ttl=3600, show_spinner="Consultando cuotas de las casas...")
+def load_odds_table(code: str, desde_utc: str, hasta_utc: str) -> tuple:
+    """(eventos, créditos_restantes, error). Pasa por el historial versionado
+    (odds_api.get_odds_table): una ventana consultada hace menos de
+    SNAPSHOT_MAX_AGE_HOURS no gasta créditos, ni siquiera tras un reinicio."""
+    return odds_api.get_odds_table(code, desde_utc, hasta_utc, api_key=ODDS_KEY)
+
+
+def odds_window(df: pd.DataFrame) -> tuple[str, str]:
+    """Ventana UTC de días completos que cubre los partidos de `df` — estable
+    entre consultas, para que el historial reconozca la misma ventana."""
+    inicio = pd.to_datetime(df["utc_date"], utc=True)
+    fmt = "%Y-%m-%dT%H:%M:%SZ"
+    return inicio.min().floor("D").strftime(fmt), (inicio.max().floor("D") + pd.Timedelta(days=1)).strftime(fmt)
+
+
+def make_odds_lookup(tables: dict, only_colombia: bool = True):
+    """odds_lookup para build_parlays: cuota real de un pick a partir de las
+    tablas {competición: eventos} ya traídas."""
+    def lookup(row, clave):
+        eventos = tables.get(row.get("competition"))
+        if not eventos:
+            return None
+        evento = odds_api.find_event(eventos, row["home_team"], row["away_team"], row["utc_date"],
+                                     row.get("home_team_short") or "", row.get("away_team_short") or "")
+        return odds_api.row_price(evento, clave, only_colombia) if evento else None
+    return lookup
+
+
+def parlays_with_real_odds(df: pd.DataFrame, only_colombia: bool = True) -> tuple[list, list[str]]:
+    """Arma las combinadas, y solo para las competiciones que aparecen en ellas
+    trae cuotas reales (2 créditos por competición, o 0 si están en el
+    historial reciente) y las vuelve a armar ya con esas cuotas.
+    Devuelve (combinadas, avisos)."""
+    calibracion = load_calibrator()
+    base = build_parlays(df, calibracion)
+    if not ODDS_KEY or not base:
+        return base, ([] if ODDS_KEY else ["Sin ODDS_API_KEY: cuotas estimadas, no reales."])
+    comp_por_partido = {(r.home_team, r.away_team): r.competition for r in df.itertuples()}
+    comps = {comp_por_partido.get((l.home_team, l.away_team)) for p in base for l in p.legs}
+    tablas, avisos, restante = {}, [], None
+    for code in sorted(c for c in comps if c in odds_api.SPORT_KEYS):
+        desde, hasta = odds_window(df[df["competition"] == code])
+        eventos, rest, error = load_odds_table(code, desde, hasta)
+        restante = rest if rest is not None else restante
+        if error:
+            avisos.append(f"{config.COMPETITIONS.get(code, code)}: {error}")
+        else:
+            tablas[code] = eventos
+    if restante is not None:
+        avisos.append(f"Créditos de The Odds API restantes este mes: {restante}")
+    return build_parlays(df, calibracion, make_odds_lookup(tablas, only_colombia)), avisos
 
 
 @st.cache_data(ttl=1800, show_spinner=False)
@@ -404,22 +451,27 @@ def load_parlay_backtest() -> pd.DataFrame:
 _TIER_META = {
     "Alta probabilidad": ("🟢", "Gana aprox. 2 de cada 5 veces o más."),
     "Equilibrada": ("🟡", "Gana aprox. 1 de cada 3-4 veces."),
-    "Cuota alta": ("🔴", "Gana aprox. 1 de cada 5-8 veces: paga más, falla casi siempre."),
+    "Cuota alta": ("🔴", "Gana aprox. 1 de cada 4-8 veces: paga más, falla la mayoría."),
 }
 
 
-def render_parlays(parlays: list) -> None:
-    """Combinadas como cupones: cuota justa y estimada en casa, probabilidad
-    calibrada, y una fila por pick. Debajo, cómo le habría ido a la estrategia
-    en jornadas ya resueltas — para que cada número se pueda contrastar."""
+def render_parlays(parlays: list, bankroll: float | None = None, avisos: list[str] | None = None) -> None:
+    """Combinadas como cupones: probabilidad calibrada, cuota justa, lo que
+    paga la casa (real si se trajo, estimada si no), valor esperado y monto
+    sugerido. Debajo, cómo le habría ido a la estrategia en jornadas ya
+    resueltas — para que cada número se pueda contrastar."""
     st.caption(
         f"Probabilidades **calibradas** con los resultados reales del proyecto (no las del modelo "
         f"en bruto): solo entran picks con ≥{MIN_LEG_PROB:.0%} calibrado, así que un pick que en el "
-        "histórico acertó poco queda fuera aunque el modelo le dé más. Un pick por partido como mucho (dos del mismo "
-        "partido estarían correlacionados). En cada nivel va primero la que más paga sin bajar "
-        "de su piso de probabilidad. 'Cuota en casa' estima el margen de una casa (~5% por pick). "
+        "histórico acertó poco queda fuera aunque el modelo le dé más. Un pick por partido como mucho "
+        "(dos del mismo partido estarían correlacionados). En cada nivel va primero la de mayor "
+        "**valor esperado** (probabilidad × lo que paga la casa). 'Paga' usa la mejor cuota real "
+        "cuando está disponible (✔) y si no, la justa menos ~5% de margen por pick. Doble "
+        "oportunidad se deriva del 1X2 de la misma casa; Ambos anotan no tiene cuota real. "
         "Estadística sobre datos históricos, no garantía."
     )
+    for aviso in avisos or []:
+        st.caption(f"ℹ️ {aviso}")
     if not parlays:
         st.info("Hoy no hay combinadas recomendables: no hay al menos 2 picks que lleguen al mínimo "
                 "calibrado en partidos distintos.")
@@ -436,14 +488,25 @@ def render_parlays(parlays: list) -> None:
             for i, p in enumerate(del_nivel):
                 with st.container(border=True):
                     etiqueta = "⭐ Recomendada · " if i == 0 else ""
+                    paga = f"paga `{p.estimated_odds}x`" + (" ✔ real" if p.all_real_odds else " (estimada)")
                     st.markdown(
-                        f"{etiqueta}prob. **{p.combined_probability:.0%}** · cuota justa `{p.combined_odds}x` "
-                        f"· en casa ~`{p.estimated_odds}x`"
+                        f"{etiqueta}prob. **{p.combined_probability:.0%}** · cuota justa `{p.combined_odds}x` · {paga}"
                     )
+                    if p.all_real_odds and p.expected_value > 0:
+                        monto = (f" → apostar **${p.stake(bankroll):,.0f}** (1% de la banca)" if bankroll
+                                 else " → monto sugerido: 1% de tu banca")
+                        st.success(f"Con valor: +{p.expected_value:.1%} esperado por peso a cuota real{monto}")
+                    elif p.all_real_odds:
+                        st.caption(f"Sin valor a cuota real ({p.expected_value:+.1%} esperado): la casa "
+                                   "paga menos de lo que vale — mejor no apostarla.")
+                    else:
+                        st.caption("Valor sin confirmar: falta la cuota real de algún pick.")
                     st.dataframe(
                         pd.DataFrame([
                             {"Partido": l.match, "Mercado": l.market, "Pick": l.pick,
-                             "Prob.": f"{l.probability:.0%}"}
+                             "Prob.": f"{l.probability:.0%}",
+                             "Cuota": f"{l.book_odds:.2f}" if l.book_odds else f"~{l.payout_odds:.2f}",
+                             "Casa": l.bookmaker or "estimada"}
                             for l in p.legs
                         ]),
                         width="stretch", hide_index=True,
@@ -694,7 +757,19 @@ with tab_jornada:
     # --- Combinadas sugeridas ---
     st.divider()
     st.subheader("🎯 Combinadas sugeridas")
-    render_parlays(load_parlays(comp_code, int(season), int(matchday)))
+    # Cuotas reales solo a pedido: cada liga consultada gasta ~2 de los 500
+    # créditos/mes (0 si se consultó hace poco: queda en el historial).
+    clave_cuotas = f"cuotas_reales_{comp_code}_{int(season)}_{int(matchday)}"
+    df_combinadas = get_predictions(comp_code, int(season), int(matchday))
+    if (ODDS_KEY and comp_code in odds_api.SPORT_KEYS and not df_combinadas.empty
+            and not st.session_state.get(clave_cuotas)):
+        if st.button("💱 Traer cuotas reales para estas combinadas (~2 créditos)", key=f"btn_{clave_cuotas}"):
+            st.session_state[clave_cuotas] = True
+    if st.session_state.get(clave_cuotas) and not df_combinadas.empty:
+        combinadas, avisos_cuotas = parlays_with_real_odds(df_combinadas)
+        render_parlays(combinadas, avisos=avisos_cuotas)
+    else:
+        render_parlays(load_parlays(comp_code, int(season), int(matchday)))
 
     # --- Calibración histórica ---
     st.divider()
@@ -950,19 +1025,19 @@ with tab_tips:
                 for code in candidatos["competition"].unique():
                     if code not in odds_api.SPORT_KEYS:
                         continue  # amistosos: sin clave verificada en The Odds API -> cuota manual
-                    resultado = load_odds(code, desde, hasta)
-                    restante = resultado.remaining if resultado.remaining is not None else restante
-                    if resultado.error:
-                        st.caption(f"⚠ {config.COMPETITIONS.get(code, code)}: {resultado.error}")
+                    eventos, rest, error = load_odds_table(code, desde, hasta)
+                    restante = rest if rest is not None else restante
+                    if error:
+                        st.caption(f"⚠ {config.COMPETITIONS.get(code, code)}: {error}")
                         continue
                     for idx, r in candidatos[candidatos["competition"] == code].iterrows():
                         evento = odds_api.find_event(
-                            resultado.events, r.home_team, r.away_team, r.utc_date,
+                            eventos, r.home_team, r.away_team, r.utc_date,
                             r.home_team_short, r.away_team_short,
                         )
                         if evento is None:
                             continue
-                        precio = odds_api.best_prices(evento, only_colombia=solo_colombia).get(r.odds_key)
+                        precio = odds_api.row_price(evento, r.odds_key, only_colombia=solo_colombia)
                         if precio:
                             candidatos.at[idx, "cuota_auto"] = precio[0]
                             candidatos.at[idx, "casa"] = precio[1]
@@ -1081,4 +1156,5 @@ with tab_tips:
         if not dia.empty:
             st.divider()
             st.subheader("🎯 Combinadas del día — todas las ligas")
-            render_parlays(build_parlays(dia, load_calibrator()))
+            combinadas_dia, avisos_dia = parlays_with_real_odds(dia, only_colombia=solo_colombia)
+            render_parlays(combinadas_dia, bankroll=float(banca), avisos=avisos_dia)
