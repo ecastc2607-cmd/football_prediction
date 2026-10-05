@@ -187,6 +187,16 @@ def _pick_rows(rows: list[dict]) -> dict[str, tuple]:
 
 def _build_team_stats(rows: list[dict], home_team: str, away_team: str) -> dict:
     valores = _pick_rows(rows)
+    # Durante el partido Goal API trae los remates como "On Target"/"Off
+    # Target" y recién al final agrega "Shots On Goal"/"Shots Total"
+    # (verificado: Francia-Bélgica en vivo, 5-oct-2026). "Off Target" incluye
+    # los bloqueados (en la final del Mundial: 12 a puerta + 8 = 20 totales).
+    if "Shots On Goal" not in valores and "On Target" in valores:
+        valores["Shots On Goal"] = valores["On Target"]
+    if "Shots Total" not in valores and "On Target" in valores and "Off Target" in valores:
+        valores["Shots Total"] = tuple(
+            (a or 0) + (b or 0) for a, b in zip(valores["On Target"], valores["Off Target"])
+        )
     stats = {home_team: {}, away_team: {}}
     for clave, nombre_api in _STAT_FIELDS.items():
         if nombre_api in valores:

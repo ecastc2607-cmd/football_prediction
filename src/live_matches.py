@@ -60,6 +60,82 @@ def live_win_probabilities(home_goals: int, away_goals: int, home_xg_remaining: 
     return home_win, draw, away_win
 
 
+# --- Ajuste en vivo con lo que pasa en la cancha ---
+# El cálculo de arriba solo mira marcador + xG de ANTES del partido: un equipo
+# que remata 10-4 y va perdiendo 0-1 sigue con el mismo ritmo de gol que se le
+# suponía antes de empezar. Esto actualiza ese ritmo con sus remates.
+#
+# xG aproximado por remate (no tenemos el xG real en vivo): 0.20 por remate a
+# puerta y 0.05 por remate desviado/bloqueado — con ~1 de cada 3 remates a
+# puerta da ~0.10 por remate, el promedio que reporta la literatura de xG.
+SHOT_ON_TARGET_XG = 0.20
+SHOT_OFF_TARGET_XG = 0.05
+# Cuánto pesa lo esperado antes del partido, en "minutos equivalentes": con 90,
+# al descanso lo observado pesa ~1/3 y al minuto 80, ~47%. Actualización
+# bayesiana estándar del ritmo de un proceso de Poisson (prior gamma).
+PRIOR_MINUTES = 90
+# Efecto marcador (Dixon & Robinson 1998): el que va perdiendo ataca más y el
+# que gana se repliega. Valores conservadores; NO están validados con datos del
+# proyecto (no hay histórico de partidos en vivo para eso).
+TRAILING_FACTOR = 1.10
+LEADING_FACTOR = 0.95
+# Tiempo añadido típico (minutos) — sin él, el minuto 90 "no deja nada por jugar".
+FIRST_HALF_ADDED = 2
+SECOND_HALF_ADDED = 4
+
+
+def remaining_minutes(minute: int) -> float:
+    if minute <= 45:
+        return (45 + FIRST_HALF_ADDED - minute) + 45 + SECOND_HALF_ADDED
+    return max(90 + SECOND_HALF_ADDED - minute, 0.5)
+
+
+def shots_xg(shots_total, shots_on_target) -> float | None:
+    """xG aproximado a partir de remates; None si no hay datos."""
+    try:
+        total, a_puerta = float(shots_total), float(shots_on_target)
+    except (TypeError, ValueError):
+        return None
+    if total != total or a_puerta != a_puerta:  # NaN
+        return None
+    return SHOT_ON_TARGET_XG * a_puerta + SHOT_OFF_TARGET_XG * max(total - a_puerta, 0)
+
+
+def adjusted_live_probabilities(home_goals: int, away_goals: int, minute: int,
+                                pre_home_xg: float, pre_away_xg: float,
+                                home_stats: dict | None = None,
+                                away_stats: dict | None = None) -> dict:
+    """1X2 en vivo con: ritmo de gol actualizado con los remates de cada
+    equipo, efecto marcador y tiempo añadido. Devuelve también el desglose
+    (xG observado y goles esperados que faltan), para mostrarlo en la UI."""
+    jugado = max(minute, 0)
+    resto = remaining_minutes(minute)
+
+    def ritmo(pre_xg, stats):
+        observado = shots_xg((stats or {}).get("remates_totales"), (stats or {}).get("remates_a_puerta"))
+        if observado is None:
+            return pre_xg / 90, None
+        return (pre_xg / 90 * PRIOR_MINUTES + observado) / (PRIOR_MINUTES + jugado), observado
+
+    ritmo_local, obs_local = ritmo(pre_home_xg, home_stats)
+    ritmo_visita, obs_visita = ritmo(pre_away_xg, away_stats)
+    factor_local = factor_visita = 1.0
+    if home_goals < away_goals:
+        factor_local, factor_visita = TRAILING_FACTOR, LEADING_FACTOR
+    elif home_goals > away_goals:
+        factor_local, factor_visita = LEADING_FACTOR, TRAILING_FACTOR
+
+    resto_local = ritmo_local * resto * factor_local
+    resto_visita = ritmo_visita * resto * factor_visita
+    h, d, a = live_win_probabilities(home_goals, away_goals, resto_local, resto_visita)
+    return {
+        "home_win": h, "draw": d, "away_win": a,
+        "home_xg_observed": obs_local, "away_xg_observed": obs_visita,
+        "home_xg_remaining": resto_local, "away_xg_remaining": resto_visita,
+        "remaining_minutes": resto,
+    }
+
+
 def get_live_matches(client: FootballDataClient, codes: list[str], ensure_data=None) -> pd.DataFrame:
     """Devuelve un DataFrame con los partidos IN_PLAY/PAUSED de las competiciones
     dadas, con su 1X2 en vivo recalculado.
@@ -101,6 +177,7 @@ def get_live_matches(client: FootballDataClient, codes: list[str], ensure_data=N
 
             home_xg_rem = away_xg_rem = None
             live_h = live_d = live_a = None
+            home_xg = away_xg = None
             if strength is not None:
                 try:
                     home_xg, away_xg = expected_goals(strength, home, away)
@@ -121,5 +198,9 @@ def get_live_matches(client: FootballDataClient, codes: list[str], ensure_data=N
                 "live_home_win": round(live_h * 100, 1) if live_h is not None else None,
                 "live_draw": round(live_d * 100, 1) if live_d is not None else None,
                 "live_away_win": round(live_a * 100, 1) if live_a is not None else None,
+                # xG del modelo ANTES del partido (90'): base del ajuste en vivo
+                # con estadísticas (adjusted_live_probabilities), que hace app.py.
+                "pre_home_xg": home_xg,
+                "pre_away_xg": away_xg,
             })
     return pd.DataFrame(rows)

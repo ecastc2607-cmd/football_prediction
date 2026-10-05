@@ -458,6 +458,7 @@ def get_live_matches(ensure_data=None) -> pd.DataFrame:
         remaining_frac = max(REGULATION_MINUTES - minute, 0) / REGULATION_MINUTES
 
         live_h = live_d = live_a = None
+        home_xg = away_xg = None
         if strength is not None:
             try:
                 home_xg, away_xg = expected_goals(strength, home, away)
@@ -478,6 +479,8 @@ def get_live_matches(ensure_data=None) -> pd.DataFrame:
             "live_home_win": round(live_h * 100, 1) if live_h is not None else None,
             "live_draw": round(live_d * 100, 1) if live_d is not None else None,
             "live_away_win": round(live_a * 100, 1) if live_a is not None else None,
+            "pre_home_xg": home_xg,
+            "pre_away_xg": away_xg,
         })
     return pd.DataFrame(rows)
 

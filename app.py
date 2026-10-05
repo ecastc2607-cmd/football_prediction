@@ -32,7 +32,7 @@ from src.highlightly_client import (
     HighlightlyRateLimited,
     get_match_stats as highlightly_get_match_stats,
 )
-from src.live_matches import get_live_matches
+from src.live_matches import adjusted_live_probabilities, get_live_matches
 from src.match_stats_log import get_cached_stats, log_match_stats
 from src.match_context import get_standings_map, rivalry_label
 from src.match_tendencies import load_team_averages, pick_tendencies
@@ -849,10 +849,12 @@ with tab_jornada:
 with tab_vivo:
     st.title("🔴 Partidos en vivo")
     st.caption(
-        "Minuto estimado a partir de la hora de inicio (la API gratuita no da el minuto real ni "
-        "tiempo añadido) — puede quedarse pegado si football-data.org tarda en marcar un partido "
-        "como finalizado. 1X2 recalculado en vivo: marcador actual + goles esperados restantes "
-        "del modelo, no una cuota de casa de apuestas."
+        "Minuto: real en Europa League y selecciones; estimado desde la hora de inicio en las "
+        "ligas (puede quedarse pegado si football-data.org tarda en marcar el final). 1X2 en vivo "
+        "**ajustado por lo que pasa en la cancha**: el ritmo de gol de cada equipo se actualiza con "
+        "sus remates (a puerta ~0,20 de xG, desviados ~0,05), el que va perdiendo ataca un poco más "
+        "y se cuenta el tiempo añadido. Debajo, entre paréntesis, lo que daría solo el modelo de "
+        "antes del partido. No es una cuota de casa de apuestas."
     )
 
     if st.button("🔄 Actualizar en vivo"):
@@ -869,12 +871,50 @@ with tab_vivo:
                 f"{row.live_home_win:.0f}% / {row.live_draw:.0f}% / {row.live_away_win:.0f}%"
                 if pd.notna(row.live_home_win) else "sin datos suficientes"
             )
+            # Las mismas estadísticas del desplegable de abajo (caché de 5 min:
+            # pedirlas acá no gasta una consulta extra).
+            stats_vivo = None
+            if STATS_KEY_PRESENT:
+                try:
+                    stats_vivo = load_match_stats(row.home_team, row.away_team, row.utc_date, row.competition)
+                except Exception:
+                    stats_vivo = None
+            ajuste = None
+            if pd.notna(row.get("pre_home_xg")) and pd.notna(row.get("pre_away_xg")):
+                ajuste = adjusted_live_probabilities(
+                    int(row.home_goals), int(row.away_goals), int(row.minuto_estimado),
+                    float(row.pre_home_xg), float(row.pre_away_xg),
+                    (stats_vivo or {}).get(row.home_team), (stats_vivo or {}).get(row.away_team),
+                )
+
             c_liga, c_local, c_marcador, c_visitante, c_1x2 = st.columns([1.3, 2, 1, 2, 1.6])
             c_liga.caption(f"{row.competition_name} · {format_bogota(row.utc_date)} · min. {row.minuto_estimado}'")
             c_local.write(row.home_team)
             c_marcador.markdown(f"**{row.home_goals} - {row.away_goals}**")
             c_visitante.write(row.away_team)
-            c_1x2.caption(f"1X2: {live_1x2}")
+            if ajuste:
+                c_1x2.markdown(f"**1X2: {ajuste['home_win']:.0%} / {ajuste['draw']:.0%} / {ajuste['away_win']:.0%}**")
+                c_1x2.caption(f"(solo pre-partido: {live_1x2})")
+                detalle = []
+                if ajuste["home_xg_observed"] is not None and ajuste["away_xg_observed"] is not None:
+                    s_l, s_v = stats_vivo[row.home_team], stats_vivo[row.away_team]
+                    n = lambda v: f"{float(v):.0f}"  # noqa: E731 — 10.0 -> "10"
+                    detalle.append(
+                        f"remates {n(s_l.get('remates_totales'))} ({n(s_l.get('remates_a_puerta'))} a puerta) – "
+                        f"{n(s_v.get('remates_totales'))} ({n(s_v.get('remates_a_puerta'))}) → xG aprox. "
+                        f"{ajuste['home_xg_observed']:.2f} – {ajuste['away_xg_observed']:.2f}"
+                    )
+                else:
+                    detalle.append("sin estadísticas de remates todavía: solo marcador, efecto marcador y añadido")
+                detalle.append(
+                    f"goles esperados en lo que falta (~{ajuste['remaining_minutes']:.0f}'): "
+                    f"{ajuste['home_xg_remaining']:.2f} – {ajuste['away_xg_remaining']:.2f}"
+                )
+                detalle.append(f"no pierde {row.home_team}: {ajuste['home_win'] + ajuste['draw']:.0%} · "
+                               f"no pierde {row.away_team}: {ajuste['away_win'] + ajuste['draw']:.0%}")
+                st.caption(" · ".join(detalle))
+            else:
+                c_1x2.caption(f"1X2: {live_1x2}")
 
             if STATS_KEY_PRESENT:
                 with st.expander("📐 Corners, faltas y tarjetas"):
