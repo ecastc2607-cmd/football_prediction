@@ -1133,3 +1133,19 @@ PL,2026,5.0,2026-09-18T19:00:00Z,Brentford FC,Chelsea FC,Brentford FC,True,4,10.
 PL,2026,5.0,2026-09-18T19:00:00Z,Brentford FC,Chelsea FC,Chelsea FC,False,12,7.0,0,0,59.0,2.0,12.0,2.0
 NT,0,0.0,2026-09-24T14:00:00Z,Uzbekistan,IR Iran,Uzbekistan,True,2,,0,0,50.0,,,0.0
 NT,0,0.0,2026-09-24T14:00:00Z,Uzbekistan,IR Iran,IR Iran,False,1,,0,0,50.0,,,0.0
+NT,0,0.0,2026-10-05T16:45:00Z,Bosnia-Herzegovina,Poland,Bosnia-Herzegovina,True,1,,0,0,49.0,,,0.0
+NT,0,0.0,2026-10-05T16:45:00Z,Bosnia-Herzegovina,Poland,Poland,False,3,,0,0,51.0,,,0.0
+NT,0,0.0,2026-10-05T16:45:00Z,Italy,Türkiye,Italy,True,1,,0,0,42.0,,,0.0
+NT,0,0.0,2026-10-05T16:45:00Z,Italy,Türkiye,Türkiye,False,3,,0,0,58.0,,,0.0
+NT,0,0.0,2026-10-05T16:45:00Z,Liechtenstein,Gibraltar,Liechtenstein,True,0,3.0,1,0,0.5,1.0,,
+NT,0,0.0,2026-10-05T16:45:00Z,Liechtenstein,Gibraltar,Gibraltar,False,1,1.0,1,0,0.5,1.0,,
+NT,0,0.0,2026-10-05T16:45:00Z,Ukraine,Hungary,Ukraine,True,1,,0,0,69.0,,,0.0
+NT,0,0.0,2026-10-05T16:45:00Z,Ukraine,Hungary,Hungary,False,0,,0,0,31.0,,,0.0
+NT,0,0.0,2026-10-05T16:45:00Z,France,Belgium,France,True,4,,0,0,69.0,,,0.0
+NT,0,0.0,2026-10-05T16:45:00Z,France,Belgium,Belgium,False,0,,0,0,31.0,,,0.0
+NT,0,0.0,2026-10-05T16:45:00Z,Romania,Sweden,Romania,True,1,,0,0,58.0,,,0.0
+NT,0,0.0,2026-10-05T16:45:00Z,Romania,Sweden,Sweden,False,0,,0,0,42.0,,,0.0
+NT,0,0.0,2026-10-05T16:45:00Z,Northern Ireland,Georgia,Northern Ireland,True,0,,0,0,49.0,,,0.0
+NT,0,0.0,2026-10-05T16:45:00Z,Northern Ireland,Georgia,Georgia,False,0,,0,0,51.0,,,0.0
+NT,0,0.0,2026-10-05T16:45:00Z,Montenegro,Armenia,Montenegro,True,1,,0,0,41.0,,,0.0
+NT,0,0.0,2026-10-05T16:45:00Z,Montenegro,Armenia,Armenia,False,1,,0,0,59.0,,,0.0
