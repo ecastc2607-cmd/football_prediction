@@ -33,6 +33,9 @@ from src.highlightly_client import (
     get_match_stats as highlightly_get_match_stats,
 )
 from src.live_matches import adjusted_live_probabilities, get_live_matches
+from src.live_snapshots import evaluate as evaluate_live_snapshots
+from src.live_snapshots import record as record_live_snapshot
+from src.market_anchor import anchored_prematch_xg
 from src.match_stats_log import get_cached_stats, log_match_stats
 from src.match_context import get_standings_map, rivalry_label
 from src.match_tendencies import load_team_averages, pick_tendencies
@@ -191,6 +194,11 @@ def load_live_matches(codes: tuple[str, ...]) -> pd.DataFrame:
             live_df = pd.concat([live_df, extra_live], ignore_index=True)
 
     return live_df
+
+
+@st.cache_data(ttl=3600, show_spinner=False)
+def load_live_evaluation() -> pd.DataFrame:
+    return evaluate_live_snapshots()
 
 
 @st.cache_data(ttl=600, show_spinner=False)
@@ -879,13 +887,36 @@ with tab_vivo:
                     stats_vivo = load_match_stats(row.home_team, row.away_team, row.utc_date, row.competition)
                 except Exception:
                     stats_vivo = None
-            ajuste = None
+            ajuste = ancla = None
             if pd.notna(row.get("pre_home_xg")) and pd.notna(row.get("pre_away_xg")):
+                # Base pre-partido anclada al mercado si hay cuotas previas
+                # guardadas (sin gastar créditos); si no, la del modelo.
+                base_l, base_v, ancla = anchored_prematch_xg(
+                    float(row.pre_home_xg), float(row.pre_away_xg), row.competition,
+                    row.home_team, row.away_team, row.utc_date,
+                )
+                stats_l = (stats_vivo or {}).get(row.home_team)
+                stats_v = (stats_vivo or {}).get(row.away_team)
                 ajuste = adjusted_live_probabilities(
                     int(row.home_goals), int(row.away_goals), int(row.minuto_estimado),
-                    float(row.pre_home_xg), float(row.pre_away_xg),
-                    (stats_vivo or {}).get(row.home_team), (stats_vivo or {}).get(row.away_team),
+                    base_l, base_v, stats_l, stats_v,
                 )
+                record_live_snapshot({
+                    "captured_at": datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ"),
+                    "competition": row.competition, "home_team": row.home_team, "away_team": row.away_team,
+                    "utc_date": row.utc_date, "minute": int(row.minuto_estimado),
+                    "home_goals": int(row.home_goals), "away_goals": int(row.away_goals),
+                    "pre_home_xg": float(row.pre_home_xg), "pre_away_xg": float(row.pre_away_xg),
+                    "base_home_xg": base_l, "base_away_xg": base_v, "market_anchor": ancla is not None,
+                    "home_shots": (stats_l or {}).get("remates_totales"),
+                    "home_shots_on": (stats_l or {}).get("remates_a_puerta"),
+                    "away_shots": (stats_v or {}).get("remates_totales"),
+                    "away_shots_on": (stats_v or {}).get("remates_a_puerta"),
+                    "pre_home": row.live_home_win / 100 if pd.notna(row.live_home_win) else None,
+                    "pre_draw": row.live_draw / 100 if pd.notna(row.live_draw) else None,
+                    "pre_away": row.live_away_win / 100 if pd.notna(row.live_away_win) else None,
+                    "adj_home": ajuste["home_win"], "adj_draw": ajuste["draw"], "adj_away": ajuste["away_win"],
+                })
 
             c_liga, c_local, c_marcador, c_visitante, c_1x2 = st.columns([1.3, 2, 1, 2, 1.6])
             c_liga.caption(f"{row.competition_name} · {format_bogota(row.utc_date)} · min. {row.minuto_estimado}'")
@@ -906,6 +937,11 @@ with tab_vivo:
                     )
                 else:
                     detalle.append("sin estadísticas de remates todavía: solo marcador, efecto marcador y añadido")
+                if ancla:
+                    detalle.append(
+                        f"base anclada al mercado (xG cuotas previas {ancla['market_home_xg']:.2f} – "
+                        f"{ancla['market_away_xg']:.2f}, modelo {row.pre_home_xg:.2f} – {row.pre_away_xg:.2f})"
+                    )
                 detalle.append(
                     f"goles esperados en lo que falta (~{ajuste['remaining_minutes']:.0f}'): "
                     f"{ajuste['home_xg_remaining']:.2f} – {ajuste['away_xg_remaining']:.2f}"
@@ -922,6 +958,24 @@ with tab_vivo:
                     # cuando se mezclan todas las competiciones a la vez en esta pestaña.
                     render_stats_block(row.home_team, row.away_team, row.utc_date, row.competition)
             st.divider()
+
+    with st.expander("📏 ¿Qué tan bien acierta el ajuste en vivo?"):
+        try:
+            evaluacion = load_live_evaluation()
+        except Exception as e:
+            evaluacion = pd.DataFrame()
+            st.caption(f"No se pudo calcular ({e}).")
+        if evaluacion.empty:
+            st.caption(
+                "Todavía no hay fotos en vivo de partidos ya terminados. Cada partido que se ve en "
+                "esta pestaña deja una foto cada 10 minutos de juego (data/tracking/live_snapshots.csv); "
+                "cuando termina, se compara qué método se acercó más al resultado final."
+            )
+        else:
+            st.dataframe(evaluacion, width="stretch", hide_index=True,
+                         column_config={"Log-loss": st.column_config.NumberColumn(format="%.3f")})
+            st.caption("Log-loss del 1X2: más bajo = mejor. Con pocas fotos (y varias del mismo "
+                       "partido) es solo una tendencia.")
 
 # ============================== PESTAÑA: AMISTOSOS ==============================
 with tab_amistosos:
