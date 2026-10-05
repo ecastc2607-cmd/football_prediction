@@ -37,6 +37,11 @@ from src.match_stats_log import get_cached_stats, log_match_stats
 from src.match_context import get_standings_map, rivalry_label
 from src.match_tendencies import load_team_averages, pick_tendencies
 from src.matchday_predictions import matchday_predictions_df
+from src.calibration import Calibrator
+from src.parlay_backtest import backtest as parlay_backtest
+from src.parlay_backtest import summary as parlay_summary
+from src.parlay_builder import MIN_LEG_PROB
+from src.parlay_builder import TIERS as PARLAY_TIERS
 from src.parlay_builder import build_parlays
 from src.predict_matchday import LIVE_STATUSES, finished_fixtures
 from src.backtest_walkforward import SOURCE as BACKTEST_SOURCE
@@ -381,7 +386,91 @@ def render_finished_stats_block(home_team: str, away_team: str, utc_date: str, c
 @st.cache_data(ttl=1800, show_spinner="Armando combinadas...")
 def load_parlays(code: str, season: int, matchday: int) -> list:
     df = get_predictions(code, season, matchday)
-    return build_parlays(df) if not df.empty else []
+    return build_parlays(df, load_calibrator()) if not df.empty else []
+
+
+@st.cache_data(ttl=1800, show_spinner=False)
+def load_calibrator() -> Calibrator:
+    """Calibración por mercado ajustada con TODAS las predicciones ya resueltas
+    — se actualiza sola a medida que el log crece."""
+    return Calibrator.from_log(load_calibration_log())
+
+
+@st.cache_data(ttl=6 * 3600, show_spinner="Evaluando la estrategia en jornadas pasadas...")
+def load_parlay_backtest() -> pd.DataFrame:
+    return parlay_summary(parlay_backtest(load_calibration_log()))
+
+
+_TIER_META = {
+    "Alta probabilidad": ("🟢", "Gana aprox. 2 de cada 5 veces o más."),
+    "Equilibrada": ("🟡", "Gana aprox. 1 de cada 3-4 veces."),
+    "Cuota alta": ("🔴", "Gana aprox. 1 de cada 5-8 veces: paga más, falla casi siempre."),
+}
+
+
+def render_parlays(parlays: list) -> None:
+    """Combinadas como cupones: cuota justa y estimada en casa, probabilidad
+    calibrada, y una fila por pick. Debajo, cómo le habría ido a la estrategia
+    en jornadas ya resueltas — para que cada número se pueda contrastar."""
+    st.caption(
+        f"Probabilidades **calibradas** con los resultados reales del proyecto (no las del modelo "
+        f"en bruto): solo entran picks con ≥{MIN_LEG_PROB:.0%} calibrado, así que un pick que en el "
+        "histórico acertó poco queda fuera aunque el modelo le dé más. Un pick por partido como mucho (dos del mismo "
+        "partido estarían correlacionados). En cada nivel va primero la que más paga sin bajar "
+        "de su piso de probabilidad. 'Cuota en casa' estima el margen de una casa (~5% por pick). "
+        "Estadística sobre datos históricos, no garantía."
+    )
+    if not parlays:
+        st.info("Hoy no hay combinadas recomendables: no hay al menos 2 picks que lleguen al mínimo "
+                "calibrado en partidos distintos.")
+    else:
+        if not any(p.risk == "Alta probabilidad" for p in parlays):
+            st.warning("No hay combinadas de **alta probabilidad** con estos partidos: lo que queda "
+                       "abajo falla la mayoría de las veces.")
+        for nombre, _, _ in PARLAY_TIERS:
+            del_nivel = [p for p in parlays if p.risk == nombre]
+            if not del_nivel:
+                continue
+            emoji, explicacion = _TIER_META[nombre]
+            st.markdown(f"**{emoji} {nombre}** — {explicacion}")
+            for i, p in enumerate(del_nivel):
+                with st.container(border=True):
+                    etiqueta = "⭐ Recomendada · " if i == 0 else ""
+                    st.markdown(
+                        f"{etiqueta}prob. **{p.combined_probability:.0%}** · cuota justa `{p.combined_odds}x` "
+                        f"· en casa ~`{p.estimated_odds}x`"
+                    )
+                    st.dataframe(
+                        pd.DataFrame([
+                            {"Partido": l.match, "Mercado": l.market, "Pick": l.pick,
+                             "Prob.": f"{l.probability:.0%}"}
+                            for l in p.legs
+                        ]),
+                        width="stretch", hide_index=True,
+                    )
+
+    with st.expander("📈 ¿Cómo le habría ido a esta estrategia en jornadas ya jugadas?"):
+        try:
+            resumen = load_parlay_backtest()
+        except Exception as e:
+            resumen = pd.DataFrame()
+            st.caption(f"No se pudo calcular ({e}).")
+        if resumen.empty:
+            st.caption("Todavía no hay jornadas resueltas suficientes.")
+        else:
+            st.dataframe(
+                resumen, width="stretch", hide_index=True,
+                column_config={
+                    "Acierto real": st.column_config.NumberColumn(format="percent"),
+                    "Prob. prometida": st.column_config.NumberColumn(format="percent"),
+                    "Retorno por $1": st.column_config.NumberColumn(format="%.2f"),
+                },
+            )
+            st.caption(
+                "Cada jornada resuelta se armó con una calibración ajustada SIN esa jornada (no ve su "
+                "propio resultado). 'Retorno por $1' usa la cuota estimada en casa: por debajo de 1.00 "
+                "se habría perdido plata. Muestra todavía chica: tómalo como tendencia, no como promesa."
+            )
 
 
 @st.cache_data(ttl=1800)
@@ -442,6 +531,8 @@ if st.sidebar.button("🔄 Forzar actualización de datos"):
     auto_status.clear()
     load_live_matches.clear()
     load_tendency_averages.clear()
+    load_parlays.clear()
+    load_calibrator.clear()
     load_friendlies.clear()
     get_friendlies_predictions.clear()
     st.rerun()
@@ -603,47 +694,7 @@ with tab_jornada:
     # --- Combinadas sugeridas ---
     st.divider()
     st.subheader("🎯 Combinadas sugeridas")
-    st.caption(
-        "Cuota propia del modelo (1/probabilidad, sin margen de casa de apuestas). Cada partido "
-        "aporta como mucho un pick — 1X2, Más/Menos de 2.5 goles, o Ambos anotan, el que mejor "
-        "calce — nunca dos mercados del mismo partido juntos (estarían correlacionados). Solo se "
-        "muestran combinadas entre 6x y 30x, máximo 6 partidos. El riesgo se calcula por la "
-        "probabilidad combinada real, no por cantidad de selecciones — esto es estadística sobre "
-        "datos históricos, no una garantía de resultado."
-    )
-    parlays = load_parlays(comp_code, int(season), int(matchday))
-    if not parlays:
-        st.caption("No se armó ninguna combinada ni siquiera bajando la cuota mínima — muy pocos partidos disponibles.")
-    else:
-        if parlays[0].reduced_quota:
-            st.warning(
-                "⚠ Quedan pocos partidos por jugar en esta jornada y no alcanzan para llegar a 6x "
-                "combinando lo disponible — estas combinadas se armaron con una cuota mínima más "
-                "baja para no dejar la sección vacía."
-            )
-        risk_meta = {
-            "Bajo": ("🟢", "Riesgo bajo"),
-            "Medio": ("🟡", "Riesgo medio"),
-            "Alto": ("🔴", "Riesgo alto"),
-        }
-        for risk in ("Bajo", "Medio", "Alto"):
-            tier = [p for p in parlays if p.risk == risk]
-            if not tier:
-                continue
-            emoji, titulo = risk_meta[risk]
-            st.markdown(f"**{emoji} {titulo}** · {len(tier)} combinada(s)")
-            # Cada combinada es su propio "cupón": un contenedor con borde con
-            # la cuota/probabilidad total arriba, y abajo una fila por partido
-            # (Partido | Mercado | Pick) — como un tiquete de apuesta, no una
-            # sola celda de texto con todo junto.
-            for p in tier:
-                with st.container(border=True):
-                    st.markdown(f"`{p.combined_odds}x` · prob. combinada **{p.combined_probability:.1%}**")
-                    tabla = pd.DataFrame([
-                        {"Partido": l.match, "Mercado": l.market, "Pick": l.pick}
-                        for l in p.legs
-                    ])
-                    st.dataframe(tabla, width="stretch", hide_index=True)
+    render_parlays(load_parlays(comp_code, int(season), int(matchday)))
 
     # --- Calibración histórica ---
     st.divider()
@@ -1024,3 +1075,10 @@ with tab_tips:
                         }),
                         hide_index=True, width="stretch",
                     )
+
+        # Combinadas entre TODAS las ligas del día (la de "Jornada" solo combina
+        # partidos de una misma liga y jornada).
+        if not dia.empty:
+            st.divider()
+            st.subheader("🎯 Combinadas del día — todas las ligas")
+            render_parlays(build_parlays(dia, load_calibrator()))
