@@ -147,16 +147,20 @@ def get_live_matches(client: FootballDataClient, codes: list[str], ensure_data=N
     ensure_data = ensure_data or (lambda code, season: fetch_competition(client, code, season))
 
     rows = []
-    for code in codes:
-        try:
-            # Un solo llamado por liga: la API filtra del lado del servidor,
-            # no hace falta pedir metadata de temporada aparte para esto.
-            data = client._get(f"/competitions/{code}/matches", {"status": "LIVE"})
-        except Exception:
-            continue
+    if not codes:
+        return pd.DataFrame()
+    try:
+        # UNA consulta para todas las ligas (antes era una por liga: 6 cada 3
+        # minutos de uso de la pestaña "En vivo").
+        data = client._get("/matches", {"status": "LIVE", "competitions": ",".join(codes)})
+    except Exception:
+        return pd.DataFrame()
+    por_liga: dict[str, list] = {}
+    for m in data.get("matches", []):
+        por_liga.setdefault(m.get("competition", {}).get("code"), []).append(m)
 
-        live = data.get("matches", [])
-        if not live:
+    for code, live in por_liga.items():
+        if code not in codes or not live:
             continue
 
         season = int(live[0].get("season", {}).get("startDate", "")[:4])

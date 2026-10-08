@@ -18,7 +18,7 @@ import altair as alt
 import pandas as pd
 import streamlit as st
 
-from src import config, half_backtest, national_teams, odds_api
+from src import config, half_backtest, national_teams, odds_api, season_store
 from src.competition_status import resolve_current_season_and_matchday
 from src.fetch_football_data import FootballDataClient, fetch_competition
 from src.goal_api_client import (
@@ -103,8 +103,14 @@ def load_competition(code: str, season: int) -> pd.DataFrame:
     # Jornada (por competición, no afecta a las otras 6).
     if code in config.GOAL_API_COMPETITIONS:
         return _load_goal_api_competition(code, season)
+    # Temporada cerrada: sale del archivo versionado, sin consultar la API.
+    cerrada = season_store.closed_path(code, season)
+    if cerrada.exists():
+        return pd.read_csv(cerrada)
     client = FootballDataClient(api_key=API_KEY)
-    return fetch_competition(client, code, season)
+    df = fetch_competition(client, code, season)
+    season_store.save_if_closed(df, code, season)
+    return df
 
 
 @st.cache_data(ttl=3 * 3600, show_spinner="Descargando datos de la competición...")
@@ -145,9 +151,12 @@ def _csv_sin_descanso(code: str, season: int) -> bool:
     return path.exists() and "home_ht_goals" not in pd.read_csv(path, nrows=0).columns
 
 
-def _prepare_competition(code: str, season: int) -> None:
+def _prepare_competition(code: str, season: int, matchday: int | None = None) -> None:
     # Asegura que los datos de esta y la temporada anterior estén descargados.
-    load_competition(code, season)
+    # Si la jornada que se mira ya terminó por completo en el archivo local, la
+    # temporada en curso no se vuelve a pedir: nada de esa jornada cambia.
+    if matchday is None or not season_store.jornada_finished_locally(code, season, matchday):
+        load_competition(code, season)
     load_competition(code, season - 1)
     # Archivos bajados por una versión anterior del código (sin marcador al
     # descanso) siguen en disco mientras la caché de descarga está vigente tras
@@ -164,7 +173,7 @@ def _prepare_competition(code: str, season: int) -> None:
 
 @st.cache_data(ttl=1800, show_spinner="Calculando predicciones...")
 def get_predictions(code: str, season: int, matchday: int) -> pd.DataFrame:
-    _prepare_competition(code, season)
+    _prepare_competition(code, season, matchday)
     return matchday_predictions_df(code, season, matchday, seasons_back=1)
 
 
@@ -176,7 +185,7 @@ def get_predictions_con_jugados(code: str, season: int, matchday: int) -> pd.Dat
     mezclar partidos ya jugados). Usada por "Detalle por partido" para no
     hacer desaparecer un partido de la tabla apenas arranca o termina — TTL
     más corto porque el estado en vivo cambia rápido."""
-    _prepare_competition(code, season)
+    _prepare_competition(code, season, matchday)
     return matchday_predictions_df(code, season, matchday, seasons_back=1, include_played=True)
 
 
@@ -211,36 +220,42 @@ def load_live_matches(codes: tuple[str, ...]) -> pd.DataFrame:
     return live_df
 
 
-@st.cache_data(ttl=1800, show_spinner=False)
+@st.cache_data(ttl=6 * 3600, show_spinner=False)
 def upcoming_kickoffs() -> dict:
-    """{competición: [inicios UTC ISO de los partidos por jugar de los próximos
-    días]}. Football-data.org: UNA consulta para sus 6 competiciones.
-    Europa League/selecciones: el CSV ya descargado si existe; si no, Goal API
-    de hoy y los 2 días siguientes. El filtro "aún no empezó" se aplica fuera
-    de la caché (en nearest_competition), para que no quede viejo."""
+    """{competición: [inicios UTC ISO de partidos por jugar o en juego]}.
+
+    Para no consultar APIs cada vez que alguien abre/refresca la app:
+      1. Primero los CSV de partidos ya descargados (0 consultas): traen el
+         calendario completo de la temporada.
+      2. Solo las competiciones SIN CSV (típico tras un reinicio de Streamlit
+         Cloud): football-data.org con UNA consulta para todas las que falten;
+         Europa League/selecciones, Goal API de hoy y los 2 días siguientes.
+    Caché de 6 h compartida por todas las sesiones: los horarios casi nunca
+    cambian, y el filtro "en juego o por jugar" se aplica afuera, en
+    nearest_competition, con la hora del momento."""
     hoy = datetime.now(timezone.utc).date()
     inicios: dict[str, list[str]] = {}
-    codigos_fd = [c for c in config.COMPETITIONS if c not in config.GOAL_API_COMPETITIONS]
-    try:
-        datos = FootballDataClient(api_key=API_KEY)._get("/matches", {
-            "dateFrom": hoy.isoformat(), "dateTo": (hoy + pd.Timedelta(days=9)).isoformat(),
-            "competitions": ",".join(codigos_fd),
-        })
-        for m in datos.get("matches", []):
-            if m.get("status") in ("SCHEDULED", "TIMED", *LIVE_STATUSES):
-                inicios.setdefault(m["competition"]["code"], []).append(m["utcDate"])
-    except Exception:
-        pass
+    faltan_fd = []
+    for code in config.COMPETITIONS:
+        locales = season_store.local_upcoming_kickoffs(code)
+        if locales is not None:
+            inicios[code] = locales
+        elif code not in config.GOAL_API_COMPETITIONS:
+            faltan_fd.append(code)
+    if faltan_fd:
+        try:
+            datos = FootballDataClient(api_key=API_KEY)._get("/matches", {
+                "dateFrom": hoy.isoformat(), "dateTo": (hoy + pd.Timedelta(days=9)).isoformat(),
+                "competitions": ",".join(faltan_fd),
+            })
+            for m in datos.get("matches", []):
+                if m.get("status") in ("SCHEDULED", "TIMED", *LIVE_STATUSES):
+                    inicios.setdefault(m["competition"]["code"], []).append(m["utcDate"])
+        except Exception:
+            pass
     for code in config.GOAL_API_COMPETITIONS:
-        archivos = sorted(config.PROCESSED_DIR.glob(f"matches_{code}_*.csv"))
-        if archivos:
-            try:
-                df = pd.read_csv(archivos[-1], usecols=["status", "utc_date"])
-                inicios[code] = df.loc[df["status"].isin(["SCHEDULED", "TIMED", *LIVE_STATUSES]),
-                                       "utc_date"].tolist()
-                continue
-            except Exception:
-                pass
+        if code in inicios:
+            continue
         if GOAL_KEY:
             for delta in range(3):
                 try:

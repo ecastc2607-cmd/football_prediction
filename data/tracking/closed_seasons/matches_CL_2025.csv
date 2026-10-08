@@ -1,0 +1,190 @@
+match_id,competition,season_start_year,matchday,utc_date,status,home_team,away_team,home_team_short,away_team_short,home_goals,away_goals,home_ht_goals,away_ht_goals,winner
+551981,CL,2025,1.0,2025-09-16T16:45:00Z,FINISHED,Athletic Club,Arsenal FC,Athletic,Arsenal,0,2,0,0,AWAY_TEAM
+552049,CL,2025,1.0,2025-09-16T16:45:00Z,FINISHED,PSV,Royale Union Saint-Gilloise,PSV,Union SG,1,3,0,2,AWAY_TEAM
+551941,CL,2025,1.0,2025-09-16T19:00:00Z,FINISHED,Juventus FC,Borussia Dortmund,Juventus,Dortmund,4,4,0,0,DRAW
+551991,CL,2025,1.0,2025-09-16T19:00:00Z,FINISHED,Sport Lisboa e Benfica,Qarabağ Ağdam FK,SL Benfica,Qarabağ Ağdam,2,3,2,1,AWAY_TEAM
+552012,CL,2025,1.0,2025-09-16T19:00:00Z,FINISHED,Tottenham Hotspur FC,Villarreal CF,Tottenham,Villarreal,1,0,1,0,HOME_TEAM
+551927,CL,2025,1.0,2025-09-16T19:00:00Z,FINISHED,Real Madrid CF,Olympique de Marseille,Real Madrid,Marseille,2,1,1,1,HOME_TEAM
+552023,CL,2025,1.0,2025-09-17T16:45:00Z,FINISHED,SK Slavia Praha,FK Bodø/Glimt,Slavia Praha,Bodø/Glimt,2,2,1,0,DRAW
+552031,CL,2025,1.0,2025-09-17T16:45:00Z,FINISHED,PAE Olympiakos SFP,Paphos FC,Olympiakos,Paphos FC,0,0,0,0,DRAW
+551936,CL,2025,1.0,2025-09-17T19:00:00Z,FINISHED,AFC Ajax,FC Internazionale Milano,Ajax,Inter,0,2,0,1,AWAY_TEAM
+551946,CL,2025,1.0,2025-09-17T19:00:00Z,FINISHED,Liverpool FC,Club Atlético de Madrid,Liverpool,Atleti,3,2,2,1,HOME_TEAM
+551959,CL,2025,1.0,2025-09-17T19:00:00Z,FINISHED,Paris Saint-Germain FC,Atalanta BC,PSG,Atalanta,4,0,2,0,HOME_TEAM
+551908,CL,2025,1.0,2025-09-17T19:00:00Z,FINISHED,FC Bayern München,Chelsea FC,Bayern,Chelsea,3,1,2,1,HOME_TEAM
+551975,CL,2025,1.0,2025-09-18T16:45:00Z,FINISHED,FC København,Bayer 04 Leverkusen,København,Leverkusen,2,2,1,0,DRAW
+551995,CL,2025,1.0,2025-09-18T16:45:00Z,FINISHED,Club Brugge KV,AS Monaco FC,Club Brugge,Monaco,4,1,3,0,HOME_TEAM
+551958,CL,2025,1.0,2025-09-18T19:00:00Z,FINISHED,Newcastle United FC,FC Barcelona,Newcastle,Barça,1,2,0,0,AWAY_TEAM
+551965,CL,2025,1.0,2025-09-18T19:00:00Z,FINISHED,Manchester City FC,SSC Napoli,Man City,Napoli,2,0,0,0,HOME_TEAM
+552000,CL,2025,1.0,2025-09-18T19:00:00Z,FINISHED,Eintracht Frankfurt,Galatasaray SK,Frankfurt,Galatasaray,5,1,3,1,HOME_TEAM
+552027,CL,2025,1.0,2025-09-18T19:00:00Z,FINISHED,Sporting Clube de Portugal,FK Kairat,Sporting CP,FK Kairat,4,1,1,0,HOME_TEAM
+551982,CL,2025,2.0,2025-09-30T16:45:00Z,FINISHED,Atalanta BC,Club Brugge KV,Atalanta,Club Brugge,2,1,0,1,HOME_TEAM
+551930,CL,2025,2.0,2025-09-30T16:45:00Z,FINISHED,FK Kairat,Real Madrid CF,FK Kairat,Real Madrid,0,5,0,1,AWAY_TEAM
+551951,CL,2025,2.0,2025-09-30T19:00:00Z,FINISHED,Galatasaray SK,Liverpool FC,Galatasaray,Liverpool,1,0,1,0,HOME_TEAM
+551997,CL,2025,2.0,2025-09-30T19:00:00Z,FINISHED,Club Atlético de Madrid,Eintracht Frankfurt,Atleti,Frankfurt,5,1,3,0,HOME_TEAM
+552015,CL,2025,2.0,2025-09-30T19:00:00Z,FINISHED,Olympique de Marseille,AFC Ajax,Marseille,Ajax,4,0,3,0,HOME_TEAM
+552020,CL,2025,2.0,2025-09-30T19:00:00Z,FINISHED,FK Bodø/Glimt,Tottenham Hotspur FC,Bodø/Glimt,Tottenham,2,2,0,0,DRAW
+551915,CL,2025,2.0,2025-09-30T19:00:00Z,FINISHED,Paphos FC,FC Bayern München,Paphos FC,Bayern,1,5,1,4,AWAY_TEAM
+551917,CL,2025,2.0,2025-09-30T19:00:00Z,FINISHED,Chelsea FC,Sport Lisboa e Benfica,Chelsea,SL Benfica,1,0,1,0,HOME_TEAM
+551935,CL,2025,2.0,2025-09-30T19:00:00Z,FINISHED,FC Internazionale Milano,SK Slavia Praha,Inter,Slavia Praha,3,0,2,0,HOME_TEAM
+552039,CL,2025,2.0,2025-10-01T16:45:00Z,FINISHED,Qarabağ Ağdam FK,FC København,Qarabağ Ağdam,København,2,0,1,0,HOME_TEAM
+552044,CL,2025,2.0,2025-10-01T16:45:00Z,FINISHED,Royale Union Saint-Gilloise,Newcastle United FC,Union SG,Newcastle,0,4,0,2,AWAY_TEAM
+551944,CL,2025,2.0,2025-10-01T19:00:00Z,FINISHED,Borussia Dortmund,Athletic Club,Dortmund,Athletic,4,1,1,0,HOME_TEAM
+551952,CL,2025,2.0,2025-10-01T19:00:00Z,FINISHED,FC Barcelona,Paris Saint-Germain FC,Barça,PSG,1,2,1,1,AWAY_TEAM
+551968,CL,2025,2.0,2025-10-01T19:00:00Z,FINISHED,AS Monaco FC,Manchester City FC,Monaco,Man City,2,2,1,2,DRAW
+551972,CL,2025,2.0,2025-10-01T19:00:00Z,FINISHED,Bayer 04 Leverkusen,PSV,Leverkusen,PSV,1,1,0,0,DRAW
+551978,CL,2025,2.0,2025-10-01T19:00:00Z,FINISHED,Arsenal FC,PAE Olympiakos SFP,Arsenal,Olympiakos,2,0,1,0,HOME_TEAM
+552002,CL,2025,2.0,2025-10-01T19:00:00Z,FINISHED,Villarreal CF,Juventus FC,Villarreal,Juventus,2,2,1,0,DRAW
+552026,CL,2025,2.0,2025-10-01T19:00:00Z,FINISHED,SSC Napoli,Sporting Clube de Portugal,Napoli,Sporting CP,2,1,1,0,HOME_TEAM
+551955,CL,2025,3.0,2025-10-21T16:45:00Z,FINISHED,FC Barcelona,PAE Olympiakos SFP,Barça,Olympiakos,6,1,2,0,HOME_TEAM
+552045,CL,2025,3.0,2025-10-21T16:45:00Z,FINISHED,FK Kairat,Paphos FC,FK Kairat,Paphos FC,0,0,0,0,DRAW
+551938,CL,2025,3.0,2025-10-21T19:00:00Z,FINISHED,Royale Union Saint-Gilloise,FC Internazionale Milano,Union SG,Inter,0,4,0,2,AWAY_TEAM
+551945,CL,2025,3.0,2025-10-21T19:00:00Z,FINISHED,FC København,Borussia Dortmund,København,Dortmund,2,4,1,1,AWAY_TEAM
+551960,CL,2025,3.0,2025-10-21T19:00:00Z,FINISHED,Bayer 04 Leverkusen,Paris Saint-Germain FC,Leverkusen,PSG,2,7,1,4,AWAY_TEAM
+551964,CL,2025,3.0,2025-10-21T19:00:00Z,FINISHED,Villarreal CF,Manchester City FC,Villarreal,Man City,0,2,0,2,AWAY_TEAM
+551976,CL,2025,3.0,2025-10-21T19:00:00Z,FINISHED,Arsenal FC,Club Atlético de Madrid,Arsenal,Atleti,4,0,0,0,HOME_TEAM
+551992,CL,2025,3.0,2025-10-21T19:00:00Z,FINISHED,Newcastle United FC,Sport Lisboa e Benfica,Newcastle,SL Benfica,3,0,1,0,HOME_TEAM
+552048,CL,2025,3.0,2025-10-21T19:00:00Z,FINISHED,PSV,SSC Napoli,PSV,Napoli,6,2,2,1,HOME_TEAM
+552025,CL,2025,3.0,2025-10-22T16:45:00Z,FINISHED,Galatasaray SK,FK Bodø/Glimt,Galatasaray,Bodø/Glimt,3,1,2,0,HOME_TEAM
+552040,CL,2025,3.0,2025-10-22T16:45:00Z,FINISHED,Athletic Club,Qarabağ Ağdam FK,Athletic,Qarabağ Ağdam,3,1,1,1,HOME_TEAM
+551947,CL,2025,3.0,2025-10-22T19:00:00Z,FINISHED,Eintracht Frankfurt,Liverpool FC,Frankfurt,Liverpool,1,5,1,3,AWAY_TEAM
+551984,CL,2025,3.0,2025-10-22T19:00:00Z,FINISHED,Atalanta BC,SK Slavia Praha,Atalanta,Slavia Praha,0,0,0,0,DRAW
+552016,CL,2025,3.0,2025-10-22T19:00:00Z,FINISHED,Sporting Clube de Portugal,Olympique de Marseille,Sporting CP,Marseille,2,1,0,1,HOME_TEAM
+552022,CL,2025,3.0,2025-10-22T19:00:00Z,FINISHED,AS Monaco FC,Tottenham Hotspur FC,Monaco,Tottenham,0,0,0,0,DRAW
+551910,CL,2025,3.0,2025-10-22T19:00:00Z,FINISHED,FC Bayern München,Club Brugge KV,Bayern,Club Brugge,4,0,3,0,HOME_TEAM
+551919,CL,2025,3.0,2025-10-22T19:00:00Z,FINISHED,Chelsea FC,AFC Ajax,Chelsea,Ajax,5,1,4,1,HOME_TEAM
+551925,CL,2025,3.0,2025-10-22T19:00:00Z,FINISHED,Real Madrid CF,Juventus FC,Real Madrid,Juventus,1,0,0,0,HOME_TEAM
+551979,CL,2025,4.0,2025-11-04T17:45:00Z,FINISHED,SK Slavia Praha,Arsenal FC,Slavia Praha,Arsenal,0,3,0,1,AWAY_TEAM
+551999,CL,2025,4.0,2025-11-04T17:45:00Z,FINISHED,SSC Napoli,Eintracht Frankfurt,Napoli,Frankfurt,0,0,0,0,DRAW
+552003,CL,2025,4.0,2025-11-04T20:00:00Z,FINISHED,Juventus FC,Sporting Clube de Portugal,Juventus,Sporting CP,1,1,1,1,DRAW
+552009,CL,2025,4.0,2025-11-04T20:00:00Z,FINISHED,Club Atlético de Madrid,Royale Union Saint-Gilloise,Atleti,Union SG,3,1,1,0,HOME_TEAM
+552021,CL,2025,4.0,2025-11-04T20:00:00Z,FINISHED,Tottenham Hotspur FC,FC København,Tottenham,København,4,0,1,0,HOME_TEAM
+552024,CL,2025,4.0,2025-11-04T20:00:00Z,FINISHED,FK Bodø/Glimt,AS Monaco FC,Bodø/Glimt,Monaco,0,1,0,1,AWAY_TEAM
+552029,CL,2025,4.0,2025-11-04T20:00:00Z,FINISHED,PAE Olympiakos SFP,PSV,Olympiakos,PSV,1,1,1,0,DRAW
+551909,CL,2025,4.0,2025-11-04T20:00:00Z,FINISHED,Paris Saint-Germain FC,FC Bayern München,PSG,Bayern,1,2,0,2,AWAY_TEAM
+551924,CL,2025,4.0,2025-11-04T20:00:00Z,FINISHED,Liverpool FC,Real Madrid CF,Liverpool,Real Madrid,1,0,0,0,HOME_TEAM
+552014,CL,2025,4.0,2025-11-05T17:45:00Z,FINISHED,Paphos FC,Villarreal CF,Paphos FC,Villarreal,1,0,0,0,HOME_TEAM
+551922,CL,2025,4.0,2025-11-05T17:45:00Z,FINISHED,Qarabağ Ağdam FK,Chelsea FC,Qarabağ Ağdam,Chelsea,2,2,2,1,DRAW
+551937,CL,2025,4.0,2025-11-05T20:00:00Z,FINISHED,FC Internazionale Milano,FK Kairat,Inter,FK Kairat,2,1,1,0,HOME_TEAM
+551939,CL,2025,4.0,2025-11-05T20:00:00Z,FINISHED,Manchester City FC,Borussia Dortmund,Man City,Dortmund,4,1,2,0,HOME_TEAM
+551954,CL,2025,4.0,2025-11-05T20:00:00Z,FINISHED,Club Brugge KV,FC Barcelona,Club Brugge,Barça,3,3,2,1,DRAW
+551971,CL,2025,4.0,2025-11-05T20:00:00Z,FINISHED,Sport Lisboa e Benfica,Bayer 04 Leverkusen,SL Benfica,Leverkusen,0,1,0,0,AWAY_TEAM
+551985,CL,2025,4.0,2025-11-05T20:00:00Z,FINISHED,Olympique de Marseille,Atalanta BC,Marseille,Atalanta,0,1,0,0,AWAY_TEAM
+552033,CL,2025,4.0,2025-11-05T20:00:00Z,FINISHED,AFC Ajax,Galatasaray SK,Ajax,Galatasaray,0,3,0,0,AWAY_TEAM
+552047,CL,2025,4.0,2025-11-05T20:00:00Z,FINISHED,Newcastle United FC,Athletic Club,Newcastle,Athletic,2,0,1,0,HOME_TEAM
+551990,CL,2025,5.0,2025-11-25T17:45:00Z,FINISHED,AFC Ajax,Sport Lisboa e Benfica,Ajax,SL Benfica,0,2,0,1,AWAY_TEAM
+552043,CL,2025,5.0,2025-11-25T17:45:00Z,FINISHED,Galatasaray SK,Royale Union Saint-Gilloise,Galatasaray,Union SG,0,1,0,0,AWAY_TEAM
+551940,CL,2025,5.0,2025-11-25T20:00:00Z,FINISHED,Borussia Dortmund,Villarreal CF,Dortmund,Villarreal,4,0,1,0,HOME_TEAM
+551963,CL,2025,5.0,2025-11-25T20:00:00Z,FINISHED,Manchester City FC,Bayer 04 Leverkusen,Man City,Leverkusen,0,2,0,1,AWAY_TEAM
+552004,CL,2025,5.0,2025-11-25T20:00:00Z,FINISHED,FK Bodø/Glimt,Juventus FC,Bodø/Glimt,Juventus,2,3,1,0,AWAY_TEAM
+552017,CL,2025,5.0,2025-11-25T20:00:00Z,FINISHED,Olympique de Marseille,Newcastle United FC,Marseille,Newcastle,2,1,0,1,HOME_TEAM
+552035,CL,2025,5.0,2025-11-25T20:00:00Z,FINISHED,SK Slavia Praha,Athletic Club,Slavia Praha,Athletic,0,0,0,0,DRAW
+552037,CL,2025,5.0,2025-11-25T20:00:00Z,FINISHED,SSC Napoli,Qarabağ Ağdam FK,Napoli,Qarabağ Ağdam,2,0,0,0,HOME_TEAM
+551916,CL,2025,5.0,2025-11-25T20:00:00Z,FINISHED,Chelsea FC,FC Barcelona,Chelsea,Barça,3,0,1,0,HOME_TEAM
+552042,CL,2025,5.0,2025-11-26T17:45:00Z,FINISHED,Paphos FC,AS Monaco FC,Paphos FC,Monaco,2,2,1,2,DRAW
+552046,CL,2025,5.0,2025-11-26T17:45:00Z,FINISHED,FC København,FK Kairat,København,FK Kairat,3,2,1,0,HOME_TEAM
+551948,CL,2025,5.0,2025-11-26T20:00:00Z,FINISHED,Liverpool FC,PSV,Liverpool,PSV,1,4,1,1,AWAY_TEAM
+551961,CL,2025,5.0,2025-11-26T20:00:00Z,FINISHED,Paris Saint-Germain FC,Tottenham Hotspur FC,PSG,Tottenham,5,3,1,1,HOME_TEAM
+551983,CL,2025,5.0,2025-11-26T20:00:00Z,FINISHED,Eintracht Frankfurt,Atalanta BC,Frankfurt,Atalanta,0,3,0,0,AWAY_TEAM
+551994,CL,2025,5.0,2025-11-26T20:00:00Z,FINISHED,Sporting Clube de Portugal,Club Brugge KV,Sporting CP,Club Brugge,3,0,2,0,HOME_TEAM
+551911,CL,2025,5.0,2025-11-26T20:00:00Z,FINISHED,Arsenal FC,FC Bayern München,Arsenal,Bayern,3,1,1,1,HOME_TEAM
+551928,CL,2025,5.0,2025-11-26T20:00:00Z,FINISHED,PAE Olympiakos SFP,Real Madrid CF,Olympiakos,Real Madrid,3,4,1,3,AWAY_TEAM
+551934,CL,2025,5.0,2025-11-26T20:00:00Z,FINISHED,Club Atlético de Madrid,FC Internazionale Milano,Atleti,Inter,2,1,1,0,HOME_TEAM
+552032,CL,2025,6.0,2025-12-09T15:30:00Z,FINISHED,FK Kairat,PAE Olympiakos SFP,FK Kairat,Olympiakos,0,1,0,0,AWAY_TEAM
+551912,CL,2025,6.0,2025-12-09T17:45:00Z,FINISHED,FC Bayern München,Sporting Clube de Portugal,Bayern,Sporting CP,3,1,0,0,HOME_TEAM
+551953,CL,2025,6.0,2025-12-09T20:00:00Z,FINISHED,FC Barcelona,Eintracht Frankfurt,Barça,Frankfurt,2,1,0,1,HOME_TEAM
+552008,CL,2025,6.0,2025-12-09T20:00:00Z,FINISHED,PSV,Club Atlético de Madrid,PSV,Atleti,2,3,1,1,AWAY_TEAM
+552018,CL,2025,6.0,2025-12-09T20:00:00Z,FINISHED,Royale Union Saint-Gilloise,Olympique de Marseille,Union SG,Marseille,2,3,1,2,AWAY_TEAM
+552019,CL,2025,6.0,2025-12-09T20:00:00Z,FINISHED,Tottenham Hotspur FC,SK Slavia Praha,Tottenham,Slavia Praha,3,0,1,0,HOME_TEAM
+552041,CL,2025,6.0,2025-12-09T20:00:00Z,FINISHED,AS Monaco FC,Galatasaray SK,Monaco,Galatasaray,1,0,0,0,HOME_TEAM
+551918,CL,2025,6.0,2025-12-09T20:00:00Z,FINISHED,Atalanta BC,Chelsea FC,Atalanta,Chelsea,2,1,0,1,HOME_TEAM
+551931,CL,2025,6.0,2025-12-09T20:00:00Z,FINISHED,FC Internazionale Milano,Liverpool FC,Inter,Liverpool,0,1,0,0,AWAY_TEAM
+552013,CL,2025,6.0,2025-12-10T17:45:00Z,FINISHED,Villarreal CF,FC København,Villarreal,København,2,3,0,1,AWAY_TEAM
+552034,CL,2025,6.0,2025-12-10T17:45:00Z,FINISHED,Qarabağ Ağdam FK,AFC Ajax,Qarabağ Ağdam,Ajax,2,4,1,1,AWAY_TEAM
+551942,CL,2025,6.0,2025-12-10T20:00:00Z,FINISHED,Borussia Dortmund,FK Bodø/Glimt,Dortmund,Bodø/Glimt,2,2,1,1,DRAW
+551969,CL,2025,6.0,2025-12-10T20:00:00Z,FINISHED,Athletic Club,Paris Saint-Germain FC,Athletic,PSG,0,0,0,0,DRAW
+551974,CL,2025,6.0,2025-12-10T20:00:00Z,FINISHED,Bayer 04 Leverkusen,Newcastle United FC,Leverkusen,Newcastle,2,2,1,0,DRAW
+551977,CL,2025,6.0,2025-12-10T20:00:00Z,FINISHED,Club Brugge KV,Arsenal FC,Club Brugge,Arsenal,0,3,0,1,AWAY_TEAM
+551989,CL,2025,6.0,2025-12-10T20:00:00Z,FINISHED,Sport Lisboa e Benfica,SSC Napoli,SL Benfica,Napoli,2,0,1,0,HOME_TEAM
+552005,CL,2025,6.0,2025-12-10T20:00:00Z,FINISHED,Juventus FC,Paphos FC,Juventus,Paphos FC,2,0,0,0,HOME_TEAM
+551923,CL,2025,6.0,2025-12-10T20:00:00Z,FINISHED,Real Madrid CF,Manchester City FC,Real Madrid,Man City,1,2,1,2,AWAY_TEAM
+551996,CL,2025,7.0,2026-01-20T15:30:00Z,FINISHED,FK Kairat,Club Brugge KV,FK Kairat,Club Brugge,1,4,0,2,AWAY_TEAM
+551966,CL,2025,7.0,2026-01-20T17:45:00Z,FINISHED,FK Bodø/Glimt,Manchester City FC,Bodø/Glimt,Man City,3,1,2,0,HOME_TEAM
+551943,CL,2025,7.0,2026-01-20T20:00:00Z,FINISHED,Tottenham Hotspur FC,Borussia Dortmund,Tottenham,Dortmund,2,0,2,0,HOME_TEAM
+551962,CL,2025,7.0,2026-01-20T20:00:00Z,FINISHED,Sporting Clube de Portugal,Paris Saint-Germain FC,Sporting CP,PSG,2,1,0,0,HOME_TEAM
+551973,CL,2025,7.0,2026-01-20T20:00:00Z,FINISHED,PAE Olympiakos SFP,Bayer 04 Leverkusen,Olympiakos,Leverkusen,2,0,2,0,HOME_TEAM
+552011,CL,2025,7.0,2026-01-20T20:00:00Z,FINISHED,Villarreal CF,AFC Ajax,Villarreal,Ajax,1,2,0,0,AWAY_TEAM
+552038,CL,2025,7.0,2026-01-20T20:00:00Z,FINISHED,FC København,SSC Napoli,København,Napoli,1,1,0,1,DRAW
+551929,CL,2025,7.0,2026-01-20T20:00:00Z,FINISHED,Real Madrid CF,AS Monaco FC,Real Madrid,Monaco,6,1,2,0,HOME_TEAM
+551933,CL,2025,7.0,2026-01-20T20:00:00Z,FINISHED,FC Internazionale Milano,Arsenal FC,Inter,Arsenal,1,3,1,2,AWAY_TEAM
+552001,CL,2025,7.0,2026-01-21T17:45:00Z,FINISHED,Qarabağ Ağdam FK,Eintracht Frankfurt,Qarabağ Ağdam,Frankfurt,3,2,1,1,HOME_TEAM
+552010,CL,2025,7.0,2026-01-21T17:45:00Z,FINISHED,Galatasaray SK,Club Atlético de Madrid,Galatasaray,Atleti,1,1,1,1,DRAW
+551949,CL,2025,7.0,2026-01-21T20:00:00Z,FINISHED,Olympique de Marseille,Liverpool FC,Marseille,Liverpool,0,3,0,1,AWAY_TEAM
+551956,CL,2025,7.0,2026-01-21T20:00:00Z,FINISHED,SK Slavia Praha,FC Barcelona,Slavia Praha,Barça,2,4,2,2,AWAY_TEAM
+551986,CL,2025,7.0,2026-01-21T20:00:00Z,FINISHED,Atalanta BC,Athletic Club,Atalanta,Athletic,2,3,1,0,AWAY_TEAM
+551988,CL,2025,7.0,2026-01-21T20:00:00Z,FINISHED,Juventus FC,Sport Lisboa e Benfica,Juventus,SL Benfica,2,0,0,0,HOME_TEAM
+552036,CL,2025,7.0,2026-01-21T20:00:00Z,FINISHED,Newcastle United FC,PSV,Newcastle,PSV,3,0,2,0,HOME_TEAM
+551914,CL,2025,7.0,2026-01-21T20:00:00Z,FINISHED,FC Bayern München,Royale Union Saint-Gilloise,Bayern,Union SG,2,0,0,0,HOME_TEAM
+551921,CL,2025,7.0,2026-01-21T20:00:00Z,FINISHED,Chelsea FC,Paphos FC,Chelsea,Paphos FC,1,0,0,0,HOME_TEAM
+551950,CL,2025,8.0,2026-01-28T20:00:00Z,FINISHED,Liverpool FC,Qarabağ Ağdam FK,Liverpool,Qarabağ Ağdam,6,0,2,0,HOME_TEAM
+551957,CL,2025,8.0,2026-01-28T20:00:00Z,FINISHED,FC Barcelona,FC København,Barça,København,4,1,0,1,HOME_TEAM
+551967,CL,2025,8.0,2026-01-28T20:00:00Z,FINISHED,Manchester City FC,Galatasaray SK,Man City,Galatasaray,2,0,2,0,HOME_TEAM
+551970,CL,2025,8.0,2026-01-28T20:00:00Z,FINISHED,Bayer 04 Leverkusen,Villarreal CF,Leverkusen,Villarreal,3,0,2,0,HOME_TEAM
+551980,CL,2025,8.0,2026-01-28T20:00:00Z,FINISHED,Arsenal FC,FK Kairat,Arsenal,FK Kairat,3,2,3,1,HOME_TEAM
+551987,CL,2025,8.0,2026-01-28T20:00:00Z,FINISHED,Royale Union Saint-Gilloise,Atalanta BC,Union SG,Atalanta,1,0,0,0,HOME_TEAM
+551993,CL,2025,8.0,2026-01-28T20:00:00Z,FINISHED,Club Brugge KV,Olympique de Marseille,Club Brugge,Marseille,3,0,2,0,HOME_TEAM
+551998,CL,2025,8.0,2026-01-28T20:00:00Z,FINISHED,Eintracht Frankfurt,Tottenham Hotspur FC,Frankfurt,Tottenham,0,2,0,0,AWAY_TEAM
+552006,CL,2025,8.0,2026-01-28T20:00:00Z,FINISHED,AS Monaco FC,Juventus FC,Monaco,Juventus,0,0,0,0,DRAW
+552007,CL,2025,8.0,2026-01-28T20:00:00Z,FINISHED,Club Atlético de Madrid,FK Bodø/Glimt,Atleti,Bodø/Glimt,1,2,1,1,AWAY_TEAM
+552028,CL,2025,8.0,2026-01-28T20:00:00Z,FINISHED,Athletic Club,Sporting Clube de Portugal,Athletic,Sporting CP,2,3,2,1,AWAY_TEAM
+552030,CL,2025,8.0,2026-01-28T20:00:00Z,FINISHED,AFC Ajax,PAE Olympiakos SFP,Ajax,Olympiakos,1,2,0,0,AWAY_TEAM
+552050,CL,2025,8.0,2026-01-28T20:00:00Z,FINISHED,Paris Saint-Germain FC,Newcastle United FC,PSG,Newcastle,1,1,1,1,DRAW
+552051,CL,2025,8.0,2026-01-28T20:00:00Z,FINISHED,Paphos FC,SK Slavia Praha,Paphos FC,Slavia Praha,4,1,1,1,HOME_TEAM
+551913,CL,2025,8.0,2026-01-28T20:00:00Z,FINISHED,PSV,FC Bayern München,PSV,Bayern,1,2,0,0,AWAY_TEAM
+551920,CL,2025,8.0,2026-01-28T20:00:00Z,FINISHED,SSC Napoli,Chelsea FC,Napoli,Chelsea,2,3,2,1,AWAY_TEAM
+551926,CL,2025,8.0,2026-01-28T20:00:00Z,FINISHED,Sport Lisboa e Benfica,Real Madrid CF,SL Benfica,Real Madrid,4,2,2,1,HOME_TEAM
+551932,CL,2025,8.0,2026-01-28T20:00:00Z,FINISHED,Borussia Dortmund,FC Internazionale Milano,Dortmund,Inter,0,2,0,0,AWAY_TEAM
+552055,CL,2025,1.0,2026-02-17T17:45:00Z,FINISHED,Galatasaray SK,Juventus FC,Galatasaray,Juventus,5,2,1,2,HOME_TEAM
+552052,CL,2025,1.0,2026-02-17T20:00:00Z,FINISHED,Sport Lisboa e Benfica,Real Madrid CF,SL Benfica,Real Madrid,0,1,0,0,AWAY_TEAM
+552053,CL,2025,1.0,2026-02-17T20:00:00Z,FINISHED,AS Monaco FC,Paris Saint-Germain FC,Monaco,PSG,2,3,2,2,AWAY_TEAM
+552057,CL,2025,1.0,2026-02-17T20:15:00Z,FINISHED,Borussia Dortmund,Atalanta BC,Dortmund,Atalanta,2,0,2,0,HOME_TEAM
+552054,CL,2025,1.0,2026-02-18T17:45:00Z,FINISHED,Qarabağ Ağdam FK,Newcastle United FC,Qarabağ Ağdam,Newcastle,1,6,0,5,AWAY_TEAM
+552056,CL,2025,1.0,2026-02-18T20:00:00Z,FINISHED,Club Brugge KV,Club Atlético de Madrid,Club Brugge,Atleti,3,3,0,2,DRAW
+552058,CL,2025,1.0,2026-02-18T20:00:00Z,FINISHED,PAE Olympiakos SFP,Bayer 04 Leverkusen,Olympiakos,Leverkusen,0,2,0,0,AWAY_TEAM
+552059,CL,2025,1.0,2026-02-18T20:00:00Z,FINISHED,FK Bodø/Glimt,FC Internazionale Milano,Bodø/Glimt,Inter,3,1,1,1,HOME_TEAM
+552064,CL,2025,2.0,2026-02-24T17:45:00Z,FINISHED,Club Atlético de Madrid,Club Brugge KV,Atleti,Club Brugge,4,1,1,1,HOME_TEAM
+552062,CL,2025,2.0,2026-02-24T20:00:00Z,FINISHED,Newcastle United FC,Qarabağ Ağdam FK,Newcastle,Qarabağ Ağdam,3,2,2,0,HOME_TEAM
+552066,CL,2025,2.0,2026-02-24T20:00:00Z,FINISHED,Bayer 04 Leverkusen,PAE Olympiakos SFP,Leverkusen,Olympiakos,0,0,0,0,DRAW
+552067,CL,2025,2.0,2026-02-24T20:00:00Z,FINISHED,FC Internazionale Milano,FK Bodø/Glimt,Inter,Bodø/Glimt,1,2,0,0,AWAY_TEAM
+552065,CL,2025,2.0,2026-02-25T17:45:00Z,FINISHED,Atalanta BC,Borussia Dortmund,Atalanta,Dortmund,4,1,2,0,HOME_TEAM
+552060,CL,2025,2.0,2026-02-25T20:00:00Z,FINISHED,Real Madrid CF,Sport Lisboa e Benfica,Real Madrid,SL Benfica,2,1,1,1,HOME_TEAM
+552061,CL,2025,2.0,2026-02-25T20:00:00Z,FINISHED,Paris Saint-Germain FC,AS Monaco FC,PSG,Monaco,2,2,0,1,DRAW
+552063,CL,2025,2.0,2026-02-25T20:00:00Z,FINISHED,Juventus FC,Galatasaray SK,Juventus,Galatasaray,3,2,1,0,HOME_TEAM
+552069,CL,2025,1.0,2026-03-10T17:45:00Z,FINISHED,Galatasaray SK,Liverpool FC,Galatasaray,Liverpool,1,0,1,0,HOME_TEAM
+552071,CL,2025,1.0,2026-03-10T20:00:00Z,FINISHED,Atalanta BC,FC Bayern München,Atalanta,Bayern,1,6,0,3,AWAY_TEAM
+552072,CL,2025,1.0,2026-03-10T20:00:00Z,FINISHED,Newcastle United FC,FC Barcelona,Newcastle,Barça,1,1,0,0,DRAW
+552073,CL,2025,1.0,2026-03-10T20:00:00Z,FINISHED,Club Atlético de Madrid,Tottenham Hotspur FC,Atleti,Tottenham,5,2,4,1,HOME_TEAM
+552075,CL,2025,1.0,2026-03-11T17:45:00Z,FINISHED,Bayer 04 Leverkusen,Arsenal FC,Leverkusen,Arsenal,1,1,0,0,DRAW
+552068,CL,2025,1.0,2026-03-11T20:00:00Z,FINISHED,Paris Saint-Germain FC,Chelsea FC,PSG,Chelsea,5,2,2,1,HOME_TEAM
+552070,CL,2025,1.0,2026-03-11T20:00:00Z,FINISHED,Real Madrid CF,Manchester City FC,Real Madrid,Man City,3,0,3,0,HOME_TEAM
+552074,CL,2025,1.0,2026-03-11T20:00:00Z,FINISHED,FK Bodø/Glimt,Sporting Clube de Portugal,Bodø/Glimt,Sporting CP,3,0,2,0,HOME_TEAM
+552082,CL,2025,2.0,2026-03-17T17:45:00Z,FINISHED,Sporting Clube de Portugal,FK Bodø/Glimt,Sporting CP,Bodø/Glimt,5,0,1,0,HOME_TEAM
+552076,CL,2025,2.0,2026-03-17T20:00:00Z,FINISHED,Chelsea FC,Paris Saint-Germain FC,Chelsea,PSG,0,3,0,2,AWAY_TEAM
+552078,CL,2025,2.0,2026-03-17T20:00:00Z,FINISHED,Manchester City FC,Real Madrid CF,Man City,Real Madrid,1,2,1,1,AWAY_TEAM
+552083,CL,2025,2.0,2026-03-17T20:00:00Z,FINISHED,Arsenal FC,Bayer 04 Leverkusen,Arsenal,Leverkusen,2,0,1,0,HOME_TEAM
+552080,CL,2025,2.0,2026-03-18T17:45:00Z,FINISHED,FC Barcelona,Newcastle United FC,Barça,Newcastle,7,2,3,2,HOME_TEAM
+552077,CL,2025,2.0,2026-03-18T20:00:00Z,FINISHED,Liverpool FC,Galatasaray SK,Liverpool,Galatasaray,4,0,1,0,HOME_TEAM
+552079,CL,2025,2.0,2026-03-18T20:00:00Z,FINISHED,FC Bayern München,Atalanta BC,Bayern,Atalanta,4,1,1,0,HOME_TEAM
+552081,CL,2025,2.0,2026-03-18T20:00:00Z,FINISHED,Tottenham Hotspur FC,Club Atlético de Madrid,Tottenham,Atleti,3,2,1,0,HOME_TEAM
+556719,CL,2025,1.0,2026-04-07T19:00:00Z,FINISHED,Real Madrid CF,FC Bayern München,Real Madrid,Bayern,1,2,0,1,AWAY_TEAM
+556721,CL,2025,1.0,2026-04-07T19:00:00Z,FINISHED,Sporting Clube de Portugal,Arsenal FC,Sporting CP,Arsenal,0,1,0,0,AWAY_TEAM
+556718,CL,2025,1.0,2026-04-08T19:00:00Z,FINISHED,Paris Saint-Germain FC,Liverpool FC,PSG,Liverpool,2,0,1,0,HOME_TEAM
+556720,CL,2025,1.0,2026-04-08T19:00:00Z,FINISHED,FC Barcelona,Club Atlético de Madrid,Barça,Atleti,0,2,0,1,AWAY_TEAM
+556722,CL,2025,2.0,2026-04-14T19:00:00Z,FINISHED,Liverpool FC,Paris Saint-Germain FC,Liverpool,PSG,0,2,0,0,AWAY_TEAM
+556724,CL,2025,2.0,2026-04-14T19:00:00Z,FINISHED,Club Atlético de Madrid,FC Barcelona,Atleti,Barça,1,2,1,2,AWAY_TEAM
+556723,CL,2025,2.0,2026-04-15T19:00:00Z,FINISHED,FC Bayern München,Real Madrid CF,Bayern,Real Madrid,4,3,2,3,HOME_TEAM
+556725,CL,2025,2.0,2026-04-15T19:00:00Z,FINISHED,Arsenal FC,Sporting Clube de Portugal,Arsenal,Sporting CP,0,0,0,0,DRAW
+552092,CL,2025,1.0,2026-04-28T19:00:00Z,FINISHED,Paris Saint-Germain FC,FC Bayern München,PSG,Bayern,5,4,3,2,HOME_TEAM
+552093,CL,2025,1.0,2026-04-29T19:00:00Z,FINISHED,Club Atlético de Madrid,Arsenal FC,Atleti,Arsenal,1,1,0,1,DRAW
+552095,CL,2025,2.0,2026-05-05T19:00:00Z,FINISHED,Arsenal FC,Club Atlético de Madrid,Arsenal,Atleti,1,0,1,0,HOME_TEAM
+552094,CL,2025,2.0,2026-05-06T19:00:00Z,FINISHED,FC Bayern München,Paris Saint-Germain FC,Bayern,PSG,1,1,0,1,DRAW
+552096,CL,2025,,2026-05-30T16:00:00Z,FINISHED,Paris Saint-Germain FC,Arsenal FC,PSG,Arsenal,5,4,0,1,HOME_TEAM

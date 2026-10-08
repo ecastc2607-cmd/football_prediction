@@ -64,16 +64,22 @@ def goal_api_module(code: str):
 # Streamlit Cloud) — ver support_leagues.py.
 SUPPORT_LEAGUES = {"DED": "Eredivisie", "PPL": "Primeira Liga"}
 SUPPORT_LEAGUES_DIR = ROOT_DIR / "data" / "tracking" / "support_leagues"
+# Temporadas ya cerradas, versionadas: no se vuelven a pedir nunca (season_store.py).
+CLOSED_SEASONS_DIR = ROOT_DIR / "data" / "tracking" / "closed_seasons"
 
 
 def matches_path(code: str, season: int) -> Path:
-    """CSV de partidos de una competición/temporada: data/processed/ si existe,
-    si no la copia versionada de las ligas de apoyo (si existe)."""
+    """CSV de partidos de una competición/temporada: data/processed/ si existe;
+    si no, la temporada cerrada versionada; si no, la copia de las ligas de
+    apoyo (si existe)."""
     procesado = PROCESSED_DIR / f"matches_{code}_{season}.csv"
     if procesado.exists():
         return procesado
-    versionado = SUPPORT_LEAGUES_DIR / f"matches_{code}_{season}.csv"
-    return versionado if versionado.exists() else procesado
+    for carpeta in (CLOSED_SEASONS_DIR, SUPPORT_LEAGUES_DIR):
+        versionado = carpeta / f"matches_{code}_{season}.csv"
+        if versionado.exists():
+            return versionado
+    return procesado
 
 
 # Competiciones tipo copa donde, si un equipo no tiene NINGÚN partido propio
