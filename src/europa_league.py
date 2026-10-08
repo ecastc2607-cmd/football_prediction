@@ -44,6 +44,10 @@ LEAGUE_ID = LEAGUE_IDS[COMPETITION_CODE]
 # se ignoran clasificación previa y eliminatorias, igual que el proyecto ya
 # trata la Champions League solo en su fase de liga.
 LEAGUE_PHASE_STAGE = "League Phase"
+# Goal API usa ambos nombres para la misma fase (2024/25 "League Stage";
+# 2025/26 mezcla los dos — verificado oct-2026, junto con partidos de esa fase
+# mal etiquetados como "Final", que no se pueden recuperar con seguridad).
+LEAGUE_PHASE_STAGES = {LEAGUE_PHASE_STAGE, "League Stage"}
 
 
 def _client() -> GoalApiClient:
@@ -112,7 +116,7 @@ def _fetch_league_phase_fixtures(client: GoalApiClient, season: int) -> list[dic
     year_label = f"{season}/{season + 1}"
     return [
         f for f in all_fixtures
-        if f.get("leagueYear") == year_label and f.get("stageName") == LEAGUE_PHASE_STAGE
+        if f.get("leagueYear") == year_label and f.get("stageName") in LEAGUE_PHASE_STAGES
     ]
 
 
@@ -188,6 +192,8 @@ def fetch_competition(season: int) -> pd.DataFrame:
             "away_team_short": f.get("awayTeamName"),
             "home_goals": home_goals,
             "away_goals": away_goals,
+            "home_ht_goals": pd.to_numeric(f.get("homeTeamHalftimeScore"), errors="coerce"),
+            "away_ht_goals": pd.to_numeric(f.get("awayTeamHalftimeScore"), errors="coerce"),
             "winner": winner,
         })
     df = pd.DataFrame(rows)

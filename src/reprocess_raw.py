@@ -30,6 +30,11 @@ def main():
         if not m:
             continue
         code, season = m.group(1), int(m.group(2))
+        if code in config.GOAL_API_COMPETITIONS:
+            # El JSON crudo de Goal API tiene otro formato (lista de fixtures):
+            # esas competiciones se regeneran con su propio fetch_competition.
+            print(f"{code} {season}: formato de Goal API, se omite (usar config.goal_api_module).")
+            continue
         raw = json.loads(path.read_text(encoding="utf-8"))
         df = flatten_matches(raw)
         csv_path = save_processed(df, code, season)

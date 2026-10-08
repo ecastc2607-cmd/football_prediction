@@ -200,6 +200,8 @@ def _row_from_fixture(f: dict, season_label: int) -> dict:
         "away_team_short": f.get("awayTeamName"),
         "home_goals": home_goals,
         "away_goals": away_goals,
+        "home_ht_goals": pd.to_numeric(f.get("homeTeamHalftimeScore"), errors="coerce"),
+        "away_ht_goals": pd.to_numeric(f.get("awayTeamHalftimeScore"), errors="coerce"),
         "winner": winner,
     }
 

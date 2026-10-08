@@ -9,6 +9,7 @@ import pandas as pd
 
 from . import config
 from .cross_competition_strength import fill_missing_with_domestic_strength
+from .half_strength import half_prediction, half_strengths
 from .poisson_model import predict_match
 from .predict_matchday import LIVE_STATUSES, matchday_fixtures, upcoming_fixtures
 from .team_strength import confidence_note, team_strength_for_competition
@@ -50,6 +51,11 @@ def matchday_predictions_df(competition_code: str, season: int, matchday: int,
             strength, equipos_de_la_jornada, seasons
         )
 
+    # Fuerza por tiempo (1T/2T), para analizar apuestas de un solo tiempo. Solo
+    # con datos propios de la competición: equipos sin historial propio (ej.
+    # los de Europa League que usan su liga doméstica) quedan sin este dato.
+    mitades = half_strengths(competition_code, seasons)
+
     rows = []
     for _, row in fixtures.iterrows():
         try:
@@ -65,7 +71,18 @@ def matchday_predictions_df(competition_code: str, season: int, matchday: int,
         if prestamos:
             note = (note + " · " if note else "") + " · ".join(prestamos)
         top_score, top_prob = pred.top_scorelines(1)[0]
+        por_tiempo = half_prediction(mitades, row["home_team"], row["away_team"]) or {}
+        campos_tiempo = {}
+        for mitad, prefijo in (("1T", "h1"), ("2T", "h2")):
+            datos = por_tiempo.get(mitad)
+            campos_tiempo.update({
+                f"{prefijo}_home_xg": round(datos["home_xg"], 2) if datos else None,
+                f"{prefijo}_away_xg": round(datos["away_xg"], 2) if datos else None,
+                f"{prefijo}_p_goal": round(datos["p_goal"] * 100, 1) if datos else None,
+                f"{prefijo}_p_over_1_5": round(datos["p_over_1_5"] * 100, 1) if datos else None,
+            })
         rows.append({
+            **campos_tiempo,
             "competition": competition_code,
             "competition_name": config.COMPETITIONS.get(competition_code, competition_code),
             "matchday": matchday,

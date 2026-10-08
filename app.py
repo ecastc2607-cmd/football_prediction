@@ -685,6 +685,15 @@ with tab_jornada:
         show["Fecha"] = show["utc_date"].map(lambda d: format_bogota(d))
         show["1X2"] = show.apply(lambda r: f"{r.home_win:.0f}% / {r.draw:.0f}% / {r.away_win:.0f}%", axis=1)
         show["xG"] = show.apply(lambda r: f"{r.home_xg} - {r.away_xg}", axis=1)
+
+        def _por_tiempo(r, prefijo):
+            local, visita = r.get(f"{prefijo}_home_xg"), r.get(f"{prefijo}_away_xg")
+            if pd.isna(local) or pd.isna(visita):
+                return "-"
+            return f"L {local:.2f} – V {visita:.2f} · gol {r.get(f'{prefijo}_p_goal'):.0f}%"
+
+        show["1er tiempo"] = show.apply(lambda r: _por_tiempo(r, "h1"), axis=1) if "h1_home_xg" in show else "-"
+        show["2do tiempo"] = show.apply(lambda r: _por_tiempo(r, "h2"), axis=1) if "h2_home_xg" in show else "-"
         show["⚠"] = show["low_confidence"].map({True: "Baja confianza", False: ""})
         show["Posiciones"] = show.apply(
             lambda r: f"{standings.get(r.home_team, '-')}° vs {standings.get(r.away_team, '-')}°"
@@ -709,8 +718,15 @@ with tab_jornada:
         # --- Tendencias de corners/faltas/tarjetas (promedio histórico, no del
         # modelo de goles) para partidos que TODAVÍA no se juegan. ---
         tendency_averages = load_tendency_averages(comp_code)
-        columnas_tabla = ["Partido", "Fecha", "Posiciones", "xG", "1X2",
+        columnas_tabla = ["Partido", "Fecha", "Posiciones", "xG", "1er tiempo", "2do tiempo", "1X2",
                            "over_2_5", "btts", "top_score"]
+        st.caption(
+            "⏱️ **1er / 2do tiempo**: goles esperados de cada equipo (L = local, V = visitante) solo en "
+            "esa mitad, con el mismo modelo entrenado con los goles de cada tiempo, y la probabilidad "
+            "de que haya al menos un gol en esa mitad. '-' = sin historial propio con marcador al "
+            "descanso. Para apuestas de un solo tiempo: recuerda que las casas cobran más margen en "
+            "esos mercados, así que una cuota más alta no es por sí sola una mejor apuesta."
+        )
         if tendency_averages.empty:
             st.caption(
                 "📐 Corners/faltas/tarjetas: todavía no hay historial guardado para esta "

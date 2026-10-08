@@ -75,6 +75,7 @@ def flatten_matches(raw: dict) -> pd.DataFrame:
     rows = []
     for m in raw.get("matches", []):
         score = m.get("score", {}).get("fullTime", {})
+        descanso = m.get("score", {}).get("halfTime", {}) or {}
         rows.append(
             {
                 "match_id": m["id"],
@@ -91,6 +92,9 @@ def flatten_matches(raw: dict) -> pd.DataFrame:
                 "away_team_short": m.get("awayTeam", {}).get("shortName") or m.get("awayTeam", {}).get("name"),
                 "home_goals": score.get("home"),
                 "away_goals": score.get("away"),
+                # Marcador al descanso: base de la fuerza por tiempo (half_strength.py).
+                "home_ht_goals": descanso.get("home"),
+                "away_ht_goals": descanso.get("away"),
                 "winner": m.get("score", {}).get("winner"),
             }
         )
