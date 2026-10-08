@@ -10,6 +10,7 @@ Desplegado en Streamlit Community Cloud: configura FOOTBALL_DATA_API_KEY en
 """
 from __future__ import annotations
 
+import math
 import os
 from datetime import datetime, timezone
 
@@ -139,10 +140,24 @@ def load_support_leagues(season: int) -> None:
         pass
 
 
+def _csv_sin_descanso(code: str, season: int) -> bool:
+    path = config.matches_path(code, season)
+    return path.exists() and "home_ht_goals" not in pd.read_csv(path, nrows=0).columns
+
+
 def _prepare_competition(code: str, season: int) -> None:
     # Asegura que los datos de esta y la temporada anterior estén descargados.
     load_competition(code, season)
     load_competition(code, season - 1)
+    # Archivos bajados por una versión anterior del código (sin marcador al
+    # descanso) siguen en disco mientras la caché de descarga está vigente tras
+    # un deploy — pasó con Premier League (oct-2026): columnas por tiempo en "-"
+    # hasta forzar la actualización. Se detecta y se vuelve a descargar solo.
+    if any(_csv_sin_descanso(code, s) for s in (season, season - 1)):
+        load_competition.clear()
+        _load_goal_api_competition.clear()
+        load_competition(code, season)
+        load_competition(code, season - 1)
     if code in config.CUP_STYLE_COMPETITIONS:
         load_support_leagues(season)
 
@@ -701,7 +716,11 @@ with tab_jornada:
             local, visita = r.get(f"{prefijo}_home_xg"), r.get(f"{prefijo}_away_xg")
             if pd.isna(local) or pd.isna(visita):
                 return "-"
-            return f"L {local:.2f} – V {visita:.2f} · gol {r.get(f'{prefijo}_p_goal'):.0f}%"
+            # Entre paréntesis, la probabilidad de que ESE equipo anote al menos
+            # uno en la mitad; "algún gol" es la del partido (cualquiera de los dos).
+            anota_l, anota_v = 1 - math.exp(-local), 1 - math.exp(-visita)
+            return (f"L {local:.2f} ({anota_l:.0%}) – V {visita:.2f} ({anota_v:.0%}) · "
+                    f"algún gol {r.get(f'{prefijo}_p_goal'):.0f}%")
 
         show["1er tiempo"] = show.apply(lambda r: _por_tiempo(r, "h1"), axis=1) if "h1_home_xg" in show else "-"
         show["2do tiempo"] = show.apply(lambda r: _por_tiempo(r, "h2"), axis=1) if "h2_home_xg" in show else "-"
@@ -733,10 +752,12 @@ with tab_jornada:
                            "over_2_5", "btts", "top_score"]
         st.caption(
             "⏱️ **1er / 2do tiempo**: goles esperados de cada equipo (L = local, V = visitante) solo en "
-            "esa mitad, con el mismo modelo entrenado con los goles de cada tiempo, y la probabilidad "
-            "de que haya al menos un gol en esa mitad. '-' = sin historial propio con marcador al "
-            "descanso. Para apuestas de un solo tiempo: recuerda que las casas cobran más margen en "
-            "esos mercados, así que una cuota más alta no es por sí sola una mejor apuesta."
+            "esa mitad; entre paréntesis, la probabilidad de que ESE equipo marque al menos un gol en "
+            "la mitad; 'algún gol' = que marque cualquiera de los dos. Ej.: L 1.27 (72%) – V 0.23 (21%) "
+            "· algún gol 78% → el local marca en esa mitad 72% de las veces, el visitante 21%, y hay "
+            "algún gol 78%. '-' = sin historial propio con marcador al descanso. Para apuestas de un "
+            "solo tiempo: las casas cobran más margen en esos mercados, así que una cuota más alta no "
+            "es por sí sola una mejor apuesta."
         )
         if tendency_averages.empty:
             st.caption(
