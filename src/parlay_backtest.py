@@ -42,7 +42,8 @@ def backtest(log: pd.DataFrame | None = None) -> pd.DataFrame:
             continue
         calibracion = Calibrator.from_log(log.drop(index=idx))
         por_partido = {
-            f"{r.home_team} vs {r.away_team}": (int(r.actual_home_goals), int(r.actual_away_goals))
+            f"{r.home_team} vs {r.away_team}": (int(r.actual_home_goals), int(r.actual_away_goals),
+                                               r.actual_ht_home_goals, r.actual_ht_away_goals)
             for r in jornada_rows.itertuples()
         }
         for p in build_parlays(_as_predictions(jornada_rows), calibracion):

@@ -30,6 +30,12 @@ def half_strengths(competition_code: str, seasons: list[int]) -> dict[str, pd.Da
         partidos = load_finished_matches(competition_code, seasons)
     except FileNotFoundError:
         return None
+    return half_strengths_from_matches(partidos)
+
+
+def half_strengths_from_matches(partidos: pd.DataFrame) -> dict[str, pd.DataFrame] | None:
+    """Igual que half_strengths, pero sobre partidos ya cargados (el backtest
+    le pasa solo los anteriores a cada partido)."""
     if "home_ht_goals" not in partidos.columns:
         return None
     m = partidos.dropna(subset=["home_ht_goals", "away_ht_goals"]).copy()
@@ -53,10 +59,15 @@ def half_prediction(strengths: dict[str, pd.DataFrame] | None, home_team: str, a
             local, visita = expected_goals(fuerzas, home_team, away_team)
         except KeyError:
             return None
-        total = local + visita
-        salida[mitad] = {
-            "home_xg": local, "away_xg": visita,
-            "p_goal": 1 - math.exp(-total),
-            "p_over_1_5": 1 - math.exp(-total) * (1 + total),
-        }
+        salida[mitad] = {"home_xg": local, "away_xg": visita, **half_probabilities(local, visita)}
     return salida
+
+
+def half_probabilities(home_xg: float, away_xg: float) -> dict:
+    """Probabilidad de al menos un gol y de más de 1.5 goles en una mitad,
+    con Poisson sobre el total esperado de esa mitad."""
+    total = home_xg + away_xg
+    return {
+        "p_goal": 1 - math.exp(-total),
+        "p_over_1_5": 1 - math.exp(-total) * (1 + total),
+    }

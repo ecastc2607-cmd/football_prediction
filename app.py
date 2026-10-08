@@ -17,7 +17,7 @@ import altair as alt
 import pandas as pd
 import streamlit as st
 
-from src import config, national_teams, odds_api
+from src import config, half_backtest, national_teams, odds_api
 from src.competition_status import resolve_current_season_and_matchday
 from src.fetch_football_data import FootballDataClient, fetch_competition
 from src.goal_api_client import (
@@ -448,7 +448,18 @@ def load_parlays(code: str, season: int, matchday: int) -> list:
 def load_calibrator() -> Calibrator:
     """Calibración por mercado ajustada con TODAS las predicciones ya resueltas
     — se actualiza sola a medida que el log crece."""
-    return Calibrator.from_log(load_calibration_log())
+    return Calibrator.from_log(load_calibration_log(), half_backtest=half_backtest.load())
+
+
+@st.cache_data(ttl=6 * 3600, show_spinner=False)
+def load_half_market_calibration() -> pd.DataFrame:
+    """Acierto real vs prometido de los mercados de un solo tiempo, según el
+    backtest guardado (data/tracking/half_markets_backtest.csv)."""
+    bt = half_backtest.load()
+    if bt.empty:
+        return pd.DataFrame()
+    tabla = half_backtest.leg_calibration(bt)
+    return tabla.assign(Acierto=tabla["Acierto"] * 100, Prometido=tabla["Prometido"] * 100)
 
 
 @st.cache_data(ttl=6 * 3600, show_spinner="Evaluando la estrategia en jornadas pasadas...")
@@ -868,6 +879,27 @@ with tab_jornada:
             tabla_mercados, width="stretch", hide_index=True,
             column_config={"Liga": st.column_config.Column(pinned=True)},
         )
+
+    # Mercados de un solo tiempo: fuera del selector de origen porque su única
+    # fuente por ahora es el backtest (el registro antes del partido recién
+    # empieza a guardarlos).
+    calib_mitades = load_half_market_calibration()
+    if not calib_mitades.empty:
+        with st.expander("⏱️ Mercados de un solo tiempo — ¿qué tan bien acierta el modelo?"):
+            st.dataframe(
+                calib_mitades, width="stretch", hide_index=True,
+                column_config={
+                    "Acierto": st.column_config.NumberColumn("Acierto real", format="%.0f%%"),
+                    "Prometido": st.column_config.NumberColumn("Prob. prometida", format="%.0f%%"),
+                },
+            )
+            st.caption(
+                "Backtest de los partidos ya jugados de la temporada (cada uno predicho solo con "
+                "partidos anteriores), con el lado más probable de cada mercado. 'Gol' en cada tiempo "
+                "sale bien calibrado; '+/-1.5' por tiempo promete más de lo que acierta. Probado en "
+                "combinadas: agregarlos NO mejoró el retorno (el margen de la casa es mayor en estos "
+                "mercados), así que las combinadas no los usan por ahora."
+            )
 
 # ============================== PESTAÑA: EN VIVO ==============================
 with tab_vivo:

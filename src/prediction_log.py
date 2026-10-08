@@ -42,6 +42,12 @@ COLUMNS = [
     f"actual_{market}_total" for market in STAT_MARKETS
 ] + [
     f"hit_{market}" for market in STAT_MARKETS
+] + [
+    # Mercados por tiempo (oct-2026): goles esperados de cada mitad según
+    # half_strength.py (de ahí salen "gol en el 1T", "+/-1.5 en el 2T", etc.) y
+    # el marcador real al descanso para resolverlos — ver calibration.py.
+    "h1_home_xg", "h1_away_xg", "h2_home_xg", "h2_away_xg",
+    "actual_ht_home_goals", "actual_ht_away_goals",
 ]
 
 KEY_COLUMNS = ["competition", "season", "matchday", "home_team", "away_team"]

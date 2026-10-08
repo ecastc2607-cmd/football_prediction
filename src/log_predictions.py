@@ -21,6 +21,7 @@ from .match_tendencies import load_team_averages, pick_tendencies
 from .poisson_model import predict_match
 from .predict_matchday import upcoming_fixtures
 from .prediction_log import append_predictions, favored_side
+from .half_strength import half_prediction, half_strengths
 from .support_leagues import ensure_support_leagues
 from .team_strength import confidence_note, team_strength_for_competition
 
@@ -54,6 +55,7 @@ def log_competition(code: str, season: int, matchday: int, seasons_back: int = 1
     # todavía no tiene historial en match_stats_log.csv, sale vacío y esos
     # campos quedan en None para todos los partidos (no es un error).
     tendency_averages = load_team_averages(code)
+    mitades = half_strengths(code, seasons)
 
     now = datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
     rows = []
@@ -63,8 +65,11 @@ def log_competition(code: str, season: int, matchday: int, seasons_back: int = 1
         except KeyError:
             continue
         note = confidence_note(strength, row["home_team"], row["away_team"])
+        por_tiempo = half_prediction(mitades, row["home_team"], row["away_team"]) or {}
 
         fila = {
+            **{f"{pref}_{lado}_xg": round(por_tiempo[mitad][f"{lado}_xg"], 3) if mitad in por_tiempo else None
+               for mitad, pref in (("1T", "h1"), ("2T", "h2")) for lado in ("home", "away")},
             "logged_at": now,
             "resolved_at": "",
             "competition": code,

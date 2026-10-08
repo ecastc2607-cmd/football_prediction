@@ -27,7 +27,7 @@ from itertools import combinations, product
 
 import pandas as pd
 
-from .calibration import Calibrator, candidate_legs
+from .calibration import HALF_MARKETS, Calibrator, candidate_legs
 
 # Elegidos con parlay_backtest.py (15 jornadas, oct-2026) entre 0.60/0.65/0.70
 # y 1/2 picks por partido: 0.60 + 2 fue donde lo PROMETIDO coincidió mejor con
@@ -39,6 +39,21 @@ MAX_LEGS = 5
 LEGS_PER_MATCH = 2  # mejores picks por partido que se consideran (se usa 1 por combinada)
 MAX_MATCHES_CONSIDERED = 12
 BOOKMAKER_MARGIN = 0.05  # margen típico por selección de una casa
+# Mercados de un solo tiempo: las casas cobran más margen ahí, y no tenemos su
+# cuota real (The Odds API los cobra por partido) — se estiman con este margen.
+HALF_MARKET_MARGIN = 0.07
+# Si entran picks de un solo tiempo, y con cuántos picks resueltos de ese
+# mercado como mínimo (backtest + registro). Decidido con half_backtest.py
+# (oct-2026, 352 partidos, 34 jornadas, calibración sin la jornada evaluada):
+#   - Gol 1T (67% real vs 69% prometido) y Gol 2T (80% vs 77%): bien calibrados.
+#   - +/-1.5 en 1T (61% vs 68%) y en 2T (50% vs 61%): sobreestimados.
+#   - Combinadas, retorno por $1 sin -> con picks por tiempo: Alta 0.99 -> 0.99,
+#     Equilibrada 1.01 -> 0.92, Cuota alta 0.90 -> 0.58. Aun dejando solo los
+#     bien calibrados: 0.99 / 1.00 / 0.66. El margen extra de la casa en esos
+#     mercados se come la cuota más alta. Apagado hasta que la evidencia cambie:
+#     re-evaluar con `python -m src.half_backtest` (la tarea semanal lo corre).
+HALF_MARKETS_ENABLED = False
+HALF_MIN_SAMPLE = 150
 
 # (nombre, probabilidad combinada mínima, máxima) — niveles absolutos.
 TIERS = [
@@ -94,8 +109,12 @@ class Leg:
 
     @property
     def payout_odds(self) -> float:
-        """La real si existe; si no, la justa menos el margen típico de una casa."""
-        return self.book_odds if self.book_odds else self.fair_odds * (1 - BOOKMAKER_MARGIN)
+        """La real si existe; si no, la justa menos el margen típico de una casa
+        (mayor en los mercados de un solo tiempo)."""
+        if self.book_odds:
+            return self.book_odds
+        margen = HALF_MARKET_MARGIN if self.market in HALF_MARKETS else BOOKMAKER_MARGIN
+        return self.fair_odds * (1 - margen)
 
 
 @dataclass
@@ -127,18 +146,25 @@ class Parlay:
 
 
 def legs_by_match(predictions: pd.DataFrame, calibrator: Calibrator | None,
-                  odds_lookup=None) -> dict[str, list[Leg]]:
+                  odds_lookup=None, include_half: bool | None = None) -> dict[str, list[Leg]]:
     """`odds_lookup(fila_de_predicción, clave) -> (cuota, casa) | None` — de
-    dónde sacar la cuota real de cada pick (ver app.py); None = sin cuotas."""
+    dónde sacar la cuota real de cada pick (ver app.py); None = sin cuotas.
+    `include_half`: forzar con/sin mercados de un solo tiempo (backtest); por
+    defecto, HALF_MARKETS_ENABLED."""
     calibrator = calibrator or Calibrator()
+    con_mitades = HALF_MARKETS_ENABLED if include_half is None else include_half
     por_partido: dict[str, list[Leg]] = {}
     for _, row in predictions.iterrows():
         home = row.get("home_team_short") or row["home_team"]
         away = row.get("away_team_short") or row["away_team"]
         partido = f"{home} vs {away}"
         legs = []
+        mitades = (tuple(row.get(c) for c in ("h1_home_xg", "h1_away_xg", "h2_home_xg", "h2_away_xg"))
+                   if con_mitades else None)
         for mercado, pick, p_modelo in candidate_legs(row["home_win"], row["draw"], row["away_win"],
-                                                     row.get("over_2_5"), row.get("btts")):
+                                                     row.get("over_2_5"), row.get("btts"), mitades):
+            if mercado in HALF_MARKETS and calibrator.market_sample(mercado) < HALF_MIN_SAMPLE:
+                continue  # sin evidencia suficiente de ese mercado todavía
             p = calibrator.calibrate(mercado, p_modelo, row.get("competition"))
             if p < MIN_LEG_PROB or p >= 1:
                 continue
@@ -170,8 +196,8 @@ def _tier(prob: float) -> str | None:
 
 
 def build_parlays(predictions: pd.DataFrame, calibrator: Calibrator | None = None,
-                  odds_lookup=None) -> list[Parlay]:
-    por_partido = legs_by_match(predictions, calibrator, odds_lookup)
+                  odds_lookup=None, include_half: bool | None = None) -> list[Parlay]:
+    por_partido = legs_by_match(predictions, calibrator, odds_lookup, include_half)
     if len(por_partido) < MIN_LEGS:
         return []
     partidos = sorted(por_partido, key=lambda m: por_partido[m][0].probability,

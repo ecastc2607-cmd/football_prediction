@@ -125,6 +125,10 @@ def main():
             log.loc[idx, "actual_away_goals"] = int(away_goals)
             log.loc[idx, "actual_result"] = actual
             log.loc[idx, "hit"] = row["favored_side"] == actual
+            # Marcador al descanso: resuelve los mercados por tiempo (calibration.py).
+            if pd.notna(g.get("home_ht_goals")) and pd.notna(g.get("away_ht_goals")):
+                log.loc[idx, "actual_ht_home_goals"] = int(g["home_ht_goals"])
+                log.loc[idx, "actual_ht_away_goals"] = int(g["away_ht_goals"])
             # Goles (O/U 2.5) y Ambos anotan se calculan más abajo, de una vez
             # para todos los partidos resueltos (nuevos y viejos) — ver el
             # bloque vectorizado justo antes de save_log().
