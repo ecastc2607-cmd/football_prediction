@@ -211,6 +211,73 @@ def load_live_matches(codes: tuple[str, ...]) -> pd.DataFrame:
     return live_df
 
 
+@st.cache_data(ttl=1800, show_spinner=False)
+def upcoming_kickoffs() -> dict:
+    """{competición: [inicios UTC ISO de los partidos por jugar de los próximos
+    días]}. Football-data.org: UNA consulta para sus 6 competiciones.
+    Europa League/selecciones: el CSV ya descargado si existe; si no, Goal API
+    de hoy y los 2 días siguientes. El filtro "aún no empezó" se aplica fuera
+    de la caché (en nearest_competition), para que no quede viejo."""
+    hoy = datetime.now(timezone.utc).date()
+    inicios: dict[str, list[str]] = {}
+    codigos_fd = [c for c in config.COMPETITIONS if c not in config.GOAL_API_COMPETITIONS]
+    try:
+        datos = FootballDataClient(api_key=API_KEY)._get("/matches", {
+            "dateFrom": hoy.isoformat(), "dateTo": (hoy + pd.Timedelta(days=9)).isoformat(),
+            "competitions": ",".join(codigos_fd),
+        })
+        for m in datos.get("matches", []):
+            if m.get("status") in ("SCHEDULED", "TIMED", *LIVE_STATUSES):
+                inicios.setdefault(m["competition"]["code"], []).append(m["utcDate"])
+    except Exception:
+        pass
+    for code in config.GOAL_API_COMPETITIONS:
+        archivos = sorted(config.PROCESSED_DIR.glob(f"matches_{code}_*.csv"))
+        if archivos:
+            try:
+                df = pd.read_csv(archivos[-1], usecols=["status", "utc_date"])
+                inicios[code] = df.loc[df["status"].isin(["SCHEDULED", "TIMED", *LIVE_STATUSES]),
+                                       "utc_date"].tolist()
+                continue
+            except Exception:
+                pass
+        if GOAL_KEY:
+            for delta in range(3):
+                try:
+                    fixtures = GoalApiClient(api_key=GOAL_KEY).fixtures_by_date(
+                        (hoy + pd.Timedelta(days=delta)).isoformat(), code)
+                except Exception:
+                    continue
+                inicios.setdefault(code, []).extend(f.get("kickoffUtc") for f in fixtures if f.get("kickoffUtc"))
+    return inicios
+
+
+# Un partido que empezó hace menos de esto se considera EN CURSO (90' + descanso
+# + añadido) y cuenta como el más próximo de todos (pedido del usuario).
+IN_PLAY_WINDOW = pd.Timedelta(minutes=115)
+
+
+def nearest_competition() -> str | None:
+    """La competición con un partido en curso o, si no hay, la del próximo
+    partido por empezar. Entre varias con partidos en curso, la del que empezó
+    más recientemente (le queda más por jugar)."""
+    ahora = pd.Timestamp.now(tz="UTC")
+    mejor, mejor_clave = None, None
+    for code, lista in upcoming_kickoffs().items():
+        if code not in config.COMPETITIONS:
+            continue
+        inicios = [t for t in pd.to_datetime(pd.Series(lista), utc=True, errors="coerce")
+                   if pd.notna(t) and t > ahora - IN_PLAY_WINDOW]
+        if not inicios:
+            continue
+        en_curso = [t for t in inicios if t <= ahora]
+        # En curso: (0, más reciente primero); por empezar: (1, el más cercano).
+        clave = (0, -max(en_curso).value) if en_curso else (1, min(inicios).value)
+        if mejor_clave is None or clave < mejor_clave:
+            mejor, mejor_clave = code, clave
+    return mejor
+
+
 @st.cache_data(ttl=3600, show_spinner=False)
 def load_live_evaluation() -> pd.DataFrame:
     return evaluate_live_snapshots()
@@ -590,9 +657,19 @@ def _to_bool_series(s: pd.Series) -> pd.Series:
 st.sidebar.title("⚽ Football Analytics")
 st.sidebar.caption("Modelo de Poisson sobre datos reales de football-data.org")
 
+# Por defecto, la competición con el partido más próximo que aún no empezó. Se
+# decide UNA vez por sesión (al abrir/refrescar el navegador): recalcularlo en
+# cada interacción le cambiaría la liga al usuario apenas arranque un partido.
+if "_comp_por_defecto" not in st.session_state:
+    try:
+        st.session_state["_comp_por_defecto"] = nearest_competition() or "PL"
+    except Exception:
+        st.session_state["_comp_por_defecto"] = "PL"
+_opciones_comp = list(config.COMPETITIONS.keys())
 comp_code = st.sidebar.selectbox(
     "Competición",
-    options=list(config.COMPETITIONS.keys()),
+    options=_opciones_comp,
+    index=_opciones_comp.index(st.session_state["_comp_por_defecto"]),
     format_func=lambda c: config.COMPETITIONS[c],
 )
 
