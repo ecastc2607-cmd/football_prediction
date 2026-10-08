@@ -1149,19 +1149,30 @@ with tab_amistosos:
         "historial, el partido se lista igual pero sin predicción."
     )
 
-    if st.button("🔄 Actualizar amistosos"):
-        load_friendlies.clear()
-        get_friendlies_predictions.clear()
-        st.rerun()
+    # Solo a pedido: Streamlit ejecuta TODAS las pestañas al abrir la app, y esta
+    # pedía ~18 consultas a Goal API (10 días de amistosos + Nations League) en
+    # cada arranque aunque nadie la mirara. Sin st.rerun(): devolvía la vista a
+    # la pestaña "Jornada".
+    if not st.session_state.get("amistosos_on"):
+        if st.button("🌍 Cargar amistosos", type="primary"):
+            st.session_state["amistosos_on"] = True
+        else:
+            st.caption("Consulta los amistosos solo cuando lo pidas (ahorra consultas a Goal API).")
 
-    try:
-        fixtures_amistosos = load_friendlies()
-        pred_amistosos = get_friendlies_predictions()
-    except Exception as e:
-        st.error(f"No se pudieron cargar los amistosos: {e}")
-        fixtures_amistosos, pred_amistosos = pd.DataFrame(), pd.DataFrame()
+    fixtures_amistosos = pred_amistosos = pd.DataFrame()
+    if st.session_state.get("amistosos_on"):
+        if st.button("🔄 Actualizar amistosos"):
+            load_friendlies.clear()
+            get_friendlies_predictions.clear()
+        try:
+            fixtures_amistosos = load_friendlies()
+            pred_amistosos = get_friendlies_predictions()
+        except Exception as e:
+            st.error(f"No se pudieron cargar los amistosos: {e}")
 
-    if fixtures_amistosos.empty:
+    if not st.session_state.get("amistosos_on"):
+        pass
+    elif fixtures_amistosos.empty:
         st.info("No hay amistosos de selecciones absolutas en esta ventana de días.")
     else:
         st.caption(f"{len(fixtures_amistosos)} amistosos encontrados · "
