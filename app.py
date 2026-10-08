@@ -840,8 +840,8 @@ with tab_jornada:
         # --- Tendencias de corners/faltas/tarjetas (promedio histórico, no del
         # modelo de goles) para partidos que TODAVÍA no se juegan. ---
         tendency_averages = load_tendency_averages(comp_code)
-        columnas_tabla = ["Partido", "Fecha", "Posiciones", "xG", "1er tiempo", "2do tiempo", "1X2",
-                           "over_2_5", "btts", "top_score"]
+        columnas_tabla = ["Partido", "Fecha", "Posiciones", "xG", "1X2",
+                           "over_2_5", "btts", "1er tiempo", "2do tiempo", "top_score"]
         st.caption(
             "⏱️ **1er / 2do tiempo**: goles esperados de cada equipo (L = local, V = visitante) solo en "
             "esa mitad; entre paréntesis, la probabilidad de que ESE equipo marque al menos un gol en "
