@@ -58,7 +58,10 @@ def clear_memo() -> None:
     _MEMO.clear()
 
 
-LIVE_MEMO_SECONDS = 90
+# 5 min (antes 90 s): en vivo, marcador, minuto y estadísticas salen de
+# 365scores (gratis); Goal API solo dice QUÉ partidos de Europa League /
+# Conference / selecciones están en juego, y eso no cambia minuto a minuto.
+LIVE_MEMO_SECONDS = 300
 
 
 def live_fixtures(api_key: str = "") -> list[dict]:

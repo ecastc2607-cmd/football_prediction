@@ -206,8 +206,11 @@ def live_rows(codes: list[str], price_keys: list[str]) -> list[dict]:
 _LIVE_STATS = {
     "Expected Goals": "xg", "Total Shots": "remates_totales", "Shots On Target": "remates_a_puerta",
     "Big Chances Created": "ocasiones_claras", "Corners": "corners", "Red Cards": "tarjetas_rojas",
-    "Possession": "posesion",
+    "Possession": "posesion", "Fouls": "faltas", "Yellow Cards": "tarjetas_amarillas",
+    "Offsides": "fueras_de_juego",
 }
+# Igual que en Goal API: si la fila no viene es porque todavía vale 0.
+_ZERO_WHEN_MISSING = {"tarjetas_rojas", "tarjetas_amarillas", "fueras_de_juego"}
 
 
 def live_stats(game_id: int, home_id, away_id) -> dict[str, dict]:
@@ -223,4 +226,9 @@ def live_stats(game_id: int, home_id, away_id) -> dict[str, dict]:
             salida[lado][clave] = float(str(st.get("value", "")).rstrip("%"))
         except ValueError:
             continue
-    return salida if salida["home"] or salida["away"] else {}
+    if not (salida["home"] or salida["away"]):
+        return {}
+    for lado in salida.values():
+        for clave in _ZERO_WHEN_MISSING:
+            lado.setdefault(clave, 0.0)
+    return salida

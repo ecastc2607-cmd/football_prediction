@@ -427,17 +427,41 @@ def live_data_time(cuotas: list) -> str:
     return local.strftime("%H:%M:%S") if local else ""
 
 
-def live_adjustment(row) -> tuple[dict | None, dict | None, dict | None]:
+@st.cache_data(ttl=60, show_spinner=False)
+def load_live_stats(game_id: int, home_id, away_id) -> dict:
+    """Estadísticas en vivo de 365scores (gratis): remates, xG real, corners,
+    faltas, tarjetas. Reemplaza a Goal API en vivo, que costaba 2 de sus 1.000
+    peticiones/día por partido cada 5 min y agotó la cuota (oct-2026)."""
+    return scores365.live_stats(game_id, home_id, away_id)
+
+
+def live_event_state(row, cuotas: list):
+    """(row, evento_365) con marcador y minuto REALES de 365scores cuando el
+    partido aparece ahí (football-data no da el minuto: se estimaba desde la
+    hora de inicio), y las estadísticas en vivo {equipo: {...}} o None."""
+    evento = odds_api.find_event(cuotas, row.home_team, row.away_team, row.utc_date) if cuotas else None
+    if not evento:
+        return row, None, None
+    row = row.copy()
+    if evento.get("home_score") is not None and evento.get("away_score") is not None:
+        row["home_goals"], row["away_goals"] = int(evento["home_score"]), int(evento["away_score"])
+    if evento.get("game_minute") not in (None, "") and float(evento["game_minute"]) >= 0:
+        row["minuto_estimado"] = int(float(evento["game_minute"]))
+    stats = {}
+    try:
+        stats = load_live_stats(int(str(evento["event_id"]).split(":")[1]),
+                                evento.get("home_id"), evento.get("away_id"))
+    except Exception:
+        stats = {}
+    stats_vivo = {row.home_team: stats["home"], row.away_team: stats["away"]} if stats else None
+    return row, evento, stats_vivo
+
+
+def live_adjustment(row, stats_vivo: dict | None = None) -> tuple[dict | None, dict | None, dict | None]:
     """(ajuste, ancla, estadísticas) del 1X2/goles EN VIVO de un partido de
     load_live_matches — compartido por las pestañas "En vivo" y "Tips" para
-    que ambas muestren exactamente la misma probabilidad."""
-    # Estadísticas con caché de 5 min (las mismas del desplegable de "En vivo").
-    stats_vivo = None
-    if STATS_KEY_PRESENT:
-        try:
-            stats_vivo = load_match_stats(row.home_team, row.away_team, row.utc_date, row.competition)
-        except Exception:
-            stats_vivo = None
+    que ambas muestren exactamente la misma probabilidad. `stats_vivo` viene
+    de live_event_state (365scores): acá ya no se consulta Goal API."""
     if pd.isna(row.get("pre_home_xg")) or pd.isna(row.get("pre_away_xg")):
         return None, None, stats_vivo
     # Base pre-partido anclada al mercado si hay cuotas previas guardadas
@@ -1098,7 +1122,8 @@ with tab_vivo:
                 f"{row.live_home_win:.0f}% / {row.live_draw:.0f}% / {row.live_away_win:.0f}%"
                 if pd.notna(row.live_home_win) else "sin datos suficientes"
             )
-            ajuste, ancla, stats_vivo = live_adjustment(row)
+            row, evento_vivo, stats_vivo = live_event_state(row, cuotas_vivo)
+            ajuste, ancla, stats_vivo = live_adjustment(row, stats_vivo)
             if ajuste:
                 base_l, base_v = ajuste["base_home_xg"], ajuste["base_away_xg"]
                 stats_l = (stats_vivo or {}).get(row.home_team)
@@ -1122,7 +1147,6 @@ with tab_vivo:
 
             # Cuota en vivo de BWIN (365scores); cada cambio queda guardado con
             # la probabilidad del modelo en ese minuto (live_odds_snapshots.csv).
-            evento_vivo = odds_api.find_event(cuotas_vivo, row.home_team, row.away_team, row.utc_date)
             if evento_vivo:
                 if ajuste:
                     evento_vivo = dict(
@@ -1206,11 +1230,16 @@ with tab_vivo:
                         f"{e} {fmt}" for e, fmt in (("1", _cuota("home")), ("X", _cuota("draw")), ("2", _cuota("away")))
                         if fmt))
 
-            if STATS_KEY_PRESENT:
-                with st.expander("📐 Corners, faltas y tarjetas"):
-                    # jornada/temporada quedan en 0: no siempre se conocen con certeza
-                    # cuando se mezclan todas las competiciones a la vez en esta pestaña.
-                    render_stats_block(row.home_team, row.away_team, row.utc_date, row.competition)
+            with st.expander("📐 Corners, faltas y tarjetas"):
+                # De 365scores (gratis), no de Goal API. NO se guarda en el log:
+                # log_match_stats guarda solo la primera foto de cada partido, así
+                # que guardar en vivo dejaba datos parciales (ej. minuto 1, 0
+                # corners) como si fueran los finales. Las finales las guarda
+                # capture_live_odds.py cuando el partido termina.
+                if stats_vivo:
+                    _render_stats_table(stats_vivo)
+                else:
+                    st.caption("Sin estadísticas en vivo de 365scores para este partido todavía.")
             st.divider()
 
     with st.expander("📏 ¿Qué tan bien acierta el ajuste en vivo?"):
@@ -1536,13 +1565,13 @@ with tab_tips:
             st.caption(f"Cuotas BWIN de las {live_data_time(cuotas_en_vivo)}.")
         entradas, sin_ancla, sin_cuota = [], 0, 0
         for _, row in vivos.iterrows():
-            ajuste, ancla, _ = live_adjustment(row)
+            row, evento, stats_365 = live_event_state(row, cuotas_en_vivo)
+            ajuste, ancla, _ = live_adjustment(row, stats_365)
             if not ajuste:
                 continue
             if not ancla:
                 sin_ancla += 1
                 continue
-            evento = odds_api.find_event(cuotas_en_vivo, row.home_team, row.away_team, row.utc_date)
             if not evento:
                 sin_cuota += 1
                 continue

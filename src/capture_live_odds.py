@@ -13,7 +13,9 @@ En cada corrida:
   2. Partidos que empiezan en las próximas PREMATCH_HOURS: cuota prepartido
      (odds_snapshots.csv, máx. una consulta cada 20 min por competición). La
      última antes del inicio es la "cuota de cierre" que ancla el ajuste en vivo.
-  3. Si ya no hay nada en juego y esos archivos cambiaron: commit + push.
+  3. Partidos ya terminados: corners/faltas/tarjetas FINALES de 365scores en
+     match_stats_log.csv (si no estaban), para no pedirlos a Goal API.
+  4. Si ya no hay nada en juego y esos archivos cambiaron: commit + push.
 
 No usa football-data.org ni Goal API (cero cuota): marcador, minuto y
 estadísticas salen de 365scores, y la fuerza de los equipos de los CSV locales.
@@ -34,11 +36,13 @@ from . import config, live_odds, odds_api, scores365
 from .live_matches import REGULATION_MINUTES, adjusted_live_probabilities, live_win_probabilities
 from .live_snapshots import record as record_live_snapshot
 from .market_anchor import anchored_prematch_xg
+from .match_stats_log import get_cached_stats, log_match_stats
 from .matchday_predictions import matchday_predictions_df
 
 LOG_PATH = config.ROOT_DIR / "logs" / "capture_live_odds.log"
 PREMATCH_HOURS = 3
 TRACKED_FILES = [
+    "data/tracking/match_stats_log.csv",
     "data/tracking/live_odds_snapshots.csv",
     "data/tracking/odds_snapshots.csv",
     "data/tracking/live_snapshots.csv",
@@ -144,6 +148,30 @@ def capture_live(rows: list[dict]) -> int:
     return guardadas
 
 
+def capture_final_stats(games: list[dict]) -> int:
+    """Corners/faltas/tarjetas FINALES de los partidos ya terminados (365scores,
+    gratis) que todavía no estén en match_stats_log.csv: así "Resultados ya
+    jugados" y las tendencias no tienen que pedirlos a Goal API."""
+    ids = {v: k for k, v in scores365.COMPETITION_IDS.items()}
+    guardados = 0
+    for g in games:
+        code = ids.get(g.get("competitionId"))
+        if g.get("statusGroup") != scores365.STATUS_FINISHED or not code:
+            continue
+        local, visita = g.get("homeCompetitor") or {}, g.get("awayCompetitor") or {}
+        fixture = _our_fixture(code, local.get("name"), visita.get("name"), scores365._utc(g.get("startTime")))
+        if not fixture or get_cached_stats(code, fixture["home_team"], fixture["away_team"], fixture["utc_date"]):
+            continue
+        stats = scores365.live_stats(g["id"], local.get("id"), visita.get("id"))
+        if not stats:
+            continue
+        log_match_stats(code, int(fixture["season_start_year"]), int(fixture["matchday"]), fixture["utc_date"],
+                        fixture["home_team"], fixture["away_team"],
+                        {fixture["home_team"]: stats["home"], fixture["away_team"]: stats["away"]})
+        guardados += 1
+    return guardados
+
+
 def capture_prematch(games: list[dict]) -> int:
     """Cuota prepartido de las competiciones con partidos por empezar pronto."""
     ahora = datetime.now(timezone.utc)
@@ -192,6 +220,9 @@ def main() -> None:
             filas = scores365.live_rows(list(scores365.COMPETITION_IDS), odds_api.PRICE_KEYS)
             n = capture_live(filas)
             _log(f"en vivo: {len(filas)} partidos, {n} fotos de cuota nuevas")
+        n_final = capture_final_stats(games)
+        if n_final:
+            _log(f"estadísticas finales: {n_final} partidos")
         n_pre = capture_prematch(games)
         if n_pre:
             _log(f"prepartido: {n_pre} partidos con cuota")
