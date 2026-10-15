@@ -18,7 +18,13 @@ PATH = config.ROOT_DIR / "data" / "tracking" / "live_odds_snapshots.csv"
 PRICE_COLS = [f"co_{k}" for k in PRICE_KEYS]
 KEEP = ["fetched_at", "competition", "event_id", "commence_time", "home_team", "away_team",
         "game_minute", "home_score", "away_score", *PRICE_COLS,
-        "model_home", "model_draw", "model_away", "model_home_xg_rem", "model_away_xg_rem"]
+        "model_home", "model_draw", "model_away", "model_home_xg_rem", "model_away_xg_rem",
+        # Estadísticas en vivo de 365scores en ese minuto (xG real, remates...):
+        # solo las trae la captura automática (capture_live_odds.py).
+        *[f"{lado}_{k}" for lado in ("home", "away")
+          for k in ("xg", "remates_totales", "remates_a_puerta", "ocasiones_claras", "corners",
+                    "tarjetas_rojas", "posesion")],
+        "origin"]
 
 
 def _same(a, b) -> bool:

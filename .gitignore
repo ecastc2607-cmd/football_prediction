@@ -5,3 +5,4 @@ data/raw/*.json
 data/processed/*.csv
 !data/raw/.gitkeep
 !data/processed/.gitkeep
+logs/

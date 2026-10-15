@@ -188,6 +188,7 @@ def live_rows(codes: list[str], price_keys: list[str]) -> list[dict]:
             away_team=(g.get("awayCompetitor") or {}).get("name"),
             status_group=g.get("statusGroup"), game_minute=g.get("gameTime"),
             home_score=_score(g.get("homeCompetitor")), away_score=_score(g.get("awayCompetitor")),
+            home_id=(g.get("homeCompetitor") or {}).get("id"), away_id=(g.get("awayCompetitor") or {}).get("id"),
         )
         for clave in price_keys:
             actual, apertura = precios.get(clave, (None, None))
@@ -196,3 +197,30 @@ def live_rows(codes: list[str], price_keys: list[str]) -> list[dict]:
             fila[f"open_{clave}"] = apertura
         filas.append(fila)
     return filas
+
+
+# Estadísticas en vivo de /game/stats/ (nombre en 365scores -> clave nuestra).
+# "remates_totales"/"remates_a_puerta" son las mismas claves que usa
+# live_matches.adjusted_live_probabilities; "xg" es el xG REAL que publica
+# 365scores (el ajuste en vivo hoy lo aproxima desde los remates).
+_LIVE_STATS = {
+    "Expected Goals": "xg", "Total Shots": "remates_totales", "Shots On Target": "remates_a_puerta",
+    "Big Chances Created": "ocasiones_claras", "Corners": "corners", "Red Cards": "tarjetas_rojas",
+    "Possession": "posesion",
+}
+
+
+def live_stats(game_id: int, home_id, away_id) -> dict[str, dict]:
+    """{"home": {...}, "away": {...}}; vacío si no hay datos. Nunca lanza."""
+    data = _get("/game/stats/", {"games": game_id}) or {}
+    salida: dict[str, dict] = {"home": {}, "away": {}}
+    for st in data.get("statistics") or []:
+        clave = _LIVE_STATS.get(st.get("name"))
+        lado = "home" if st.get("competitorId") == home_id else "away" if st.get("competitorId") == away_id else None
+        if not clave or not lado:
+            continue
+        try:
+            salida[lado][clave] = float(str(st.get("value", "")).rstrip("%"))
+        except ValueError:
+            continue
+    return salida if salida["home"] or salida["away"] else {}

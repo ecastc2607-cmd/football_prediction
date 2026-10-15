@@ -135,6 +135,9 @@ TEAM_ALIASES = {"AGF": "Aarhus"}
 
 def _match_score(event: dict, home: str, away: str, home_short: str, away_short: str) -> float:
     ev_home, ev_away = event.get("home_team", ""), event.get("away_team", "")
+    # En ambos lados: capture_live_odds.py busca al revés (nuestros partidos
+    # como "eventos", nombres de 365scores como consulta).
+    ev_home, ev_away = TEAM_ALIASES.get(ev_home, ev_home), TEAM_ALIASES.get(ev_away, ev_away)
     home, away = TEAM_ALIASES.get(home, home), TEAM_ALIASES.get(away, away)
     home_short, away_short = TEAM_ALIASES.get(home_short, home_short), TEAM_ALIASES.get(away_short, away_short)
     return (
