@@ -1203,3 +1203,39 @@ ECL,2026,1.0,2026-10-15T16:45:00Z,Hajduk Split,Ajax,Hajduk Split,True,4.0,20.0,2
 ECL,2026,1.0,2026-10-15T16:45:00Z,Hajduk Split,Ajax,Ajax,False,5.0,13.0,0.0,0.0,57.0,4.0,12.0,0.0
 ECL,2026,1.0,2026-10-15T16:45:00Z,Lugano,Crvena zvezda,Lugano,True,5.0,9.0,2.0,0.0,41.0,5.0,18.0,2.0
 ECL,2026,1.0,2026-10-15T16:45:00Z,Lugano,Crvena zvezda,Crvena zvezda,False,3.0,11.0,4.0,0.0,59.0,5.0,20.0,0.0
+EL,2026,2.0,2026-10-15T19:00:00Z,Benfica,Celtic,Benfica,True,8.0,9.0,3.0,0.0,53.0,7.0,26.0,2.0
+EL,2026,2.0,2026-10-15T19:00:00Z,Benfica,Celtic,Celtic,False,6.0,7.0,0.0,0.0,47.0,7.0,14.0,2.0
+ECL,2026,1.0,2026-10-15T19:00:00Z,Hearts,Nordsjælland,Hearts,True,6.0,14.0,3.0,0.0,43.0,7.0,20.0,1.0
+ECL,2026,1.0,2026-10-15T19:00:00Z,Hearts,Nordsjælland,Nordsjælland,False,7.0,14.0,3.0,0.0,57.0,3.0,11.0,0.0
+EL,2026,2.0,2026-10-15T19:00:00Z,Olympique Marseille,Olympiakos Piraeus,Olympique Marseille,True,9.0,15.0,2.0,0.0,56.0,5.0,11.0,3.0
+EL,2026,2.0,2026-10-15T19:00:00Z,Olympique Marseille,Olympiakos Piraeus,Olympiakos Piraeus,False,1.0,11.0,2.0,0.0,44.0,4.0,9.0,3.0
+EL,2026,2.0,2026-10-15T19:00:00Z,Celta de Vigo,Juventus FC,Celta de Vigo,True,2.0,12.0,2.0,0.0,47.0,2.0,9.0,0.0
+EL,2026,2.0,2026-10-15T19:00:00Z,Celta de Vigo,Juventus FC,Juventus FC,False,7.0,19.0,2.0,0.0,53.0,6.0,22.0,0.0
+EL,2026,2.0,2026-10-15T19:00:00Z,AFC Bournemouth,Sturm Graz,AFC Bournemouth,True,7.0,11.0,3.0,0.0,62.0,8.0,24.0,1.0
+EL,2026,2.0,2026-10-15T19:00:00Z,AFC Bournemouth,Sturm Graz,Sturm Graz,False,3.0,18.0,3.0,0.0,38.0,1.0,6.0,2.0
+EL,2026,2.0,2026-10-15T19:00:00Z,Jagiellonia Białystok,Ararat-Armenia,Jagiellonia Białystok,True,2.0,22.0,3.0,0.0,42.0,5.0,14.0,6.0
+EL,2026,2.0,2026-10-15T19:00:00Z,Jagiellonia Białystok,Ararat-Armenia,Ararat-Armenia,False,3.0,14.0,2.0,0.0,58.0,4.0,15.0,0.0
+EL,2026,2.0,2026-10-15T19:00:00Z,Rennes,OFI,Rennes,True,13.0,13.0,2.0,0.0,67.0,9.0,25.0,4.0
+EL,2026,2.0,2026-10-15T19:00:00Z,Rennes,OFI,OFI,False,3.0,11.0,2.0,0.0,33.0,1.0,2.0,2.0
+EL,2026,2.0,2026-10-15T19:00:00Z,Hoffenheim,Beşiktaş,Hoffenheim,True,7.0,18.0,4.0,0.0,53.0,3.0,13.0,0.0
+EL,2026,2.0,2026-10-15T19:00:00Z,Hoffenheim,Beşiktaş,Beşiktaş,False,5.0,8.0,1.0,0.0,47.0,5.0,19.0,0.0
+EL,2026,2.0,2026-10-15T19:00:00Z,Ferencváros,Viktoria Plzeň,Ferencváros,True,7.0,11.0,2.0,0.0,54.0,6.0,12.0,1.0
+EL,2026,2.0,2026-10-15T19:00:00Z,Ferencváros,Viktoria Plzeň,Viktoria Plzeň,False,3.0,15.0,1.0,0.0,46.0,7.0,18.0,0.0
+EL,2026,2.0,2026-10-15T19:00:00Z,NEC,Levski Sofia,NEC,True,6.0,14.0,1.0,0.0,51.0,9.0,18.0,1.0
+EL,2026,2.0,2026-10-15T19:00:00Z,NEC,Levski Sofia,Levski Sofia,False,1.0,14.0,0.0,0.0,49.0,2.0,8.0,1.0
+ECL,2026,1.0,2026-10-15T19:00:00Z,Brann,Lincoln Red Imps,Brann,True,17.0,12.0,2.0,1.0,72.0,10.0,19.0,6.0
+ECL,2026,1.0,2026-10-15T19:00:00Z,Brann,Lincoln Red Imps,Lincoln Red Imps,False,2.0,15.0,1.0,1.0,28.0,3.0,7.0,2.0
+ECL,2026,1.0,2026-10-15T19:00:00Z,Freiburg,Jablonec,Freiburg,True,5.0,19.0,1.0,0.0,60.0,9.0,23.0,0.0
+ECL,2026,1.0,2026-10-15T19:00:00Z,Freiburg,Jablonec,Jablonec,False,1.0,14.0,3.0,0.0,40.0,2.0,11.0,2.0
+ECL,2026,1.0,2026-10-15T19:00:00Z,Sint-Truiden,Iberia 1999,Sint-Truiden,True,4.0,24.0,1.0,0.0,58.0,5.0,20.0,2.0
+ECL,2026,1.0,2026-10-15T19:00:00Z,Sint-Truiden,Iberia 1999,Iberia 1999,False,0.0,11.0,0.0,0.0,42.0,1.0,4.0,0.0
+ECL,2026,1.0,2026-10-15T19:00:00Z,Twente,Thun,Twente,True,6.0,6.0,1.0,0.0,73.0,5.0,22.0,0.0
+ECL,2026,1.0,2026-10-15T19:00:00Z,Twente,Thun,Thun,False,1.0,19.0,1.0,1.0,27.0,0.0,6.0,0.0
+ECL,2026,1.0,2026-10-15T19:00:00Z,København,Sporting Braga,København,True,3.0,15.0,2.0,0.0,36.0,6.0,9.0,3.0
+ECL,2026,1.0,2026-10-15T19:00:00Z,København,Sporting Braga,Sporting Braga,False,3.0,18.0,0.0,0.0,64.0,1.0,6.0,3.0
+ECL,2026,1.0,2026-10-15T19:00:00Z,Atalanta,Pafos,Atalanta,True,6.0,13.0,0.0,0.0,65.0,7.0,19.0,2.0
+ECL,2026,1.0,2026-10-15T19:00:00Z,Atalanta,Pafos,Pafos,False,2.0,11.0,0.0,0.0,35.0,5.0,8.0,0.0
+EL,2026,2.0,2026-10-15T19:00:00Z,Dinamo Zagreb,Anderlecht,Dinamo Zagreb,True,6.0,21.0,2.0,0.0,45.0,3.0,13.0,0.0
+EL,2026,2.0,2026-10-15T19:00:00Z,Dinamo Zagreb,Anderlecht,Anderlecht,False,2.0,13.0,2.0,0.0,55.0,6.0,10.0,0.0
+ECL,2026,1.0,2026-10-15T19:00:00Z,Brighton & Hove Albion,Kauno Žalgiris,Brighton & Hove Albion,True,13.0,11.0,0.0,0.0,78.0,9.0,36.0,0.0
+ECL,2026,1.0,2026-10-15T19:00:00Z,Brighton & Hove Albion,Kauno Žalgiris,Kauno Žalgiris,False,0.0,8.0,1.0,0.0,22.0,1.0,4.0,0.0
