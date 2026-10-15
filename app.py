@@ -18,7 +18,8 @@ import altair as alt
 import pandas as pd
 import streamlit as st
 
-from src import config, half_backtest, national_teams, odds_api, season_store
+from src import config, half_backtest, national_teams, odds_api, scores365, season_store
+from src.live_odds import record as record_live_odds
 from src.competition_status import resolve_current_season_and_matchday
 from src.fetch_football_data import FootballDataClient, fetch_competition
 from src.goal_api_client import (
@@ -395,12 +396,18 @@ def load_day_predictions(fecha_iso: str) -> pd.DataFrame:
     return todo.drop_duplicates(subset=["home_team", "away_team", "utc_date"]).sort_values("utc_date")
 
 
-@st.cache_data(ttl=3600, show_spinner="Consultando cuotas de las casas...")
-def load_odds_table(code: str, desde_utc: str, hasta_utc: str) -> tuple:
+@st.cache_data(ttl=600, show_spinner="Consultando cuotas de las casas...")
+def load_odds_table(code: str, desde_utc: str, hasta_utc: str, paid_fallback: bool = True) -> tuple:
     """(eventos, créditos_restantes, error). Pasa por el historial versionado
     (odds_api.get_odds_table): una ventana consultada hace menos de
     SNAPSHOT_MAX_AGE_HOURS no gasta créditos, ni siquiera tras un reinicio."""
-    return odds_api.get_odds_table(code, desde_utc, hasta_utc, api_key=ODDS_KEY)
+    return odds_api.get_odds_table(code, desde_utc, hasta_utc, api_key=ODDS_KEY, paid_fallback=paid_fallback)
+
+
+@st.cache_data(ttl=60, show_spinner=False)
+def load_live_odds(codes: tuple) -> list:
+    """Cuotas en vivo de 365scores (gratis): 1 consulta + 1 por partido en juego."""
+    return scores365.live_rows(list(codes), odds_api.PRICE_KEYS)
 
 
 def odds_window(df: pd.DataFrame) -> tuple[str, str]:
@@ -424,21 +431,22 @@ def make_odds_lookup(tables: dict, only_colombia: bool = True):
     return lookup
 
 
-def parlays_with_real_odds(df: pd.DataFrame, only_colombia: bool = True) -> tuple[list, list[str]]:
+def parlays_with_real_odds(df: pd.DataFrame, only_colombia: bool = True,
+                           paid_fallback: bool = True) -> tuple[list, list[str]]:
     """Arma las combinadas, y solo para las competiciones que aparecen en ellas
     trae cuotas reales (2 créditos por competición, o 0 si están en el
     historial reciente) y las vuelve a armar ya con esas cuotas.
     Devuelve (combinadas, avisos)."""
     calibracion = load_calibrator()
     base = build_parlays(df, calibracion)
-    if not ODDS_KEY or not base:
-        return base, ([] if ODDS_KEY else ["Sin ODDS_API_KEY: cuotas estimadas, no reales."])
+    if not base:
+        return base, []
     comp_por_partido = {(r.home_team, r.away_team): r.competition for r in df.itertuples()}
     comps = {comp_por_partido.get((l.home_team, l.away_team)) for p in base for l in p.legs}
     tablas, avisos, restante = {}, [], None
     for code in sorted(c for c in comps if c in odds_api.SPORT_KEYS):
         desde, hasta = odds_window(df[df["competition"] == code])
-        eventos, rest, error = load_odds_table(code, desde, hasta)
+        eventos, rest, error = load_odds_table(code, desde, hasta, paid_fallback and bool(ODDS_KEY))
         restante = rest if rest is not None else restante
         if error:
             avisos.append(f"{config.COMPETITIONS.get(code, code)}: {error}")
@@ -905,16 +913,18 @@ with tab_jornada:
     # --- Combinadas sugeridas ---
     st.divider()
     st.subheader("🎯 Combinadas sugeridas")
-    # Cuotas reales solo a pedido: cada liga consultada gasta ~2 de los 500
-    # créditos/mes (0 si se consultó hace poco: queda en el historial).
+    # Cuotas reales automáticas desde 365scores (BWIN, gratis). The Odds API
+    # (gasta ~2 de los 500 créditos/mes) solo a pedido, si 365scores no trae nada.
     clave_cuotas = f"cuotas_reales_{comp_code}_{int(season)}_{int(matchday)}"
     df_combinadas = get_predictions(comp_code, int(season), int(matchday))
-    if (ODDS_KEY and comp_code in odds_api.SPORT_KEYS and not df_combinadas.empty
-            and not st.session_state.get(clave_cuotas)):
-        if st.button("💱 Traer cuotas reales para estas combinadas (~2 créditos)", key=f"btn_{clave_cuotas}"):
-            st.session_state[clave_cuotas] = True
-    if st.session_state.get(clave_cuotas) and not df_combinadas.empty:
-        combinadas, avisos_cuotas = parlays_with_real_odds(df_combinadas)
+    if comp_code in odds_api.SPORT_KEYS and not df_combinadas.empty:
+        combinadas, avisos_cuotas = parlays_with_real_odds(
+            df_combinadas, paid_fallback=bool(st.session_state.get(clave_cuotas)))
+        sin_365 = any("365scores no trajo" in a for a in avisos_cuotas)
+        if sin_365 and ODDS_KEY and not st.session_state.get(clave_cuotas):
+            if st.button("💱 Traer cuotas de The Odds API (~2 créditos)", key=f"btn_{clave_cuotas}"):
+                st.session_state[clave_cuotas] = True
+                combinadas, avisos_cuotas = parlays_with_real_odds(df_combinadas, paid_fallback=True)
         render_parlays(combinadas, avisos=avisos_cuotas)
     else:
         render_parlays(load_parlays(comp_code, int(season), int(matchday)))
@@ -1035,6 +1045,10 @@ with tab_vivo:
     if live_df.empty:
         st.info(f"No hay partidos en juego ahora mismo en las {len(config.COMPETITIONS)} competiciones.")
     else:
+        try:
+            cuotas_vivo = load_live_odds(tuple(sorted(set(live_df["competition"]))))
+        except Exception:
+            cuotas_vivo = []
         for _, row in live_df.iterrows():
             live_1x2 = (
                 f"{row.live_home_win:.0f}% / {row.live_draw:.0f}% / {row.live_away_win:.0f}%"
@@ -1112,6 +1126,35 @@ with tab_vivo:
                 st.caption(" · ".join(detalle))
             else:
                 c_1x2.caption(f"1X2: {live_1x2}")
+
+            # Cuota en vivo de BWIN (365scores) frente a la probabilidad de
+            # arriba; cada cambio de cuota queda guardado con la probabilidad
+            # del modelo en ese minuto (live_odds_snapshots.csv).
+            evento_vivo = odds_api.find_event(cuotas_vivo, row.home_team, row.away_team, row.utc_date)
+            if evento_vivo:
+                if ajuste:
+                    evento_vivo = dict(
+                        evento_vivo, model_home=round(ajuste["home_win"], 4), model_draw=round(ajuste["draw"], 4),
+                        model_away=round(ajuste["away_win"], 4),
+                        model_home_xg_rem=round(ajuste["home_xg_remaining"], 3),
+                        model_away_xg_rem=round(ajuste["away_xg_remaining"], 3),
+                    )
+                record_live_odds([evento_vivo])
+                partes = []
+                for clave, etiqueta, prob in (("home", "1", ajuste and ajuste["home_win"]),
+                                              ("draw", "X", ajuste and ajuste["draw"]),
+                                              ("away", "2", ajuste and ajuste["away_win"])):
+                    precio = odds_api.row_price(evento_vivo, clave)
+                    if not precio:
+                        continue
+                    texto = f"{etiqueta} {precio[0]:.2f}"
+                    if prob:
+                        texto += f" (valor {prob * precio[0] - 1:+.0%})"
+                    partes.append(texto)
+                goles = [f"{e} {p[0]:.2f}" for clave, e in (("over", "+2.5"), ("under", "-2.5"), ("btts_yes", "ambos sí"))
+                         if (p := odds_api.row_price(evento_vivo, clave))]
+                if partes or goles:
+                    st.caption("💱 BWIN en vivo (365scores): " + " · ".join(partes + goles))
 
             if STATS_KEY_PRESENT:
                 with st.expander("📐 Corners, faltas y tarjetas"):
@@ -1275,40 +1318,34 @@ with tab_tips:
                 "este día no cuenta para la meta."
             )
         else:
-            # --- Mejor cuota automática (The Odds API) ---
+            # --- Mejor cuota automática (365scores; The Odds API de respaldo si hay clave) ---
             candidatos["cuota_auto"] = None
             candidatos["casa"] = ""
-            if not ODDS_KEY:
-                st.info(
-                    "Sin cuotas automáticas: falta `ODDS_API_KEY` (gratis en the-odds-api.com). "
-                    "Mientras tanto, escribe la cuota de tu casa en la columna 'Cuota manual'."
-                )
-            else:
-                inicio_local = datetime.combine(fecha_tips, datetime.min.time(), tzinfo=BOGOTA_TZ)
-                desde = inicio_local.astimezone(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
-                hasta = (inicio_local + pd.Timedelta(days=1)).astimezone(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
-                restante = None
-                for code in candidatos["competition"].unique():
-                    if code not in odds_api.SPORT_KEYS:
-                        continue  # amistosos: sin clave verificada en The Odds API -> cuota manual
-                    eventos, rest, error = load_odds_table(code, desde, hasta)
-                    restante = rest if rest is not None else restante
-                    if error:
-                        st.caption(f"⚠ {config.COMPETITIONS.get(code, code)}: {error}")
+            inicio_local = datetime.combine(fecha_tips, datetime.min.time(), tzinfo=BOGOTA_TZ)
+            desde = inicio_local.astimezone(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
+            hasta = (inicio_local + pd.Timedelta(days=1)).astimezone(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
+            restante = None
+            for code in candidatos["competition"].unique():
+                if code not in odds_api.SPORT_KEYS:
+                    continue  # amistosos: sin competición mapeada -> cuota manual
+                eventos, rest, error = load_odds_table(code, desde, hasta, bool(ODDS_KEY))
+                restante = rest if rest is not None else restante
+                if error:
+                    st.caption(f"⚠ {config.COMPETITIONS.get(code, code)}: {error}")
+                    continue
+                for idx, r in candidatos[candidatos["competition"] == code].iterrows():
+                    evento = odds_api.find_event(
+                        eventos, r.home_team, r.away_team, r.utc_date,
+                        r.home_team_short, r.away_team_short,
+                    )
+                    if evento is None:
                         continue
-                    for idx, r in candidatos[candidatos["competition"] == code].iterrows():
-                        evento = odds_api.find_event(
-                            eventos, r.home_team, r.away_team, r.utc_date,
-                            r.home_team_short, r.away_team_short,
-                        )
-                        if evento is None:
-                            continue
-                        precio = odds_api.row_price(evento, r.odds_key, only_colombia=solo_colombia)
-                        if precio:
-                            candidatos.at[idx, "cuota_auto"] = precio[0]
-                            candidatos.at[idx, "casa"] = precio[1]
-                if restante is not None:
-                    st.caption(f"Créditos de The Odds API restantes este mes: {restante}")
+                    precio = odds_api.row_price(evento, r.odds_key, only_colombia=solo_colombia)
+                    if precio:
+                        candidatos.at[idx, "cuota_auto"] = precio[0]
+                        candidatos.at[idx, "casa"] = precio[1]
+            if restante is not None:
+                st.caption(f"Créditos de The Odds API restantes este mes: {restante}")
 
             # --- Tabla editable: la cuota manual manda sobre la automática ---
             editor = pd.DataFrame({

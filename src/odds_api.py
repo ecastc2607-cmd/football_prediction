@@ -16,6 +16,10 @@ Costo: cada consulta = mercados x regiones créditos. Acá siempre 2 mercados
 (h2h = 1X2, totals = más/menos goles) x 1 región = 2 créditos por
 competición, sin importar cuántos partidos traiga. /sports no gasta créditos.
 
+Desde oct-2026 la fuente PRINCIPAL es 365scores (scores365.py: cuotas de BWIN
+Colombia, gratis, con cuota de apertura y ambos anotan); The Odds API queda de
+respaldo si 365scores no trae nada.
+
 Aislado igual que europa_league.py/national_teams.py: nunca lanza hacia el
 dashboard; ante cualquier problema devuelve vacío y un mensaje.
 
@@ -29,6 +33,7 @@ from dataclasses import dataclass, field
 import requests
 
 from . import config  # noqa: F401  -- importarlo corre load_dotenv() antes del os.getenv de abajo
+from . import scores365
 from .goal_api_client import team_name_similarity
 
 BASE_URL = "https://api.the-odds-api.com/v4"
@@ -124,8 +129,14 @@ def fetch_odds(competition_code: str, date_from_utc: str, date_to_utc: str,
     return OddsResult(events=data if isinstance(data, list) else [], remaining=restante)
 
 
+# Nombres que ni normalizando se parecen entre fuentes (nuestro -> casa de apuestas).
+TEAM_ALIASES = {"AGF": "Aarhus"}
+
+
 def _match_score(event: dict, home: str, away: str, home_short: str, away_short: str) -> float:
     ev_home, ev_away = event.get("home_team", ""), event.get("away_team", "")
+    home, away = TEAM_ALIASES.get(home, home), TEAM_ALIASES.get(away, away)
+    home_short, away_short = TEAM_ALIASES.get(home_short, home_short), TEAM_ALIASES.get(away_short, away_short)
     return (
         max(team_name_similarity(ev_home, home), team_name_similarity(ev_home, home_short))
         + max(team_name_similarity(ev_away, away), team_name_similarity(ev_away, away_short))
@@ -209,10 +220,14 @@ def best_prices(event: dict, only_colombia: bool = True) -> dict[str, tuple[floa
 # en la misma ventana tras un reinicio de Streamlit Cloud y (2) medir después si
 # los picks recomendados de verdad pagaban más de lo que valían.
 SNAPSHOT_PATH = config.ROOT_DIR / "data" / "tracking" / "odds_snapshots.csv"
-PRICE_KEYS = ["home", "draw", "away", "over", "under", "dc_1x", "dc_x2"]
+PRICE_KEYS = ["home", "draw", "away", "over", "under", "dc_1x", "dc_x2", "btts_yes", "btts_no"]
 # 6 h: las cuotas previas al partido se mueven poco y cada consulta nueva gasta
 # 2 de los 500 créditos/mes del plan gratis.
 SNAPSHOT_MAX_AGE_HOURS = 6
+# 365scores no gasta créditos: se refresca mucho más seguido (las cuotas se
+# mueven cerca del inicio, y la de justo antes del partido es la que ancla el
+# ajuste en vivo — ver market_anchor.py).
+SCORES365_MAX_AGE_MINUTES = 20
 
 
 def _event_row(event: dict, meta: dict) -> dict:
@@ -228,7 +243,7 @@ def _event_row(event: dict, meta: dict) -> dict:
 
 
 def get_odds_table(competition_code: str, date_from_utc: str, date_to_utc: str,
-                   api_key: str = "") -> tuple[list[dict], int | None, str | None]:
+                   api_key: str = "", paid_fallback: bool = True) -> tuple[list[dict], int | None, str | None]:
     """(eventos, créditos_restantes, error). Cada evento es un dict con
     home_team/away_team/commence_time (lo que usa find_event) y las mejores
     cuotas. Si la misma ventana se consultó hace menos de SNAPSHOT_MAX_AGE_HOURS,
@@ -236,10 +251,34 @@ def get_odds_table(competition_code: str, date_from_utc: str, date_to_utc: str,
     import pandas as pd  # local: el resto del módulo no depende de pandas
 
     ahora = pd.Timestamp.now(tz="UTC")
+    meta = {"fetched_at": ahora.strftime("%Y-%m-%dT%H:%M:%SZ"), "competition": competition_code,
+            "window_from": date_from_utc, "window_to": date_to_utc}
+
+    # 1) 365scores (gratis). Foto reciente de la misma ventana -> se reutiliza.
+    hist = pd.read_csv(SNAPSHOT_PATH) if SNAPSHOT_PATH.exists() else pd.DataFrame()
+    if not hist.empty and "source" in hist.columns:
+        propias = hist[(hist["competition"] == competition_code) & (hist["window_from"] == date_from_utc)
+                       & (hist["window_to"] == date_to_utc) & (hist["source"] == scores365.SOURCE)]
+        if not propias.empty and ahora - pd.Timestamp(propias["fetched_at"].max()) < pd.Timedelta(
+                minutes=SCORES365_MAX_AGE_MINUTES):
+            # Solo se guardan las cuotas que cambiaron: la vigente de cada
+            # partido es su última fila.
+            vigentes = propias.sort_values("fetched_at").drop_duplicates("event_id", keep="last")
+            return vigentes.where(vigentes.notna(), None).to_dict("records"), None, None
+    filas = scores365.event_rows(competition_code, date_from_utc, date_to_utc, meta, PRICE_KEYS)
+    if filas:
+        _append_changed(filas, hist)
+        return filas, None, None
+
+    # 2) Respaldo: The Odds API (como antes). Gasta créditos: solo si se pidió.
+    if not paid_fallback:
+        return [], None, "365scores no trajo cuotas para estos partidos."
     if SNAPSHOT_PATH.exists():
         hist = pd.read_csv(SNAPSHOT_PATH)
         ventana = hist[(hist["competition"] == competition_code) & (hist["window_from"] == date_from_utc)
                        & (hist["window_to"] == date_to_utc)]
+        if "source" in ventana.columns:  # las fotos de 365scores solo guardan cambios: no sirven acá
+            ventana = ventana[ventana["source"] != scores365.SOURCE]
         if not ventana.empty:
             ultima = ventana["fetched_at"].max()
             if ahora - pd.Timestamp(ultima) < pd.Timedelta(hours=SNAPSHOT_MAX_AGE_HOURS):
@@ -249,9 +288,7 @@ def get_odds_table(competition_code: str, date_from_utc: str, date_to_utc: str,
     resultado = fetch_odds(competition_code, date_from_utc, date_to_utc, api_key=api_key)
     if resultado.error:
         return [], resultado.remaining, resultado.error
-    meta = {"fetched_at": ahora.strftime("%Y-%m-%dT%H:%M:%SZ"), "competition": competition_code,
-            "window_from": date_from_utc, "window_to": date_to_utc}
-    filas = [_event_row(e, meta) for e in resultado.events]
+    filas = [dict(_event_row(e, meta), source="the-odds-api") for e in resultado.events]
     # Una ventana sin partidos también se anota (fila sin event_id), para no
     # volver a pagar créditos por descubrir de nuevo que está vacía.
     a_guardar = filas or [dict(meta, event_id=None)]
@@ -261,6 +298,34 @@ def get_odds_table(competition_code: str, date_from_utc: str, date_to_utc: str,
         nuevo = pd.concat([pd.read_csv(SNAPSHOT_PATH), nuevo], ignore_index=True)
     nuevo.to_csv(SNAPSHOT_PATH, index=False, encoding="utf-8")
     return filas, resultado.remaining, None
+
+
+def _append_changed(filas: list[dict], hist) -> None:
+    """Agrega al historial solo los partidos cuya cuota cambió desde su última
+    foto (365scores se consulta seguido; guardar todo inflaría el archivo)."""
+    import pandas as pd
+
+    precio_cols = [f"co_{k}" for k in PRICE_KEYS]
+    nuevas = []
+    ultimas = {}
+    if not hist.empty and "event_id" in hist.columns:
+        ultimas = {r["event_id"]: r for r in
+                   hist.sort_values("fetched_at").drop_duplicates("event_id", keep="last").to_dict("records")}
+    for f in filas:
+        previa = ultimas.get(f["event_id"])
+
+        def _igual(a, b):
+            return (a is None or a != a) and (b is None or b != b) or a == b
+        if previa is None or not all(_igual(f.get(c), previa.get(c)) for c in precio_cols):
+            nuevas.append(f)
+    if not nuevas:
+        # Igual se anota que se consultó (fila sin cambios no), así la caché de
+        # SCORES365_MAX_AGE_MINUTES no vuelve a pedir enseguida tras un reinicio:
+        # basta con renovar la fecha de la última foto de un partido.
+        nuevas = [dict(filas[0])]
+    SNAPSHOT_PATH.parent.mkdir(parents=True, exist_ok=True)
+    combinado = pd.concat([hist, pd.DataFrame(nuevas)], ignore_index=True) if not hist.empty else pd.DataFrame(nuevas)
+    combinado.to_csv(SNAPSHOT_PATH, index=False, encoding="utf-8")
 
 
 def row_price(row: dict, key: str, only_colombia: bool = True) -> tuple[float, str] | None:

@@ -84,13 +84,16 @@ MIN_LEG_ODDS = 1.05  # un pick que paga menos que esto no aporta y solo suma rie
 
 def odds_key(market: str, pick: str) -> str | None:
     """Clave de odds_api.PRICE_KEYS para un pick, o None si ese mercado no
-    tiene cuota real disponible (Ambos anotan)."""
+    tiene cuota real disponible. Ambos anotan solo la trae 365scores (The
+    Odds API no la da en el plan gratis): sin ella queda como cuota estimada."""
     if market == "Resultado":
         return {"Local": "home", "Empate": "draw", "Visitante": "away"}.get(pick)
     if market == "Doble oportunidad":
         return "dc_1x" if pick.startswith("1X") else "dc_x2"
     if market == "Goles":
         return "over" if pick.startswith("+") else "under"
+    if market == "Ambos anotan":
+        return "btts_yes" if pick == "Sí" else "btts_no"
     return None
 
 
