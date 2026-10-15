@@ -1486,14 +1486,23 @@ with tab_tips:
                         + ". Recomendación: no apostar — este día no cuenta para la meta."
                     )
             else:
-                st.subheader(f"✅ {resumen['n']} apuesta(s) sugerida(s)")
+                st.subheader(f"✅ {resumen['n']} apuesta(s) SIMPLE(S) sugerida(s)")
+                st.caption("Cada apuesta va por separado, con su propio monto — no es una combinada: "
+                           "si una falla, las otras se cobran igual.")
+                # Todo en GANANCIA/PÉRDIDA NETA (antes "Si todo acierta" mostraba
+                # la banca final, $62.066, y se confundía con lo que se gana).
+                neta_todo = resumen["si_todo_acierta"] - banca
                 m1, m2, m3, m4 = st.columns(4)
                 m1.metric("Total a apostar", f"${resumen['apostado']:,.0f}",
                           f"{resumen['apostado'] / banca:.0%} de la banca", delta_color="off")
-                m2.metric("Ganancia esperada", f"${resumen['esperado']:,.0f}")
-                m3.metric("Si todo acierta", f"${resumen['si_todo_acierta']:,.0f}",
+                m2.metric("Ganancia neta si todas aciertan", f"+${neta_todo:,.0f}",
                           f"prob. {resumen['prob_todo_acierta']:.0%}", delta_color="off")
-                m4.metric("Si todo falla", f"${resumen['si_todo_falla']:,.0f}")
+                m3.metric("Pérdida si todas fallan", f"-${resumen['apostado']:,.0f}")
+                m4.metric("Ganancia esperada", f"+${resumen['esperado']:,.0f}",
+                          help="Promedio a la larga si se repitieran muchas veces apuestas como estas: "
+                               "unos días se gana más, otros se pierde. Es la medida de si conviene apostar.")
+                st.caption(f"Tu banca: ${banca:,.0f} → ${resumen['si_todo_acierta']:,.0f} si todas aciertan · "
+                           f"${resumen['si_todo_falla']:,.0f} si todas fallan.")
 
                 apuestas = evaluado[evaluado["monto"] > 0]
                 st.dataframe(
@@ -1506,16 +1515,43 @@ with tab_tips:
                         "Casa": apuestas["casa"].where(manual.reindex(apuestas.index).isna(), "Tu casa (manual)"),
                         "Valor": (apuestas["valor"] * 100).round(1),
                         "Apostar": apuestas["monto"],
-                        "Ganancia si acierta": apuestas["ganancia"],
+                        "Recibes si acierta": (apuestas["monto"] * apuestas["cuota"].astype(float)).round(0),
+                        "Ganancia neta": apuestas["ganancia"],
                     }),
                     hide_index=True, width="stretch",
                     column_config={
                         "Partido": st.column_config.Column(pinned=True),
                         "Valor": st.column_config.NumberColumn(format="+%.1f%%"),
                         "Apostar": st.column_config.NumberColumn(format="$%d"),
-                        "Ganancia si acierta": st.column_config.NumberColumn(format="$%d"),
+                        "Recibes si acierta": st.column_config.NumberColumn(
+                            format="$%d", help="Monto × cuota: lo que paga la casa, incluida tu apuesta."),
+                        "Ganancia neta": st.column_config.NumberColumn(
+                            format="$%d", help="Lo que recibes menos lo apostado."),
                     },
                 )
+                if len(apuestas) >= 2:
+                    # Comparación con armarlas como UNA combinada — la cuenta que
+                    # suele hacerse a mano (cuota = producto de las cuotas).
+                    cuota_comb = float(apuestas["cuota"].astype(float).prod())
+                    prob_comb = float(apuestas["prob_ajustada"].prod())
+                    with st.expander("¿Y si las combino en una sola apuesta?"):
+                        st.markdown(
+                            f"- Cuota combinada: **{cuota_comb:.2f}** (= "
+                            + " × ".join(f"{c:.2f}" for c in apuestas["cuota"].astype(float)) + ")\n"
+                            f"- Apostando los mismos **${resumen['apostado']:,.0f}**: recibes "
+                            f"**${resumen['apostado'] * cuota_comb:,.0f}** (ganancia neta "
+                            f"${resumen['apostado'] * (cuota_comb - 1):,.0f}) — pero **solo si aciertan las "
+                            f"{len(apuestas)}**: probabilidad **{prob_comb:.0%}**. Si falla una sola, pierdes todo.\n"
+                            f"- Por cada $10.000 en la combinada recibes ${10_000 * cuota_comb:,.0f} si acierta.\n"
+                            f"- Ganancia esperada de la combinada: **{prob_comb * cuota_comb - 1:+.1%}** por peso "
+                            f"apostado, contra **{resumen['esperado'] / resumen['apostado']:+.1%}** de las simples."
+                        )
+                        st.caption(
+                            f"Si cada pick de verdad tiene valor, la combinada lo multiplica — pero gana solo "
+                            f"{prob_comb:.0%} de las veces, y si el modelo se equivoca en UN pick, el error "
+                            "también se multiplica. Por eso la base son las simples (¼ de Kelly); si juegas la "
+                            "combinada, que sea con un monto chico (~1% de la banca, como en '🎯 Combinadas')."
+                        )
                 st.caption(
                     "Apuestas simples, no combinadas. 'Valor' = ganancia esperada por cada peso apostado, "
                     "ya descontando la mitad de la ventaja que ve el modelo (un modelo simple se equivoca "
@@ -1620,7 +1656,8 @@ with tab_tips:
                     "Valor": (evaluado_vivo["valor"] * 100).round(1),
                     "Acción": evaluado_vivo["estado"],
                     "Apostar": evaluado_vivo["monto"],
-                    "Ganancia si acierta": evaluado_vivo["ganancia"],
+                    "Recibes si acierta": (evaluado_vivo["monto"] * evaluado_vivo["cuota"].fillna(0)).round(0),
+                    "Ganancia neta": evaluado_vivo["ganancia"],
                 }),
                 hide_index=True, width="stretch",
                 column_config={
@@ -1628,7 +1665,8 @@ with tab_tips:
                     "Prob. en vivo": st.column_config.NumberColumn(format="%.0f%%"),
                     "Valor": st.column_config.NumberColumn(format="%+.1f%%"),
                     "Apostar": st.column_config.NumberColumn(format="$%d"),
-                    "Ganancia si acierta": st.column_config.NumberColumn(format="$%d"),
+                    "Recibes si acierta": st.column_config.NumberColumn(format="$%d"),
+                    "Ganancia neta": st.column_config.NumberColumn(format="$%d"),
                 },
             )
             st.caption(
