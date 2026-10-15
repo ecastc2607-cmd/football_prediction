@@ -3,6 +3,9 @@ Tips de valor del día: de todos los partidos del día (cualquier liga), elige
 los picks más probables según el modelo, los compara contra la mejor cuota
 disponible y sugiere cuánto apostar de la banca con Kelly fraccional.
 
+También evalúa partidos EN JUEGO (live_candidate_picks): misma regla, con la
+probabilidad ajustada en vivo y la cuota en vivo de BWIN (365scores).
+
 Reglas (las estándar de apuesta de valor, en su versión conservadora):
   1. Solo picks con probabilidad del modelo >= MIN_MODEL_PROB — el "bajo
      riesgo" del pedido — y nunca de partidos marcados de baja confianza (ahí
@@ -23,8 +26,21 @@ from __future__ import annotations
 
 import pandas as pd
 
-MIN_MODEL_PROB = 0.70
+# 65% (antes 70%). Calibración con ~450 picks resueltos (oct-2026, partidos
+# reales + backtest): el tramo 65-70% acertó 72% — igual que el de 70-75%
+# (67%) —, mientras que 60-65% acertó solo 51% (el modelo se sobreestima ahí).
+# Bajar a 65% suma opciones sin bajar el acierto; bajar a 60% no. El filtro que
+# de verdad protege sigue siendo el de VALOR contra la cuota (MIN_EDGE).
+MIN_MODEL_PROB = 0.65
 MODEL_WEIGHT = 0.5  # peso del modelo al promediar con la probabilidad implícita de la cuota
+# En vivo el modelo pesa menos: el ajuste en vivo (remates, efecto marcador)
+# usa pesos de la literatura que todavía NO se validaron contra el mercado con
+# datos propios (oct-2026; para eso se juntan live_odds_snapshots.csv). Ej. real:
+# Rennes 0-1 OFI al descanso, el modelo daba 46% a OFI y BWIN pagaba 3.50 (29%).
+# Revisar este peso cuando haya historia suficiente.
+LIVE_MODEL_WEIGHT = 0.25
+# Picks ya prácticamente decididos: la casa paga ~1.01, no aportan nada.
+LIVE_MAX_PROB = 0.97
 MIN_EDGE = 0.03  # valor esperado mínimo (+3% por peso apostado), ya descontado
 KELLY_FRACTION = 0.25
 MAX_STAKE_PER_BET = 0.05  # de la banca
@@ -43,6 +59,8 @@ _OPCIONES = [
     ("away_win", "Resultado", "Visitante", "away"),
     ("over_2_5", "Goles", "Más de 2.5", "over"),
     ("under_2_5", "Goles", "Menos de 2.5", "under"),
+    ("dc_1x", "Doble oportunidad", "1X (local o empate)", "dc_1x"),
+    ("dc_x2", "Doble oportunidad", "X2 (empate o visitante)", "dc_x2"),
 ]
 
 
@@ -54,6 +72,8 @@ def candidate_picks(predictions: pd.DataFrame, min_prob: float = MIN_MODEL_PROB)
         return pd.DataFrame()
     preds = predictions.copy()
     preds["under_2_5"] = 100 - preds["over_2_5"]
+    preds["dc_1x"] = preds["home_win"] + preds["draw"]
+    preds["dc_x2"] = preds["away_win"] + preds["draw"]
     if "low_confidence" in preds:
         preds = preds[~preds["low_confidence"].astype(bool)]
 
@@ -83,7 +103,32 @@ def candidate_picks(predictions: pd.DataFrame, min_prob: float = MIN_MODEL_PROB)
     return pd.DataFrame(filas)
 
 
-def evaluate(picks: pd.DataFrame, bankroll: float) -> pd.DataFrame:
+def live_candidate_picks(live: list[dict], min_prob: float = MIN_MODEL_PROB) -> pd.DataFrame:
+    """Picks de partidos EN JUEGO. Cada elemento de `live`: datos del partido
+    + "probs" {columna de _OPCIONES: prob 0-1, ajustada en vivo} + "odds"
+    {clave de cuota: cuota BWIN en vivo} + "en_vivo" (texto minuto/marcador).
+    Solo partidos con base anclada al mercado (cuotas previas guardadas): sin
+    eso el ajuste en vivo parte del modelo solo, que en copas es poco fiable."""
+    filas = []
+    for m in live:
+        for columna, mercado, pick, clave in _OPCIONES:
+            prob = (m.get("probs") or {}).get(columna)
+            if prob is None or prob < min_prob or prob >= LIVE_MAX_PROB:
+                continue
+            filas.append({
+                "competition": m["competition"], "competition_name": m.get("competition_name", ""),
+                "utc_date": m["utc_date"], "home_team": m["home_team"], "away_team": m["away_team"],
+                "home_team_short": m["home_team"], "away_team_short": m["away_team"],
+                "partido": f"{m['home_team']} vs {m['away_team']}", "en_vivo": m.get("en_vivo", ""),
+                "mercado": mercado, "pick": pick, "odds_key": clave,
+                "prob_modelo": prob, "cuota_justa": round(1 / prob, 2),
+                "cuota_auto": (m.get("odds") or {}).get(clave), "casa": "BWIN en vivo (365scores)",
+            })
+    return pd.DataFrame(filas)
+
+
+def evaluate(picks: pd.DataFrame, bankroll: float, max_exposure: float = MAX_DAILY_EXPOSURE,
+             model_weight: float = MODEL_WEIGHT) -> pd.DataFrame:
     """Recibe los candidatos con columnas `cuota` (la que se usará: manual si
     se escribió, si no la automática) y devuelve, además, valor, estado y
     monto sugerido. Estado: "Apostar" / "Sin valor" / "Falta cuota"."""
@@ -98,7 +143,7 @@ def evaluate(picks: pd.DataFrame, bankroll: float) -> pd.DataFrame:
     cuota = cuota.where(tiene_cuota)
 
     prob_mercado = 1 / cuota.where(tiene_cuota)
-    df["prob_ajustada"] = MODEL_WEIGHT * df["prob_modelo"] + (1 - MODEL_WEIGHT) * prob_mercado
+    df["prob_ajustada"] = model_weight * df["prob_modelo"] + (1 - model_weight) * prob_mercado
     df["valor"] = df["prob_ajustada"] * cuota - 1
     kelly = (df["prob_ajustada"] * cuota - 1) / (cuota - 1)
 
@@ -123,8 +168,8 @@ def evaluate(picks: pd.DataFrame, bankroll: float) -> pd.DataFrame:
 
     fraccion = (kelly * KELLY_FRACTION).clip(lower=0, upper=MAX_STAKE_PER_BET).where(apostable, 0.0)
     total = fraccion.sum()
-    if total > MAX_DAILY_EXPOSURE:
-        fraccion = fraccion * (MAX_DAILY_EXPOSURE / total)
+    if total > max_exposure:
+        fraccion = fraccion * (max(max_exposure, 0.0) / total)
     df["fraccion"] = fraccion.fillna(0.0)
     # Montos redondeados a $100 hacia abajo — nunca apostar más de lo calculado.
     df["monto"] = (df["fraccion"] * bankroll // 100 * 100).astype(int)

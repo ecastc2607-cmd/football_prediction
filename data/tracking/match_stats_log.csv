@@ -1203,3 +1203,39 @@ ECL,0,0.0,2026-10-15T16:45:00Z,CSKA Sofia,Monaco,CSKA Sofia,True,0,,0,0,39.0,0.0
 ECL,0,0.0,2026-10-15T16:45:00Z,CSKA Sofia,Monaco,Monaco,False,0,,0,0,61.0,1.0,1.0,0.0
 ECL,0,0.0,2026-10-15T16:45:00Z,Hajduk Split,Ajax,Hajduk Split,True,0,,0,0,24.0,0.0,0.0,0.0
 ECL,0,0.0,2026-10-15T16:45:00Z,Hajduk Split,Ajax,Ajax,False,0,,0,0,76.0,0.0,0.0,0.0
+EL,0,0.0,2026-10-15T19:00:00Z,Dinamo Zagreb,Anderlecht,Dinamo Zagreb,True,0,0.0,0,0,85.0,,1.0,0.0
+EL,0,0.0,2026-10-15T19:00:00Z,Dinamo Zagreb,Anderlecht,Anderlecht,False,0,0.0,0,0,15.0,,0.0,0.0
+EL,0,0.0,2026-10-15T19:00:00Z,Ferencváros,Viktoria Plzeň,Ferencváros,True,1,0.0,0,0,69.0,,,0.0
+EL,0,0.0,2026-10-15T19:00:00Z,Ferencváros,Viktoria Plzeň,Viktoria Plzeň,False,0,0.0,0,0,31.0,,,0.0
+EL,0,0.0,2026-10-15T19:00:00Z,Olympique Marseille,Olympiakos Piraeus,Olympique Marseille,True,1,1.0,0,0,64.0,,,0.0
+EL,0,0.0,2026-10-15T19:00:00Z,Olympique Marseille,Olympiakos Piraeus,Olympiakos Piraeus,False,0,0.0,0,0,36.0,,,0.0
+EL,0,0.0,2026-10-15T19:00:00Z,Rennes,OFI,Rennes,True,1,0.0,0,0,83.0,,1.0,0.0
+EL,0,0.0,2026-10-15T19:00:00Z,Rennes,OFI,OFI,False,0,1.0,0,0,17.0,,0.0,0.0
+EL,0,0.0,2026-10-15T19:00:00Z,NEC,Levski Sofia,NEC,True,2,1.0,0,0,53.0,,,0.0
+EL,0,0.0,2026-10-15T19:00:00Z,NEC,Levski Sofia,Levski Sofia,False,0,0.0,0,0,47.0,,,0.0
+EL,0,0.0,2026-10-15T19:00:00Z,Jagiellonia Białystok,Ararat-Armenia,Jagiellonia Białystok,True,0,0.0,0,0,41.0,,,1.0
+EL,0,0.0,2026-10-15T19:00:00Z,Jagiellonia Białystok,Ararat-Armenia,Ararat-Armenia,False,0,0.0,0,0,59.0,,,0.0
+EL,0,0.0,2026-10-15T19:00:00Z,Celta de Vigo,Juventus FC,Celta de Vigo,True,0,0.0,0,0,0.0,,,0.0
+EL,0,0.0,2026-10-15T19:00:00Z,Celta de Vigo,Juventus FC,Juventus FC,False,0,0.0,0,0,0.0,,,0.0
+EL,0,0.0,2026-10-15T19:00:00Z,AFC Bournemouth,Sturm Graz,AFC Bournemouth,True,0,1.0,0,0,78.0,,,0.0
+EL,0,0.0,2026-10-15T19:00:00Z,AFC Bournemouth,Sturm Graz,Sturm Graz,False,1,0.0,0,0,22.0,,,1.0
+EL,0,0.0,2026-10-15T19:00:00Z,Benfica,Celtic,Benfica,True,1,0.0,0,0,70.0,,,0.0
+EL,0,0.0,2026-10-15T19:00:00Z,Benfica,Celtic,Celtic,False,1,0.0,0,0,30.0,,,0.0
+EL,0,0.0,2026-10-15T19:00:00Z,Hoffenheim,Beşiktaş,Hoffenheim,True,1,0.0,0,0,48.0,,1.0,0.0
+EL,0,0.0,2026-10-15T19:00:00Z,Hoffenheim,Beşiktaş,Beşiktaş,False,1,1.0,0,0,52.0,,0.0,0.0
+ECL,0,0.0,2026-10-15T19:00:00Z,Atalanta,Pafos,Atalanta,True,0,,0,0,89.0,1.0,2.0,0.0
+ECL,0,0.0,2026-10-15T19:00:00Z,Atalanta,Pafos,Pafos,False,0,,0,0,11.0,0.0,0.0,0.0
+ECL,0,0.0,2026-10-15T19:00:00Z,Brann,Lincoln Red Imps,Brann,True,1,,0,0,78.0,0.0,0.0,0.0
+ECL,0,0.0,2026-10-15T19:00:00Z,Brann,Lincoln Red Imps,Lincoln Red Imps,False,0,,0,0,22.0,0.0,1.0,0.0
+ECL,0,0.0,2026-10-15T19:00:00Z,Freiburg,Jablonec,Freiburg,True,0,,0,0,48.0,0.0,2.0,0.0
+ECL,0,0.0,2026-10-15T19:00:00Z,Freiburg,Jablonec,Jablonec,False,0,,0,0,52.0,0.0,0.0,0.0
+ECL,0,0.0,2026-10-15T19:00:00Z,Twente,Thun,Twente,True,1,,0,0,70.0,1.0,2.0,0.0
+ECL,0,0.0,2026-10-15T19:00:00Z,Twente,Thun,Thun,False,0,,0,0,30.0,0.0,0.0,0.0
+ECL,0,0.0,2026-10-15T19:00:00Z,Sint-Truiden,Iberia 1999,Sint-Truiden,True,2,,0,0,71.0,1.0,2.0,0.0
+ECL,0,0.0,2026-10-15T19:00:00Z,Sint-Truiden,Iberia 1999,Iberia 1999,False,0,,0,0,29.0,0.0,0.0,0.0
+ECL,0,0.0,2026-10-15T19:00:00Z,Hearts,Nordsjælland,Hearts,True,1,,0,0,58.0,1.0,3.0,0.0
+ECL,0,0.0,2026-10-15T19:00:00Z,Hearts,Nordsjælland,Nordsjælland,False,1,,0,0,42.0,0.0,1.0,0.0
+ECL,0,0.0,2026-10-15T19:00:00Z,Brighton & Hove Albion,Kauno Žalgiris,Brighton & Hove Albion,True,1,,0,0,89.0,0.0,1.0,0.0
+ECL,0,0.0,2026-10-15T19:00:00Z,Brighton & Hove Albion,Kauno Žalgiris,Kauno Žalgiris,False,0,,0,0,11.0,0.0,0.0,0.0
+ECL,0,0.0,2026-10-15T19:00:00Z,København,Sporting Braga,København,True,0,,0,0,35.0,0.0,2.0,0.0
+ECL,0,0.0,2026-10-15T19:00:00Z,København,Sporting Braga,Sporting Braga,False,0,,0,0,65.0,0.0,0.0,0.0

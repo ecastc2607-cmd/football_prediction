@@ -128,8 +128,12 @@ def adjusted_live_probabilities(home_goals: int, away_goals: int, minute: int,
     resto_local = ritmo_local * resto * factor_local
     resto_visita = ritmo_visita * resto * factor_visita
     h, d, a = live_win_probabilities(home_goals, away_goals, resto_local, resto_visita)
+    # Más de 2.5 al final: faltan (3 - goles ya marcados) goles en lo que queda;
+    # la suma de dos Poisson es Poisson con la suma de las medias.
+    faltan = 3 - (home_goals + away_goals)
+    over = 1.0 if faltan <= 0 else float(1 - poisson.cdf(faltan - 1, max(resto_local + resto_visita, 0.01)))
     return {
-        "home_win": h, "draw": d, "away_win": a,
+        "home_win": h, "draw": d, "away_win": a, "over_2_5": over, "under_2_5": 1 - over,
         "home_xg_observed": obs_local, "away_xg_observed": obs_visita,
         "home_xg_remaining": resto_local, "away_xg_remaining": resto_visita,
         "remaining_minutes": resto,

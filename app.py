@@ -53,7 +53,8 @@ from src.backtest_walkforward import SOURCE as BACKTEST_SOURCE
 from src.support_leagues import ensure_support_leagues
 from src.prediction_log import MARKETS
 from src.timezones import BOGOTA_TZ, format_bogota, to_bogota
-from src.value_tips import MIN_MODEL_PROB, candidate_picks, day_summary, evaluate
+from src.value_tips import (LIVE_MODEL_WEIGHT, MAX_DAILY_EXPOSURE, MIN_MODEL_PROB, candidate_picks,
+                             day_summary, evaluate, live_candidate_picks)
 
 st.set_page_config(page_title="Football Analytics · Jornada", page_icon="⚽", layout="wide")
 
@@ -408,6 +409,32 @@ def load_odds_table(code: str, desde_utc: str, hasta_utc: str, paid_fallback: bo
 def load_live_odds(codes: tuple) -> list:
     """Cuotas en vivo de 365scores (gratis): 1 consulta + 1 por partido en juego."""
     return scores365.live_rows(list(codes), odds_api.PRICE_KEYS)
+
+
+def live_adjustment(row) -> tuple[dict | None, dict | None, dict | None]:
+    """(ajuste, ancla, estadísticas) del 1X2/goles EN VIVO de un partido de
+    load_live_matches — compartido por las pestañas "En vivo" y "Tips" para
+    que ambas muestren exactamente la misma probabilidad."""
+    # Estadísticas con caché de 5 min (las mismas del desplegable de "En vivo").
+    stats_vivo = None
+    if STATS_KEY_PRESENT:
+        try:
+            stats_vivo = load_match_stats(row.home_team, row.away_team, row.utc_date, row.competition)
+        except Exception:
+            stats_vivo = None
+    if pd.isna(row.get("pre_home_xg")) or pd.isna(row.get("pre_away_xg")):
+        return None, None, stats_vivo
+    # Base pre-partido anclada al mercado si hay cuotas previas guardadas
+    # (sin gastar créditos); si no, la del modelo.
+    base_l, base_v, ancla = anchored_prematch_xg(
+        float(row.pre_home_xg), float(row.pre_away_xg), row.competition,
+        row.home_team, row.away_team, row.utc_date,
+    )
+    ajuste = adjusted_live_probabilities(
+        int(row.home_goals), int(row.away_goals), int(row.minuto_estimado),
+        base_l, base_v, (stats_vivo or {}).get(row.home_team), (stats_vivo or {}).get(row.away_team),
+    )
+    return dict(ajuste, base_home_xg=base_l, base_away_xg=base_v), ancla, stats_vivo
 
 
 def odds_window(df: pd.DataFrame) -> tuple[str, str]:
@@ -1054,28 +1081,11 @@ with tab_vivo:
                 f"{row.live_home_win:.0f}% / {row.live_draw:.0f}% / {row.live_away_win:.0f}%"
                 if pd.notna(row.live_home_win) else "sin datos suficientes"
             )
-            # Las mismas estadísticas del desplegable de abajo (caché de 5 min:
-            # pedirlas acá no gasta una consulta extra).
-            stats_vivo = None
-            if STATS_KEY_PRESENT:
-                try:
-                    stats_vivo = load_match_stats(row.home_team, row.away_team, row.utc_date, row.competition)
-                except Exception:
-                    stats_vivo = None
-            ajuste = ancla = None
-            if pd.notna(row.get("pre_home_xg")) and pd.notna(row.get("pre_away_xg")):
-                # Base pre-partido anclada al mercado si hay cuotas previas
-                # guardadas (sin gastar créditos); si no, la del modelo.
-                base_l, base_v, ancla = anchored_prematch_xg(
-                    float(row.pre_home_xg), float(row.pre_away_xg), row.competition,
-                    row.home_team, row.away_team, row.utc_date,
-                )
+            ajuste, ancla, stats_vivo = live_adjustment(row)
+            if ajuste:
+                base_l, base_v = ajuste["base_home_xg"], ajuste["base_away_xg"]
                 stats_l = (stats_vivo or {}).get(row.home_team)
                 stats_v = (stats_vivo or {}).get(row.away_team)
-                ajuste = adjusted_live_probabilities(
-                    int(row.home_goals), int(row.away_goals), int(row.minuto_estimado),
-                    base_l, base_v, stats_l, stats_v,
-                )
                 record_live_snapshot({
                     "captured_at": datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ"),
                     "competition": row.competition, "home_team": row.home_team, "away_team": row.away_team,
@@ -1093,54 +1103,8 @@ with tab_vivo:
                     "adj_home": ajuste["home_win"], "adj_draw": ajuste["draw"], "adj_away": ajuste["away_win"],
                 })
 
-            c_liga, c_local, c_marcador, c_visitante, c_1x2 = st.columns([1.3, 2, 1, 2, 1.6])
-            c_liga.caption(f"{row.competition_name} · {format_bogota(row.utc_date)} · min. {row.minuto_estimado}'")
-            c_local.write(row.home_team)
-            c_marcador.markdown(f"**{row.home_goals} - {row.away_goals}**")
-            c_visitante.write(row.away_team)
-            if ajuste:
-                c_1x2.markdown(f"**1X2: {ajuste['home_win']:.0%} / {ajuste['draw']:.0%} / {ajuste['away_win']:.0%}**")
-                c_1x2.caption(f"(solo pre-partido: {live_1x2})")
-                # Desglose del ajuste como tabla: una fila por dato, una
-                # columna por equipo (antes era una sola línea de texto).
-                filas_detalle = []
-                if ajuste["home_xg_observed"] is not None and ajuste["away_xg_observed"] is not None:
-                    s_l, s_v = stats_vivo[row.home_team], stats_vivo[row.away_team]
-                    n = lambda v: f"{float(v):.0f}"  # noqa: E731 — 10.0 -> "10"
-                    filas_detalle += [
-                        ("Remates (a puerta)",
-                         f"{n(s_l.get('remates_totales'))} ({n(s_l.get('remates_a_puerta'))})",
-                         f"{n(s_v.get('remates_totales'))} ({n(s_v.get('remates_a_puerta'))})"),
-                        ("xG aprox. por remates", f"{ajuste['home_xg_observed']:.2f}",
-                         f"{ajuste['away_xg_observed']:.2f}"),
-                    ]
-                if ancla:
-                    filas_detalle.append(("xG base: cuotas previas", f"{ancla['market_home_xg']:.2f}",
-                                          f"{ancla['market_away_xg']:.2f}"))
-                filas_detalle += [
-                    ("xG pre-partido: modelo", f"{row.pre_home_xg:.2f}", f"{row.pre_away_xg:.2f}"),
-                    (f"Goles esperados en lo que falta (~{ajuste['remaining_minutes']:.0f}')",
-                     f"{ajuste['home_xg_remaining']:.2f}", f"{ajuste['away_xg_remaining']:.2f}"),
-                    ("No pierde", f"{ajuste['home_win'] + ajuste['draw']:.0%}",
-                     f"{ajuste['away_win'] + ajuste['draw']:.0%}"),
-                ]
-                st.dataframe(
-                    pd.DataFrame(filas_detalle, columns=["Dato", row.home_team, row.away_team]),
-                    hide_index=True, width="stretch",
-                )
-                notas = []
-                if ajuste["home_xg_observed"] is None or ajuste["away_xg_observed"] is None:
-                    notas.append("sin estadísticas de remates todavía: solo marcador, efecto marcador y añadido")
-                if ancla:
-                    notas.append("base anclada al mercado (cuotas previas al partido)")
-                if notas:
-                    st.caption(" · ".join(notas))
-            else:
-                c_1x2.caption(f"1X2: {live_1x2}")
-
-            # Cuota en vivo de BWIN (365scores) frente a la probabilidad de
-            # arriba; cada cambio de cuota queda guardado con la probabilidad
-            # del modelo en ese minuto (live_odds_snapshots.csv).
+            # Cuota en vivo de BWIN (365scores); cada cambio queda guardado con
+            # la probabilidad del modelo en ese minuto (live_odds_snapshots.csv).
             evento_vivo = odds_api.find_event(cuotas_vivo, row.home_team, row.away_team, row.utc_date)
             if evento_vivo:
                 if ajuste:
@@ -1151,21 +1115,79 @@ with tab_vivo:
                         model_away_xg_rem=round(ajuste["away_xg_remaining"], 3),
                     )
                 record_live_odds([evento_vivo])
-                partes = []
-                for clave, etiqueta, prob in (("home", "1", ajuste and ajuste["home_win"]),
-                                              ("draw", "X", ajuste and ajuste["draw"]),
-                                              ("away", "2", ajuste and ajuste["away_win"])):
-                    precio = odds_api.row_price(evento_vivo, clave)
-                    if not precio:
-                        continue
-                    texto = f"{etiqueta} {precio[0]:.2f}"
-                    if prob:
-                        texto += f" (valor {prob * precio[0] - 1:+.0%})"
-                    partes.append(texto)
-                goles = [f"{e} {p[0]:.2f}" for clave, e in (("over", "+2.5"), ("under", "-2.5"), ("btts_yes", "ambos sí"))
-                         if (p := odds_api.row_price(evento_vivo, clave))]
-                if partes or goles:
-                    st.caption("💱 BWIN en vivo (365scores): " + " · ".join(partes + goles))
+
+            def _cuota(clave):
+                precio = odds_api.row_price(evento_vivo, clave) if evento_vivo else None
+                return precio[0] if precio else None
+
+            c_liga, c_local, c_marcador, c_visitante, c_1x2 = st.columns([1.3, 2, 1, 2, 1.6])
+            c_liga.caption(f"{row.competition_name} · {format_bogota(row.utc_date)} · min. {row.minuto_estimado}'")
+            c_local.write(row.home_team)
+            c_marcador.markdown(f"**{row.home_goals} - {row.away_goals}**")
+            c_visitante.write(row.away_team)
+            if ajuste:
+                c_1x2.markdown(f"**1X2: {ajuste['home_win']:.0%} / {ajuste['draw']:.0%} / {ajuste['away_win']:.0%}**")
+                c_1x2.caption(f"(solo pre-partido: {live_1x2})")
+                # Desglose como tabla: una fila por dato; columnas local /
+                # empate-o-total / visitante. La cuota BWIN va junto a la
+                # probabilidad del modelo y su valor (prob × cuota − 1).
+                fmt_cuota = lambda c: f"{c:.2f}" if c else "-"  # noqa: E731
+                fmt_valor = lambda p, c: f"{p * c - 1:+.0%}" if c else "-"  # noqa: E731
+                c_1, c_x, c_2 = _cuota("home"), _cuota("draw"), _cuota("away")
+                filas_detalle = [
+                    ("Prob. en vivo (modelo)", f"{ajuste['home_win']:.0%}", f"{ajuste['draw']:.0%}",
+                     f"{ajuste['away_win']:.0%}"),
+                    ("Cuota BWIN en vivo", fmt_cuota(c_1), fmt_cuota(c_x), fmt_cuota(c_2)),
+                    ("Valor (prob × cuota − 1)", fmt_valor(ajuste["home_win"], c_1),
+                     fmt_valor(ajuste["draw"], c_x), fmt_valor(ajuste["away_win"], c_2)),
+                ]
+                c_over, c_under = _cuota("over"), _cuota("under")
+                if c_over or c_under:
+                    filas_detalle.append((
+                        "Goles: prob. · cuota · valor", "",
+                        f"+2.5: {ajuste['over_2_5']:.0%} · {fmt_cuota(c_over)} · {fmt_valor(ajuste['over_2_5'], c_over)}"
+                        f"  |  −2.5: {ajuste['under_2_5']:.0%} · {fmt_cuota(c_under)} · "
+                        f"{fmt_valor(ajuste['under_2_5'], c_under)}", ""))
+                if ajuste["home_xg_observed"] is not None and ajuste["away_xg_observed"] is not None:
+                    s_l, s_v = stats_vivo[row.home_team], stats_vivo[row.away_team]
+                    n = lambda v: f"{float(v):.0f}"  # noqa: E731 — 10.0 -> "10"
+                    filas_detalle += [
+                        ("Remates (a puerta)",
+                         f"{n(s_l.get('remates_totales'))} ({n(s_l.get('remates_a_puerta'))})", "",
+                         f"{n(s_v.get('remates_totales'))} ({n(s_v.get('remates_a_puerta'))})"),
+                        ("xG aprox. por remates", f"{ajuste['home_xg_observed']:.2f}", "",
+                         f"{ajuste['away_xg_observed']:.2f}"),
+                    ]
+                if ancla:
+                    filas_detalle.append(("xG base: cuotas previas", f"{ancla['market_home_xg']:.2f}", "",
+                                          f"{ancla['market_away_xg']:.2f}"))
+                filas_detalle += [
+                    ("xG pre-partido: modelo", f"{row.pre_home_xg:.2f}", "", f"{row.pre_away_xg:.2f}"),
+                    (f"Goles esperados en lo que falta (~{ajuste['remaining_minutes']:.0f}')",
+                     f"{ajuste['home_xg_remaining']:.2f}", "", f"{ajuste['away_xg_remaining']:.2f}"),
+                    ("No pierde (doble oportunidad)",
+                     f"{ajuste['home_win'] + ajuste['draw']:.0%} · {fmt_cuota(_cuota('dc_1x'))}", "",
+                     f"{ajuste['away_win'] + ajuste['draw']:.0%} · {fmt_cuota(_cuota('dc_x2'))}"),
+                ]
+                st.dataframe(
+                    pd.DataFrame(filas_detalle, columns=["Dato", row.home_team, "Empate / total", row.away_team]),
+                    hide_index=True, width="stretch",
+                )
+                notas = []
+                if not evento_vivo:
+                    notas.append("sin cuota de BWIN para este partido ahora")
+                if ajuste["home_xg_observed"] is None or ajuste["away_xg_observed"] is None:
+                    notas.append("sin estadísticas de remates todavía: solo marcador, efecto marcador y añadido")
+                if ancla:
+                    notas.append("base anclada al mercado (cuotas previas al partido)")
+                if notas:
+                    st.caption(" · ".join(notas))
+            else:
+                c_1x2.caption(f"1X2: {live_1x2}")
+                if evento_vivo:
+                    st.caption("💱 BWIN en vivo: " + " · ".join(
+                        f"{e} {fmt}" for e, fmt in (("1", _cuota("home")), ("X", _cuota("draw")), ("2", _cuota("away")))
+                        if fmt))
 
             if STATS_KEY_PRESENT:
                 with st.expander("📐 Corners, faltas y tarjetas"):
@@ -1293,6 +1315,7 @@ with tab_tips:
     banca = col_banca.number_input("Banca (COP)", min_value=10_000, value=50_000, step=10_000, key="tips_banca")
     hoy_col = datetime.now(BOGOTA_TZ).date()
     fecha_tips = col_fecha.date_input("Día", value=hoy_col, key="tips_fecha")
+    expuesto_prepartido = 0.0  # fracción de la banca ya sugerida antes del inicio (tope diario compartido)
     solo_colombia = col_casas.toggle(
         "Solo casas que operan en Colombia", value=True, key="tips_solo_co",
         help="Betsson, Codere, 1xBet, bwin, Betway, Stake... — cuotas de sus sitios europeos, "
@@ -1398,6 +1421,7 @@ with tab_tips:
             candidatos["cuota"] = manual.where(manual.notna(), auto)
             evaluado = evaluate(candidatos, float(banca))
             resumen = day_summary(evaluado, float(banca))
+            expuesto_prepartido = float(evaluado["fraccion"].sum())
 
             st.divider()
             if resumen["n"] == 0:
@@ -1472,3 +1496,98 @@ with tab_tips:
             st.subheader("🎯 Combinadas del día — todas las ligas")
             combinadas_dia, avisos_dia = parlays_with_real_odds(dia, only_colombia=solo_colombia)
             render_parlays(combinadas_dia, bankroll=float(banca), avisos=avisos_dia)
+
+    # ------------------------- Tips EN VIVO (BWIN) -------------------------
+    # Misma regla de valor, con la probabilidad ajustada en vivo (la misma de
+    # la pestaña "En vivo") y la cuota en vivo de BWIN vía 365scores. No
+    # depende del botón de arriba: es liviano (reutiliza las cachés de "En vivo").
+    st.divider()
+    st.subheader("🔴 Tips en vivo (BWIN)")
+    try:
+        vivos = load_live_matches(tuple(config.COMPETITIONS.keys()))
+    except Exception:
+        vivos = pd.DataFrame()
+    if vivos.empty:
+        st.caption("No hay partidos en juego ahora mismo.")
+    else:
+        try:
+            cuotas_en_vivo = load_live_odds(tuple(sorted(set(vivos["competition"]))))
+        except Exception:
+            cuotas_en_vivo = []
+        entradas, sin_ancla, sin_cuota = [], 0, 0
+        for _, row in vivos.iterrows():
+            ajuste, ancla, _ = live_adjustment(row)
+            if not ajuste:
+                continue
+            if not ancla:
+                sin_ancla += 1
+                continue
+            evento = odds_api.find_event(cuotas_en_vivo, row.home_team, row.away_team, row.utc_date)
+            if not evento:
+                sin_cuota += 1
+                continue
+            entradas.append({
+                "competition": row.competition, "competition_name": row.competition_name,
+                "utc_date": row.utc_date, "home_team": row.home_team, "away_team": row.away_team,
+                "en_vivo": f"{row.minuto_estimado}' · {row.home_goals}-{row.away_goals}",
+                "probs": {
+                    "home_win": ajuste["home_win"], "draw": ajuste["draw"], "away_win": ajuste["away_win"],
+                    "over_2_5": ajuste["over_2_5"], "under_2_5": ajuste["under_2_5"],
+                    "dc_1x": ajuste["home_win"] + ajuste["draw"], "dc_x2": ajuste["away_win"] + ajuste["draw"],
+                },
+                "odds": {k: precio[0] for k in odds_api.PRICE_KEYS if (precio := odds_api.row_price(evento, k))},
+            })
+        candidatos_vivo = live_candidate_picks(entradas)
+        avisos_vivo = []
+        if sin_ancla:
+            avisos_vivo.append(f"{sin_ancla} partido(s) sin cuota previa guardada (el ajuste no está anclado "
+                               "al mercado): no se recomiendan")
+        if sin_cuota:
+            avisos_vivo.append(f"{sin_cuota} partido(s) sin cuota en vivo de BWIN ahora")
+        if candidatos_vivo.empty:
+            st.info(f"Ningún pick en vivo llega al {MIN_MODEL_PROB:.0%} de probabilidad en este momento "
+                    f"({len(vivos)} partido(s) en juego).")
+        else:
+            candidatos_vivo["cuota"] = pd.to_numeric(candidatos_vivo["cuota_auto"], errors="coerce")
+            evaluado_vivo = evaluate(candidatos_vivo, float(banca),
+                                     max_exposure=MAX_DAILY_EXPOSURE - expuesto_prepartido,
+                                     model_weight=LIVE_MODEL_WEIGHT)
+            orden = {"Apostar": 0, "Sin valor": 1, "Otro pick del mismo partido": 2}
+            evaluado_vivo = evaluado_vivo.assign(_o=evaluado_vivo["estado"].map(orden).fillna(3))                 .sort_values(["_o", "valor"], ascending=[True, False])
+            n_apostar = int((evaluado_vivo["monto"] > 0).sum())
+            if n_apostar:
+                st.success(f"✅ {n_apostar} apuesta(s) en vivo con valor ahora mismo")
+            else:
+                st.warning("🚫 Ningún pick en vivo paga lo suficiente para su riesgo ahora: no apostar.")
+            st.dataframe(
+                pd.DataFrame({
+                    "Partido": evaluado_vivo["partido"],
+                    "En vivo": evaluado_vivo["en_vivo"],
+                    "Mercado": evaluado_vivo["mercado"],
+                    "Pick": evaluado_vivo["pick"],
+                    "Prob. en vivo": (evaluado_vivo["prob_modelo"] * 100).round(0),
+                    "Cuota justa": evaluado_vivo["cuota_justa"],
+                    "Cuota BWIN": evaluado_vivo["cuota"].round(2),
+                    "Valor": (evaluado_vivo["valor"] * 100).round(1),
+                    "Acción": evaluado_vivo["estado"],
+                    "Apostar": evaluado_vivo["monto"],
+                    "Ganancia si acierta": evaluado_vivo["ganancia"],
+                }),
+                hide_index=True, width="stretch",
+                column_config={
+                    "Partido": st.column_config.Column(pinned=True),
+                    "Prob. en vivo": st.column_config.NumberColumn(format="%.0f%%"),
+                    "Valor": st.column_config.NumberColumn(format="%+.1f%%"),
+                    "Apostar": st.column_config.NumberColumn(format="$%d"),
+                    "Ganancia si acierta": st.column_config.NumberColumn(format="$%d"),
+                },
+            )
+            st.caption(
+                "🧪 Experimental: el ajuste en vivo todavía no se validó contra el mercado, así que acá el "
+                f"modelo pesa solo {LIVE_MODEL_WEIGHT:.0%} y la cuota {1 - LIVE_MODEL_WEIGHT:.0%} al calcular el "
+                "valor. La cuota en vivo cambia en segundos: confirma en BWIN que siga igual o mejor antes de "
+                "apostar. 'Cuota justa' = la mínima para no perder plata a la larga según el modelo. "
+                "El tope de 20% diario se comparte con los tips prepartido."
+            )
+        if avisos_vivo:
+            st.caption(" · ".join(avisos_vivo))
