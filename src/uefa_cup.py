@@ -34,6 +34,7 @@ from .competition_status import CompetitionStatus
 from .goal_api_client import GOAL_API_KEY, GoalApiClient, LEAGUE_IDS, live_fixtures, memoized
 from .live_matches import REGULATION_MINUTES, live_win_probabilities
 from .poisson_model import expected_goals
+from .cross_competition_strength import fill_missing_with_domestic_strength
 from .team_strength import team_strength_for_competition
 
 # La fase de liga (formato "una tabla" desde la reforma 2024/25) es la que
@@ -310,11 +311,21 @@ class GoalApiCup:
 
         season = self.current_season()
         try:
-            if ensure_data:
-                ensure_data(self.code, season)
-            else:
-                self.fetch_competition(season)
-            strength = team_strength_for_competition(self.code, [season])
+            seasons = [season, season - 1]
+            for s in seasons:
+                if ensure_data:
+                    ensure_data(self.code, s)
+                else:
+                    self.fetch_competition(s)
+            # Misma fuerza que la pestaña Jornada (matchday_predictions_df): con
+            # solo la temporada en curso y sin respaldo doméstico, en las
+            # primeras jornadas casi todos los equipos caían al promedio de la
+            # copa y varios partidos mostraban el mismo xG (oct-2026).
+            strength = team_strength_for_competition(self.code, seasons)
+            if self.code in config.CUP_STYLE_COMPETITIONS:
+                equipos = {(f.get("homeTeam") or {}).get("name") or f.get("homeTeamName") for f in propios}
+                equipos |= {(f.get("awayTeam") or {}).get("name") or f.get("awayTeamName") for f in propios}
+                strength, _ = fill_missing_with_domestic_strength(strength, equipos, seasons)
         except Exception:
             strength = None
 

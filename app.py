@@ -1101,29 +1101,40 @@ with tab_vivo:
             if ajuste:
                 c_1x2.markdown(f"**1X2: {ajuste['home_win']:.0%} / {ajuste['draw']:.0%} / {ajuste['away_win']:.0%}**")
                 c_1x2.caption(f"(solo pre-partido: {live_1x2})")
-                detalle = []
+                # Desglose del ajuste como tabla: una fila por dato, una
+                # columna por equipo (antes era una sola línea de texto).
+                filas_detalle = []
                 if ajuste["home_xg_observed"] is not None and ajuste["away_xg_observed"] is not None:
                     s_l, s_v = stats_vivo[row.home_team], stats_vivo[row.away_team]
                     n = lambda v: f"{float(v):.0f}"  # noqa: E731 — 10.0 -> "10"
-                    detalle.append(
-                        f"remates {n(s_l.get('remates_totales'))} ({n(s_l.get('remates_a_puerta'))} a puerta) – "
-                        f"{n(s_v.get('remates_totales'))} ({n(s_v.get('remates_a_puerta'))}) → xG aprox. "
-                        f"{ajuste['home_xg_observed']:.2f} – {ajuste['away_xg_observed']:.2f}"
-                    )
-                else:
-                    detalle.append("sin estadísticas de remates todavía: solo marcador, efecto marcador y añadido")
+                    filas_detalle += [
+                        ("Remates (a puerta)",
+                         f"{n(s_l.get('remates_totales'))} ({n(s_l.get('remates_a_puerta'))})",
+                         f"{n(s_v.get('remates_totales'))} ({n(s_v.get('remates_a_puerta'))})"),
+                        ("xG aprox. por remates", f"{ajuste['home_xg_observed']:.2f}",
+                         f"{ajuste['away_xg_observed']:.2f}"),
+                    ]
                 if ancla:
-                    detalle.append(
-                        f"base anclada al mercado (xG cuotas previas {ancla['market_home_xg']:.2f} – "
-                        f"{ancla['market_away_xg']:.2f}, modelo {row.pre_home_xg:.2f} – {row.pre_away_xg:.2f})"
-                    )
-                detalle.append(
-                    f"goles esperados en lo que falta (~{ajuste['remaining_minutes']:.0f}'): "
-                    f"{ajuste['home_xg_remaining']:.2f} – {ajuste['away_xg_remaining']:.2f}"
+                    filas_detalle.append(("xG base: cuotas previas", f"{ancla['market_home_xg']:.2f}",
+                                          f"{ancla['market_away_xg']:.2f}"))
+                filas_detalle += [
+                    ("xG pre-partido: modelo", f"{row.pre_home_xg:.2f}", f"{row.pre_away_xg:.2f}"),
+                    (f"Goles esperados en lo que falta (~{ajuste['remaining_minutes']:.0f}')",
+                     f"{ajuste['home_xg_remaining']:.2f}", f"{ajuste['away_xg_remaining']:.2f}"),
+                    ("No pierde", f"{ajuste['home_win'] + ajuste['draw']:.0%}",
+                     f"{ajuste['away_win'] + ajuste['draw']:.0%}"),
+                ]
+                st.dataframe(
+                    pd.DataFrame(filas_detalle, columns=["Dato", row.home_team, row.away_team]),
+                    hide_index=True, width="stretch",
                 )
-                detalle.append(f"no pierde {row.home_team}: {ajuste['home_win'] + ajuste['draw']:.0%} · "
-                               f"no pierde {row.away_team}: {ajuste['away_win'] + ajuste['draw']:.0%}")
-                st.caption(" · ".join(detalle))
+                notas = []
+                if ajuste["home_xg_observed"] is None or ajuste["away_xg_observed"] is None:
+                    notas.append("sin estadísticas de remates todavía: solo marcador, efecto marcador y añadido")
+                if ancla:
+                    notas.append("base anclada al mercado (cuotas previas al partido)")
+                if notas:
+                    st.caption(" · ".join(notas))
             else:
                 c_1x2.caption(f"1X2: {live_1x2}")
 
