@@ -411,6 +411,22 @@ def load_live_odds(codes: tuple) -> list:
     return scores365.live_rows(list(codes), odds_api.PRICE_KEYS)
 
 
+def live_refresh_button(key: str) -> None:
+    """Botón para traer marcador, minuto y cuotas en vivo frescos. Limpia la
+    caché ANTES de que la sección los cargue, en la misma ejecución del clic:
+    sin st.rerun(), que devolvía la vista a la pestaña "Jornada"."""
+    if st.button("🔄 Actualizar en vivo", key=key, help="Marcador, minuto y cuotas BWIN del momento"):
+        load_live_matches.clear()
+        load_live_odds.clear()
+
+
+def live_data_time(cuotas: list) -> str:
+    """Hora (Colombia) de la foto de cuotas en vivo que se está mostrando."""
+    horas = [c.get("fetched_at") for c in cuotas or [] if c.get("fetched_at")]
+    local = to_bogota(max(horas)) if horas else None
+    return local.strftime("%H:%M:%S") if local else ""
+
+
 def live_adjustment(row) -> tuple[dict | None, dict | None, dict | None]:
     """(ajuste, ancla, estadísticas) del 1X2/goles EN VIVO de un partido de
     load_live_matches — compartido por las pestañas "En vivo" y "Tips" para
@@ -1063,9 +1079,7 @@ with tab_vivo:
         "antes del partido. No es una cuota de casa de apuestas."
     )
 
-    if st.button("🔄 Actualizar en vivo"):
-        load_live_matches.clear()
-        st.rerun()
+    live_refresh_button("refresh_vivo")
 
     live_df = load_live_matches(tuple(config.COMPETITIONS.keys()))
 
@@ -1076,6 +1090,9 @@ with tab_vivo:
             cuotas_vivo = load_live_odds(tuple(sorted(set(live_df["competition"]))))
         except Exception:
             cuotas_vivo = []
+        if live_data_time(cuotas_vivo):
+            st.caption(f"Cuotas BWIN de las {live_data_time(cuotas_vivo)} · se renuevan solas cada minuto "
+                       "al interactuar con la app, o al pulsar 'Actualizar en vivo'.")
         for _, row in live_df.iterrows():
             live_1x2 = (
                 f"{row.live_home_win:.0f}% / {row.live_draw:.0f}% / {row.live_away_win:.0f}%"
@@ -1503,6 +1520,7 @@ with tab_tips:
     # depende del botón de arriba: es liviano (reutiliza las cachés de "En vivo").
     st.divider()
     st.subheader("🔴 Tips en vivo (BWIN)")
+    live_refresh_button("refresh_tips_vivo")
     try:
         vivos = load_live_matches(tuple(config.COMPETITIONS.keys()))
     except Exception:
@@ -1514,6 +1532,8 @@ with tab_tips:
             cuotas_en_vivo = load_live_odds(tuple(sorted(set(vivos["competition"]))))
         except Exception:
             cuotas_en_vivo = []
+        if live_data_time(cuotas_en_vivo):
+            st.caption(f"Cuotas BWIN de las {live_data_time(cuotas_en_vivo)}.")
         entradas, sin_ancla, sin_cuota = [], 0, 0
         for _, row in vivos.iterrows():
             ajuste, ancla, _ = live_adjustment(row)
