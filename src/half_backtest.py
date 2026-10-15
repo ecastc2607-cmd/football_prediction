@@ -32,7 +32,7 @@ from .team_strength import build_team_strength, confidence_note, load_finished_m
 
 BACKTEST_PATH = config.ROOT_DIR / "data" / "tracking" / "half_markets_backtest.csv"
 SOURCE = "half_walkforward_v1"
-COMPETITIONS = ["PL", "PD", "SA", "BL1", "FL1", "CL", "EL", "NT"]
+COMPETITIONS = ["PL", "PD", "SA", "BL1", "FL1", "CL", "EL", "ECL", "NT"]
 
 
 def _rows_for(code: str, season: int) -> list[dict]:
@@ -45,7 +45,8 @@ def _rows_for(code: str, season: int) -> list[dict]:
         return []
     todos = todos.assign(inicio_utc=pd.to_datetime(todos["utc_date"], utc=True, errors="coerce"))
     jugados = todos[(todos["season_start_year"] == season)
-                    & todos["home_ht_goals"].notna()].sort_values("inicio_utc")
+                    & todos["home_ht_goals"].notna()
+                    & todos["matchday"].notna()].sort_values("inicio_utc")  # sin previa de copas
     filas, cache = [], {}
     for m in jugados.itertuples():
         if m.inicio_utc not in cache:

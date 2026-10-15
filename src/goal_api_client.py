@@ -83,6 +83,7 @@ LEAGUE_IDS = {
     "FL1": "cmr77dvqg007crx06q1kaceyo",  # Ligue 1 (France)
     "CL":  "cmr77dw3900f5rx06j05wgzv4",  # UEFA Champions League (Europe)
     "EL":  "cmr77dw3900f6rx06tuqwft2d",  # UEFA Europa League (Europe)
+    "ECL": "cmr77dw3900f9rx06laad8onf",  # UEFA Conference League (Europe)
     # Sin esta entrada, fixtures_by_date pedía los partidos de TODAS las ligas
     # del mundo ese día (solo la 1ª página de 100) y el de Nations League casi
     # nunca aparecía: sin estadística, nada se guardaba en match_stats_log y

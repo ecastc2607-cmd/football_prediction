@@ -55,7 +55,10 @@ def backtest_competition(code: str, season: int, seasons_back: int = 1) -> tuple
     seasons = [season - i for i in range(seasons_back + 1)]
     todos = load_finished_matches(code, seasons)
     todos["_inicio"] = pd.to_datetime(todos["utc_date"], utc=True, errors="coerce")
-    jugados = todos[todos["season_start_year"] == season].sort_values("_inicio")
+    # matchday vacío = previa/eliminatoria de una copa (Conference): cuenta
+    # para la fuerza de los equipos, pero no es una jornada que se evalúe.
+    jugados = todos[(todos["season_start_year"] == season)
+                    & todos["matchday"].notna()].sort_values("_inicio")
 
     log = load_log()
     ya_logueados = set(tuple(r) for r in log[KEY_COLUMNS].itertuples(index=False)) if not log.empty else set()

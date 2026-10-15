@@ -49,6 +49,7 @@ SPORT_KEYS = {
     "FL1": "soccer_france_ligue_one",
     "CL": "soccer_uefa_champs_league",
     "EL": "soccer_uefa_europa_league",
+    "ECL": "soccer_uefa_europa_conference_league",
     "NT": "soccer_uefa_nations_league",
 }
 

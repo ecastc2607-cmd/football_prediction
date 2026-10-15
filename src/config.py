@@ -35,13 +35,15 @@ COMPETITIONS = {
     "FL1": "Ligue 1",
     "CL": "Champions League",
     "EL": "Europa League",
+    "ECL": "Conference League",
     "NT": "Selecciones (Nations League)",
 }
 
 # Competiciones que NO vienen de football-data.org (ver comentario arriba).
 # "NT" (selecciones) tampoco: football-data.org solo tiene Mundial/Eurocopa, y
 # nada de eso corre fuera de esos torneos — ver src/national_teams.py.
-GOAL_API_COMPETITIONS = {"EL", "NT"}
+# "ECL" (Conference League): mismo caso que la Europa League (oct-2026).
+GOAL_API_COMPETITIONS = {"EL", "ECL", "NT"}
 
 # Qué módulo aislado resuelve cada competición fuera de football-data.org. Los
 # puntos de integración (app.py, resolve_predictions.py, fetch_football_data.py)
@@ -51,6 +53,9 @@ def goal_api_module(code: str):
     if code == "EL":
         from . import europa_league
         return europa_league
+    if code == "ECL":
+        from . import conference_league
+        return conference_league
     if code == "NT":
         from . import national_teams
         return national_teams
@@ -88,7 +93,7 @@ def matches_path(code: str, season: int) -> Path:
 # src/cross_competition_strength.py. Distinto a GOAL_API_COMPETITIONS a
 # propósito: hoy coinciden en "EL", pero son dos decisiones independientes
 # (de dónde vienen los partidos vs. qué hacer si falta la fuerza de un equipo).
-CUP_STYLE_COMPETITIONS = {"EL"}
+CUP_STYLE_COMPETITIONS = {"EL", "ECL"}
 
 # Plan gratuito de football-data.org: 10 peticiones/minuto.
 REQUESTS_PER_MINUTE = 10
