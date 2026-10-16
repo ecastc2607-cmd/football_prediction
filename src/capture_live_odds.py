@@ -19,28 +19,36 @@ En cada corrida:
 
 No usa football-data.org ni Goal API (cero cuota): marcador, minuto y
 estadísticas salen de 365scores, y la fuerza de los equipos de los CSV locales.
-Sin partidos en juego ni por empezar, hace UNA consulta y termina.
+
+Ventana de partidos (pedido del usuario: que fuera de los partidos no haga
+nada): el Programador de tareas no sabe de fixtures, así que la tarea igual se
+dispara cada 5 min, pero lo PRIMERO que hace es mirar los horarios guardados
+en logs/match_schedule.json (se renuevan con 1 consulta cada
+SCHEDULE_MAX_AGE_HOURS). Si no hay un partido que empiece en menos de
+PREMATCH_HOURS o haya empezado hace menos de POSTMATCH_MINUTES, termina ahí:
+sin consultas, sin cargar el modelo, sin escribir nada (~0.3 s).
 
 Uso manual:
     python -m src.capture_live_odds
 """
 from __future__ import annotations
 
+import json
 import subprocess
 import traceback
 from datetime import datetime, timedelta, timezone
 
-import pandas as pd
-
-from . import config, live_odds, odds_api, scores365
-from .live_matches import REGULATION_MINUTES, adjusted_live_probabilities, live_win_probabilities
-from .live_snapshots import record as record_live_snapshot
-from .market_anchor import anchored_prematch_xg
-from .match_stats_log import get_cached_stats, log_match_stats
-from .matchday_predictions import matchday_predictions_df
+# Solo lo liviano arriba: fuera de la ventana de partidos la corrida termina
+# sin cargar pandas ni el modelo (ver _load_heavy).
+from . import config, scores365
 
 LOG_PATH = config.ROOT_DIR / "logs" / "capture_live_odds.log"
+SCHEDULE_PATH = config.ROOT_DIR / "logs" / "match_schedule.json"
+SCHEDULE_MAX_AGE_HOURS = 6
 PREMATCH_HOURS = 3
+# 90' + descanso + añadido + margen para guardar las estadísticas finales y
+# hacer el commit cuando ya no queda nada en juego.
+POSTMATCH_MINUTES = 150
 TRACKED_FILES = [
     "data/tracking/match_stats_log.csv",
     "data/tracking/live_odds_snapshots.csv",
@@ -64,6 +72,51 @@ def _todays_games() -> list[dict]:
         "endDate": (hoy + timedelta(days=1)).strftime("%d/%m/%Y"),
     })
     return (data or {}).get("games", [])
+
+
+# --- Ventana de partidos (sin cargar nada pesado) ---
+
+def _parse_utc(texto: str) -> datetime:
+    return datetime.strptime(texto, "%Y-%m-%dT%H:%M:%SZ").replace(tzinfo=timezone.utc)
+
+
+def _kickoffs(ahora: datetime) -> list[str]:
+    """Inicios (UTC) de ayer a mañana, del archivo local si tiene menos de
+    SCHEDULE_MAX_AGE_HOURS; si no, 1 consulta a 365scores y se guarda."""
+    try:
+        guardado = json.loads(SCHEDULE_PATH.read_text(encoding="utf-8"))
+        if ahora - _parse_utc(guardado["fetched_at"]) < timedelta(hours=SCHEDULE_MAX_AGE_HOURS):
+            return guardado["kickoffs"]
+    except (OSError, ValueError, KeyError):
+        pass
+    inicios = sorted({scores365._utc(g.get("startTime")) for g in _todays_games()} - {""})
+    SCHEDULE_PATH.parent.mkdir(parents=True, exist_ok=True)
+    SCHEDULE_PATH.write_text(json.dumps({"fetched_at": ahora.strftime("%Y-%m-%dT%H:%M:%SZ"),
+                                         "kickoffs": inicios}), encoding="utf-8")
+    return inicios
+
+
+def in_match_window(ahora: datetime | None = None) -> bool:
+    ahora = ahora or datetime.now(timezone.utc)
+    for k in _kickoffs(ahora):
+        inicio = _parse_utc(k)
+        if inicio - timedelta(hours=PREMATCH_HOURS) <= ahora <= inicio + timedelta(minutes=POSTMATCH_MINUTES):
+            return True
+    return False
+
+
+def _load_heavy() -> None:
+    """Importa pandas y el modelo recién cuando hay algo que capturar."""
+    global pd, live_odds, odds_api, REGULATION_MINUTES, adjusted_live_probabilities
+    global live_win_probabilities, record_live_snapshot, anchored_prematch_xg
+    global get_cached_stats, log_match_stats, matchday_predictions_df
+    import pandas as pd
+    from . import live_odds, odds_api
+    from .live_matches import REGULATION_MINUTES, adjusted_live_probabilities, live_win_probabilities
+    from .live_snapshots import record as record_live_snapshot
+    from .market_anchor import anchored_prematch_xg
+    from .match_stats_log import get_cached_stats, log_match_stats
+    from .matchday_predictions import matchday_predictions_df
 
 
 # --- Probabilidad del modelo para un partido de 365scores ---
@@ -214,6 +267,9 @@ def commit_if_changed() -> None:
 
 def main() -> None:
     try:
+        if not in_match_window():
+            return  # sin partidos cerca: nada que hacer (ni consultas ni escritura)
+        _load_heavy()
         games = _todays_games()
         en_juego = [g for g in games if g.get("statusGroup") == scores365.STATUS_LIVE]
         if en_juego:
