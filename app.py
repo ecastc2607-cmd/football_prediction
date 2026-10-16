@@ -52,6 +52,7 @@ from src.predict_matchday import LIVE_STATUSES, finished_fixtures
 from src.backtest_walkforward import SOURCE as BACKTEST_SOURCE
 from src.support_leagues import ensure_support_leagues
 from src.prediction_log import MARKETS
+from src.daily_plan import MAX_TICKETS, build_plans, ticket_rows
 from src.timezones import BOGOTA_TZ, format_bogota, to_bogota
 from src.value_tips import (LIVE_MODEL_WEIGHT, MAX_DAILY_EXPOSURE, MIN_MODEL_PROB, candidate_picks,
                              day_summary, evaluate, live_candidate_picks)
@@ -409,6 +410,63 @@ def load_odds_table(code: str, desde_utc: str, hasta_utc: str, paid_fallback: bo
 def load_live_odds(codes: tuple) -> list:
     """Cuotas en vivo de 365scores (gratis): 1 consulta + 1 por partido en juego."""
     return scores365.live_rows(list(codes), odds_api.PRICE_KEYS)
+
+
+def render_daily_plan(evaluado: pd.DataFrame, presupuesto: float, banca: float) -> None:
+    """Plan del día: el presupuesto concentrado en hasta 3 boletos (ver
+    src/daily_plan.py), con tres planes comparados por riesgo."""
+    st.subheader(f"🎯 Plan del día — hasta {MAX_TICKETS} apuestas")
+    planes = build_plans(evaluado, presupuesto)
+    if not planes:
+        st.info("Ningún pick tiene valor hoy: no hay plan que armar.")
+        return
+    comparacion = pd.DataFrame([{
+        "Plan": p.name,
+        "Boletos": len(p.tickets),
+        "Apostado": p.metrics["apostado"],
+        "Prob. de ganar algo": round(p.metrics["prob_gana"] * 100),
+        "Prob. de perderlo todo": round(p.metrics["prob_pierde_todo"] * 100),
+        "Ganancia esperada": round(p.metrics["esperado"]),
+        "Ganancia máxima": round(p.metrics["max_ganancia"]),
+    } for p in planes])
+    st.dataframe(
+        comparacion, hide_index=True, width="stretch",
+        column_config={
+            "Apostado": st.column_config.NumberColumn(format="$%d"),
+            "Prob. de ganar algo": st.column_config.NumberColumn(format="%d%%"),
+            "Prob. de perderlo todo": st.column_config.NumberColumn(format="%d%%"),
+            "Ganancia esperada": st.column_config.NumberColumn(
+                format="$%d", help="Promedio a la larga si se repitiera muchas veces este mismo plan."),
+            "Ganancia máxima": st.column_config.NumberColumn(format="$%d", help="Si aciertan todos los picks."),
+        },
+    )
+    nombres = [p.name for p in planes]
+    elegido = st.radio("Plan a jugar", nombres, index=nombres.index("Equilibrado") if "Equilibrado" in nombres else 0,
+                       horizontal=True, key="tips_plan")
+    plan = planes[nombres.index(elegido)]
+    st.caption(plan.description)
+    st.dataframe(
+        ticket_rows(plan, evaluado), hide_index=True, width="stretch",
+        column_config={
+            "Prob.": st.column_config.NumberColumn(format="%d%%"),
+            "Apostar": st.column_config.NumberColumn(format="$%d"),
+            "Recibes si acierta": st.column_config.NumberColumn(format="$%d"),
+            "Ganancia neta": st.column_config.NumberColumn(format="$%d"),
+        },
+    )
+    m = plan.metrics
+    st.caption(
+        f"Apuestas ${m['apostado']:,.0f} en {len(plan.tickets)} boleto(s), repartidos según el valor de cada uno. "
+        f"Ganas algo {m['prob_gana']:.0%} de las veces, lo pierdes todo {m['prob_pierde_todo']:.0%}; "
+        f"en promedio {m['esperado']:+,.0f} por día jugado así."
+    )
+    if banca and presupuesto > 0.2 * banca:
+        st.warning(
+            f"⚠ Este presupuesto es el {presupuesto / banca:.0%} de tu banca (${banca:,.0f}). Con "
+            f"{m['prob_pierde_todo']:.0%} de perderlo todo en un día, dos o tres días malos seguidos "
+            "(algo normal) se llevan buena parte de la banca. La regla prudente es no arriesgar más del "
+            "20% de la banca por día."
+        )
 
 
 def live_refresh_button(key: str) -> None:
@@ -1357,8 +1415,11 @@ with tab_tips:
             "- Los días sin picks con valor, lo correcto es **no apostar** — ese día no cuenta."
         )
 
-    col_banca, col_fecha, col_casas = st.columns([1, 1, 1.3])
+    col_banca, col_presu, col_fecha, col_casas = st.columns([1, 1, 1, 1.3])
     banca = col_banca.number_input("Banca (COP)", min_value=10_000, value=50_000, step=10_000, key="tips_banca")
+    presupuesto = col_presu.number_input(
+        "Presupuesto del día (COP)", min_value=5_000, value=50_000, step=5_000, key="tips_presupuesto",
+        help="Lo máximo que quieres apostar hoy, repartido en hasta 3 boletos (ver 'Plan del día').")
     hoy_col = datetime.now(BOGOTA_TZ).date()
     fecha_tips = col_fecha.date_input("Día", value=hoy_col, key="tips_fecha")
     expuesto_prepartido = 0.0  # fracción de la banca ya sugerida antes del inicio (tope diario compartido)
@@ -1486,77 +1547,79 @@ with tab_tips:
                         + ". Recomendación: no apostar — este día no cuenta para la meta."
                     )
             else:
-                st.subheader(f"✅ {resumen['n']} apuesta(s) SIMPLE(S) sugerida(s)")
-                st.caption("Cada apuesta va por separado, con su propio monto — no es una combinada: "
-                           "si una falla, las otras se cobran igual.")
-                # Todo en GANANCIA/PÉRDIDA NETA (antes "Si todo acierta" mostraba
-                # la banca final, $62.066, y se confundía con lo que se gana).
-                neta_todo = resumen["si_todo_acierta"] - banca
-                m1, m2, m3, m4 = st.columns(4)
-                m1.metric("Total a apostar", f"${resumen['apostado']:,.0f}",
-                          f"{resumen['apostado'] / banca:.0%} de la banca", delta_color="off")
-                m2.metric("Ganancia neta si todas aciertan", f"+${neta_todo:,.0f}",
-                          f"prob. {resumen['prob_todo_acierta']:.0%}", delta_color="off")
-                m3.metric("Pérdida si todas fallan", f"-${resumen['apostado']:,.0f}")
-                m4.metric("Ganancia esperada", f"+${resumen['esperado']:,.0f}",
-                          help="Promedio a la larga si se repitieran muchas veces apuestas como estas: "
-                               "unos días se gana más, otros se pierde. Es la medida de si conviene apostar.")
-                st.caption(f"Tu banca: ${banca:,.0f} → ${resumen['si_todo_acierta']:,.0f} si todas aciertan · "
-                           f"${resumen['si_todo_falla']:,.0f} si todas fallan.")
+                render_daily_plan(evaluado, float(presupuesto), float(banca))
+                with st.expander("Reparto por ¼ de Kelly sobre la banca (método anterior, montos chicos)"):
+                    st.subheader(f"✅ {resumen['n']} apuesta(s) SIMPLE(S) sugerida(s)")
+                    st.caption("Cada apuesta va por separado, con su propio monto — no es una combinada: "
+                               "si una falla, las otras se cobran igual.")
+                    # Todo en GANANCIA/PÉRDIDA NETA (antes "Si todo acierta" mostraba
+                    # la banca final, $62.066, y se confundía con lo que se gana).
+                    neta_todo = resumen["si_todo_acierta"] - banca
+                    m1, m2, m3, m4 = st.columns(4)
+                    m1.metric("Total a apostar", f"${resumen['apostado']:,.0f}",
+                              f"{resumen['apostado'] / banca:.0%} de la banca", delta_color="off")
+                    m2.metric("Ganancia neta si todas aciertan", f"+${neta_todo:,.0f}",
+                              f"prob. {resumen['prob_todo_acierta']:.0%}", delta_color="off")
+                    m3.metric("Pérdida si todas fallan", f"-${resumen['apostado']:,.0f}")
+                    m4.metric("Ganancia esperada", f"+${resumen['esperado']:,.0f}",
+                              help="Promedio a la larga si se repitieran muchas veces apuestas como estas: "
+                                   "unos días se gana más, otros se pierde. Es la medida de si conviene apostar.")
+                    st.caption(f"Tu banca: ${banca:,.0f} → ${resumen['si_todo_acierta']:,.0f} si todas aciertan · "
+                               f"${resumen['si_todo_falla']:,.0f} si todas fallan.")
 
-                apuestas = evaluado[evaluado["monto"] > 0]
-                st.dataframe(
-                    pd.DataFrame({
-                        "Partido": apuestas["partido"],
-                        "Hora": apuestas["utc_date"].map(format_bogota),
-                        "Mercado": apuestas["mercado"],
-                        "Pick": apuestas["pick"],
-                        "Cuota": apuestas["cuota"].astype(float).round(2),
-                        "Casa": apuestas["casa"].where(manual.reindex(apuestas.index).isna(), "Tu casa (manual)"),
-                        "Valor": (apuestas["valor"] * 100).round(1),
-                        "Apostar": apuestas["monto"],
-                        "Recibes si acierta": (apuestas["monto"] * apuestas["cuota"].astype(float)).round(0),
-                        "Ganancia neta": apuestas["ganancia"],
-                    }),
-                    hide_index=True, width="stretch",
-                    column_config={
-                        "Partido": st.column_config.Column(pinned=True),
-                        "Valor": st.column_config.NumberColumn(format="+%.1f%%"),
-                        "Apostar": st.column_config.NumberColumn(format="$%d"),
-                        "Recibes si acierta": st.column_config.NumberColumn(
-                            format="$%d", help="Monto × cuota: lo que paga la casa, incluida tu apuesta."),
-                        "Ganancia neta": st.column_config.NumberColumn(
-                            format="$%d", help="Lo que recibes menos lo apostado."),
-                    },
-                )
-                if len(apuestas) >= 2:
-                    # Comparación con armarlas como UNA combinada — la cuenta que
-                    # suele hacerse a mano (cuota = producto de las cuotas).
-                    cuota_comb = float(apuestas["cuota"].astype(float).prod())
-                    prob_comb = float(apuestas["prob_ajustada"].prod())
-                    with st.expander("¿Y si las combino en una sola apuesta?"):
-                        st.markdown(
-                            f"- Cuota combinada: **{cuota_comb:.2f}** (= "
-                            + " × ".join(f"{c:.2f}" for c in apuestas["cuota"].astype(float)) + ")\n"
-                            f"- Apostando los mismos **${resumen['apostado']:,.0f}**: recibes "
-                            f"**${resumen['apostado'] * cuota_comb:,.0f}** (ganancia neta "
-                            f"${resumen['apostado'] * (cuota_comb - 1):,.0f}) — pero **solo si aciertan las "
-                            f"{len(apuestas)}**: probabilidad **{prob_comb:.0%}**. Si falla una sola, pierdes todo.\n"
-                            f"- Por cada $10.000 en la combinada recibes ${10_000 * cuota_comb:,.0f} si acierta.\n"
-                            f"- Ganancia esperada de la combinada: **{prob_comb * cuota_comb - 1:+.1%}** por peso "
-                            f"apostado, contra **{resumen['esperado'] / resumen['apostado']:+.1%}** de las simples."
-                        )
-                        st.caption(
-                            f"Si cada pick de verdad tiene valor, la combinada lo multiplica — pero gana solo "
-                            f"{prob_comb:.0%} de las veces, y si el modelo se equivoca en UN pick, el error "
-                            "también se multiplica. Por eso la base son las simples (¼ de Kelly); si juegas la "
-                            "combinada, que sea con un monto chico (~1% de la banca, como en '🎯 Combinadas')."
-                        )
-                st.caption(
-                    "Apuestas simples, no combinadas. 'Valor' = ganancia esperada por cada peso apostado, "
-                    "ya descontando la mitad de la ventaja que ve el modelo (un modelo simple se equivoca "
-                    "más que el mercado). Montos: ¼ de Kelly, máx. 5% por apuesta y 20% por día."
-                )
+                    apuestas = evaluado[evaluado["monto"] > 0]
+                    st.dataframe(
+                        pd.DataFrame({
+                            "Partido": apuestas["partido"],
+                            "Hora": apuestas["utc_date"].map(format_bogota),
+                            "Mercado": apuestas["mercado"],
+                            "Pick": apuestas["pick"],
+                            "Cuota": apuestas["cuota"].astype(float).round(2),
+                            "Casa": apuestas["casa"].where(manual.reindex(apuestas.index).isna(), "Tu casa (manual)"),
+                            "Valor": (apuestas["valor"] * 100).round(1),
+                            "Apostar": apuestas["monto"],
+                            "Recibes si acierta": (apuestas["monto"] * apuestas["cuota"].astype(float)).round(0),
+                            "Ganancia neta": apuestas["ganancia"],
+                        }),
+                        hide_index=True, width="stretch",
+                        column_config={
+                            "Partido": st.column_config.Column(pinned=True),
+                            "Valor": st.column_config.NumberColumn(format="+%.1f%%"),
+                            "Apostar": st.column_config.NumberColumn(format="$%d"),
+                            "Recibes si acierta": st.column_config.NumberColumn(
+                                format="$%d", help="Monto × cuota: lo que paga la casa, incluida tu apuesta."),
+                            "Ganancia neta": st.column_config.NumberColumn(
+                                format="$%d", help="Lo que recibes menos lo apostado."),
+                        },
+                    )
+                    if len(apuestas) >= 2:
+                        # Comparación con armarlas como UNA combinada — la cuenta que
+                        # suele hacerse a mano (cuota = producto de las cuotas).
+                        cuota_comb = float(apuestas["cuota"].astype(float).prod())
+                        prob_comb = float(apuestas["prob_ajustada"].prod())
+                        with st.expander("¿Y si las combino en una sola apuesta?"):
+                            st.markdown(
+                                f"- Cuota combinada: **{cuota_comb:.2f}** (= "
+                                + " × ".join(f"{c:.2f}" for c in apuestas["cuota"].astype(float)) + ")\n"
+                                f"- Apostando los mismos **${resumen['apostado']:,.0f}**: recibes "
+                                f"**${resumen['apostado'] * cuota_comb:,.0f}** (ganancia neta "
+                                f"${resumen['apostado'] * (cuota_comb - 1):,.0f}) — pero **solo si aciertan las "
+                                f"{len(apuestas)}**: probabilidad **{prob_comb:.0%}**. Si falla una sola, pierdes todo.\n"
+                                f"- Por cada $10.000 en la combinada recibes ${10_000 * cuota_comb:,.0f} si acierta.\n"
+                                f"- Ganancia esperada de la combinada: **{prob_comb * cuota_comb - 1:+.1%}** por peso "
+                                f"apostado, contra **{resumen['esperado'] / resumen['apostado']:+.1%}** de las simples."
+                            )
+                            st.caption(
+                                f"Si cada pick de verdad tiene valor, la combinada lo multiplica — pero gana solo "
+                                f"{prob_comb:.0%} de las veces, y si el modelo se equivoca en UN pick, el error "
+                                "también se multiplica. Por eso la base son las simples (¼ de Kelly); si juegas la "
+                                "combinada, que sea con un monto chico (~1% de la banca, como en '🎯 Combinadas')."
+                            )
+                    st.caption(
+                        "Apuestas simples, no combinadas. 'Valor' = ganancia esperada por cada peso apostado, "
+                        "ya descontando la mitad de la ventaja que ve el modelo (un modelo simple se equivoca "
+                        "más que el mercado). Montos: ¼ de Kelly, máx. 5% por apuesta y 20% por día."
+                    )
 
             descartes = evaluado[evaluado["estado"] != "Apostar"]
             if not descartes.empty:
