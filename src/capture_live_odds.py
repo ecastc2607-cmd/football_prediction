@@ -28,8 +28,9 @@ SCHEDULE_MAX_AGE_HOURS). Si no hay un partido que empiece en menos de
 PREMATCH_HOURS o haya empezado hace menos de POSTMATCH_MINUTES, termina ahí:
 sin consultas, sin cargar el modelo, sin escribir nada (~0.3 s).
 
-Uso manual:
-    python -m src.capture_live_odds
+Uso:
+    python -m src.capture_live_odds              # una corrida (si hay ventana)
+    python -m src.capture_live_odds --servicio   # bucle: lo que arranca la tarea de Windows
 """
 from __future__ import annotations
 
@@ -265,28 +266,79 @@ def commit_if_changed() -> None:
         _log("commit y push" if push.returncode == 0 else f"commit hecho; push falló: {push.stderr.strip()[:200]}")
 
 
+def run_once() -> None:
+    """Una captura completa (sin mirar la ventana: eso lo decide quien llama)."""
+    _load_heavy()
+    _PRED_CACHE.clear()  # en modo servicio el proceso vive días: fuerzas frescas cada vez
+    games = _todays_games()
+    en_juego = [g for g in games if g.get("statusGroup") == scores365.STATUS_LIVE]
+    if en_juego:
+        filas = scores365.live_rows(list(scores365.COMPETITION_IDS), odds_api.PRICE_KEYS)
+        n = capture_live(filas)
+        _log(f"en vivo: {len(filas)} partidos, {n} fotos de cuota nuevas")
+    n_final = capture_final_stats(games)
+    if n_final:
+        _log(f"estadísticas finales: {n_final} partidos")
+    n_pre = capture_prematch(games)
+    if n_pre:
+        _log(f"prepartido: {n_pre} partidos con cuota")
+    if not en_juego:
+        commit_if_changed()
+
+
 def main() -> None:
+    """Una corrida suelta: solo trabaja dentro de la ventana de partidos."""
     try:
-        if not in_match_window():
-            return  # sin partidos cerca: nada que hacer (ni consultas ni escritura)
-        _load_heavy()
-        games = _todays_games()
-        en_juego = [g for g in games if g.get("statusGroup") == scores365.STATUS_LIVE]
-        if en_juego:
-            filas = scores365.live_rows(list(scores365.COMPETITION_IDS), odds_api.PRICE_KEYS)
-            n = capture_live(filas)
-            _log(f"en vivo: {len(filas)} partidos, {n} fotos de cuota nuevas")
-        n_final = capture_final_stats(games)
-        if n_final:
-            _log(f"estadísticas finales: {n_final} partidos")
-        n_pre = capture_prematch(games)
-        if n_pre:
-            _log(f"prepartido: {n_pre} partidos con cuota")
-        if not en_juego:
-            commit_if_changed()
+        if in_match_window():
+            run_once()
     except Exception:
         _log("ERROR " + traceback.format_exc().replace("\n", " | "))
 
 
+# --- Modo servicio: el código decide cuándo trabajar ---
+# La tarea de Windows solo lo arranca al iniciar sesión; de ahí en adelante
+# este bucle duerme hasta la próxima ventana de partidos y, dentro de ella,
+# captura cada CAPTURE_EVERY_MINUTES.
+CAPTURE_EVERY_MINUTES = 5
+# Nunca duerme más que esto de un tirón: así vuelve a mirar el reloj tras una
+# suspensión del PC y renueva los horarios por si se agregó o movió un partido.
+MAX_SLEEP_MINUTES = 30
+
+
+def next_window_start(ahora: datetime) -> datetime | None:
+    futuros = [_parse_utc(k) - timedelta(hours=PREMATCH_HOURS) for k in _kickoffs(ahora)]
+    futuros = [t for t in futuros if t > ahora]
+    return min(futuros) if futuros else None
+
+
+def serve() -> None:
+    import time
+
+    _log("servicio iniciado")
+    plan_anunciado = None
+    while True:
+        ahora = datetime.now(timezone.utc)
+        try:
+            if in_match_window(ahora):
+                plan_anunciado = None
+                run_once()
+                espera = timedelta(minutes=CAPTURE_EVERY_MINUTES)
+            else:
+                proxima = next_window_start(ahora)
+                if proxima != plan_anunciado:  # se anota solo cuando cambia el plan
+                    _log(f"en espera: próxima ventana {proxima:%Y-%m-%d %H:%M} UTC" if proxima
+                         else "en espera: sin partidos en los horarios guardados")
+                    plan_anunciado = proxima
+                espera = timedelta(minutes=MAX_SLEEP_MINUTES)
+                if proxima:
+                    espera = min(proxima - ahora, espera)
+        except Exception:
+            _log("ERROR " + traceback.format_exc().replace("\n", " | "))
+            espera = timedelta(minutes=CAPTURE_EVERY_MINUTES)
+        time.sleep(max(espera.total_seconds(), 30))
+
+
 if __name__ == "__main__":
-    main()
+    import sys
+
+    serve() if "--servicio" in sys.argv else main()
