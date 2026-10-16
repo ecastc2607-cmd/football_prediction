@@ -129,7 +129,8 @@ def ticket_rows(plan: Plan, picks: pd.DataFrame) -> pd.DataFrame:
         detalle = picks.loc[t.picks]
         filas.append({
             "Boleto": f"{n}. {t.kind}",
-            "Picks": " + ".join(f"{r.partido}: {r.pick} ({float(r.cuota):.2f})" for r in detalle.itertuples()),
+            # Un pick por línea: en una combinada larga, todo en una sola línea no se leía.
+            "Picks": "\n".join(f"{r.partido}: {r.pick} ({float(r.cuota):.2f})" for r in detalle.itertuples()),
             "Cuota": round(t.odds, 2),
             "Prob.": round(t.prob * 100),
             "Apostar": t.stake,

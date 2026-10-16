@@ -445,14 +445,19 @@ def render_daily_plan(evaluado: pd.DataFrame, presupuesto: float, banca: float) 
                        horizontal=True, key="tips_plan")
     plan = planes[nombres.index(elegido)]
     st.caption(plan.description)
-    st.dataframe(
-        ticket_rows(plan, evaluado), hide_index=True, width="stretch",
-        column_config={
-            "Prob.": st.column_config.NumberColumn(format="%d%%"),
-            "Apostar": st.column_config.NumberColumn(format="$%d"),
-            "Recibes si acierta": st.column_config.NumberColumn(format="$%d"),
-            "Ganancia neta": st.column_config.NumberColumn(format="$%d"),
-        },
+    # st.table (no st.dataframe): respeta los saltos de línea dentro de la
+    # celda, así cada pick de una combinada va en su propio renglón.
+    # El índice es la columna "Boleto" (st.table siempre muestra el índice);
+    # los números no se parten en pantallas angostas ("$12, / 000").
+    boletos = ticket_rows(plan, evaluado).set_index("Boleto")
+    pesos = lambda v: f"${v:,.0f}"  # noqa: E731
+    numeros = [c for c in boletos.columns if c != "Picks"]
+    st.table(
+        boletos.style
+        .format({"Cuota": "{:.2f}", "Prob.": "{:.0f}%", "Apostar": pesos,
+                 "Recibes si acierta": pesos, "Ganancia neta": pesos})
+        .set_properties(subset=["Picks"], **{"white-space": "pre-wrap", "min-width": "16em"})
+        .set_properties(subset=numeros, **{"white-space": "nowrap"})
     )
     m = plan.metrics
     st.caption(
