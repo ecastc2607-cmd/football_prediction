@@ -26,6 +26,20 @@ MARKETS = [
     ("Tarjetas", "hit_tarjetas"),
 ]
 STAT_MARKET_BASELINE = 0.5
+# Tipo de predicción (segmento de Reportes): las del modelo, o los picks que
+# entraron en boletos de Tips según su plan.
+TIPO_MODELO = "Modelo"
+TIPOS = [TIPO_MODELO, "Conservador", "Equilibrado", "Agresivo", "Combinadas del día", "En vivo"]
+# Nombre del mercado en tips_log -> el mismo nombre que usan las del modelo.
+TIPS_MARKET_NAMES = {"Resultado": "Resultado (1X2)", "Goles": "Goles +/-2.5"}
+DAY_MARKET_NAMES = {"Resultado": "1X2", "Goles": "Goles 2.5"}
+
+
+def plan_tipo(plan: str) -> str:
+    plan = str(plan or "")
+    if plan.startswith("Combinada del día"):
+        return "Combinadas del día"
+    return plan if plan in TIPOS else plan
 _SIDE = {"H": "Local", "D": "Empate", "A": "Visitante"}
 
 
@@ -108,7 +122,7 @@ def predictions_long(log: pd.DataFrame, include_backtest: bool = True) -> pd.Dat
             "home_team": sub["home_team"], "away_team": sub["away_team"],
             "mercado": mercado, "acierto": acierto[sub.index].astype(bool),
             "esperado": esperado[col][sub.index] if col in esperado else STAT_MARKET_BASELINE,
-            "source": sub["source"],
+            "source": sub["source"], "tipo": TIPO_MODELO,
             "pick": picks[col][sub.index] if col in picks else None,
             "marcador": sub["marcador"],
         }))
@@ -148,7 +162,8 @@ def tips_tickets(tlog: pd.DataFrame) -> pd.DataFrame:
             f"{l.home_team} vs {l.away_team}: {l.pick}" + (f" ({l.cuota:.2f})" if pd.notna(l.cuota) else "")
             for l in legs.itertuples())
         filas.append({
-            "fecha": primero["fecha"], "plan": primero["plan"], "tipo": primero["tipo"], "picks": picks,
+            "fecha": primero["fecha"], "plan": primero["plan"], "boleto": primero.get("boleto"),
+            "tipo": primero["tipo"], "picks": picks,
             "ligas": ", ".join(sorted(set(legs["competition"].dropna().astype(str)))),
             "cuota": primero["ticket_odds"], "prob": primero["ticket_prob"], "monto": primero["stake"],
             "resultado": primero["ticket_result"], "ganancia": primero["ticket_profit"],
@@ -177,12 +192,15 @@ def tips_legs_long(tlog: pd.DataFrame) -> pd.DataFrame:
     r = tlog[tlog["leg_result"].isin(["acierto", "fallo"])]
     if r.empty:
         return pd.DataFrame()
-    r = r.drop_duplicates(subset=["fecha", "home_team", "away_team", "market", "pick"])
+    r = r.assign(tipo=r["plan"].map(plan_tipo))
+    # Un mismo pick puede estar en varios boletos del mismo plan (sencilla y
+    # combinada): cuenta una vez por tipo.
+    r = r.drop_duplicates(subset=["tipo", "fecha", "home_team", "away_team", "market", "pick"])
     return pd.DataFrame({
         "fecha": pd.to_datetime(r["fecha"]).dt.date, "competition": r["competition"],
         "home_team": r["home_team"], "away_team": r["away_team"],
-        "mercado": "Tips: " + r["market"].astype(str), "acierto": r["leg_result"] == "acierto",
-        "esperado": pd.to_numeric(r["prob_ajustada"], errors="coerce"), "source": "tips",
+        "mercado": r["market"].map(lambda m: TIPS_MARKET_NAMES.get(m, m)), "acierto": r["leg_result"] == "acierto",
+        "esperado": pd.to_numeric(r["prob_ajustada"], errors="coerce"), "source": "tips", "tipo": r["tipo"],
         "pick": r["pick"].astype(str).str.split(" \(").str[0],
         "marcador": [f"{int(h)}-{int(a)}" if pd.notna(h) and pd.notna(a) else None
                      for h, a in zip(r["home_goals"], r["away_goals"])],
@@ -198,11 +216,12 @@ def _estado(valor, resuelto: bool) -> str:
     return "Acertado" if str(valor).strip().lower() in ("true", "1", "1.0") else "Fallado"
 
 
-def day_picks(log: pd.DataFrame, tlog: pd.DataFrame, fecha) -> pd.DataFrame:
-    """Un renglón por (partido, pick) del día `fecha` (Colombia): picks del
-    modelo (resueltos o no) y picks que entraron en boletos de Tips."""
+def day_picks(log: pd.DataFrame, tlog: pd.DataFrame, fecha, tipo: str = TIPO_MODELO) -> pd.DataFrame:
+    """Un renglón por (partido, pick) del día `fecha` (Colombia): con tipo
+    "Modelo", los picks del modelo (resueltos o no); con un plan de Tips, los
+    picks que entraron en boletos de ese plan."""
     filas = []
-    if not log.empty:
+    if tipo == TIPO_MODELO and not log.empty:
         dias = pd.Series([_fecha(u, l) for u, l in zip(log.get("utc_date", [None] * len(log)), log["logged_at"])],
                          index=log.index)
         d = log[dias == fecha].drop_duplicates(subset=["competition", "home_team", "away_team"])
@@ -234,14 +253,14 @@ def day_picks(log: pd.DataFrame, tlog: pd.DataFrame, fecha) -> pd.DataFrame:
                     if pd.notna(lado) and pd.notna(linea):
                         filas.append({**base, "mercado": mercado.capitalize(), "pick": f"{'Más' if lado == 'Sí' else 'Menos'} de {linea:g}",
                                       "prob": None, "estado": _estado(r.get(f"hit_{mercado}"), resuelto)})
-    if not tlog.empty:
-        t = tlog[pd.to_datetime(tlog["fecha"]).dt.date == fecha]
+    if tipo != TIPO_MODELO and not tlog.empty:
+        t = tlog[(pd.to_datetime(tlog["fecha"]).dt.date == fecha) & (tlog["plan"].map(plan_tipo) == tipo)]
         t = t.drop_duplicates(subset=["home_team", "away_team", "market", "pick"])
         for _, r in t.iterrows():
             marcador = (f"{int(r['home_goals'])}-{int(r['away_goals'])}" if pd.notna(r.get("home_goals")) else "vs")
             estado = {"acierto": "Acertado", "fallo": "Fallado"}.get(r["leg_result"], "Pendiente")
             filas.append({"partido": f"{r['home_team']} {marcador} {r['away_team']}", "competition": r["competition"],
-                          "utc_date": r["utc_date"], "mercado": f"Tips · {r['market']}", "pick": str(r["pick"]).split(" (")[0],
+                          "utc_date": r["utc_date"], "mercado": DAY_MARKET_NAMES.get(r["market"], r["market"]), "pick": str(r["pick"]).split(" (")[0],
                           "prob": (r["prob_ajustada"] * 100) if pd.notna(r.get("prob_ajustada")) else None,
                           "estado": estado})
     return pd.DataFrame(filas)

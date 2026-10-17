@@ -1965,11 +1965,17 @@ def _render_tips_report(boletos: pd.DataFrame, cerrados: pd.DataFrame) -> None:
     vista = boletos[boletos["plan"].isin(plan_sel)].sort_values("fecha", ascending=False).head(80)
     st.markdown(f"**Boletos** ({len(vista)} más recientes) — ✔ acertado · ✘ fallado · · pendiente")
     pesos = lambda v: f"${v:,.0f}" if pd.notna(v) else "-"  # noqa: E731
+    # Índice único (el Styler no admite repetidos: varios boletos del mismo día).
+    etiquetas, vistos = [], {}
+    for f, pl, b in zip(vista["fecha"], vista["plan"], vista["boleto"]):
+        base = f"{f} · {pl}" + (f" #{int(b)}" if pd.notna(b) else "")
+        vistos[base] = vistos.get(base, 0) + 1
+        etiquetas.append(base if vistos[base] == 1 else f"{base} ({vistos[base]})")
     st.table(
-        vista[["fecha", "plan", "tipo", "picks", "cuota", "monto", "resultado", "ganancia"]]
-        .rename(columns={"fecha": "Día", "plan": "Plan", "tipo": "Tipo", "picks": "Picks", "cuota": "Cuota",
-                         "monto": "Monto", "resultado": "Resultado", "ganancia": "Ganancia"})
-        .set_index("Día").style
+        vista[["tipo", "picks", "cuota", "monto", "resultado", "ganancia"]]
+        .rename(columns={"tipo": "Tipo", "picks": "Picks", "cuota": "Cuota", "monto": "Monto",
+                         "resultado": "Resultado", "ganancia": "Ganancia"})
+        .set_axis(pd.Index(etiquetas, name="Boleto"), axis=0).style
         .format({"Cuota": lambda v: f"{v:.2f}" if pd.notna(v) else "-", "Monto": pesos, "Ganancia": pesos})
         .set_properties(subset=["Picks"], **{"white-space": "pre-wrap", "min-width": "18em"})
         .set_properties(subset=["Cuota", "Monto", "Ganancia"], **{"white-space": "nowrap"})
@@ -1982,20 +1988,22 @@ DAY_MARKETS = ["1X2", "Doble oportunidad", "Goles 2.5", "Ambos anotan", "Corners
 
 
 def _render_day_matches(log_pred: pd.DataFrame, log_tips: pd.DataFrame, ligas: list, equipo: str,
-                        incluir_bt: bool, dia_defecto) -> None:
+                        incluir_bt: bool, dia_defecto, tipo: str = reports.TIPO_MODELO) -> None:
     """Todos los partidos de un día, con el pick de cada mercado y si se ganó."""
     hoy = datetime.now(BOGOTA_TZ).date()
     dia = st.date_input("Día", value=min(dia_defecto, hoy), max_value=hoy, key="rep_dia")
     log = log_pred
     if not incluir_bt and not log.empty:
         log = log[~log["source"].astype(str).str.startswith("backtest")]
-    picks = reports.day_picks(log, log_tips, dia)
+    picks = reports.day_picks(log, log_tips, dia, tipo)
     if not picks.empty:
         picks = picks[picks["competition"].isin(ligas)]
         if equipo != "Todos":
             picks = picks[picks["partido"].str.contains(equipo, regex=False)]
     if picks.empty:
-        st.info("No hay predicciones registradas para ese día con los filtros elegidos.")
+        st.info("No hay predicciones registradas para ese día con los filtros elegidos."
+                + ("" if tipo == reports.TIPO_MODELO else
+                   f" Los boletos de Tips se guardan desde el 16-oct: revisa días posteriores o el tipo 'Modelo'."))
         return
 
     resueltos = picks[picks["estado"] != "Pendiente"]
@@ -2010,7 +2018,7 @@ def _render_day_matches(log_pred: pd.DataFrame, log_tips: pd.DataFrame, ligas: l
         orden=pd.to_datetime(picks["utc_date"], utc=True, errors="coerce"),
     )
     mercados = [m for m in DAY_MARKETS if m in set(picks["mercado"])]
-    mercados += sorted(m for m in set(picks["mercado"]) if m not in mercados)  # "Tips · …" al final
+    mercados += sorted(m for m in set(picks["mercado"]) if m not in mercados)
     partidos = picks.sort_values(["orden", "partido"])["partido"].drop_duplicates().tolist()
     base = alt.Chart(picks).encode(
         x=alt.X("mercado:N", sort=mercados, title=None, axis=alt.Axis(orient="top", labelAngle=0, labelLimit=140)),
@@ -2026,10 +2034,11 @@ def _render_day_matches(log_pred: pd.DataFrame, log_tips: pd.DataFrame, ligas: l
                         legend=alt.Legend(orient="top")))
     texto = base.mark_text(fontSize=11, color="#ffffff").encode(text="etiqueta:N")
     st.altair_chart((celdas + texto).properties(height=alt.Step(38)), use_container_width=True)
-    st.caption("Cada celda es el pick del modelo para ese mercado (con su probabilidad): ✔ acertado · ✘ fallado · "
-               "· pendiente. Doble oportunidad = la más probable entre 1X y X2. Corners/faltas/tarjetas: más o "
-               "menos que la línea (se resuelven cuando hay estadísticas finales). 'Tips · …' = picks que "
-               "entraron en boletos de la pestaña Tips.")
+    st.caption(("Cada celda es el pick del modelo para ese mercado" if tipo == reports.TIPO_MODELO
+                else f"Cada celda es un pick que entró en boletos del plan '{tipo}' de Tips")
+               + " (con su probabilidad): ✔ acertado · ✘ fallado · · pendiente. Doble oportunidad = la más "
+               "probable entre 1X y X2. Corners/faltas/tarjetas: más o menos que la línea (se resuelven cuando "
+               "hay estadísticas finales).")
 
 
 with tab_reportes:
@@ -2050,6 +2059,12 @@ with tab_reportes:
     incluir_bt = f4.toggle("Incluir backtests", value=True, key="rep_backtest",
                            help="Partidos ya jugados predichos después, solo con datos anteriores a cada uno "
                                 "(sin trampa). Suman muestra; apágalo para ver solo lo predicho en su momento.")
+    # Segmento para todas las subpestañas: las predicciones del modelo, o los
+    # picks de boletos de Tips de un plan. Una sola opción a la vez: un mismo
+    # pick puede ser del modelo y de un boleto, y mezclarlos lo contaría dos veces.
+    tipo = st.radio("Tipo de predicción", reports.TIPOS, horizontal=True, key="rep_tipo",
+                    help="Modelo = todas las predicciones del modelo. Conservador/Equilibrado/Agresivo = picks de "
+                         "los planes del día de Tips; Combinadas del día y En vivo = sus boletos.")
     largo = reports.predictions_long(log_pred, include_backtest=incluir_bt)
     largo_tips = reports.tips_legs_long(log_tips)
     todo = pd.concat([largo, largo_tips], ignore_index=True) if not largo_tips.empty else largo
@@ -2071,22 +2086,26 @@ with tab_reportes:
         ligas_disp = sorted(todo["competition"].dropna().unique())
         ligas = f2.multiselect("Ligas", ligas_disp, default=ligas_disp, key="rep_ligas",
                                format_func=lambda c: config.COMPETITIONS.get(c, c))
-        datos = todo[(fechas >= desde) & (fechas <= hasta) & todo["competition"].isin(ligas)]
+        datos = todo[(fechas >= desde) & (fechas <= hasta) & todo["competition"].isin(ligas)
+                     & (todo["tipo"] == tipo)]
         equipos_disp = sorted(set(datos["home_team"].dropna()) | set(datos["away_team"].dropna()))
         equipo = f3.selectbox("Equipo", ["Todos", *equipos_disp], key="rep_equipo")
         if equipo != "Todos":
             datos = datos[(datos["home_team"] == equipo) | (datos["away_team"] == equipo)]
-        modelo = datos[datos["source"] != "tips"]
+        modelo = datos
 
         boletos = reports.tips_tickets(log_tips)
         if not boletos.empty:
             fb = pd.to_datetime(boletos["fecha"]).dt.date
             boletos = boletos[(fb >= desde) & (fb <= hasta)]
+            if tipo != reports.TIPO_MODELO:
+                boletos = boletos[boletos["plan"].map(reports.plan_tipo) == tipo]
         cerrados = boletos[boletos["resultado"].isin(["ganada", "perdida"])] if not boletos.empty else boletos
 
         k1, k2, k3, k4 = st.columns(4)
-        k1.metric("Predicciones resueltas", f"{len(modelo):,}")
-        k2.metric("Acierto del modelo", f"{modelo['acierto'].mean():.0%}" if len(modelo) else "-",
+        k1.metric("Predicciones resueltas" if tipo == reports.TIPO_MODELO else f"Picks resueltos · {tipo}",
+                  f"{len(modelo):,}")
+        k2.metric("Acierto", f"{modelo['acierto'].mean():.0%}" if len(modelo) else "-",
                   f"esperado {modelo['esperado'].mean():.0%}" if len(modelo) else None, delta_color="off")
         k3.metric("Boletos de Tips resueltos", f"{len(cerrados)}",
                   f"{(cerrados['resultado'] == 'ganada').mean():.0%} ganados" if len(cerrados) else None,
@@ -2099,7 +2118,7 @@ with tab_reportes:
              "Boletos de Tips"])
 
         with t_partidos:
-            _render_day_matches(log_pred, log_tips, ligas, equipo, incluir_bt, hasta)
+            _render_day_matches(log_pred, log_tips, ligas, equipo, incluir_bt, hasta, tipo)
 
         with t_dia:
             # Filtros propios de esta subpestaña (sobre lo ya filtrado arriba).
@@ -2173,15 +2192,19 @@ with tab_reportes:
                                             | (datos_equipo["away_team"] == elegido)])
 
         with t_mercado:
-            tabla = reports.summarize(datos, ["mercado"])
+            ligas_merc_disp = sorted(datos["competition"].dropna().unique())
+            ligas_merc = st.multiselect("Liga", ligas_merc_disp, default=ligas_merc_disp, key="rep_mercado_ligas",
+                                        format_func=lambda c: config.COMPETITIONS.get(c, c))
+            datos_merc = datos[datos["competition"].isin(ligas_merc)]
+            tabla = reports.summarize(datos_merc, ["mercado"])
             if not tabla.empty:
                 st.altair_chart(_bars_vs_expected(tabla, "mercado", "Mercado"), use_container_width=True)
                 _summary_table(tabla.sort_values("acierto_pct", ascending=False), "mercado", "Mercado")
-                st.caption(PICK_NOTE + " 'Tips: …' son los picks que entraron en boletos de la pestaña Tips.")
+                st.caption(PICK_NOTE)
                 merc_det = st.selectbox("Ver el detalle de predicciones del mercado",
                                         tabla.sort_values("acierto_pct", ascending=False)["mercado"].tolist(),
                                         key="rep_mercado_detalle")
-                _render_detail(datos[datos["mercado"] == merc_det])
+                _render_detail(datos_merc[datos_merc["mercado"] == merc_det])
 
         with t_fd:
             _render_strengths_map(datos)
