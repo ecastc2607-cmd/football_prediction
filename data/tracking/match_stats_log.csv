@@ -1239,3 +1239,53 @@ EL,2026,2.0,2026-10-15T19:00:00Z,Dinamo Zagreb,Anderlecht,Dinamo Zagreb,True,6.0
 EL,2026,2.0,2026-10-15T19:00:00Z,Dinamo Zagreb,Anderlecht,Anderlecht,False,2.0,13.0,2.0,0.0,55.0,6.0,10.0,0.0
 ECL,2026,1.0,2026-10-15T19:00:00Z,Brighton & Hove Albion,Kauno Žalgiris,Brighton & Hove Albion,True,13.0,11.0,0.0,0.0,78.0,9.0,36.0,0.0
 ECL,2026,1.0,2026-10-15T19:00:00Z,Brighton & Hove Albion,Kauno Žalgiris,Kauno Žalgiris,False,0.0,8.0,1.0,0.0,22.0,1.0,4.0,0.0
+BL1,2026,6.0,2026-10-16T18:30:00Z,Eintracht Frankfurt,1. FC Köln,Eintracht Frankfurt,True,7.0,8.0,2.0,0.0,56.0,7.0,15.0,1.0
+BL1,2026,6.0,2026-10-16T18:30:00Z,Eintracht Frankfurt,1. FC Köln,1. FC Köln,False,3.0,17.0,2.0,0.0,44.0,3.0,9.0,0.0
+SA,2026,7.0,2026-10-16T18:45:00Z,Frosinone Calcio,US Sassuolo Calcio,Frosinone Calcio,True,5.0,13.0,0.0,0.0,42.0,10.0,21.0,3.0
+SA,2026,7.0,2026-10-16T18:45:00Z,Frosinone Calcio,US Sassuolo Calcio,US Sassuolo Calcio,False,4.0,11.0,1.0,0.0,58.0,6.0,14.0,3.0
+FL1,2026,7.0,2026-10-16T18:45:00Z,Le Mans FC,Toulouse FC,Le Mans FC,True,2.0,15.0,2.0,0.0,53.0,1.0,11.0,0.0
+FL1,2026,7.0,2026-10-16T18:45:00Z,Le Mans FC,Toulouse FC,Toulouse FC,False,2.0,9.0,1.0,0.0,47.0,5.0,13.0,3.0
+PD,2026,9.0,2026-10-16T19:00:00Z,RC Deportivo La Coruña,Levante UD,RC Deportivo La Coruña,True,3.0,17.0,3.0,0.0,46.0,5.0,13.0,1.0
+PD,2026,9.0,2026-10-16T19:00:00Z,RC Deportivo La Coruña,Levante UD,Levante UD,False,5.0,12.0,2.0,0.0,54.0,4.0,11.0,0.0
+PL,2026,7.0,2026-10-17T11:30:00Z,Everton FC,Chelsea FC,Everton FC,True,5.0,8.0,3.0,0.0,47.0,5.0,6.0,4.0
+PL,2026,7.0,2026-10-17T11:30:00Z,Everton FC,Chelsea FC,Chelsea FC,False,7.0,15.0,4.0,0.0,53.0,7.0,18.0,1.0
+PD,2026,9.0,2026-10-17T12:00:00Z,RCD Espanyol de Barcelona,Club Atlético de Madrid,RCD Espanyol de Barcelona,True,4.0,10.0,2.0,0.0,29.0,2.0,10.0,0.0
+PD,2026,9.0,2026-10-17T12:00:00Z,RCD Espanyol de Barcelona,Club Atlético de Madrid,Club Atlético de Madrid,False,12.0,9.0,5.0,0.0,71.0,6.0,19.0,4.0
+SA,2026,7.0,2026-10-17T13:00:00Z,Venezia FC,SSC Napoli,Venezia FC,True,0.0,7.0,2.0,0.0,29.0,4.0,9.0,0.0
+SA,2026,7.0,2026-10-17T13:00:00Z,Venezia FC,SSC Napoli,SSC Napoli,False,12.0,6.0,0.0,0.0,71.0,10.0,29.0,5.0
+BL1,2026,6.0,2026-10-17T13:30:00Z,SV Werder Bremen,SC Paderborn 07,SV Werder Bremen,True,5.0,10.0,1.0,0.0,61.0,11.0,18.0,1.0
+BL1,2026,6.0,2026-10-17T13:30:00Z,SV Werder Bremen,SC Paderborn 07,SC Paderborn 07,False,3.0,14.0,1.0,0.0,39.0,4.0,11.0,0.0
+BL1,2026,6.0,2026-10-17T13:30:00Z,Hamburger SV,VfB Stuttgart,Hamburger SV,True,5.0,12.0,3.0,0.0,34.0,3.0,14.0,0.0
+BL1,2026,6.0,2026-10-17T13:30:00Z,Hamburger SV,VfB Stuttgart,VfB Stuttgart,False,8.0,9.0,0.0,0.0,66.0,4.0,21.0,0.0
+BL1,2026,6.0,2026-10-17T13:30:00Z,FC Schalke 04,1. FSV Mainz 05,FC Schalke 04,True,4.0,12.0,0.0,0.0,46.0,3.0,9.0,3.0
+BL1,2026,6.0,2026-10-17T13:30:00Z,FC Schalke 04,1. FSV Mainz 05,1. FSV Mainz 05,False,1.0,20.0,2.0,0.0,54.0,6.0,10.0,7.0
+BL1,2026,6.0,2026-10-17T13:30:00Z,1. FC Union Berlin,Borussia Dortmund,1. FC Union Berlin,True,4.0,13.0,3.0,0.0,38.0,0.0,11.0,0.0
+BL1,2026,6.0,2026-10-17T13:30:00Z,1. FC Union Berlin,Borussia Dortmund,Borussia Dortmund,False,5.0,12.0,3.0,0.0,62.0,2.0,12.0,1.0
+BL1,2026,6.0,2026-10-17T13:30:00Z,SV 07 Elversberg,FC Augsburg,SV 07 Elversberg,True,4.0,16.0,4.0,0.0,40.0,8.0,19.0,3.0
+BL1,2026,6.0,2026-10-17T13:30:00Z,SV 07 Elversberg,FC Augsburg,FC Augsburg,False,12.0,14.0,3.0,0.0,60.0,8.0,29.0,2.0
+PL,2026,7.0,2026-10-17T14:00:00Z,Fulham FC,Hull City AFC,Fulham FC,True,11.0,13.0,2.0,1.0,76.0,6.0,18.0,1.0
+PL,2026,7.0,2026-10-17T14:00:00Z,Fulham FC,Hull City AFC,Hull City AFC,False,2.0,11.0,2.0,0.0,24.0,0.0,5.0,2.0
+PL,2026,7.0,2026-10-17T14:00:00Z,Manchester City FC,Ipswich Town FC,Manchester City FC,True,2.0,8.0,1.0,0.0,70.0,6.0,19.0,2.0
+PL,2026,7.0,2026-10-17T14:00:00Z,Manchester City FC,Ipswich Town FC,Ipswich Town FC,False,3.0,16.0,2.0,0.0,30.0,3.0,8.0,5.0
+PL,2026,7.0,2026-10-17T14:00:00Z,Brentford FC,Liverpool FC,Brentford FC,True,3.0,7.0,3.0,2.0,40.0,2.0,10.0,1.0
+PL,2026,7.0,2026-10-17T14:00:00Z,Brentford FC,Liverpool FC,Liverpool FC,False,9.0,13.0,3.0,0.0,60.0,5.0,21.0,2.0
+PD,2026,9.0,2026-10-17T14:15:00Z,Villarreal CF,Elche CF,Villarreal CF,True,10.0,12.0,2.0,0.0,58.0,7.0,20.0,6.0
+PD,2026,9.0,2026-10-17T14:15:00Z,Villarreal CF,Elche CF,Elche CF,False,5.0,7.0,4.0,0.0,42.0,1.0,7.0,0.0
+FL1,2026,7.0,2026-10-17T15:15:00Z,RC Strasbourg Alsace,Paris Saint-Germain FC,RC Strasbourg Alsace,True,3.0,12.0,2.0,0.0,27.0,8.0,16.0,2.0
+FL1,2026,7.0,2026-10-17T15:15:00Z,RC Strasbourg Alsace,Paris Saint-Germain FC,Paris Saint-Germain FC,False,6.0,6.0,0.0,0.0,73.0,7.0,18.0,0.0
+SA,2026,7.0,2026-10-17T16:00:00Z,Bologna FC 1909,FC Internazionale Milano,Bologna FC 1909,True,2.0,8.0,4.0,0.0,35.0,4.0,11.0,3.0
+SA,2026,7.0,2026-10-17T16:00:00Z,Bologna FC 1909,FC Internazionale Milano,FC Internazionale Milano,False,6.0,11.0,3.0,0.0,65.0,8.0,17.0,3.0
+PL,2026,7.0,2026-10-17T16:30:00Z,Newcastle United FC,Aston Villa FC,Newcastle United FC,True,4.0,14.0,6.0,0.0,49.0,1.0,16.0,5.0
+PL,2026,7.0,2026-10-17T16:30:00Z,Newcastle United FC,Aston Villa FC,Aston Villa FC,False,5.0,11.0,2.0,0.0,51.0,3.0,15.0,0.0
+PD,2026,9.0,2026-10-17T16:30:00Z,Real Betis Balompié,FC Barcelona,Real Betis Balompié,True,2.0,10.0,3.0,1.0,31.0,5.0,6.0,1.0
+PD,2026,9.0,2026-10-17T16:30:00Z,Real Betis Balompié,FC Barcelona,FC Barcelona,False,5.0,11.0,2.0,0.0,69.0,10.0,18.0,2.0
+BL1,2026,6.0,2026-10-17T16:30:00Z,FC Bayern München,RB Leipzig,FC Bayern München,True,11.0,15.0,1.0,0.0,62.0,17.0,29.0,4.0
+BL1,2026,6.0,2026-10-17T16:30:00Z,FC Bayern München,RB Leipzig,RB Leipzig,False,3.0,6.0,0.0,0.0,38.0,4.0,12.0,2.0
+SA,2026,7.0,2026-10-17T18:45:00Z,AS Roma,Genoa CFC,AS Roma,True,5.0,10.0,2.0,0.0,66.0,5.0,15.0,3.0
+SA,2026,7.0,2026-10-17T18:45:00Z,AS Roma,Genoa CFC,Genoa CFC,False,3.0,7.0,3.0,0.0,34.0,1.0,9.0,2.0
+FL1,2026,7.0,2026-10-17T18:45:00Z,ES Troyes AC,Racing Club de Lens,ES Troyes AC,True,6.0,13.0,2.0,0.0,41.0,5.0,12.0,0.0
+FL1,2026,7.0,2026-10-17T18:45:00Z,ES Troyes AC,Racing Club de Lens,Racing Club de Lens,False,4.0,11.0,2.0,0.0,59.0,3.0,13.0,1.0
+FL1,2026,7.0,2026-10-17T18:45:00Z,Lille OSC,Stade Brestois 29,Lille OSC,True,5.0,12.0,1.0,0.0,67.0,5.0,17.0,3.0
+FL1,2026,7.0,2026-10-17T18:45:00Z,Lille OSC,Stade Brestois 29,Stade Brestois 29,False,2.0,20.0,2.0,0.0,33.0,2.0,8.0,0.0
+PD,2026,9.0,2026-10-17T19:00:00Z,Valencia CF,Athletic Club,Valencia CF,True,2.0,14.0,3.0,0.0,37.0,3.0,16.0,2.0
+PD,2026,9.0,2026-10-17T19:00:00Z,Valencia CF,Athletic Club,Athletic Club,False,6.0,13.0,3.0,0.0,63.0,2.0,9.0,1.0
