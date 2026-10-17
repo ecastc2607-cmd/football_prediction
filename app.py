@@ -1810,6 +1810,11 @@ def _bars_vs_expected(tabla: pd.DataFrame, categoria: str, titulo: str, horizont
 
 
 MAX_TEAMS_CHART = 30
+# Aclaración pedida tras una duda real (Deportivo 1-1 Levante, oct-2026): el
+# mercado mide si ACERTÓ EL PICK del modelo, que puede ser Sí o No / más o menos.
+PICK_NOTE = ("Cada mercado mide si acertó el **pick del modelo**, no si pasó el evento: en Ambos anotan el "
+             "pick puede ser Sí o No (y en goles, más o menos de 2.5). Ej.: si el modelo dijo 'No' y quedó 1-1, "
+             "es un fallo. El pick de cada partido se ve en 'Partidos del día'.")
 
 
 def _diverging_bars(tabla: pd.DataFrame, categoria: str, titulo: str):
@@ -2119,13 +2124,14 @@ with tab_reportes:
                            + (f" Se muestran los {MAX_TEAMS_CHART} con la diferencia más marcada de {len(tabla)}; "
                               "la tabla de abajo tiene todos." if len(tabla) > MAX_TEAMS_CHART else ""))
                 _summary_table(tabla, "equipo", "Equipo")
+                st.caption(PICK_NOTE + " Cada predicción cuenta para los dos equipos del partido.")
 
         with t_mercado:
             tabla = reports.summarize(datos, ["mercado"])
             if not tabla.empty:
                 st.altair_chart(_bars_vs_expected(tabla, "mercado", "Mercado"), use_container_width=True)
                 _summary_table(tabla.sort_values("acierto_pct", ascending=False), "mercado", "Mercado")
-                st.caption("'Tips: …' son los picks que entraron en boletos de la pestaña Tips.")
+                st.caption(PICK_NOTE + " 'Tips: …' son los picks que entraron en boletos de la pestaña Tips.")
 
         with t_fd:
             _render_strengths_map(datos)
