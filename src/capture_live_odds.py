@@ -15,7 +15,11 @@ En cada corrida:
      última antes del inicio es la "cuota de cierre" que ancla el ajuste en vivo.
   3. Partidos ya terminados: corners/faltas/tarjetas FINALES de 365scores en
      match_stats_log.csv (si no estaban), para no pedirlos a Goal API.
-  4. Si ya no hay nada en juego y esos archivos cambiaron: commit + push.
+  4. Tips del día: una vez por día arma el Plan del día (mismas reglas que la
+     pestaña Tips, presupuesto TIPS_BUDGET) y lo guarda en tips_log.csv; y
+     resuelve los boletos cuyos partidos ya terminaron (pestaña Reportes). Así
+     el historial no depende de abrir la app (en Streamlit Cloud no se guarda).
+  5. Si ya no hay nada en juego y esos archivos cambiaron: commit + push.
 
 No usa football-data.org ni Goal API (cero cuota): marcador, minuto y
 estadísticas salen de 365scores, y la fuerza de los equipos de los CSV locales.
@@ -51,6 +55,7 @@ PREMATCH_HOURS = 3
 # hacer el commit cuando ya no queda nada en juego.
 POSTMATCH_MINUTES = 150
 TRACKED_FILES = [
+    "data/tracking/tips_log.csv",
     "data/tracking/match_stats_log.csv",
     "data/tracking/live_odds_snapshots.csv",
     "data/tracking/odds_snapshots.csv",
@@ -106,11 +111,15 @@ def in_match_window(ahora: datetime | None = None) -> bool:
     return False
 
 
+TIPS_BUDGET = 50_000
+TIPS_BANKROLL = 250_000  # solo para el monto de ¼ de Kelly; el plan usa TIPS_BUDGET
+
+
 def _load_heavy() -> None:
     """Importa pandas y el modelo recién cuando hay algo que capturar."""
     global pd, live_odds, odds_api, REGULATION_MINUTES, adjusted_live_probabilities
     global live_win_probabilities, record_live_snapshot, anchored_prematch_xg
-    global get_cached_stats, log_match_stats, matchday_predictions_df
+    global get_cached_stats, log_match_stats, matchday_predictions_df, tips_log
     import pandas as pd
     from . import live_odds, odds_api
     from .live_matches import REGULATION_MINUTES, adjusted_live_probabilities, live_win_probabilities
@@ -118,6 +127,7 @@ def _load_heavy() -> None:
     from .market_anchor import anchored_prematch_xg
     from .match_stats_log import get_cached_stats, log_match_stats
     from .matchday_predictions import matchday_predictions_df
+    from . import tips_log
 
 
 # --- Probabilidad del modelo para un partido de 365scores ---
@@ -226,6 +236,62 @@ def capture_final_stats(games: list[dict]) -> int:
     return guardados
 
 
+def local_day_predictions(fecha: str) -> "pd.DataFrame":
+    """Predicciones de los partidos por jugar en `fecha` (día de Colombia) de
+    todas las competiciones, solo con los CSV locales (sin consultar APIs)."""
+    from .timezones import to_bogota
+
+    frames = []
+    for code in config.COMPETITIONS:
+        archivos = sorted(config.PROCESSED_DIR.glob(f"matches_{code}_*.csv"), reverse=True)[:1]
+        if not archivos:
+            continue
+        df = pd.read_csv(archivos[0])
+        if "matchday" in df.columns:
+            df = df[df["matchday"].notna()]
+        dia = df["utc_date"].map(lambda d: to_bogota(d).date().isoformat() if to_bogota(d) else "")
+        del_dia = df[(dia == fecha) & df["status"].isin(["SCHEDULED", "TIMED"])]
+        for (season, md), partidos in del_dia.groupby(["season_start_year", "matchday"]):
+            try:
+                preds = matchday_predictions_df(code, int(season), int(md), seasons_back=1)
+            except Exception:
+                continue
+            claves = set(zip(partidos["home_team"], partidos["away_team"]))
+            frames.append(preds[[(h, a) in claves for h, a in zip(preds["home_team"], preds["away_team"])]])
+    return pd.concat(frames, ignore_index=True) if frames else pd.DataFrame()
+
+
+def capture_daily_tips(fecha: str) -> int:
+    """Arma y guarda el Plan del día (una vez por día, antes del primer partido:
+    la ventana abre PREMATCH_HOURS antes). Devuelve cuántos boletos guardó."""
+    from .daily_plan import build_plans
+    from .value_tips import candidate_picks, evaluate
+
+    hist = tips_log.load()
+    if not hist.empty and ((hist["fecha"] == fecha) & (hist["origin"] == "capture_task")).any():
+        return 0
+    preds = local_day_predictions(fecha)
+    candidatos = candidate_picks(preds) if not preds.empty else pd.DataFrame()
+    if candidatos.empty:
+        return 0
+    inicio = datetime.strptime(fecha, "%Y-%m-%d").replace(hour=5, tzinfo=timezone.utc)  # 00:00 Colombia (UTC-5)
+    desde, hasta = inicio.strftime("%Y-%m-%dT%H:%M:%SZ"), (inicio + timedelta(days=1)).strftime("%Y-%m-%dT%H:%M:%SZ")
+    candidatos["cuota"] = None
+    for code in candidatos["competition"].unique():
+        eventos, _, _ = odds_api.get_odds_table(code, desde, hasta, paid_fallback=False)
+        for idx, r in candidatos[candidatos["competition"] == code].iterrows():
+            ev = odds_api.find_event(eventos, r.home_team, r.away_team, r.utc_date, r.home_team_short, r.away_team_short)
+            precio = odds_api.row_price(ev, r.odds_key) if ev else None
+            if precio:
+                candidatos.at[idx, "cuota"] = precio[0]
+    evaluado = evaluate(candidatos, TIPS_BANKROLL)
+    guardados = 0
+    for plan in build_plans(evaluado, TIPS_BUDGET):
+        guardados += tips_log.record(fecha, plan.name, tips_log.tickets_from_plan(plan, evaluado, TIPS_BUDGET),
+                                     "capture_task")
+    return guardados
+
+
 def capture_prematch(games: list[dict]) -> int:
     """Cuota prepartido de las competiciones con partidos por empezar pronto."""
     ahora = datetime.now(timezone.utc)
@@ -282,6 +348,13 @@ def run_once() -> None:
     n_pre = capture_prematch(games)
     if n_pre:
         _log(f"prepartido: {n_pre} partidos con cuota")
+    hoy_col = (datetime.now(timezone.utc) - timedelta(hours=5)).date().isoformat()
+    n_tips = capture_daily_tips(hoy_col)
+    if n_tips:
+        _log(f"tips del día: {n_tips} boletos guardados")
+    n_res = tips_log.resolve()
+    if n_res:
+        _log(f"tips resueltos: {n_res} picks")
     if not en_juego:
         commit_if_changed()
 

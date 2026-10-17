@@ -25,6 +25,9 @@ STAT_MARKETS = ["corners", "faltas", "tarjetas"]
 COLUMNS = [
     "logged_at", "resolved_at", "competition", "season", "matchday",
     "home_team", "away_team", "source",
+    # Inicio del partido (UTC). Agregado en oct-2026 para la pestaña Reportes
+    # (acierto por día); las filas viejas se completaron con backfill_utc_dates.
+    "utc_date",
     "pred_home_pct", "pred_draw_pct", "pred_away_pct",
     "home_xg", "away_xg", "over_2_5_pct", "btts_pct", "low_confidence",
     "status", "actual_home_goals", "actual_away_goals", "actual_result",

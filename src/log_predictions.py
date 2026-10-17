@@ -77,6 +77,7 @@ def log_competition(code: str, season: int, matchday: int, seasons_back: int = 1
             "matchday": matchday,
             "home_team": row["home_team"],
             "away_team": row["away_team"],
+            "utc_date": row["utc_date"],
             "source": MODEL_SOURCE,
             "pred_home_pct": round(pred.home_win * 100, 1),
             "pred_draw_pct": round(pred.draw * 100, 1),

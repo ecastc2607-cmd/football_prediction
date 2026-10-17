@@ -18,7 +18,7 @@ import altair as alt
 import pandas as pd
 import streamlit as st
 
-from src import config, half_backtest, national_teams, odds_api, scores365, season_store
+from src import config, half_backtest, national_teams, odds_api, reports, scores365, season_store, tips_log
 from src.live_odds import record as record_live_odds
 from src.competition_status import resolve_current_season_and_matchday
 from src.fetch_football_data import FootballDataClient, fetch_competition
@@ -412,14 +412,19 @@ def load_live_odds(codes: tuple) -> list:
     return scores365.live_rows(list(codes), odds_api.PRICE_KEYS)
 
 
-def render_daily_plan(evaluado: pd.DataFrame, presupuesto: float, banca: float) -> None:
+def render_daily_plan(evaluado: pd.DataFrame, presupuesto: float, banca: float,
+                      fecha: str | None = None) -> None:
     """Plan del día: el presupuesto concentrado en hasta 3 boletos (ver
-    src/daily_plan.py), con tres planes comparados por riesgo."""
+    src/daily_plan.py), con tres planes comparados por riesgo. Con `fecha`,
+    los tres planes quedan guardados en el historial de Reportes."""
     st.subheader(f"🎯 Plan del día — hasta {MAX_TICKETS} apuestas")
     planes = build_plans(evaluado, presupuesto)
     if not planes:
         st.info("Ningún pick tiene valor hoy: no hay plan que armar.")
         return
+    if fecha:
+        for p in planes:
+            tips_log.record(fecha, p.name, tips_log.tickets_from_plan(p, evaluado, presupuesto), "app")
     comparacion = pd.DataFrame([{
         "Plan": p.name,
         "Boletos": len(p.tickets),
@@ -871,8 +876,8 @@ st.sidebar.caption(
     "sobre todo en el promedio de liga para ellos."
 )
 
-tab_jornada, tab_vivo, tab_amistosos, tab_tips = st.tabs(
-    ["📅 Jornada", "🔴 En vivo", "🌍 Amistosos", "💡 Tips"]
+tab_jornada, tab_vivo, tab_amistosos, tab_tips, tab_reportes = st.tabs(
+    ["📅 Jornada", "🔴 En vivo", "🌍 Amistosos", "💡 Tips", "📊 Reportes"]
 )
 
 # ============================== PESTAÑA: JORNADA ==============================
@@ -1552,7 +1557,10 @@ with tab_tips:
                         + ". Recomendación: no apostar — este día no cuenta para la meta."
                     )
             else:
-                render_daily_plan(evaluado, float(presupuesto), float(banca))
+                # Solo se guarda en el historial lo de hoy o días futuros (un día
+                # pasado ya no tiene partidos por jugar que recomendar).
+                render_daily_plan(evaluado, float(presupuesto), float(banca),
+                                  fecha=fecha_tips.isoformat() if fecha_tips >= hoy_col else None)
                 with st.expander("Reparto por ¼ de Kelly sobre la banca (método anterior, montos chicos)"):
                     st.subheader(f"✅ {resumen['n']} apuesta(s) SIMPLE(S) sugerida(s)")
                     st.caption("Cada apuesta va por separado, con su propio monto — no es una combinada: "
@@ -1646,6 +1654,11 @@ with tab_tips:
             st.subheader("🎯 Combinadas del día — todas las ligas")
             combinadas_dia, avisos_dia = parlays_with_real_odds(dia, only_colombia=solo_colombia)
             render_parlays(combinadas_dia, bankroll=float(banca), avisos=avisos_dia)
+            if fecha_tips >= hoy_col:
+                for nivel in sorted({c.risk for c in combinadas_dia}):
+                    tips_log.record(fecha_tips.isoformat(), f"Combinada del día · {nivel}",
+                                    tips_log.tickets_from_parlays([c for c in combinadas_dia if c.risk == nivel],
+                                                                  dia, float(banca)), "app")
 
     # ------------------------- Tips EN VIVO (BWIN) -------------------------
     # Misma regla de valor, con la probabilidad ajustada en vivo (la misma de
@@ -1705,6 +1718,8 @@ with tab_tips:
             evaluado_vivo = evaluate(candidatos_vivo, float(banca),
                                      max_exposure=MAX_DAILY_EXPOSURE - expuesto_prepartido,
                                      model_weight=LIVE_MODEL_WEIGHT)
+            tips_log.record(datetime.now(BOGOTA_TZ).date().isoformat(), "En vivo",
+                            tips_log.tickets_from_singles(evaluado_vivo), "app")
             orden = {"Apostar": 0, "Sin valor": 1, "Otro pick del mismo partido": 2}
             evaluado_vivo = evaluado_vivo.assign(_o=evaluado_vivo["estado"].map(orden).fillna(3))                 .sort_values(["_o", "valor"], ascending=[True, False])
             n_apostar = int((evaluado_vivo["monto"] > 0).sum())
@@ -1746,3 +1761,247 @@ with tab_tips:
             )
         if avisos_vivo:
             st.caption(" · ".join(avisos_vivo))
+
+
+# ============================== PESTAÑA: REPORTES ==============================
+# Colores (guía de visualización del proyecto): azul = acierto real /
+# fortaleza, naranja = lo esperado por el modelo, rojo = debilidad, gris neutro
+# en el punto medio de la escala divergente.
+COLOR_REAL, COLOR_ESPERADO = "#3987e5", "#eb6834"
+COLOR_FUERTE, COLOR_NEUTRO, COLOR_DEBIL = "#3987e5", "#8a8a86", "#e66767"
+
+
+@st.cache_data(ttl=600, show_spinner="Actualizando resultados de los tips...")
+def load_reports_data() -> tuple[pd.DataFrame, pd.DataFrame]:
+    """(log de predicciones, log de tips). Antes resuelve los tips pendientes
+    con los marcadores finales de 365scores (gratis), como mucho cada 10 min."""
+    tips_log.resolve()
+    pred = config.ROOT_DIR / "data" / "tracking" / "predictions_log.csv"
+    return (pd.read_csv(pred) if pred.exists() else pd.DataFrame()), tips_log.load()
+
+
+def _bars_vs_expected(tabla: pd.DataFrame, categoria: str, titulo: str, horizontal: bool = True):
+    """Barras de % de acierto real con una marca del % esperado por el modelo."""
+    base = alt.Chart(tabla)
+    tooltip = [alt.Tooltip(f"{categoria}:{'T' if not horizontal else 'N'}", title=titulo),
+               alt.Tooltip("predicciones:Q", title="Predicciones"),
+               alt.Tooltip("acierto_pct:Q", title="Acierto real %", format=".0f"),
+               alt.Tooltip("esperado_pct:Q", title="Esperado %", format=".0f")]
+    if horizontal:
+        orden = alt.EncodingSortField(field="acierto_pct", order="descending")
+        barras = base.mark_bar(color=COLOR_REAL, cornerRadiusEnd=4, height=14).encode(
+            y=alt.Y(f"{categoria}:N", sort=orden, title=None),
+            x=alt.X("acierto_pct:Q", title="% de acierto", scale=alt.Scale(domain=[0, 100])), tooltip=tooltip)
+        marca = base.mark_tick(color=COLOR_ESPERADO, thickness=3, size=18).encode(
+            y=alt.Y(f"{categoria}:N", sort=orden), x="esperado_pct:Q", tooltip=tooltip)
+        alto = alt.Step(30)  # alto por fila: un alto fijo se ignoraba y las barras se encimaban
+    else:
+        # Eje ordinal (solo los días con partidos): con eje de tiempo, los días
+        # sin partidos dejaban huecos y las barras quedaban como líneas.
+        barras = base.mark_bar(color=COLOR_REAL, cornerRadiusEnd=4).encode(
+            x=alt.X("etiqueta_x:O", sort="ascending", title=None, axis=alt.Axis(labelAngle=-45)),
+            y=alt.Y("acierto_pct:Q", title="% de acierto", scale=alt.Scale(domain=[0, 100])), tooltip=tooltip)
+        marca = base.mark_tick(color=COLOR_ESPERADO, thickness=3).encode(
+            x=alt.X("etiqueta_x:O", sort="ascending"), y="esperado_pct:Q", tooltip=tooltip)
+        alto = 260
+    return (barras + marca).properties(height=alto)
+
+
+def _summary_table(tabla: pd.DataFrame, categoria: str, titulo: str) -> None:
+    st.dataframe(
+        tabla.rename(columns={categoria: titulo}), hide_index=True, width="stretch",
+        column_config={
+            "predicciones": st.column_config.NumberColumn("Predicciones"),
+            "aciertos": st.column_config.NumberColumn("Aciertos"),
+            "acierto_pct": st.column_config.NumberColumn("% acierto", format="%.0f%%"),
+            "esperado_pct": st.column_config.NumberColumn("% esperado", format="%.0f%%",
+                                                          help="Probabilidad que el modelo le daba a sus picks."),
+            "diferencia": st.column_config.NumberColumn("Real − esperado", format="%+.0f pts",
+                                                        help="Positivo = fortaleza; negativo = debilidad."),
+        },
+    )
+
+
+def _render_strengths_map(datos: pd.DataFrame) -> None:
+    st.markdown("**Mapa de fortalezas y debilidades — liga × mercado**")
+    min_celda = st.slider("Mínimo de predicciones por celda", 1, 30, 8, key="rep_min_celda",
+                          help="Con pocas predicciones la diferencia es casi puro azar.")
+    mapa = reports.summarize(datos, ["competition", "mercado"])
+    mapa = mapa[mapa["predicciones"] >= min_celda] if not mapa.empty else mapa
+    if mapa.empty:
+        st.caption("Ninguna combinación llega a ese mínimo en el filtro.")
+        return
+    mapa["liga"] = mapa["competition"].map(lambda c: config.COMPETITIONS.get(c, c))
+    mapa["etiqueta"] = [f"{a:.0f}% · {n}" for a, n in zip(mapa["acierto_pct"], mapa["predicciones"])]
+    tope = max(15.0, float(mapa["diferencia"].abs().max()))
+    base = alt.Chart(mapa).encode(
+        x=alt.X("mercado:N", title=None, axis=alt.Axis(labelAngle=-30)),
+        y=alt.Y("liga:N", title=None),
+        tooltip=[alt.Tooltip("liga:N", title="Liga"), alt.Tooltip("mercado:N", title="Mercado"),
+                 alt.Tooltip("predicciones:Q", title="Predicciones"),
+                 alt.Tooltip("acierto_pct:Q", title="Acierto real %", format=".0f"),
+                 alt.Tooltip("esperado_pct:Q", title="Esperado %", format=".0f"),
+                 alt.Tooltip("diferencia:Q", title="Real − esperado (pts)", format="+.0f")],
+    )
+    celdas = base.mark_rect(cornerRadius=4, stroke="#1a1a19", strokeWidth=2).encode(
+        color=alt.Color("diferencia:Q", title="Real − esperado (pts)",
+                        scale=alt.Scale(domain=[-tope, 0, tope], range=[COLOR_DEBIL, COLOR_NEUTRO, COLOR_FUERTE])))
+    texto = base.mark_text(fontSize=11, color="#ffffff").encode(text="etiqueta:N")
+    st.altair_chart((celdas + texto).properties(height=max(160, 42 * mapa["liga"].nunique())), use_container_width=True)
+    st.caption("Cada celda: % de acierto real · cantidad de predicciones. Azul = acierta más de lo que el "
+               "modelo esperaba (fortaleza); rojo = menos (debilidad); gris = según lo esperado.")
+
+    st.markdown("**Real vs esperado por mercado**")
+    por_mercado = reports.summarize(datos, ["mercado"])
+    st.altair_chart(_bars_vs_expected(por_mercado, "mercado", "Mercado"), use_container_width=True)
+    st.caption("Barra azul: % de acierto real · marca naranja: % que el modelo esperaba. Barra más allá de "
+               "la marca = el modelo es más fuerte de lo que cree en ese mercado.")
+
+
+def _render_tips_report(boletos: pd.DataFrame, cerrados: pd.DataFrame) -> None:
+    if boletos.empty:
+        st.info("Todavía no hay boletos guardados. Se guardan solos cada vez que la pestaña Tips arma el Plan "
+                "del día, las combinadas del día o un tip en vivo (y el resultado se completa cuando terminan "
+                "los partidos).")
+        return
+    por_plan = reports.tips_by_plan(boletos)
+    if not por_plan.empty:
+        st.markdown("**Resultado por plan**")
+        st.dataframe(por_plan, hide_index=True, width="stretch", column_config={
+            "plan": "Plan", "boletos": "Boletos resueltos", "ganados": "Ganados",
+            "ganados_pct": st.column_config.NumberColumn("% ganados", format="%.0f%%"),
+            "apostado": st.column_config.NumberColumn("Apostado", format="$%d"),
+            "ganancia": st.column_config.NumberColumn("Ganancia neta", format="$%d"),
+            "roi_pct": st.column_config.NumberColumn("Retorno", format="%+.0f%%", help="Ganancia neta / apostado."),
+        })
+        diario = (cerrados.assign(ganancia=pd.to_numeric(cerrados["ganancia"], errors="coerce"))
+                  .groupby("fecha", as_index=False)["ganancia"].sum())
+        diario["fecha"] = pd.to_datetime(diario["fecha"])
+        st.altair_chart(alt.Chart(diario).mark_bar(cornerRadiusEnd=4).encode(
+            x=alt.X("fecha:T", title=None), y=alt.Y("ganancia:Q", title="Ganancia neta ($)"),
+            color=alt.condition("datum.ganancia >= 0", alt.value(COLOR_FUERTE), alt.value(COLOR_DEBIL)),
+            tooltip=[alt.Tooltip("fecha:T", title="Día"), alt.Tooltip("ganancia:Q", title="Ganancia neta", format="$,.0f")],
+        ).properties(height=220), use_container_width=True)
+        st.caption("Ganancia neta por día de todos los boletos resueltos (con los montos sugeridos).")
+    planes_disp = sorted(boletos["plan"].unique())
+    plan_sel = st.multiselect("Planes", planes_disp, default=planes_disp, key="rep_planes")
+    vista = boletos[boletos["plan"].isin(plan_sel)].sort_values("fecha", ascending=False).head(80)
+    st.markdown(f"**Boletos** ({len(vista)} más recientes) — ✔ acertado · ✘ fallado · · pendiente")
+    pesos = lambda v: f"${v:,.0f}" if pd.notna(v) else "-"  # noqa: E731
+    st.table(
+        vista[["fecha", "plan", "tipo", "picks", "cuota", "monto", "resultado", "ganancia"]]
+        .rename(columns={"fecha": "Día", "plan": "Plan", "tipo": "Tipo", "picks": "Picks", "cuota": "Cuota",
+                         "monto": "Monto", "resultado": "Resultado", "ganancia": "Ganancia"})
+        .set_index("Día").style
+        .format({"Cuota": lambda v: f"{v:.2f}" if pd.notna(v) else "-", "Monto": pesos, "Ganancia": pesos})
+        .set_properties(subset=["Picks"], **{"white-space": "pre-wrap", "min-width": "18em"})
+        .set_properties(subset=["Cuota", "Monto", "Ganancia"], **{"white-space": "nowrap"})
+    )
+
+
+with tab_reportes:
+    st.title("📊 Reportes")
+    st.caption(
+        "Qué tan bien acertaron las predicciones del modelo y los boletos de Tips, por día, liga, equipo y "
+        "mercado. 'Esperado' es la probabilidad que el modelo le daba a su pick: si el acierto real queda por "
+        "encima, es una fortaleza; por debajo, una debilidad. Corners, faltas y tarjetas se comparan contra "
+        "50% (su pick es más/menos que una línea puesta en el promedio)."
+    )
+    try:
+        log_pred, log_tips = load_reports_data()
+    except Exception as e:
+        st.error(f"No se pudieron leer los historiales: {e}")
+        log_pred, log_tips = pd.DataFrame(), pd.DataFrame()
+
+    f1, f2, f3, f4 = st.columns([1.3, 1.4, 1.3, 1])
+    incluir_bt = f4.toggle("Incluir backtests", value=True, key="rep_backtest",
+                           help="Partidos ya jugados predichos después, solo con datos anteriores a cada uno "
+                                "(sin trampa). Suman muestra; apágalo para ver solo lo predicho en su momento.")
+    largo = reports.predictions_long(log_pred, include_backtest=incluir_bt)
+    largo_tips = reports.tips_legs_long(log_tips)
+    todo = pd.concat([largo, largo_tips], ignore_index=True) if not largo_tips.empty else largo
+
+    if todo.empty:
+        st.info("Todavía no hay predicciones resueltas para reportar.")
+    else:
+        fechas = pd.to_datetime(todo["fecha"]).dt.date
+        hoy_rep = datetime.now(BOGOTA_TZ).date()
+        inicio_def = max(fechas.min(), hoy_rep - pd.Timedelta(days=90))
+        rango = f1.date_input("Rango de fechas", value=(inicio_def, hoy_rep), min_value=fechas.min(),
+                              max_value=max(fechas.max(), hoy_rep), key="rep_rango")
+        desde, hasta = rango if isinstance(rango, tuple) and len(rango) == 2 else (fechas.min(), hoy_rep)
+        ligas_disp = sorted(todo["competition"].dropna().unique())
+        ligas = f2.multiselect("Ligas", ligas_disp, default=ligas_disp, key="rep_ligas",
+                               format_func=lambda c: config.COMPETITIONS.get(c, c))
+        datos = todo[(fechas >= desde) & (fechas <= hasta) & todo["competition"].isin(ligas)]
+        equipos_disp = sorted(set(datos["home_team"].dropna()) | set(datos["away_team"].dropna()))
+        equipo = f3.selectbox("Equipo", ["Todos", *equipos_disp], key="rep_equipo")
+        if equipo != "Todos":
+            datos = datos[(datos["home_team"] == equipo) | (datos["away_team"] == equipo)]
+        modelo = datos[datos["source"] != "tips"]
+
+        boletos = reports.tips_tickets(log_tips)
+        if not boletos.empty:
+            fb = pd.to_datetime(boletos["fecha"]).dt.date
+            boletos = boletos[(fb >= desde) & (fb <= hasta)]
+        cerrados = boletos[boletos["resultado"].isin(["ganada", "perdida"])] if not boletos.empty else boletos
+
+        k1, k2, k3, k4 = st.columns(4)
+        k1.metric("Predicciones resueltas", f"{len(modelo):,}")
+        k2.metric("Acierto del modelo", f"{modelo['acierto'].mean():.0%}" if len(modelo) else "-",
+                  f"esperado {modelo['esperado'].mean():.0%}" if len(modelo) else None, delta_color="off")
+        k3.metric("Boletos de Tips resueltos", f"{len(cerrados)}",
+                  f"{(cerrados['resultado'] == 'ganada').mean():.0%} ganados" if len(cerrados) else None,
+                  delta_color="off")
+        ganancia_tips = pd.to_numeric(cerrados["ganancia"], errors="coerce").sum() if len(cerrados) else 0
+        k4.metric("Ganancia neta de Tips", f"${ganancia_tips:+,.0f}")
+
+        t_dia, t_liga, t_equipo, t_mercado, t_fd, t_tips = st.tabs(
+            ["Por día", "Por liga", "Por equipo", "Por mercado", "Fortalezas y debilidades", "Boletos de Tips"])
+
+        with t_dia:
+            tabla = reports.summarize(datos, ["fecha"])
+            if tabla.empty:
+                st.caption("Sin datos en el filtro.")
+            else:
+                tabla = tabla.sort_values("fecha")
+                grafico = tabla.assign(fecha=pd.to_datetime(tabla["fecha"]))
+                grafico["etiqueta_x"] = grafico["fecha"].dt.strftime("%Y-%m-%d")  # texto que ordena bien
+                st.altair_chart(_bars_vs_expected(grafico, "fecha", "Día", horizontal=False), use_container_width=True)
+                st.caption("Barras azules: % de acierto real · marca naranja: % esperado por el modelo.")
+                _summary_table(tabla.sort_values("fecha", ascending=False), "fecha", "Día")
+
+        with t_liga:
+            tabla = reports.summarize(datos, ["competition"])
+            if not tabla.empty:
+                tabla["competition"] = tabla["competition"].map(lambda c: config.COMPETITIONS.get(c, c))
+                st.altair_chart(_bars_vs_expected(tabla, "competition", "Liga"), use_container_width=True)
+                _summary_table(tabla.sort_values("acierto_pct", ascending=False), "competition", "Liga")
+
+        with t_equipo:
+            min_n = st.slider("Mínimo de predicciones por equipo", 1, 30, 5, key="rep_min_equipo")
+            tabla = reports.summarize(reports.by_team(datos), ["equipo"])
+            tabla = tabla[tabla["predicciones"] >= min_n] if not tabla.empty else tabla
+            if tabla.empty:
+                st.caption("Ningún equipo llega a ese mínimo en el filtro.")
+            else:
+                tabla = tabla.sort_values("diferencia", ascending=False)
+                c_mejor, c_peor = st.columns(2)
+                c_mejor.markdown("**Donde más acierta** (real − esperado)")
+                c_mejor.altair_chart(_bars_vs_expected(tabla.head(10), "equipo", "Equipo"), use_container_width=True)
+                c_peor.markdown("**Donde más falla**")
+                c_peor.altair_chart(_bars_vs_expected(tabla.tail(10), "equipo", "Equipo"), use_container_width=True)
+                _summary_table(tabla, "equipo", "Equipo")
+
+        with t_mercado:
+            tabla = reports.summarize(datos, ["mercado"])
+            if not tabla.empty:
+                st.altair_chart(_bars_vs_expected(tabla, "mercado", "Mercado"), use_container_width=True)
+                _summary_table(tabla.sort_values("acierto_pct", ascending=False), "mercado", "Mercado")
+                st.caption("'Tips: …' son los picks que entraron en boletos de la pestaña Tips.")
+
+        with t_fd:
+            _render_strengths_map(datos)
+
+        with t_tips:
+            _render_tips_report(boletos, cerrados)

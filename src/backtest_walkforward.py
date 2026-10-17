@@ -108,6 +108,7 @@ def backtest_competition(code: str, season: int, seasons_back: int = 1) -> tuple
             "matchday": int(m["matchday"]),
             "home_team": m["home_team"],
             "away_team": m["away_team"],
+            "utc_date": m["utc_date"],
             "source": SOURCE,
             "pred_home_pct": round(pred.home_win * 100, 1),
             "pred_draw_pct": round(pred.draw * 100, 1),
