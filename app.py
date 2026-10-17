@@ -1849,6 +1849,23 @@ def _summary_table(tabla: pd.DataFrame, categoria: str, titulo: str) -> None:
     )
 
 
+def _render_detail(long: pd.DataFrame, caption: str | None = None) -> None:
+    """Tabla de predicciones con el pick del modelo (para entender cada ✔/✘)."""
+    detalle = reports.prediction_detail(long)
+    if detalle.empty:
+        st.caption("Sin predicciones para ese detalle.")
+        return
+    detalle["Liga"] = detalle["Liga"].map(lambda c: config.COMPETITIONS.get(c, c))
+    st.dataframe(detalle, hide_index=True, width="stretch", column_config={
+        "Prob.": st.column_config.NumberColumn("Prob. del pick", format="%.0f%%",
+                                               help="Probabilidad que el modelo le daba a su pick."),
+        "Pick del modelo": st.column_config.Column(
+            help="Lo que predijo el modelo: Local/Empate/Visitante, 1X/X2, +2.5/-2.5, Sí/No, más/menos de la línea."),
+    })
+    if caption:
+        st.caption(caption)
+
+
 def _market_filter(datos: pd.DataFrame, key: str, container=None) -> pd.DataFrame:
     """Multiselect de mercado propio de una subpestaña; devuelve los datos filtrados."""
     disponibles = sorted(datos["mercado"].dropna().unique())
@@ -1885,7 +1902,7 @@ def _render_strengths_map(datos: pd.DataFrame) -> None:
     tope = max(15.0, float(mapa["diferencia"].abs().max()))
     base = alt.Chart(mapa).encode(
         x=alt.X("mercado:N", title=None, axis=alt.Axis(labelAngle=-30)),
-        y=alt.Y("liga:N", title=None),
+        y=alt.Y("liga:N", title=None, axis=alt.Axis(labelLimit=240, labelOverlap=False)),
         tooltip=[alt.Tooltip("liga:N", title="Liga"), alt.Tooltip("mercado:N", title="Mercado"),
                  alt.Tooltip("predicciones:Q", title="Predicciones"),
                  alt.Tooltip("acierto_pct:Q", title="Acierto real %", format=".0f"),
@@ -1896,9 +1913,16 @@ def _render_strengths_map(datos: pd.DataFrame) -> None:
         color=alt.Color("diferencia:Q", title="Real − esperado (pts)",
                         scale=alt.Scale(domain=[-tope, 0, tope], range=[COLOR_DEBIL, COLOR_NEUTRO, COLOR_FUERTE])))
     texto = base.mark_text(fontSize=11, color="#ffffff").encode(text="etiqueta:N")
-    st.altair_chart((celdas + texto).properties(height=max(160, 42 * mapa["liga"].nunique())), use_container_width=True)
+    # Alto por fila: con un alto fijo, Vega ocultaba las etiquetas de ligas que no cabían.
+    st.altair_chart((celdas + texto).properties(height=alt.Step(40)), use_container_width=True)
     st.caption("Cada celda: % de acierto real · cantidad de predicciones. Azul = acierta más de lo que el "
                "modelo esperaba (fortaleza); rojo = menos (debilidad); gris = según lo esperado.")
+
+    celdas_det = [f"{l} · {m}" for l, m in zip(mapa["liga"], mapa["mercado"])]
+    celda = st.selectbox("Ver el detalle de predicciones de la celda", celdas_det, key="rep_celda_detalle")
+    fila = mapa.iloc[celdas_det.index(celda)]
+    _render_detail(datos[(datos["competition"] == fila["competition"]) & (datos["mercado"] == fila["mercado"])],
+                   PICK_NOTE)
 
     st.markdown("**Real vs esperado por mercado**")
     por_mercado = reports.summarize(datos, ["mercado"])
@@ -2091,13 +2115,21 @@ with tab_reportes:
                 st.altair_chart(_bars_vs_expected(grafico, "fecha", "Día", horizontal=False), use_container_width=True)
                 st.caption("Barras azules: % de acierto real · marca naranja: % esperado por el modelo.")
                 _summary_table(tabla.sort_values("fecha", ascending=False), "fecha", "Día")
+                dias_det = sorted(tabla["fecha"].unique(), reverse=True)
+                dia_det = st.selectbox("Ver el detalle de predicciones del día", dias_det, key="rep_dia_detalle")
+                _render_detail(datos_dia[pd.to_datetime(datos_dia["fecha"]).dt.date == dia_det], PICK_NOTE)
 
         with t_liga:
-            tabla = reports.summarize(_market_filter(datos, "rep_liga_mercados"), ["competition"])
+            datos_liga = _market_filter(datos, "rep_liga_mercados")
+            tabla = reports.summarize(datos_liga, ["competition"])
             if not tabla.empty:
                 tabla["competition"] = tabla["competition"].map(lambda c: config.COMPETITIONS.get(c, c))
                 st.altair_chart(_bars_vs_expected(tabla, "competition", "Liga"), use_container_width=True)
                 _summary_table(tabla.sort_values("acierto_pct", ascending=False), "competition", "Liga")
+                ligas_det = sorted(datos_liga["competition"].dropna().unique())
+                liga_det = st.selectbox("Ver el detalle de predicciones de la liga", ligas_det, key="rep_liga_detalle",
+                                        format_func=lambda c: config.COMPETITIONS.get(c, c))
+                _render_detail(datos_liga[datos_liga["competition"] == liga_det], PICK_NOTE)
 
         with t_equipo:
             e_merc, e_min = st.columns(2)
@@ -2133,13 +2165,8 @@ with tab_reportes:
                 defecto = opciones.index(equipo) if equipo in opciones else 0
                 elegido = st.selectbox("Ver el detalle de predicciones de", opciones, index=defecto,
                                        key="rep_equipo_detalle")
-                detalle = reports.team_detail(datos_equipo, elegido)
-                st.dataframe(detalle, hide_index=True, width="stretch", column_config={
-                    "Prob.": st.column_config.NumberColumn("Prob. del pick", format="%.0f%%",
-                                                           help="Probabilidad que el modelo le daba a su pick."),
-                    "Pick del modelo": st.column_config.Column(
-                        help="Lo que predijo el modelo: Local/Empate/Visitante, 1X/X2, +2.5/-2.5, Sí/No..."),
-                })
+                _render_detail(datos_equipo[(datos_equipo["home_team"] == elegido)
+                                            | (datos_equipo["away_team"] == elegido)])
 
         with t_mercado:
             tabla = reports.summarize(datos, ["mercado"])
@@ -2147,6 +2174,10 @@ with tab_reportes:
                 st.altair_chart(_bars_vs_expected(tabla, "mercado", "Mercado"), use_container_width=True)
                 _summary_table(tabla.sort_values("acierto_pct", ascending=False), "mercado", "Mercado")
                 st.caption(PICK_NOTE + " 'Tips: …' son los picks que entraron en boletos de la pestaña Tips.")
+                merc_det = st.selectbox("Ver el detalle de predicciones del mercado",
+                                        tabla.sort_values("acierto_pct", ascending=False)["mercado"].tolist(),
+                                        key="rep_mercado_detalle")
+                _render_detail(datos[datos["mercado"] == merc_det])
 
         with t_fd:
             _render_strengths_map(datos)

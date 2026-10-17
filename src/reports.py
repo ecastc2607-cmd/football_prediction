@@ -247,14 +247,18 @@ def day_picks(log: pd.DataFrame, tlog: pd.DataFrame, fecha) -> pd.DataFrame:
     return pd.DataFrame(filas)
 
 
-def team_detail(long: pd.DataFrame, equipo: str) -> pd.DataFrame:
-    """Predicciones de un equipo con el pick del modelo, su probabilidad, el
-    marcador y si acertó — para entender cada ✔/✘ del agregado por equipo."""
-    d = long[(long["home_team"] == equipo) | (long["away_team"] == equipo)]
-    if d.empty:
+def prediction_detail(long: pd.DataFrame) -> pd.DataFrame:
+    """Cada predicción con el pick del modelo, su probabilidad, el marcador y
+    si acertó — para entender cada ✔/✘ de los agregados."""
+    if long.empty:
         return pd.DataFrame()
+    d = long
     return pd.DataFrame({
-        "Día": d["fecha"], "Partido": d["home_team"] + " vs " + d["away_team"],
+        "Día": d["fecha"], "Liga": d["competition"], "Partido": d["home_team"] + " vs " + d["away_team"],
         "Marcador": d.get("marcador"), "Mercado": d["mercado"], "Pick del modelo": d.get("pick"),
         "Prob.": (d["esperado"] * 100).round(0), "Resultado": d["acierto"].map({True: "✔ Acertado", False: "✘ Fallado"}),
     }).sort_values(["Día", "Partido", "Mercado"], ascending=[False, True, True])
+
+
+def team_detail(long: pd.DataFrame, equipo: str) -> pd.DataFrame:
+    return prediction_detail(long[(long["home_team"] == equipo) | (long["away_team"] == equipo)])
