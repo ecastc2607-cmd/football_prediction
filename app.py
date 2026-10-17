@@ -1809,6 +1809,26 @@ def _bars_vs_expected(tabla: pd.DataFrame, categoria: str, titulo: str, horizont
     return (barras + marca).properties(height=alto)
 
 
+MAX_TEAMS_CHART = 30
+
+
+def _diverging_bars(tabla: pd.DataFrame, categoria: str, titulo: str):
+    """Barras de (real − esperado) alrededor de 0: azul = fortaleza, rojo = debilidad."""
+    orden = alt.EncodingSortField(field="diferencia", order="descending")
+    tope = max(10.0, float(tabla["diferencia"].abs().max()))
+    barras = alt.Chart(tabla).mark_bar(cornerRadiusEnd=4, height=16).encode(
+        y=alt.Y(f"{categoria}:N", sort=orden, title=None, axis=alt.Axis(labelLimit=220)),
+        x=alt.X("diferencia:Q", title="Real − esperado (pts)", scale=alt.Scale(domain=[-tope, tope])),
+        color=alt.condition("datum.diferencia >= 0", alt.value(COLOR_FUERTE), alt.value(COLOR_DEBIL)),
+        tooltip=[alt.Tooltip(f"{categoria}:N", title=titulo), alt.Tooltip("predicciones:Q", title="Predicciones"),
+                 alt.Tooltip("acierto_pct:Q", title="Acierto real %", format=".0f"),
+                 alt.Tooltip("esperado_pct:Q", title="Esperado %", format=".0f"),
+                 alt.Tooltip("diferencia:Q", title="Real − esperado (pts)", format="+.0f")],
+    )
+    cero = alt.Chart(pd.DataFrame({"x": [0]})).mark_rule(color=COLOR_NEUTRO, strokeWidth=2).encode(x="x:Q")
+    return (barras + cero).properties(height=alt.Step(24))
+
+
 def _summary_table(tabla: pd.DataFrame, categoria: str, titulo: str) -> None:
     st.dataframe(
         tabla.rename(columns={categoria: titulo}), hide_index=True, width="stretch",
@@ -2069,11 +2089,17 @@ with tab_reportes:
                 st.caption("Ningún equipo llega a ese mínimo en el filtro.")
             else:
                 tabla = tabla.sort_values("diferencia", ascending=False)
-                c_mejor, c_peor = st.columns(2)
-                c_mejor.markdown("**Donde más acierta** (real − esperado)")
-                c_mejor.altair_chart(_bars_vs_expected(tabla.head(10), "equipo", "Equipo"), use_container_width=True)
-                c_peor.markdown("**Donde más falla**")
-                c_peor.altair_chart(_bars_vs_expected(tabla.tail(10), "equipo", "Equipo"), use_container_width=True)
+                # Un solo gráfico divergente (antes "donde más acierta" y "donde más
+                # falla" por separado: era la misma medida partida en dos). Con
+                # muchos equipos, los MAX_TEAMS_CHART de diferencia más marcada.
+                grafico = tabla.reindex(tabla["diferencia"].abs().sort_values(ascending=False).index)
+                grafico = grafico.head(MAX_TEAMS_CHART).sort_values("diferencia", ascending=False)
+                st.markdown("**Acierto real − esperado por equipo** (puntos porcentuales)")
+                st.altair_chart(_diverging_bars(grafico, "equipo", "Equipo"), use_container_width=True)
+                st.caption("Azul a la derecha: con ese equipo el modelo acierta más de lo que esperaba (fortaleza). "
+                           "Rojo a la izquierda: acierta menos (debilidad)."
+                           + (f" Se muestran los {MAX_TEAMS_CHART} con la diferencia más marcada de {len(tabla)}; "
+                              "la tabla de abajo tiene todos." if len(tabla) > MAX_TEAMS_CHART else ""))
                 _summary_table(tabla, "equipo", "Equipo")
 
         with t_mercado:
