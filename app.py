@@ -1890,9 +1890,13 @@ def _min_sample_slider(label: str, conteos: pd.Series, defecto: int, key: str, h
 def _render_strengths_map(datos: pd.DataFrame) -> None:
     st.markdown("**Mapa de fortalezas y debilidades — liga × mercado**")
     mapa = reports.summarize(datos, ["competition", "mercado"])
+    # Por defecto 1 = todas las celdas con lo que haya en el rango (pedido del
+    # usuario); el slider queda para ocultar las de muestra chica.
     min_celda = _min_sample_slider("Mínimo de predicciones por celda",
-                                   mapa["predicciones"] if not mapa.empty else pd.Series(dtype=int), 8,
-                                   "rep_min_celda", help="Con pocas predicciones la diferencia es casi puro azar.")
+                                   mapa["predicciones"] if not mapa.empty else pd.Series(dtype=int), 1,
+                                   "rep_min_celda",
+                                   help="Súbelo para ocultar celdas con pocas predicciones: ahí la diferencia "
+                                        "es casi puro azar.")
     mapa = mapa[mapa["predicciones"] >= min_celda] if not mapa.empty else mapa
     if mapa.empty:
         st.caption("Ninguna combinación llega a ese mínimo en el filtro.")
