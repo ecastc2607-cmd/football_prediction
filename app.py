@@ -1844,7 +1844,15 @@ def _summary_table(tabla: pd.DataFrame, categoria: str, titulo: str) -> None:
     )
 
 
-def _min_sample_slider(label: str, conteos: pd.Series, defecto: int, key: str, help: str | None = None) -> int:
+def _market_filter(datos: pd.DataFrame, key: str, container=None) -> pd.DataFrame:
+    """Multiselect de mercado propio de una subpestaña; devuelve los datos filtrados."""
+    disponibles = sorted(datos["mercado"].dropna().unique())
+    elegidos = (container or st).multiselect("Mercado", disponibles, default=disponibles, key=key)
+    return datos[datos["mercado"].isin(elegidos)]
+
+
+def _min_sample_slider(label: str, conteos: pd.Series, defecto: int, key: str, help: str | None = None,
+                       container=None) -> int:
     """Slider de muestra mínima cuyo tope es el máximo que de verdad hay en el
     filtro (antes era fijo 1-30: con pocos días filtrados, el valor por defecto
     superaba a todos y la tabla quedaba vacía)."""
@@ -1854,7 +1862,7 @@ def _min_sample_slider(label: str, conteos: pd.Series, defecto: int, key: str, h
     # Si el filtro cambió y el valor guardado quedó por encima del nuevo tope, se ajusta.
     if key in st.session_state and st.session_state[key] > tope:
         st.session_state[key] = tope
-    return st.slider(label, 1, tope, min(defecto, tope), key=key, help=help)
+    return (container or st).slider(label, 1, tope, min(defecto, tope), key=key, help=help)
 
 
 def _render_strengths_map(datos: pd.DataFrame) -> None:
@@ -2063,12 +2071,11 @@ with tab_reportes:
         with t_dia:
             # Filtros propios de esta subpestaña (sobre lo ya filtrado arriba).
             d_merc, d_liga = st.columns(2)
-            mercados_disp = sorted(datos["mercado"].dropna().unique())
-            mercados_dia = d_merc.multiselect("Mercado", mercados_disp, default=mercados_disp, key="rep_dia_mercados")
+            datos_dia = _market_filter(datos, "rep_dia_mercados", d_merc)
             ligas_dia_disp = sorted(datos["competition"].dropna().unique())
             ligas_dia = d_liga.multiselect("Liga", ligas_dia_disp, default=ligas_dia_disp, key="rep_dia_ligas",
                                            format_func=lambda c: config.COMPETITIONS.get(c, c))
-            datos_dia = datos[datos["mercado"].isin(mercados_dia) & datos["competition"].isin(ligas_dia)]
+            datos_dia = datos_dia[datos_dia["competition"].isin(ligas_dia)]
             tabla = reports.summarize(datos_dia, ["fecha"])
             if tabla.empty:
                 st.caption("Sin datos en el filtro.")
@@ -2081,17 +2088,20 @@ with tab_reportes:
                 _summary_table(tabla.sort_values("fecha", ascending=False), "fecha", "Día")
 
         with t_liga:
-            tabla = reports.summarize(datos, ["competition"])
+            tabla = reports.summarize(_market_filter(datos, "rep_liga_mercados"), ["competition"])
             if not tabla.empty:
                 tabla["competition"] = tabla["competition"].map(lambda c: config.COMPETITIONS.get(c, c))
                 st.altair_chart(_bars_vs_expected(tabla, "competition", "Liga"), use_container_width=True)
                 _summary_table(tabla.sort_values("acierto_pct", ascending=False), "competition", "Liga")
 
         with t_equipo:
-            tabla = reports.summarize(reports.by_team(datos), ["equipo"])
+            e_merc, e_min = st.columns(2)
+            tabla = reports.summarize(reports.by_team(_market_filter(datos, "rep_equipo_mercados", e_merc)), ["equipo"])
+            # Por defecto, el máximo posible (pedido del usuario): arranca mostrando
+            # los equipos con más muestra; se baja para ver más equipos.
             min_n = _min_sample_slider("Mínimo de predicciones por equipo",
-                                       tabla["predicciones"] if not tabla.empty else pd.Series(dtype=int), 5,
-                                       "rep_min_equipo")
+                                       tabla["predicciones"] if not tabla.empty else pd.Series(dtype=int),
+                                       10 ** 6, "rep_min_equipo", container=e_min)
             tabla = tabla[tabla["predicciones"] >= min_n] if not tabla.empty else tabla
             if tabla.empty:
                 st.caption("Ningún equipo llega a ese mínimo en el filtro.")
