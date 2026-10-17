@@ -18,6 +18,7 @@ from .timezones import to_bogota
 # (mercado, columna de acierto en predictions_log)
 MARKETS = [
     ("Resultado (1X2)", "hit"),
+    ("Doble oportunidad", "hit_dc"),  # derivada: ver _double_chance
     ("Goles +/-2.5", "hit_over_2_5"),
     ("Ambos anotan", "hit_btts"),
     ("Corners", "hit_corners"),
@@ -40,6 +41,22 @@ def _as_bool(serie: pd.Series) -> pd.Series:
     return serie.map(lambda v: str(v).strip().lower() in ("true", "1", "1.0") if pd.notna(v) else None)
 
 
+def _double_chance(r: pd.DataFrame) -> tuple[pd.Series, pd.Series, pd.Series]:
+    """(pick, prob, acierto) de doble oportunidad: la más probable entre 1X y
+    X2 según el 1X2 del modelo. No se logueaba aparte, pero sale exacta de lo
+    que sí se guardó (probabilidades 1X2 + resultado real), también hacia atrás."""
+    p1x = (r["pred_home_pct"] + r["pred_draw_pct"]) / 100
+    px2 = (r["pred_away_pct"] + r["pred_draw_pct"]) / 100
+    pick = pd.Series("1X", index=r.index).where(p1x >= px2, "X2")
+    prob = p1x.where(p1x >= px2, px2)
+    real = r.get("actual_result")
+    acierto = pd.Series(None, index=r.index, dtype=object)
+    if real is not None:
+        ok = real.isin(["H", "D", "A"]) & p1x.notna()
+        acierto[ok] = ((pick == "1X") & real.isin(["H", "D"]) | (pick == "X2") & real.isin(["A", "D"]))[ok]
+    return pick, prob, acierto
+
+
 def predictions_long(log: pd.DataFrame, include_backtest: bool = True) -> pd.DataFrame:
     """Una fila por (predicción resuelta, mercado) con acierto y probabilidad esperada."""
     if log.empty:
@@ -51,10 +68,12 @@ def predictions_long(log: pd.DataFrame, include_backtest: bool = True) -> pd.Dat
         return pd.DataFrame()
     r["fecha"] = [_fecha(u, l) for u, l in zip(r.get("utc_date", [None] * len(r)), r["logged_at"])]
     p1x2 = r[["pred_home_pct", "pred_draw_pct", "pred_away_pct"]].max(axis=1) / 100
+    _, prob_dc, r["hit_dc"] = _double_chance(r)
     over = r["over_2_5_pct"] / 100
     btts = r["btts_pct"] / 100
     esperado = {
         "hit": p1x2,
+        "hit_dc": prob_dc,
         "hit_over_2_5": over.where(over >= 0.5, 1 - over),
         "hit_btts": btts.where(btts >= 0.5, 1 - btts),
     }
@@ -145,3 +164,63 @@ def tips_legs_long(tlog: pd.DataFrame) -> pd.DataFrame:
         "mercado": "Tips: " + r["market"].astype(str), "acierto": r["leg_result"] == "acierto",
         "esperado": pd.to_numeric(r["prob_ajustada"], errors="coerce"), "source": "tips",
     })
+
+
+# --- Partidos de un día: picks de cada partido y si se ganaron ---
+
+_SIDE = {"H": "Local", "D": "Empate", "A": "Visitante"}
+
+
+def _estado(valor, resuelto: bool) -> str:
+    if not resuelto or valor is None or (isinstance(valor, float) and valor != valor):
+        return "Pendiente"
+    return "Acertado" if str(valor).strip().lower() in ("true", "1", "1.0") else "Fallado"
+
+
+def day_picks(log: pd.DataFrame, tlog: pd.DataFrame, fecha) -> pd.DataFrame:
+    """Un renglón por (partido, pick) del día `fecha` (Colombia): picks del
+    modelo (resueltos o no) y picks que entraron en boletos de Tips."""
+    filas = []
+    if not log.empty:
+        dias = pd.Series([_fecha(u, l) for u, l in zip(log.get("utc_date", [None] * len(log)), log["logged_at"])],
+                         index=log.index)
+        d = log[dias == fecha].drop_duplicates(subset=["competition", "home_team", "away_team"])
+        if not d.empty:
+            dc_pick, dc_prob, dc_hit = _double_chance(d)
+            for i, r in d.iterrows():
+                resuelto = r["status"] == "resolved"
+                marcador = (f"{int(r['actual_home_goals'])}-{int(r['actual_away_goals'])}"
+                            if resuelto and pd.notna(r.get("actual_home_goals")) else "vs")
+                partido = f"{r['home_team']} {marcador} {r['away_team']}"
+                base = {"partido": partido, "competition": r["competition"], "utc_date": r.get("utc_date")}
+                probs = {"H": r["pred_home_pct"], "D": r["pred_draw_pct"], "A": r["pred_away_pct"]}
+                if pd.notna(r.get("favored_side")):
+                    filas.append({**base, "mercado": "1X2", "pick": _SIDE.get(r["favored_side"], r["favored_side"]),
+                                  "prob": probs.get(r["favored_side"]), "estado": _estado(r.get("hit"), resuelto)})
+                if pd.notna(dc_prob[i]):
+                    filas.append({**base, "mercado": "Doble oportunidad", "pick": dc_pick[i], "prob": dc_prob[i] * 100,
+                                  "estado": _estado(dc_hit[i], resuelto)})
+                if pd.notna(r.get("over_2_5_pct")):
+                    over = r["over_2_5_pct"]
+                    filas.append({**base, "mercado": "Goles 2.5", "pick": "+2.5" if over >= 50 else "-2.5",
+                                  "prob": max(over, 100 - over), "estado": _estado(r.get("hit_over_2_5"), resuelto)})
+                if pd.notna(r.get("btts_pct")):
+                    b = r["btts_pct"]
+                    filas.append({**base, "mercado": "Ambos anotan", "pick": "Sí" if b >= 50 else "No",
+                                  "prob": max(b, 100 - b), "estado": _estado(r.get("hit_btts"), resuelto)})
+                for mercado in ("corners", "faltas", "tarjetas"):
+                    lado, linea = r.get(f"pred_{mercado}_probable"), r.get(f"pred_{mercado}_line")
+                    if pd.notna(lado) and pd.notna(linea):
+                        filas.append({**base, "mercado": mercado.capitalize(), "pick": f"{'Más' if lado == 'Sí' else 'Menos'} de {linea:g}",
+                                      "prob": None, "estado": _estado(r.get(f"hit_{mercado}"), resuelto)})
+    if not tlog.empty:
+        t = tlog[pd.to_datetime(tlog["fecha"]).dt.date == fecha]
+        t = t.drop_duplicates(subset=["home_team", "away_team", "market", "pick"])
+        for _, r in t.iterrows():
+            marcador = (f"{int(r['home_goals'])}-{int(r['away_goals'])}" if pd.notna(r.get("home_goals")) else "vs")
+            estado = {"acierto": "Acertado", "fallo": "Fallado"}.get(r["leg_result"], "Pendiente")
+            filas.append({"partido": f"{r['home_team']} {marcador} {r['away_team']}", "competition": r["competition"],
+                          "utc_date": r["utc_date"], "mercado": f"Tips · {r['market']}", "pick": str(r["pick"]).split(" (")[0],
+                          "prob": (r["prob_ajustada"] * 100) if pd.notna(r.get("prob_ajustada")) else None,
+                          "estado": estado})
+    return pd.DataFrame(filas)

@@ -83,6 +83,20 @@ def resolve_finished(now: datetime | None = None) -> int:
         now = now or datetime.now(timezone.utc)
         inicio = pd.to_datetime(log["utc_date"], utc=True, errors="coerce")
         pendientes = log.index[(log["status"] == "pending") & inicio.notna() & (inicio + FINISHED_AFTER < now)]
+        # Segunda pasada: resueltos el mismo día cuyas estadísticas finales
+        # (corners/faltas/tarjetas) llegaron después a match_stats_log.
+        sin_stats = log.index[(log.get("resolved_source") == "365scores") & log["pred_corners_line"].notna()
+                              & log["hit_corners"].isna()]
+        if len(sin_stats):
+            completados = 0
+            for i in sin_stats:
+                r = log.loc[i]
+                for campo, valor in _resolve_stat_markets(r["competition"], r["home_team"], r["away_team"],
+                                                          r["utc_date"], r).items():
+                    log.loc[i, campo] = valor
+                    completados += 1
+            if completados and len(pendientes) == 0:
+                save_log(log)
         if len(pendientes) == 0:
             return 0
         for col in ("actual_result", "hit", "actual_over_2_5", "hit_over_2_5", "actual_btts", "hit_btts",

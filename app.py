@@ -1901,6 +1901,62 @@ def _render_tips_report(boletos: pd.DataFrame, cerrados: pd.DataFrame) -> None:
     )
 
 
+# Colores de estado (paleta de estados de la guía, siempre con ícono + texto).
+COLOR_ACERTADO, COLOR_FALLADO, COLOR_PENDIENTE = "#0ca30c", "#d03b3b", "#5f5f5b"
+DAY_MARKETS = ["1X2", "Doble oportunidad", "Goles 2.5", "Ambos anotan", "Corners", "Faltas", "Tarjetas"]
+
+
+def _render_day_matches(log_pred: pd.DataFrame, log_tips: pd.DataFrame, ligas: list, equipo: str,
+                        incluir_bt: bool, dia_defecto) -> None:
+    """Todos los partidos de un día, con el pick de cada mercado y si se ganó."""
+    hoy = datetime.now(BOGOTA_TZ).date()
+    dia = st.date_input("Día", value=min(dia_defecto, hoy), max_value=hoy, key="rep_dia")
+    log = log_pred
+    if not incluir_bt and not log.empty:
+        log = log[~log["source"].astype(str).str.startswith("backtest")]
+    picks = reports.day_picks(log, log_tips, dia)
+    if not picks.empty:
+        picks = picks[picks["competition"].isin(ligas)]
+        if equipo != "Todos":
+            picks = picks[picks["partido"].str.contains(equipo, regex=False)]
+    if picks.empty:
+        st.info("No hay predicciones registradas para ese día con los filtros elegidos.")
+        return
+
+    resueltos = picks[picks["estado"] != "Pendiente"]
+    ganados = int((resueltos["estado"] == "Acertado").sum())
+    st.markdown(f"**{picks['partido'].nunique()} partido(s) · {ganados} de {len(resueltos)} picks resueltos "
+                f"acertados**" + (f" · {len(picks) - len(resueltos)} pendientes" if len(resueltos) < len(picks) else ""))
+
+    icono = {"Acertado": "✔", "Fallado": "✘", "Pendiente": "·"}
+    picks = picks.assign(
+        etiqueta=[f"{icono[e]} {p}" + (f" · {pr:.0f}%" if pd.notna(pr) else "")
+                  for e, p, pr in zip(picks["estado"], picks["pick"], picks["prob"])],
+        orden=pd.to_datetime(picks["utc_date"], utc=True, errors="coerce"),
+    )
+    mercados = [m for m in DAY_MARKETS if m in set(picks["mercado"])]
+    mercados += sorted(m for m in set(picks["mercado"]) if m not in mercados)  # "Tips · …" al final
+    partidos = picks.sort_values(["orden", "partido"])["partido"].drop_duplicates().tolist()
+    base = alt.Chart(picks).encode(
+        x=alt.X("mercado:N", sort=mercados, title=None, axis=alt.Axis(orient="top", labelAngle=0, labelLimit=140)),
+        y=alt.Y("partido:N", sort=partidos, title=None, axis=alt.Axis(labelLimit=320)),
+        tooltip=[alt.Tooltip("partido:N", title="Partido"), alt.Tooltip("mercado:N", title="Mercado"),
+                 alt.Tooltip("pick:N", title="Pick"), alt.Tooltip("prob:Q", title="Probabilidad %", format=".0f"),
+                 alt.Tooltip("estado:N", title="Estado")],
+    )
+    celdas = base.mark_rect(cornerRadius=4, stroke="#1a1a19", strokeWidth=2).encode(
+        color=alt.Color("estado:N", title=None,
+                        scale=alt.Scale(domain=["Acertado", "Fallado", "Pendiente"],
+                                        range=[COLOR_ACERTADO, COLOR_FALLADO, COLOR_PENDIENTE]),
+                        legend=alt.Legend(orient="top")))
+    texto = base.mark_text(fontSize=11, color="#ffffff").encode(text="etiqueta:N")
+    st.altair_chart((celdas + texto).properties(height=alt.Step(38)), use_container_width=True)
+    st.caption("Cada celda es el pick del modelo para ese mercado (con su probabilidad): ✔ acertado · ✘ fallado · "
+               "· pendiente. Doble oportunidad = la más probable entre 1X y X2. Corners/faltas/tarjetas: más o "
+               "menos que la línea (se resuelven cuando hay estadísticas finales). 'Tips · …' = picks que "
+               "entraron en boletos de la pestaña Tips.")
+
+
 with tab_reportes:
     st.title("📊 Reportes")
     st.caption(
@@ -1915,7 +1971,7 @@ with tab_reportes:
         st.error(f"No se pudieron leer los historiales: {e}")
         log_pred, log_tips = pd.DataFrame(), pd.DataFrame()
 
-    f1, f2, f3, f4 = st.columns([1.3, 1.4, 1.3, 1])
+    f1, f1b, f2, f3, f4 = st.columns([1, 1, 1.4, 1.3, 1])
     incluir_bt = f4.toggle("Incluir backtests", value=True, key="rep_backtest",
                            help="Partidos ya jugados predichos después, solo con datos anteriores a cada uno "
                                 "(sin trampa). Suman muestra; apágalo para ver solo lo predicho en su momento.")
@@ -1929,13 +1985,14 @@ with tab_reportes:
         fechas = pd.to_datetime(todo["fecha"]).dt.date
         hoy_rep = datetime.now(BOGOTA_TZ).date()
         inicio_def = max(fechas.min(), hoy_rep - pd.Timedelta(days=90))
-        rango = f1.date_input("Rango de fechas", value=(inicio_def, hoy_rep), min_value=fechas.min(),
-                              max_value=max(fechas.max(), hoy_rep), key="rep_rango")
-        # Con solo la fecha de inicio elegida (fin vacío), el tope es hoy — antes
-        # caía al rango completo del historial e incluía hasta el año anterior.
-        rango = tuple(rango) if isinstance(rango, (tuple, list)) else (rango,)
-        desde = rango[0] if rango else inicio_def
-        hasta = rango[1] if len(rango) > 1 else hoy_rep
+        # Inicio y fin por separado (pedido del usuario); el fin nunca pasa de hoy.
+        desde = f1.date_input("Fecha inicio", value=inicio_def, min_value=fechas.min(), max_value=hoy_rep,
+                              key="rep_desde")
+        hasta = f1b.date_input("Fecha fin", value=hoy_rep, min_value=fechas.min(), max_value=hoy_rep,
+                               key="rep_hasta")
+        if hasta < desde:
+            st.warning("La fecha fin es anterior a la de inicio: se intercambian.")
+            desde, hasta = hasta, desde
         ligas_disp = sorted(todo["competition"].dropna().unique())
         ligas = f2.multiselect("Ligas", ligas_disp, default=ligas_disp, key="rep_ligas",
                                format_func=lambda c: config.COMPETITIONS.get(c, c))
@@ -1962,8 +2019,12 @@ with tab_reportes:
         ganancia_tips = pd.to_numeric(cerrados["ganancia"], errors="coerce").sum() if len(cerrados) else 0
         k4.metric("Ganancia neta de Tips", f"${ganancia_tips:+,.0f}")
 
-        t_dia, t_liga, t_equipo, t_mercado, t_fd, t_tips = st.tabs(
-            ["Por día", "Por liga", "Por equipo", "Por mercado", "Fortalezas y debilidades", "Boletos de Tips"])
+        t_partidos, t_dia, t_liga, t_equipo, t_mercado, t_fd, t_tips = st.tabs(
+            ["Partidos del día", "Por día", "Por liga", "Por equipo", "Por mercado", "Fortalezas y debilidades",
+             "Boletos de Tips"])
+
+        with t_partidos:
+            _render_day_matches(log_pred, log_tips, ligas, equipo, incluir_bt, hasta)
 
         with t_dia:
             tabla = reports.summarize(datos, ["fecha"])
