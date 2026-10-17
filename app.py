@@ -2061,7 +2061,15 @@ with tab_reportes:
             _render_day_matches(log_pred, log_tips, ligas, equipo, incluir_bt, hasta)
 
         with t_dia:
-            tabla = reports.summarize(datos, ["fecha"])
+            # Filtros propios de esta subpestaña (sobre lo ya filtrado arriba).
+            d_merc, d_liga = st.columns(2)
+            mercados_disp = sorted(datos["mercado"].dropna().unique())
+            mercados_dia = d_merc.multiselect("Mercado", mercados_disp, default=mercados_disp, key="rep_dia_mercados")
+            ligas_dia_disp = sorted(datos["competition"].dropna().unique())
+            ligas_dia = d_liga.multiselect("Liga", ligas_dia_disp, default=ligas_dia_disp, key="rep_dia_ligas",
+                                           format_func=lambda c: config.COMPETITIONS.get(c, c))
+            datos_dia = datos[datos["mercado"].isin(mercados_dia) & datos["competition"].isin(ligas_dia)]
+            tabla = reports.summarize(datos_dia, ["fecha"])
             if tabla.empty:
                 st.caption("Sin datos en el filtro.")
             else:
