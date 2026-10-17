@@ -1824,11 +1824,25 @@ def _summary_table(tabla: pd.DataFrame, categoria: str, titulo: str) -> None:
     )
 
 
+def _min_sample_slider(label: str, conteos: pd.Series, defecto: int, key: str, help: str | None = None) -> int:
+    """Slider de muestra mínima cuyo tope es el máximo que de verdad hay en el
+    filtro (antes era fijo 1-30: con pocos días filtrados, el valor por defecto
+    superaba a todos y la tabla quedaba vacía)."""
+    tope = int(conteos.max()) if len(conteos) else 1
+    if tope <= 1:
+        return 1
+    # Si el filtro cambió y el valor guardado quedó por encima del nuevo tope, se ajusta.
+    if key in st.session_state and st.session_state[key] > tope:
+        st.session_state[key] = tope
+    return st.slider(label, 1, tope, min(defecto, tope), key=key, help=help)
+
+
 def _render_strengths_map(datos: pd.DataFrame) -> None:
     st.markdown("**Mapa de fortalezas y debilidades — liga × mercado**")
-    min_celda = st.slider("Mínimo de predicciones por celda", 1, 30, 8, key="rep_min_celda",
-                          help="Con pocas predicciones la diferencia es casi puro azar.")
     mapa = reports.summarize(datos, ["competition", "mercado"])
+    min_celda = _min_sample_slider("Mínimo de predicciones por celda",
+                                   mapa["predicciones"] if not mapa.empty else pd.Series(dtype=int), 8,
+                                   "rep_min_celda", help="Con pocas predicciones la diferencia es casi puro azar.")
     mapa = mapa[mapa["predicciones"] >= min_celda] if not mapa.empty else mapa
     if mapa.empty:
         st.caption("Ninguna combinación llega a ese mínimo en el filtro.")
@@ -2046,8 +2060,10 @@ with tab_reportes:
                 _summary_table(tabla.sort_values("acierto_pct", ascending=False), "competition", "Liga")
 
         with t_equipo:
-            min_n = st.slider("Mínimo de predicciones por equipo", 1, 30, 5, key="rep_min_equipo")
             tabla = reports.summarize(reports.by_team(datos), ["equipo"])
+            min_n = _min_sample_slider("Mínimo de predicciones por equipo",
+                                       tabla["predicciones"] if not tabla.empty else pd.Series(dtype=int), 5,
+                                       "rep_min_equipo")
             tabla = tabla[tabla["predicciones"] >= min_n] if not tabla.empty else tabla
             if tabla.empty:
                 st.caption("Ningún equipo llega a ese mínimo en el filtro.")
