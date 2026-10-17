@@ -72,7 +72,12 @@ def main():
     args = parser.parse_args()
 
     log = load_log()
-    pending = log[log["status"] == "pending"]
+    # Además de los pendientes: los resueltos el mismo día con 365scores
+    # (same_day.py) a los que les falta el descanso/estadísticas — se completan
+    # acá con la fuente habitual, sin cambiar su acierto.
+    por_completar = (log.get("resolved_source") == "365scores") & log["actual_ht_home_goals"].isna()
+    a_procesar = (log["status"] == "pending") | por_completar
+    pending = log[a_procesar]
     if pending.empty:
         print("No hay predicciones pendientes por resolver.")
         return
@@ -107,7 +112,7 @@ def main():
         mask = (
             (log["competition"] == code)
             & (log["season"] == season)
-            & (log["status"] == "pending")
+            & a_procesar
         )
         for idx in log[mask].index:
             row = log.loc[idx]
@@ -141,9 +146,11 @@ def main():
             ).items():
                 log.loc[idx, campo] = valor
 
+            ya_resuelto = row["status"] == "resolved"
             log.loc[idx, "status"] = "resolved"
+            log.loc[idx, "resolved_source"] = "football-data/goal-api"
             log.loc[idx, "resolved_at"] = pd.Timestamp.utcnow().strftime("%Y-%m-%dT%H:%M:%SZ")
-            resolved_count += 1
+            resolved_count += 0 if ya_resuelto else 1
 
     # Goles (O/U 2.5) y Ambos anotan se pueden resolver retroactivamente para
     # partidos YA resueltos antes de que existieran estas columnas: los goles

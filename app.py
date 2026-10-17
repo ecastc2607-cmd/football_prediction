@@ -18,7 +18,8 @@ import altair as alt
 import pandas as pd
 import streamlit as st
 
-from src import config, half_backtest, national_teams, odds_api, reports, scores365, season_store, tips_log
+from src import (config, half_backtest, national_teams, odds_api, reports, same_day, scores365, season_store,
+                 tips_log)
 from src.live_odds import record as record_live_odds
 from src.competition_status import resolve_current_season_and_matchday
 from src.fetch_football_data import FootballDataClient, fetch_competition
@@ -1776,6 +1777,7 @@ def load_reports_data() -> tuple[pd.DataFrame, pd.DataFrame]:
     """(log de predicciones, log de tips). Antes resuelve los tips pendientes
     con los marcadores finales de 365scores (gratis), como mucho cada 10 min."""
     tips_log.resolve()
+    same_day.resolve_finished()  # las del día, sin esperar a la tarea de los lunes
     pred = config.ROOT_DIR / "data" / "tracking" / "predictions_log.csv"
     return (pd.read_csv(pred) if pred.exists() else pd.DataFrame()), tips_log.load()
 
@@ -1929,7 +1931,11 @@ with tab_reportes:
         inicio_def = max(fechas.min(), hoy_rep - pd.Timedelta(days=90))
         rango = f1.date_input("Rango de fechas", value=(inicio_def, hoy_rep), min_value=fechas.min(),
                               max_value=max(fechas.max(), hoy_rep), key="rep_rango")
-        desde, hasta = rango if isinstance(rango, tuple) and len(rango) == 2 else (fechas.min(), hoy_rep)
+        # Con solo la fecha de inicio elegida (fin vacío), el tope es hoy — antes
+        # caía al rango completo del historial e incluía hasta el año anterior.
+        rango = tuple(rango) if isinstance(rango, (tuple, list)) else (rango,)
+        desde = rango[0] if rango else inicio_def
+        hasta = rango[1] if len(rango) > 1 else hoy_rep
         ligas_disp = sorted(todo["competition"].dropna().unique())
         ligas = f2.multiselect("Ligas", ligas_disp, default=ligas_disp, key="rep_ligas",
                                format_func=lambda c: config.COMPETITIONS.get(c, c))

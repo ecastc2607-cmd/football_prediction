@@ -30,7 +30,7 @@ COLUMNS = [
     "utc_date",
     "pred_home_pct", "pred_draw_pct", "pred_away_pct",
     "home_xg", "away_xg", "over_2_5_pct", "btts_pct", "low_confidence",
-    "status", "actual_home_goals", "actual_away_goals", "actual_result",
+    "status", "resolved_source", "actual_home_goals", "actual_away_goals", "actual_result",
     "favored_side", "hit",
     # Resultado se resuelve arriba (hit); estos dos se resuelven en
     # resolve_predictions.py a partir de datos que YA se logueaban

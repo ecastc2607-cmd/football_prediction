@@ -55,6 +55,7 @@ PREMATCH_HOURS = 3
 # hacer el commit cuando ya no queda nada en juego.
 POSTMATCH_MINUTES = 150
 TRACKED_FILES = [
+    "data/tracking/predictions_log.csv",
     "data/tracking/tips_log.csv",
     "data/tracking/match_stats_log.csv",
     "data/tracking/live_odds_snapshots.csv",
@@ -133,6 +134,7 @@ def _load_heavy() -> None:
 # --- Probabilidad del modelo para un partido de 365scores ---
 
 _PRED_CACHE: dict = {}
+_LOGGED_DAYS: set[str] = set()
 
 
 def _our_fixture(code: str, home: str, away: str, kickoff: str) -> dict | None:
@@ -349,6 +351,15 @@ def run_once() -> None:
     if n_pre:
         _log(f"prepartido: {n_pre} partidos con cuota")
     hoy_col = (datetime.now(timezone.utc) - timedelta(hours=5)).date().isoformat()
+    from . import same_day
+    if hoy_col not in _LOGGED_DAYS:  # las predicciones del día, una vez por día y antes del inicio
+        n_log = same_day.log_day(hoy_col)
+        _LOGGED_DAYS.add(hoy_col)
+        if n_log:
+            _log(f"predicciones del día: {n_log} partidos logueados")
+    n_resp = same_day.resolve_finished()
+    if n_resp:
+        _log(f"predicciones resueltas el mismo día: {n_resp}")
     n_tips = capture_daily_tips(hoy_col)
     if n_tips:
         _log(f"tips del día: {n_tips} boletos guardados")

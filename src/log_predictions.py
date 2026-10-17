@@ -30,15 +30,22 @@ from .team_strength import confidence_note, team_strength_for_competition
 MODEL_SOURCE = "model_poisson_v2"
 
 
-def log_competition(code: str, season: int, matchday: int, seasons_back: int = 1) -> list[dict]:
+def log_competition(code: str, season: int, matchday: int, seasons_back: int = 1,
+                    only_future: bool = True) -> list[dict]:
+    """Filas de predicción de una jornada. `only_future=False` solo para un
+    backfill explícito con datos previos al partido (same_day.backfill_day),
+    que se marca con su propio `source` para no mezclarlo con lo logueado a tiempo."""
     seasons = [season - i for i in range(seasons_back + 1)]
     strength = team_strength_for_competition(code, seasons)
     fixtures = upcoming_fixtures(code, season, matchday)
+    if not only_future:
+        from .predict_matchday import matchday_fixtures
+        fixtures = matchday_fixtures(code, season, matchday)
     # upcoming_fixtures se fía del "status" del CSV, que puede estar viejo (ej.
     # descargado ayer): un partido ya jugado seguiría figurando SCHEDULED.
     # Loguearlo metería en la calibración un resultado ya conocido, así que
     # además se exige que el partido no haya empezado todavía.
-    if not fixtures.empty:
+    if not fixtures.empty and only_future:
         inicio = pd.to_datetime(fixtures["utc_date"], utc=True, errors="coerce")
         fixtures = fixtures[inicio > pd.Timestamp.now(tz="UTC")]
 
