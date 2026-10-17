@@ -26,6 +26,7 @@ MARKETS = [
     ("Tarjetas", "hit_tarjetas"),
 ]
 STAT_MARKET_BASELINE = 0.5
+_SIDE = {"H": "Local", "D": "Empate", "A": "Visitante"}
 
 
 def _fecha(utc_date, logged_at) -> object:
@@ -68,9 +69,26 @@ def predictions_long(log: pd.DataFrame, include_backtest: bool = True) -> pd.Dat
         return pd.DataFrame()
     r["fecha"] = [_fecha(u, l) for u, l in zip(r.get("utc_date", [None] * len(r)), r["logged_at"])]
     p1x2 = r[["pred_home_pct", "pred_draw_pct", "pred_away_pct"]].max(axis=1) / 100
-    _, prob_dc, r["hit_dc"] = _double_chance(r)
+    pick_dc, prob_dc, r["hit_dc"] = _double_chance(r)
     over = r["over_2_5_pct"] / 100
     btts = r["btts_pct"] / 100
+    # El pick que hizo el modelo en cada mercado (para entender un ✔/✘: ej.
+    # "Ambos anotan: No" y quedó 1-1 = fallo).
+    picks = {
+        "hit": r["favored_side"].map(_SIDE),
+        "hit_dc": pick_dc,
+        "hit_over_2_5": over.map(lambda o: None if pd.isna(o) else ("+2.5" if o >= 0.5 else "-2.5")),
+        "hit_btts": btts.map(lambda b: None if pd.isna(b) else ("Sí" if b >= 0.5 else "No")),
+    }
+    for m in ("corners", "faltas", "tarjetas"):
+        if f"pred_{m}_line" in r:
+            picks[f"hit_{m}"] = [
+                f"{'Más' if lado == 'Sí' else 'Menos'} de {linea:g}" if pd.notna(lado) and pd.notna(linea) else None
+                for lado, linea in zip(r[f"pred_{m}_probable"], r[f"pred_{m}_line"])]
+    picks = {k: pd.Series(v, index=r.index) for k, v in picks.items()}
+    marcador = [f"{int(h)}-{int(a)}" if pd.notna(h) and pd.notna(a) else None
+                for h, a in zip(r["actual_home_goals"], r["actual_away_goals"])]
+    r["marcador"] = marcador
     esperado = {
         "hit": p1x2,
         "hit_dc": prob_dc,
@@ -91,6 +109,8 @@ def predictions_long(log: pd.DataFrame, include_backtest: bool = True) -> pd.Dat
             "mercado": mercado, "acierto": acierto[sub.index].astype(bool),
             "esperado": esperado[col][sub.index] if col in esperado else STAT_MARKET_BASELINE,
             "source": sub["source"],
+            "pick": picks[col][sub.index] if col in picks else None,
+            "marcador": sub["marcador"],
         }))
     return pd.concat(filas, ignore_index=True) if filas else pd.DataFrame()
 
@@ -163,12 +183,13 @@ def tips_legs_long(tlog: pd.DataFrame) -> pd.DataFrame:
         "home_team": r["home_team"], "away_team": r["away_team"],
         "mercado": "Tips: " + r["market"].astype(str), "acierto": r["leg_result"] == "acierto",
         "esperado": pd.to_numeric(r["prob_ajustada"], errors="coerce"), "source": "tips",
+        "pick": r["pick"].astype(str).str.split(" \(").str[0],
+        "marcador": [f"{int(h)}-{int(a)}" if pd.notna(h) and pd.notna(a) else None
+                     for h, a in zip(r["home_goals"], r["away_goals"])],
     })
 
 
 # --- Partidos de un día: picks de cada partido y si se ganaron ---
-
-_SIDE = {"H": "Local", "D": "Empate", "A": "Visitante"}
 
 
 def _estado(valor, resuelto: bool) -> str:
@@ -224,3 +245,16 @@ def day_picks(log: pd.DataFrame, tlog: pd.DataFrame, fecha) -> pd.DataFrame:
                           "prob": (r["prob_ajustada"] * 100) if pd.notna(r.get("prob_ajustada")) else None,
                           "estado": estado})
     return pd.DataFrame(filas)
+
+
+def team_detail(long: pd.DataFrame, equipo: str) -> pd.DataFrame:
+    """Predicciones de un equipo con el pick del modelo, su probabilidad, el
+    marcador y si acertó — para entender cada ✔/✘ del agregado por equipo."""
+    d = long[(long["home_team"] == equipo) | (long["away_team"] == equipo)]
+    if d.empty:
+        return pd.DataFrame()
+    return pd.DataFrame({
+        "Día": d["fecha"], "Partido": d["home_team"] + " vs " + d["away_team"],
+        "Marcador": d.get("marcador"), "Mercado": d["mercado"], "Pick del modelo": d.get("pick"),
+        "Prob.": (d["esperado"] * 100).round(0), "Resultado": d["acierto"].map({True: "✔ Acertado", False: "✘ Fallado"}),
+    }).sort_values(["Día", "Partido", "Mercado"], ascending=[False, True, True])

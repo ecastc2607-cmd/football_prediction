@@ -2101,7 +2101,8 @@ with tab_reportes:
 
         with t_equipo:
             e_merc, e_min = st.columns(2)
-            tabla = reports.summarize(reports.by_team(_market_filter(datos, "rep_equipo_mercados", e_merc)), ["equipo"])
+            datos_equipo = _market_filter(datos, "rep_equipo_mercados", e_merc)
+            tabla = reports.summarize(reports.by_team(datos_equipo), ["equipo"])
             # Por defecto, el máximo posible (pedido del usuario): arranca mostrando
             # los equipos con más muestra; se baja para ver más equipos.
             min_n = _min_sample_slider("Mínimo de predicciones por equipo",
@@ -2125,6 +2126,20 @@ with tab_reportes:
                               "la tabla de abajo tiene todos." if len(tabla) > MAX_TEAMS_CHART else ""))
                 _summary_table(tabla, "equipo", "Equipo")
                 st.caption(PICK_NOTE + " Cada predicción cuenta para los dos equipos del partido.")
+
+                # Detalle: qué pick hizo el modelo en cada partido del equipo, para
+                # entender por qué un mercado sale como acertado o fallado.
+                opciones = grafico["equipo"].tolist() + [e for e in tabla["equipo"] if e not in set(grafico["equipo"])]
+                defecto = opciones.index(equipo) if equipo in opciones else 0
+                elegido = st.selectbox("Ver el detalle de predicciones de", opciones, index=defecto,
+                                       key="rep_equipo_detalle")
+                detalle = reports.team_detail(datos_equipo, elegido)
+                st.dataframe(detalle, hide_index=True, width="stretch", column_config={
+                    "Prob.": st.column_config.NumberColumn("Prob. del pick", format="%.0f%%",
+                                                           help="Probabilidad que el modelo le daba a su pick."),
+                    "Pick del modelo": st.column_config.Column(
+                        help="Lo que predijo el modelo: Local/Empate/Visitante, 1X/X2, +2.5/-2.5, Sí/No..."),
+                })
 
         with t_mercado:
             tabla = reports.summarize(datos, ["mercado"])
