@@ -223,7 +223,10 @@ def best_prices(event: dict, only_colombia: bool = True) -> dict[str, tuple[floa
 # en la misma ventana tras un reinicio de Streamlit Cloud y (2) medir después si
 # los picks recomendados de verdad pagaban más de lo que valían.
 SNAPSHOT_PATH = config.ROOT_DIR / "data" / "tracking" / "odds_snapshots.csv"
-PRICE_KEYS = ["home", "draw", "away", "over", "under", "dc_1x", "dc_x2", "btts_yes", "btts_no"]
+PRICE_KEYS = ["home", "draw", "away", "over", "under", "dc_1x", "dc_x2", "btts_yes", "btts_no",
+              # Corners/tarjetas totales en la línea principal de la casa (columna
+              # corners_line / cards_line de la misma fila) — solo 365scores.
+              "corners_over", "corners_under", "cards_over", "cards_under"]
 # 6 h: las cuotas previas al partido se mueven poco y cada consulta nueva gasta
 # 2 de los 500 créditos/mes del plan gratis.
 SNAPSHOT_MAX_AGE_HOURS = 6

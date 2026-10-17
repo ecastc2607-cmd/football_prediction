@@ -267,25 +267,37 @@ def capture_daily_tips(fecha: str) -> int:
     """Arma y guarda el Plan del día (una vez por día, antes del primer partido:
     la ventana abre PREMATCH_HOURS antes). Devuelve cuántos boletos guardó."""
     from .daily_plan import build_plans
-    from .value_tips import candidate_picks, evaluate
+    from .value_tips import candidate_picks, evaluate, totals_candidates
 
     hist = tips_log.load()
     if not hist.empty and ((hist["fecha"] == fecha) & (hist["origin"] == "capture_task")).any():
         return 0
     preds = local_day_predictions(fecha)
-    candidatos = candidate_picks(preds) if not preds.empty else pd.DataFrame()
-    if candidatos.empty:
+    if preds.empty:
         return 0
     inicio = datetime.strptime(fecha, "%Y-%m-%d").replace(hour=5, tzinfo=timezone.utc)  # 00:00 Colombia (UTC-5)
     desde, hasta = inicio.strftime("%Y-%m-%dT%H:%M:%SZ"), (inicio + timedelta(days=1)).strftime("%Y-%m-%dT%H:%M:%SZ")
-    candidatos["cuota"] = None
-    for code in candidatos["competition"].unique():
-        eventos, _, _ = odds_api.get_odds_table(code, desde, hasta, paid_fallback=False)
-        for idx, r in candidatos[candidatos["competition"] == code].iterrows():
-            ev = odds_api.find_event(eventos, r.home_team, r.away_team, r.utc_date, r.home_team_short, r.away_team_short)
+    eventos = {code: odds_api.get_odds_table(code, desde, hasta, paid_fallback=False)[0]
+               for code in preds["competition"].unique()}
+
+    def _evento(r):
+        return odds_api.find_event(eventos.get(r["competition"]) or [], r["home_team"], r["away_team"], r["utc_date"],
+                                   r.get("home_team_short") or "", r.get("away_team_short") or "")
+
+    candidatos = candidate_picks(preds)
+    if not candidatos.empty:
+        candidatos["cuota"] = None
+        for idx, r in candidatos.iterrows():
+            ev = _evento(r)
             precio = odds_api.row_price(ev, r.odds_key) if ev else None
             if precio:
                 candidatos.at[idx, "cuota"] = precio[0]
+    sin_baja = preds[~preds["low_confidence"].astype(bool)] if "low_confidence" in preds else preds
+    totales = totals_candidates(sin_baja, _evento)
+    if not totales.empty:
+        candidatos = pd.concat([candidatos, totales.assign(cuota=totales["cuota_auto"])], ignore_index=True)
+    if candidatos.empty:
+        return 0
     evaluado = evaluate(candidatos, TIPS_BANKROLL)
     guardados = 0
     for plan in build_plans(evaluado, TIPS_BUDGET):

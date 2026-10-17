@@ -56,7 +56,7 @@ from src.prediction_log import MARKETS
 from src.daily_plan import MAX_TICKETS, build_plans, ticket_rows
 from src.timezones import BOGOTA_TZ, format_bogota, to_bogota
 from src.value_tips import (LIVE_MODEL_WEIGHT, MAX_DAILY_EXPOSURE, MIN_MODEL_PROB, candidate_picks,
-                             day_summary, evaluate, live_candidate_picks)
+                             day_summary, evaluate, live_candidate_picks, totals_candidates)
 
 st.set_page_config(page_title="Football Analytics · Jornada", page_icon="⚽", layout="wide")
 
@@ -1458,8 +1458,47 @@ with tab_tips:
             dia = pd.DataFrame()
 
         candidatos = candidate_picks(dia) if not dia.empty else pd.DataFrame()
+
+        # --- Cuotas del día (365scores; The Odds API de respaldo si hay clave) ---
+        # Para TODAS las competiciones del día (no solo las de los candidatos):
+        # corners/tarjetas necesitan la línea de la casa para armar su pick.
+        inicio_local = datetime.combine(fecha_tips, datetime.min.time(), tzinfo=BOGOTA_TZ)
+        desde = inicio_local.astimezone(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
+        hasta = (inicio_local + pd.Timedelta(days=1)).astimezone(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
+        eventos_por_comp, restante = {}, None
+        for code in (dia["competition"].unique() if not dia.empty else []):
+            if code not in odds_api.SPORT_KEYS:
+                continue  # amistosos: sin competición mapeada -> cuota manual
+            eventos, rest, error = load_odds_table(code, desde, hasta, bool(ODDS_KEY))
+            restante = rest if rest is not None else restante
+            if error:
+                st.caption(f"⚠ {config.COMPETITIONS.get(code, code)}: {error}")
+                continue
+            eventos_por_comp[code] = eventos
+
+        def _evento(r):
+            return odds_api.find_event(eventos_por_comp.get(r["competition"]) or [], r["home_team"], r["away_team"],
+                                       r["utc_date"], r.get("home_team_short") or "", r.get("away_team_short") or "")
+
+        if not candidatos.empty:
+            candidatos["cuota_auto"] = None
+            candidatos["casa"] = ""
+            for idx, r in candidatos.iterrows():
+                evento = _evento(r)
+                precio = odds_api.row_price(evento, r.odds_key, only_colombia=solo_colombia) if evento else None
+                if precio:
+                    candidatos.at[idx, "cuota_auto"] = precio[0]
+                    candidatos.at[idx, "casa"] = precio[1]
+        # Corners y tarjetas (experimental, ver value_tips.TOTALS_MODEL_WEIGHT):
+        # solo en la línea principal de la casa y con su cuota real.
+        totales = totals_candidates(dia[~dia.get("low_confidence", False).astype(bool)] if not dia.empty else dia,
+                                    _evento)
+        if not totales.empty:
+            candidatos = pd.concat([candidatos, totales], ignore_index=True)
+
         st.caption(f"{len(dia)} partidos por jugar ese día · {len(candidatos)} picks con ≥{MIN_MODEL_PROB:.0%} "
-                   "en partidos sin baja confianza.")
+                   "en partidos sin baja confianza"
+                   + (f" (incluye {len(totales)} de corners/tarjetas)" if not totales.empty else "") + ".")
 
         if dia.empty:
             st.info("No hay partidos por jugar ese día en las competiciones que sigue el proyecto.")
@@ -1470,32 +1509,6 @@ with tab_tips:
                 "este día no cuenta para la meta."
             )
         else:
-            # --- Mejor cuota automática (365scores; The Odds API de respaldo si hay clave) ---
-            candidatos["cuota_auto"] = None
-            candidatos["casa"] = ""
-            inicio_local = datetime.combine(fecha_tips, datetime.min.time(), tzinfo=BOGOTA_TZ)
-            desde = inicio_local.astimezone(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
-            hasta = (inicio_local + pd.Timedelta(days=1)).astimezone(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
-            restante = None
-            for code in candidatos["competition"].unique():
-                if code not in odds_api.SPORT_KEYS:
-                    continue  # amistosos: sin competición mapeada -> cuota manual
-                eventos, rest, error = load_odds_table(code, desde, hasta, bool(ODDS_KEY))
-                restante = rest if rest is not None else restante
-                if error:
-                    st.caption(f"⚠ {config.COMPETITIONS.get(code, code)}: {error}")
-                    continue
-                for idx, r in candidatos[candidatos["competition"] == code].iterrows():
-                    evento = odds_api.find_event(
-                        eventos, r.home_team, r.away_team, r.utc_date,
-                        r.home_team_short, r.away_team_short,
-                    )
-                    if evento is None:
-                        continue
-                    precio = odds_api.row_price(evento, r.odds_key, only_colombia=solo_colombia)
-                    if precio:
-                        candidatos.at[idx, "cuota_auto"] = precio[0]
-                        candidatos.at[idx, "casa"] = precio[1]
             if restante is not None:
                 st.caption(f"Créditos de The Odds API restantes este mes: {restante}")
 

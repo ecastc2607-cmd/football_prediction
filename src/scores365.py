@@ -42,6 +42,10 @@ COMPETITION_IDS = {
 
 # Tipos de línea de /bets/lines/ y el orden ("num") de sus opciones.
 LINE_1X2, LINE_GOALS, LINE_BTTS, LINE_DOUBLE_CHANCE = 1, 3, 12, 14
+# Corners y tarjetas totales: la casa ofrece varias líneas por partido (ej.
+# tarjetas 3.5 / 4.5 / 5.5); se guarda la PRINCIPAL, la de cuotas más parejas.
+LINE_CORNERS, LINE_CARDS = 137, 141
+TOTALS_LINE_TYPES = {LINE_CORNERS: "corners", LINE_CARDS: "cards"}
 TOTALS_LINE = "2.5"
 # statusGroup de 365scores: 2 = por jugar, 3 = en juego, 4 = terminado.
 STATUS_SCHEDULED, STATUS_LIVE, STATUS_FINISHED = 2, 3, 4
@@ -105,6 +109,7 @@ def games(code: str, date_from_utc: str, date_to_utc: str) -> list[dict]:
 def _prices_from_lines(lines: list[dict]) -> dict[str, tuple[float | None, float | None]]:
     """{clave: (cuota_actual, cuota_de_apertura)} con las claves de odds_api.PRICE_KEYS."""
     precios: dict[str, tuple[float | None, float | None]] = {}
+    totales: dict[str, list] = {}
 
     def anotar(clave, opcion):
         if opcion:
@@ -121,6 +126,19 @@ def _prices_from_lines(lines: list[dict]) -> dict[str, tuple[float | None, float
             anotar("btts_yes", por_num.get(1)); anotar("btts_no", por_num.get(2))
         elif tipo == LINE_DOUBLE_CHANCE:
             anotar("dc_1x", por_num.get(1)); anotar("dc_x2", por_num.get(3))
+        elif tipo in TOTALS_LINE_TYPES:
+            under, over = por_num.get(1), por_num.get(2)  # 1 = Under, 2 = Over (verificado oct-2026)
+            try:
+                linea = float(line.get("internalOptionValue"))
+            except (TypeError, ValueError):
+                continue
+            if under and over and _decimal(under) and _decimal(over):
+                totales.setdefault(TOTALS_LINE_TYPES[tipo], []).append((linea, under, over))
+    for mercado, lineas in totales.items():
+        linea, under, over = min(lineas, key=lambda t: abs(_decimal(t[1]) - _decimal(t[2])))
+        anotar(f"{mercado}_under", under)
+        anotar(f"{mercado}_over", over)
+        precios[f"{mercado}_line"] = (linea, None)
     return precios
 
 
@@ -155,6 +173,8 @@ def event_rows(code: str, date_from_utc: str, date_to_utc: str, meta: dict,
                 fila[f"{filtro}_{clave}"] = actual
                 fila[f"{filtro}_{clave}_book"] = BOOKMAKER if actual else ""
             fila[f"open_{clave}"] = apertura
+        for mercado in TOTALS_LINE_TYPES.values():
+            fila[f"{mercado}_line"] = precios.get(f"{mercado}_line", (None, None))[0]
         filas.append(fila)
     return filas
 

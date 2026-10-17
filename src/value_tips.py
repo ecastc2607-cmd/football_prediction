@@ -39,6 +39,11 @@ MODEL_WEIGHT = 0.5  # peso del modelo al promediar con la probabilidad implícit
 # Rennes 0-1 OFI al descanso, el modelo daba 46% a OFI y BWIN pagaba 3.50 (29%).
 # Revisar este peso cuando haya historia suficiente.
 LIVE_MODEL_WEIGHT = 0.25
+# Corners y tarjetas (totals_model.py): el modelo le gana poco a la simple
+# frecuencia de la liga (backtest oct-2026: 0-1.7% de log-loss) y la casa cobra
+# ~9% de margen en esos mercados, así que el modelo pesa menos al calcular el valor.
+TOTALS_MODEL_WEIGHT = 0.35
+TOTALS_MARKETS = {"corners": "Corners", "cards": "Tarjetas"}
 # Picks ya prácticamente decididos: la casa paga ~1.01, no aportan nada.
 LIVE_MAX_PROB = 0.97
 MIN_EDGE = 0.03  # valor esperado mínimo (+3% por peso apostado), ya descontado
@@ -127,6 +132,45 @@ def live_candidate_picks(live: list[dict], min_prob: float = MIN_MODEL_PROB) -> 
     return pd.DataFrame(filas)
 
 
+def totals_candidates(day_predictions: pd.DataFrame, find_odds_row, min_prob: float = MIN_MODEL_PROB) -> pd.DataFrame:
+    """Picks de corners/tarjetas en la línea PRINCIPAL de la casa. `find_odds_row(fila)`
+    devuelve la fila de cuotas de 365scores de ese partido (o None). Solo con
+    cuota real: sin la línea de la casa no hay qué evaluar."""
+    from . import totals_model
+    from .odds_api import row_price
+
+    filas = []
+    for _, r in day_predictions.iterrows():
+        ev = find_odds_row(r)
+        if not ev:
+            continue
+        for clave, mercado in TOTALS_MARKETS.items():
+            linea = ev.get(f"{clave}_line")
+            if linea is None or linea != linea:
+                continue
+            modelo = totals_model.predict(r.get("competition"), r["home_team"], r["away_team"],
+                                          "corners" if clave == "corners" else "tarjetas", float(linea))
+            if modelo is None:
+                continue
+            esperados, p_over = modelo
+            for lado, prob, etiqueta in (("over", p_over, "Más"), ("under", 1 - p_over, "Menos")):
+                precio = row_price(ev, f"{clave}_{lado}")
+                if prob < min_prob or not precio:
+                    continue
+                home_short = r.get("home_team_short") or r["home_team"]
+                away_short = r.get("away_team_short") or r["away_team"]
+                filas.append({
+                    "competition": r.get("competition", ""), "competition_name": r.get("competition_name", ""),
+                    "utc_date": r["utc_date"], "home_team": r["home_team"], "away_team": r["away_team"],
+                    "home_team_short": home_short, "away_team_short": away_short,
+                    "partido": f"{home_short} vs {away_short}", "mercado": mercado,
+                    "pick": f"{etiqueta} de {float(linea):g} (esp. {esperados:.1f})", "odds_key": f"{clave}_{lado}",
+                    "prob_modelo": prob, "cuota_justa": round(1 / prob, 2),
+                    "cuota_auto": precio[0], "casa": precio[1], "peso_modelo": TOTALS_MODEL_WEIGHT,
+                })
+    return pd.DataFrame(filas)
+
+
 def evaluate(picks: pd.DataFrame, bankroll: float, max_exposure: float = MAX_DAILY_EXPOSURE,
              model_weight: float = MODEL_WEIGHT) -> pd.DataFrame:
     """Recibe los candidatos con columnas `cuota` (la que se usará: manual si
@@ -143,7 +187,9 @@ def evaluate(picks: pd.DataFrame, bankroll: float, max_exposure: float = MAX_DAI
     cuota = cuota.where(tiene_cuota)
 
     prob_mercado = 1 / cuota.where(tiene_cuota)
-    df["prob_ajustada"] = model_weight * df["prob_modelo"] + (1 - model_weight) * prob_mercado
+    # Peso del modelo por pick si la fila lo trae (corners/tarjetas pesan menos).
+    peso = df["peso_modelo"].fillna(model_weight) if "peso_modelo" in df else model_weight
+    df["prob_ajustada"] = peso * df["prob_modelo"] + (1 - peso) * prob_mercado
     df["valor"] = df["prob_ajustada"] * cuota - 1
     kelly = (df["prob_ajustada"] * cuota - 1) / (cuota - 1)
 

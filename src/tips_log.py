@@ -150,8 +150,26 @@ def tickets_from_singles(evaluated: pd.DataFrame) -> list[dict]:
 
 # --- Resolución ---
 
-def leg_outcome(market: str, pick: str, hg: int, ag: int) -> bool | None:
-    """¿Acertó el pick con el marcador final? None si el mercado no se reconoce."""
+def _line_pick(pick: str) -> tuple[str, float] | None:
+    """"Más de 9.5 (esp. 10.2)" -> ("Más", 9.5)."""
+    import re
+    m = re.match(r"\s*(Más|Menos) de ([0-9]+(?:\.[0-9]+)?)", str(pick or ""))
+    return (m.group(1), float(m.group(2))) if m else None
+
+
+def leg_outcome(market: str, pick: str, hg: int, ag: int, stats: dict | None = None) -> bool | None:
+    """¿Acertó el pick con el marcador final (y, para corners/tarjetas, con las
+    estadísticas finales)? None si el mercado no se reconoce o falta el dato."""
+    if market in ("Corners", "Tarjetas"):
+        lp = _line_pick(pick)
+        if not lp or not stats:
+            return None
+        if market == "Corners":
+            total = sum((stats.get(l) or {}).get("corners") or 0 for l in ("home", "away"))
+        else:
+            total = sum(((stats.get(l) or {}).get("tarjetas_amarillas") or 0) + ((stats.get(l) or {}).get("tarjetas_rojas") or 0)
+                        for l in ("home", "away"))
+        return total > lp[1] if lp[0] == "Más" else total < lp[1]
     pick = str(pick or "").strip()
     if market == "Resultado":
         return {"Local": hg > ag, "Empate": hg == ag, "Visitante": hg < ag}.get(pick)
@@ -188,7 +206,9 @@ def _final_scores(code: str, dia: str) -> list[dict]:
             continue
         eventos.append({"home_team": (g.get("homeCompetitor") or {}).get("name"),
                         "away_team": (g.get("awayCompetitor") or {}).get("name"),
-                        "commence_time": scores365._utc(g.get("startTime")), "hg": hg, "ag": ag})
+                        "commence_time": scores365._utc(g.get("startTime")), "hg": hg, "ag": ag,
+                        "game_id": g.get("id"), "home_id": (g.get("homeCompetitor") or {}).get("id"),
+                        "away_id": (g.get("awayCompetitor") or {}).get("id")})
     return eventos
 
 
@@ -206,6 +226,7 @@ def resolve(now: datetime | None = None) -> int:
             return 0
         resueltos = 0
         cache: dict = {}
+        stats_cache: dict = {}
         for i in pendientes:
             r = df.loc[i]
             dia = inicio[i].strftime("%Y-%m-%d")
@@ -214,7 +235,14 @@ def resolve(now: datetime | None = None) -> int:
                 cache[clave] = _final_scores(r["competition"], dia) if r["competition"] in scores365.COMPETITION_IDS else []
             ev = find_event(cache[clave], r["home_team"], r["away_team"], r["utc_date"]) if cache[clave] else None
             if ev:
-                gano = leg_outcome(r["market"], r["pick"], ev["hg"], ev["ag"])
+                stats = None
+                if r["market"] in ("Corners", "Tarjetas"):
+                    if ev["game_id"] not in stats_cache:
+                        stats_cache[ev["game_id"]] = scores365.live_stats(ev["game_id"], ev["home_id"], ev["away_id"])
+                    stats = stats_cache[ev["game_id"]]
+                gano = leg_outcome(r["market"], r["pick"], ev["hg"], ev["ag"], stats)
+                if gano is None and r["market"] in ("Corners", "Tarjetas") and not stats:
+                    continue  # estadísticas aún no publicadas: se reintenta después
                 df.at[i, "home_goals"], df.at[i, "away_goals"] = ev["hg"], ev["ag"]
                 df.at[i, "leg_result"] = NO_DATA if gano is None else (HIT if gano else MISS)
                 resueltos += 1
