@@ -44,6 +44,14 @@ LIVE_MODEL_WEIGHT = 0.25
 # ~9% de margen en esos mercados, así que el modelo pesa menos al calcular el valor.
 TOTALS_MODEL_WEIGHT = 0.35
 TOTALS_MARKETS = {"corners": "Corners", "cards": "Tarjetas"}
+# Mercados que el modelo NO sabe predecir en una liga: no se recomiendan ahí.
+# Liga BetPlay (backtest walk-forward 2026, 320 partidos): subestima los goles
+# (más de 2.5: predice 43%, pasa 48%; ambos anotan: 45% vs 56%) y no distingue
+# partidos (dice 30% o 58% y pasa ~48% igual). 1X2 sí le gana a la base (log-loss
+# 1.038 vs 1.067) y doble oportunidad acierta 77%.
+# Corners en Colombia (totals_backtest, 732 partidos): peor que la frecuencia
+# de la liga en las 3 líneas; tarjetas sí le gana (1.2-1.8%) y está calibrado.
+EXCLUDED_MARKETS = {"COL": {"Goles", "Ambos anotan", "Corners"}}
 # Picks ya prácticamente decididos: la casa paga ~1.01, no aportan nada.
 LIVE_MAX_PROB = 0.97
 MIN_EDGE = 0.03  # valor esperado mínimo (+3% por peso apostado), ya descontado
@@ -84,9 +92,10 @@ def candidate_picks(predictions: pd.DataFrame, min_prob: float = MIN_MODEL_PROB)
 
     filas = []
     for _, r in preds.iterrows():
+        excluidos = EXCLUDED_MARKETS.get(r.get("competition"), set())
         for columna, mercado, pick, clave in _OPCIONES:
             prob = r[columna] / 100
-            if prob < min_prob:
+            if prob < min_prob or mercado in excluidos:
                 continue
             home_short = r.get("home_team_short") or r["home_team"]
             away_short = r.get("away_team_short") or r["away_team"]
@@ -145,6 +154,8 @@ def totals_candidates(day_predictions: pd.DataFrame, find_odds_row, min_prob: fl
         if not ev:
             continue
         for clave, mercado in TOTALS_MARKETS.items():
+            if mercado in EXCLUDED_MARKETS.get(r.get("competition"), set()):
+                continue
             linea = ev.get(f"{clave}_line")
             if linea is None or linea != linea:
                 continue

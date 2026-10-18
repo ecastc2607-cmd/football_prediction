@@ -37,7 +37,7 @@ _HEADERS = {
 # IDs de competición en 365scores, verificados contra su /search/ (oct-2026).
 COMPETITION_IDS = {
     "PL": 7, "PD": 11, "SA": 17, "BL1": 25, "FL1": 35,
-    "CL": 572, "EL": 573, "ECL": 7685, "NT": 7016,
+    "CL": 572, "EL": 573, "ECL": 7685, "NT": 7016, "COL": 620,
 }
 
 # Tipos de línea de /bets/lines/ y el orden ("num") de sus opciones.

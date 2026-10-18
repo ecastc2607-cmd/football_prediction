@@ -36,6 +36,7 @@ COMPETITIONS = {
     "CL": "Champions League",
     "EL": "Europa League",
     "ECL": "Conference League",
+    "COL": "Liga BetPlay (Colombia)",
     "NT": "Selecciones (Nations League)",
 }
 
@@ -43,7 +44,10 @@ COMPETITIONS = {
 # "NT" (selecciones) tampoco: football-data.org solo tiene Mundial/Eurocopa, y
 # nada de eso corre fuera de esos torneos — ver src/national_teams.py.
 # "ECL" (Conference League): mismo caso que la Europa League (oct-2026).
-GOAL_API_COMPETITIONS = {"EL", "ECL", "NT"}
+# "COL" (Liga BetPlay): tampoco está en football-data.org; corre sobre 365scores
+# (src/colombia.py). El nombre del conjunto quedó de cuando todas las fuentes
+# externas eran Goal API: hoy significa "no viene de football-data.org".
+GOAL_API_COMPETITIONS = {"EL", "ECL", "NT", "COL"}
 
 # Qué módulo aislado resuelve cada competición fuera de football-data.org. Los
 # puntos de integración (app.py, resolve_predictions.py, fetch_football_data.py)
@@ -56,6 +60,9 @@ def goal_api_module(code: str):
     if code == "ECL":
         from . import conference_league
         return conference_league
+    if code == "COL":
+        from . import colombia
+        return colombia
     if code == "NT":
         from . import national_teams
         return national_teams

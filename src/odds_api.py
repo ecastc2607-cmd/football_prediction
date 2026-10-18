@@ -56,6 +56,9 @@ SPORT_KEYS = {
     "EL": "soccer_uefa_europa_league",
     "ECL": "soccer_uefa_europa_conference_league",
     "NT": "soccer_uefa_nations_league",
+    # Liga BetPlay: las cuotas salen de 365scores (BWIN Colombia); esta clave es
+    # solo el respaldo de The Odds API (se valida contra /sports antes de usarla).
+    "COL": "soccer_colombia_primera_a",
 }
 
 # Marcas con operación legal en Colombia. Se comparan contra el título que
