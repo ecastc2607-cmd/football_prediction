@@ -2168,14 +2168,30 @@ with tab_reportes:
                 _render_detail(datos_liga[datos_liga["competition"] == liga_det], PICK_NOTE)
 
         with t_equipo:
+            # Liga + uno o más equipos de esas ligas (vacío = todos).
+            e_liga, e_eq = st.columns(2)
+            ligas_eq_disp = sorted(datos["competition"].dropna().unique())
+            ligas_eq = e_liga.multiselect("Liga", ligas_eq_disp, default=ligas_eq_disp, key="rep_equipo_ligas",
+                                          format_func=lambda c: config.COMPETITIONS.get(c, c))
+            datos_ligas_eq = datos[datos["competition"].isin(ligas_eq)]
+            equipos_opc = sorted(set(datos_ligas_eq["home_team"].dropna()) | set(datos_ligas_eq["away_team"].dropna()))
+            # Si cambian las ligas, se descartan los equipos elegidos que ya no están.
+            if "rep_equipo_equipos" in st.session_state:
+                st.session_state["rep_equipo_equipos"] = [e for e in st.session_state["rep_equipo_equipos"]
+                                                          if e in equipos_opc]
+            equipos_sel = e_eq.multiselect("Equipos", equipos_opc, key="rep_equipo_equipos",
+                                           placeholder="Todos los de esas ligas")
             e_merc, e_min = st.columns(2)
-            datos_equipo = _market_filter(datos, "rep_equipo_mercados", e_merc)
+            datos_equipo = _market_filter(datos_ligas_eq, "rep_equipo_mercados", e_merc)
             tabla = reports.summarize(reports.by_team(datos_equipo), ["equipo"])
-            # Por defecto, el máximo posible (pedido del usuario): arranca mostrando
-            # los equipos con más muestra; se baja para ver más equipos.
+            if equipos_sel and not tabla.empty:
+                tabla = tabla[tabla["equipo"].isin(equipos_sel)]
+            # Sin equipos elegidos, el mínimo arranca en el máximo posible (muestra
+            # primero los de más muestra); con equipos elegidos, en 1 (se ven todos).
             min_n = _min_sample_slider("Mínimo de predicciones por equipo",
                                        tabla["predicciones"] if not tabla.empty else pd.Series(dtype=int),
-                                       10 ** 6, "rep_min_equipo", container=e_min)
+                                       1 if equipos_sel else 10 ** 6,
+                                       "rep_min_equipo_sel" if equipos_sel else "rep_min_equipo", container=e_min)
             tabla = tabla[tabla["predicciones"] >= min_n] if not tabla.empty else tabla
             if tabla.empty:
                 st.caption("Ningún equipo llega a ese mínimo en el filtro.")
@@ -2197,7 +2213,8 @@ with tab_reportes:
 
                 # Detalle: qué pick hizo el modelo en cada partido del equipo, para
                 # entender por qué un mercado sale como acertado o fallado.
-                opciones = grafico["equipo"].tolist() + [e for e in tabla["equipo"] if e not in set(grafico["equipo"])]
+                opciones = (([e for e in equipos_sel if e in set(tabla["equipo"])]) if equipos_sel else
+                            grafico["equipo"].tolist() + [e for e in tabla["equipo"] if e not in set(grafico["equipo"])])
                 defecto = opciones.index(equipo) if equipo in opciones else 0
                 elegido = st.selectbox("Ver el detalle de predicciones de", opciones, index=defecto,
                                        key="rep_equipo_detalle")
