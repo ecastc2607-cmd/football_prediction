@@ -2329,3 +2329,581 @@ COL,2026,0.0,2026-02-10T21:00:00Z,Cucuta Deportivo,Independiente Medellin,Cucuta
 COL,2026,0.0,2026-02-10T21:00:00Z,Cucuta Deportivo,Independiente Medellin,Independiente Medellin,False,2.0,18.0,4.0,0.0,54.0,9.0,15.0,1.0
 PD,2026,9.0,2026-10-18T19:00:00Z,Real Madrid CF,Sevilla FC,Real Madrid CF,True,1.0,10.0,2.0,0.0,65.0,8.0,15.0,1.0
 PD,2026,9.0,2026-10-18T19:00:00Z,Real Madrid CF,Sevilla FC,Sevilla FC,False,2.0,14.0,2.0,0.0,35.0,5.0,11.0,0.0
+COL,2026,0.0,2026-02-10T23:20:00Z,Llaneros FC,Deportivo Pasto,Llaneros FC,True,5.0,11.0,3.0,1.0,66.0,2.0,7.0,0.0
+COL,2026,0.0,2026-02-10T23:20:00Z,Llaneros FC,Deportivo Pasto,Deportivo Pasto,False,5.0,23.0,3.0,1.0,34.0,4.0,10.0,3.0
+COL,2026,0.0,2026-02-11T01:30:00Z,Atlético Bucaramanga,Deportes Tolima,Atlético Bucaramanga,True,3.0,14.0,3.0,1.0,44.0,0.0,9.0,7.0
+COL,2026,0.0,2026-02-11T01:30:00Z,Atlético Bucaramanga,Deportes Tolima,Deportes Tolima,False,5.0,19.0,5.0,0.0,56.0,2.0,8.0,1.0
+COL,2026,0.0,2026-02-11T23:30:00Z,Millonarios,Águilas Doradas,Millonarios,True,6.0,13.0,5.0,0.0,53.0,4.0,9.0,2.0
+COL,2026,0.0,2026-02-11T23:30:00Z,Millonarios,Águilas Doradas,Águilas Doradas,False,3.0,10.0,5.0,0.0,47.0,3.0,5.0,2.0
+COL,2026,0.0,2026-02-12T01:30:00Z,Internacional de Bogota,Deportivo Cali,Internacional de Bogota,True,2.0,13.0,5.0,0.0,44.0,5.0,11.0,1.0
+COL,2026,0.0,2026-02-12T01:30:00Z,Internacional de Bogota,Deportivo Cali,Deportivo Cali,False,5.0,12.0,2.0,0.0,56.0,8.0,24.0,2.0
+COL,2026,0.0,2026-02-12T21:10:00Z,Boyaca Chico,Jaguares de Córdoba,Boyaca Chico,True,4.0,21.0,1.0,1.0,57.0,6.0,13.0,1.0
+COL,2026,0.0,2026-02-12T21:10:00Z,Boyaca Chico,Jaguares de Córdoba,Jaguares de Córdoba,False,1.0,9.0,5.0,1.0,43.0,0.0,4.0,5.0
+COL,2026,0.0,2026-02-12T23:20:00Z,Once Caldas,Junior FC,Once Caldas,True,4.0,11.0,2.0,0.0,44.0,5.0,16.0,1.0
+COL,2026,0.0,2026-02-12T23:20:00Z,Once Caldas,Junior FC,Junior FC,False,4.0,15.0,1.0,0.0,56.0,5.0,13.0,1.0
+COL,2026,0.0,2026-02-13T01:30:00Z,Atletico Nacional,Fortaleza FC,Atletico Nacional,True,3.0,13.0,2.0,0.0,55.0,9.0,17.0,6.0
+COL,2026,0.0,2026-02-13T01:30:00Z,Atletico Nacional,Fortaleza FC,Fortaleza FC,False,2.0,11.0,2.0,1.0,45.0,2.0,10.0,3.0
+COL,2026,0.0,2026-02-14T01:00:00Z,America de Cali,Independiente Santa Fe,America de Cali,True,1.0,12.0,5.0,0.0,61.0,6.0,19.0,3.0
+COL,2026,0.0,2026-02-14T01:00:00Z,America de Cali,Independiente Santa Fe,Independiente Santa Fe,False,6.0,12.0,3.0,0.0,39.0,4.0,12.0,0.0
+COL,2026,0.0,2026-02-14T21:30:00Z,Millonarios,Llaneros FC,Millonarios,True,7.0,17.0,4.0,0.0,37.0,7.0,16.0,2.0
+COL,2026,0.0,2026-02-14T21:30:00Z,Millonarios,Llaneros FC,Llaneros FC,False,4.0,10.0,5.0,0.0,63.0,4.0,8.0,2.0
+COL,2026,0.0,2026-02-14T23:30:00Z,Independiente Medellin,Deportivo Pereira,Independiente Medellin,True,4.0,6.0,1.0,1.0,58.0,5.0,23.0,0.0
+COL,2026,0.0,2026-02-14T23:30:00Z,Independiente Medellin,Deportivo Pereira,Deportivo Pereira,False,0.0,9.0,1.0,0.0,42.0,5.0,9.0,1.0
+COL,2026,0.0,2026-02-15T01:30:00Z,Deportivo Pasto,Internacional de Bogota,Deportivo Pasto,True,7.0,8.0,0.0,0.0,61.0,3.0,11.0,4.0
+COL,2026,0.0,2026-02-15T01:30:00Z,Deportivo Pasto,Internacional de Bogota,Internacional de Bogota,False,5.0,9.0,2.0,0.0,39.0,4.0,13.0,0.0
+COL,2026,0.0,2026-02-15T21:20:00Z,Deportes Tolima,Once Caldas,Deportes Tolima,True,6.0,9.0,2.0,0.0,59.0,6.0,21.0,3.0
+COL,2026,0.0,2026-02-15T21:20:00Z,Deportes Tolima,Once Caldas,Once Caldas,False,5.0,5.0,4.0,0.0,41.0,4.0,9.0,3.0
+COL,2026,0.0,2026-02-15T23:30:00Z,Deportivo Cali,Atletico Nacional,Deportivo Cali,True,5.0,13.0,4.0,0.0,41.0,4.0,13.0,3.0
+COL,2026,0.0,2026-02-15T23:30:00Z,Deportivo Cali,Atletico Nacional,Atletico Nacional,False,9.0,14.0,5.0,0.0,59.0,6.0,15.0,1.0
+COL,2026,0.0,2026-02-16T01:30:00Z,Fortaleza FC,Boyaca Chico,Fortaleza FC,True,4.0,8.0,2.0,0.0,63.0,7.0,16.0,0.0
+COL,2026,0.0,2026-02-16T01:30:00Z,Fortaleza FC,Boyaca Chico,Boyaca Chico,False,3.0,15.0,3.0,0.0,37.0,2.0,7.0,1.0
+COL,2026,0.0,2026-02-17T21:00:00Z,Alianza FC,Cucuta Deportivo,Alianza FC,True,7.0,12.0,4.0,0.0,54.0,4.0,14.0,1.0
+COL,2026,0.0,2026-02-17T21:00:00Z,Alianza FC,Cucuta Deportivo,Cucuta Deportivo,False,4.0,17.0,6.0,0.0,46.0,6.0,10.0,1.0
+COL,2026,0.0,2026-02-17T23:00:00Z,Jaguares de Córdoba,Independiente Santa Fe,Jaguares de Córdoba,True,1.0,11.0,5.0,0.0,43.0,5.0,9.0,0.0
+COL,2026,0.0,2026-02-17T23:00:00Z,Jaguares de Córdoba,Independiente Santa Fe,Independiente Santa Fe,False,5.0,7.0,1.0,0.0,57.0,6.0,18.0,2.0
+COL,2026,0.0,2026-02-19T00:30:00Z,Junior FC,America de Cali,Junior FC,True,4.0,12.0,6.0,0.0,52.0,5.0,17.0,0.0
+COL,2026,0.0,2026-02-19T00:30:00Z,Junior FC,America de Cali,America de Cali,False,2.0,16.0,6.0,0.0,48.0,4.0,14.0,1.0
+COL,2026,0.0,2026-02-20T23:20:00Z,Llaneros FC,Independiente Medellin,Llaneros FC,True,12.0,11.0,3.0,0.0,58.0,6.0,14.0,1.0
+COL,2026,0.0,2026-02-20T23:20:00Z,Llaneros FC,Independiente Medellin,Independiente Medellin,False,5.0,13.0,5.0,0.0,42.0,3.0,9.0,1.0
+COL,2026,0.0,2026-02-21T01:30:00Z,Deportivo Pereira,Deportivo Pasto,Deportivo Pereira,True,1.0,17.0,2.0,1.0,42.0,6.0,11.0,1.0
+COL,2026,0.0,2026-02-21T01:30:00Z,Deportivo Pereira,Deportivo Pasto,Deportivo Pasto,False,6.0,10.0,3.0,0.0,58.0,7.0,22.0,1.0
+COL,2026,0.0,2026-02-21T19:00:00Z,Once Caldas,Fortaleza FC,Once Caldas,True,5.0,17.0,5.0,0.0,59.0,8.0,14.0,2.0
+COL,2026,0.0,2026-02-21T19:00:00Z,Once Caldas,Fortaleza FC,Fortaleza FC,False,1.0,11.0,1.0,0.0,41.0,5.0,9.0,0.0
+COL,2026,0.0,2026-02-21T21:10:00Z,Atlético Bucaramanga,Deportivo Cali,Atlético Bucaramanga,True,5.0,16.0,6.0,1.0,61.0,4.0,19.0,1.0
+COL,2026,0.0,2026-02-21T21:10:00Z,Atlético Bucaramanga,Deportivo Cali,Deportivo Cali,False,2.0,9.0,3.0,1.0,39.0,0.0,4.0,1.0
+COL,2026,0.0,2026-02-21T23:20:00Z,Atletico Nacional,Alianza FC,Atletico Nacional,True,2.0,13.0,3.0,0.0,48.0,7.0,13.0,0.0
+COL,2026,0.0,2026-02-21T23:20:00Z,Atletico Nacional,Alianza FC,Alianza FC,False,5.0,10.0,2.0,0.0,52.0,5.0,17.0,1.0
+COL,2026,0.0,2026-02-22T01:30:00Z,Internacional de Bogota,Millonarios,Internacional de Bogota,True,5.0,12.0,4.0,0.0,51.0,5.0,13.0,1.0
+COL,2026,0.0,2026-02-22T01:30:00Z,Internacional de Bogota,Millonarios,Millonarios,False,2.0,10.0,4.0,0.0,49.0,4.0,19.0,2.0
+COL,2026,0.0,2026-02-22T21:00:00Z,Independiente Santa Fe,Junior FC,Independiente Santa Fe,True,4.0,13.0,3.0,1.0,43.0,5.0,12.0,3.0
+COL,2026,0.0,2026-02-22T21:00:00Z,Independiente Santa Fe,Junior FC,Junior FC,False,1.0,4.0,1.0,0.0,57.0,5.0,11.0,0.0
+COL,2026,0.0,2026-02-22T23:10:00Z,Boyaca Chico,Águilas Doradas,Boyaca Chico,True,3.0,14.0,3.0,0.0,55.0,3.0,11.0,1.0
+COL,2026,0.0,2026-02-22T23:10:00Z,Boyaca Chico,Águilas Doradas,Águilas Doradas,False,5.0,12.0,2.0,0.0,45.0,3.0,11.0,4.0
+COL,2026,0.0,2026-02-23T01:30:00Z,America de Cali,Jaguares de Córdoba,America de Cali,True,8.0,16.0,3.0,0.0,64.0,3.0,20.0,0.0
+COL,2026,0.0,2026-02-23T01:30:00Z,America de Cali,Jaguares de Córdoba,Jaguares de Córdoba,False,0.0,10.0,4.0,1.0,36.0,1.0,3.0,5.0
+COL,2026,0.0,2026-02-23T21:00:00Z,Cucuta Deportivo,Deportes Tolima,Cucuta Deportivo,True,8.0,9.0,4.0,0.0,38.0,4.0,10.0,1.0
+COL,2026,0.0,2026-02-23T21:00:00Z,Cucuta Deportivo,Deportes Tolima,Deportes Tolima,False,13.0,8.0,1.0,0.0,62.0,8.0,22.0,0.0
+COL,2026,0.0,2026-02-26T00:00:00Z,Independiente Santa Fe,Atletico Nacional,Independiente Santa Fe,True,3.0,15.0,3.0,0.0,40.0,4.0,12.0,2.0
+COL,2026,0.0,2026-02-26T00:00:00Z,Independiente Santa Fe,Atletico Nacional,Atletico Nacional,False,5.0,11.0,2.0,0.0,60.0,4.0,12.0,1.0
+COL,2026,0.0,2026-02-27T00:30:00Z,Millonarios,Deportivo Pereira,Millonarios,True,8.0,6.0,1.0,0.0,55.0,12.0,23.0,4.0
+COL,2026,0.0,2026-02-27T00:30:00Z,Millonarios,Deportivo Pereira,Deportivo Pereira,False,1.0,9.0,1.0,0.0,45.0,3.0,5.0,0.0
+COL,2026,0.0,2026-02-28T01:30:00Z,Once Caldas,Boyaca Chico,Once Caldas,True,7.0,16.0,2.0,0.0,62.0,10.0,20.0,4.0
+COL,2026,0.0,2026-02-28T01:30:00Z,Once Caldas,Boyaca Chico,Boyaca Chico,False,1.0,5.0,4.0,0.0,38.0,3.0,13.0,1.0
+COL,2026,0.0,2026-02-28T21:10:00Z,Alianza FC,America de Cali,Alianza FC,True,6.0,9.0,4.0,1.0,42.0,2.0,10.0,2.0
+COL,2026,0.0,2026-02-28T21:10:00Z,Alianza FC,America de Cali,America de Cali,False,5.0,20.0,3.0,0.0,58.0,11.0,18.0,1.0
+COL,2026,0.0,2026-02-28T23:20:00Z,Jaguares de Córdoba,Junior FC,Jaguares de Córdoba,True,15.0,11.0,4.0,0.0,56.0,3.0,18.0,2.0
+COL,2026,0.0,2026-02-28T23:20:00Z,Jaguares de Córdoba,Junior FC,Junior FC,False,0.0,22.0,4.0,0.0,44.0,3.0,9.0,1.0
+COL,2026,0.0,2026-03-01T01:30:00Z,Independiente Medellin,Atlético Bucaramanga,Independiente Medellin,True,12.0,10.0,4.0,0.0,58.0,13.0,23.0,0.0
+COL,2026,0.0,2026-03-01T01:30:00Z,Independiente Medellin,Atlético Bucaramanga,Atlético Bucaramanga,False,2.0,9.0,2.0,0.0,42.0,3.0,6.0,3.0
+COL,2026,0.0,2026-03-01T19:00:00Z,Deportivo Pasto,Cucuta Deportivo,Deportivo Pasto,True,6.0,7.0,0.0,0.0,53.0,9.0,22.0,2.0
+COL,2026,0.0,2026-03-01T19:00:00Z,Deportivo Pasto,Cucuta Deportivo,Cucuta Deportivo,False,5.0,5.0,0.0,0.0,47.0,5.0,7.0,2.0
+COL,2026,0.0,2026-03-01T21:00:00Z,Águilas Doradas,Internacional de Bogota,Águilas Doradas,True,4.0,13.0,4.0,0.0,52.0,5.0,12.0,3.0
+COL,2026,0.0,2026-03-01T21:00:00Z,Águilas Doradas,Internacional de Bogota,Internacional de Bogota,False,6.0,14.0,2.0,0.0,48.0,4.0,10.0,0.0
+COL,2026,0.0,2026-03-01T23:10:00Z,Deportivo Cali,Fortaleza FC,Deportivo Cali,True,6.0,20.0,1.0,0.0,43.0,2.0,13.0,1.0
+COL,2026,0.0,2026-03-01T23:10:00Z,Deportivo Cali,Fortaleza FC,Fortaleza FC,False,5.0,10.0,4.0,0.0,57.0,3.0,13.0,0.0
+COL,2026,0.0,2026-03-02T01:30:00Z,Deportes Tolima,Atletico Nacional,Deportes Tolima,True,6.0,13.0,2.0,1.0,63.0,2.0,12.0,3.0
+COL,2026,0.0,2026-03-02T01:30:00Z,Deportes Tolima,Atletico Nacional,Atletico Nacional,False,4.0,9.0,4.0,1.0,37.0,4.0,11.0,1.0
+COL,2026,0.0,2026-03-05T01:00:00Z,Fortaleza FC,Jaguares de Córdoba,Fortaleza FC,True,7.0,14.0,3.0,0.0,61.0,6.0,10.0,0.0
+COL,2026,0.0,2026-03-05T01:00:00Z,Fortaleza FC,Jaguares de Córdoba,Jaguares de Córdoba,False,3.0,14.0,3.0,1.0,39.0,5.0,12.0,0.0
+COL,2026,0.0,2026-03-05T23:10:00Z,Llaneros FC,Internacional de Bogota,Llaneros FC,True,7.0,12.0,2.0,1.0,54.0,2.0,8.0,3.0
+COL,2026,0.0,2026-03-05T23:10:00Z,Llaneros FC,Internacional de Bogota,Internacional de Bogota,False,3.0,13.0,1.0,0.0,46.0,1.0,6.0,6.0
+COL,2026,0.0,2026-03-06T01:20:00Z,Junior FC,Alianza FC,Junior FC,True,12.0,10.0,3.0,0.0,66.0,7.0,18.0,0.0
+COL,2026,0.0,2026-03-06T01:20:00Z,Junior FC,Alianza FC,Alianza FC,False,4.0,12.0,5.0,0.0,34.0,3.0,11.0,3.0
+COL,2026,0.0,2026-03-07T01:30:00Z,Deportivo Cali,Once Caldas,Deportivo Cali,True,12.0,15.0,4.0,2.0,59.0,3.0,16.0,3.0
+COL,2026,0.0,2026-03-07T01:30:00Z,Deportivo Cali,Once Caldas,Once Caldas,False,2.0,9.0,5.0,0.0,41.0,6.0,12.0,2.0
+COL,2026,0.0,2026-03-07T21:00:00Z,Águilas Doradas,Atletico Nacional,Águilas Doradas,True,1.0,12.0,3.0,0.0,36.0,1.0,9.0,2.0
+COL,2026,0.0,2026-03-07T21:00:00Z,Águilas Doradas,Atletico Nacional,Atletico Nacional,False,6.0,21.0,2.0,0.0,64.0,7.0,18.0,2.0
+COL,2026,0.0,2026-03-09T21:00:00Z,Llaneros FC,Jaguares de Córdoba,Llaneros FC,True,2.0,21.0,2.0,0.0,49.0,2.0,11.0,2.0
+COL,2026,0.0,2026-03-09T21:00:00Z,Llaneros FC,Jaguares de Córdoba,Jaguares de Córdoba,False,7.0,15.0,5.0,0.0,51.0,4.0,15.0,1.0
+COL,2026,0.0,2026-03-09T23:20:00Z,Millonarios,Cucuta Deportivo,Millonarios,True,5.0,12.0,2.0,0.0,52.0,5.0,21.0,2.0
+COL,2026,0.0,2026-03-09T23:20:00Z,Millonarios,Cucuta Deportivo,Cucuta Deportivo,False,1.0,14.0,5.0,0.0,48.0,2.0,4.0,2.0
+COL,2026,0.0,2026-03-10T01:30:00Z,Deportivo Pasto,America de Cali,Deportivo Pasto,True,2.0,9.0,5.0,1.0,32.0,3.0,10.0,1.0
+COL,2026,0.0,2026-03-10T01:30:00Z,Deportivo Pasto,America de Cali,America de Cali,False,5.0,12.0,4.0,0.0,68.0,2.0,14.0,2.0
+COL,2026,0.0,2026-03-10T23:20:00Z,Atlético Bucaramanga,Deportivo Pereira,Atlético Bucaramanga,True,8.0,11.0,1.0,0.0,62.0,5.0,20.0,0.0
+COL,2026,0.0,2026-03-10T23:20:00Z,Atlético Bucaramanga,Deportivo Pereira,Deportivo Pereira,False,1.0,12.0,5.0,0.0,38.0,1.0,5.0,1.0
+COL,2026,0.0,2026-03-11T01:30:00Z,Junior FC,Atletico Nacional,Junior FC,True,3.0,12.0,0.0,1.0,32.0,2.0,4.0,1.0
+COL,2026,0.0,2026-03-11T01:30:00Z,Junior FC,Atletico Nacional,Atletico Nacional,False,4.0,10.0,0.0,0.0,68.0,6.0,16.0,10.0
+COL,2026,0.0,2026-03-13T23:20:00Z,Once Caldas,Deportivo Pasto,Once Caldas,True,2.0,11.0,1.0,0.0,50.0,7.0,12.0,3.0
+COL,2026,0.0,2026-03-13T23:20:00Z,Once Caldas,Deportivo Pasto,Deportivo Pasto,False,7.0,11.0,4.0,1.0,50.0,5.0,21.0,2.0
+COL,2026,0.0,2026-03-14T01:30:00Z,Atletico Nacional,Llaneros FC,Atletico Nacional,True,5.0,8.0,1.0,0.0,56.0,3.0,10.0,3.0
+COL,2026,0.0,2026-03-14T01:30:00Z,Atletico Nacional,Llaneros FC,Llaneros FC,False,5.0,10.0,2.0,0.0,44.0,2.0,18.0,4.0
+COL,2026,0.0,2026-03-14T19:00:00Z,Internacional de Bogota,Atlético Bucaramanga,Internacional de Bogota,True,4.0,9.0,2.0,0.0,51.0,1.0,7.0,2.0
+COL,2026,0.0,2026-03-14T19:00:00Z,Internacional de Bogota,Atlético Bucaramanga,Atlético Bucaramanga,False,4.0,4.0,0.0,0.0,49.0,2.0,15.0,1.0
+COL,2026,0.0,2026-03-14T21:10:00Z,Cucuta Deportivo,Deportivo Cali,Cucuta Deportivo,True,8.0,4.0,1.0,1.0,66.0,3.0,9.0,5.0
+COL,2026,0.0,2026-03-14T21:10:00Z,Cucuta Deportivo,Deportivo Cali,Deportivo Cali,False,4.0,16.0,3.0,0.0,34.0,5.0,9.0,0.0
+COL,2026,0.0,2026-03-14T23:20:00Z,Boyaca Chico,Millonarios,Boyaca Chico,True,4.0,14.0,6.0,1.0,47.0,3.0,9.0,1.0
+COL,2026,0.0,2026-03-14T23:20:00Z,Boyaca Chico,Millonarios,Millonarios,False,7.0,13.0,4.0,1.0,53.0,7.0,22.0,1.0
+COL,2026,0.0,2026-03-15T01:30:00Z,Independiente Santa Fe,Alianza FC,Independiente Santa Fe,True,7.0,7.0,2.0,0.0,55.0,4.0,8.0,2.0
+COL,2026,0.0,2026-03-15T01:30:00Z,Independiente Santa Fe,Alianza FC,Alianza FC,False,4.0,6.0,2.0,0.0,45.0,1.0,7.0,2.0
+COL,2026,0.0,2026-03-15T20:30:00Z,Deportivo Pereira,Águilas Doradas,Deportivo Pereira,True,2.0,11.0,2.0,0.0,56.0,3.0,7.0,4.0
+COL,2026,0.0,2026-03-15T20:30:00Z,Deportivo Pereira,Águilas Doradas,Águilas Doradas,False,1.0,12.0,1.0,0.0,44.0,2.0,14.0,1.0
+COL,2026,0.0,2026-03-15T21:10:00Z,America de Cali,Deportes Tolima,America de Cali,True,3.0,15.0,3.0,0.0,56.0,6.0,16.0,2.0
+COL,2026,0.0,2026-03-15T21:10:00Z,America de Cali,Deportes Tolima,Deportes Tolima,False,4.0,18.0,6.0,0.0,44.0,3.0,10.0,0.0
+COL,2026,0.0,2026-03-15T23:20:00Z,Jaguares de Córdoba,Independiente Medellin,Jaguares de Córdoba,True,5.0,14.0,4.0,0.0,30.0,4.0,12.0,2.0
+COL,2026,0.0,2026-03-15T23:20:00Z,Jaguares de Córdoba,Independiente Medellin,Independiente Medellin,False,8.0,7.0,1.0,0.0,70.0,4.0,10.0,2.0
+COL,2026,0.0,2026-03-16T01:30:00Z,Junior FC,Fortaleza FC,Junior FC,True,5.0,15.0,3.0,0.0,54.0,7.0,15.0,2.0
+COL,2026,0.0,2026-03-16T01:30:00Z,Junior FC,Fortaleza FC,Fortaleza FC,False,5.0,8.0,4.0,0.0,46.0,3.0,10.0,6.0
+COL,2026,0.0,2026-03-17T21:10:00Z,Llaneros FC,Cucuta Deportivo,Llaneros FC,True,3.0,17.0,3.0,0.0,54.0,4.0,14.0,2.0
+COL,2026,0.0,2026-03-17T21:10:00Z,Llaneros FC,Cucuta Deportivo,Cucuta Deportivo,False,6.0,12.0,1.0,0.0,46.0,3.0,12.0,2.0
+COL,2026,0.0,2026-03-18T01:30:00Z,Millonarios,Atletico Nacional,Millonarios,True,6.0,16.0,2.0,0.0,49.0,7.0,20.0,3.0
+COL,2026,0.0,2026-03-18T01:30:00Z,Millonarios,Atletico Nacional,Atletico Nacional,False,3.0,8.0,5.0,2.0,51.0,1.0,8.0,2.0
+COL,2026,0.0,2026-03-18T21:10:00Z,Deportivo Pasto,Boyaca Chico,Deportivo Pasto,True,4.0,14.0,2.0,0.0,68.0,4.0,17.0,6.0
+COL,2026,0.0,2026-03-18T21:10:00Z,Deportivo Pasto,Boyaca Chico,Boyaca Chico,False,2.0,13.0,2.0,2.0,32.0,0.0,2.0,0.0
+COL,2026,0.0,2026-03-18T23:20:00Z,Internacional de Bogota,Deportivo Pereira,Internacional de Bogota,True,11.0,5.0,1.0,0.0,62.0,8.0,25.0,0.0
+COL,2026,0.0,2026-03-18T23:20:00Z,Internacional de Bogota,Deportivo Pereira,Deportivo Pereira,False,4.0,8.0,3.0,0.0,38.0,6.0,9.0,0.0
+COL,2026,0.0,2026-03-19T00:30:00Z,Atlético Bucaramanga,Once Caldas,Atlético Bucaramanga,True,8.0,8.0,1.0,0.0,50.0,3.0,12.0,1.0
+COL,2026,0.0,2026-03-19T00:30:00Z,Atlético Bucaramanga,Once Caldas,Once Caldas,False,3.0,9.0,2.0,0.0,50.0,2.0,11.0,1.0
+COL,2026,0.0,2026-03-19T01:30:00Z,Deportivo Cali,Independiente Santa Fe,Deportivo Cali,True,8.0,14.0,4.0,0.0,49.0,7.0,20.0,0.0
+COL,2026,0.0,2026-03-19T01:30:00Z,Deportivo Cali,Independiente Santa Fe,Independiente Santa Fe,False,11.0,8.0,4.0,0.0,51.0,3.0,9.0,2.0
+COL,2026,0.0,2026-03-19T21:10:00Z,Alianza FC,Jaguares de Córdoba,Alianza FC,True,2.0,17.0,3.0,0.0,36.0,4.0,8.0,3.0
+COL,2026,0.0,2026-03-19T21:10:00Z,Alianza FC,Jaguares de Córdoba,Jaguares de Córdoba,False,6.0,8.0,2.0,0.0,64.0,2.0,14.0,1.0
+COL,2026,0.0,2026-03-19T23:20:00Z,Deportes Tolima,Fortaleza FC,Deportes Tolima,True,1.0,13.0,2.0,0.0,65.0,5.0,12.0,1.0
+COL,2026,0.0,2026-03-19T23:20:00Z,Deportes Tolima,Fortaleza FC,Fortaleza FC,False,3.0,16.0,1.0,0.0,35.0,0.0,10.0,3.0
+COL,2026,0.0,2026-03-20T01:30:00Z,Independiente Medellin,Junior FC,Independiente Medellin,True,6.0,16.0,3.0,0.0,41.0,7.0,18.0,0.0
+COL,2026,0.0,2026-03-20T01:30:00Z,Independiente Medellin,Junior FC,Junior FC,False,6.0,9.0,1.0,0.0,59.0,2.0,12.0,3.0
+COL,2026,0.0,2026-03-20T21:00:00Z,Águilas Doradas,America de Cali,Águilas Doradas,True,7.0,13.0,3.0,0.0,59.0,3.0,12.0,1.0
+COL,2026,0.0,2026-03-20T21:00:00Z,Águilas Doradas,America de Cali,America de Cali,False,1.0,7.0,2.0,1.0,41.0,1.0,6.0,1.0
+COL,2026,0.0,2026-03-21T23:20:00Z,Once Caldas,Millonarios,Once Caldas,True,4.0,2.0,2.0,0.0,68.0,3.0,18.0,2.0
+COL,2026,0.0,2026-03-21T23:20:00Z,Once Caldas,Millonarios,Millonarios,False,4.0,9.0,3.0,0.0,32.0,7.0,18.0,1.0
+COL,2026,0.0,2026-03-22T01:30:00Z,Atletico Nacional,Internacional de Bogota,Atletico Nacional,True,6.0,8.0,3.0,0.0,71.0,8.0,22.0,2.0
+COL,2026,0.0,2026-03-22T01:30:00Z,Atletico Nacional,Internacional de Bogota,Internacional de Bogota,False,4.0,12.0,2.0,1.0,29.0,1.0,11.0,1.0
+COL,2026,0.0,2026-03-22T21:00:00Z,Alianza FC,Deportivo Cali,Alianza FC,True,2.0,13.0,2.0,0.0,40.0,4.0,7.0,6.0
+COL,2026,0.0,2026-03-22T21:00:00Z,Alianza FC,Deportivo Cali,Deportivo Cali,False,6.0,16.0,1.0,0.0,60.0,1.0,7.0,0.0
+COL,2026,0.0,2026-03-23T19:00:00Z,Boyaca Chico,Deportes Tolima,Boyaca Chico,True,3.0,12.0,2.0,1.0,40.0,2.0,4.0,4.0
+COL,2026,0.0,2026-03-23T19:00:00Z,Boyaca Chico,Deportes Tolima,Deportes Tolima,False,6.0,6.0,3.0,0.0,60.0,2.0,12.0,4.0
+COL,2026,0.0,2026-03-23T21:10:00Z,Independiente Santa Fe,Independiente Medellin,Independiente Santa Fe,True,6.0,17.0,3.0,0.0,59.0,7.0,18.0,1.0
+COL,2026,0.0,2026-03-23T21:10:00Z,Independiente Santa Fe,Independiente Medellin,Independiente Medellin,False,6.0,7.0,5.0,2.0,41.0,3.0,13.0,2.0
+COL,2026,0.0,2026-03-23T23:20:00Z,Jaguares de Córdoba,Águilas Doradas,Jaguares de Córdoba,True,5.0,16.0,2.0,0.0,48.0,2.0,15.0,3.0
+COL,2026,0.0,2026-03-23T23:20:00Z,Jaguares de Córdoba,Águilas Doradas,Águilas Doradas,False,3.0,18.0,2.0,2.0,52.0,3.0,11.0,2.0
+COL,2026,0.0,2026-03-24T20:30:00Z,Deportivo Pereira,Cucuta Deportivo,Deportivo Pereira,True,7.0,5.0,1.0,1.0,40.0,7.0,12.0,2.0
+COL,2026,0.0,2026-03-24T20:30:00Z,Deportivo Pereira,Cucuta Deportivo,Cucuta Deportivo,False,10.0,11.0,4.0,0.0,60.0,10.0,17.0,3.0
+COL,2026,0.0,2026-03-24T23:00:00Z,Junior FC,Atlético Bucaramanga,Junior FC,True,6.0,17.0,1.0,0.0,46.0,2.0,10.0,3.0
+COL,2026,0.0,2026-03-24T23:00:00Z,Junior FC,Atlético Bucaramanga,Atlético Bucaramanga,False,8.0,8.0,1.0,0.0,54.0,6.0,16.0,1.0
+COL,2026,0.0,2026-03-25T01:00:00Z,Fortaleza FC,Deportivo Pasto,Fortaleza FC,True,5.0,19.0,2.0,0.0,55.0,3.0,6.0,2.0
+COL,2026,0.0,2026-03-25T01:00:00Z,Fortaleza FC,Deportivo Pasto,Deportivo Pasto,False,2.0,11.0,3.0,3.0,45.0,4.0,10.0,1.0
+COL,2026,0.0,2026-03-26T01:00:00Z,America de Cali,Llaneros FC,America de Cali,True,12.0,7.0,0.0,1.0,64.0,4.0,27.0,2.0
+COL,2026,0.0,2026-03-26T01:00:00Z,America de Cali,Llaneros FC,Llaneros FC,False,2.0,10.0,0.0,0.0,36.0,0.0,8.0,0.0
+COL,2026,0.0,2026-03-27T21:00:00Z,Águilas Doradas,Alianza FC,Águilas Doradas,True,5.0,12.0,3.0,0.0,56.0,5.0,12.0,0.0
+COL,2026,0.0,2026-03-27T21:00:00Z,Águilas Doradas,Alianza FC,Alianza FC,False,5.0,9.0,1.0,0.0,44.0,1.0,9.0,1.0
+COL,2026,0.0,2026-03-28T01:10:00Z,Atlético Bucaramanga,Independiente Santa Fe,Atlético Bucaramanga,True,3.0,14.0,4.0,0.0,60.0,5.0,14.0,0.0
+COL,2026,0.0,2026-03-28T01:10:00Z,Atlético Bucaramanga,Independiente Santa Fe,Independiente Santa Fe,False,5.0,19.0,4.0,1.0,40.0,5.0,9.0,1.0
+COL,2026,0.0,2026-03-28T21:00:00Z,Cucuta Deportivo,Boyaca Chico,Cucuta Deportivo,True,2.0,10.0,4.0,2.0,36.0,2.0,8.0,4.0
+COL,2026,0.0,2026-03-28T21:00:00Z,Cucuta Deportivo,Boyaca Chico,Boyaca Chico,False,3.0,24.0,4.0,0.0,64.0,4.0,21.0,1.0
+COL,2026,0.0,2026-03-28T23:10:00Z,Deportes Tolima,Jaguares de Córdoba,Deportes Tolima,True,6.0,11.0,3.0,0.0,62.0,9.0,25.0,3.0
+COL,2026,0.0,2026-03-28T23:10:00Z,Deportes Tolima,Jaguares de Córdoba,Jaguares de Córdoba,False,4.0,3.0,1.0,0.0,38.0,6.0,17.0,2.0
+COL,2026,0.0,2026-03-29T01:20:00Z,Deportivo Cali,Deportivo Pereira,Deportivo Cali,True,5.0,12.0,1.0,0.0,50.0,6.0,16.0,1.0
+COL,2026,0.0,2026-03-29T01:20:00Z,Deportivo Cali,Deportivo Pereira,Deportivo Pereira,False,1.0,9.0,2.0,0.0,50.0,2.0,7.0,1.0
+COL,2026,0.0,2026-03-29T21:10:00Z,Internacional de Bogota,Junior FC,Internacional de Bogota,True,6.0,6.0,1.0,0.0,51.0,6.0,20.0,1.0
+COL,2026,0.0,2026-03-29T21:10:00Z,Internacional de Bogota,Junior FC,Junior FC,False,2.0,13.0,3.0,0.0,49.0,4.0,7.0,4.0
+COL,2026,0.0,2026-03-29T23:20:00Z,Deportivo Pasto,Atletico Nacional,Deportivo Pasto,True,7.0,10.0,3.0,0.0,50.0,1.0,15.0,1.0
+COL,2026,0.0,2026-03-29T23:20:00Z,Deportivo Pasto,Atletico Nacional,Atletico Nacional,False,2.0,12.0,6.0,0.0,50.0,7.0,11.0,2.0
+COL,2026,0.0,2026-03-30T15:00:00Z,Llaneros FC,Once Caldas,Llaneros FC,True,8.0,11.0,4.0,0.0,52.0,6.0,12.0,3.0
+COL,2026,0.0,2026-03-30T15:00:00Z,Llaneros FC,Once Caldas,Once Caldas,False,1.0,6.0,3.0,0.0,48.0,2.0,7.0,1.0
+COL,2026,0.0,2026-03-30T23:10:00Z,Independiente Medellin,America de Cali,Independiente Medellin,True,5.0,10.0,1.0,0.0,50.0,4.0,18.0,1.0
+COL,2026,0.0,2026-03-30T23:10:00Z,Independiente Medellin,America de Cali,America de Cali,False,6.0,15.0,3.0,0.0,50.0,2.0,11.0,2.0
+COL,2026,0.0,2026-03-31T01:20:00Z,Millonarios,Fortaleza FC,Millonarios,True,13.0,9.0,4.0,0.0,49.0,4.0,15.0,2.0
+COL,2026,0.0,2026-03-31T01:20:00Z,Millonarios,Fortaleza FC,Fortaleza FC,False,2.0,11.0,6.0,1.0,51.0,5.0,10.0,0.0
+COL,2026,0.0,2026-04-01T01:00:00Z,Deportes Tolima,Águilas Doradas,Deportes Tolima,True,2.0,8.0,2.0,0.0,68.0,8.0,19.0,1.0
+COL,2026,0.0,2026-04-01T01:00:00Z,Deportes Tolima,Águilas Doradas,Águilas Doradas,False,3.0,15.0,2.0,0.0,32.0,1.0,6.0,4.0
+COL,2026,0.0,2026-04-01T21:10:00Z,Alianza FC,Deportivo Pasto,Alianza FC,True,7.0,14.0,3.0,1.0,47.0,2.0,10.0,2.0
+COL,2026,0.0,2026-04-01T21:10:00Z,Alianza FC,Deportivo Pasto,Deportivo Pasto,False,5.0,16.0,3.0,0.0,53.0,5.0,13.0,1.0
+COL,2026,0.0,2026-04-01T23:30:00Z,Independiente Santa Fe,Llaneros FC,Independiente Santa Fe,True,12.0,13.0,3.0,1.0,52.0,3.0,11.0,4.0
+COL,2026,0.0,2026-04-01T23:30:00Z,Independiente Santa Fe,Llaneros FC,Llaneros FC,False,4.0,10.0,4.0,0.0,48.0,4.0,7.0,2.0
+COL,2026,0.0,2026-04-02T01:30:00Z,Atletico Nacional,Cucuta Deportivo,Atletico Nacional,True,6.0,11.0,1.0,0.0,66.0,4.0,23.0,1.0
+COL,2026,0.0,2026-04-02T01:30:00Z,Atletico Nacional,Cucuta Deportivo,Cucuta Deportivo,False,2.0,3.0,1.0,0.0,34.0,0.0,5.0,1.0
+COL,2026,0.0,2026-04-02T19:00:00Z,Boyaca Chico,Deportivo Pereira,Boyaca Chico,True,8.0,15.0,4.0,0.0,55.0,6.0,23.0,0.0
+COL,2026,0.0,2026-04-02T19:00:00Z,Boyaca Chico,Deportivo Pereira,Deportivo Pereira,False,0.0,13.0,5.0,0.0,45.0,0.0,5.0,2.0
+COL,2026,0.0,2026-04-02T21:10:00Z,America de Cali,Atlético Bucaramanga,America de Cali,True,2.0,10.0,5.0,0.0,55.0,5.0,16.0,2.0
+COL,2026,0.0,2026-04-02T21:10:00Z,America de Cali,Atlético Bucaramanga,Atlético Bucaramanga,False,4.0,11.0,3.0,0.0,45.0,5.0,12.0,0.0
+COL,2026,0.0,2026-04-02T23:20:00Z,Jaguares de Córdoba,Millonarios,Jaguares de Córdoba,True,2.0,12.0,2.0,0.0,37.0,4.0,13.0,1.0
+COL,2026,0.0,2026-04-02T23:20:00Z,Jaguares de Córdoba,Millonarios,Millonarios,False,5.0,7.0,2.0,0.0,63.0,7.0,13.0,1.0
+COL,2026,0.0,2026-04-03T01:30:00Z,Once Caldas,Independiente Medellin,Once Caldas,True,3.0,8.0,3.0,0.0,54.0,1.0,13.0,2.0
+COL,2026,0.0,2026-04-03T01:30:00Z,Once Caldas,Independiente Medellin,Independiente Medellin,False,5.0,9.0,3.0,0.0,46.0,3.0,16.0,3.0
+COL,2026,0.0,2026-04-03T23:20:00Z,Fortaleza FC,Internacional de Bogota,Fortaleza FC,True,2.0,8.0,0.0,0.0,50.0,3.0,10.0,1.0
+COL,2026,0.0,2026-04-03T23:20:00Z,Fortaleza FC,Internacional de Bogota,Internacional de Bogota,False,3.0,8.0,0.0,0.0,50.0,7.0,17.0,1.0
+COL,2026,0.0,2026-04-04T01:30:00Z,Junior FC,Deportivo Cali,Junior FC,True,11.0,8.0,2.0,0.0,69.0,4.0,13.0,3.0
+COL,2026,0.0,2026-04-04T01:30:00Z,Junior FC,Deportivo Cali,Deportivo Cali,False,4.0,18.0,6.0,0.0,31.0,4.0,14.0,3.0
+COL,2026,0.0,2026-04-05T00:30:00Z,Deportes Tolima,Independiente Santa Fe,Deportes Tolima,True,5.0,8.0,4.0,1.0,64.0,4.0,15.0,1.0
+COL,2026,0.0,2026-04-05T00:30:00Z,Deportes Tolima,Independiente Santa Fe,Independiente Santa Fe,False,3.0,6.0,2.0,0.0,36.0,6.0,18.0,4.0
+COL,2026,0.0,2026-04-05T21:00:00Z,Cucuta Deportivo,America de Cali,Cucuta Deportivo,True,5.0,11.0,3.0,0.0,37.0,5.0,6.0,0.0
+COL,2026,0.0,2026-04-05T21:00:00Z,Cucuta Deportivo,America de Cali,America de Cali,False,4.0,13.0,4.0,0.0,63.0,4.0,18.0,1.0
+COL,2026,0.0,2026-04-06T20:30:00Z,Deportivo Pereira,Alianza FC,Deportivo Pereira,True,5.0,10.0,2.0,0.0,59.0,6.0,15.0,0.0
+COL,2026,0.0,2026-04-06T20:30:00Z,Deportivo Pereira,Alianza FC,Alianza FC,False,5.0,13.0,3.0,0.0,41.0,5.0,11.0,2.0
+COL,2026,0.0,2026-04-07T01:10:00Z,Atletico Nacional,Jaguares de Córdoba,Atletico Nacional,True,4.0,6.0,2.0,0.0,51.0,6.0,20.0,5.0
+COL,2026,0.0,2026-04-07T01:10:00Z,Atletico Nacional,Jaguares de Córdoba,Jaguares de Córdoba,False,2.0,6.0,3.0,0.0,49.0,1.0,10.0,1.0
+COL,2026,0.0,2026-04-07T21:00:00Z,Águilas Doradas,Atlético Bucaramanga,Águilas Doradas,True,1.0,8.0,4.0,0.0,41.0,3.0,5.0,1.0
+COL,2026,0.0,2026-04-07T21:00:00Z,Águilas Doradas,Atlético Bucaramanga,Atlético Bucaramanga,False,6.0,15.0,2.0,0.0,59.0,3.0,16.0,2.0
+COL,2026,0.0,2026-04-10T20:30:00Z,Deportivo Pereira,Once Caldas,Deportivo Pereira,True,5.0,8.0,4.0,0.0,34.0,4.0,17.0,1.0
+COL,2026,0.0,2026-04-10T20:30:00Z,Deportivo Pereira,Once Caldas,Once Caldas,False,7.0,5.0,2.0,1.0,66.0,5.0,12.0,0.0
+COL,2026,0.0,2026-04-11T01:05:00Z,Deportivo Pasto,Deportes Tolima,Deportivo Pasto,True,1.0,10.0,1.0,0.0,54.0,1.0,2.0,10.0
+COL,2026,0.0,2026-04-11T01:05:00Z,Deportivo Pasto,Deportes Tolima,Deportes Tolima,False,4.0,17.0,2.0,0.0,46.0,2.0,9.0,1.0
+COL,2026,0.0,2026-04-11T21:00:00Z,Águilas Doradas,Junior FC,Águilas Doradas,True,8.0,7.0,1.0,1.0,57.0,3.0,14.0,1.0
+COL,2026,0.0,2026-04-11T21:00:00Z,Águilas Doradas,Junior FC,Junior FC,False,2.0,12.0,3.0,0.0,43.0,4.0,9.0,0.0
+COL,2026,0.0,2026-04-12T01:20:00Z,Independiente Medellin,Atletico Nacional,Independiente Medellin,True,3.0,4.0,1.0,0.0,40.0,8.0,11.0,1.0
+COL,2026,0.0,2026-04-12T01:20:00Z,Independiente Medellin,Atletico Nacional,Atletico Nacional,False,4.0,8.0,2.0,0.0,60.0,8.0,18.0,2.0
+COL,2026,0.0,2026-04-12T19:00:00Z,Millonarios,Independiente Santa Fe,Millonarios,True,10.0,12.0,5.0,1.0,53.0,6.0,19.0,1.0
+COL,2026,0.0,2026-04-12T19:00:00Z,Millonarios,Independiente Santa Fe,Independiente Santa Fe,False,2.0,9.0,1.0,0.0,47.0,4.0,11.0,2.0
+COL,2026,0.0,2026-04-12T21:10:00Z,Deportivo Cali,Llaneros FC,Deportivo Cali,True,6.0,13.0,2.0,0.0,69.0,3.0,23.0,1.0
+COL,2026,0.0,2026-04-12T21:10:00Z,Deportivo Cali,Llaneros FC,Llaneros FC,False,5.0,10.0,5.0,1.0,31.0,5.0,7.0,1.0
+COL,2026,0.0,2026-04-12T23:20:00Z,Atlético Bucaramanga,Boyaca Chico,Atlético Bucaramanga,True,3.0,14.0,3.0,0.0,52.0,6.0,14.0,7.0
+COL,2026,0.0,2026-04-12T23:20:00Z,Atlético Bucaramanga,Boyaca Chico,Boyaca Chico,False,6.0,9.0,5.0,0.0,48.0,0.0,7.0,2.0
+COL,2026,0.0,2026-04-13T01:30:00Z,Internacional de Bogota,Alianza FC,Internacional de Bogota,True,4.0,13.0,0.0,0.0,62.0,6.0,12.0,3.0
+COL,2026,0.0,2026-04-13T01:30:00Z,Internacional de Bogota,Alianza FC,Alianza FC,False,6.0,8.0,0.0,0.0,38.0,3.0,16.0,1.0
+COL,2026,0.0,2026-04-17T21:00:00Z,Boyaca Chico,Deportivo Cali,Boyaca Chico,True,5.0,13.0,2.0,0.0,51.0,4.0,9.0,3.0
+COL,2026,0.0,2026-04-17T21:00:00Z,Boyaca Chico,Deportivo Cali,Deportivo Cali,False,5.0,14.0,4.0,0.0,49.0,2.0,8.0,5.0
+COL,2026,0.0,2026-04-17T21:00:00Z,Jaguares de Córdoba,Deportivo Pasto,Jaguares de Córdoba,True,4.0,14.0,3.0,0.0,48.0,9.0,19.0,3.0
+COL,2026,0.0,2026-04-17T21:00:00Z,Jaguares de Córdoba,Deportivo Pasto,Deportivo Pasto,False,2.0,12.0,6.0,0.0,52.0,5.0,11.0,1.0
+COL,2026,0.0,2026-04-18T23:10:00Z,Deportes Tolima,Deportivo Pereira,Deportes Tolima,True,7.0,11.0,0.0,0.0,63.0,6.0,18.0,1.0
+COL,2026,0.0,2026-04-18T23:10:00Z,Deportes Tolima,Deportivo Pereira,Deportivo Pereira,False,3.0,6.0,0.0,0.0,37.0,2.0,6.0,3.0
+COL,2026,0.0,2026-04-19T01:30:00Z,Fortaleza FC,Águilas Doradas,Fortaleza FC,True,5.0,12.0,3.0,0.0,65.0,4.0,19.0,0.0
+COL,2026,0.0,2026-04-19T01:30:00Z,Fortaleza FC,Águilas Doradas,Águilas Doradas,False,2.0,8.0,1.0,1.0,35.0,2.0,5.0,0.0
+COL,2026,0.0,2026-04-19T19:00:00Z,Independiente Santa Fe,Cucuta Deportivo,Independiente Santa Fe,True,1.0,7.0,2.0,0.0,38.0,5.0,13.0,1.0
+COL,2026,0.0,2026-04-19T19:00:00Z,Independiente Santa Fe,Cucuta Deportivo,Cucuta Deportivo,False,6.0,8.0,0.0,0.0,62.0,4.0,12.0,1.0
+COL,2026,0.0,2026-04-19T21:10:00Z,Alianza FC,Independiente Medellin,Alianza FC,True,6.0,13.0,4.0,0.0,58.0,1.0,18.0,4.0
+COL,2026,0.0,2026-04-19T21:10:00Z,Alianza FC,Independiente Medellin,Independiente Medellin,False,4.0,11.0,4.0,1.0,42.0,3.0,8.0,0.0
+COL,2026,0.0,2026-04-19T23:20:00Z,Junior FC,Llaneros FC,Junior FC,True,4.0,13.0,4.0,0.0,54.0,3.0,8.0,2.0
+COL,2026,0.0,2026-04-19T23:20:00Z,Junior FC,Llaneros FC,Llaneros FC,False,12.0,8.0,2.0,0.0,46.0,3.0,15.0,3.0
+COL,2026,0.0,2026-04-20T01:30:00Z,America de Cali,Millonarios,America de Cali,True,4.0,7.0,3.0,0.0,55.0,5.0,14.0,0.0
+COL,2026,0.0,2026-04-20T01:30:00Z,America de Cali,Millonarios,Millonarios,False,2.0,6.0,2.0,0.0,45.0,4.0,12.0,3.0
+COL,2026,0.0,2026-04-20T23:20:00Z,Once Caldas,Internacional de Bogota,Once Caldas,True,6.0,11.0,3.0,0.0,63.0,6.0,13.0,3.0
+COL,2026,0.0,2026-04-20T23:20:00Z,Once Caldas,Internacional de Bogota,Internacional de Bogota,False,2.0,15.0,4.0,0.0,37.0,3.0,10.0,5.0
+COL,2026,0.0,2026-04-21T01:30:00Z,Atletico Nacional,Atlético Bucaramanga,Atletico Nacional,True,6.0,9.0,2.0,0.0,54.0,9.0,20.0,0.0
+COL,2026,0.0,2026-04-21T01:30:00Z,Atletico Nacional,Atlético Bucaramanga,Atlético Bucaramanga,False,4.0,5.0,1.0,0.0,46.0,4.0,15.0,1.0
+COL,2026,0.0,2026-04-22T23:20:00Z,Independiente Medellin,Boyaca Chico,Independiente Medellin,True,3.0,13.0,3.0,0.0,69.0,4.0,10.0,1.0
+COL,2026,0.0,2026-04-22T23:20:00Z,Independiente Medellin,Boyaca Chico,Boyaca Chico,False,3.0,21.0,2.0,0.0,31.0,2.0,3.0,5.0
+COL,2026,0.0,2026-04-23T01:30:00Z,Fortaleza FC,America de Cali,Fortaleza FC,True,5.0,11.0,3.0,1.0,62.0,3.0,16.0,2.0
+COL,2026,0.0,2026-04-23T01:30:00Z,Fortaleza FC,America de Cali,America de Cali,False,1.0,9.0,4.0,2.0,38.0,3.0,11.0,0.0
+COL,2026,0.0,2026-04-23T23:00:00Z,Deportivo Pasto,Independiente Santa Fe,Deportivo Pasto,True,5.0,13.0,2.0,0.0,51.0,5.0,14.0,2.0
+COL,2026,0.0,2026-04-23T23:00:00Z,Deportivo Pasto,Independiente Santa Fe,Independiente Santa Fe,False,2.0,10.0,0.0,0.0,49.0,8.0,16.0,0.0
+COL,2026,0.0,2026-04-24T01:00:00Z,Millonarios,Deportes Tolima,Millonarios,True,6.0,12.0,4.0,0.0,41.0,6.0,13.0,3.0
+COL,2026,0.0,2026-04-24T01:00:00Z,Millonarios,Deportes Tolima,Deportes Tolima,False,2.0,10.0,4.0,0.0,59.0,3.0,9.0,1.0
+COL,2026,0.0,2026-04-24T21:00:00Z,Cucuta Deportivo,Junior FC,Cucuta Deportivo,True,1.0,0.0,1.0,0.0,96.0,0.0,0.0,2.0
+COL,2026,0.0,2026-04-24T21:00:00Z,Cucuta Deportivo,Junior FC,Junior FC,False,4.0,0.0,2.0,0.0,4.0,0.0,0.0,1.0
+COL,2026,0.0,2026-04-25T19:00:00Z,Atlético Bucaramanga,Jaguares de Córdoba,Atlético Bucaramanga,True,5.0,9.0,2.0,0.0,49.0,6.0,14.0,3.0
+COL,2026,0.0,2026-04-25T19:00:00Z,Atlético Bucaramanga,Jaguares de Córdoba,Jaguares de Córdoba,False,0.0,4.0,2.0,0.0,51.0,4.0,7.0,0.0
+COL,2026,0.0,2026-04-25T21:00:00Z,Deportivo Pereira,Atletico Nacional,Deportivo Pereira,True,5.0,10.0,4.0,0.0,46.0,4.0,13.0,3.0
+COL,2026,0.0,2026-04-25T21:00:00Z,Deportivo Pereira,Atletico Nacional,Atletico Nacional,False,3.0,10.0,2.0,1.0,54.0,0.0,10.0,2.0
+COL,2026,0.0,2026-04-25T23:10:00Z,Deportivo Cali,America de Cali,Deportivo Cali,True,6.0,16.0,1.0,0.0,51.0,4.0,14.0,1.0
+COL,2026,0.0,2026-04-25T23:10:00Z,Deportivo Cali,America de Cali,America de Cali,False,1.0,13.0,3.0,0.0,49.0,2.0,4.0,0.0
+COL,2026,0.0,2026-04-26T01:30:00Z,Independiente Medellin,Fortaleza FC,Independiente Medellin,True,6.0,8.0,1.0,0.0,53.0,3.0,14.0,1.0
+COL,2026,0.0,2026-04-26T01:30:00Z,Independiente Medellin,Fortaleza FC,Fortaleza FC,False,4.0,16.0,2.0,0.0,47.0,1.0,4.0,4.0
+COL,2026,0.0,2026-04-26T21:00:00Z,Águilas Doradas,Once Caldas,Águilas Doradas,True,4.0,18.0,4.0,0.0,50.0,5.0,14.0,1.0
+COL,2026,0.0,2026-04-26T21:00:00Z,Águilas Doradas,Once Caldas,Once Caldas,False,0.0,16.0,4.0,0.0,50.0,5.0,10.0,2.0
+COL,2026,0.0,2026-04-26T23:10:00Z,Llaneros FC,Alianza FC,Llaneros FC,True,7.0,12.0,1.0,0.0,58.0,2.0,9.0,2.0
+COL,2026,0.0,2026-04-26T23:10:00Z,Llaneros FC,Alianza FC,Alianza FC,False,2.0,8.0,4.0,0.0,42.0,1.0,8.0,3.0
+COL,2026,0.0,2026-04-27T01:20:00Z,Internacional de Bogota,Boyaca Chico,Internacional de Bogota,True,2.0,11.0,2.0,1.0,37.0,7.0,9.0,2.0
+COL,2026,0.0,2026-04-27T01:20:00Z,Internacional de Bogota,Boyaca Chico,Boyaca Chico,False,8.0,8.0,2.0,0.0,63.0,3.0,13.0,2.0
+COL,2026,0.0,2026-05-01T23:00:00Z,Once Caldas,Atletico Nacional,Once Caldas,True,9.0,8.0,3.0,0.0,45.0,8.0,17.0,6.0
+COL,2026,0.0,2026-05-01T23:00:00Z,Once Caldas,Atletico Nacional,Atletico Nacional,False,4.0,8.0,2.0,0.0,55.0,5.0,13.0,2.0
+COL,2026,0.0,2026-05-02T19:00:00Z,Boyaca Chico,Llaneros FC,Boyaca Chico,True,6.0,13.0,2.0,0.0,46.0,10.0,19.0,2.0
+COL,2026,0.0,2026-05-02T19:00:00Z,Boyaca Chico,Llaneros FC,Llaneros FC,False,3.0,8.0,1.0,0.0,54.0,2.0,9.0,1.0
+COL,2026,0.0,2026-05-02T21:00:00Z,Jaguares de Córdoba,Cucuta Deportivo,Jaguares de Córdoba,True,6.0,14.0,5.0,0.0,52.0,5.0,13.0,0.0
+COL,2026,0.0,2026-05-02T21:00:00Z,Jaguares de Córdoba,Cucuta Deportivo,Cucuta Deportivo,False,4.0,7.0,1.0,0.0,48.0,2.0,6.0,1.0
+COL,2026,0.0,2026-05-03T20:30:00Z,Alianza FC,Millonarios,Alianza FC,True,3.0,16.0,6.0,1.0,44.0,4.0,7.0,3.0
+COL,2026,0.0,2026-05-03T20:30:00Z,Alianza FC,Millonarios,Millonarios,False,8.0,8.0,3.0,0.0,56.0,9.0,15.0,1.0
+COL,2026,0.0,2026-05-03T20:30:00Z,Independiente Medellin,Águilas Doradas,Independiente Medellin,True,10.0,10.0,4.0,1.0,70.0,7.0,21.0,0.0
+COL,2026,0.0,2026-05-03T20:30:00Z,Independiente Medellin,Águilas Doradas,Águilas Doradas,False,2.0,7.0,3.0,0.0,30.0,4.0,10.0,2.0
+COL,2026,0.0,2026-05-03T20:30:00Z,Deportes Tolima,Deportivo Cali,Deportes Tolima,True,5.0,9.0,5.0,1.0,45.0,4.0,13.0,0.0
+COL,2026,0.0,2026-05-03T20:30:00Z,Deportes Tolima,Deportivo Cali,Deportivo Cali,False,3.0,11.0,3.0,0.0,55.0,4.0,16.0,2.0
+COL,2026,0.0,2026-05-03T20:30:00Z,Independiente Santa Fe,Internacional de Bogota,Independiente Santa Fe,True,4.0,6.0,2.0,0.0,53.0,7.0,14.0,1.0
+COL,2026,0.0,2026-05-03T20:30:00Z,Independiente Santa Fe,Internacional de Bogota,Internacional de Bogota,False,1.0,8.0,2.0,0.0,47.0,4.0,18.0,1.0
+COL,2026,0.0,2026-05-03T20:30:00Z,Fortaleza FC,Atlético Bucaramanga,Fortaleza FC,True,6.0,8.0,1.0,0.0,60.0,3.0,10.0,0.0
+COL,2026,0.0,2026-05-03T20:30:00Z,Fortaleza FC,Atlético Bucaramanga,Atlético Bucaramanga,False,3.0,13.0,2.0,0.0,40.0,3.0,17.0,0.0
+COL,2026,0.0,2026-05-03T22:45:00Z,America de Cali,Deportivo Pereira,America de Cali,True,7.0,12.0,3.0,0.0,43.0,6.0,15.0,0.0
+COL,2026,0.0,2026-05-03T22:45:00Z,America de Cali,Deportivo Pereira,Deportivo Pereira,False,1.0,10.0,0.0,0.0,57.0,0.0,5.0,2.0
+COL,2026,0.0,2026-05-03T22:45:00Z,Junior FC,Deportivo Pasto,Junior FC,True,5.0,15.0,2.0,0.0,46.0,7.0,9.0,3.0
+COL,2026,0.0,2026-05-03T22:45:00Z,Junior FC,Deportivo Pasto,Deportivo Pasto,False,2.0,11.0,3.0,0.0,54.0,5.0,10.0,0.0
+COL,2026,0.0,2026-05-09T21:00:00Z,Internacional de Bogota,Atletico Nacional,Internacional de Bogota,True,6.0,10.0,4.0,0.0,42.0,4.0,14.0,1.0
+COL,2026,0.0,2026-05-09T21:00:00Z,Internacional de Bogota,Atletico Nacional,Atletico Nacional,False,3.0,12.0,2.0,0.0,58.0,6.0,13.0,3.0
+COL,2026,0.0,2026-05-09T23:10:00Z,Deportes Tolima,Deportivo Pasto,Deportes Tolima,True,6.0,8.0,0.0,0.0,62.0,5.0,10.0,5.0
+COL,2026,0.0,2026-05-09T23:10:00Z,Deportes Tolima,Deportivo Pasto,Deportivo Pasto,False,6.0,6.0,3.0,0.0,38.0,4.0,10.0,1.0
+COL,2026,0.0,2026-05-10T01:20:00Z,America de Cali,Independiente Santa Fe,America de Cali,True,3.0,11.0,1.0,0.0,66.0,5.0,12.0,2.0
+COL,2026,0.0,2026-05-10T01:20:00Z,America de Cali,Independiente Santa Fe,Independiente Santa Fe,False,2.0,5.0,1.0,0.0,34.0,5.0,12.0,3.0
+COL,2026,0.0,2026-05-10T23:10:00Z,Once Caldas,Junior FC,Once Caldas,True,4.0,11.0,1.0,0.0,57.0,7.0,23.0,3.0
+COL,2026,0.0,2026-05-10T23:10:00Z,Once Caldas,Junior FC,Junior FC,False,2.0,12.0,6.0,0.0,43.0,3.0,9.0,0.0
+COL,2026,0.0,2026-05-12T23:20:00Z,Atletico Nacional,Internacional de Bogota,Atletico Nacional,True,9.0,13.0,0.0,0.0,60.0,15.0,22.0,1.0
+COL,2026,0.0,2026-05-12T23:20:00Z,Atletico Nacional,Internacional de Bogota,Internacional de Bogota,False,3.0,3.0,2.0,0.0,40.0,6.0,16.0,0.0
+COL,2026,0.0,2026-05-13T01:30:00Z,Independiente Santa Fe,America de Cali,Independiente Santa Fe,True,2.0,10.0,3.0,0.0,46.0,6.0,13.0,2.0
+COL,2026,0.0,2026-05-13T01:30:00Z,Independiente Santa Fe,America de Cali,America de Cali,False,2.0,6.0,3.0,0.0,54.0,3.0,10.0,5.0
+COL,2026,0.0,2026-05-13T23:00:00Z,Deportivo Pasto,Deportes Tolima,Deportivo Pasto,True,9.0,8.0,0.0,1.0,49.0,1.0,7.0,3.0
+COL,2026,0.0,2026-05-13T23:00:00Z,Deportivo Pasto,Deportes Tolima,Deportes Tolima,False,2.0,10.0,2.0,0.0,51.0,4.0,12.0,2.0
+COL,2026,0.0,2026-05-14T01:15:00Z,Junior FC,Once Caldas,Junior FC,True,5.0,15.0,7.0,1.0,52.0,5.0,9.0,1.0
+COL,2026,0.0,2026-05-14T01:15:00Z,Junior FC,Once Caldas,Once Caldas,False,11.0,9.0,3.0,0.0,48.0,7.0,20.0,2.0
+COL,2026,0.0,2026-05-16T23:00:00Z,Deportes Tolima,Atletico Nacional,Deportes Tolima,True,8.0,10.0,2.0,1.0,48.0,5.0,12.0,2.0
+COL,2026,0.0,2026-05-16T23:00:00Z,Deportes Tolima,Atletico Nacional,Atletico Nacional,False,2.0,16.0,1.0,1.0,52.0,5.0,9.0,3.0
+COL,2026,0.0,2026-05-17T01:30:00Z,Independiente Santa Fe,Junior FC,Independiente Santa Fe,True,6.0,5.0,2.0,0.0,52.0,3.0,16.0,1.0
+COL,2026,0.0,2026-05-17T01:30:00Z,Independiente Santa Fe,Junior FC,Junior FC,False,3.0,10.0,2.0,0.0,48.0,3.0,14.0,1.0
+COL,2026,0.0,2026-05-23T23:00:00Z,Atletico Nacional,Deportes Tolima,Atletico Nacional,True,7.0,15.0,2.0,0.0,42.0,7.0,23.0,1.0
+COL,2026,0.0,2026-05-23T23:00:00Z,Atletico Nacional,Deportes Tolima,Deportes Tolima,False,4.0,9.0,1.0,0.0,58.0,3.0,14.0,2.0
+COL,2026,0.0,2026-05-24T01:30:00Z,Junior FC,Independiente Santa Fe,Junior FC,True,7.0,14.0,2.0,0.0,68.0,6.0,24.0,0.0
+COL,2026,0.0,2026-05-24T01:30:00Z,Junior FC,Independiente Santa Fe,Independiente Santa Fe,False,3.0,12.0,3.0,0.0,32.0,2.0,4.0,0.0
+COL,2026,0.0,2026-06-03T00:30:00Z,Junior FC,Atletico Nacional,Junior FC,True,6.0,13.0,3.0,0.0,42.0,8.0,21.0,1.0
+COL,2026,0.0,2026-06-03T00:30:00Z,Junior FC,Atletico Nacional,Atletico Nacional,False,3.0,13.0,5.0,0.0,58.0,3.0,9.0,1.0
+COL,2026,0.0,2026-06-08T22:00:00Z,Atletico Nacional,Junior FC,Atletico Nacional,True,13.0,6.0,2.0,1.0,68.0,4.0,35.0,1.0
+COL,2026,0.0,2026-06-08T22:00:00Z,Atletico Nacional,Junior FC,Junior FC,False,5.0,9.0,4.0,1.0,32.0,3.0,11.0,1.0
+COL,2026,0.0,2026-07-24T23:10:00Z,Llaneros FC,Deportivo Pereira,Llaneros FC,True,6.0,12.0,3.0,0.0,46.0,11.0,21.0,2.0
+COL,2026,0.0,2026-07-24T23:10:00Z,Llaneros FC,Deportivo Pereira,Deportivo Pereira,False,3.0,17.0,3.0,1.0,54.0,2.0,9.0,0.0
+COL,2026,0.0,2026-07-25T01:15:00Z,Deportivo Cali,Jaguares de Córdoba,Deportivo Cali,True,6.0,14.0,4.0,0.0,60.0,6.0,13.0,3.0
+COL,2026,0.0,2026-07-25T01:15:00Z,Deportivo Cali,Jaguares de Córdoba,Jaguares de Córdoba,False,3.0,15.0,2.0,0.0,40.0,0.0,8.0,1.0
+COL,2026,0.0,2026-07-25T21:05:00Z,Independiente Medellin,Deportivo Pasto,Independiente Medellin,True,4.0,18.0,3.0,0.0,45.0,3.0,8.0,2.0
+COL,2026,0.0,2026-07-25T21:05:00Z,Independiente Medellin,Deportivo Pasto,Deportivo Pasto,False,4.0,12.0,4.0,0.0,55.0,4.0,12.0,1.0
+COL,2026,0.0,2026-07-25T23:10:00Z,Millonarios,Atlético Bucaramanga,Millonarios,True,8.0,9.0,3.0,0.0,56.0,4.0,19.0,2.0
+COL,2026,0.0,2026-07-25T23:10:00Z,Millonarios,Atlético Bucaramanga,Atlético Bucaramanga,False,5.0,6.0,0.0,0.0,44.0,2.0,9.0,2.0
+COL,2026,0.0,2026-07-26T01:15:00Z,Deportes Tolima,Junior FC,Deportes Tolima,True,1.0,14.0,1.0,0.0,40.0,4.0,10.0,0.0
+COL,2026,0.0,2026-07-26T01:15:00Z,Deportes Tolima,Junior FC,Junior FC,False,7.0,8.0,3.0,0.0,60.0,3.0,14.0,3.0
+COL,2026,0.0,2026-07-26T19:00:00Z,Internacional de Bogota,America de Cali,Internacional de Bogota,True,8.0,9.0,4.0,0.0,45.0,6.0,13.0,1.0
+COL,2026,0.0,2026-07-26T19:00:00Z,Internacional de Bogota,America de Cali,America de Cali,False,1.0,10.0,1.0,0.0,55.0,4.0,7.0,2.0
+COL,2026,0.0,2026-07-26T21:05:00Z,Águilas Doradas,Independiente Santa Fe,Águilas Doradas,True,2.0,10.0,4.0,0.0,56.0,9.0,17.0,2.0
+COL,2026,0.0,2026-07-26T21:05:00Z,Águilas Doradas,Independiente Santa Fe,Independiente Santa Fe,False,1.0,12.0,2.0,0.0,44.0,5.0,10.0,1.0
+COL,2026,0.0,2026-07-26T23:10:00Z,Alianza FC,Fortaleza FC,Alianza FC,True,5.0,14.0,2.0,0.0,56.0,4.0,13.0,2.0
+COL,2026,0.0,2026-07-26T23:10:00Z,Alianza FC,Fortaleza FC,Fortaleza FC,False,3.0,17.0,2.0,0.0,44.0,2.0,5.0,1.0
+COL,2026,0.0,2026-07-27T01:15:00Z,Once Caldas,Cucuta Deportivo,Once Caldas,True,7.0,15.0,2.0,0.0,42.0,8.0,16.0,1.0
+COL,2026,0.0,2026-07-27T01:15:00Z,Once Caldas,Cucuta Deportivo,Cucuta Deportivo,False,10.0,3.0,1.0,0.0,58.0,6.0,25.0,0.0
+COL,2026,0.0,2026-07-31T01:00:00Z,Atlético Bucaramanga,Llaneros FC,Atlético Bucaramanga,True,6.0,10.0,3.0,0.0,60.0,3.0,7.0,1.0
+COL,2026,0.0,2026-07-31T01:00:00Z,Atlético Bucaramanga,Llaneros FC,Llaneros FC,False,5.0,8.0,4.0,0.0,40.0,4.0,8.0,0.0
+COL,2026,0.0,2026-08-01T01:00:00Z,Fortaleza FC,Deportivo Pereira,Fortaleza FC,True,9.0,10.0,2.0,0.0,59.0,9.0,20.0,0.0
+COL,2026,0.0,2026-08-01T01:00:00Z,Fortaleza FC,Deportivo Pereira,Deportivo Pereira,False,0.0,10.0,2.0,0.0,41.0,1.0,6.0,3.0
+COL,2026,0.0,2026-08-01T19:00:00Z,Deportivo Pasto,Águilas Doradas,Deportivo Pasto,True,3.0,9.0,2.0,1.0,44.0,3.0,9.0,0.0
+COL,2026,0.0,2026-08-01T19:00:00Z,Deportivo Pasto,Águilas Doradas,Águilas Doradas,False,5.0,12.0,3.0,0.0,56.0,9.0,18.0,4.0
+COL,2026,0.0,2026-08-01T21:05:00Z,Alianza FC,Deportes Tolima,Alianza FC,True,2.0,12.0,2.0,0.0,33.0,3.0,12.0,3.0
+COL,2026,0.0,2026-08-01T21:05:00Z,Alianza FC,Deportes Tolima,Deportes Tolima,False,2.0,12.0,3.0,0.0,67.0,5.0,12.0,2.0
+COL,2026,0.0,2026-08-01T23:10:00Z,Independiente Medellin,Deportivo Cali,Independiente Medellin,True,3.0,13.0,3.0,0.0,58.0,3.0,13.0,0.0
+COL,2026,0.0,2026-08-01T23:10:00Z,Independiente Medellin,Deportivo Cali,Deportivo Cali,False,2.0,17.0,1.0,0.0,42.0,2.0,11.0,2.0
+COL,2026,0.0,2026-08-02T01:15:00Z,Junior FC,Millonarios,Junior FC,True,2.0,11.0,3.0,0.0,56.0,1.0,7.0,3.0
+COL,2026,0.0,2026-08-02T01:15:00Z,Junior FC,Millonarios,Millonarios,False,7.0,15.0,3.0,0.0,44.0,3.0,17.0,1.0
+COL,2026,0.0,2026-08-02T20:45:00Z,Jaguares de Córdoba,Atletico Nacional,Jaguares de Córdoba,True,8.0,16.0,2.0,0.0,39.0,7.0,19.0,1.0
+COL,2026,0.0,2026-08-02T20:45:00Z,Jaguares de Córdoba,Atletico Nacional,Atletico Nacional,False,4.0,10.0,1.0,1.0,61.0,6.0,12.0,2.0
+COL,2026,0.0,2026-08-02T22:45:00Z,America de Cali,Boyaca Chico,America de Cali,True,9.0,16.0,2.0,0.0,62.0,10.0,17.0,1.0
+COL,2026,0.0,2026-08-02T22:45:00Z,America de Cali,Boyaca Chico,Boyaca Chico,False,2.0,6.0,2.0,0.0,38.0,2.0,4.0,2.0
+COL,2026,0.0,2026-08-03T01:00:00Z,Independiente Santa Fe,Once Caldas,Independiente Santa Fe,True,3.0,4.0,2.0,0.0,39.0,2.0,9.0,2.0
+COL,2026,0.0,2026-08-03T01:00:00Z,Independiente Santa Fe,Once Caldas,Once Caldas,False,4.0,6.0,1.0,0.0,61.0,9.0,22.0,3.0
+COL,2026,0.0,2026-08-04T01:00:00Z,Atlético Bucaramanga,Cucuta Deportivo,Atlético Bucaramanga,True,3.0,12.0,5.0,0.0,64.0,9.0,25.0,4.0
+COL,2026,0.0,2026-08-04T01:00:00Z,Atlético Bucaramanga,Cucuta Deportivo,Cucuta Deportivo,False,1.0,14.0,5.0,1.0,36.0,2.0,8.0,1.0
+COL,2026,0.0,2026-08-04T21:10:00Z,Llaneros FC,Fortaleza FC,Llaneros FC,True,7.0,12.0,4.0,0.0,43.0,9.0,14.0,7.0
+COL,2026,0.0,2026-08-04T21:10:00Z,Llaneros FC,Fortaleza FC,Fortaleza FC,False,3.0,12.0,2.0,0.0,57.0,2.0,9.0,3.0
+COL,2026,0.0,2026-08-04T23:15:00Z,Deportes Tolima,Independiente Medellin,Deportes Tolima,True,9.0,7.0,2.0,0.0,66.0,11.0,22.0,1.0
+COL,2026,0.0,2026-08-04T23:15:00Z,Deportes Tolima,Independiente Medellin,Independiente Medellin,False,2.0,10.0,2.0,1.0,34.0,5.0,14.0,0.0
+COL,2026,0.0,2026-08-05T01:20:00Z,Millonarios,Deportivo Pasto,Millonarios,True,8.0,20.0,3.0,0.0,33.0,10.0,17.0,2.0
+COL,2026,0.0,2026-08-05T01:20:00Z,Millonarios,Deportivo Pasto,Deportivo Pasto,False,3.0,11.0,4.0,0.0,67.0,1.0,5.0,1.0
+COL,2026,0.0,2026-08-05T23:15:00Z,Internacional de Bogota,Jaguares de Córdoba,Internacional de Bogota,True,8.0,10.0,1.0,0.0,54.0,10.0,22.0,0.0
+COL,2026,0.0,2026-08-05T23:15:00Z,Internacional de Bogota,Jaguares de Córdoba,Jaguares de Córdoba,False,1.0,7.0,1.0,0.0,46.0,4.0,7.0,0.0
+COL,2026,0.0,2026-08-06T01:30:00Z,Once Caldas,America de Cali,Once Caldas,True,3.0,8.0,2.0,1.0,47.0,5.0,13.0,1.0
+COL,2026,0.0,2026-08-06T01:30:00Z,Once Caldas,America de Cali,America de Cali,False,5.0,9.0,3.0,0.0,53.0,5.0,17.0,2.0
+COL,2026,0.0,2026-08-08T19:00:00Z,Independiente Santa Fe,Boyaca Chico,Independiente Santa Fe,True,2.0,8.0,1.0,0.0,57.0,3.0,8.0,0.0
+COL,2026,0.0,2026-08-08T19:00:00Z,Independiente Santa Fe,Boyaca Chico,Boyaca Chico,False,0.0,17.0,1.0,0.0,43.0,1.0,5.0,3.0
+COL,2026,0.0,2026-08-08T21:20:00Z,Fortaleza FC,Cucuta Deportivo,Fortaleza FC,True,1.0,13.0,2.0,0.0,54.0,7.0,13.0,4.0
+COL,2026,0.0,2026-08-08T21:20:00Z,Fortaleza FC,Cucuta Deportivo,Cucuta Deportivo,False,2.0,13.0,3.0,0.0,46.0,5.0,17.0,2.0
+COL,2026,0.0,2026-08-08T23:25:00Z,Deportes Tolima,Internacional de Bogota,Deportes Tolima,True,8.0,8.0,2.0,0.0,59.0,6.0,14.0,1.0
+COL,2026,0.0,2026-08-08T23:25:00Z,Deportes Tolima,Internacional de Bogota,Internacional de Bogota,False,7.0,8.0,1.0,0.0,41.0,5.0,14.0,1.0
+COL,2026,0.0,2026-08-09T01:30:00Z,Deportivo Pasto,Deportivo Cali,Deportivo Pasto,True,6.0,18.0,4.0,0.0,62.0,4.0,12.0,0.0
+COL,2026,0.0,2026-08-09T01:30:00Z,Deportivo Pasto,Deportivo Cali,Deportivo Cali,False,3.0,20.0,4.0,0.0,38.0,6.0,20.0,0.0
+COL,2026,0.0,2026-08-09T21:05:00Z,Alianza FC,Atlético Bucaramanga,Alianza FC,True,3.0,11.0,1.0,0.0,50.0,3.0,11.0,0.0
+COL,2026,0.0,2026-08-09T21:05:00Z,Alianza FC,Atlético Bucaramanga,Atlético Bucaramanga,False,0.0,19.0,4.0,0.0,50.0,5.0,7.0,0.0
+COL,2026,0.0,2026-08-09T23:10:00Z,Jaguares de Córdoba,Once Caldas,Jaguares de Córdoba,True,2.0,10.0,4.0,0.0,43.0,3.0,14.0,4.0
+COL,2026,0.0,2026-08-09T23:10:00Z,Jaguares de Córdoba,Once Caldas,Once Caldas,False,5.0,9.0,3.0,0.0,57.0,5.0,22.0,2.0
+COL,2026,0.0,2026-08-10T01:15:00Z,America de Cali,Atletico Nacional,America de Cali,True,2.0,15.0,3.0,0.0,38.0,6.0,13.0,1.0
+COL,2026,0.0,2026-08-10T01:15:00Z,America de Cali,Atletico Nacional,Atletico Nacional,False,13.0,17.0,4.0,0.0,62.0,4.0,16.0,3.0
+COL,2026,0.0,2026-08-19T21:00:00Z,Águilas Doradas,Llaneros FC,Águilas Doradas,True,5.0,6.0,0.0,0.0,72.0,3.0,15.0,0.0
+COL,2026,0.0,2026-08-19T21:00:00Z,Águilas Doradas,Llaneros FC,Llaneros FC,False,3.0,18.0,3.0,0.0,28.0,2.0,8.0,1.0
+COL,2026,0.0,2026-08-19T23:00:00Z,Cucuta Deportivo,Internacional de Bogota,Cucuta Deportivo,True,3.0,9.0,3.0,1.0,49.0,7.0,14.0,2.0
+COL,2026,0.0,2026-08-19T23:00:00Z,Cucuta Deportivo,Internacional de Bogota,Internacional de Bogota,False,7.0,17.0,5.0,1.0,51.0,5.0,11.0,1.0
+COL,2026,0.0,2026-08-21T21:05:00Z,Jaguares de Córdoba,Boyaca Chico,Jaguares de Córdoba,True,4.0,19.0,7.0,0.0,43.0,6.0,9.0,2.0
+COL,2026,0.0,2026-08-21T21:05:00Z,Jaguares de Córdoba,Boyaca Chico,Boyaca Chico,False,11.0,9.0,4.0,0.0,57.0,3.0,13.0,2.0
+COL,2026,0.0,2026-08-22T00:30:00Z,Alianza FC,Deportivo Pereira,Alianza FC,True,4.0,20.0,4.0,0.0,54.0,5.0,20.0,0.0
+COL,2026,0.0,2026-08-22T00:30:00Z,Alianza FC,Deportivo Pereira,Deportivo Pereira,False,3.0,17.0,1.0,0.0,46.0,5.0,10.0,1.0
+COL,2026,0.0,2026-08-22T20:30:00Z,Águilas Doradas,Millonarios,Águilas Doradas,True,6.0,13.0,5.0,0.0,59.0,2.0,9.0,2.0
+COL,2026,0.0,2026-08-22T20:30:00Z,Águilas Doradas,Millonarios,Millonarios,False,3.0,15.0,4.0,0.0,41.0,5.0,9.0,2.0
+COL,2026,0.0,2026-08-22T21:05:00Z,Deportes Tolima,Atlético Bucaramanga,Deportes Tolima,True,6.0,13.0,3.0,0.0,58.0,3.0,14.0,1.0
+COL,2026,0.0,2026-08-22T21:05:00Z,Deportes Tolima,Atlético Bucaramanga,Atlético Bucaramanga,False,1.0,18.0,4.0,0.0,42.0,1.0,7.0,1.0
+COL,2026,0.0,2026-08-22T23:10:00Z,Independiente Santa Fe,America de Cali,Independiente Santa Fe,True,8.0,10.0,1.0,0.0,45.0,4.0,18.0,0.0
+COL,2026,0.0,2026-08-22T23:10:00Z,Independiente Santa Fe,America de Cali,America de Cali,False,2.0,9.0,3.0,0.0,55.0,0.0,4.0,0.0
+COL,2026,0.0,2026-08-23T01:15:00Z,Independiente Medellin,Cucuta Deportivo,Independiente Medellin,True,6.0,12.0,0.0,0.0,64.0,8.0,21.0,3.0
+COL,2026,0.0,2026-08-23T01:15:00Z,Independiente Medellin,Cucuta Deportivo,Cucuta Deportivo,False,1.0,12.0,2.0,0.0,36.0,2.0,7.0,2.0
+COL,2026,0.0,2026-08-23T19:00:00Z,Fortaleza FC,Atletico Nacional,Fortaleza FC,True,4.0,14.0,2.0,0.0,34.0,5.0,10.0,6.0
+COL,2026,0.0,2026-08-23T19:00:00Z,Fortaleza FC,Atletico Nacional,Atletico Nacional,False,7.0,13.0,3.0,0.0,66.0,6.0,18.0,2.0
+COL,2026,0.0,2026-08-23T21:05:00Z,Deportivo Pasto,Llaneros FC,Deportivo Pasto,True,5.0,19.0,4.0,2.0,51.0,0.0,5.0,2.0
+COL,2026,0.0,2026-08-23T21:05:00Z,Deportivo Pasto,Llaneros FC,Llaneros FC,False,5.0,9.0,4.0,1.0,49.0,1.0,9.0,5.0
+COL,2026,0.0,2026-08-23T23:10:00Z,Deportivo Cali,Internacional de Bogota,Deportivo Cali,True,7.0,5.0,2.0,0.0,62.0,5.0,14.0,0.0
+COL,2026,0.0,2026-08-23T23:10:00Z,Deportivo Cali,Internacional de Bogota,Internacional de Bogota,False,3.0,4.0,2.0,0.0,38.0,4.0,10.0,0.0
+COL,2026,0.0,2026-08-24T01:15:00Z,Junior FC,Once Caldas,Junior FC,True,4.0,16.0,5.0,0.0,46.0,4.0,15.0,2.0
+COL,2026,0.0,2026-08-24T01:15:00Z,Junior FC,Once Caldas,Once Caldas,False,3.0,13.0,5.0,0.0,54.0,2.0,10.0,2.0
+COL,2026,0.0,2026-08-24T01:15:00Z,Junior FC,Once Caldas,Junior FC,True,4.0,16.0,4.0,0.0,46.0,4.0,15.0,2.0
+COL,2026,0.0,2026-08-24T01:15:00Z,Junior FC,Once Caldas,Once Caldas,False,3.0,13.0,5.0,0.0,54.0,2.0,10.0,2.0
+COL,2026,0.0,2026-08-26T01:00:00Z,Cucuta Deportivo,Alianza FC,Cucuta Deportivo,True,3.0,18.0,5.0,0.0,55.0,3.0,10.0,1.0
+COL,2026,0.0,2026-08-26T01:00:00Z,Cucuta Deportivo,Alianza FC,Alianza FC,False,5.0,15.0,6.0,0.0,45.0,3.0,12.0,3.0
+COL,2026,0.0,2026-08-26T21:00:00Z,Boyaca Chico,Fortaleza FC,Boyaca Chico,True,3.0,24.0,2.0,0.0,46.0,2.0,13.0,2.0
+COL,2026,0.0,2026-08-26T21:00:00Z,Boyaca Chico,Fortaleza FC,Fortaleza FC,False,4.0,12.0,2.0,0.0,54.0,1.0,4.0,3.0
+COL,2026,0.0,2026-08-26T23:20:00Z,America de Cali,Junior FC,America de Cali,True,4.0,6.0,4.0,1.0,55.0,9.0,19.0,2.0
+COL,2026,0.0,2026-08-26T23:20:00Z,America de Cali,Junior FC,Junior FC,False,2.0,10.0,2.0,1.0,45.0,5.0,14.0,2.0
+COL,2026,0.0,2026-08-27T01:30:00Z,Atletico Nacional,Deportivo Cali,Atletico Nacional,True,3.0,15.0,4.0,1.0,51.0,9.0,15.0,0.0
+COL,2026,0.0,2026-08-27T01:30:00Z,Atletico Nacional,Deportivo Cali,Deportivo Cali,False,2.0,14.0,3.0,0.0,49.0,3.0,8.0,8.0
+COL,2026,0.0,2026-08-27T23:10:00Z,Llaneros FC,Millonarios,Llaneros FC,True,2.0,13.0,3.0,1.0,32.0,2.0,5.0,2.0
+COL,2026,0.0,2026-08-27T23:10:00Z,Llaneros FC,Millonarios,Millonarios,False,5.0,14.0,3.0,0.0,68.0,8.0,19.0,2.0
+COL,2026,0.0,2026-08-28T01:15:00Z,Internacional de Bogota,Deportivo Pasto,Internacional de Bogota,True,10.0,14.0,0.0,0.0,51.0,3.0,15.0,3.0
+COL,2026,0.0,2026-08-28T01:15:00Z,Internacional de Bogota,Deportivo Pasto,Deportivo Pasto,False,2.0,9.0,2.0,0.0,49.0,3.0,9.0,0.0
+COL,2026,0.0,2026-08-29T21:25:00Z,Jaguares de Córdoba,America de Cali,Jaguares de Córdoba,True,3.0,10.0,3.0,0.0,35.0,3.0,6.0,1.0
+COL,2026,0.0,2026-08-29T21:25:00Z,Jaguares de Córdoba,America de Cali,America de Cali,False,13.0,12.0,3.0,0.0,65.0,8.0,20.0,2.0
+COL,2026,0.0,2026-08-29T23:30:00Z,Junior FC,Independiente Santa Fe,Junior FC,True,6.0,15.0,2.0,0.0,57.0,4.0,19.0,1.0
+COL,2026,0.0,2026-08-29T23:30:00Z,Junior FC,Independiente Santa Fe,Independiente Santa Fe,False,5.0,13.0,2.0,0.0,43.0,4.0,14.0,1.0
+COL,2026,0.0,2026-08-30T01:30:00Z,Alianza FC,Atletico Nacional,Alianza FC,True,2.0,16.0,4.0,0.0,37.0,2.0,8.0,3.0
+COL,2026,0.0,2026-08-30T01:30:00Z,Alianza FC,Atletico Nacional,Atletico Nacional,False,6.0,13.0,1.0,0.0,63.0,14.0,23.0,3.0
+COL,2026,0.0,2026-08-30T19:00:00Z,Águilas Doradas,Boyaca Chico,Águilas Doradas,True,9.0,4.0,1.0,0.0,83.0,6.0,10.0,1.0
+COL,2026,0.0,2026-08-30T19:00:00Z,Águilas Doradas,Boyaca Chico,Boyaca Chico,False,2.0,9.0,1.0,0.0,17.0,3.0,3.0,2.0
+COL,2026,0.0,2026-08-30T21:10:00Z,Independiente Medellin,Llaneros FC,Independiente Medellin,True,2.0,10.0,4.0,0.0,50.0,3.0,11.0,1.0
+COL,2026,0.0,2026-08-30T21:10:00Z,Independiente Medellin,Llaneros FC,Llaneros FC,False,5.0,10.0,4.0,0.0,50.0,1.0,7.0,1.0
+COL,2026,0.0,2026-08-30T23:15:00Z,Millonarios,Internacional de Bogota,Millonarios,True,7.0,9.0,3.0,0.0,62.0,6.0,14.0,0.0
+COL,2026,0.0,2026-08-30T23:15:00Z,Millonarios,Internacional de Bogota,Internacional de Bogota,False,5.0,13.0,3.0,0.0,38.0,2.0,10.0,3.0
+COL,2026,0.0,2026-08-31T01:20:00Z,Deportivo Cali,Atlético Bucaramanga,Deportivo Cali,True,1.0,10.0,3.0,1.0,66.0,4.0,13.0,2.0
+COL,2026,0.0,2026-08-31T01:20:00Z,Deportivo Cali,Atlético Bucaramanga,Atlético Bucaramanga,False,2.0,20.0,4.0,1.0,34.0,3.0,8.0,2.0
+COL,2026,0.0,2026-08-31T23:00:00Z,Deportivo Pasto,Deportivo Pereira,Deportivo Pasto,True,8.0,8.0,2.0,1.0,55.0,5.0,31.0,1.0
+COL,2026,0.0,2026-08-31T23:00:00Z,Deportivo Pasto,Deportivo Pereira,Deportivo Pereira,False,3.0,11.0,3.0,0.0,45.0,3.0,8.0,2.0
+COL,2026,0.0,2026-09-01T01:05:00Z,Deportes Tolima,Cucuta Deportivo,Deportes Tolima,True,6.0,11.0,5.0,1.0,55.0,6.0,15.0,4.0
+COL,2026,0.0,2026-09-01T01:05:00Z,Deportes Tolima,Cucuta Deportivo,Cucuta Deportivo,False,2.0,8.0,3.0,0.0,45.0,2.0,5.0,3.0
+COL,2026,0.0,2026-09-02T01:00:00Z,Fortaleza FC,Once Caldas,Fortaleza FC,True,0.0,7.0,1.0,1.0,44.0,2.0,9.0,2.0
+COL,2026,0.0,2026-09-02T01:00:00Z,Fortaleza FC,Once Caldas,Once Caldas,False,4.0,14.0,1.0,0.0,56.0,7.0,21.0,0.0
+COL,2026,0.0,2026-09-03T01:25:00Z,Independiente Santa Fe,Millonarios,Independiente Santa Fe,True,7.0,10.0,2.0,1.0,46.0,6.0,12.0,2.0
+COL,2026,0.0,2026-09-03T01:25:00Z,Independiente Santa Fe,Millonarios,Millonarios,False,8.0,13.0,5.0,0.0,54.0,9.0,20.0,3.0
+COL,2026,0.0,2026-09-03T21:00:00Z,America de Cali,Alianza FC,America de Cali,True,3.0,15.0,1.0,0.0,61.0,6.0,15.0,1.0
+COL,2026,0.0,2026-09-03T21:00:00Z,America de Cali,Alianza FC,Alianza FC,False,4.0,13.0,1.0,0.0,39.0,2.0,7.0,0.0
+COL,2026,0.0,2026-09-04T01:00:00Z,Deportivo Pereira,Independiente Medellin,Deportivo Pereira,True,2.0,9.0,2.0,0.0,44.0,4.0,9.0,1.0
+COL,2026,0.0,2026-09-04T01:00:00Z,Deportivo Pereira,Independiente Medellin,Independiente Medellin,False,4.0,13.0,4.0,0.0,56.0,10.0,21.0,0.0
+COL,2026,0.0,2026-09-05T21:00:00Z,Boyaca Chico,Once Caldas,Boyaca Chico,True,4.0,17.0,3.0,1.0,28.0,2.0,3.0,0.0
+COL,2026,0.0,2026-09-05T21:00:00Z,Boyaca Chico,Once Caldas,Once Caldas,False,8.0,9.0,2.0,1.0,72.0,6.0,13.0,4.0
+COL,2026,0.0,2026-09-05T23:10:00Z,Cucuta Deportivo,Deportivo Pasto,Cucuta Deportivo,True,2.0,16.0,4.0,1.0,38.0,5.0,13.0,5.0
+COL,2026,0.0,2026-09-05T23:10:00Z,Cucuta Deportivo,Deportivo Pasto,Deportivo Pasto,False,5.0,14.0,5.0,2.0,62.0,4.0,8.0,1.0
+COL,2026,0.0,2026-09-05T23:25:00Z,Independiente Santa Fe,Fortaleza FC,Independiente Santa Fe,True,4.0,11.0,1.0,0.0,50.0,7.0,16.0,0.0
+COL,2026,0.0,2026-09-05T23:25:00Z,Independiente Santa Fe,Fortaleza FC,Fortaleza FC,False,3.0,8.0,3.0,0.0,50.0,5.0,18.0,1.0
+COL,2026,0.0,2026-09-06T01:30:00Z,Junior FC,Jaguares de Córdoba,Junior FC,True,7.0,17.0,4.0,0.0,57.0,7.0,18.0,3.0
+COL,2026,0.0,2026-09-06T01:30:00Z,Junior FC,Jaguares de Córdoba,Jaguares de Córdoba,False,5.0,9.0,3.0,0.0,43.0,5.0,12.0,0.0
+COL,2026,0.0,2026-09-06T21:00:00Z,Internacional de Bogota,Águilas Doradas,Internacional de Bogota,True,3.0,20.0,8.0,0.0,38.0,4.0,10.0,5.0
+COL,2026,0.0,2026-09-06T21:00:00Z,Internacional de Bogota,Águilas Doradas,Águilas Doradas,False,12.0,8.0,2.0,1.0,62.0,3.0,16.0,1.0
+COL,2026,0.0,2026-09-06T23:10:00Z,Deportivo Pereira,Millonarios,Deportivo Pereira,True,2.0,13.0,2.0,0.0,48.0,2.0,9.0,0.0
+COL,2026,0.0,2026-09-06T23:10:00Z,Deportivo Pereira,Millonarios,Millonarios,False,3.0,12.0,1.0,0.0,52.0,7.0,11.0,2.0
+COL,2026,0.0,2026-09-07T23:00:00Z,Llaneros FC,Deportes Tolima,Llaneros FC,True,4.0,13.0,2.0,0.0,47.0,2.0,15.0,4.0
+COL,2026,0.0,2026-09-07T23:00:00Z,Llaneros FC,Deportes Tolima,Deportes Tolima,False,8.0,10.0,1.0,0.0,53.0,7.0,16.0,2.0
+COL,2026,0.0,2026-09-11T01:00:00Z,Millonarios,Deportivo Cali,Millonarios,True,7.0,15.0,5.0,0.0,54.0,7.0,20.0,2.0
+COL,2026,0.0,2026-09-11T01:00:00Z,Millonarios,Deportivo Cali,Deportivo Cali,False,3.0,13.0,5.0,0.0,46.0,5.0,11.0,4.0
+COL,2026,0.0,2026-09-11T23:15:00Z,Jaguares de Córdoba,Fortaleza FC,Jaguares de Córdoba,True,5.0,13.0,4.0,0.0,61.0,6.0,18.0,1.0
+COL,2026,0.0,2026-09-11T23:15:00Z,Jaguares de Córdoba,Fortaleza FC,Fortaleza FC,False,7.0,15.0,2.0,0.0,39.0,2.0,8.0,1.0
+COL,2026,0.0,2026-09-12T01:30:00Z,Independiente Santa Fe,Deportes Tolima,Independiente Santa Fe,True,5.0,11.0,3.0,0.0,44.0,4.0,13.0,3.0
+COL,2026,0.0,2026-09-12T01:30:00Z,Independiente Santa Fe,Deportes Tolima,Deportes Tolima,False,5.0,9.0,2.0,0.0,56.0,2.0,9.0,1.0
+COL,2026,0.0,2026-09-12T21:05:00Z,Internacional de Bogota,Llaneros FC,Internacional de Bogota,True,5.0,8.0,3.0,0.0,47.0,8.0,18.0,1.0
+COL,2026,0.0,2026-09-12T21:05:00Z,Internacional de Bogota,Llaneros FC,Llaneros FC,False,6.0,5.0,1.0,0.0,53.0,4.0,9.0,4.0
+COL,2026,0.0,2026-09-12T23:10:00Z,Boyaca Chico,Independiente Medellin,Boyaca Chico,True,5.0,11.0,2.0,1.0,43.0,5.0,13.0,2.0
+COL,2026,0.0,2026-09-12T23:10:00Z,Boyaca Chico,Independiente Medellin,Independiente Medellin,False,1.0,16.0,3.0,0.0,57.0,5.0,12.0,2.0
+COL,2026,0.0,2026-09-13T01:20:00Z,Alianza FC,Junior FC,Alianza FC,True,4.0,14.0,4.0,1.0,28.0,4.0,12.0,2.0
+COL,2026,0.0,2026-09-13T01:20:00Z,Alianza FC,Junior FC,Junior FC,False,6.0,12.0,4.0,1.0,72.0,5.0,19.0,0.0
+COL,2026,0.0,2026-09-13T19:00:00Z,Deportivo Pereira,Atlético Bucaramanga,Deportivo Pereira,True,4.0,18.0,1.0,0.0,55.0,3.0,10.0,2.0
+COL,2026,0.0,2026-09-13T19:00:00Z,Deportivo Pereira,Atlético Bucaramanga,Atlético Bucaramanga,False,2.0,5.0,2.0,0.0,45.0,7.0,12.0,3.0
+COL,2026,0.0,2026-09-13T21:05:00Z,Atletico Nacional,Águilas Doradas,Atletico Nacional,True,7.0,13.0,2.0,0.0,61.0,5.0,14.0,2.0
+COL,2026,0.0,2026-09-13T21:05:00Z,Atletico Nacional,Águilas Doradas,Águilas Doradas,False,3.0,8.0,1.0,0.0,39.0,2.0,9.0,5.0
+COL,2026,0.0,2026-09-13T23:10:00Z,Once Caldas,Deportivo Cali,Once Caldas,True,5.0,16.0,2.0,0.0,62.0,9.0,28.0,2.0
+COL,2026,0.0,2026-09-13T23:10:00Z,Once Caldas,Deportivo Cali,Deportivo Cali,False,0.0,8.0,2.0,0.0,38.0,6.0,12.0,0.0
+COL,2026,0.0,2026-09-14T01:15:00Z,Cucuta Deportivo,Millonarios,Cucuta Deportivo,True,7.0,9.0,1.0,0.0,48.0,8.0,16.0,1.0
+COL,2026,0.0,2026-09-14T01:15:00Z,Cucuta Deportivo,Millonarios,Millonarios,False,5.0,10.0,1.0,0.0,52.0,8.0,16.0,4.0
+COL,2026,0.0,2026-09-15T01:00:00Z,America de Cali,Deportivo Pasto,America de Cali,True,3.0,12.0,2.0,1.0,53.0,2.0,10.0,1.0
+COL,2026,0.0,2026-09-15T01:00:00Z,America de Cali,Deportivo Pasto,Deportivo Pasto,False,3.0,15.0,4.0,1.0,47.0,5.0,12.0,1.0
+COL,2026,0.0,2026-09-16T00:30:00Z,Boyaca Chico,Alianza FC,Boyaca Chico,True,9.0,9.0,3.0,0.0,64.0,2.0,10.0,1.0
+COL,2026,0.0,2026-09-16T00:30:00Z,Boyaca Chico,Alianza FC,Alianza FC,False,2.0,6.0,1.0,0.0,36.0,4.0,5.0,1.0
+COL,2026,0.0,2026-09-16T23:15:00Z,Once Caldas,Deportes Tolima,Once Caldas,True,3.0,15.0,2.0,0.0,36.0,5.0,13.0,1.0
+COL,2026,0.0,2026-09-16T23:15:00Z,Once Caldas,Deportes Tolima,Deportes Tolima,False,6.0,10.0,4.0,0.0,64.0,4.0,19.0,2.0
+COL,2026,0.0,2026-09-17T01:20:00Z,Internacional de Bogota,Atletico Nacional,Internacional de Bogota,True,3.0,18.0,2.0,0.0,27.0,4.0,6.0,5.0
+COL,2026,0.0,2026-09-17T01:20:00Z,Internacional de Bogota,Atletico Nacional,Atletico Nacional,False,9.0,10.0,1.0,0.0,73.0,8.0,19.0,1.0
+COL,2026,0.0,2026-09-18T00:00:00Z,Atlético Bucaramanga,Independiente Medellin,Atlético Bucaramanga,True,1.0,13.0,2.0,1.0,31.0,3.0,8.0,1.0
+COL,2026,0.0,2026-09-18T00:00:00Z,Atlético Bucaramanga,Independiente Medellin,Independiente Medellin,False,8.0,16.0,3.0,0.0,69.0,5.0,17.0,2.0
+COL,2026,0.0,2026-09-18T21:00:00Z,Águilas Doradas,Deportivo Pereira,Águilas Doradas,True,7.0,9.0,3.0,0.0,54.0,6.0,13.0,0.0
+COL,2026,0.0,2026-09-18T21:00:00Z,Águilas Doradas,Deportivo Pereira,Deportivo Pereira,False,5.0,17.0,5.0,0.0,46.0,7.0,11.0,0.0
+COL,2026,0.0,2026-09-19T19:00:00Z,Millonarios,Boyaca Chico,Millonarios,True,6.0,11.0,1.0,0.0,58.0,12.0,24.0,1.0
+COL,2026,0.0,2026-09-19T19:00:00Z,Millonarios,Boyaca Chico,Boyaca Chico,False,6.0,9.0,3.0,0.0,42.0,3.0,6.0,2.0
+COL,2026,0.0,2026-09-19T21:05:00Z,Alianza FC,Independiente Santa Fe,Alianza FC,True,6.0,4.0,3.0,0.0,50.0,2.0,16.0,0.0
+COL,2026,0.0,2026-09-19T21:05:00Z,Alianza FC,Independiente Santa Fe,Independiente Santa Fe,False,6.0,7.0,2.0,0.0,50.0,7.0,9.0,1.0
+COL,2026,0.0,2026-09-19T23:10:00Z,Deportivo Cali,Cucuta Deportivo,Deportivo Cali,True,5.0,10.0,3.0,0.0,52.0,7.0,17.0,4.0
+COL,2026,0.0,2026-09-19T23:10:00Z,Deportivo Cali,Cucuta Deportivo,Cucuta Deportivo,False,1.0,9.0,2.0,0.0,48.0,2.0,5.0,0.0
+COL,2026,0.0,2026-09-20T01:15:00Z,Deportivo Pasto,Once Caldas,Deportivo Pasto,True,5.0,10.0,3.0,0.0,63.0,5.0,18.0,4.0
+COL,2026,0.0,2026-09-20T01:15:00Z,Deportivo Pasto,Once Caldas,Once Caldas,False,4.0,8.0,3.0,1.0,37.0,5.0,16.0,3.0
+COL,2026,0.0,2026-09-20T19:00:00Z,Fortaleza FC,Junior FC,Fortaleza FC,True,2.0,15.0,3.0,1.0,41.0,2.0,8.0,1.0
+COL,2026,0.0,2026-09-20T19:00:00Z,Fortaleza FC,Junior FC,Junior FC,False,1.0,20.0,1.0,0.0,59.0,6.0,8.0,0.0
+COL,2026,0.0,2026-09-20T21:05:00Z,Atlético Bucaramanga,Internacional de Bogota,Atlético Bucaramanga,True,2.0,10.0,3.0,0.0,43.0,4.0,14.0,1.0
+COL,2026,0.0,2026-09-20T21:05:00Z,Atlético Bucaramanga,Internacional de Bogota,Internacional de Bogota,False,11.0,8.0,2.0,0.0,57.0,4.0,15.0,3.0
+COL,2026,0.0,2026-09-20T23:10:00Z,Deportes Tolima,America de Cali,Deportes Tolima,True,9.0,10.0,1.0,1.0,67.0,8.0,28.0,3.0
+COL,2026,0.0,2026-09-20T23:10:00Z,Deportes Tolima,America de Cali,America de Cali,False,2.0,4.0,4.0,1.0,33.0,1.0,5.0,3.0
+COL,2026,0.0,2026-09-21T01:15:00Z,Llaneros FC,Atletico Nacional,Llaneros FC,True,4.0,15.0,5.0,0.0,21.0,5.0,8.0,2.0
+COL,2026,0.0,2026-09-21T01:15:00Z,Llaneros FC,Atletico Nacional,Atletico Nacional,False,9.0,12.0,2.0,0.0,79.0,5.0,20.0,4.0
+COL,2026,0.0,2026-09-22T23:00:00Z,Independiente Medellin,Jaguares de Córdoba,Independiente Medellin,True,7.0,9.0,2.0,0.0,55.0,9.0,24.0,3.0
+COL,2026,0.0,2026-09-22T23:00:00Z,Independiente Medellin,Jaguares de Córdoba,Jaguares de Córdoba,False,3.0,11.0,3.0,1.0,45.0,1.0,7.0,2.0
+COL,2026,0.0,2026-09-23T01:00:00Z,Independiente Santa Fe,Deportivo Cali,Independiente Santa Fe,True,9.0,11.0,2.0,1.0,55.0,5.0,19.0,1.0
+COL,2026,0.0,2026-09-23T01:00:00Z,Independiente Santa Fe,Deportivo Cali,Deportivo Cali,False,3.0,9.0,2.0,0.0,45.0,4.0,9.0,0.0
+COL,2026,0.0,2026-09-24T00:30:00Z,America de Cali,Águilas Doradas,America de Cali,True,11.0,16.0,3.0,0.0,50.0,5.0,19.0,2.0
+COL,2026,0.0,2026-09-24T00:30:00Z,America de Cali,Águilas Doradas,Águilas Doradas,False,1.0,15.0,4.0,0.0,50.0,1.0,7.0,1.0
+COL,2026,0.0,2026-09-25T00:30:00Z,Atletico Nacional,Millonarios,Atletico Nacional,True,3.0,16.0,3.0,1.0,59.0,3.0,13.0,1.0
+COL,2026,0.0,2026-09-25T00:30:00Z,Atletico Nacional,Millonarios,Millonarios,False,2.0,17.0,2.0,0.0,41.0,3.0,4.0,2.0
+COL,2026,0.0,2026-09-25T23:10:00Z,Boyaca Chico,Deportivo Pasto,Boyaca Chico,True,0.0,18.0,1.0,0.0,44.0,5.0,7.0,2.0
+COL,2026,0.0,2026-09-25T23:10:00Z,Boyaca Chico,Deportivo Pasto,Deportivo Pasto,False,4.0,7.0,0.0,0.0,56.0,3.0,14.0,1.0
+COL,2026,0.0,2026-09-26T01:15:00Z,Once Caldas,Atlético Bucaramanga,Once Caldas,True,9.0,10.0,1.0,0.0,70.0,12.0,29.0,3.0
+COL,2026,0.0,2026-09-26T01:15:00Z,Once Caldas,Atlético Bucaramanga,Atlético Bucaramanga,False,1.0,15.0,5.0,0.0,30.0,5.0,8.0,1.0
+COL,2026,0.0,2026-09-26T21:00:00Z,Deportivo Pereira,Internacional de Bogota,Deportivo Pereira,True,5.0,9.0,6.0,0.0,52.0,3.0,9.0,3.0
+COL,2026,0.0,2026-09-26T21:00:00Z,Deportivo Pereira,Internacional de Bogota,Internacional de Bogota,False,4.0,12.0,4.0,0.0,48.0,3.0,16.0,2.0
+COL,2026,0.0,2026-09-26T23:15:00Z,Cucuta Deportivo,Llaneros FC,Cucuta Deportivo,True,2.0,16.0,2.0,0.0,34.0,3.0,11.0,0.0
+COL,2026,0.0,2026-09-26T23:15:00Z,Cucuta Deportivo,Llaneros FC,Llaneros FC,False,3.0,10.0,5.0,1.0,66.0,11.0,21.0,2.0
+COL,2026,0.0,2026-09-27T01:20:00Z,Junior FC,Independiente Medellin,Junior FC,True,2.0,18.0,2.0,0.0,64.0,9.0,21.0,4.0
+COL,2026,0.0,2026-09-27T01:20:00Z,Junior FC,Independiente Medellin,Independiente Medellin,False,6.0,10.0,3.0,1.0,36.0,4.0,9.0,1.0
+COL,2026,0.0,2026-09-27T21:00:00Z,Jaguares de Córdoba,Alianza FC,Jaguares de Córdoba,True,7.0,6.0,4.0,0.0,58.0,6.0,15.0,3.0
+COL,2026,0.0,2026-09-27T21:00:00Z,Jaguares de Córdoba,Alianza FC,Alianza FC,False,6.0,9.0,2.0,0.0,42.0,8.0,16.0,0.0
+COL,2026,0.0,2026-09-27T23:05:00Z,Fortaleza FC,Deportes Tolima,Fortaleza FC,True,8.0,16.0,5.0,1.0,57.0,6.0,14.0,2.0
+COL,2026,0.0,2026-09-27T23:05:00Z,Fortaleza FC,Deportes Tolima,Deportes Tolima,False,0.0,15.0,6.0,0.0,43.0,1.0,7.0,1.0
+COL,2026,0.0,2026-09-28T01:10:00Z,Deportivo Cali,Águilas Doradas,Deportivo Cali,True,4.0,11.0,3.0,0.0,41.0,9.0,12.0,2.0
+COL,2026,0.0,2026-09-28T01:10:00Z,Deportivo Cali,Águilas Doradas,Águilas Doradas,False,4.0,13.0,2.0,0.0,59.0,3.0,17.0,5.0
+COL,2026,0.0,2026-09-29T20:30:00Z,Deportivo Pereira,Independiente Santa Fe,Deportivo Pereira,True,7.0,13.0,3.0,1.0,65.0,4.0,10.0,4.0
+COL,2026,0.0,2026-09-29T20:30:00Z,Deportivo Pereira,Independiente Santa Fe,Independiente Santa Fe,False,2.0,15.0,4.0,1.0,35.0,6.0,9.0,0.0
+COL,2026,0.0,2026-09-30T01:05:00Z,Independiente Medellin,Millonarios,Independiente Medellin,True,2.0,12.0,2.0,0.0,50.0,3.0,9.0,0.0
+COL,2026,0.0,2026-09-30T01:05:00Z,Independiente Medellin,Millonarios,Millonarios,False,4.0,14.0,3.0,0.0,50.0,4.0,9.0,1.0
+COL,2026,0.0,2026-10-01T01:00:00Z,Atletico Nacional,Junior FC,Atletico Nacional,True,7.0,13.0,4.0,0.0,58.0,6.0,19.0,0.0
+COL,2026,0.0,2026-10-01T01:00:00Z,Atletico Nacional,Junior FC,Junior FC,False,5.0,16.0,5.0,0.0,42.0,2.0,9.0,4.0
+COL,2026,0.0,2026-10-03T00:45:00Z,Deportivo Cali,Alianza FC,Deportivo Cali,True,3.0,10.0,3.0,1.0,62.0,4.0,8.0,2.0
+COL,2026,0.0,2026-10-03T00:45:00Z,Deportivo Cali,Alianza FC,Alianza FC,False,5.0,14.0,5.0,0.0,38.0,4.0,13.0,1.0
+COL,2026,0.0,2026-10-03T19:00:00Z,Águilas Doradas,Jaguares de Córdoba,Águilas Doradas,True,7.0,11.0,4.0,0.0,60.0,8.0,26.0,2.0
+COL,2026,0.0,2026-10-03T19:00:00Z,Águilas Doradas,Jaguares de Córdoba,Jaguares de Córdoba,False,5.0,7.0,4.0,1.0,40.0,0.0,4.0,3.0
+COL,2026,0.0,2026-10-03T21:05:00Z,Deportes Tolima,Boyaca Chico,Deportes Tolima,True,10.0,17.0,2.0,0.0,75.0,6.0,18.0,6.0
+COL,2026,0.0,2026-10-03T21:05:00Z,Deportes Tolima,Boyaca Chico,Boyaca Chico,False,0.0,8.0,1.0,0.0,25.0,1.0,1.0,3.0
+COL,2026,0.0,2026-10-04T19:00:00Z,Deportivo Pasto,Fortaleza FC,Deportivo Pasto,True,3.0,19.0,2.0,0.0,50.0,0.0,5.0,3.0
+COL,2026,0.0,2026-10-04T19:00:00Z,Deportivo Pasto,Fortaleza FC,Fortaleza FC,False,1.0,13.0,0.0,0.0,50.0,6.0,12.0,0.0
+COL,2026,0.0,2026-10-04T21:05:00Z,Internacional de Bogota,Once Caldas,Internacional de Bogota,True,1.0,19.0,1.0,0.0,43.0,3.0,18.0,1.0
+COL,2026,0.0,2026-10-04T21:05:00Z,Internacional de Bogota,Once Caldas,Once Caldas,False,5.0,8.0,1.0,0.0,57.0,5.0,7.0,5.0
+COL,2026,0.0,2026-10-04T21:05:00Z,Cucuta Deportivo,Deportivo Pereira,Cucuta Deportivo,True,6.0,14.0,6.0,0.0,68.0,6.0,13.0,0.0
+COL,2026,0.0,2026-10-04T21:05:00Z,Cucuta Deportivo,Deportivo Pereira,Deportivo Pereira,False,0.0,6.0,4.0,1.0,32.0,0.0,4.0,0.0
+COL,2026,0.0,2026-10-04T23:10:00Z,Atlético Bucaramanga,Junior FC,Atlético Bucaramanga,True,2.0,8.0,2.0,1.0,42.0,4.0,12.0,1.0
+COL,2026,0.0,2026-10-04T23:10:00Z,Atlético Bucaramanga,Junior FC,Junior FC,False,7.0,7.0,1.0,0.0,58.0,8.0,24.0,1.0
+COL,2026,0.0,2026-10-05T01:15:00Z,Llaneros FC,America de Cali,Llaneros FC,True,7.0,12.0,3.0,0.0,40.0,5.0,12.0,4.0
+COL,2026,0.0,2026-10-05T01:15:00Z,Llaneros FC,America de Cali,America de Cali,False,4.0,12.0,3.0,0.0,60.0,6.0,13.0,0.0
+COL,2026,0.0,2026-10-06T00:00:00Z,Independiente Medellin,Independiente Santa Fe,Independiente Medellin,True,7.0,11.0,5.0,0.0,60.0,6.0,20.0,3.0
+COL,2026,0.0,2026-10-06T00:00:00Z,Independiente Medellin,Independiente Santa Fe,Independiente Santa Fe,False,5.0,13.0,4.0,0.0,40.0,6.0,16.0,1.0
+COL,2026,0.0,2026-10-08T23:05:00Z,Atletico Nacional,Deportes Tolima,Atletico Nacional,True,2.0,12.0,0.0,0.0,60.0,6.0,14.0,4.0
+COL,2026,0.0,2026-10-08T23:05:00Z,Atletico Nacional,Deportes Tolima,Deportes Tolima,False,6.0,11.0,2.0,0.0,40.0,8.0,16.0,1.0
+COL,2026,0.0,2026-10-09T01:10:00Z,Fortaleza FC,Millonarios,Fortaleza FC,True,3.0,15.0,3.0,0.0,56.0,3.0,17.0,1.0
+COL,2026,0.0,2026-10-09T01:10:00Z,Fortaleza FC,Millonarios,Millonarios,False,5.0,11.0,2.0,1.0,44.0,5.0,13.0,0.0
+COL,2026,0.0,2026-10-09T23:00:00Z,Alianza FC,Águilas Doradas,Alianza FC,True,6.0,18.0,7.0,1.0,59.0,6.0,20.0,3.0
+COL,2026,0.0,2026-10-09T23:00:00Z,Alianza FC,Águilas Doradas,Águilas Doradas,False,6.0,11.0,3.0,0.0,41.0,5.0,12.0,2.0
+COL,2026,0.0,2026-10-10T01:10:00Z,Once Caldas,Llaneros FC,Once Caldas,True,5.0,14.0,2.0,0.0,60.0,4.0,15.0,3.0
+COL,2026,0.0,2026-10-10T01:10:00Z,Once Caldas,Llaneros FC,Llaneros FC,False,4.0,11.0,3.0,1.0,40.0,5.0,10.0,2.0
+COL,2026,0.0,2026-10-10T20:30:00Z,Deportivo Pereira,Deportivo Cali,Deportivo Pereira,True,3.0,17.0,2.0,0.0,52.0,1.0,4.0,1.0
+COL,2026,0.0,2026-10-10T20:30:00Z,Deportivo Pereira,Deportivo Cali,Deportivo Cali,False,3.0,8.0,0.0,1.0,48.0,2.0,7.0,1.0
+COL,2026,0.0,2026-10-10T23:10:00Z,Junior FC,Internacional de Bogota,Junior FC,True,6.0,13.0,2.0,0.0,52.0,4.0,19.0,2.0
+COL,2026,0.0,2026-10-10T23:10:00Z,Junior FC,Internacional de Bogota,Internacional de Bogota,False,7.0,7.0,1.0,0.0,48.0,4.0,18.0,0.0
+COL,2026,0.0,2026-10-11T21:05:00Z,Jaguares de Córdoba,Deportes Tolima,Jaguares de Córdoba,True,0.0,14.0,3.0,0.0,39.0,5.0,9.0,1.0
+COL,2026,0.0,2026-10-11T21:05:00Z,Jaguares de Córdoba,Deportes Tolima,Deportes Tolima,False,8.0,11.0,3.0,0.0,61.0,6.0,18.0,0.0
+COL,2026,0.0,2026-10-11T23:10:00Z,Boyaca Chico,Cucuta Deportivo,Boyaca Chico,True,11.0,14.0,3.0,0.0,64.0,1.0,15.0,4.0
+COL,2026,0.0,2026-10-11T23:10:00Z,Boyaca Chico,Cucuta Deportivo,Cucuta Deportivo,False,1.0,5.0,2.0,0.0,36.0,4.0,7.0,5.0
+COL,2026,0.0,2026-10-12T01:15:00Z,America de Cali,Independiente Medellin,America de Cali,True,2.0,9.0,2.0,1.0,51.0,3.0,12.0,1.0
+COL,2026,0.0,2026-10-12T01:15:00Z,America de Cali,Independiente Medellin,Independiente Medellin,False,7.0,10.0,3.0,0.0,49.0,4.0,14.0,2.0
+COL,2026,0.0,2026-10-13T23:30:00Z,Atlético Bucaramanga,Águilas Doradas,Atlético Bucaramanga,True,3.0,15.0,5.0,0.0,36.0,4.0,14.0,1.0
+COL,2026,0.0,2026-10-13T23:30:00Z,Atlético Bucaramanga,Águilas Doradas,Águilas Doradas,False,6.0,10.0,3.0,0.0,64.0,2.0,11.0,0.0
+COL,2026,0.0,2026-10-14T21:30:00Z,Junior FC,Deportivo Pereira,Junior FC,True,9.0,8.0,2.0,0.0,49.0,3.0,14.0,1.0
+COL,2026,0.0,2026-10-14T21:30:00Z,Junior FC,Deportivo Pereira,Deportivo Pereira,False,3.0,11.0,3.0,0.0,51.0,1.0,5.0,0.0
+COL,2026,0.0,2026-10-17T20:00:00Z,Boyaca Chico,Atletico Nacional,Boyaca Chico,True,5.0,13.0,2.0,0.0,38.0,4.0,11.0,5.0
+COL,2026,0.0,2026-10-17T20:00:00Z,Boyaca Chico,Atletico Nacional,Atletico Nacional,False,5.0,10.0,3.0,0.0,62.0,5.0,12.0,2.0
+COL,2026,0.0,2026-10-17T23:00:00Z,Millonarios,Jaguares de Córdoba,Millonarios,True,3.0,16.0,7.0,0.0,50.0,9.0,21.0,4.0
+COL,2026,0.0,2026-10-17T23:00:00Z,Millonarios,Jaguares de Córdoba,Jaguares de Córdoba,False,0.0,9.0,4.0,0.0,50.0,1.0,3.0,3.0
+COL,2026,0.0,2026-10-18T01:10:00Z,Independiente Medellin,Once Caldas,Independiente Medellin,True,2.0,18.0,3.0,0.0,51.0,3.0,9.0,1.0
+COL,2026,0.0,2026-10-18T01:10:00Z,Independiente Medellin,Once Caldas,Once Caldas,False,3.0,5.0,3.0,0.0,49.0,5.0,11.0,2.0
+COL,2026,0.0,2026-10-22T01:20:00Z,Independiente Santa Fe,Jaguares de Córdoba,Independiente Santa Fe,True,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0
+COL,2026,0.0,2026-10-22T01:20:00Z,Independiente Santa Fe,Jaguares de Córdoba,Jaguares de Córdoba,False,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0
