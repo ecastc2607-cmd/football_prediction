@@ -457,7 +457,43 @@ def serve() -> None:
         time.sleep(max(espera.total_seconds(), 30))
 
 
+def cycle(minutes: float) -> None:
+    """Captura durante `minutes` y termina (para GitHub Actions): dentro de la
+    ventana de partidos, una captura cada CAPTURE_EVERY_MINUTES; fuera, espera.
+    Así una sola corrida por hora cubre la hora entera — GitHub no garantiza
+    los disparos cada 5 min (oct-2026: en 2 h no disparó ninguno)."""
+    import time
+
+    fin = datetime.now(timezone.utc) + timedelta(minutes=minutes)
+    capturas = 0
+    while True:
+        ahora = datetime.now(timezone.utc)
+        if ahora >= fin:
+            break
+        try:
+            if in_match_window(ahora):
+                run_once()
+                capturas += 1
+                espera = timedelta(minutes=CAPTURE_EVERY_MINUTES)
+            else:
+                proxima = next_window_start(ahora)
+                espera = (proxima - ahora) if proxima else fin - ahora
+        except Exception:
+            _log("ERROR " + traceback.format_exc().replace("\n", " | "))
+            espera = timedelta(minutes=CAPTURE_EVERY_MINUTES)
+        restante = fin - datetime.now(timezone.utc)
+        if espera >= restante:
+            break  # la próxima captura ya le toca a la siguiente corrida
+        time.sleep(max(espera.total_seconds(), 30))
+    _log(f"ciclo terminado: {capturas} captura(s)")
+
+
 if __name__ == "__main__":
     import sys
 
-    serve() if "--servicio" in sys.argv else main()
+    if "--servicio" in sys.argv:
+        serve()
+    elif "--ciclo" in sys.argv:
+        cycle(float(sys.argv[sys.argv.index("--ciclo") + 1]))
+    else:
+        main()

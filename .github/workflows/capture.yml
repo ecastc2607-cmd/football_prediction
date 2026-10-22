@@ -10,14 +10,17 @@
 # Secretos necesarios (para la descarga diaria de partidos):
 #   FOOTBALL_DATA_API_KEY, GOAL_API_KEY
 #
-# GitHub corre los "schedule" con demoras (a veces 5-15 min) y puede saltarse
-# alguno con mucha carga: la captura es "aprox. cada 5 min".
+# Disparo cada HORA (no cada 5 min): GitHub no garantiza los "schedule"
+# frecuentes — el 22-oct, en 2 h, no disparó ninguno de los de cada 5 min.
+# Cada corrida se queda ~55 min capturando cada 5 min por su cuenta
+# (capture_live_odds --ciclo), así un disparo atrasado o perdido no deja la
+# hora sin datos.
 
 name: Captura de cuotas y resultados
 
 on:
   schedule:
-    - cron: "*/5 * * * *"
+    - cron: "3 * * * *"
   workflow_dispatch:
 
 permissions:
@@ -31,7 +34,7 @@ jobs:
   capture:
     if: vars.CAPTURE_ENABLED == 'true'
     runs-on: ubuntu-latest
-    timeout-minutes: 20
+    timeout-minutes: 75
     steps:
       - uses: actions/checkout@v4
 
@@ -75,4 +78,4 @@ jobs:
         env:
           FOOTBALL_DATA_API_KEY: ${{ secrets.FOOTBALL_DATA_API_KEY }}
           GOAL_API_KEY: ${{ secrets.GOAL_API_KEY }}
-        run: python -m src.capture_live_odds
+        run: python -m src.capture_live_odds --ciclo 55
