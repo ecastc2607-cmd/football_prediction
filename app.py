@@ -1879,6 +1879,20 @@ def _render_detail(long: pd.DataFrame, caption: str | None = None) -> None:
         st.caption(caption)
 
 
+def _league_multiselect(container, label: str, opciones: list, key: str) -> list:
+    """Multiselect de ligas que agrega solas las ligas NUEVAS a la selección:
+    Streamlit recuerda la selección anterior de la sesión, y una liga agregada
+    después (ej. la Liga BetPlay, oct-2026) quedaba sin marcar y no aparecía."""
+    vistas_key = f"{key}__vistas"
+    vistas = set(st.session_state.get(vistas_key, []))
+    if key in st.session_state:
+        nuevas = [c for c in opciones if c not in vistas]
+        st.session_state[key] = [c for c in st.session_state[key] if c in opciones] + nuevas
+    st.session_state[vistas_key] = list(opciones)
+    return container.multiselect(label, opciones, default=None if key in st.session_state else opciones, key=key,
+                                 format_func=lambda c: config.COMPETITIONS.get(c, c))
+
+
 def _market_filter(datos: pd.DataFrame, key: str, container=None) -> pd.DataFrame:
     """Multiselect de mercado propio de una subpestaña; devuelve los datos filtrados."""
     disponibles = sorted(datos["mercado"].dropna().unique())
@@ -2097,8 +2111,7 @@ with tab_reportes:
             st.warning("La fecha fin es anterior a la de inicio: se intercambian.")
             desde, hasta = hasta, desde
         ligas_disp = sorted(todo["competition"].dropna().unique())
-        ligas = f2.multiselect("Ligas", ligas_disp, default=ligas_disp, key="rep_ligas",
-                               format_func=lambda c: config.COMPETITIONS.get(c, c))
+        ligas = _league_multiselect(f2, "Ligas", ligas_disp, "rep_ligas")
         datos = todo[(fechas >= desde) & (fechas <= hasta) & todo["competition"].isin(ligas)
                      & (todo["tipo"] == tipo)]
         equipos_disp = sorted(set(datos["home_team"].dropna()) | set(datos["away_team"].dropna()))
@@ -2138,8 +2151,7 @@ with tab_reportes:
             d_merc, d_liga = st.columns(2)
             datos_dia = _market_filter(datos, "rep_dia_mercados", d_merc)
             ligas_dia_disp = sorted(datos["competition"].dropna().unique())
-            ligas_dia = d_liga.multiselect("Liga", ligas_dia_disp, default=ligas_dia_disp, key="rep_dia_ligas",
-                                           format_func=lambda c: config.COMPETITIONS.get(c, c))
+            ligas_dia = _league_multiselect(d_liga, "Liga", ligas_dia_disp, "rep_dia_ligas")
             datos_dia = datos_dia[datos_dia["competition"].isin(ligas_dia)]
             tabla = reports.summarize(datos_dia, ["fecha"])
             if tabla.empty:
@@ -2171,8 +2183,7 @@ with tab_reportes:
             # Liga + uno o más equipos de esas ligas (vacío = todos).
             e_liga, e_eq = st.columns(2)
             ligas_eq_disp = sorted(datos["competition"].dropna().unique())
-            ligas_eq = e_liga.multiselect("Liga", ligas_eq_disp, default=ligas_eq_disp, key="rep_equipo_ligas",
-                                          format_func=lambda c: config.COMPETITIONS.get(c, c))
+            ligas_eq = _league_multiselect(e_liga, "Liga", ligas_eq_disp, "rep_equipo_ligas")
             datos_ligas_eq = datos[datos["competition"].isin(ligas_eq)]
             equipos_opc = sorted(set(datos_ligas_eq["home_team"].dropna()) | set(datos_ligas_eq["away_team"].dropna()))
             # Si cambian las ligas, se descartan los equipos elegidos que ya no están.
@@ -2223,8 +2234,7 @@ with tab_reportes:
 
         with t_mercado:
             ligas_merc_disp = sorted(datos["competition"].dropna().unique())
-            ligas_merc = st.multiselect("Liga", ligas_merc_disp, default=ligas_merc_disp, key="rep_mercado_ligas",
-                                        format_func=lambda c: config.COMPETITIONS.get(c, c))
+            ligas_merc = _league_multiselect(st, "Liga", ligas_merc_disp, "rep_mercado_ligas")
             datos_merc = datos[datos["competition"].isin(ligas_merc)]
             tabla = reports.summarize(datos_merc, ["mercado"])
             if not tabla.empty:
