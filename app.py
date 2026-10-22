@@ -1893,25 +1893,19 @@ def _league_multiselect(container, label: str, opciones: list, key: str) -> list
                                  format_func=lambda c: config.COMPETITIONS.get(c, c))
 
 
-def _market_filter(datos: pd.DataFrame, key: str, container=None) -> pd.DataFrame:
-    """Multiselect de mercado propio de una subpestaña; devuelve los datos filtrados."""
-    disponibles = sorted(datos["mercado"].dropna().unique())
-    elegidos = (container or st).multiselect("Mercado", disponibles, default=disponibles, key=key)
-    return datos[datos["mercado"].isin(elegidos)]
-
-
 def _min_sample_slider(label: str, conteos: pd.Series, defecto: int, key: str, help: str | None = None,
                        container=None) -> int:
-    """Slider de muestra mínima cuyo tope es el máximo que de verdad hay en el
-    filtro (antes era fijo 1-30: con pocos días filtrados, el valor por defecto
-    superaba a todos y la tabla quedaba vacía)."""
+    """Slider de muestra mínima con el rango que de verdad hay en el filtro: de
+    la menor a la mayor cantidad de predicciones (antes era fijo 1-30: con pocos
+    días filtrados, el valor por defecto superaba a todos y la tabla quedaba vacía)."""
+    piso = int(conteos.min()) if len(conteos) else 1
     tope = int(conteos.max()) if len(conteos) else 1
-    if tope <= 1:
-        return 1
-    # Si el filtro cambió y el valor guardado quedó por encima del nuevo tope, se ajusta.
-    if key in st.session_state and st.session_state[key] > tope:
-        st.session_state[key] = tope
-    return (container or st).slider(label, 1, tope, min(defecto, tope), key=key, help=help)
+    if tope <= piso:
+        return piso
+    # Si el filtro cambió y el valor guardado quedó fuera del nuevo rango, se ajusta.
+    if key in st.session_state:
+        st.session_state[key] = min(max(st.session_state[key], piso), tope)
+    return (container or st).slider(label, piso, tope, min(max(defecto, piso), tope), key=key, help=help)
 
 
 def _render_strengths_map(datos: pd.DataFrame) -> None:
@@ -1919,9 +1913,11 @@ def _render_strengths_map(datos: pd.DataFrame) -> None:
     mapa = reports.summarize(datos, ["competition", "mercado"])
     # Por defecto 1 = todas las celdas con lo que haya en el rango (pedido del
     # usuario); el slider queda para ocultar las de muestra chica.
+    # Siempre arranca en el mínimo real (pedido del usuario): clave nueva para que
+    # una sesión que guardaba el valor viejo (8) no lo arrastre.
     min_celda = _min_sample_slider("Mínimo de predicciones por celda",
                                    mapa["predicciones"] if not mapa.empty else pd.Series(dtype=int), 1,
-                                   "rep_min_celda",
+                                   "rep_min_celda_v2",
                                    help="Súbelo para ocultar celdas con pocas predicciones: ahí la diferencia "
                                         "es casi puro azar.")
     mapa = mapa[mapa["predicciones"] >= min_celda] if not mapa.empty else mapa
@@ -1962,7 +1958,7 @@ def _render_strengths_map(datos: pd.DataFrame) -> None:
                "la marca = el modelo es más fuerte de lo que cree en ese mercado.")
 
 
-def _render_tips_report(boletos: pd.DataFrame, cerrados: pd.DataFrame) -> None:
+def _render_tips_report(boletos: pd.DataFrame, cerrados: pd.DataFrame, mostrar_planes: bool = True) -> None:
     if boletos.empty:
         st.info("Todavía no hay boletos guardados. Se guardan solos cada vez que la pestaña Tips arma el Plan "
                 "del día, las combinadas del día o un tip en vivo (y el resultado se completa cuando terminan "
@@ -1988,7 +1984,8 @@ def _render_tips_report(boletos: pd.DataFrame, cerrados: pd.DataFrame) -> None:
         ).properties(height=220), use_container_width=True)
         st.caption("Ganancia neta por día de todos los boletos resueltos (con los montos sugeridos).")
     planes_disp = sorted(boletos["plan"].unique())
-    plan_sel = st.multiselect("Planes", planes_disp, default=planes_disp, key="rep_planes")
+    plan_sel = (st.multiselect("Planes", planes_disp, default=planes_disp, key="rep_planes")
+                if mostrar_planes and len(planes_disp) > 1 else planes_disp)
     vista = boletos[boletos["plan"].isin(plan_sel)].sort_values("fecha", ascending=False).head(80)
     st.markdown(f"**Boletos** ({len(vista)} más recientes) — ✔ acertado · ✘ fallado · · pendiente")
     pesos = lambda v: f"${v:,.0f}" if pd.notna(v) else "-"  # noqa: E731
@@ -2014,8 +2011,8 @@ COLOR_ACERTADO, COLOR_FALLADO, COLOR_PENDIENTE = "#0ca30c", "#d03b3b", "#5f5f5b"
 DAY_MARKETS = ["1X2", "Doble oportunidad", "Goles 2.5", "Ambos anotan", "Corners", "Faltas", "Tarjetas"]
 
 
-def _render_day_matches(log_pred: pd.DataFrame, log_tips: pd.DataFrame, ligas: list, equipo: str,
-                        incluir_bt: bool, dia_defecto, tipo: str = reports.TIPO_MODELO) -> None:
+def _render_day_matches(log_pred: pd.DataFrame, log_tips: pd.DataFrame, ligas: list, equipos: list,
+                        mercados: list, incluir_bt: bool, dia_defecto, tipo: str = reports.TIPO_MODELO) -> None:
     """Todos los partidos de un día, con el pick de cada mercado y si se ganó."""
     hoy = datetime.now(BOGOTA_TZ).date()
     dia = st.date_input("Día", value=min(dia_defecto, hoy), max_value=hoy, key="rep_dia")
@@ -2025,8 +2022,11 @@ def _render_day_matches(log_pred: pd.DataFrame, log_tips: pd.DataFrame, ligas: l
     picks = reports.day_picks(log, log_tips, dia, tipo)
     if not picks.empty:
         picks = picks[picks["competition"].isin(ligas)]
-        if equipo != "Todos":
-            picks = picks[picks["partido"].str.contains(equipo, regex=False)]
+        if equipos:
+            picks = picks[picks["partido"].map(lambda t: any(e in t for e in equipos))]
+        # Mismos mercados que la barra de filtros (aquí con nombres cortos).
+        largo = {"1X2": "Resultado (1X2)", "Goles 2.5": "Goles +/-2.5"}
+        picks = picks[picks["mercado"].map(lambda m: largo.get(m, m)).isin(mercados)]
     if picks.empty:
         st.info("No hay predicciones registradas para ese día con los filtros elegidos."
                 + ("" if tipo == reports.TIPO_MODELO else
@@ -2082,16 +2082,17 @@ with tab_reportes:
         st.error(f"No se pudieron leer los historiales: {e}")
         log_pred, log_tips = pd.DataFrame(), pd.DataFrame()
 
-    f1, f1b, f2, f3, f4 = st.columns([1, 1, 1.4, 1.3, 1])
+    # Una sola barra de filtros para TODAS las subpestañas (antes ligas, equipos y
+    # mercados se repetían dentro de varias subpestañas, cada una con su propia
+    # selección). Dentro de cada subpestaña solo queda lo que es propio de ella.
+    tipo = st.radio("Tipo de predicción", reports.TIPOS, horizontal=True, key="rep_tipo",
+                    help="Modelo = todas las predicciones del modelo. Conservador/Equilibrado/Agresivo = picks de "
+                         "los planes del día de Tips; Combinadas del día y En vivo = sus boletos. Una sola opción "
+                         "a la vez: un mismo pick puede ser del modelo y de un boleto (se contaría dos veces).")
+    f1, f1b, f4 = st.columns([1, 1, 1])
     incluir_bt = f4.toggle("Incluir backtests", value=True, key="rep_backtest",
                            help="Partidos ya jugados predichos después, solo con datos anteriores a cada uno "
                                 "(sin trampa). Suman muestra; apágalo para ver solo lo predicho en su momento.")
-    # Segmento para todas las subpestañas: las predicciones del modelo, o los
-    # picks de boletos de Tips de un plan. Una sola opción a la vez: un mismo
-    # pick puede ser del modelo y de un boleto, y mezclarlos lo contaría dos veces.
-    tipo = st.radio("Tipo de predicción", reports.TIPOS, horizontal=True, key="rep_tipo",
-                    help="Modelo = todas las predicciones del modelo. Conservador/Equilibrado/Agresivo = picks de "
-                         "los planes del día de Tips; Combinadas del día y En vivo = sus boletos.")
     largo = reports.predictions_long(log_pred, include_backtest=incluir_bt)
     largo_tips = reports.tips_legs_long(log_tips)
     todo = pd.concat([largo, largo_tips], ignore_index=True) if not largo_tips.empty else largo
@@ -2110,14 +2111,27 @@ with tab_reportes:
         if hasta < desde:
             st.warning("La fecha fin es anterior a la de inicio: se intercambian.")
             desde, hasta = hasta, desde
-        ligas_disp = sorted(todo["competition"].dropna().unique())
-        ligas = _league_multiselect(f2, "Ligas", ligas_disp, "rep_ligas")
-        datos = todo[(fechas >= desde) & (fechas <= hasta) & todo["competition"].isin(ligas)
-                     & (todo["tipo"] == tipo)]
-        equipos_disp = sorted(set(datos["home_team"].dropna()) | set(datos["away_team"].dropna()))
-        equipo = f3.selectbox("Equipo", ["Todos", *equipos_disp], key="rep_equipo")
-        if equipo != "Todos":
-            datos = datos[(datos["home_team"] == equipo) | (datos["away_team"] == equipo)]
+        datos = todo[(fechas >= desde) & (fechas <= hasta) & (todo["tipo"] == tipo)]
+
+        g_liga, g_eq, g_merc = st.columns(3)
+        ligas = _league_multiselect(g_liga, "Ligas", sorted(todo["competition"].dropna().unique()), "rep_ligas")
+        datos = datos[datos["competition"].isin(ligas)]
+        # Equipos: solo los de las ligas elegidas; vacío = todos.
+        equipos_opc = sorted(set(datos["home_team"].dropna()) | set(datos["away_team"].dropna()))
+        if "rep_equipos" in st.session_state:
+            st.session_state["rep_equipos"] = [e for e in st.session_state["rep_equipos"] if e in equipos_opc]
+        equipos = g_eq.multiselect("Equipos", equipos_opc, key="rep_equipos", placeholder="Todos")
+        if equipos:
+            datos = datos[datos["home_team"].isin(equipos) | datos["away_team"].isin(equipos)]
+        mercados_disp = sorted(todo["mercado"].dropna().unique())
+        if "rep_mercados" in st.session_state:  # mercados nuevos entran solos, como las ligas
+            vistos = set(st.session_state.get("rep_mercados__vistos", []))
+            st.session_state["rep_mercados"] = ([m for m in st.session_state["rep_mercados"] if m in mercados_disp]
+                                                + [m for m in mercados_disp if m not in vistos])
+        st.session_state["rep_mercados__vistos"] = mercados_disp
+        mercados = g_merc.multiselect("Mercados", mercados_disp, key="rep_mercados",
+                                      default=None if "rep_mercados" in st.session_state else mercados_disp)
+        datos = datos[datos["mercado"].isin(mercados)]
         modelo = datos
 
         boletos = reports.tips_tickets(log_tips)
@@ -2126,6 +2140,9 @@ with tab_reportes:
             boletos = boletos[(fb >= desde) & (fb <= hasta)]
             if tipo != reports.TIPO_MODELO:
                 boletos = boletos[boletos["plan"].map(reports.plan_tipo) == tipo]
+            boletos = boletos[[any(l in ligas for l in str(ls).split(", ")) for ls in boletos["ligas"]]]
+            if equipos:
+                boletos = boletos[boletos["picks"].map(lambda t: any(e in t for e in equipos))]
         cerrados = boletos[boletos["resultado"].isin(["ganada", "perdida"])] if not boletos.empty else boletos
 
         k1, k2, k3, k4 = st.columns(4)
@@ -2144,16 +2161,10 @@ with tab_reportes:
              "Boletos de Tips"])
 
         with t_partidos:
-            _render_day_matches(log_pred, log_tips, ligas, equipo, incluir_bt, hasta, tipo)
+            _render_day_matches(log_pred, log_tips, ligas, equipos, mercados, incluir_bt, hasta, tipo)
 
         with t_dia:
-            # Filtros propios de esta subpestaña (sobre lo ya filtrado arriba).
-            d_merc, d_liga = st.columns(2)
-            datos_dia = _market_filter(datos, "rep_dia_mercados", d_merc)
-            ligas_dia_disp = sorted(datos["competition"].dropna().unique())
-            ligas_dia = _league_multiselect(d_liga, "Liga", ligas_dia_disp, "rep_dia_ligas")
-            datos_dia = datos_dia[datos_dia["competition"].isin(ligas_dia)]
-            tabla = reports.summarize(datos_dia, ["fecha"])
+            tabla = reports.summarize(datos, ["fecha"])
             if tabla.empty:
                 st.caption("Sin datos en el filtro.")
             else:
@@ -2165,52 +2176,37 @@ with tab_reportes:
                 _summary_table(tabla.sort_values("fecha", ascending=False), "fecha", "Día")
                 dias_det = sorted(tabla["fecha"].unique(), reverse=True)
                 dia_det = st.selectbox("Ver el detalle de predicciones del día", dias_det, key="rep_dia_detalle")
-                _render_detail(datos_dia[pd.to_datetime(datos_dia["fecha"]).dt.date == dia_det], PICK_NOTE)
+                _render_detail(datos[pd.to_datetime(datos["fecha"]).dt.date == dia_det], PICK_NOTE)
 
         with t_liga:
-            datos_liga = _market_filter(datos, "rep_liga_mercados")
-            tabla = reports.summarize(datos_liga, ["competition"])
+            tabla = reports.summarize(datos, ["competition"])
             if not tabla.empty:
                 tabla["competition"] = tabla["competition"].map(lambda c: config.COMPETITIONS.get(c, c))
                 st.altair_chart(_bars_vs_expected(tabla, "competition", "Liga"), use_container_width=True)
                 _summary_table(tabla.sort_values("acierto_pct", ascending=False), "competition", "Liga")
-                ligas_det = sorted(datos_liga["competition"].dropna().unique())
+                ligas_det = sorted(datos["competition"].dropna().unique())
                 liga_det = st.selectbox("Ver el detalle de predicciones de la liga", ligas_det, key="rep_liga_detalle",
                                         format_func=lambda c: config.COMPETITIONS.get(c, c))
-                _render_detail(datos_liga[datos_liga["competition"] == liga_det], PICK_NOTE)
+                _render_detail(datos[datos["competition"] == liga_det], PICK_NOTE)
 
         with t_equipo:
-            # Liga + uno o más equipos de esas ligas (vacío = todos).
-            e_liga, e_eq = st.columns(2)
-            ligas_eq_disp = sorted(datos["competition"].dropna().unique())
-            ligas_eq = _league_multiselect(e_liga, "Liga", ligas_eq_disp, "rep_equipo_ligas")
-            datos_ligas_eq = datos[datos["competition"].isin(ligas_eq)]
-            equipos_opc = sorted(set(datos_ligas_eq["home_team"].dropna()) | set(datos_ligas_eq["away_team"].dropna()))
-            # Si cambian las ligas, se descartan los equipos elegidos que ya no están.
-            if "rep_equipo_equipos" in st.session_state:
-                st.session_state["rep_equipo_equipos"] = [e for e in st.session_state["rep_equipo_equipos"]
-                                                          if e in equipos_opc]
-            equipos_sel = e_eq.multiselect("Equipos", equipos_opc, key="rep_equipo_equipos",
-                                           placeholder="Todos los de esas ligas")
-            e_merc, e_min = st.columns(2)
-            datos_equipo = _market_filter(datos_ligas_eq, "rep_equipo_mercados", e_merc)
-            tabla = reports.summarize(reports.by_team(datos_equipo), ["equipo"])
-            if equipos_sel and not tabla.empty:
-                tabla = tabla[tabla["equipo"].isin(equipos_sel)]
-            # Sin equipos elegidos, el mínimo arranca en el máximo posible (muestra
-            # primero los de más muestra); con equipos elegidos, en 1 (se ven todos).
-            min_n = _min_sample_slider("Mínimo de predicciones por equipo",
-                                       tabla["predicciones"] if not tabla.empty else pd.Series(dtype=int),
-                                       1 if equipos_sel else 10 ** 6,
-                                       "rep_min_equipo_sel" if equipos_sel else "rep_min_equipo", container=e_min)
+            tabla = reports.summarize(reports.by_team(datos), ["equipo"])
+            if equipos and not tabla.empty:
+                tabla = tabla[tabla["equipo"].isin(equipos)]  # by_team suma también a los rivales
+            # Sin equipos elegidos arriba, el mínimo arranca en el máximo posible
+            # (primero los de más muestra). Con equipos elegidos no hay mínimo: se
+            # ven todos los elegidos (un slider guardado ocultaba alguno al cambiar
+            # el mercado).
+            min_n = 1 if equipos else _min_sample_slider(
+                "Mínimo de predicciones por equipo",
+                tabla["predicciones"] if not tabla.empty else pd.Series(dtype=int), 10 ** 6, "rep_min_equipo")
             tabla = tabla[tabla["predicciones"] >= min_n] if not tabla.empty else tabla
             if tabla.empty:
                 st.caption("Ningún equipo llega a ese mínimo en el filtro.")
             else:
                 tabla = tabla.sort_values("diferencia", ascending=False)
-                # Un solo gráfico divergente (antes "donde más acierta" y "donde más
-                # falla" por separado: era la misma medida partida en dos). Con
-                # muchos equipos, los MAX_TEAMS_CHART de diferencia más marcada.
+                # Un solo gráfico divergente; con muchos equipos, los MAX_TEAMS_CHART
+                # de diferencia más marcada.
                 grafico = tabla.reindex(tabla["diferencia"].abs().sort_values(ascending=False).index)
                 grafico = grafico.head(MAX_TEAMS_CHART).sort_values("diferencia", ascending=False)
                 st.markdown("**Acierto real − esperado por equipo** (puntos porcentuales)")
@@ -2221,22 +2217,13 @@ with tab_reportes:
                               "la tabla de abajo tiene todos." if len(tabla) > MAX_TEAMS_CHART else ""))
                 _summary_table(tabla, "equipo", "Equipo")
                 st.caption(PICK_NOTE + " Cada predicción cuenta para los dos equipos del partido.")
-
-                # Detalle: qué pick hizo el modelo en cada partido del equipo, para
-                # entender por qué un mercado sale como acertado o fallado.
-                opciones = (([e for e in equipos_sel if e in set(tabla["equipo"])]) if equipos_sel else
+                opciones = (([e for e in equipos if e in set(tabla["equipo"])]) if equipos else
                             grafico["equipo"].tolist() + [e for e in tabla["equipo"] if e not in set(grafico["equipo"])])
-                defecto = opciones.index(equipo) if equipo in opciones else 0
-                elegido = st.selectbox("Ver el detalle de predicciones de", opciones, index=defecto,
-                                       key="rep_equipo_detalle")
-                _render_detail(datos_equipo[(datos_equipo["home_team"] == elegido)
-                                            | (datos_equipo["away_team"] == elegido)])
+                elegido = st.selectbox("Ver el detalle de predicciones de", opciones, key="rep_equipo_detalle")
+                _render_detail(datos[(datos["home_team"] == elegido) | (datos["away_team"] == elegido)])
 
         with t_mercado:
-            ligas_merc_disp = sorted(datos["competition"].dropna().unique())
-            ligas_merc = _league_multiselect(st, "Liga", ligas_merc_disp, "rep_mercado_ligas")
-            datos_merc = datos[datos["competition"].isin(ligas_merc)]
-            tabla = reports.summarize(datos_merc, ["mercado"])
+            tabla = reports.summarize(datos, ["mercado"])
             if not tabla.empty:
                 st.altair_chart(_bars_vs_expected(tabla, "mercado", "Mercado"), use_container_width=True)
                 _summary_table(tabla.sort_values("acierto_pct", ascending=False), "mercado", "Mercado")
@@ -2244,10 +2231,10 @@ with tab_reportes:
                 merc_det = st.selectbox("Ver el detalle de predicciones del mercado",
                                         tabla.sort_values("acierto_pct", ascending=False)["mercado"].tolist(),
                                         key="rep_mercado_detalle")
-                _render_detail(datos_merc[datos_merc["mercado"] == merc_det])
+                _render_detail(datos[datos["mercado"] == merc_det])
 
         with t_fd:
             _render_strengths_map(datos)
 
         with t_tips:
-            _render_tips_report(boletos, cerrados)
+            _render_tips_report(boletos, cerrados, mostrar_planes=tipo == reports.TIPO_MODELO)
