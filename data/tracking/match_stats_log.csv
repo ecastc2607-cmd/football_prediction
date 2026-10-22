@@ -2925,3 +2925,27 @@ PL,2026,7.0,2026-10-19T19:00:00Z,Tottenham Hotspur FC,Coventry City FC,Tottenham
 PL,2026,7.0,2026-10-19T19:00:00Z,Tottenham Hotspur FC,Coventry City FC,Coventry City FC,False,4.0,14.0,3.0,0.0,34.0,1.0,12.0,1.0
 COL,2026,34.0,2026-10-20T01:05:00Z,Deportivo Pasto,Alianza FC,Deportivo Pasto,True,4.0,9.0,0.0,0.0,71.0,3.0,12.0,2.0
 COL,2026,34.0,2026-10-20T01:05:00Z,Deportivo Pasto,Alianza FC,Alianza FC,False,1.0,19.0,3.0,1.0,29.0,1.0,6.0,0.0
+COL,2026,32.0,2026-10-21T01:30:00Z,Millonarios,Once Caldas,Millonarios,True,5.0,15.0,4.0,0.0,47.0,3.0,14.0,1.0
+COL,2026,32.0,2026-10-21T01:30:00Z,Millonarios,Once Caldas,Once Caldas,False,3.0,16.0,2.0,0.0,53.0,4.0,13.0,1.0
+CL,2026,3.0,2026-10-21T16:45:00Z,Como 1907,Manchester United FC,Como 1907,True,1.0,10.0,1.0,0.0,55.0,8.0,11.0,2.0
+CL,2026,3.0,2026-10-21T16:45:00Z,Como 1907,Manchester United FC,Manchester United FC,False,4.0,11.0,3.0,0.0,45.0,4.0,13.0,1.0
+CL,2026,3.0,2026-10-21T16:45:00Z,Lille OSC,Galatasaray SK,Lille OSC,True,3.0,9.0,3.0,0.0,56.0,5.0,15.0,6.0
+CL,2026,3.0,2026-10-21T16:45:00Z,Lille OSC,Galatasaray SK,Galatasaray SK,False,3.0,10.0,1.0,0.0,44.0,4.0,10.0,2.0
+PD,2026,6.0,2026-10-21T18:00:00Z,Levante UD,Athletic Club,Levante UD,True,3.0,13.0,2.0,0.0,38.0,7.0,12.0,0.0
+PD,2026,6.0,2026-10-21T18:00:00Z,Levante UD,Athletic Club,Athletic Club,False,9.0,12.0,1.0,1.0,62.0,4.0,21.0,0.0
+CL,2026,3.0,2026-10-21T19:00:00Z,Club Brugge KV,Racing Club de Lens,Club Brugge KV,True,1.0,6.0,2.0,0.0,57.0,5.0,11.0,2.0
+CL,2026,3.0,2026-10-21T19:00:00Z,Club Brugge KV,Racing Club de Lens,Racing Club de Lens,False,5.0,10.0,2.0,0.0,43.0,7.0,19.0,0.0
+CL,2026,3.0,2026-10-21T19:00:00Z,FC Bayern München,Arsenal FC,FC Bayern München,True,3.0,15.0,0.0,0.0,46.0,5.0,13.0,2.0
+CL,2026,3.0,2026-10-21T19:00:00Z,FC Bayern München,Arsenal FC,Arsenal FC,False,5.0,6.0,2.0,0.0,54.0,5.0,14.0,1.0
+CL,2026,3.0,2026-10-21T19:00:00Z,Real Madrid CF,RB Leipzig,Real Madrid CF,True,7.0,13.0,1.0,0.0,64.0,11.0,18.0,3.0
+CL,2026,3.0,2026-10-21T19:00:00Z,Real Madrid CF,RB Leipzig,RB Leipzig,False,1.0,12.0,1.0,0.0,36.0,6.0,11.0,2.0
+CL,2026,3.0,2026-10-21T19:00:00Z,Real Betis Balompié,Feyenoord Rotterdam,Real Betis Balompié,True,4.0,8.0,1.0,0.0,47.0,10.0,23.0,2.0
+CL,2026,3.0,2026-10-21T19:00:00Z,Real Betis Balompié,Feyenoord Rotterdam,Feyenoord Rotterdam,False,4.0,10.0,2.0,0.0,53.0,2.0,12.0,1.0
+CL,2026,3.0,2026-10-21T19:00:00Z,FC Internazionale Milano,FK Shakhtar Donetsk,FC Internazionale Milano,True,5.0,9.0,3.0,1.0,45.0,5.0,13.0,2.0
+CL,2026,3.0,2026-10-21T19:00:00Z,FC Internazionale Milano,FK Shakhtar Donetsk,FK Shakhtar Donetsk,False,4.0,10.0,2.0,0.0,55.0,4.0,12.0,2.0
+CL,2026,3.0,2026-10-21T19:00:00Z,Aston Villa FC,Viking FK,Aston Villa FC,True,8.0,7.0,0.0,0.0,54.0,10.0,21.0,2.0
+CL,2026,3.0,2026-10-21T19:00:00Z,Aston Villa FC,Viking FK,Viking FK,False,6.0,14.0,0.0,0.0,46.0,3.0,10.0,3.0
+CL,2026,3.0,2026-10-21T19:00:00Z,Sporting Clube de Portugal,LASK Linz,Sporting Clube de Portugal,True,7.0,10.0,2.0,0.0,62.0,4.0,16.0,3.0
+CL,2026,3.0,2026-10-21T19:00:00Z,Sporting Clube de Portugal,LASK Linz,LASK Linz,False,4.0,22.0,5.0,0.0,38.0,7.0,11.0,3.0
+COL,2026,28.0,2026-10-21T23:15:00Z,Llaneros FC,Deportivo Cali,Llaneros FC,True,6.0,13.0,3.0,1.0,56.0,2.0,11.0,2.0
+COL,2026,28.0,2026-10-21T23:15:00Z,Llaneros FC,Deportivo Cali,Deportivo Cali,False,3.0,12.0,1.0,0.0,44.0,7.0,9.0,2.0
