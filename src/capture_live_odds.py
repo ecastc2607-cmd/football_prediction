@@ -39,6 +39,7 @@ Uso:
 from __future__ import annotations
 
 import json
+import os
 import subprocess
 import traceback
 from datetime import datetime, timedelta, timezone
@@ -55,6 +56,10 @@ PREMATCH_HOURS = 3
 # hacer el commit cuando ya no queda nada en juego.
 POSTMATCH_MINUTES = 150
 TRACKED_FILES = [
+    # Historiales que también actualiza la descarga diaria (refresh_data.py):
+    # en GitHub Actions el servidor es efímero, si no se versionan se pierden.
+    "data/tracking/goal_api_cups", "data/tracking/col_history", "data/tracking/nt_history.csv",
+    "data/tracking/support_leagues", "data/tracking/closed_seasons",
     "data/tracking/predictions_log.csv",
     "data/tracking/tips_log.csv",
     "data/tracking/match_stats_log.csv",
@@ -64,7 +69,14 @@ TRACKED_FILES = [
 ]
 
 
+# En GitHub Actions (servidor efímero): el log va a la salida de la corrida y
+# se hace commit al final de CADA corrida, no solo cuando no hay nada en juego.
+IN_GITHUB_ACTIONS = os.getenv("GITHUB_ACTIONS") == "true"
+
+
 def _log(msg: str) -> None:
+    if IN_GITHUB_ACTIONS:
+        print(f"{datetime.now(timezone.utc):%Y-%m-%dT%H:%M:%SZ} {msg}", flush=True)
     LOG_PATH.parent.mkdir(parents=True, exist_ok=True)
     with LOG_PATH.open("a", encoding="utf-8") as f:
         f.write(f"{datetime.now(timezone.utc):%Y-%m-%dT%H:%M:%SZ} {msg}\n")
@@ -332,18 +344,29 @@ def capture_prematch(games: list[dict]) -> int:
 
 def commit_if_changed() -> None:
     raiz = str(config.ROOT_DIR)
-    cambios = subprocess.run(["git", "status", "--porcelain", "--", *TRACKED_FILES],
+    rutas = [f for f in TRACKED_FILES if (config.ROOT_DIR / f).exists()]  # git add falla con rutas inexistentes
+    cambios = subprocess.run(["git", "status", "--porcelain", "--", *rutas],
                              cwd=raiz, capture_output=True, text=True).stdout.strip()
     if not cambios:
         return
-    subprocess.run(["git", "add", "--", *TRACKED_FILES], cwd=raiz, check=True)
+    subprocess.run(["git", "add", "--", *rutas], cwd=raiz, check=True)
     msg = f"Datos: cuotas y fotos en vivo {datetime.now(timezone.utc):%Y-%m-%d}"
     # Solo esos archivos (pathspec): nunca arrastra otros cambios en curso.
-    hecho = subprocess.run(["git", "commit", "-m", msg, "--", *TRACKED_FILES],
+    hecho = subprocess.run(["git", "commit", "-m", msg, "--", *rutas],
                            cwd=raiz, capture_output=True, text=True)
-    if hecho.returncode == 0:
+    if hecho.returncode != 0:
+        return
+    push = subprocess.run(["git", "push", "-q"], cwd=raiz, capture_output=True, text=True)
+    if push.returncode != 0:
+        # Alguien más empujó antes (otra corrida, un commit a mano): se traen sus
+        # cambios y se reintenta una vez. Si hay conflicto, se aborta sin romper nada.
+        rebase = subprocess.run(["git", "pull", "--rebase", "-q"], cwd=raiz, capture_output=True, text=True)
+        if rebase.returncode != 0:
+            subprocess.run(["git", "rebase", "--abort"], cwd=raiz, capture_output=True, text=True)
+            _log(f"commit hecho; push falló y el rebase tuvo conflicto: {rebase.stderr.strip()[:200]}")
+            return
         push = subprocess.run(["git", "push", "-q"], cwd=raiz, capture_output=True, text=True)
-        _log("commit y push" if push.returncode == 0 else f"commit hecho; push falló: {push.stderr.strip()[:200]}")
+    _log("commit y push" if push.returncode == 0 else f"commit hecho; push falló: {push.stderr.strip()[:200]}")
 
 
 def run_once() -> None:
@@ -378,7 +401,7 @@ def run_once() -> None:
     n_res = tips_log.resolve()
     if n_res:
         _log(f"tips resueltos: {n_res} picks")
-    if not en_juego:
+    if not en_juego or IN_GITHUB_ACTIONS:
         commit_if_changed()
 
 

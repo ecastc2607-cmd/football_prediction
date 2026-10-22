@@ -1,0 +1,78 @@
+# Captura automática en los servidores de GitHub (no depende del PC encendido).
+# Misma tarea que la del Programador de Windows (src/capture_live_odds.py):
+# fuera de la ventana de partidos termina en segundos; dentro, guarda cuotas,
+# fotos en vivo, estadísticas finales, predicciones del día y tips, y hace
+# commit de data/tracking/.
+#
+# APAGADA hasta que en GitHub se cree la variable del repositorio
+# CAPTURE_ENABLED = true (Settings > Secrets and variables > Actions > Variables).
+# Al encenderla, desactivar la tarea del PC para que no haya dos escribiendo.
+# Secretos necesarios (para la descarga diaria de partidos):
+#   FOOTBALL_DATA_API_KEY, GOAL_API_KEY
+#
+# GitHub corre los "schedule" con demoras (a veces 5-15 min) y puede saltarse
+# alguno con mucha carga: la captura es "aprox. cada 5 min".
+
+name: Captura de cuotas y resultados
+
+on:
+  schedule:
+    - cron: "*/5 * * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: capture
+  cancel-in-progress: false
+
+jobs:
+  capture:
+    if: vars.CAPTURE_ENABLED == 'true'
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: pip
+          cache-dependency-path: requirements-capture.txt
+
+      - name: Dependencias
+        run: pip install -r requirements-capture.txt
+
+      - name: Fecha (clave de la caché diaria)
+        id: fecha
+        run: echo "dia=$(date -u +%Y-%m-%d)" >> "$GITHUB_OUTPUT"
+
+      # data/processed no se versiona: se descarga una vez por día y se reusa.
+      - name: Restaurar datos de partidos
+        id: cache
+        uses: actions/cache@v4
+        with:
+          path: |
+            data/processed
+            logs/match_schedule.json
+          key: partidos-${{ steps.fecha.outputs.dia }}
+          restore-keys: partidos-
+
+      - name: Descarga diaria de partidos
+        if: steps.cache.outputs.cache-hit != 'true'
+        env:
+          FOOTBALL_DATA_API_KEY: ${{ secrets.FOOTBALL_DATA_API_KEY }}
+          GOAL_API_KEY: ${{ secrets.GOAL_API_KEY }}
+        run: python -m src.refresh_data
+
+      - name: Identidad para el commit
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+      - name: Captura
+        env:
+          FOOTBALL_DATA_API_KEY: ${{ secrets.FOOTBALL_DATA_API_KEY }}
+          GOAL_API_KEY: ${{ secrets.GOAL_API_KEY }}
+        run: python -m src.capture_live_odds

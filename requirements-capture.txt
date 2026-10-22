@@ -1,0 +1,7 @@
+# Solo lo que necesita la captura automática (GitHub Actions): sin Streamlit,
+# para que cada corrida instale en segundos. La app usa requirements.txt.
+requests>=2.31
+pandas>=2.0
+numpy>=1.24
+scipy>=1.10
+python-dotenv>=1.0
