@@ -2989,3 +2989,31 @@ EL,2026,3.0,2026-10-22T19:00:00Z,Lillestrøm,Real Sociedad,Lillestrøm,True,3.0,
 EL,2026,3.0,2026-10-22T19:00:00Z,Lillestrøm,Real Sociedad,Real Sociedad,False,3.0,6.0,2.0,0.0,56.0,8.0,16.0,1.0
 EL,2026,3.0,2026-10-22T19:00:00Z,Olympiakos Piraeus,Sparta Praha,Olympiakos Piraeus,True,14.0,7.0,2.0,0.0,60.0,3.0,23.0,3.0
 EL,2026,3.0,2026-10-22T19:00:00Z,Olympiakos Piraeus,Sparta Praha,Sparta Praha,False,3.0,13.0,4.0,0.0,40.0,1.0,15.0,0.0
+EL,2026,3.0,2026-10-22T19:00:00Z,Viktoria Plzeň,Levski Sofia,Viktoria Plzeň,True,4.0,9.0,1.0,0.0,50.0,2.0,13.0,1.0
+EL,2026,3.0,2026-10-22T19:00:00Z,Viktoria Plzeň,Levski Sofia,Levski Sofia,False,1.0,11.0,1.0,0.0,50.0,3.0,6.0,0.0
+EL,2026,3.0,2026-10-22T19:00:00Z,AFC Bournemouth,Milan,AFC Bournemouth,True,6.0,18.0,2.0,0.0,64.0,7.0,20.0,2.0
+EL,2026,3.0,2026-10-22T19:00:00Z,AFC Bournemouth,Milan,Milan,False,4.0,15.0,3.0,1.0,36.0,0.0,3.0,1.0
+EL,2026,3.0,2026-10-22T19:00:00Z,Celje,Salzburg,Celje,True,2.0,14.0,2.0,0.0,50.0,3.0,9.0,1.0
+EL,2026,3.0,2026-10-22T19:00:00Z,Celje,Salzburg,Salzburg,False,3.0,10.0,2.0,0.0,50.0,4.0,15.0,1.0
+EL,2026,3.0,2026-10-22T19:00:00Z,Jagiellonia Białystok,Anderlecht,Jagiellonia Białystok,True,4.0,12.0,3.0,0.0,41.0,1.0,6.0,2.0
+EL,2026,3.0,2026-10-22T19:00:00Z,Jagiellonia Białystok,Anderlecht,Anderlecht,False,4.0,20.0,3.0,0.0,59.0,8.0,15.0,0.0
+EL,2026,3.0,2026-10-22T19:00:00Z,Omonia Nicosia,Benfica,Omonia Nicosia,True,4.0,12.0,0.0,0.0,36.0,5.0,7.0,2.0
+EL,2026,3.0,2026-10-22T19:00:00Z,Omonia Nicosia,Benfica,Benfica,False,5.0,11.0,4.0,0.0,64.0,10.0,23.0,1.0
+EL,2026,3.0,2026-10-22T19:00:00Z,Celtic,Celta de Vigo,Celtic,True,2.0,10.0,4.0,0.0,44.0,4.0,8.0,3.0
+EL,2026,3.0,2026-10-22T19:00:00Z,Celtic,Celta de Vigo,Celta de Vigo,False,6.0,5.0,0.0,0.0,56.0,4.0,22.0,2.0
+ECL,2026,2.0,2026-10-22T19:00:00Z,Sporting Braga,Gent,Sporting Braga,True,6.0,11.0,2.0,0.0,52.0,10.0,22.0,1.0
+ECL,2026,2.0,2026-10-22T19:00:00Z,Sporting Braga,Gent,Gent,False,3.0,9.0,1.0,0.0,48.0,1.0,10.0,1.0
+ECL,2026,2.0,2026-10-22T19:00:00Z,Lincoln Red Imps,Twente,Lincoln Red Imps,True,1.0,8.0,0.0,0.0,29.0,2.0,5.0,0.0
+ECL,2026,2.0,2026-10-22T19:00:00Z,Lincoln Red Imps,Twente,Twente,False,6.0,17.0,2.0,0.0,71.0,8.0,26.0,2.0
+ECL,2026,2.0,2026-10-22T19:00:00Z,Borac Banja Luka,KuPS,Borac Banja Luka,True,10.0,17.0,2.0,0.0,40.0,12.0,24.0,2.0
+ECL,2026,2.0,2026-10-22T19:00:00Z,Borac Banja Luka,KuPS,KuPS,False,2.0,10.0,1.0,0.0,60.0,3.0,12.0,1.0
+ECL,2026,2.0,2026-10-22T19:00:00Z,Thun,Hajduk Split,Thun,True,2.0,23.0,2.0,0.0,54.0,4.0,12.0,3.0
+ECL,2026,2.0,2026-10-22T19:00:00Z,Thun,Hajduk Split,Hajduk Split,False,3.0,16.0,2.0,0.0,46.0,4.0,10.0,3.0
+ECL,2026,2.0,2026-10-22T19:00:00Z,Midtjylland,Sint-Truiden,Midtjylland,True,6.0,12.0,1.0,0.0,42.0,4.0,19.0,2.0
+ECL,2026,2.0,2026-10-22T19:00:00Z,Midtjylland,Sint-Truiden,Sint-Truiden,False,7.0,10.0,2.0,0.0,58.0,7.0,18.0,0.0
+ECL,2026,2.0,2026-10-22T19:00:00Z,Monaco,Freiburg,Monaco,True,6.0,14.0,3.0,0.0,48.0,7.0,11.0,1.0
+ECL,2026,2.0,2026-10-22T19:00:00Z,Monaco,Freiburg,Freiburg,False,11.0,10.0,1.0,0.0,52.0,1.0,12.0,1.0
+ECL,2026,2.0,2026-10-22T19:00:00Z,AGF,Egnatia Rrogozhinë,AGF,True,5.0,11.0,1.0,1.0,34.0,2.0,9.0,0.0
+ECL,2026,2.0,2026-10-22T19:00:00Z,AGF,Egnatia Rrogozhinë,Egnatia Rrogozhinë,False,4.0,14.0,4.0,0.0,66.0,7.0,13.0,2.0
+ECL,2026,2.0,2026-10-22T19:00:00Z,Ajax,Atalanta,Ajax,True,8.0,8.0,2.0,0.0,61.0,7.0,21.0,2.0
+ECL,2026,2.0,2026-10-22T19:00:00Z,Ajax,Atalanta,Atalanta,False,9.0,8.0,2.0,0.0,39.0,1.0,16.0,1.0
