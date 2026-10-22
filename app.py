@@ -2015,7 +2015,8 @@ def _render_day_matches(log_pred: pd.DataFrame, log_tips: pd.DataFrame, ligas: l
                         mercados: list, incluir_bt: bool, dia_defecto, tipo: str = reports.TIPO_MODELO) -> None:
     """Todos los partidos de un día, con el pick de cada mercado y si se ganó."""
     hoy = datetime.now(BOGOTA_TZ).date()
-    dia = st.date_input("Día", value=min(dia_defecto, hoy), max_value=hoy, key="rep_dia")
+    c_dia, c_merc = st.columns([1, 2.5])
+    dia = c_dia.date_input("Día", value=min(dia_defecto, hoy), max_value=hoy, key="rep_dia")
     log = log_pred
     if not incluir_bt and not log.empty:
         log = log[~log["source"].astype(str).str.startswith("backtest")]
@@ -2024,9 +2025,22 @@ def _render_day_matches(log_pred: pd.DataFrame, log_tips: pd.DataFrame, ligas: l
         picks = picks[picks["competition"].isin(ligas)]
         if equipos:
             picks = picks[picks["partido"].map(lambda t: any(e in t for e in equipos))]
-        # Mismos mercados que la barra de filtros (aquí con nombres cortos).
+        # Filtro de mercado propio de esta subpestaña (pedido del usuario): las
+        # columnas del gráfico. Arranca con los mercados elegidos arriba; un
+        # mercado que aparece por primera vez entra solo si está elegido arriba.
         largo = {"1X2": "Resultado (1X2)", "Goles 2.5": "Goles +/-2.5"}
-        picks = picks[picks["mercado"].map(lambda m: largo.get(m, m)).isin(mercados)]
+        presentes = set(picks["mercado"])
+        opciones = [m for m in DAY_MARKETS if m in presentes] + sorted(presentes - set(DAY_MARKETS))
+        key, vistos_key = "rep_partidos_mercados", "rep_partidos_mercados__vistos"
+        de_arriba = [m for m in opciones if largo.get(m, m) in mercados]
+        if key in st.session_state:
+            vistos = set(st.session_state.get(vistos_key, []))
+            st.session_state[key] = ([m for m in st.session_state[key] if m in opciones]
+                                     + [m for m in de_arriba if m not in vistos and m not in st.session_state[key]])
+        st.session_state[vistos_key] = sorted(set(st.session_state.get(vistos_key, [])) | set(opciones))
+        elegidos = c_merc.multiselect("Mercados", opciones, key=key,
+                                      default=None if key in st.session_state else de_arriba)
+        picks = picks[picks["mercado"].isin(elegidos)]
     if picks.empty:
         st.info("No hay predicciones registradas para ese día con los filtros elegidos."
                 + ("" if tipo == reports.TIPO_MODELO else
