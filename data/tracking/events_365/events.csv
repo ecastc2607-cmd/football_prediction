@@ -37379,3 +37379,45 @@ game_id,side,minute,added_time,half,type,subtype,player
 4354024,home,71.0,0,2,Yellow Card,,Darwin Palomeque
 4354024,away,75.0,0,2,Yellow Card,,Santiago Giordana
 4354024,away,90.0,5,2,Goal,Field Goal,Jhon Cordoba
+4755369,home,5.0,0,1,Goal,Field Goal,Ermedin Demirovic
+4755369,away,38.0,0,1,Goal,Field Goal,Joseph Scally
+4755369,home,44.0,0,1,Yellow Card,,Leo Sauer
+4755369,home,45.0,0,1,Yellow Card,,Atakan Karazor
+4755369,away,45.0,3,1,Yellow Card,,Florian Neuhaus
+4755369,away,45.0,4,1,Woodwork,,Wael Mohya
+4755369,away,51.0,0,2,Goal,Field Goal,Shuto Machino
+4755369,away,53.0,0,2,Yellow Card,,Zento Uno
+4755369,away,54.0,0,2,Yellow Card,,Joseph Scally
+4755369,away,66.0,0,2,Goal,Field Goal,Wael Mohya
+4755369,away,79.0,0,2,Yellow Card,,Lukas Ullrich
+4755369,home,83.0,0,2,Goal,Field Goal,Ermedin Demirovic
+4732662,home,34.0,0,1,Yellow Card,,Ardian Ismajli
+4732662,home,39.0,0,1,Goal,Field Goal,Kian Fitz-Jim
+4732662,away,47.0,0,2,Goal,Field Goal,Gustavo Varela
+4732662,home,61.0,0,2,Goal,Field Goal,Rafik Belghali
+4732662,home,72.0,0,2,Goal,Field Goal,Nikola Vlašić
+4732662,away,90.0,4,2,Goal,Own Goal,Nathan Patterson
+4735233,home,15.0,0,1,Goal,Field Goal,Ludovic Ajorque
+4735233,away,58.0,0,2,Yellow Card,,Hamza Koutoune
+4735233,away,61.0,0,2,Goal,Field Goal,Elye Wahi
+4735233,home,62.0,0,2,Yellow Card,,Kamory Doumbia
+4735233,home,64.0,0,2,Yellow Card,,Ludovic Ajorque
+4735233,away,68.0,0,2,Yellow Card,,Elye Wahi
+4735233,home,71.0,0,2,Yellow Card,,Bradley Locko
+4735233,away,83.0,0,2,Goal,Field Goal,Sofiane Diop
+4735233,away,85.0,0,2,Yellow Card,,Yehvann Diouf
+4735233,away,90.0,0,2,Yellow Card,,Niels Nkounkou
+4735233,away,90.0,1,2,Yellow Card,,Olivier Pantaloni
+4735233,away,90.0,8,2,Yellow Card,,Isak Jansson
+4735233,home,90.0,10,2,Penalty Miss,,Kenny Lala
+4742024,away,13.0,0,1,Goal,Field Goal,Neco Williams
+4742024,home,41.0,0,1,Goal,Field Goal,Julio Enciso
+4742024,home,51.0,0,2,Yellow Card,,Issa Diop
+4742024,away,54.0,0,2,Yellow Card,,Murillo
+4750819,home,39.0,0,1,Yellow Card,,Lucas Boyé
+4750819,away,44.0,0,1,Goal,Field Goal,Adrián Niño
+4750819,home,67.0,0,2,Yellow Card,,Nahuel Tenaglia
+4750819,home,81.0,0,2,Woodwork,,Lucas Boyé
+4750819,away,84.0,0,2,Yellow Card,,Carlos Dotor
+4750819,home,89.0,0,2,Goal,Field Goal,Aitor Mañas
+4750819,away,90.0,2,2,Yellow Card,,Juan Funes
