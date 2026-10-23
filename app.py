@@ -1908,6 +1908,22 @@ def _min_sample_slider(label: str, conteos: pd.Series, defecto: int, key: str, h
     return (container or st).slider(label, piso, tope, min(max(defecto, piso), tope), key=key, help=help)
 
 
+def _hex_mix(a: str, b: str, t: float) -> str:
+    """Color entre a y b (t de 0 a 1), en hex."""
+    ca = [int(a[i:i + 2], 16) for i in (1, 3, 5)]
+    cb = [int(b[i:i + 2], 16) for i in (1, 3, 5)]
+    return "#" + "".join(f"{round(x + (y - x) * t):02x}" for x, y in zip(ca, cb))
+
+
+def _diverging_cell_css(diferencia, tope: float) -> str:
+    """Fondo de una celda del mapa: rojo (debilidad) - gris - azul (fortaleza)."""
+    if pd.isna(diferencia):
+        return ""
+    t = max(-1.0, min(1.0, float(diferencia) / tope))
+    fondo = _hex_mix(COLOR_NEUTRO, COLOR_FUERTE if t > 0 else COLOR_DEBIL, abs(t))
+    return f"background-color: {fondo}; color: #ffffff; text-align: center"
+
+
 def _render_strengths_map(datos: pd.DataFrame) -> None:
     st.markdown("**Mapa de fortalezas y debilidades — liga × mercado**")
     mapa = reports.summarize(datos, ["competition", "mercado"])
@@ -1927,26 +1943,47 @@ def _render_strengths_map(datos: pd.DataFrame) -> None:
     mapa["liga"] = mapa["competition"].map(lambda c: config.COMPETITIONS.get(c, c))
     mapa["etiqueta"] = [f"{a:.0f}% · {n}" for a, n in zip(mapa["acierto_pct"], mapa["predicciones"])]
     tope = max(15.0, float(mapa["diferencia"].abs().max()))
-    base = alt.Chart(mapa).encode(
-        x=alt.X("mercado:N", title=None, axis=alt.Axis(labelAngle=-30)),
-        y=alt.Y("liga:N", title=None, axis=alt.Axis(labelLimit=240, labelOverlap=False)),
-        tooltip=[alt.Tooltip("liga:N", title="Liga"), alt.Tooltip("mercado:N", title="Mercado"),
-                 alt.Tooltip("predicciones:Q", title="Predicciones"),
-                 alt.Tooltip("acierto_pct:Q", title="Acierto real %", format=".0f"),
-                 alt.Tooltip("esperado_pct:Q", title="Esperado %", format=".0f"),
-                 alt.Tooltip("diferencia:Q", title="Real − esperado (pts)", format="+.0f")],
-    )
-    celdas = base.mark_rect(cornerRadius=4, stroke="#1a1a19", strokeWidth=2).encode(
-        color=alt.Color("diferencia:Q", title="Real − esperado (pts)",
-                        scale=alt.Scale(domain=[-tope, 0, tope], range=[COLOR_DEBIL, COLOR_NEUTRO, COLOR_FUERTE])))
-    texto = base.mark_text(fontSize=11, color="#ffffff").encode(text="etiqueta:N")
-    # Alto por fila: con un alto fijo, Vega ocultaba las etiquetas de ligas que no cabían.
-    st.altair_chart((celdas + texto).properties(height=alt.Step(40)), use_container_width=True)
+    # Cuadrícula de celdas que se pueden cliquear (pedido del usuario: clic en una
+    # celda = filtra el detalle de abajo). Es una tabla coloreada y no un gráfico
+    # de Altair porque Streamlit no admite clics en gráficos de varias capas
+    # (rectángulo + texto) y sin el texto se perdía el "% · cantidad" de cada celda.
+    ligas_orden = sorted(mapa["liga"].unique())
+    mercados_orden = [m for m in reports.MARKETS if m in set(mapa["mercado"])] + sorted(
+        set(mapa["mercado"]) - set(reports.MARKETS))
+    texto = (mapa.pivot(index="liga", columns="mercado", values="etiqueta")
+             .reindex(index=ligas_orden, columns=mercados_orden).fillna(""))
+    dif = (mapa.pivot(index="liga", columns="mercado", values="diferencia")
+           .reindex(index=ligas_orden, columns=mercados_orden))
+    texto.index.name = "Liga"
+    colores = dif.apply(lambda col: col.map(lambda d: _diverging_cell_css(d, tope)))
+    evento = st.dataframe(
+        texto.style.apply(lambda _: colores, axis=None), width="stretch", key="rep_mapa_sel",
+        on_select="rerun", selection_mode="single-cell",
+        height=min(35 * (len(texto) + 1) + 3, 520),
+        # Columnas angostas: que entren todos los mercados sin barra horizontal.
+        column_config={"_index": st.column_config.Column("Liga", width=170),
+                       **{m: st.column_config.Column(m, width=78) for m in texto.columns}})
     st.caption("Cada celda: % de acierto real · cantidad de predicciones. Azul = acierta más de lo que el "
-               "modelo esperaba (fortaleza); rojo = menos (debilidad); gris = según lo esperado.")
+               "modelo esperaba (fortaleza); rojo = menos (debilidad); gris = según lo esperado. "
+               "**Haz clic en una celda** para ver abajo sus partidos.")
 
     celdas_det = [f"{l} · {m}" for l, m in zip(mapa["liga"], mapa["mercado"])]
-    celda = st.selectbox("Ver el detalle de predicciones de la celda", celdas_det, key="rep_celda_detalle")
+    # La celda elegida en el mapa manda sobre el selector; solo cuando cambia,
+    # para que el selector siga sirviendo si no se toca el mapa.
+    marcadas = list(getattr(getattr(evento, "selection", None), "cells", None) or [])
+    clic = None
+    if marcadas:
+        fila_pos, mercado_clic = marcadas[0]
+        etiqueta_clic = f"{ligas_orden[int(fila_pos)]} · {mercado_clic}" if int(fila_pos) < len(ligas_orden) else None
+        if etiqueta_clic in celdas_det:  # una celda vacía (sin predicciones) no filtra nada
+            clic = etiqueta_clic
+    if clic and clic != st.session_state.get("rep_celda_clic"):
+        st.session_state["rep_celda_detalle"] = clic
+    st.session_state["rep_celda_clic"] = clic
+    if st.session_state.get("rep_celda_detalle") not in celdas_det:
+        st.session_state.pop("rep_celda_detalle", None)
+    celda = st.selectbox("Ver el detalle de predicciones de la celda", celdas_det, key="rep_celda_detalle",
+                         help="Se llena solo al hacer clic en una celda del mapa; también se puede elegir aquí.")
     fila = mapa.iloc[celdas_det.index(celda)]
     _render_detail(datos[(datos["competition"] == fila["competition"]) & (datos["mercado"] == fila["mercado"])],
                    PICK_NOTE)
