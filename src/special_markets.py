@@ -679,3 +679,64 @@ def bwin_lines_for(code: str, home: str, away: str, utc_date: str) -> pd.DataFra
         return None
     filas = events365.line_rows(int(ev["game_id"]), scores365.game_lines(int(ev["game_id"])))
     return pd.DataFrame(filas) if filas else None
+
+
+# --- Leyenda de cada mercado (vista Avanzada y Tips) ---------------------------
+# "Favorito" = el equipo con más goles esperados por el modelo en ESE partido
+# (no siempre el local); "no favorito" = el otro.
+MARKET_HELP = {
+    "Favorito empate no válido (HA 0)":
+        "Se apuesta a que gana el favorito; si empatan, se devuelve la plata (no se pierde). "
+        "En BWIN: 'Empate no válido' (Draw No Bet).",
+    "Favorito -0.5 (gana)": "El favorito gana el partido (igual que el 1 o el 2 del 1X2).",
+    "Favorito -1":
+        "Hándicap asiático -1 al favorito: gana si gana por 2 o más; si gana por 1 exacto se devuelve; "
+        "empate o derrota pierde.",
+    "No favorito +1":
+        "Hándicap asiático +1 al no favorito: gana si el no favorito gana o empata; si pierde por 1 se "
+        "devuelve; si pierde por 2 o más, pierde.",
+    "No favorito +1.5":
+        "Hándicap +1.5 al no favorito: gana si NO pierde por 2 o más (gana, empata o pierde por 1). "
+        "Es lo mismo que el hándicap de 3 vías 'no favorito +1'.",
+    "No favorito +2.5": "Gana si el no favorito no pierde por 3 o más goles. Sale casi siempre: paga muy poco.",
+    "Favorito -1 (gana por 2+)": "Hándicap de 3 vías: el favorito gana por 2 goles o más.",
+    "Empate -1 (favorito gana por 1)": "Hándicap de 3 vías, opción 'empate': el favorito gana por exactamente 1 gol.",
+    "Favorito anota": "El favorito marca al menos un gol.",
+    "Favorito más de 1.5": "El favorito marca 2 goles o más.",
+    "No favorito menos de 1.5": "El no favorito marca 0 o 1 gol.",
+    "Favorito deja valla invicta": "El favorito no recibe goles.",
+    "No favorito NO deja valla invicta":
+        "El no favorito recibe al menos un gol (el favorito anota). En BWIN: 'Valla invicta' del no favorito → No.",
+    "Más de 1.5 goles": "Hay 2 goles o más en el partido.",
+    "Menos de 3.5 goles": "Hay 3 goles o menos en el partido.",
+    "1T más de 0.5": "Hay al menos un gol en el primer tiempo.",
+    "1T menos de 1.5": "En el primer tiempo hay 0 o 1 gol.",
+    "1T menos de 2.5": "En el primer tiempo hay 2 goles o menos.",
+    "2T más de 0.5": "Hay al menos un gol en el segundo tiempo.",
+    "Gol en ambos tiempos": "Hay al menos un gol en el primer tiempo Y al menos uno en el segundo.",
+    "Ambos anotan 1T: No": "En el primer tiempo NO marcan los dos equipos (puede marcar uno solo o ninguno).",
+    "Ambos anotan 2T: No": "En el segundo tiempo NO marcan los dos equipos.",
+    "No favorito no gana el 1T": "Al descanso el no favorito no va ganando (empate o gana el favorito).",
+    "Favorito gana algún tiempo":
+        "El favorito marca más que el rival en el primer tiempo, en el segundo, o en ambos "
+        "(cada tiempo se cuenta por separado).",
+    "Favorito marca primero": "El primer gol del partido es del favorito (sin goles = pierde). En BWIN: 'Primer gol'.",
+    "No favorito no marca primero": "El primer gol NO es del no favorito: lo marca el favorito o no hay goles.",
+    "Tarjeta roja en el partido": "Al menos una tarjeta roja (incluye doble amarilla) en el partido.",
+    "Sin tarjeta roja": "Ninguna tarjeta roja en el partido.",
+    "Penal en el partido": "Se cobra al menos un penal (se haya convertido o no).",
+    "Sin penal": "No se cobra ningún penal en el partido.",
+}
+STAT_HELP = {
+    "Tiros al arco": "Tiros al arco (a puerta) de los dos equipos sumados, más o menos que la línea.",
+    "Fueras de juego": "Fueras de juego de los dos equipos sumados, más o menos que la línea.",
+}
+
+
+def market_help(mercado: str) -> str:
+    if mercado in MARKET_HELP:
+        return MARKET_HELP[mercado]
+    for nombre, texto in STAT_HELP.items():
+        if mercado.startswith(nombre + ":"):
+            return texto
+    return ""

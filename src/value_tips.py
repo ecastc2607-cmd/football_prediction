@@ -250,3 +250,109 @@ def day_summary(evaluated: pd.DataFrame, bankroll: float) -> dict:
         "si_todo_falla": bankroll - apostado,
         "prob_todo_acierta": prob_todo,
     }
+
+
+# --- Mercados especiales (vista Avanzada, special_markets.py) -------------------
+# Solo entran los mercados que el backtest walk-forward marca "Candidato" o
+# "Prometedor", en las ligas donde sus picks aciertan >= 75% con muestra, y que
+# BWIN ofrece (si no hay cuota no hay qué evaluar). Experimental: las cuotas
+# especiales de BWIN se guardan recién desde oct-2026, así que el modelo pesa
+# poco frente a la cuota, igual que en corners/tarjetas.
+SPECIAL_MODEL_WEIGHT = 0.35
+SPECIAL_MIN_LEAGUE_PICKS = 15
+SPECIAL_VERDICTS = {"Candidato", "Prometedor"}
+# Roja/penal: la "probabilidad" es solo la frecuencia de la liga y BWIN ya la
+# cobra justo (oct-2026). Estadísticas: sin modelo en vivo para el día todavía.
+SPECIAL_EXCLUDED_FAMILIES = {"Eventos", "Estadísticas"}
+# Nombre del mercado en Tips / tips_log y cómo se arma el pick.
+SPECIAL_TIPS_MARKET = {
+    "Favorito empate no válido (HA 0)": ("Empate no válido", "fav", None),
+    "No favorito +1.5": ("Hándicap asiático", "und", 1.5),
+    "No favorito +1": ("Hándicap asiático", "und", 1.0),
+    "Favorito -1": ("Hándicap asiático", "fav", -1.0),
+    "Favorito marca primero": ("Primer gol", "fav", None),
+    "Más de 1.5 goles": ("Goles (otra línea)", None, "Más de 1.5"),
+    "Menos de 3.5 goles": ("Goles (otra línea)", None, "Menos de 3.5"),
+    "1T más de 0.5": ("1er tiempo", None, "Más de 0.5"),
+    "1T menos de 1.5": ("1er tiempo", None, "Menos de 1.5"),
+}
+_SPECIAL_CACHE: dict = {}
+
+
+def special_rules() -> tuple[dict, set]:
+    """({mercado: corrección de probabilidad}, {(liga, mercado) permitidos})
+    según el backtest guardado. La corrección resta lo que el modelo prometió
+    de más en ese mercado (acierto real − esperado)."""
+    from . import special_markets as sm
+
+    clave = sm.BACKTEST_PATH.stat().st_mtime if sm.BACKTEST_PATH.exists() else 0
+    if clave not in _SPECIAL_CACHE:
+        bt = sm.load_backtest()
+        if bt.empty:
+            _SPECIAL_CACHE[clave] = ({}, set())
+        else:
+            bt = bt[~bt["familia"].isin(SPECIAL_EXCLUDED_FAMILIES) & bt["mercado"].isin(SPECIAL_TIPS_MARKET)]
+            total = sm.summarize(bt)
+            total["veredicto"] = total.apply(sm.verdict, axis=1)
+            buenos = total[total["veredicto"].isin(SPECIAL_VERDICTS)]
+            correccion = ((buenos["acierto_pct"] - buenos["esperado_pct"]) / 100).set_axis(buenos["mercado"]).to_dict()
+            liga = sm.summarize(bt[bt["mercado"].isin(correccion)], by=["competition"])
+            ok = liga[(liga["picks"] >= SPECIAL_MIN_LEAGUE_PICKS) & (liga["acierto_pct"] >= sm.MIN_PROB * 100)]
+            _SPECIAL_CACHE[clave] = (correccion, set(zip(ok["competition"], ok["mercado"])))
+    return _SPECIAL_CACHE[clave]
+
+
+def special_candidates(day_predictions: pd.DataFrame, lines_for) -> pd.DataFrame:
+    """Picks de mercados especiales. `lines_for(fila)` devuelve las líneas de
+    BWIN del partido (columnas de events365.special_odds) o None; se llama solo
+    para los partidos que tienen algún pick."""
+    from . import special_markets as sm
+
+    correccion, permitidos = special_rules()
+    if not permitidos or day_predictions.empty:
+        return pd.DataFrame()
+    share = pd.read_csv(sm.SHARE_PATH, index_col=0).iloc[:, 0].to_dict() if sm.SHARE_PATH.exists() else {}
+    filas = []
+    for _, r in day_predictions.iterrows():
+        comp = r.get("competition")
+        try:
+            hx, ax = float(r["home_xg"]), float(r["away_xg"])
+        except (TypeError, ValueError, KeyError):
+            continue
+        fav_local = hx >= ax
+        picks = [(merc, prob, p_dev) for _, merc, prob, p_dev in
+                 sm.goal_market_probs(sm.Match(hx, ax, share.get(comp, sm.DEFAULT_FIRST_HALF_SHARE)))
+                 if (comp, merc) in permitidos and prob >= sm.MIN_PROB]
+        if not picks:
+            continue
+        lineas = lines_for(r)
+        if lineas is None or lineas.empty:
+            continue
+        home_short = r.get("home_team_short") or r["home_team"]
+        away_short = r.get("away_team_short") or r["away_team"]
+        fav, und = (r["home_team"], r["away_team"]) if fav_local else (r["away_team"], r["home_team"])
+        for merc, prob, p_dev in picks:
+            precio = sm.bwin_price(merc, fav_local, lineas)
+            if not precio:
+                continue
+            mercado, lado, extra = SPECIAL_TIPS_MARKET[merc]
+            equipo = fav if lado == "fav" else und if lado == "und" else None
+            if mercado == "Hándicap asiático":
+                pick = f"{equipo} {extra:+g}"
+            elif equipo:
+                pick = equipo
+            else:
+                pick = extra
+            prob_cal = min(max(prob + correccion.get(merc, 0.0), 0.01), 0.99)
+            filas.append({
+                "competition": comp, "competition_name": r.get("competition_name", ""),
+                "utc_date": r["utc_date"], "home_team": r["home_team"], "away_team": r["away_team"],
+                "home_team_short": home_short, "away_team_short": away_short,
+                "partido": f"{home_short} vs {away_short}", "mercado": mercado, "pick": pick,
+                "odds_key": f"especial:{merc}", "prob_modelo": prob_cal, "cuota_justa": round(1 / prob_cal, 2),
+                "cuota_auto": precio[0], "casa": "BWIN", "peso_modelo": SPECIAL_MODEL_WEIGHT,
+                "explicacion": sm.market_help(merc)
+                + (f" (Si se devuelve: {p_dev:.0%} de probabilidad; la prob. es sin contar devolución.)"
+                   if p_dev else ""),
+            })
+    return pd.DataFrame(filas)

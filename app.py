@@ -56,7 +56,7 @@ from src.prediction_log import MARKETS
 from src.daily_plan import MAX_TICKETS, build_plans, ticket_rows
 from src.timezones import BOGOTA_TZ, format_bogota, to_bogota
 from src.value_tips import (LIVE_MODEL_WEIGHT, MAX_DAILY_EXPOSURE, MIN_MODEL_PROB, candidate_picks,
-                             day_summary, evaluate, live_candidate_picks, totals_candidates)
+                             day_summary, evaluate, live_candidate_picks, special_candidates, totals_candidates)
 
 st.set_page_config(page_title="Football Analytics · Jornada", page_icon="⚽", layout="wide")
 
@@ -397,6 +397,15 @@ def load_day_predictions(fecha_iso: str) -> pd.DataFrame:
     todo = todo[dia_local == fecha_iso]
     todo = todo[todo["status"].isin(["SCHEDULED", "TIMED"])]
     return todo.drop_duplicates(subset=["home_team", "away_team", "utc_date"]).sort_values("utc_date")
+
+
+# Líneas de BWIN de un partido (mercados especiales; Tips y vista Avanzada).
+@st.cache_data(ttl=600, show_spinner=False)
+def load_bwin_special_lines(code: str, home: str, away: str, utc_date: str):
+    try:
+        return special_markets.bwin_lines_for(code, home, away, utc_date)
+    except Exception:
+        return None
 
 
 @st.cache_data(ttl=600, show_spinner="Consultando cuotas de las casas...")
@@ -1495,10 +1504,24 @@ with tab_tips:
                                     _evento)
         if not totales.empty:
             candidatos = pd.concat([candidatos, totales], ignore_index=True)
+        # Mercados especiales (vista Avanzada, experimental): solo los que el
+        # backtest aprueba en esa liga y que BWIN ofrece, con su cuota real.
+        sin_baja = dia[~dia.get("low_confidence", False).astype(bool)] if not dia.empty else dia
+        try:
+            especiales = special_candidates(
+                sin_baja, lambda r: load_bwin_special_lines(r["competition"], r["home_team"], r["away_team"],
+                                                            r["utc_date"]))
+        except Exception as e:
+            st.caption(f"⚠ Mercados especiales: {e}")
+            especiales = pd.DataFrame()
+        if not especiales.empty:
+            candidatos = pd.concat([candidatos, especiales], ignore_index=True)
 
         st.caption(f"{len(dia)} partidos por jugar ese día · {len(candidatos)} picks con ≥{MIN_MODEL_PROB:.0%} "
                    "en partidos sin baja confianza"
-                   + (f" (incluye {len(totales)} de corners/tarjetas)" if not totales.empty else "") + ".")
+                   + (f" (incluye {len(totales)} de corners/tarjetas)" if not totales.empty else "")
+                   + (f" (incluye {len(especiales)} de mercados especiales, ver 🧪 Avanzada)"
+                      if not especiales.empty else "") + ".")
 
         if dia.empty:
             st.info("No hay partidos por jugar ese día en las competiciones que sigue el proyecto.")
@@ -1524,6 +1547,8 @@ with tab_tips:
                 "Mejor cuota": pd.to_numeric(candidatos["cuota_auto"], errors="coerce").astype(float),
                 "Casa": candidatos["casa"],
                 "Cuota manual": pd.Series([None] * len(candidatos), index=candidatos.index, dtype="float"),
+                "Qué significa": (candidatos["explicacion"].fillna("") if "explicacion" in candidatos
+                                  else pd.Series([""] * len(candidatos), index=candidatos.index)),
             })
             st.markdown("**Picks candidatos** — corrige 'Cuota manual' con la de tu casa antes de apostar "
                         "(decimales con coma, ej. 1,45):")
@@ -1533,6 +1558,8 @@ with tab_tips:
                 disabled=[c for c in editor.columns if c != "Cuota manual"],
                 column_config={
                     "Partido": st.column_config.Column(pinned=True),
+                    "Qué significa": st.column_config.Column(
+                        width="large", help="Solo en los mercados especiales (vista 🧪 Avanzada)."),
                     "Prob. modelo": st.column_config.NumberColumn(format="%.0f%%"),
                     "Mejor cuota": st.column_config.NumberColumn(format="%.2f"),
                     # Sin max_value a propósito: recortaría un error de tipeo
@@ -1611,6 +1638,8 @@ with tab_tips:
                         hide_index=True, width="stretch",
                         column_config={
                             "Partido": st.column_config.Column(pinned=True),
+                    "Qué significa": st.column_config.Column(
+                        width="large", help="Solo en los mercados especiales (vista 🧪 Avanzada)."),
                             "Valor": st.column_config.NumberColumn(format="+%.1f%%"),
                             "Apostar": st.column_config.NumberColumn(format="$%d"),
                             "Recibes si acierta": st.column_config.NumberColumn(
@@ -1759,6 +1788,8 @@ with tab_tips:
                 hide_index=True, width="stretch",
                 column_config={
                     "Partido": st.column_config.Column(pinned=True),
+                    "Qué significa": st.column_config.Column(
+                        width="large", help="Solo en los mercados especiales (vista 🧪 Avanzada)."),
                     "Prob. en vivo": st.column_config.NumberColumn(format="%.0f%%"),
                     "Valor": st.column_config.NumberColumn(format="%+.1f%%"),
                     "Apostar": st.column_config.NumberColumn(format="$%d"),
@@ -2024,7 +2055,7 @@ def _render_tips_report(boletos: pd.DataFrame, cerrados: pd.DataFrame, mostrar_p
     plan_sel = (st.multiselect("Planes", planes_disp, default=planes_disp, key="rep_planes")
                 if mostrar_planes and len(planes_disp) > 1 else planes_disp)
     vista = boletos[boletos["plan"].isin(plan_sel)].sort_values("fecha", ascending=False).head(80)
-    st.markdown(f"**Boletos** ({len(vista)} más recientes) — ✔ acertado · ✘ fallado · · pendiente")
+    st.markdown(f"**Boletos** ({len(vista)} más recientes) — ✔ acertado · ✘ fallado · ↺ devuelto · · pendiente")
     pesos = lambda v: f"${v:,.0f}" if pd.notna(v) else "-"  # noqa: E731
     # Índice único (el Styler no admite repetidos: varios boletos del mismo día).
     etiquetas, vistos = [], {}
@@ -2308,14 +2339,6 @@ def load_special_backtest(_mtime: float) -> pd.DataFrame:
     return special_markets.load_backtest()
 
 
-@st.cache_data(ttl=600, show_spinner=False)
-def load_bwin_special_lines(code: str, home: str, away: str, utc_date: str):
-    try:
-        return special_markets.bwin_lines_for(code, home, away, utc_date)
-    except Exception:
-        return None
-
-
 @st.cache_data(ttl=3600, show_spinner=False)
 def load_scorers(_mtime: float) -> pd.DataFrame:
     """Goleadores: partidos con gol / partidos del equipo (365 no da
@@ -2404,6 +2427,24 @@ def render_advanced_tab() -> None:
             "- El **piso** es el acierto mínimo creíble con esa muestra: con 20 picks, un 85% puede ser 70% real.\n"
             "- Las cuotas especiales de BWIN se guardan desde oct-2026 (365 las borra a los ~10 días): el "
             "'Retorno BWIN' tiene poca muestra al principio y se vuelve confiable con las semanas.")
+    with st.expander("📖 Qué significa cada mercado"):
+        st.markdown("**Favorito** = el equipo al que el modelo le da más goles esperados en ESE partido (puede ser "
+                    "el local o el visitante); **no favorito** = el otro. **Devuelto** = no se gana ni se pierde: "
+                    "la casa regresa lo apostado.")
+        familia_de = {}
+        for fam, merc, *_ in special_markets.goal_market_probs(special_markets.Match(1.5, 1.0)):
+            familia_de[merc] = fam
+        for merc in ("Tarjeta roja en el partido", "Sin tarjeta roja", "Penal en el partido", "Sin penal"):
+            familia_de[merc] = "Eventos"
+        grupos: dict[str, list[str]] = {}
+        for m, t in special_markets.MARKET_HELP.items():
+            grupos.setdefault(familia_de.get(m, "Otros"), []).append(f"- **{m}**: {t}")
+        grupos["Estadísticas"] = [f"- **{n}: más/menos de X**: {t}" for n, t in special_markets.STAT_HELP.items()]
+        orden = ["Hándicap asiático", "Hándicap 3 vías", "Goles por equipo", "Valla invicta", "Total de goles",
+                 "Por tiempo", "Primer gol", "Eventos", "Estadísticas"]
+        cols_ley = st.columns(2)
+        for n, fam in enumerate([f for f in orden if f in grupos] + [f for f in grupos if f not in orden]):
+            cols_ley[n % 2].markdown(f"**{fam}**\n" + "\n".join(grupos[fam]))
     archivo = special_markets.BACKTEST_PATH
     bt = load_special_backtest(archivo.stat().st_mtime if archivo.exists() else 0.0)
     if bt.empty:
@@ -2436,7 +2477,9 @@ def render_advanced_tab() -> None:
         tabla = resumen.assign(_o=resumen["veredicto"].map(orden)).sort_values(["_o", "mejora"],
                                                                                  ascending=[True, False])
         tabla["veredicto"] = tabla["veredicto"].map(VEREDICTO_ICONO)
-        st.dataframe(tabla[list(SPECIAL_COLUMNS)], hide_index=True, width="stretch", column_config=SPECIAL_COLUMNS)
+        tabla["que_es"] = tabla["mercado"].map(special_markets.market_help)
+        st.dataframe(tabla[list(SPECIAL_COLUMNS) + ["que_es"]], hide_index=True, width="stretch",
+                     column_config={**SPECIAL_COLUMNS, "que_es": st.column_config.Column("Qué significa", width="large")})
         graf = resumen[resumen["picks"] >= 30].dropna(subset=["acierto_pct"])
         if not graf.empty:
             st.markdown("**Acierto de los picks vs frecuencia normal del mercado**")
@@ -2460,6 +2503,7 @@ def render_advanced_tab() -> None:
         if not cand.empty:
             merc = st.selectbox("Ver los picks de", cand.sort_values("mejora", ascending=False)["mercado"].tolist(),
                                 key="av_rank_det")
+            st.caption("ℹ️ " + special_markets.market_help(merc))
             _render_special_detail(datos[(datos["mercado"] == merc) & (datos["prob"] >= umbral)])
 
     with t_liga:
@@ -2498,6 +2542,7 @@ def render_advanced_tab() -> None:
                 liga_clic = filas_l[int(fila_pos)]
                 code = mapa.loc[mapa["liga"] == liga_clic, "competition"].iloc[0]
                 st.markdown(f"**{liga_clic} · {mercado_clic}**")
+                st.caption("ℹ️ " + special_markets.market_help(mercado_clic))
                 _render_special_detail(datos[(datos["competition"] == code) & (datos["mercado"] == mercado_clic)
                                              & (datos["prob"] >= umbral)])
 
@@ -2540,6 +2585,7 @@ def render_advanced_tab() -> None:
                 opciones = [f"{e} · {m}" for e, m in zip(p["equipo"], p["mercado"])]
                 elegido = st.selectbox("Ver los partidos de", opciones, key="av_eq_det")
                 e, m = elegido.split(" · ", 1)
+                st.caption("ℹ️ " + special_markets.market_help(m))
                 _render_special_detail(datos[((datos["favorito"] == e) | (datos["no_favorito"] == e))
                                              & (datos["mercado"] == m) & (datos["prob"] >= umbral)])
 
@@ -2610,8 +2656,10 @@ def _render_special_upcoming(cand: pd.DataFrame, resumen: pd.DataFrame, umbral: 
     picks["Partido"] = picks["home_team"] + " vs " + picks["away_team"]
     picks["Liga"] = picks["competition"].map(lambda c: config.COMPETITIONS.get(c, c))
     picks = picks.sort_values(["valor", "prob_ajustada"], ascending=False, na_position="last")
+    picks["que_es"] = picks["mercado"].map(special_markets.market_help)
     st.dataframe(picks[["Hora", "Liga", "Partido", "favorito", "mercado", "veredicto", "prob", "prob_ajustada",
-                        "cuota", "valor"]], hide_index=True, width="stretch", column_config={
+                        "cuota", "valor", "que_es"]], hide_index=True, width="stretch", column_config={
+        "que_es": st.column_config.Column("Qué significa", width="large"),
         "favorito": "Favorito", "mercado": "Mercado", "veredicto": "Mercado es",
         "prob": st.column_config.NumberColumn("Prob. modelo", format="%.2f"),
         "prob_ajustada": st.column_config.NumberColumn("Prob. corregida", format="%.2f",

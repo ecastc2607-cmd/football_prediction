@@ -281,7 +281,7 @@ def capture_daily_tips(fecha: str) -> int:
     """Arma y guarda el Plan del día (una vez por día, antes del primer partido:
     la ventana abre PREMATCH_HOURS antes). Devuelve cuántos boletos guardó."""
     from .daily_plan import build_plans
-    from .value_tips import candidate_picks, evaluate, totals_candidates
+    from .value_tips import candidate_picks, evaluate, special_candidates, totals_candidates
 
     hist = tips_log.load()
     if not hist.empty and ((hist["fecha"] == fecha) & (hist["origin"] == "capture_task")).any():
@@ -310,6 +310,15 @@ def capture_daily_tips(fecha: str) -> int:
     totales = totals_candidates(sin_baja, _evento)
     if not totales.empty:
         candidatos = pd.concat([candidatos, totales.assign(cuota=totales["cuota_auto"])], ignore_index=True)
+    try:  # mercados especiales (vista Avanzada): solo los aprobados por el backtest
+        from . import special_markets
+        especiales = special_candidates(sin_baja, lambda r: special_markets.bwin_lines_for(
+            r["competition"], r["home_team"], r["away_team"], r["utc_date"]))
+        if not especiales.empty:
+            candidatos = pd.concat([candidatos, especiales.assign(cuota=especiales["cuota_auto"])],
+                                   ignore_index=True)
+    except Exception as e:
+        _log(f"mercados especiales: error {e}")
     if candidatos.empty:
         return 0
     evaluado = evaluate(candidatos, TIPS_BANKROLL)

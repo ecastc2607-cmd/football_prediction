@@ -34,6 +34,12 @@ COLUMNS = [
     "leg_result", "home_goals", "away_goals", "ticket_result", "ticket_profit", "resolved_at",
 ]
 PENDING, HIT, MISS, NO_DATA = "pendiente", "acierto", "fallo", "sin resultado"
+# Empate no válido / hándicap entero: la casa devuelve lo apostado. En una
+# combinada esa pierna cuenta como cuota 1 (la combinada sigue con las demás).
+VOID = "devuelto"
+WON_VOID = "devuelta"  # boleto con todas sus piernas devueltas
+# Mercados especiales (vista Avanzada) que necesitan el detalle del partido.
+DETAIL_MARKETS = ("Primer gol", "1er tiempo")
 WON, LOST = "ganada", "perdida"
 # Un partido se da por terminado (y se busca su marcador) pasado este tiempo
 # desde el inicio; si a los NO_DATA_AFTER_DAYS no apareció, queda "sin resultado".
@@ -157,9 +163,54 @@ def _line_pick(pick: str) -> tuple[str, float] | None:
     return (m.group(1), float(m.group(2))) if m else None
 
 
-def leg_outcome(market: str, pick: str, hg: int, ag: int, stats: dict | None = None) -> bool | None:
+def _team_margin(pick_team: str, home: str | None, away: str | None, hg: int, ag: int) -> int | None:
+    """Goles a favor − en contra del equipo del pick (nombre completo)."""
+    if pick_team == home:
+        return hg - ag
+    if pick_team == away:
+        return ag - hg
+    return None
+
+
+def leg_outcome(market: str, pick: str, hg: int, ag: int, stats: dict | None = None,
+                home_team: str | None = None, away_team: str | None = None,
+                detail: dict | None = None) -> bool | str | None:
     """¿Acertó el pick con el marcador final (y, para corners/tarjetas, con las
-    estadísticas finales)? None si el mercado no se reconoce o falta el dato."""
+    estadísticas finales)? None si el mercado no se reconoce o falta el dato;
+    VOID si la apuesta se devuelve. `detail` (mercados especiales): {"first":
+    'home'|'away'|'none', "ht": (goles local, goles visita) al descanso}."""
+    pick_txt = str(pick or "").strip()
+    if market == "Empate no válido":
+        d = _team_margin(pick_txt, home_team, away_team, hg, ag)
+        return None if d is None else (VOID if d == 0 else d > 0)
+    if market == "Hándicap asiático":
+        equipo, _, linea = pick_txt.rpartition(" ")
+        try:
+            linea = float(linea)
+        except ValueError:
+            return None
+        d = _team_margin(equipo, home_team, away_team, hg, ag)
+        if d is None:
+            return None
+        x = d + linea
+        return VOID if x == 0 else x > 0
+    if market == "Primer gol":
+        if not detail or detail.get("first") is None:
+            return None
+        lado = "home" if pick_txt == home_team else "away" if pick_txt == away_team else None
+        return None if lado is None else detail["first"] == lado
+    if market in ("Goles (otra línea)", "1er tiempo"):
+        lp = _line_pick(pick_txt)
+        if not lp:
+            return None
+        if market == "1er tiempo":
+            ht = (detail or {}).get("ht")
+            if not ht or None in ht:
+                return None
+            total = int(ht[0]) + int(ht[1])
+        else:
+            total = hg + ag
+        return total > lp[1] if lp[0] == "Más" else total < lp[1]
     if market in ("Corners", "Tarjetas"):
         lp = _line_pick(pick)
         if not lp or not stats:
@@ -212,6 +263,23 @@ def _final_scores(code: str, dia: str) -> list[dict]:
     return eventos
 
 
+def _match_detail(game_id) -> dict | None:
+    """Quién marcó primero y el marcador al descanso (365scores, 1 consulta)."""
+    from . import events365
+
+    try:
+        partido, eventos, _ = events365._game_detail(int(game_id))
+    except Exception:
+        return None
+    if not partido:
+        return None
+    goles = [e for e in eventos if e["type"] == "Goal" and e.get("side")]
+    goles.sort(key=lambda e: (e.get("minute") or 0) + (e.get("added_time") or 0) / 100)
+    primero = goles[0]["side"] if goles else ("none" if (partido["home_goals"] or 0) + (partido["away_goals"] or 0) == 0
+                                             else None)
+    return {"first": primero, "ht": (partido.get("ht_home_goals"), partido.get("ht_away_goals"))}
+
+
 def resolve(now: datetime | None = None) -> int:
     """Resuelve los picks pendientes cuyos partidos ya terminaron. Devuelve
     cuántos picks se resolvieron. Nunca lanza."""
@@ -227,6 +295,7 @@ def resolve(now: datetime | None = None) -> int:
         resueltos = 0
         cache: dict = {}
         stats_cache: dict = {}
+        detail_cache: dict = {}
         for i in pendientes:
             r = df.loc[i]
             dia = inicio[i].strftime("%Y-%m-%d")
@@ -240,11 +309,18 @@ def resolve(now: datetime | None = None) -> int:
                     if ev["game_id"] not in stats_cache:
                         stats_cache[ev["game_id"]] = scores365.live_stats(ev["game_id"], ev["home_id"], ev["away_id"])
                     stats = stats_cache[ev["game_id"]]
-                gano = leg_outcome(r["market"], r["pick"], ev["hg"], ev["ag"], stats)
+                detalle = None
+                if r["market"] in DETAIL_MARKETS:
+                    if ev["game_id"] not in detail_cache:
+                        detail_cache[ev["game_id"]] = _match_detail(ev["game_id"])
+                    detalle = detail_cache[ev["game_id"]]
+                gano = leg_outcome(r["market"], r["pick"], ev["hg"], ev["ag"], stats,
+                                   r["home_team"], r["away_team"], detalle)
                 if gano is None and r["market"] in ("Corners", "Tarjetas") and not stats:
                     continue  # estadísticas aún no publicadas: se reintenta después
                 df.at[i, "home_goals"], df.at[i, "away_goals"] = ev["hg"], ev["ag"]
-                df.at[i, "leg_result"] = NO_DATA if gano is None else (HIT if gano else MISS)
+                df.at[i, "leg_result"] = (NO_DATA if gano is None else VOID if gano == VOID
+                                          else (HIT if gano else MISS))
                 resueltos += 1
             elif now - inicio[i] > timedelta(days=NO_DATA_AFTER_DAYS):
                 df.at[i, "leg_result"] = NO_DATA
@@ -263,16 +339,22 @@ def _resolve_tickets(df: pd.DataFrame, now: datetime) -> None:
         if (legs["ticket_result"] != PENDING).all():
             continue
         resultados = set(legs["leg_result"])
+        cuota = pd.to_numeric(legs["ticket_odds"], errors="coerce").iloc[0]
         if MISS in resultados:
             estado = LOST
-        elif resultados == {HIT}:
-            estado = WON
         elif PENDING in resultados:
             continue
+        elif resultados == {VOID}:
+            estado = WON_VOID
+        elif resultados <= {HIT, VOID}:
+            estado = WON
+            # Las piernas devueltas valen cuota 1: se sacan de la cuota del boleto.
+            devueltas = pd.to_numeric(legs.loc[legs["leg_result"] == VOID, "cuota"], errors="coerce")
+            if len(devueltas) and devueltas.notna().all():
+                cuota = cuota / devueltas.prod()
         else:
             estado = NO_DATA
         stake = pd.to_numeric(legs["stake"], errors="coerce").iloc[0]
-        cuota = pd.to_numeric(legs["ticket_odds"], errors="coerce").iloc[0]
         ganancia = None
         if stake == stake and stake:  # hay monto
             ganancia = round(stake * (cuota - 1)) if estado == WON else -stake if estado == LOST else 0

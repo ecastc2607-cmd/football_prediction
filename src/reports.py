@@ -158,7 +158,7 @@ def tips_tickets(tlog: pd.DataFrame) -> pd.DataFrame:
     for tid, legs in tlog.groupby("ticket_id", sort=False):
         primero = legs.iloc[0]
         picks = "\n".join(
-            f"{'✔' if l.leg_result == 'acierto' else '✘' if l.leg_result == 'fallo' else '·'} "
+            f"{'✔' if l.leg_result == 'acierto' else '✘' if l.leg_result == 'fallo' else '↺' if l.leg_result == 'devuelto' else '·'} "
             f"{l.home_team} vs {l.away_team}: {l.pick}" + (f" ({l.cuota:.2f})" if pd.notna(l.cuota) else "")
             for l in legs.itertuples())
         filas.append({
