@@ -66,6 +66,8 @@ TRACKED_FILES = [
     "data/tracking/live_odds_snapshots.csv",
     "data/tracking/odds_snapshots.csv",
     "data/tracking/live_snapshots.csv",
+    "data/tracking/events_365",  # eventos y cuotas especiales (vista Avanzada)
+    "data/tracking/special_markets_backtest.csv.gz", "data/tracking/special_markets_share.csv",
 ]
 
 
@@ -382,6 +384,13 @@ def run_once() -> None:
     n_final = capture_final_stats(games)
     if n_final:
         _log(f"estadísticas finales: {n_final} partidos")
+    try:  # eventos + cuotas especiales de BWIN (365 borra estas cuotas a los ~10 días)
+        from . import events365
+        n_ev = events365.record_finished(games)
+        if n_ev:
+            _log(f"eventos y cuotas especiales: {n_ev} partidos")
+    except Exception as e:
+        _log(f"eventos 365: error {e}")
     n_pre = capture_prematch(games)
     if n_pre:
         _log(f"prepartido: {n_pre} partidos con cuota")

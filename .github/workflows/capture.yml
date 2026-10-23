@@ -70,6 +70,16 @@ jobs:
           GOAL_API_KEY: ${{ secrets.GOAL_API_KEY }}
         run: python -m src.refresh_data
 
+      # Una vez por día (misma condición que la descarga): repasa los últimos 9
+      # días de eventos y cuotas especiales de BWIN por si alguna corrida se
+      # perdió (365 borra esas cuotas a los ~10 días). Los lunes, además,
+      # recalcula el análisis de la vista Avanzada (semanal: el archivo pesa).
+      - name: Eventos 365 y análisis de mercados especiales
+        if: steps.cache.outputs.cache-hit != 'true'
+        run: |
+          python -m src.events365 --desde "$(date -u -d '9 days ago' +%Y-%m-%d)"
+          if [ "$(date -u +%u)" = "1" ]; then python -m src.special_markets; fi
+
       - name: Identidad para el commit
         run: |
           git config user.name "github-actions[bot]"

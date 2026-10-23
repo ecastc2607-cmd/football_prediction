@@ -18,7 +18,7 @@ import altair as alt
 import pandas as pd
 import streamlit as st
 
-from src import (config, half_backtest, national_teams, odds_api, reports, same_day, scores365, season_store,
+from src import (config, half_backtest, special_markets, national_teams, odds_api, reports, same_day, scores365, season_store,
                  tips_log)
 from src.live_odds import record as record_live_odds
 from src.competition_status import resolve_current_season_and_matchday
@@ -877,8 +877,8 @@ st.sidebar.caption(
     "sobre todo en el promedio de liga para ellos."
 )
 
-tab_jornada, tab_vivo, tab_amistosos, tab_tips, tab_reportes = st.tabs(
-    ["📅 Jornada", "🔴 En vivo", "🌍 Amistosos", "💡 Tips", "📊 Reportes"]
+tab_jornada, tab_vivo, tab_amistosos, tab_tips, tab_reportes, tab_avanzada = st.tabs(
+    ["📅 Jornada", "🔴 En vivo", "🌍 Amistosos", "💡 Tips", "📊 Reportes", "🧪 Avanzada"]
 )
 
 # ============================== PESTAÑA: JORNADA ==============================
@@ -2289,3 +2289,343 @@ with tab_reportes:
 
         with t_tips:
             _render_tips_report(boletos, cerrados, mostrar_planes=tipo == reports.TIPO_MODELO)
+
+# ---------------------------------------------------------------------------
+# Vista "Avanzada (mercados especiales)" — src/special_markets.py
+# ---------------------------------------------------------------------------
+
+VEREDICTO_ICONO = {"Candidato": "✅ Candidato", "Prometedor": "🟡 Prometedor", "Alto pero obvio": "⚪ Alto pero obvio",
+                   "Descartado": "✘ Descartado", "Sin picks": "· Sin picks"}
+VEREDICTO_AYUDA = (
+    "✅ Candidato: acierta ≥75% con margen (piso del intervalo ≥75%) y el modelo le suma ≥5 puntos a la "
+    "frecuencia normal del mercado. 🟡 Prometedor: ≥75% pero con poca muestra o poca mejora. ⚪ Alto pero "
+    "obvio: ≥75% solo porque el mercado casi siempre sale — paga muy poco y el modelo no aporta. "
+    "✘ Descartado: los picks del modelo aciertan menos de 75%.")
+
+
+@st.cache_data(ttl=3600, show_spinner="Cargando el análisis de mercados especiales...")
+def load_special_backtest(_mtime: float) -> pd.DataFrame:
+    return special_markets.load_backtest()
+
+
+@st.cache_data(ttl=600, show_spinner=False)
+def load_bwin_special_lines(code: str, home: str, away: str, utc_date: str):
+    try:
+        return special_markets.bwin_lines_for(code, home, away, utc_date)
+    except Exception:
+        return None
+
+
+@st.cache_data(ttl=3600, show_spinner=False)
+def load_scorers(_mtime: float) -> pd.DataFrame:
+    """Goleadores: partidos con gol / partidos del equipo (365 no da
+    alineaciones en lo guardado: el % es sobre los partidos del EQUIPO)."""
+    from src import events365
+    ev, games = events365.load_events(), events365.load_games()
+    if ev.empty or games.empty:
+        return pd.DataFrame()
+    goles = ev[(ev["type"] == "Goal") & (ev["subtype"] != "Own Goal")].dropna(subset=["player", "side"])
+    goles = goles.merge(games[["game_id", "competition", "home_team", "away_team"]], on="game_id")
+    goles["equipo"] = goles.apply(lambda r: r["home_team"] if r["side"] == "home" else r["away_team"], axis=1)
+    largo = pd.concat([games[["game_id", "competition", "home_team"]].rename(columns={"home_team": "equipo"}),
+                       games[["game_id", "competition", "away_team"]].rename(columns={"away_team": "equipo"})])
+    partidos_eq = largo.groupby(["competition", "equipo"])["game_id"].nunique().rename("partidos_equipo")
+    t = (goles.groupby(["competition", "equipo", "player"])
+         .agg(goles=("game_id", "size"), partidos_con_gol=("game_id", "nunique"),
+              penales=("subtype", lambda s: int((s == "Penalty").sum())))
+         .reset_index().join(partidos_eq, on=["competition", "equipo"]))
+    t["anota_pct"] = 100 * t["partidos_con_gol"] / t["partidos_equipo"]
+    return t.sort_values("anota_pct", ascending=False)
+
+
+def _special_summary(bt: pd.DataFrame, umbral: float, by: list[str] | None = None) -> pd.DataFrame:
+    s = special_markets.summarize(bt, umbral, by)
+    if s.empty:
+        return s
+    s["mejora"] = s["acierto_pct"] - s["base_pct"]
+    s["veredicto"] = s.apply(special_markets.verdict, axis=1)
+    return s
+
+
+SPECIAL_COLUMNS = {
+    "familia": "Familia", "mercado": "Mercado",
+    "veredicto": st.column_config.Column("Veredicto", help=VEREDICTO_AYUDA),
+    "picks": st.column_config.NumberColumn("Picks", help="Partidos en que el modelo daba al menos el umbral."),
+    "acierto_pct": st.column_config.NumberColumn("Acierto", format="%.0f%%", help="De los picks (sin contar devueltos)."),
+    "esperado_pct": st.column_config.NumberColumn("Esperado", format="%.0f%%", help="Lo que el modelo esperaba."),
+    "base_pct": st.column_config.NumberColumn("Normal", format="%.0f%%",
+                                             help="Con qué frecuencia sale el mercado en TODOS los partidos."),
+    "mejora": st.column_config.NumberColumn("Aporte del modelo", format="%+.0f pts",
+                                           help="Acierto de los picks − frecuencia normal."),
+    "piso_pct": st.column_config.NumberColumn("Piso", format="%.0f%%",
+                                             help="Acierto mínimo creíble (90% de confianza) con esa muestra."),
+    "cuota_justa": st.column_config.NumberColumn("Cuota justa", format="%.2f",
+                                                help="Cuota mínima para no perder plata con ese acierto."),
+    "con_cuota": st.column_config.NumberColumn("Con cuota BWIN", help="Picks con la cuota de BWIN guardada."),
+    "cuota_bwin": st.column_config.NumberColumn("Cuota BWIN", format="%.2f", help="Promedio de lo que pagaba BWIN."),
+    "roi_pct": st.column_config.NumberColumn("Retorno BWIN", format="%+.0f%%",
+                                            help="Ganancia por apuesta con la cuota real de BWIN (muestra chica "
+                                                 "hasta que se acumulen semanas)."),
+    "devueltos": st.column_config.NumberColumn("Devueltos", help="Hándicap entero / empate no válido: se devuelve."),
+}
+
+
+def _render_special_detail(picks: pd.DataFrame) -> None:
+    if picks.empty:
+        st.caption("Sin picks para ese detalle.")
+        return
+    d = picks.sort_values("utc_date", ascending=False).copy()
+    d["Día"] = d["utc_date"].map(lambda x: to_bogota(x).strftime("%Y-%m-%d") if to_bogota(x) else str(x)[:10])
+    d["Liga"] = d["competition"].map(lambda c: config.COMPETITIONS.get(c, c))
+    d["Partido"] = d["home_team"] + " vs " + d["away_team"]
+    d["Resultado"] = d["gano"].map(lambda g: "✔ acertado" if g == 1 else ("✘ fallado" if g == 0 else "↺ devuelto"))
+    st.dataframe(d[["Día", "Partido", "marcador", "Resultado", "prob", "cuota", "mercado", "Liga"]],
+                 hide_index=True, width="stretch", column_config={
+                     "marcador": "Marcador", "mercado": "Mercado",
+                     "prob": st.column_config.NumberColumn("Prob. del modelo", format="%.2f"),
+                     "cuota": st.column_config.NumberColumn("Cuota BWIN", format="%.2f",
+                                                            help="Solo partidos de los últimos días (365 borra "
+                                                                 "las cuotas especiales a los ~10 días)."),
+                 })
+
+
+def render_advanced_tab() -> None:
+    st.title("🧪 Avanzada — mercados especiales")
+    st.caption(
+        "Hándicap asiático y de 3 vías, empate no válido, mercados por tiempo, goles por equipo, valla invicta, "
+        "primer gol, penal, tarjeta roja, tiros al arco, fueras de juego y goleadores. Cada partido se predijo "
+        "solo con los partidos anteriores (sin trampa) y se compara contra lo que pasó.")
+    with st.expander("¿Por qué un 90% de acierto no siempre sirve?"):
+        st.markdown(
+            "- **Acierto alto ≠ buena apuesta.** 'Más de 0.5 goles' sale en 92% de los partidos y paga ~1.07: "
+            "acertar mucho y ganar poco es lo mismo que no apostar.\n"
+            "- Lo que importa es el **aporte del modelo**: cuánto sube el acierto de sus picks frente a la "
+            "frecuencia normal del mercado, y si **BWIN paga más que la cuota justa** (la mínima para no perder).\n"
+            "- El **piso** es el acierto mínimo creíble con esa muestra: con 20 picks, un 85% puede ser 70% real.\n"
+            "- Las cuotas especiales de BWIN se guardan desde oct-2026 (365 las borra a los ~10 días): el "
+            "'Retorno BWIN' tiene poca muestra al principio y se vuelve confiable con las semanas.")
+    archivo = special_markets.BACKTEST_PATH
+    bt = load_special_backtest(archivo.stat().st_mtime if archivo.exists() else 0.0)
+    if bt.empty:
+        st.info("Todavía no está el análisis. Se genera con `python -m src.special_markets` (la captura "
+                "automática lo actualiza una vez por día).")
+        return
+
+    f1, f2, f3 = st.columns([1.4, 1.4, 1])
+    ligas = _league_multiselect(f1, "Ligas", sorted(bt["competition"].dropna().unique()), "av_ligas")
+    familias_disp = sorted(bt["familia"].unique())
+    familias = f2.multiselect("Familias de mercado", familias_disp, default=familias_disp, key="av_familias")
+    umbral = f3.slider("Probabilidad mínima del modelo", 0.60, 0.90, 0.75, 0.05, key="av_umbral",
+                       help="Un pick es un partido en que el modelo le daba al mercado al menos esta probabilidad.")
+    datos = bt[bt["competition"].isin(ligas) & bt["familia"].isin(familias)]
+    if datos.empty:
+        st.caption("Sin datos en el filtro.")
+        return
+    resumen = _special_summary(datos, umbral)
+
+    t_rank, t_liga, t_equipo, t_goleadores, t_proximos = st.tabs(
+        ["Ranking de mercados", "Por liga", "Por equipo", "Goleadores", "Próximos partidos"])
+
+    with t_rank:
+        cand = resumen[resumen["veredicto"].isin(["Candidato", "Prometedor"])]
+        k1, k2, k3 = st.columns(3)
+        k1.metric("Mercados analizados", resumen["mercado"].nunique())
+        k2.metric("Candidatos", int((resumen["veredicto"] == "Candidato").sum()))
+        k3.metric("Prometedores", int((resumen["veredicto"] == "Prometedor").sum()))
+        orden = {"Candidato": 0, "Prometedor": 1, "Alto pero obvio": 2, "Descartado": 3, "Sin picks": 4}
+        tabla = resumen.assign(_o=resumen["veredicto"].map(orden)).sort_values(["_o", "mejora"],
+                                                                                 ascending=[True, False])
+        tabla["veredicto"] = tabla["veredicto"].map(VEREDICTO_ICONO)
+        st.dataframe(tabla[list(SPECIAL_COLUMNS)], hide_index=True, width="stretch", column_config=SPECIAL_COLUMNS)
+        graf = resumen[resumen["picks"] >= 30].dropna(subset=["acierto_pct"])
+        if not graf.empty:
+            st.markdown("**Acierto de los picks vs frecuencia normal del mercado**")
+            orden_y = graf.sort_values("mejora", ascending=False)["mercado"].tolist()
+            tip = [alt.Tooltip("mercado:N", title="Mercado"), alt.Tooltip("picks:Q", title="Picks"),
+                   alt.Tooltip("acierto_pct:Q", title="Acierto de los picks %", format=".0f"),
+                   alt.Tooltip("base_pct:Q", title="Frecuencia normal %", format=".0f"),
+                   alt.Tooltip("mejora:Q", title="Aporte del modelo (pts)", format="+.0f")]
+            base_g = alt.Chart(graf)
+            barras = base_g.mark_bar(color=COLOR_FUERTE, cornerRadiusEnd=4, height=14).encode(
+                y=alt.Y("mercado:N", sort=orden_y, title=None, axis=alt.Axis(labelLimit=280)),
+                x=alt.X("acierto_pct:Q", title="% de acierto", scale=alt.Scale(domain=[0, 100])), tooltip=tip)
+            marca = base_g.mark_tick(color=COLOR_NEUTRO, thickness=3, size=20).encode(
+                y=alt.Y("mercado:N", sort=orden_y), x="base_pct:Q", tooltip=tip)
+            regla = alt.Chart(pd.DataFrame({"x": [umbral * 100]})).mark_rule(color="#e8a33a", strokeDash=[4, 3]
+                                                                            ).encode(x="x:Q")
+            st.altair_chart((barras + marca + regla).properties(height=alt.Step(30)), use_container_width=True)
+            st.caption("Barra azul: acierto de los picks del modelo · marca gris: con qué frecuencia sale el mercado "
+                       "en todos los partidos · línea naranja: el umbral. Arriba, los mercados donde el modelo más aporta. "
+                       "Solo mercados con 30 picks o más.")
+        if not cand.empty:
+            merc = st.selectbox("Ver los picks de", cand.sort_values("mejora", ascending=False)["mercado"].tolist(),
+                                key="av_rank_det")
+            _render_special_detail(datos[(datos["mercado"] == merc) & (datos["prob"] >= umbral)])
+
+    with t_liga:
+        por_liga = _special_summary(datos, umbral, ["competition"])
+        por_liga = por_liga[por_liga["picks"] > 0].dropna(subset=["acierto_pct"])
+        # Por defecto, solo candidatos y prometedores (con todos, la tabla queda muy ancha).
+        mercados_liga = [m for m in cand.sort_values("mejora", ascending=False)["mercado"]
+                         if m in set(por_liga["mercado"])][:8]
+        elegidos = st.multiselect("Mercados del mapa", sorted(por_liga["mercado"].unique()), default=mercados_liga,
+                                  key="av_liga_mercados")
+        min_picks = st.slider("Mínimo de picks por celda", 1, 40, 10, key="av_liga_min")
+        mapa = por_liga[por_liga["mercado"].isin(elegidos) & (por_liga["picks"] >= min_picks)].copy()
+        if mapa.empty:
+            st.caption("Ninguna combinación llega a ese mínimo.")
+        else:
+            mapa["liga"] = mapa["competition"].map(lambda c: config.COMPETITIONS.get(c, c))
+            mapa["etiqueta"] = [f"{a:.0f}% · {n}" for a, n in zip(mapa["acierto_pct"], mapa["picks"])]
+            filas_l = sorted(mapa["liga"].unique())
+            cols_m = [m for m in elegidos if m in set(mapa["mercado"])]
+            texto = mapa.pivot(index="liga", columns="mercado", values="etiqueta").reindex(
+                index=filas_l, columns=cols_m).fillna("")
+            dif = mapa.pivot(index="liga", columns="mercado", values="acierto_pct").reindex(
+                index=filas_l, columns=cols_m) - umbral * 100
+            texto.index.name = "Liga"
+            colores = dif.apply(lambda c: c.map(lambda v: _diverging_cell_css(v, 15.0)))
+            evento = st.dataframe(texto.style.apply(lambda _: colores, axis=None), width="stretch",
+                                  key="av_mapa_sel", on_select="rerun", selection_mode="single-cell",
+                                  height=min(35 * (len(texto) + 1) + 3, 520),
+                                  column_config={"_index": st.column_config.Column("Liga", width=170),
+                                                 **{m: st.column_config.Column(m, width=95) for m in texto.columns}})
+            st.caption(f"Cada celda: acierto de los picks · cantidad. Azul = por encima de {umbral:.0%}; rojo = por "
+                       "debajo. **Haz clic en una celda** para ver sus partidos.")
+            marcadas = list(getattr(getattr(evento, "selection", None), "cells", None) or [])
+            if marcadas:
+                fila_pos, mercado_clic = marcadas[0]
+                liga_clic = filas_l[int(fila_pos)]
+                code = mapa.loc[mapa["liga"] == liga_clic, "competition"].iloc[0]
+                st.markdown(f"**{liga_clic} · {mercado_clic}**")
+                _render_special_detail(datos[(datos["competition"] == code) & (datos["mercado"] == mercado_clic)
+                                             & (datos["prob"] >= umbral)])
+
+    with t_equipo:
+        patrones = special_markets.team_patterns(datos, umbral, min_picks=1)
+        if patrones.empty:
+            st.caption("Sin picks en el filtro.")
+        else:
+            c1, c2, c3 = st.columns([1.5, 1, 1])
+            merc_eq = c1.multiselect("Mercados", sorted(patrones["mercado"].unique()),
+                                     default=[m for m in cand["mercado"]] if not cand.empty else None,
+                                     key="av_eq_mercados", placeholder="Todos")
+            min_eq = c2.slider("Mínimo de picks", 4, 30, 8, key="av_eq_min")
+            solo_consistentes = c3.toggle("Solo consistentes", value=True, key="av_eq_consist",
+                                          help="≥75% en la primera Y en la segunda mitad de sus partidos: un "
+                                               "patrón que se sostiene en el tiempo, no una racha.")
+            p = patrones[patrones["picks"] >= min_eq]
+            if merc_eq:
+                p = p[p["mercado"].isin(merc_eq)]
+            if solo_consistentes:
+                p = p[(p["primera_mitad_pct"] >= umbral * 100) & (p["segunda_mitad_pct"] >= umbral * 100)]
+            p = p.sort_values(["piso_pct", "picks"], ascending=False)
+            p["competition"] = p["competition"].map(lambda c: config.COMPETITIONS.get(c, c))
+            columnas_eq = ["equipo", "mercado", "picks", "acierto_pct", "primera_mitad_pct", "segunda_mitad_pct",
+                           "piso_pct", "esperado_pct", "competition", "familia"]
+            st.dataframe(p[columnas_eq], hide_index=True, width="stretch", column_config={
+                "competition": "Liga", "equipo": "Equipo", "familia": "Familia", "mercado": "Mercado",
+                "picks": "Picks", "acierto_pct": st.column_config.NumberColumn("Acierto", format="%.0f%%"),
+                "esperado_pct": st.column_config.NumberColumn("Esperado", format="%.0f%%"),
+                "primera_mitad_pct": st.column_config.NumberColumn("1ª mitad", format="%.0f%%",
+                                                                  help="Sus picks más viejos."),
+                "segunda_mitad_pct": st.column_config.NumberColumn("2ª mitad", format="%.0f%%",
+                                                                  help="Sus picks más recientes: la prueba."),
+                "piso_pct": st.column_config.NumberColumn("Piso", format="%.0f%%"),
+            })
+            st.caption("El equipo puede ser el favorito o el no favorito del pick (ej. 'No favorito +1.5' cuenta "
+                       "para el equipo chico). Con muchos equipos × mercados, algunos patrones salen por azar: "
+                       "por eso el filtro de consistencia y el piso.")
+            if not p.empty:
+                opciones = [f"{e} · {m}" for e, m in zip(p["equipo"], p["mercado"])]
+                elegido = st.selectbox("Ver los partidos de", opciones, key="av_eq_det")
+                e, m = elegido.split(" · ", 1)
+                _render_special_detail(datos[((datos["favorito"] == e) | (datos["no_favorito"] == e))
+                                             & (datos["mercado"] == m) & (datos["prob"] >= umbral)])
+
+    with t_goleadores:
+        archivo_ev = config.ROOT_DIR / "data" / "tracking" / "events_365" / "events.csv"
+        gol = load_scorers(archivo_ev.stat().st_mtime if archivo_ev.exists() else 0.0)
+        if gol.empty:
+            st.caption("Todavía no hay eventos descargados.")
+        else:
+            g1, g2 = st.columns([1, 1])
+            gol = gol[gol["competition"].isin(ligas)]
+            equipos_g = g1.multiselect("Equipos", sorted(gol["equipo"].unique()), key="av_gol_equipos",
+                                       placeholder="Todos")
+            min_goles = g2.slider("Mínimo de goles", 1, 20, 5, key="av_gol_min")
+            v = gol[gol["goles"] >= min_goles]
+            if equipos_g:
+                v = v[v["equipo"].isin(equipos_g)]
+            v = v.assign(competition=v["competition"].map(lambda c: config.COMPETITIONS.get(c, c)))
+            st.dataframe(v.head(200), hide_index=True, width="stretch", column_config={
+                "competition": "Liga", "equipo": "Equipo", "player": "Jugador", "goles": "Goles",
+                "partidos_con_gol": "Partidos con gol", "penales": "De penal",
+                "partidos_equipo": "Partidos del equipo",
+                "anota_pct": st.column_config.NumberColumn("Anota en", format="%.0f%%",
+                                                          help="Partidos con gol / partidos del EQUIPO."),
+            })
+            st.caption("'Anota en' = en qué % de los partidos de su equipo marcó (temporada actual y anterior). Sin "
+                       "alineaciones no se sabe cuántos jugó: si se perdió partidos, su % real es mayor. Ni los "
+                       "mejores pasan de ~60%: 'goles de jugador' no llega a 75% en ningún caso; sirve para "
+                       "comparar contra la cuota de 'anota en cualquier momento'.")
+
+    with t_proximos:
+        _render_special_upcoming(cand, resumen, umbral)
+
+
+def _render_special_upcoming(cand: pd.DataFrame, resumen: pd.DataFrame, umbral: float) -> None:
+    if cand.empty:
+        st.caption("Con el filtro actual no hay mercados candidatos o prometedores.")
+        return
+    c1, c2 = st.columns([1, 2])
+    fecha = c1.date_input("Día", value=datetime.now(BOGOTA_TZ).date(), key="av_fecha")
+    if not st.session_state.get("av_prox_on"):
+        if c2.button("🔎 Buscar picks del día", key="av_prox_btn"):
+            st.session_state["av_prox_on"] = True
+        else:
+            st.caption("Usa las mismas predicciones que Tips (la primera vez tarda 1-3 minutos).")
+            return
+    dia = load_day_predictions(fecha.isoformat())
+    dia = dia[dia["competition"].isin(config.COMPETITIONS)] if not dia.empty else dia
+    share_path = special_markets.SHARE_PATH
+    share = pd.read_csv(share_path, index_col=0).iloc[:, 0].to_dict() if share_path.exists() else {}
+    picks = special_markets.upcoming_picks(dia, cand["mercado"].tolist(), share, umbral) if not dia.empty else dia
+    if picks is None or picks.empty:
+        st.info("Ese día no hay partidos con picks en los mercados candidatos.")
+        return
+    # Probabilidad corregida: el modelo es sobreconfiado en algunos mercados;
+    # se le resta lo que en el backtest prometió de más (acierto − esperado).
+    ajuste = (resumen.set_index("mercado")["acierto_pct"] - resumen.set_index("mercado")["esperado_pct"]) / 100
+    picks["prob_ajustada"] = (picks["prob"] + picks["mercado"].map(ajuste).fillna(0)).clip(0.01, 0.99)
+    picks["veredicto"] = picks["mercado"].map(cand.set_index("mercado")["veredicto"]).map(VEREDICTO_ICONO)
+    cuotas = []
+    for r in picks.itertuples(index=False):
+        lineas = load_bwin_special_lines(r.competition, r.home_team, r.away_team, r.utc_date)
+        precio = special_markets.bwin_price(r.mercado, r.fav_local, lineas) if lineas is not None else None
+        cuotas.append(precio[0] if precio else None)
+    picks["cuota"] = cuotas
+    picks["valor"] = 100 * (picks["prob_ajustada"] * picks["cuota"] - 1)
+    picks["Hora"] = picks["utc_date"].map(lambda x: to_bogota(x).strftime("%H:%M") if to_bogota(x) else "")
+    picks["Partido"] = picks["home_team"] + " vs " + picks["away_team"]
+    picks["Liga"] = picks["competition"].map(lambda c: config.COMPETITIONS.get(c, c))
+    picks = picks.sort_values(["valor", "prob_ajustada"], ascending=False, na_position="last")
+    st.dataframe(picks[["Hora", "Liga", "Partido", "favorito", "mercado", "veredicto", "prob", "prob_ajustada",
+                        "cuota", "valor"]], hide_index=True, width="stretch", column_config={
+        "favorito": "Favorito", "mercado": "Mercado", "veredicto": "Mercado es",
+        "prob": st.column_config.NumberColumn("Prob. modelo", format="%.2f"),
+        "prob_ajustada": st.column_config.NumberColumn("Prob. corregida", format="%.2f",
+                                                       help="Corrige lo que el modelo prometió de más en ese "
+                                                            "mercado en el backtest."),
+        "cuota": st.column_config.NumberColumn("Cuota BWIN", format="%.2f",
+                                               help="Vacía = BWIN no ofrece ese mercado/línea para el partido."),
+        "valor": st.column_config.NumberColumn("Valor", format="%+.0f%%",
+                                               help="Prob. corregida × cuota − 1. Positivo = paga más de lo que "
+                                                    "vale; negativo = no conviene aunque acierte seguido."),
+    })
+    st.caption("Experimental: estos mercados no entran todavía en el Plan del día de Tips. Un valor positivo con "
+               "una cuota de 1.20 sigue fallando 1 de cada 5 veces; apuesta montos chicos.")
+
+
+with tab_avanzada:
+    render_advanced_tab()
