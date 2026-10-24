@@ -194,11 +194,11 @@ id,start_utc,status_group,status_text,home_team,away_team,home_id,away_id,home_g
 4354699,2025-05-24T21:00:00Z,4,Ended,Fortaleza FC,Union Magdalena,9844,9832,0.0,1.0,Apertura,20.0,Round
 4354705,2025-05-25T21:00:00Z,4,Ended,Alianza FC,Independiente Santa Fe,10209,7644,6.0,1.0,Apertura,20.0,Round
 4354707,2025-05-25T21:00:00Z,4,Ended,Millonarios,Boyaca Chico,8637,8641,4.0,2.0,Apertura,20.0,Round
+4354706,2025-05-25T21:00:00Z,4,Ended,Atlético Bucaramanga,Deportivo Pasto,10224,9048,2.0,1.0,Apertura,20.0,Round
 4354704,2025-05-25T21:00:00Z,4,Ended,Once Caldas,Deportivo Cali,7289,8639,1.0,0.0,Apertura,20.0,Round
-4354700,2025-05-25T21:00:00Z,4,Ended,America de Cali,Independiente Medellin,8645,8643,2.0,0.0,Apertura,20.0,Round
 4354702,2025-05-25T21:00:00Z,4,Ended,Deportes Tolima,Águilas Doradas,7635,20841,1.0,2.0,Apertura,20.0,Round
 4354701,2025-05-25T21:00:00Z,4,Ended,Atletico Nacional,Junior FC,8640,7204,2.0,3.0,Apertura,20.0,Round
-4354706,2025-05-25T21:00:00Z,4,Ended,Atlético Bucaramanga,Deportivo Pasto,10224,9048,2.0,1.0,Apertura,20.0,Round
+4354700,2025-05-25T21:00:00Z,4,Ended,America de Cali,Independiente Medellin,8645,8643,2.0,0.0,Apertura,20.0,Round
 4432066,2025-05-31T22:30:00Z,4,Ended,Junior FC,Deportes Tolima,7204,7635,1.0,1.0,Quarter Finals,1.0,Round
 4432067,2025-06-01T00:45:00Z,4,Ended,Independiente Medellin,America de Cali,8643,8645,1.0,1.0,Quarter Finals,1.0,Round
 4432069,2025-06-01T21:05:00Z,4,Ended,Independiente Santa Fe,Millonarios,7644,8637,0.0,1.0,Quarter Finals,1.0,Round
@@ -634,11 +634,11 @@ id,start_utc,status_group,status_text,home_team,away_team,home_id,away_id,home_g
 4653693,2026-05-01T23:00:00Z,4,Ended,Once Caldas,Atletico Nacional,7289,8640,1.0,0.0,Apertura,19.0,Round
 4653694,2026-05-02T19:00:00Z,4,Ended,Boyaca Chico,Llaneros FC,8641,10378,3.0,0.0,Apertura,19.0,Round
 4653691,2026-05-02T21:00:00Z,4,Ended,Jaguares de Córdoba,Cucuta Deportivo,10377,8634,2.0,0.0,Apertura,19.0,Round
-4653698,2026-05-03T20:30:00Z,4,Ended,Fortaleza FC,Atlético Bucaramanga,9844,10224,2.0,1.0,Apertura,19.0,Round
-4653692,2026-05-03T20:30:00Z,4,Ended,Independiente Medellin,Águilas Doradas,8643,20841,1.0,2.0,Apertura,19.0,Round
 4653317,2026-05-03T20:30:00Z,4,Ended,Alianza FC,Millonarios,10209,8637,2.0,2.0,Apertura,19.0,Round
-4653697,2026-05-03T20:30:00Z,4,Ended,Independiente Santa Fe,Internacional de Bogota,7644,8542,3.0,1.0,Apertura,19.0,Round
+4653692,2026-05-03T20:30:00Z,4,Ended,Independiente Medellin,Águilas Doradas,8643,20841,1.0,2.0,Apertura,19.0,Round
 4653695,2026-05-03T20:30:00Z,4,Ended,Deportes Tolima,Deportivo Cali,7635,8639,1.0,1.0,Apertura,19.0,Round
+4653697,2026-05-03T20:30:00Z,4,Ended,Independiente Santa Fe,Internacional de Bogota,7644,8542,3.0,1.0,Apertura,19.0,Round
+4653698,2026-05-03T20:30:00Z,4,Ended,Fortaleza FC,Atlético Bucaramanga,9844,10224,2.0,1.0,Apertura,19.0,Round
 4653316,2026-05-03T22:45:00Z,4,Ended,America de Cali,Deportivo Pereira,8645,8638,1.0,0.0,Apertura,19.0,Round
 4653696,2026-05-03T22:45:00Z,4,Ended,Junior FC,Deportivo Pasto,7204,9048,4.0,3.0,Apertura,19.0,Round
 4711068,2026-05-09T21:00:00Z,4,Ended,Internacional de Bogota,Atletico Nacional,8542,8640,1.0,2.0,Quarter Finals,,Round
@@ -798,3 +798,4 @@ id,start_utc,status_group,status_text,home_team,away_team,home_id,away_id,home_g
 4731972,2026-10-21T01:30:00Z,4,Ended,Millonarios,Once Caldas,8637,7289,1.0,1.0,Clausura,13.0,Round
 4732012,2026-10-21T23:15:00Z,4,Ended,Llaneros FC,Deportivo Cali,10378,8639,0.0,3.0,Clausura,9.0,Round
 4732034,2026-10-22T01:20:00Z,4,Ended,Independiente Santa Fe,Jaguares de Córdoba,7644,10377,2.0,1.0,Clausura,7.0,Round
+4731967,2026-10-23T01:00:00Z,4,Ended,Atletico Nacional,Deportivo Pasto,8640,9048,3.0,0.0,Clausura,14.0,Round
