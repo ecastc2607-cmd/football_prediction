@@ -50,6 +50,7 @@ from src.parlay_builder import MIN_LEG_PROB
 from src.parlay_builder import TIERS as PARLAY_TIERS
 from src.parlay_builder import build_parlays
 from src.predict_matchday import LIVE_STATUSES, finished_fixtures
+from src.tips_log import FINISHED_AFTER  # 150 min desde el inicio = partido terminado
 from src.backtest_walkforward import SOURCE as BACKTEST_SOURCE
 from src.support_leagues import ensure_support_leagues
 from src.prediction_log import MARKETS
@@ -1026,6 +1027,17 @@ with tab_jornada:
         # también trae los partidos ya en vivo o terminados de la jornada —
         # matchday_predictions_df ya los deja ordenados al final.
         show = get_predictions_con_jugados(comp_code, int(season), int(matchday)).copy()
+        # Estado efectivo: el CSV local puede seguir diciendo "programado" hasta la
+        # descarga diaria, así que también cuenta la hora de inicio (un partido que
+        # arrancó hace más de FINISHED_AFTER ya terminó). Pendientes primero, por
+        # fecha; luego en vivo; los finalizados al final (pedido del usuario).
+        ahora_utc = pd.Timestamp.now(tz="UTC")
+        inicio_utc = pd.to_datetime(show["utc_date"], utc=True, errors="coerce")
+        show["_estado"] = "pendiente"
+        show.loc[show["status"].isin(LIVE_STATUSES) | (inicio_utc <= ahora_utc), "_estado"] = "en vivo"
+        show.loc[(show["status"] == "FINISHED") | (inicio_utc + FINISHED_AFTER < ahora_utc), "_estado"] = "finalizado"
+        show = (show.assign(_orden=show["_estado"].map({"pendiente": 0, "en vivo": 1, "finalizado": 2}), _ini=inicio_utc)
+                .sort_values(["_orden", "_ini"]).drop(columns=["_orden", "_ini"]).reset_index(drop=True))
         show["Partido"] = show["home_team"] + " vs " + show["away_team"]
         show["Fecha"] = show["utc_date"].map(lambda d: format_bogota(d))
         show["1X2"] = show.apply(lambda r: f"{r.home_win:.0f}% / {r.draw:.0f}% / {r.away_win:.0f}%", axis=1)
@@ -1052,12 +1064,7 @@ with tab_jornada:
 
         def _contexto(r):
             rivalidad = rivalry_label(r.home_team_short, r.away_team_short) or ""
-            if r.status in LIVE_STATUSES:
-                estado = "🔴 En vivo"
-            elif r.status == "FINISHED":
-                estado = "✅ Finalizado"
-            else:
-                estado = ""
+            estado = {"en vivo": "🔴 En vivo", "finalizado": "✅ Finalizado"}.get(r._estado, "")
             if estado and rivalidad:
                 return f"{estado} · {rivalidad}"
             return estado or rivalidad
@@ -1067,8 +1074,7 @@ with tab_jornada:
         # --- Tendencias de corners/faltas/tarjetas (promedio histórico, no del
         # modelo de goles) para partidos que TODAVÍA no se juegan. ---
         tendency_averages = load_tendency_averages(comp_code)
-        columnas_tabla = ["Partido", "Fecha", "Posiciones", "xG", "1X2",
-                           "over_2_5", "btts", "1er tiempo", "2do tiempo", "top_score"]
+        columnas_tabla = ["Partido", "Fecha", "Posiciones", "xG", "1X2", "over_2_5", "btts"]
         st.caption(
             "⏱️ **1er / 2do tiempo**: goles esperados de cada equipo (L = local, V = visitante) solo en "
             "esa mitad; entre paréntesis, la probabilidad de que ESE equipo marque al menos un gol en "
@@ -1139,6 +1145,8 @@ with tab_jornada:
                 for c, v in fila.items()) or "Sin datos")
         show["Fuerza (mayor → menor)"] = orden_fuerza
         columnas_tabla += ["Fuerza (mayor → menor)"]
+        # Por tiempo y marcador más probable, justo antes de Contexto (pedido del usuario).
+        columnas_tabla += ["1er tiempo", "2do tiempo", "top_score"]
         columnas_tabla += ["Contexto", "⚠"]  # al final: son avisos/contexto, no el pronóstico en sí
 
         renombre = {"over_2_5": "Over 2.5 %", "btts": "BTTS %", "top_score": "Marcador top"}
