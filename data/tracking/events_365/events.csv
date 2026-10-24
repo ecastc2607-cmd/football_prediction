@@ -37562,3 +37562,16 @@ game_id,side,minute,added_time,half,type,subtype,player
 4755371,away,58.0,0,2,Yellow Card,,Nnamdi Collins
 4755371,away,63.0,0,2,Yellow Card,,Fares Chaibi
 4755371,home,80.0,0,2,Goal,Field Goal,Maximilian Beier
+4750812,home,34.0,0,1,Yellow Card,,Dani Raba
+4750812,away,37.0,0,1,Yellow Card,,Renato Veiga
+4750812,home,38.0,0,1,Goal,Penalty,Pepelu
+4750812,away,43.0,0,1,Yellow Card,,Ayoze Pérez
+4750812,home,56.0,0,2,Goal Disallowed,Var,Goal Disallowed
+4750812,away,59.0,0,2,Yellow Card,,Tajon Buchanan
+4750812,home,60.0,0,2,Yellow Card,,Pablo Maffeo
+4750812,home,62.0,0,2,Yellow Card,,Guido Rodriguez
+4750812,away,69.0,0,2,Goal,Field Goal,Alex Freeman
+4750812,away,79.0,0,2,Red Card,,Pape Gueye
+4750812,home,89.0,0,2,Yellow Card,,Harvey Elliott
+4750812,home,90.0,0,2,Red Card,Second Yellow Card,Harvey Elliott
+4750812,away,90.0,6,2,Goal,Field Goal,Georges Mikautadze
