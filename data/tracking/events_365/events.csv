@@ -37476,3 +37476,16 @@ game_id,side,minute,added_time,half,type,subtype,player
 4732669,away,57.0,0,2,Goal,Field Goal,Nicolò Casale
 4732669,home,77.0,0,2,Yellow Card,,Alessandro Deiola
 4732669,away,80.0,0,2,Goal,Penalty,Federico Bernardeschi
+4755366,away,19.0,0,1,Red Card,,Felix Uduokhai
+4755366,away,31.0,0,1,Yellow Card,,Janik Haberer
+4755366,away,36.0,0,1,Yellow Card,,Leopold Querfeld
+4755366,home,63.0,0,2,Red Card,,Juma Bah
+4755366,home,71.0,0,2,Goal,Field Goal,Han-Noah Massengo
+4755366,away,74.0,0,2,Goal,Field Goal,Janik Haberer
+4755366,away,77.0,0,2,Yellow Card,,Mekhi Gray
+4755370,home,48.0,0,2,Goal,Field Goal,Tidiam Gomis
+4755370,home,59.0,0,2,Yellow Card,,Rocco Reitz
+4755370,home,66.0,0,2,Goal,Field Goal,Rômulo
+4755370,away,74.0,0,2,Yellow Card,,Lasse Gunther
+4755370,home,84.0,0,2,Goal,Field Goal,Christoph Baumgartner
+4755370,home,90.0,4,2,Goal,Field Goal,Rômulo
