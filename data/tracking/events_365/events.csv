@@ -37582,3 +37582,13 @@ game_id,side,minute,added_time,half,type,subtype,player
 4732665,home,50.0,0,2,Goal,Field Goal,Kenneth Taylor
 4732665,home,58.0,0,2,Goal,Own Goal,Diego Carlos
 4732665,away,90.0,5,2,Goal,Field Goal,Simone Lontani
+4735232,away,28.0,0,1,Yellow Card,,Moustapha Mbow
+4735232,away,29.0,0,1,Yellow Card,,Pierre Lees-Melou
+4735232,away,45.0,2,1,Goal,Field Goal,Luca Koleosho
+4735232,home,51.0,0,2,Yellow Card,,Florian Thauvin
+4735232,home,63.0,0,2,Goal,Field Goal,Florian Thauvin
+4735232,home,74.0,0,2,Yellow Card,,Samson Baidoo
+4735232,home,83.0,0,2,Goal,Field Goal,Thorgan Hazard
+4735232,home,89.0,0,2,Yellow Card,,Michal Skóraś
+4735232,away,90.0,2,2,Yellow Card,,Otávio
+4735232,home,90.0,5,2,Yellow Card,,Yannick Cahuzac
