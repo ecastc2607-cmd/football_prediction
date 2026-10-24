@@ -886,6 +886,80 @@ st.sidebar.caption(
     "sobre todo en el promedio de liga para ellos."
 )
 
+# Colores (guía de visualización del proyecto): azul = acierto real /
+# fortaleza, naranja = lo esperado por el modelo, rojo = debilidad, gris neutro
+# en el punto medio de la escala divergente.
+COLOR_REAL, COLOR_ESPERADO = "#3987e5", "#eb6834"
+COLOR_FUERTE, COLOR_NEUTRO, COLOR_DEBIL = "#3987e5", "#8a8a86", "#e66767"
+
+
+_FUERZA_CORTO = {"1X2": "1X2", "over_2_5": "Goles", "btts": "Ambos anotan", "Especial (Avanzada)": "Especial"}
+
+
+@st.cache_data(ttl=1800, show_spinner=False)
+def _strength_sources(_mtime_pred: float, _mtime_bt: float):
+    """Tablas de fuerza de Reportes (predicciones del modelo) y backtest de
+    mercados especiales, cacheadas por fecha de los archivos."""
+    log = load_calibration_log()
+    largo = reports.predictions_long(log, include_backtest=True) if not log.empty else pd.DataFrame()
+    liga, equipo = reports.strength_tables(largo)
+    return liga, equipo, special_markets.load_backtest()
+
+
+def _special_strength(bt: pd.DataFrame, comp: str, filtro) -> float | None:
+    """Fuerza (acierto − esperado, encogida) de unos picks del backtest especial en la liga."""
+    if bt.empty:
+        return None
+    d = bt[(bt["competition"] == comp) & filtro(bt)].dropna(subset=["gano"])
+    if d.empty:
+        return None
+    return 100 * (d["gano"].mean() - d["prob"].mean()) * len(d) / (len(d) + reports.STRENGTH_PRIOR)
+
+
+def _jornada_strength(show: pd.DataFrame, comp: str) -> pd.DataFrame:
+    """Fuerza por celda de la tabla Jornada: una columna por mercado mostrado."""
+    ruta_pred = config.ROOT_DIR / "data" / "tracking" / "predictions_log.csv"
+    ruta_bt = special_markets.BACKTEST_PATH
+    liga, equipo, bt = _strength_sources(ruta_pred.stat().st_mtime if ruta_pred.exists() else 0,
+                                         ruta_bt.stat().st_mtime if ruta_bt.exists() else 0)
+    mercados = {"1X2": "Resultado (1X2)", "over_2_5": "Goles +/-2.5", "btts": "Ambos anotan"}
+    for c in show.columns:
+        for nombre in ("Corners", "Faltas", "Tarjetas"):
+            if c.startswith(nombre + " ("):
+                mercados[c] = nombre
+    salida = pd.DataFrame(index=show.index)
+    for col, merc in mercados.items():
+        if col in show.columns:
+            salida[col] = [reports.match_strength(liga, equipo, comp, r.home_team, r.away_team, merc)[0]
+                           for r in show.itertuples()]
+    # Fueras de juego / tiros al arco: picks del modelo (el lado más probable) en esa liga.
+    for nombre in ("Fueras de juego", "Tiros al arco"):
+        if nombre in show.columns:
+            v = _special_strength(bt, comp, lambda d, n=nombre: d["mercado"].str.startswith(n + ":") & (d["prob"] >= 0.5))
+            salida[nombre] = [v if show.at[i, nombre] != "Sin datos" else None for i in show.index]
+    if "_especial_mercado" in show.columns:
+        salida["Especial (Avanzada)"] = [
+            _special_strength(bt, comp, lambda d, m=m: (d["mercado"] == m) & (d["prob"] >= special_markets.MIN_PROB))
+            if isinstance(m, str) else None for m in show["_especial_mercado"]]
+    return salida.astype(float)
+
+
+def _hex_mix(a: str, b: str, t: float) -> str:
+    """Color entre a y b (t de 0 a 1), en hex."""
+    ca = [int(a[i:i + 2], 16) for i in (1, 3, 5)]
+    cb = [int(b[i:i + 2], 16) for i in (1, 3, 5)]
+    return "#" + "".join(f"{round(x + (y - x) * t):02x}" for x, y in zip(ca, cb))
+
+
+def _diverging_cell_css(diferencia, tope: float) -> str:
+    """Fondo de una celda del mapa: rojo (debilidad) - gris - azul (fortaleza)."""
+    if pd.isna(diferencia):
+        return ""
+    t = max(-1.0, min(1.0, float(diferencia) / tope))
+    fondo = _hex_mix(COLOR_NEUTRO, COLOR_FUERTE if t > 0 else COLOR_DEBIL, abs(t))
+    return f"background-color: {fondo}; color: #ffffff; text-align: center"
+
+
 tab_jornada, tab_vivo, tab_amistosos, tab_tips, tab_reportes, tab_avanzada = st.tabs(
     ["📅 Jornada", "🔴 En vivo", "🌍 Amistosos", "💡 Tips", "📊 Reportes", "🧪 Avanzada"]
 )
@@ -1024,16 +1098,74 @@ with tab_jornada:
                 "5 partidos registrados todavía — el número es orientativo, no confiable aún."
             )
 
+        # --- Fueras de juego, tiros al arco y mercado especial (vista Avanzada) ---
+        cortos = dict(zip(show["home_team"], show["home_team_short"])) | dict(zip(show["away_team"],
+                                                                                  show["away_team_short"]))
+
+        def _stat_celda(r, col):
+            pr = special_markets.stat_prediction(comp_code, r.home_team, r.away_team, col)
+            return f"{pr['lado']} de {pr['linea']:g} · {pr['esperado']:.1f} esp. ({pr['prob']:.0%})" if pr else "Sin datos"
+
+        especiales = []
+        for r in show.itertuples():
+            try:
+                pk = special_markets.best_special_pick(comp_code, float(r.home_xg), float(r.away_xg),
+                                                       r.home_team, r.away_team)
+            except (TypeError, ValueError):
+                pk = None
+            especiales.append(pk)
+        show["Fueras de juego"] = show.apply(lambda r: _stat_celda(r, "off"), axis=1)
+        show["Tiros al arco"] = show.apply(lambda r: _stat_celda(r, "sot"), axis=1)
+        show["Especial (Avanzada)"] = [
+            "-" if not pk else pk["mercado"] + (f" · {cortos.get(pk['equipo'], pk['equipo'])}" if pk["equipo"] else "")
+            + f" ({pk['prob']:.0%})" for pk in especiales]
+        show["_especial_mercado"] = [pk["mercado"] if pk else None for pk in especiales]
+        columnas_tabla += ["Fueras de juego", "Tiros al arco", "Especial (Avanzada)"]
+        st.caption(
+            "🚩 **Fueras de juego / 🎯 Tiros al arco**: total de los dos equipos (mismo modelo que corners/"
+            "tarjetas: promedios de cada equipo + binomial negativa) contra la línea principal de BWIN; entre "
+            "paréntesis, la probabilidad de ese lado. **Especial (Avanzada)**: el mercado especial más "
+            "probable del partido entre los que el backtest aprueba en esta liga (ver 🧪 Avanzada → 📖 "
+            "Qué significa cada mercado)."
+        )
+
+        # --- Fuerza de cada mercado según Reportes (liga × mercado y equipos) ---
+        fuerza = _jornada_strength(show, comp_code)
+        orden_fuerza = []
+        for i in show.index:
+            fila = fuerza.loc[i].dropna().sort_values(ascending=False)
+            orden_fuerza.append(" · ".join(
+                f"{_FUERZA_CORTO.get(c, c.split(' (')[0])} {'▲' if v >= 3 else '▼' if v <= -3 else '='}{abs(v):.0f}"
+                for c, v in fila.items()) or "Sin datos")
+        show["Fuerza (mayor → menor)"] = orden_fuerza
+        columnas_tabla += ["Fuerza (mayor → menor)"]
         columnas_tabla += ["Contexto", "⚠"]  # al final: son avisos/contexto, no el pronóstico en sí
 
+        renombre = {"over_2_5": "Over 2.5 %", "btts": "BTTS %", "top_score": "Marcador top"}
+        tabla_j = show[columnas_tabla].rename(columns=renombre)
+        colores_j = pd.DataFrame("", index=tabla_j.index, columns=tabla_j.columns)
+        for col in fuerza.columns:
+            destino = renombre.get(col, col)
+            if destino in colores_j.columns:
+                colores_j[destino] = fuerza[col].map(lambda v: _diverging_cell_css(v, 25.0))
         st.dataframe(
-            show[columnas_tabla].rename(
-                columns={"over_2_5": "Over 2.5 %", "btts": "BTTS %", "top_score": "Marcador top"}
-            ),
+            tabla_j.style.apply(lambda _: colores_j, axis=None),
             width="stretch", hide_index=True,
             # Fija "Partido" para no perder la referencia de qué equipos son al
             # revisar las columnas de pronóstico más a la derecha.
-            column_config={"Partido": st.column_config.Column(pinned=True)},
+            column_config={"Partido": st.column_config.Column(pinned=True),
+                           "Fuerza (mayor → menor)": st.column_config.Column(
+                               width="large", help="Mercados de este partido ordenados de más fuerte a más débil "
+                                                   "según Reportes (puntos de acierto real − esperado).")},
+        )
+        st.caption(
+            "🎨 **Color = fuerza del modelo en ese mercado según Reportes**: azul = acierta más de lo que "
+            "espera (fortaleza), rojo = acierta menos (debilidad), gris = según lo esperado, sin color = sin "
+            "historial. Sale de liga × mercado ('Fortalezas y debilidades') y de los dos equipos ('Por "
+            "equipo'), ponderado por cantidad de predicciones y acercado a neutro con poca muestra (con 10 "
+            "predicciones, +40 pts queda en +20). La columna 'Fuerza' los ordena de mayor a menor "
+            "(▲ fortaleza, ▼ debilidad, en puntos). Fueras de juego, tiros al arco y el especial salen del "
+            "backtest de la vista Avanzada."
         )
 
     # --- Resultados ya jugados en esta jornada ---
@@ -1809,11 +1941,6 @@ with tab_tips:
 
 
 # ============================== PESTAÑA: REPORTES ==============================
-# Colores (guía de visualización del proyecto): azul = acierto real /
-# fortaleza, naranja = lo esperado por el modelo, rojo = debilidad, gris neutro
-# en el punto medio de la escala divergente.
-COLOR_REAL, COLOR_ESPERADO = "#3987e5", "#eb6834"
-COLOR_FUERTE, COLOR_NEUTRO, COLOR_DEBIL = "#3987e5", "#8a8a86", "#e66767"
 
 
 @st.cache_data(ttl=600, show_spinner="Actualizando resultados de los tips...")
@@ -1937,22 +2064,6 @@ def _min_sample_slider(label: str, conteos: pd.Series, defecto: int, key: str, h
     if key in st.session_state:
         st.session_state[key] = min(max(st.session_state[key], piso), tope)
     return (container or st).slider(label, piso, tope, min(max(defecto, piso), tope), key=key, help=help)
-
-
-def _hex_mix(a: str, b: str, t: float) -> str:
-    """Color entre a y b (t de 0 a 1), en hex."""
-    ca = [int(a[i:i + 2], 16) for i in (1, 3, 5)]
-    cb = [int(b[i:i + 2], 16) for i in (1, 3, 5)]
-    return "#" + "".join(f"{round(x + (y - x) * t):02x}" for x, y in zip(ca, cb))
-
-
-def _diverging_cell_css(diferencia, tope: float) -> str:
-    """Fondo de una celda del mapa: rojo (debilidad) - gris - azul (fortaleza)."""
-    if pd.isna(diferencia):
-        return ""
-    t = max(-1.0, min(1.0, float(diferencia) / tope))
-    fondo = _hex_mix(COLOR_NEUTRO, COLOR_FUERTE if t > 0 else COLOR_DEBIL, abs(t))
-    return f"background-color: {fondo}; color: #ffffff; text-align: center"
 
 
 def _render_strengths_map(datos: pd.DataFrame) -> None:
@@ -2326,12 +2437,13 @@ with tab_reportes:
 # ---------------------------------------------------------------------------
 
 VEREDICTO_ICONO = {"Candidato": "✅ Candidato", "Prometedor": "🟡 Prometedor", "Alto pero obvio": "⚪ Alto pero obvio",
-                   "Descartado": "✘ Descartado", "Sin picks": "· Sin picks"}
+                   "Descartado": "✘ Descartado", "Muestra chica": "… Muestra chica", "Sin picks": "· Sin picks"}
 VEREDICTO_AYUDA = (
     "✅ Candidato: acierta ≥75% con margen (piso del intervalo ≥75%) y el modelo le suma ≥5 puntos a la "
     "frecuencia normal del mercado. 🟡 Prometedor: ≥75% pero con poca muestra o poca mejora. ⚪ Alto pero "
     "obvio: ≥75% solo porque el mercado casi siempre sale — paga muy poco y el modelo no aporta. "
-    "✘ Descartado: los picks del modelo aciertan menos de 75%.")
+    "✘ Descartado: los picks del modelo aciertan menos de 75%. … Muestra chica: menos de 30 picks, todavía no se "
+    "puede juzgar.")
 
 
 @st.cache_data(ttl=3600, show_spinner="Cargando el análisis de mercados especiales...")
@@ -2473,7 +2585,8 @@ def render_advanced_tab() -> None:
         k1.metric("Mercados analizados", resumen["mercado"].nunique())
         k2.metric("Candidatos", int((resumen["veredicto"] == "Candidato").sum()))
         k3.metric("Prometedores", int((resumen["veredicto"] == "Prometedor").sum()))
-        orden = {"Candidato": 0, "Prometedor": 1, "Alto pero obvio": 2, "Descartado": 3, "Sin picks": 4}
+        orden = {"Candidato": 0, "Prometedor": 1, "Alto pero obvio": 2, "Descartado": 3, "Muestra chica": 4,
+                 "Sin picks": 5}
         tabla = resumen.assign(_o=resumen["veredicto"].map(orden)).sort_values(["_o", "mejora"],
                                                                                  ascending=[True, False])
         tabla["veredicto"] = tabla["veredicto"].map(VEREDICTO_ICONO)

@@ -37,6 +37,7 @@ from . import config
 BACKTEST_PATH = config.ROOT_DIR / "data" / "tracking" / "special_markets_backtest.csv.gz"  # comprimido: ~10x menos
 SHARE_PATH = config.ROOT_DIR / "data" / "tracking" / "special_markets_share.csv"
 MIN_PROB = 0.75          # umbral del pedido del usuario
+MIN_PICKS_VERDICT = 30   # con menos picks, un 100% no dice nada
 MIN_PREV_MATCHES = 5     # cada equipo con al menos estos partidos previos
 DEFAULT_FIRST_HALF_SHARE = 0.44
 RHO = -0.10              # Dixon-Coles, igual que poisson_model
@@ -460,6 +461,8 @@ def verdict(row) -> str:
     """Clasificación de un mercado para la vista."""
     if not row["picks"] or pd.isna(row["acierto_pct"]):
         return "Sin picks"
+    if row["picks"] < MIN_PICKS_VERDICT:
+        return "Muestra chica"
     lift = row["acierto_pct"] - row["base_pct"]
     if row["piso_pct"] >= MIN_PROB * 100 and lift >= 5:
         return "Candidato"
@@ -740,3 +743,66 @@ def market_help(mercado: str) -> str:
         if mercado.startswith(nombre + ":"):
             return texto
     return ""
+
+
+# --- Predicción de tiros al arco / fueras de juego para la vista Jornada -------
+STAT_DISPLAY_LINES = {"off": 3.5, "sot": 9.5}  # líneas principales de BWIN (oct-2026)
+_STAT_FIT_CACHE: dict = {}
+
+
+def stat_totals_frame() -> pd.DataFrame:
+    """Un renglón por partido con tiros al arco (sot) y fueras de juego (off)
+    de local y visitante, desde match_stats_log.csv."""
+    from . import match_stats_log
+
+    log = match_stats_log.load_log()
+    if log.empty:
+        return pd.DataFrame()
+    log = log.assign(sot=pd.to_numeric(log["remates_a_puerta"], errors="coerce"),
+                     off=pd.to_numeric(log["fueras_de_juego"], errors="coerce"))
+    es_local = log["is_home"].astype(str).str.lower().isin(["true", "1"])
+    k = ["competition", "utc_date", "home_team", "away_team"]
+    return (log[es_local].drop_duplicates(k).set_index(k)[["sot", "off"]]
+            .join(log[~es_local].drop_duplicates(k).set_index(k)[["sot", "off"]], lsuffix="_home",
+                  rsuffix="_away", how="inner").reset_index())
+
+
+def stat_prediction(competition: str, home: str, away: str, col: str) -> dict | None:
+    """{"esperado", "linea", "lado" ('Más'/'Menos'), "prob"} para tiros al arco
+    ('sot') o fueras de juego ('off'); None si la liga no tiene historial."""
+    from . import match_stats_log
+    from . import totals_model as tm
+
+    path = match_stats_log.LOG_PATH
+    clave = (competition, col, path.stat().st_mtime if path.exists() else 0)
+    if clave not in _STAT_FIT_CACHE:
+        df = stat_totals_frame()
+        _STAT_FIT_CACHE[clave] = tm.fit(df[df["competition"] == competition], col) if not df.empty else None
+    s = _STAT_FIT_CACHE[clave]
+    if s is None:
+        return None
+    linea = STAT_DISPLAY_LINES[col]
+    mu = tm.expected_total(s, home, away)
+    p_mas = 0.5 + tm.CALIBRATION_SLOPE * (tm.prob_over(s, mu, linea) - 0.5)
+    lado, prob = ("Más", p_mas) if p_mas >= 0.5 else ("Menos", 1 - p_mas)
+    return {"esperado": mu, "linea": linea, "lado": lado, "prob": prob}
+
+
+def best_special_pick(competition: str, home_xg: float, away_xg: float, home: str, away: str) -> dict | None:
+    """El mercado especial más probable del partido entre los que el backtest
+    aprueba en esa liga (value_tips.special_rules), o None."""
+    from .value_tips import special_rules
+
+    correccion, permitidos = special_rules()
+    share = pd.read_csv(SHARE_PATH, index_col=0).iloc[:, 0].to_dict() if SHARE_PATH.exists() else {}
+    fav_local = home_xg >= away_xg
+    mejores = []
+    for _, merc, prob, _ in goal_market_probs(Match(home_xg, away_xg, share.get(competition, DEFAULT_FIRST_HALF_SHARE))):
+        if (competition, merc) in permitidos and prob >= MIN_PROB:
+            mejores.append((min(prob + correccion.get(merc, 0.0), 0.99), merc))
+    if not mejores:
+        return None
+    prob, merc = max(mejores)
+    fav, und = (home, away) if fav_local else (away, home)
+    equipo = und if merc.startswith("No favorito") else fav if merc.startswith("Favorito") else None
+    return {"mercado": merc, "equipo": equipo, "prob": prob}

@@ -281,3 +281,35 @@ def prediction_detail(long: pd.DataFrame) -> pd.DataFrame:
 
 def team_detail(long: pd.DataFrame, equipo: str) -> pd.DataFrame:
     return prediction_detail(long[(long["home_team"] == equipo) | (long["away_team"] == equipo)])
+
+
+# --- Fuerza por mercado para resaltar la vista Jornada ---
+STRENGTH_PRIOR = 10  # "predicciones fantasma" en 0: con poca muestra la fuerza se acerca a neutra
+
+
+def strength_tables(long: pd.DataFrame) -> tuple[pd.DataFrame, pd.DataFrame]:
+    """(liga × mercado, equipo × mercado) con diferencia (acierto − esperado,
+    puntos) y predicciones — lo mismo que muestran 'Fortalezas y debilidades' y
+    'Por equipo' de Reportes."""
+    if long.empty:
+        vacio = pd.DataFrame(columns=["diferencia", "predicciones"])
+        return vacio, vacio
+    liga = summarize(long, ["competition", "mercado"]).set_index(["competition", "mercado"])
+    equipo = summarize(by_team(long), ["equipo", "mercado"]).set_index(["equipo", "mercado"])
+    return liga[["diferencia", "predicciones"]], equipo[["diferencia", "predicciones"]]
+
+
+def match_strength(liga: pd.DataFrame, equipo: pd.DataFrame, competition: str, home: str, away: str,
+                   mercado: str) -> tuple[float | None, int]:
+    """Fuerza del modelo en ese mercado para ese partido: promedio ponderado por
+    cantidad de predicciones de la liga y de los dos equipos, encogido hacia 0
+    con STRENGTH_PRIOR. (fuerza en puntos, predicciones detrás) o (None, 0)."""
+    partes = []
+    for tabla, clave in ((liga, (competition, mercado)), (equipo, (home, mercado)), (equipo, (away, mercado))):
+        if clave in tabla.index:
+            fila = tabla.loc[clave]
+            partes.append((float(fila["diferencia"]), int(fila["predicciones"])))
+    n = sum(p[1] for p in partes)
+    if not n:
+        return None, 0
+    return sum(d * k for d, k in partes) / (n + STRENGTH_PRIOR), n
