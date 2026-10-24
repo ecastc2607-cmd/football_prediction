@@ -18280,3 +18280,106 @@ game_id,line_type_id,market,line,option,odds,opening_odds,won
 4731941,145,Away Team - Clean Sheet,,No,1.57,1.57,True
 4731941,13,Both Teams To Score 2nd Half,,Yes,3.9,3.5,False
 4731941,13,Both Teams To Score 2nd Half,,No,1.22,1.26,True
+4731940,1,Full Time Result,,1,1.93,1.68,True
+4731940,1,Full Time Result,,X,3.2,3.62,False
+4731940,1,Full Time Result,,2,3.75,4.77,False
+4731940,14,Double Chance,,1X,1.25,1.19,True
+4731940,14,Double Chance,,12,1.31,1.3,True
+4731940,14,Double Chance,,X2,1.8,2.17,False
+4731940,3,Total Goals In Match,2.5,Under,1.8,1.97,True
+4731940,3,Total Goals In Match,2.5,Over,1.88,1.87,False
+4731940,3,Total Goals In Match,3.5,Under,1.31,1.36,True
+4731940,3,Total Goals In Match,3.5,Over,3.2,2.99,False
+4731940,3,Total Goals In Match,1.5,Under,3.4,3.78,True
+4731940,3,Total Goals In Match,1.5,Over,1.27,1.26,False
+4731940,12,Both Teams To Score,,Yes,1.73,1.8,False
+4731940,12,Both Teams To Score,,No,1.98,1.91,True
+4731940,7,First To Score,,Home,1.66,1.53,True
+4731940,7,First To Score,,No Goal,10.0,11.0,False
+4731940,7,First To Score,,Away,2.37,2.62,False
+4731940,11,Asian Handicap,-0.5,Home,1.96,1.68,True
+4731940,11,Asian Handicap,-0.5,Away,1.86,2.16,False
+4731940,11,Asian Handicap,-0.25,Home,1.69,1.49,True
+4731940,11,Asian Handicap,-0.25,Away,2.17,2.62,False
+4731940,11,Asian Handicap,-0.75,Home,2.18,1.86,True
+4731940,11,Asian Handicap,-0.75,Away,1.64,1.91,False
+4731940,15,Draw No Bet,,Home,1.4,1.24,True
+4731940,15,Draw No Bet,,Away,2.7,3.72,False
+4731940,5,1st Half Result,,1,2.5,2.25,True
+4731940,5,1st Half Result,,X,2.2,2.3,False
+4731940,5,1st Half Result,,2,4.34,5.0,False
+4731940,6,2nd Half Result,,1,2.21,2.1,False
+4731940,6,2nd Half Result,,X,2.51,2.5,True
+4731940,6,2nd Half Result,,2,3.76,4.0,False
+4731940,9,1st Half Goals,1.5,Under,1.4,1.44,True
+4731940,9,1st Half Goals,1.5,Over,2.74,2.62,False
+4731940,9,1st Half Goals,2.5,Under,1.11,1.11,True
+4731940,9,1st Half Goals,2.5,Over,7.0,7.0,False
+4731940,9,1st Half Goals,0.5,Under,3.02,3.02,False
+4731940,9,1st Half Goals,0.5,Over,1.38,1.38,True
+4731940,137,Total Corners,9.5,Under,1.82,1.82,False
+4731940,137,Total Corners,9.5,Over,1.82,1.82,True
+4731940,127,Half Time Correct Score,0-0,Yes,3.0,3.0,False
+4731940,127,Half Time Correct Score,1-0,Yes,3.73,3.73,True
+4731940,127,Half Time Correct Score,0-1,Yes,5.47,6.5,False
+4731940,127,Half Time Correct Score,1-1,Yes,7.5,8.0,False
+4731940,127,Half Time Correct Score,2-0,Yes,9.5,8.5,False
+4731940,127,Half Time Correct Score,0-2,Yes,21.0,26.0,False
+4731940,127,Half Time Correct Score,2-1,Yes,19.0,19.0,False
+4731940,127,Half Time Correct Score,1-2,Yes,26.0,29.0,False
+4731940,127,Half Time Correct Score,2-2,Yes,51.0,51.0,False
+4731940,127,Half Time Correct Score,0-3,Yes,67.0,81.0,False
+4731940,127,Half Time Correct Score,3-0,Yes,29.0,26.0,False
+4731940,127,Half Time Correct Score,3-1,Yes,51.0,41.0,False
+4731940,127,Half Time Correct Score,1-3,Yes,81.0,101.0,False
+4731940,127,Half Time Correct Score,3-2,Yes,101.0,126.0,False
+4731940,127,Half Time Correct Score,2-3,Yes,201.0,201.0,False
+4731940,127,Half Time Correct Score,0-4,Yes,301.0,351.0,False
+4731940,127,Half Time Correct Score,4-0,Yes,81.0,67.0,False
+4731940,127,Half Time Correct Score,4-1,Yes,151.0,126.0,False
+4731940,127,Half Time Correct Score,1-4,Yes,351.0,351.0,False
+4731940,127,Half Time Correct Score,5-0,Yes,351.0,251.0,False
+4731940,126,Correct Score,0-0,Yes,11.0,11.0,False
+4731940,126,Correct Score,0-1,Yes,11.0,15.0,False
+4731940,126,Correct Score,1-0,Yes,7.0,7.5,True
+4731940,126,Correct Score,1-1,Yes,6.5,7.0,False
+4731940,126,Correct Score,0-2,Yes,19.0,26.0,False
+4731940,126,Correct Score,2-0,Yes,8.5,8.0,False
+4731940,126,Correct Score,2-1,Yes,8.5,8.5,False
+4731940,126,Correct Score,1-2,Yes,13.0,15.0,False
+4731940,126,Correct Score,2-2,Yes,13.0,15.0,False
+4731940,126,Correct Score,0-3,Yes,41.0,51.0,False
+4731940,126,Correct Score,3-0,Yes,15.0,13.0,False
+4731940,126,Correct Score,3-1,Yes,15.0,13.0,False
+4731940,126,Correct Score,1-3,Yes,29.0,41.0,False
+4731940,126,Correct Score,2-3,Yes,34.0,41.0,False
+4731940,126,Correct Score,3-2,Yes,23.0,26.0,False
+4731940,126,Correct Score,3-3,Yes,41.0,51.0,False
+4731940,126,Correct Score,0-4,Yes,81.0,126.0,False
+4731940,126,Correct Score,4-0,Yes,29.0,26.0,False
+4731940,126,Correct Score,1-4,Yes,67.0,81.0,False
+4731940,126,Correct Score,4-1,Yes,29.0,26.0,False
+4731940,126,Correct Score,2-4,Yes,67.0,101.0,False
+4731940,126,Correct Score,4-2,Yes,41.0,41.0,False
+4731940,126,Correct Score,4-3,Yes,81.0,81.0,False
+4731940,126,Correct Score,3-4,Yes,101.0,151.0,False
+4731940,126,Correct Score,4-4,Yes,201.0,251.0,False
+4731940,126,Correct Score,0-5,Yes,251.0,351.0,False
+4731940,126,Correct Score,5-0,Yes,51.0,51.0,False
+4731940,126,Correct Score,5-1,Yes,51.0,51.0,False
+4731940,126,Correct Score,1-5,Yes,201.0,301.0,False
+4731940,126,Correct Score,2-5,Yes,251.0,351.0,False
+4731940,126,Correct Score,5-2,Yes,81.0,81.0,False
+4731940,126,Correct Score,3-5,Yes,351.0,301.0,False
+4731940,126,Correct Score,5-3,Yes,201.0,151.0,False
+4731940,126,Correct Score,6-0,Yes,151.0,101.0,False
+4731940,126,Correct Score,6-1,Yes,151.0,101.0,False
+4731940,126,Correct Score,6-2,Yes,301.0,201.0,False
+4731940,126,Correct Score,7-0,Yes,351.0,301.0,False
+4731940,126,Correct Score,7-1,Yes,351.0,301.0,False
+4731940,144,Home Team - Clean Sheet,,Yes,2.6,2.35,True
+4731940,144,Home Team - Clean Sheet,,No,1.43,1.52,False
+4731940,145,Away Team - Clean Sheet,,Yes,4.32,5.48,False
+4731940,145,Away Team - Clean Sheet,,No,1.2,1.14,True
+4731940,13,Both Teams To Score 2nd Half,,Yes,3.3,3.25,False
+4731940,13,Both Teams To Score 2nd Half,,No,1.29,1.29,True
