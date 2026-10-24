@@ -6397,3 +6397,7 @@ PD,2026,10.0,2026-10-24T14:15:00Z,Real Racing Club de Santander,RCD Espanyol de 
 PD,2026,10.0,2026-10-24T14:15:00Z,Real Racing Club de Santander,RCD Espanyol de Barcelona,RCD Espanyol de Barcelona,False,4.0,17.0,4.0,0.0,45.0,1.0,11.0,4.0
 SA,2026,8.0,2026-10-24T16:00:00Z,SSC Napoli,AS Roma,SSC Napoli,True,2.0,6.0,1.0,0.0,40.0,9.0,15.0,0.0
 SA,2026,8.0,2026-10-24T16:00:00Z,SSC Napoli,AS Roma,AS Roma,False,11.0,11.0,4.0,0.0,60.0,4.0,24.0,1.0
+PL,2026,8.0,2026-10-24T16:30:00Z,Chelsea FC,Tottenham Hotspur FC,Chelsea FC,True,4.0,14.0,3.0,1.0,32.0,4.0,7.0,2.0
+PL,2026,8.0,2026-10-24T16:30:00Z,Chelsea FC,Tottenham Hotspur FC,Tottenham Hotspur FC,False,6.0,14.0,3.0,0.0,68.0,4.0,15.0,1.0
+BL1,2026,7.0,2026-10-24T16:30:00Z,Borussia Dortmund,Eintracht Frankfurt,Borussia Dortmund,True,13.0,7.0,0.0,0.0,58.0,5.0,18.0,1.0
+BL1,2026,7.0,2026-10-24T16:30:00Z,Borussia Dortmund,Eintracht Frankfurt,Eintracht Frankfurt,False,1.0,12.0,2.0,0.0,42.0,3.0,8.0,4.0

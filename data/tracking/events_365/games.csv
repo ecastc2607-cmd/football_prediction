@@ -4565,3 +4565,5 @@ game_id,competition,start_utc,home_team,away_team,home_goals,away_goals,ht_home_
 4742031,PL,2026-10-24T14:00:00Z,Arsenal,Everton,2,0,1.0,0.0,True,2026-10-24T16:00:25Z
 4750816,PD,2026-10-24T14:15:00Z,Racing Santander,Espanyol,2,1,0.0,0.0,True,2026-10-24T16:15:30Z
 4732663,SA,2026-10-24T16:00:00Z,Napoli,AS Roma,3,3,1.0,0.0,True,2026-10-24T18:00:28Z
+4742028,PL,2026-10-24T16:30:00Z,Chelsea,Tottenham,0,2,0.0,0.0,True,2026-10-24T18:25:20Z
+4755371,BL1,2026-10-24T16:30:00Z,Borussia Dortmund,Eintracht Frankfurt,1,0,0.0,0.0,True,2026-10-24T18:25:20Z
