@@ -37575,3 +37575,10 @@ game_id,side,minute,added_time,half,type,subtype,player
 4750812,home,89.0,0,2,Yellow Card,,Harvey Elliott
 4750812,home,90.0,0,2,Red Card,Second Yellow Card,Harvey Elliott
 4750812,away,90.0,6,2,Goal,Field Goal,Georges Mikautadze
+4732665,home,24.0,0,1,Woodwork,,Gustav Isaksen
+4732665,home,30.0,0,1,Yellow Card,,Oliver Provstgaard
+4732665,away,38.0,0,1,Yellow Card,,Vincent Sierro
+4732665,home,41.0,0,1,Goal Disallowed,Var,Gustav Isaksen
+4732665,home,50.0,0,2,Goal,Field Goal,Kenneth Taylor
+4732665,home,58.0,0,2,Goal,Own Goal,Diego Carlos
+4732665,away,90.0,5,2,Goal,Field Goal,Simone Lontani
