@@ -767,9 +767,10 @@ def stat_totals_frame() -> pd.DataFrame:
                   rsuffix="_away", how="inner").reset_index())
 
 
-def stat_prediction(competition: str, home: str, away: str, col: str) -> dict | None:
-    """{"esperado", "linea", "lado" ('Más'/'Menos'), "prob"} para tiros al arco
-    ('sot') o fueras de juego ('off'); None si la liga no tiene historial."""
+def stat_prediction(competition: str, home: str, away: str, col: str, linea: float | None = None) -> dict | None:
+    """{"esperado", "linea", "lado" ('Más'/'Menos'), "prob", "p_mas"} para tiros
+    al arco ('sot') o fueras de juego ('off') en `linea` (por defecto la
+    principal de BWIN); None si la liga no tiene historial."""
     from . import match_stats_log
     from . import totals_model as tm
 
@@ -781,11 +782,11 @@ def stat_prediction(competition: str, home: str, away: str, col: str) -> dict | 
     s = _STAT_FIT_CACHE[clave]
     if s is None:
         return None
-    linea = STAT_DISPLAY_LINES[col]
+    linea = STAT_DISPLAY_LINES[col] if linea is None else linea
     mu = tm.expected_total(s, home, away)
     p_mas = 0.5 + tm.CALIBRATION_SLOPE * (tm.prob_over(s, mu, linea) - 0.5)
     lado, prob = ("Más", p_mas) if p_mas >= 0.5 else ("Menos", 1 - p_mas)
-    return {"esperado": mu, "linea": linea, "lado": lado, "prob": prob}
+    return {"esperado": mu, "linea": linea, "lado": lado, "prob": prob, "p_mas": p_mas}
 
 
 def best_special_pick(competition: str, home_xg: float, away_xg: float, home: str, away: str) -> dict | None:

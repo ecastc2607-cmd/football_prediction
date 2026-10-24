@@ -40,6 +40,8 @@ VOID = "devuelto"
 WON_VOID = "devuelta"  # boleto con todas sus piernas devueltas
 # Mercados especiales (vista Avanzada) que necesitan el detalle del partido.
 DETAIL_MARKETS = ("Primer gol", "1er tiempo")
+# Mercados que se liquidan con las estadísticas finales de 365scores.
+STAT_MARKETS = ("Corners", "Tarjetas", "Fueras de juego", "Tiros al arco")
 WON, LOST = "ganada", "perdida"
 # Un partido se da por terminado (y se busca su marcador) pasado este tiempo
 # desde el inicio; si a los NO_DATA_AFTER_DAYS no apareció, queda "sin resultado".
@@ -211,12 +213,14 @@ def leg_outcome(market: str, pick: str, hg: int, ag: int, stats: dict | None = N
         else:
             total = hg + ag
         return total > lp[1] if lp[0] == "Más" else total < lp[1]
-    if market in ("Corners", "Tarjetas"):
+    if market in STAT_MARKETS:
         lp = _line_pick(pick)
         if not lp or not stats:
             return None
-        if market == "Corners":
-            total = sum((stats.get(l) or {}).get("corners") or 0 for l in ("home", "away"))
+        if market in ("Corners", "Fueras de juego", "Tiros al arco"):
+            campo = {"Corners": "corners", "Fueras de juego": "fueras_de_juego",
+                     "Tiros al arco": "remates_a_puerta"}[market]
+            total = sum((stats.get(l) or {}).get(campo) or 0 for l in ("home", "away"))
         else:
             total = sum(((stats.get(l) or {}).get("tarjetas_amarillas") or 0) + ((stats.get(l) or {}).get("tarjetas_rojas") or 0)
                         for l in ("home", "away"))
@@ -305,7 +309,7 @@ def resolve(now: datetime | None = None) -> int:
             ev = find_event(cache[clave], r["home_team"], r["away_team"], r["utc_date"]) if cache[clave] else None
             if ev:
                 stats = None
-                if r["market"] in ("Corners", "Tarjetas"):
+                if r["market"] in STAT_MARKETS:
                     if ev["game_id"] not in stats_cache:
                         stats_cache[ev["game_id"]] = scores365.live_stats(ev["game_id"], ev["home_id"], ev["away_id"])
                     stats = stats_cache[ev["game_id"]]
@@ -316,7 +320,7 @@ def resolve(now: datetime | None = None) -> int:
                     detalle = detail_cache[ev["game_id"]]
                 gano = leg_outcome(r["market"], r["pick"], ev["hg"], ev["ag"], stats,
                                    r["home_team"], r["away_team"], detalle)
-                if gano is None and r["market"] in ("Corners", "Tarjetas") and not stats:
+                if gano is None and r["market"] in STAT_MARKETS and not stats:
                     continue  # estadísticas aún no publicadas: se reintenta después
                 df.at[i, "home_goals"], df.at[i, "away_goals"] = ev["hg"], ev["ag"]
                 df.at[i, "leg_result"] = (NO_DATA if gano is None else VOID if gano == VOID

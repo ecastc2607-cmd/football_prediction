@@ -262,8 +262,11 @@ SPECIAL_MODEL_WEIGHT = 0.35
 SPECIAL_MIN_LEAGUE_PICKS = 15
 SPECIAL_VERDICTS = {"Candidato", "Prometedor"}
 # Roja/penal: la "probabilidad" es solo la frecuencia de la liga y BWIN ya la
-# cobra justo (oct-2026). Estadísticas: sin modelo en vivo para el día todavía.
-SPECIAL_EXCLUDED_FAMILIES = {"Eventos", "Estadísticas"}
+# cobra justo (oct-2026).
+SPECIAL_EXCLUDED_FAMILIES = {"Eventos"}
+# Tiros al arco y fueras de juego (desde oct-2026, con las estadísticas
+# europeas de 365): mismo modelo que corners/tarjetas, misma regla de ligas.
+STAT_TIPS = {"off": "Fueras de juego", "sot": "Tiros al arco"}
 # Nombre del mercado en Tips / tips_log y cómo se arma el pick.
 SPECIAL_TIPS_MARKET = {
     "Favorito empate no válido (HA 0)": ("Empate no válido", "fav", None),
@@ -291,7 +294,8 @@ def special_rules() -> tuple[dict, set]:
         if bt.empty:
             _SPECIAL_CACHE[clave] = ({}, set())
         else:
-            bt = bt[~bt["familia"].isin(SPECIAL_EXCLUDED_FAMILIES) & bt["mercado"].isin(SPECIAL_TIPS_MARKET)]
+            bt = bt[~bt["familia"].isin(SPECIAL_EXCLUDED_FAMILIES)
+                    & (bt["mercado"].isin(SPECIAL_TIPS_MARKET) | (bt["familia"] == "Estadísticas"))]
             total = sm.summarize(bt)
             total["veredicto"] = total.apply(sm.verdict, axis=1)
             buenos = total[total["veredicto"].isin(SPECIAL_VERDICTS)]
@@ -323,14 +327,45 @@ def special_candidates(day_predictions: pd.DataFrame, lines_for) -> pd.DataFrame
         picks = [(merc, prob, p_dev) for _, merc, prob, p_dev in
                  sm.goal_market_probs(sm.Match(hx, ax, share.get(comp, sm.DEFAULT_FIRST_HALF_SHARE)))
                  if (comp, merc) in permitidos and prob >= sm.MIN_PROB]
-        if not picks:
+        # Tiros al arco / fueras de juego en las líneas que el backtest aprueba en la liga.
+        stat_picks = []
+        for col, nombre in STAT_TIPS.items():
+            for linea in sm.STAT_LINES[col][2]:
+                pr = sm.stat_prediction(comp, r["home_team"], r["away_team"], col, linea)
+                if not pr:
+                    break
+                for lado, prob in (("más", pr["p_mas"]), ("menos", 1 - pr["p_mas"])):
+                    merc = f"{nombre}: {lado} de {linea:g}"
+                    if (comp, merc) in permitidos and prob >= sm.MIN_PROB:
+                        stat_picks.append((merc, nombre, lado, linea, prob, pr["esperado"]))
+        if not picks and not stat_picks:
             continue
         lineas = lines_for(r)
         if lineas is None or lineas.empty:
-            continue
+            if not stat_picks:
+                continue
+            # Sin líneas de BWIN: los de tiros/fueras igual se muestran ("Falta cuota")
+            # para cargar la cuota de la casa a mano.
+            lineas = pd.DataFrame(columns=["line_type_id", "option", "line", "odds"])
         home_short = r.get("home_team_short") or r["home_team"]
         away_short = r.get("away_team_short") or r["away_team"]
         fav, und = (r["home_team"], r["away_team"]) if fav_local else (r["away_team"], r["home_team"])
+        for merc, nombre, lado, linea, prob, esperado in stat_picks:
+            # Sin esa línea en BWIN queda sin cuota: el pick se ve en Tips como
+            # "Falta cuota" y se puede escribir la de otra casa a mano.
+            cuota = sm.event_or_stat_price(merc, lineas) if not lineas.empty else None
+            prob_cal = min(max(prob + correccion.get(merc, 0.0), 0.01), 0.99)
+            filas.append({
+                "competition": comp, "competition_name": r.get("competition_name", ""),
+                "utc_date": r["utc_date"], "home_team": r["home_team"], "away_team": r["away_team"],
+                "home_team_short": home_short, "away_team_short": away_short,
+                "partido": f"{home_short} vs {away_short}", "mercado": nombre,
+                "pick": f"{lado.capitalize()} de {linea:g} (esp. {esperado:.1f})",
+                "odds_key": f"especial:{merc}", "prob_modelo": prob_cal, "cuota_justa": round(1 / prob_cal, 2),
+                "cuota_auto": cuota, "casa": "BWIN" if cuota else "", "peso_modelo": SPECIAL_MODEL_WEIGHT,
+                "explicacion": sm.market_help(merc) + ("" if cuota else " BWIN no ofrece esta línea en este partido: "
+                                                                    "escribe la cuota de tu casa en 'Cuota manual'."),
+            })
         for merc, prob, p_dev in picks:
             precio = sm.bwin_price(merc, fav_local, lineas)
             if not precio:

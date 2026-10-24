@@ -1148,8 +1148,10 @@ with tab_jornada:
             destino = renombre.get(col, col)
             if destino in colores_j.columns:
                 colores_j[destino] = fuerza[col].map(lambda v: _diverging_cell_css(v, 25.0))
+        # Over 2.5 y Ambos anotan sin decimales (pedido del usuario, oct-2026).
+        formato_j = {c: "{:.0f}%" for c in ("Over 2.5 %", "BTTS %") if c in tabla_j.columns}
         st.dataframe(
-            tabla_j.style.apply(lambda _: colores_j, axis=None),
+            tabla_j.style.apply(lambda _: colores_j, axis=None).format(formato_j, na_rep="-"),
             width="stretch", hide_index=True,
             # Fija "Partido" para no perder la referencia de qué equipos son al
             # revisar las columnas de pronóstico más a la derecha.
