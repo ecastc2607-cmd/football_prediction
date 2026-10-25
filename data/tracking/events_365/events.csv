@@ -37682,3 +37682,16 @@ game_id,side,minute,added_time,half,type,subtype,player
 4735230,home,90.0,1,2,Yellow Card,,Vanderson
 4735230,away,90.0,2,2,Yellow Card,,Maxima Goffi
 4735230,away,90.0,4,2,Yellow Card,,Berke Özer
+4755368,home,38.0,0,1,Woodwork,,Adam Hložek
+4755368,away,40.0,0,1,Yellow Card,,Ezequiel Fernández
+4755368,home,45.0,0,1,Yellow Card,,Alexander Prass
+4755368,away,58.0,0,2,Yellow Card,,Patrik Schick
+4755368,home,67.0,0,2,Yellow Card,,Leon Avdullahu
+4755368,away,75.0,0,2,Yellow Card,,Facundo Medina
+4755368,home,79.0,0,2,Goal,Penalty,Andrej Kramaric
+4755368,home,82.0,0,2,Yellow Card,,Adam Daghim
+4755368,home,89.0,0,2,Goal,Field Goal,Alexander Prass
+4755368,away,90.0,1,2,Yellow Card,,Carles Martínez
+4755368,home,90.0,1,2,Red Card,Second Yellow Card,Alexander Prass
+4755368,home,90.0,4,2,Woodwork,,Andrej Kramaric
+4755368,home,90.0,5,2,Goal,Field Goal,Max Moerstedt
