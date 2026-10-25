@@ -21110,3 +21110,618 @@ game_id,line_type_id,market,line,option,odds,opening_odds,won
 4750820,139,Total Shots On Target,7.5,Over,1.68,1.68,False
 4750820,13,Both Teams To Score 2nd Half,,Yes,3.75,4.1,False
 4750820,13,Both Teams To Score 2nd Half,,No,1.23,1.2,True
+4742022,1,Full Time Result,,1,2.4,1.73,False
+4742022,1,Full Time Result,,X,3.4,4.0,False
+4742022,1,Full Time Result,,2,2.85,4.2,True
+4742022,14,Double Chance,,1X,1.41,1.21,False
+4742022,14,Double Chance,,12,1.3,1.21,True
+4742022,14,Double Chance,,X2,1.55,2.03,True
+4742022,3,Total Goals In Match,2.5,Under,2.05,2.6,False
+4742022,3,Total Goals In Match,2.5,Over,1.7,1.48,True
+4742022,3,Total Goals In Match,1.5,Under,4.1,5.5,False
+4742022,3,Total Goals In Match,1.5,Over,1.21,1.14,True
+4742022,3,Total Goals In Match,3.5,Under,1.4,1.66,True
+4742022,3,Total Goals In Match,3.5,Over,2.75,2.19,False
+4742022,12,Both Teams To Score,,Yes,1.57,1.51,False
+4742022,12,Both Teams To Score,,No,2.25,2.52,True
+4742022,7,First To Score,,Home,1.83,1.57,False
+4742022,7,First To Score,,No Goal,12.0,19.0,False
+4742022,7,First To Score,,Away,2.0,2.38,True
+4742022,11,Asian Handicap,-0.25,Home,2.03,1.51,False
+4742022,11,Asian Handicap,-0.25,Away,1.74,2.4,True
+4742022,11,Asian Handicap,-0.5,Home,2.36,1.73,False
+4742022,11,Asian Handicap,-0.5,Away,1.58,2.08,True
+4742022,11,Asian Handicap,0.25,Home,1.54,1.27,False
+4742022,11,Asian Handicap,0.25,Away,2.36,3.53,True
+4742022,15,Draw No Bet,,Home,1.7,1.32,False
+4742022,15,Draw No Bet,,Away,2.0,3.22,True
+4742022,5,1st Half Result,,1,2.75,2.21,False
+4742022,5,1st Half Result,,X,2.3,2.51,False
+4742022,5,1st Half Result,,2,3.1,4.35,True
+4742022,6,2nd Half Result,,1,2.65,2.05,False
+4742022,6,2nd Half Result,,X,2.52,2.75,False
+4742022,6,2nd Half Result,,2,2.9,3.6,True
+4742022,9,1st Half Goals,1.5,Under,1.44,1.66,False
+4742022,9,1st Half Goals,1.5,Over,2.61,2.09,True
+4742022,9,1st Half Goals,2.5,Under,1.1,1.17,True
+4742022,9,1st Half Goals,2.5,Over,7.0,5.01,False
+4742022,9,1st Half Goals,0.5,Under,3.02,3.78,False
+4742022,9,1st Half Goals,0.5,Over,1.37,1.26,True
+4742022,137,Total Corners,10.5,Under,1.66,1.66,True
+4742022,137,Total Corners,10.5,Over,2.1,2.1,False
+4742022,127,Half Time Correct Score,0-0,Yes,2.97,3.72,False
+4742022,127,Half Time Correct Score,1-0,Yes,4.37,4.37,False
+4742022,127,Half Time Correct Score,0-1,Yes,5.03,6.5,False
+4742022,127,Half Time Correct Score,1-1,Yes,7.0,7.0,False
+4742022,127,Half Time Correct Score,0-2,Yes,15.0,21.0,True
+4742022,127,Half Time Correct Score,2-0,Yes,11.0,8.5,False
+4742022,127,Half Time Correct Score,2-1,Yes,19.0,15.0,False
+4742022,127,Half Time Correct Score,1-2,Yes,21.0,21.0,False
+4742022,127,Half Time Correct Score,2-2,Yes,41.0,41.0,False
+4742022,127,Half Time Correct Score,0-3,Yes,41.0,51.0,False
+4742022,127,Half Time Correct Score,3-0,Yes,41.0,23.0,False
+4742022,127,Half Time Correct Score,3-1,Yes,51.0,41.0,False
+4742022,127,Half Time Correct Score,1-3,Yes,51.0,67.0,False
+4742022,127,Half Time Correct Score,3-2,Yes,101.0,81.0,False
+4742022,127,Half Time Correct Score,2-3,Yes,126.0,101.0,False
+4742022,127,Half Time Correct Score,3-3,Yes,351.0,301.0,False
+4742022,127,Half Time Correct Score,0-4,Yes,151.0,251.0,False
+4742022,127,Half Time Correct Score,4-0,Yes,101.0,67.0,False
+4742022,127,Half Time Correct Score,4-1,Yes,151.0,81.0,False
+4742022,127,Half Time Correct Score,1-4,Yes,201.0,301.0,False
+4742022,127,Half Time Correct Score,4-2,Yes,501.0,251.0,False
+4742022,127,Half Time Correct Score,2-4,Yes,501.0,501.0,False
+4742022,127,Half Time Correct Score,5-0,Yes,501.0,201.0,False
+4742022,127,Half Time Correct Score,5-1,Yes,501.0,351.0,False
+4742022,126,Correct Score,0-0,Yes,13.0,19.0,False
+4742022,126,Correct Score,1-0,Yes,9.5,12.0,False
+4742022,126,Correct Score,0-1,Yes,10.0,21.0,False
+4742022,126,Correct Score,1-1,Yes,6.5,9.0,False
+4742022,126,Correct Score,2-0,Yes,13.0,12.0,False
+4742022,126,Correct Score,0-2,Yes,15.0,29.0,False
+4742022,126,Correct Score,1-2,Yes,10.0,15.0,False
+4742022,126,Correct Score,2-1,Yes,9.0,9.5,False
+4742022,126,Correct Score,2-2,Yes,12.0,13.0,False
+4742022,126,Correct Score,3-0,Yes,23.0,17.0,False
+4742022,126,Correct Score,0-3,Yes,26.0,51.0,True
+4742022,126,Correct Score,1-3,Yes,21.0,34.0,False
+4742022,126,Correct Score,3-1,Yes,19.0,13.0,False
+4742022,126,Correct Score,2-3,Yes,26.0,34.0,False
+4742022,126,Correct Score,3-2,Yes,23.0,21.0,False
+4742022,126,Correct Score,3-3,Yes,41.0,41.0,False
+4742022,126,Correct Score,0-4,Yes,51.0,101.0,False
+4742022,126,Correct Score,4-0,Yes,41.0,29.0,False
+4742022,126,Correct Score,1-4,Yes,41.0,67.0,False
+4742022,126,Correct Score,4-1,Yes,41.0,23.0,False
+4742022,126,Correct Score,2-4,Yes,51.0,67.0,False
+4742022,126,Correct Score,4-2,Yes,41.0,34.0,False
+4742022,126,Correct Score,4-3,Yes,67.0,51.0,False
+4742022,126,Correct Score,3-4,Yes,81.0,81.0,False
+4742022,126,Correct Score,4-4,Yes,151.0,126.0,False
+4742022,126,Correct Score,5-0,Yes,81.0,51.0,False
+4742022,126,Correct Score,0-5,Yes,126.0,351.0,False
+4742022,126,Correct Score,1-5,Yes,101.0,201.0,False
+4742022,126,Correct Score,5-1,Yes,81.0,41.0,False
+4742022,126,Correct Score,2-5,Yes,126.0,151.0,False
+4742022,126,Correct Score,5-2,Yes,101.0,51.0,False
+4742022,126,Correct Score,3-5,Yes,201.0,251.0,False
+4742022,126,Correct Score,5-3,Yes,151.0,101.0,False
+4742022,126,Correct Score,4-5,Yes,401.0,501.0,False
+4742022,126,Correct Score,5-4,Yes,401.0,301.0,False
+4742022,126,Correct Score,6-0,Yes,251.0,101.0,False
+4742022,126,Correct Score,0-6,Yes,401.0,501.0,False
+4742022,126,Correct Score,1-6,Yes,301.0,501.0,False
+4742022,126,Correct Score,6-1,Yes,201.0,81.0,False
+4742022,126,Correct Score,2-6,Yes,401.0,501.0,False
+4742022,126,Correct Score,6-2,Yes,301.0,126.0,False
+4742022,126,Correct Score,6-3,Yes,501.0,251.0,False
+4742022,126,Correct Score,7-0,Yes,451.0,301.0,False
+4742022,126,Correct Score,7-1,Yes,451.0,251.0,False
+4742022,144,Home Team - Clean Sheet,,Yes,3.52,3.52,False
+4742022,144,Home Team - Clean Sheet,,No,1.3,1.29,True
+4742022,145,Away Team - Clean Sheet,,Yes,3.74,6.5,True
+4742022,145,Away Team - Clean Sheet,,No,1.25,1.11,False
+4742022,143,A Penalty In The Match,,Yes,3.76,3.76,False
+4742022,143,A Penalty In The Match,,No,1.25,1.25,True
+4742022,141,Total Cards,4.5,Under,1.72,1.8,False
+4742022,141,Total Cards,4.5,Over,2.0,1.91,True
+4742022,141,Total Cards,3.5,Under,2.1,2.1,False
+4742022,141,Total Cards,3.5,Over,1.66,1.66,True
+4742022,142,A Red Card in Match,,Yes,5.52,5.52,False
+4742022,142,A Red Card in Match,,No,1.15,1.15,True
+4742022,139,Total Shots On Target,8.5,Under,1.89,2.08,True
+4742022,139,Total Shots On Target,8.5,Over,1.79,1.65,False
+4742022,139,Total Shots On Target,9.5,Under,1.65,1.82,True
+4742022,139,Total Shots On Target,9.5,Over,2.08,1.82,False
+4742022,140,Total Offsides,2.5,Under,2.1,2.1,True
+4742022,140,Total Offsides,2.5,Over,1.66,1.66,False
+4742022,13,Both Teams To Score 2nd Half,,Yes,2.85,2.6,False
+4742022,13,Both Teams To Score 2nd Half,,No,1.37,1.43,True
+4742023,1,Full Time Result,,1,1.95,1.82,True
+4742023,1,Full Time Result,,X,3.8,3.72,False
+4742023,1,Full Time Result,,2,3.5,3.72,False
+4742023,14,Double Chance,,1X,1.29,1.26,True
+4742023,14,Double Chance,,12,1.26,1.26,True
+4742023,14,Double Chance,,X2,1.82,1.92,False
+4742023,3,Total Goals In Match,2.5,Under,2.3,2.39,True
+4742023,3,Total Goals In Match,2.5,Over,1.55,1.58,False
+4742023,3,Total Goals In Match,3.5,Under,1.52,1.53,True
+4742023,3,Total Goals In Match,3.5,Over,2.37,2.5,False
+4742023,3,Total Goals In Match,1.5,Under,4.75,5.01,False
+4742023,3,Total Goals In Match,1.5,Over,1.16,1.17,True
+4742023,12,Both Teams To Score,,Yes,1.51,1.56,False
+4742023,12,Both Teams To Score,,No,2.35,2.23,True
+4742023,7,First To Score,,Home,1.68,1.62,True
+4742023,7,First To Score,,No Goal,17.0,17.0,False
+4742023,7,First To Score,,Away,2.21,2.32,False
+4742023,11,Asian Handicap,-0.5,Home,1.94,1.84,True
+4742023,11,Asian Handicap,-0.5,Away,1.89,1.99,False
+4742023,11,Asian Handicap,-0.25,Home,1.66,1.59,True
+4742023,11,Asian Handicap,-0.25,Away,2.13,2.28,False
+4742023,11,Asian Handicap,-0.75,Home,2.13,2.03,True
+4742023,11,Asian Handicap,-0.75,Away,1.66,1.73,False
+4742023,15,Draw No Bet,,Home,1.44,1.39,True
+4742023,15,Draw No Bet,,Away,2.55,2.73,False
+4742023,5,1st Half Result,,1,2.35,2.37,True
+4742023,5,1st Half Result,,X,2.45,2.39,False
+4742023,5,1st Half Result,,2,3.5,3.99,False
+4742023,6,2nd Half Result,,1,2.2,2.3,False
+4742023,6,2nd Half Result,,X,2.65,2.65,True
+4742023,6,2nd Half Result,,2,3.4,3.2,False
+4742023,9,1st Half Goals,1.5,Under,1.56,1.56,False
+4742023,9,1st Half Goals,1.5,Over,2.23,2.23,True
+4742023,9,1st Half Goals,2.5,Under,1.15,1.15,True
+4742023,9,1st Half Goals,2.5,Over,5.51,5.51,False
+4742023,9,1st Half Goals,0.5,Under,3.79,3.54,False
+4742023,9,1st Half Goals,0.5,Over,1.26,1.3,True
+4742023,137,Total Corners,10.5,Under,1.66,1.66,True
+4742023,137,Total Corners,10.5,Over,2.1,2.1,False
+4742023,137,Total Corners,9.5,Under,2.11,2.11,True
+4742023,137,Total Corners,9.5,Over,1.68,1.68,False
+4742023,127,Half Time Correct Score,0-0,Yes,3.76,3.51,False
+4742023,127,Half Time Correct Score,1-0,Yes,4.35,4.35,False
+4742023,127,Half Time Correct Score,0-1,Yes,5.54,6.0,False
+4742023,127,Half Time Correct Score,1-1,Yes,6.5,7.0,False
+4742023,127,Half Time Correct Score,2-0,Yes,9.0,9.5,True
+4742023,127,Half Time Correct Score,0-2,Yes,17.0,19.0,False
+4742023,127,Half Time Correct Score,1-2,Yes,19.0,23.0,False
+4742023,127,Half Time Correct Score,2-1,Yes,15.0,17.0,False
+4742023,127,Half Time Correct Score,2-2,Yes,34.0,41.0,False
+4742023,127,Half Time Correct Score,3-0,Yes,26.0,29.0,False
+4742023,127,Half Time Correct Score,0-3,Yes,51.0,51.0,False
+4742023,127,Half Time Correct Score,1-3,Yes,51.0,67.0,False
+4742023,127,Half Time Correct Score,3-1,Yes,41.0,41.0,False
+4742023,127,Half Time Correct Score,2-3,Yes,81.0,126.0,False
+4742023,127,Half Time Correct Score,3-2,Yes,67.0,81.0,False
+4742023,127,Half Time Correct Score,3-3,Yes,251.0,351.0,False
+4742023,127,Half Time Correct Score,0-4,Yes,151.0,251.0,False
+4742023,127,Half Time Correct Score,4-0,Yes,67.0,67.0,False
+4742023,127,Half Time Correct Score,4-1,Yes,101.0,101.0,False
+4742023,127,Half Time Correct Score,1-4,Yes,201.0,301.0,False
+4742023,127,Half Time Correct Score,2-4,Yes,501.0,501.0,False
+4742023,127,Half Time Correct Score,4-2,Yes,251.0,301.0,False
+4742023,127,Half Time Correct Score,5-0,Yes,251.0,301.0,False
+4742023,127,Half Time Correct Score,5-1,Yes,501.0,501.0,False
+4742023,126,Correct Score,0-0,Yes,17.0,17.0,False
+4742023,126,Correct Score,1-0,Yes,10.0,11.0,False
+4742023,126,Correct Score,0-1,Yes,15.0,17.0,False
+4742023,126,Correct Score,1-1,Yes,7.5,8.0,False
+4742023,126,Correct Score,2-0,Yes,11.0,12.0,True
+4742023,126,Correct Score,0-2,Yes,21.0,26.0,False
+4742023,126,Correct Score,2-1,Yes,8.5,9.5,False
+4742023,126,Correct Score,1-2,Yes,12.0,15.0,False
+4742023,126,Correct Score,2-2,Yes,11.0,13.0,False
+4742023,126,Correct Score,3-0,Yes,17.0,19.0,False
+4742023,126,Correct Score,0-3,Yes,41.0,41.0,False
+4742023,126,Correct Score,3-1,Yes,13.0,15.0,False
+4742023,126,Correct Score,1-3,Yes,23.0,29.0,False
+4742023,126,Correct Score,2-3,Yes,26.0,34.0,False
+4742023,126,Correct Score,3-2,Yes,19.0,21.0,False
+4742023,126,Correct Score,3-3,Yes,34.0,41.0,False
+4742023,126,Correct Score,0-4,Yes,67.0,101.0,False
+4742023,126,Correct Score,4-0,Yes,34.0,34.0,False
+4742023,126,Correct Score,1-4,Yes,51.0,67.0,False
+4742023,126,Correct Score,4-1,Yes,26.0,29.0,False
+4742023,126,Correct Score,2-4,Yes,51.0,67.0,False
+4742023,126,Correct Score,4-2,Yes,34.0,41.0,False
+4742023,126,Correct Score,4-3,Yes,51.0,67.0,False
+4742023,126,Correct Score,3-4,Yes,67.0,81.0,False
+4742023,126,Correct Score,4-4,Yes,101.0,151.0,False
+4742023,126,Correct Score,5-0,Yes,51.0,51.0,False
+4742023,126,Correct Score,0-5,Yes,201.0,301.0,False
+4742023,126,Correct Score,1-5,Yes,126.0,151.0,False
+4742023,126,Correct Score,5-1,Yes,51.0,51.0,False
+4742023,126,Correct Score,5-2,Yes,51.0,67.0,False
+4742023,126,Correct Score,2-5,Yes,126.0,201.0,False
+4742023,126,Correct Score,5-3,Yes,101.0,126.0,False
+4742023,126,Correct Score,3-5,Yes,151.0,301.0,False
+4742023,126,Correct Score,5-4,Yes,251.0,351.0,False
+4742023,126,Correct Score,4-5,Yes,351.0,451.0,False
+4742023,126,Correct Score,6-0,Yes,126.0,151.0,False
+4742023,126,Correct Score,1-6,Yes,401.0,401.0,False
+4742023,126,Correct Score,6-1,Yes,101.0,126.0,False
+4742023,126,Correct Score,2-6,Yes,401.0,401.0,False
+4742023,126,Correct Score,6-2,Yes,126.0,151.0,False
+4742023,126,Correct Score,6-3,Yes,251.0,351.0,False
+4742023,126,Correct Score,7-0,Yes,351.0,451.0,False
+4742023,126,Correct Score,7-1,Yes,301.0,351.0,False
+4742023,126,Correct Score,7-2,Yes,401.0,401.0,False
+4742023,144,Home Team - Clean Sheet,,Yes,3.41,3.76,True
+4742023,144,Home Team - Clean Sheet,,No,1.3,1.25,False
+4742023,145,Away Team - Clean Sheet,,Yes,6.0,5.54,False
+4742023,145,Away Team - Clean Sheet,,No,1.13,1.15,True
+4742023,143,A Penalty In The Match,,Yes,3.76,3.76,False
+4742023,143,A Penalty In The Match,,No,1.25,1.25,True
+4742023,141,Total Cards,4.5,Under,1.62,1.62,True
+4742023,141,Total Cards,4.5,Over,2.2,2.2,False
+4742023,142,A Red Card in Match,,Yes,6.5,6.5,False
+4742023,142,A Red Card in Match,,No,1.11,1.11,True
+4742023,139,Total Shots On Target,9.5,Under,1.68,1.85,True
+4742023,139,Total Shots On Target,9.5,Over,2.12,1.85,False
+4742023,13,Both Teams To Score 2nd Half,,Yes,2.7,2.55,False
+4742023,13,Both Teams To Score 2nd Half,,No,1.4,1.44,True
+4742025,1,Full Time Result,,1,4.8,4.76,False
+4742025,1,Full Time Result,,X,4.0,3.91,True
+4742025,1,Full Time Result,,2,1.66,1.65,False
+4742025,14,Double Chance,,1X,2.15,2.22,True
+4742025,14,Double Chance,,12,1.24,1.26,False
+4742025,14,Double Chance,,X2,1.18,1.19,True
+4742025,3,Total Goals In Match,2.5,Under,2.15,2.32,True
+4742025,3,Total Goals In Match,2.5,Over,1.63,1.63,False
+4742025,3,Total Goals In Match,1.5,Under,4.33,4.47,False
+4742025,3,Total Goals In Match,1.5,Over,1.19,1.19,True
+4742025,3,Total Goals In Match,3.5,Under,1.44,1.5,True
+4742025,3,Total Goals In Match,3.5,Over,2.55,2.63,False
+4742025,12,Both Teams To Score,,Yes,1.65,1.68,True
+4742025,12,Both Teams To Score,,No,2.1,2.11,False
+4742025,7,First To Score,,Home,2.62,2.52,True
+4742025,7,First To Score,,No Goal,15.0,15.0,False
+4742025,7,First To Score,,Away,1.55,1.55,False
+4742025,11,Asian Handicap,0.75,Home,2.07,2.04,True
+4742025,11,Asian Handicap,0.75,Away,1.82,1.84,False
+4742025,11,Asian Handicap,1,Home,1.73,1.71,True
+4742025,11,Asian Handicap,1,Away,2.03,2.05,False
+4742025,11,Asian Handicap,0.5,Home,2.27,2.27,True
+4742025,11,Asian Handicap,0.5,Away,1.64,1.64,False
+4742025,15,Draw No Bet,,Home,3.5,3.78,False
+4742025,15,Draw No Bet,,Away,1.26,1.26,False
+4742025,5,1st Half Result,,1,4.5,5.04,True
+4742025,5,1st Half Result,,X,2.37,2.42,False
+4742025,5,1st Half Result,,2,2.1,2.22,False
+4742025,6,2nd Half Result,,1,4.2,4.0,False
+4742025,6,2nd Half Result,,X,2.7,2.6,False
+4742025,6,2nd Half Result,,2,1.93,2.05,True
+4742025,9,1st Half Goals,1.5,Under,1.53,1.53,True
+4742025,9,1st Half Goals,1.5,Over,2.38,2.38,False
+4742025,9,1st Half Goals,2.5,Under,1.13,1.14,True
+4742025,9,1st Half Goals,2.5,Over,6.0,5.51,False
+4742025,9,1st Half Goals,0.5,Under,3.37,3.47,False
+4742025,9,1st Half Goals,0.5,Over,1.29,1.27,True
+4742025,137,Total Corners,9.5,Under,2.08,2.08,False
+4742025,137,Total Corners,9.5,Over,1.65,1.65,True
+4742025,137,Total Corners,10.5,Under,1.68,1.68,False
+4742025,137,Total Corners,10.5,Over,2.12,2.12,True
+4742025,127,Half Time Correct Score,0-0,Yes,3.38,3.48,False
+4742025,127,Half Time Correct Score,1-0,Yes,6.5,7.0,True
+4742025,127,Half Time Correct Score,0-1,Yes,3.72,3.72,False
+4742025,127,Half Time Correct Score,1-1,Yes,7.0,7.5,False
+4742025,127,Half Time Correct Score,2-0,Yes,21.0,23.0,False
+4742025,127,Half Time Correct Score,0-2,Yes,8.0,8.0,False
+4742025,127,Half Time Correct Score,2-1,Yes,23.0,26.0,False
+4742025,127,Half Time Correct Score,1-2,Yes,15.0,17.0,False
+4742025,127,Half Time Correct Score,2-2,Yes,41.0,41.0,False
+4742025,127,Half Time Correct Score,3-0,Yes,67.0,81.0,False
+4742025,127,Half Time Correct Score,0-3,Yes,23.0,23.0,False
+4742025,127,Half Time Correct Score,1-3,Yes,41.0,41.0,False
+4742025,127,Half Time Correct Score,3-1,Yes,81.0,81.0,False
+4742025,127,Half Time Correct Score,2-3,Yes,81.0,101.0,False
+4742025,127,Half Time Correct Score,3-2,Yes,126.0,151.0,False
+4742025,127,Half Time Correct Score,3-3,Yes,351.0,451.0,False
+4742025,127,Half Time Correct Score,0-4,Yes,51.0,67.0,False
+4742025,127,Half Time Correct Score,4-0,Yes,301.0,401.0,False
+4742025,127,Half Time Correct Score,1-4,Yes,101.0,101.0,False
+4742025,127,Half Time Correct Score,4-1,Yes,501.0,451.0,False
+4742025,127,Half Time Correct Score,2-4,Yes,251.0,301.0,False
+4742025,127,Half Time Correct Score,0-5,Yes,201.0,201.0,False
+4742025,127,Half Time Correct Score,1-5,Yes,351.0,401.0,False
+4742025,126,Correct Score,0-0,Yes,15.0,15.0,False
+4742025,126,Correct Score,0-1,Yes,8.5,9.5,False
+4742025,126,Correct Score,1-0,Yes,17.0,19.0,False
+4742025,126,Correct Score,1-1,Yes,7.5,8.5,True
+4742025,126,Correct Score,0-2,Yes,8.5,10.0,False
+4742025,126,Correct Score,2-0,Yes,26.0,29.0,False
+4742025,126,Correct Score,1-2,Yes,8.0,9.0,False
+4742025,126,Correct Score,2-1,Yes,15.0,17.0,False
+4742025,126,Correct Score,2-2,Yes,13.0,15.0,False
+4742025,126,Correct Score,0-3,Yes,12.0,15.0,False
+4742025,126,Correct Score,3-0,Yes,51.0,51.0,False
+4742025,126,Correct Score,1-3,Yes,12.0,13.0,False
+4742025,126,Correct Score,3-1,Yes,34.0,41.0,False
+4742025,126,Correct Score,3-2,Yes,34.0,41.0,False
+4742025,126,Correct Score,2-3,Yes,21.0,23.0,False
+4742025,126,Correct Score,3-3,Yes,41.0,41.0,False
+4742025,126,Correct Score,4-0,Yes,126.0,151.0,False
+4742025,126,Correct Score,0-4,Yes,23.0,26.0,False
+4742025,126,Correct Score,4-1,Yes,81.0,81.0,False
+4742025,126,Correct Score,1-4,Yes,21.0,26.0,False
+4742025,126,Correct Score,2-4,Yes,34.0,41.0,False
+4742025,126,Correct Score,4-2,Yes,81.0,81.0,False
+4742025,126,Correct Score,4-3,Yes,101.0,126.0,False
+4742025,126,Correct Score,3-4,Yes,67.0,81.0,False
+4742025,126,Correct Score,4-4,Yes,151.0,201.0,False
+4742025,126,Correct Score,0-5,Yes,41.0,51.0,False
+4742025,126,Correct Score,5-0,Yes,401.0,451.0,False
+4742025,126,Correct Score,1-5,Yes,41.0,51.0,False
+4742025,126,Correct Score,5-1,Yes,251.0,301.0,False
+4742025,126,Correct Score,5-2,Yes,251.0,301.0,False
+4742025,126,Correct Score,2-5,Yes,51.0,67.0,False
+4742025,126,Correct Score,5-3,Yes,351.0,451.0,False
+4742025,126,Correct Score,3-5,Yes,126.0,151.0,False
+4742025,126,Correct Score,4-5,Yes,351.0,451.0,False
+4742025,126,Correct Score,0-6,Yes,81.0,101.0,False
+4742025,126,Correct Score,1-6,Yes,81.0,101.0,False
+4742025,126,Correct Score,2-6,Yes,126.0,151.0,False
+4742025,126,Correct Score,3-6,Yes,251.0,401.0,False
+4742025,126,Correct Score,0-7,Yes,201.0,301.0,False
+4742025,126,Correct Score,1-7,Yes,201.0,301.0,False
+4742025,126,Correct Score,2-7,Yes,351.0,501.0,False
+4742025,144,Home Team - Clean Sheet,,Yes,6.5,6.5,False
+4742025,144,Home Team - Clean Sheet,,No,1.11,1.11,True
+4742025,145,Away Team - Clean Sheet,,Yes,2.6,2.6,False
+4742025,145,Away Team - Clean Sheet,,No,1.43,1.43,True
+4742025,143,A Penalty In The Match,,Yes,3.52,3.52,True
+4742025,143,A Penalty In The Match,,No,1.29,1.29,False
+4742025,141,Total Cards,3.5,Under,1.99,1.99,True
+4742025,141,Total Cards,3.5,Over,1.72,1.72,False
+4742025,141,Total Cards,4.5,Under,1.61,1.61,True
+4742025,141,Total Cards,4.5,Over,2.19,2.19,False
+4742025,142,A Red Card in Match,,Yes,7.0,7.0,False
+4742025,142,A Red Card in Match,,No,1.09,1.09,True
+4742025,139,Total Shots On Target,8.5,Under,1.72,1.79,True
+4742025,139,Total Shots On Target,8.5,Over,1.99,1.9,False
+4742025,13,Both Teams To Score 2nd Half,,Yes,2.95,2.9,False
+4742025,13,Both Teams To Score 2nd Half,,No,1.35,1.35,True
+4732667,1,Full Time Result,,1,2.1,2.1,True
+4732667,1,Full Time Result,,X,3.4,3.2,False
+4732667,1,Full Time Result,,2,3.5,3.7,False
+4732667,14,Double Chance,,1X,1.29,1.27,True
+4732667,14,Double Chance,,12,1.31,1.33,True
+4732667,14,Double Chance,,X2,1.7,1.71,False
+4732667,3,Total Goals In Match,2.5,Under,1.88,1.83,True
+4732667,3,Total Goals In Match,2.5,Over,1.82,1.87,False
+4732667,3,Total Goals In Match,3.5,Under,1.34,1.33,True
+4732667,3,Total Goals In Match,3.5,Over,3.0,3.1,False
+4732667,3,Total Goals In Match,1.5,Under,3.6,3.5,True
+4732667,3,Total Goals In Match,1.5,Over,1.26,1.27,False
+4732667,12,Both Teams To Score,,Yes,1.66,1.68,False
+4732667,12,Both Teams To Score,,No,2.05,2.05,True
+4732667,7,First To Score,,Home,1.73,1.73,True
+4732667,7,First To Score,,No Goal,11.0,11.0,False
+4732667,7,First To Score,,Away,2.25,2.25,False
+4732667,11,Asian Handicap,-0.5,Home,2.05,2.0,True
+4732667,11,Asian Handicap,-0.5,Away,1.8,1.71,False
+4732667,11,Asian Handicap,-0.75,Home,2.34,2.37,True
+4732667,11,Asian Handicap,-0.75,Away,1.57,1.54,False
+4732667,11,Asian Handicap,-0.25,Home,1.76,1.84,True
+4732667,11,Asian Handicap,-0.25,Away,2.07,2.04,False
+4732667,15,Draw No Bet,,Home,1.49,1.46,True
+4732667,15,Draw No Bet,,Away,2.45,2.5,False
+4732667,5,1st Half Result,,1,2.6,2.55,True
+4732667,5,1st Half Result,,X,2.15,2.15,False
+4732667,5,1st Half Result,,2,3.7,3.8,False
+4732667,6,2nd Half Result,,1,2.3,2.35,False
+4732667,6,2nd Half Result,,X,2.62,2.4,True
+4732667,6,2nd Half Result,,2,3.4,3.5,False
+4732667,9,1st Half Goals,1.5,Under,1.39,1.39,True
+4732667,9,1st Half Goals,1.5,Over,2.73,2.73,False
+4732667,9,1st Half Goals,0.5,Under,2.74,2.98,False
+4732667,9,1st Half Goals,0.5,Over,1.39,1.36,True
+4732667,9,1st Half Goals,2.5,Under,1.08,1.1,True
+4732667,9,1st Half Goals,2.5,Over,8.0,7.0,False
+4732667,137,Total Corners,8.5,Under,2.0,2.0,False
+4732667,137,Total Corners,8.5,Over,1.72,1.72,True
+4732667,127,Half Time Correct Score,0-0,Yes,2.75,3.0,False
+4732667,127,Half Time Correct Score,0-1,Yes,5.5,5.5,False
+4732667,127,Half Time Correct Score,1-0,Yes,3.98,4.32,True
+4732667,127,Half Time Correct Score,1-1,Yes,7.0,7.5,False
+4732667,127,Half Time Correct Score,2-0,Yes,10.0,11.0,False
+4732667,127,Half Time Correct Score,0-2,Yes,19.0,19.0,False
+4732667,127,Half Time Correct Score,2-1,Yes,19.0,21.0,False
+4732667,127,Half Time Correct Score,1-2,Yes,23.0,26.0,False
+4732667,127,Half Time Correct Score,2-2,Yes,51.0,51.0,False
+4732667,127,Half Time Correct Score,0-3,Yes,51.0,51.0,False
+4732667,127,Half Time Correct Score,3-0,Yes,34.0,41.0,False
+4732667,127,Half Time Correct Score,3-1,Yes,51.0,51.0,False
+4732667,127,Half Time Correct Score,1-3,Yes,67.0,81.0,False
+4732667,127,Half Time Correct Score,2-3,Yes,151.0,151.0,False
+4732667,127,Half Time Correct Score,3-2,Yes,126.0,126.0,False
+4732667,127,Half Time Correct Score,3-3,Yes,501.0,501.0,False
+4732667,127,Half Time Correct Score,4-0,Yes,101.0,101.0,False
+4732667,127,Half Time Correct Score,0-4,Yes,251.0,251.0,False
+4732667,127,Half Time Correct Score,4-1,Yes,151.0,201.0,False
+4732667,127,Half Time Correct Score,1-4,Yes,351.0,401.0,False
+4732667,127,Half Time Correct Score,4-2,Yes,501.0,501.0,False
+4732667,127,Half Time Correct Score,5-0,Yes,501.0,501.0,False
+4732667,126,Correct Score,0-0,Yes,11.0,11.0,False
+4732667,126,Correct Score,1-0,Yes,8.5,8.0,True
+4732667,126,Correct Score,0-1,Yes,12.0,11.0,False
+4732667,126,Correct Score,1-1,Yes,6.5,6.5,False
+4732667,126,Correct Score,2-0,Yes,10.0,10.0,False
+4732667,126,Correct Score,0-2,Yes,19.0,17.0,False
+4732667,126,Correct Score,1-2,Yes,12.0,12.0,False
+4732667,126,Correct Score,2-1,Yes,8.5,9.0,False
+4732667,126,Correct Score,2-2,Yes,13.0,15.0,False
+4732667,126,Correct Score,0-3,Yes,41.0,34.0,False
+4732667,126,Correct Score,3-0,Yes,17.0,19.0,False
+4732667,126,Correct Score,3-1,Yes,15.0,17.0,False
+4732667,126,Correct Score,1-3,Yes,26.0,26.0,False
+4732667,126,Correct Score,2-3,Yes,34.0,34.0,False
+4732667,126,Correct Score,3-2,Yes,23.0,26.0,False
+4732667,126,Correct Score,3-3,Yes,41.0,41.0,False
+4732667,126,Correct Score,4-0,Yes,34.0,41.0,False
+4732667,126,Correct Score,0-4,Yes,81.0,81.0,False
+4732667,126,Correct Score,4-1,Yes,29.0,34.0,False
+4732667,126,Correct Score,1-4,Yes,51.0,51.0,False
+4732667,126,Correct Score,4-2,Yes,41.0,51.0,False
+4732667,126,Correct Score,2-4,Yes,67.0,67.0,False
+4732667,126,Correct Score,4-3,Yes,81.0,81.0,False
+4732667,126,Correct Score,3-4,Yes,101.0,101.0,False
+4732667,126,Correct Score,4-4,Yes,151.0,201.0,False
+4732667,126,Correct Score,5-0,Yes,67.0,81.0,False
+4732667,126,Correct Score,0-5,Yes,201.0,201.0,False
+4732667,126,Correct Score,1-5,Yes,151.0,151.0,False
+4732667,126,Correct Score,5-1,Yes,67.0,67.0,False
+4732667,126,Correct Score,2-5,Yes,151.0,201.0,False
+4732667,126,Correct Score,5-2,Yes,81.0,101.0,False
+4732667,126,Correct Score,5-3,Yes,151.0,201.0,False
+4732667,126,Correct Score,3-5,Yes,251.0,351.0,False
+4732667,126,Correct Score,5-4,Yes,501.0,501.0,False
+4732667,126,Correct Score,6-0,Yes,151.0,201.0,False
+4732667,126,Correct Score,6-1,Yes,151.0,201.0,False
+4732667,126,Correct Score,1-6,Yes,501.0,501.0,False
+4732667,126,Correct Score,6-2,Yes,201.0,301.0,False
+4732667,126,Correct Score,6-3,Yes,501.0,501.0,False
+4732667,144,Home Team - Clean Sheet,,Yes,3.03,2.78,True
+4732667,144,Home Team - Clean Sheet,,No,1.38,1.41,False
+4732667,145,Away Team - Clean Sheet,,Yes,4.49,4.0,False
+4732667,145,Away Team - Clean Sheet,,No,1.18,1.22,True
+4732667,143,A Penalty In The Match,,Yes,3.27,3.27,False
+4732667,143,A Penalty In The Match,,No,1.34,1.34,True
+4732667,141,Total Cards,4.5,Under,1.6,1.79,True
+4732667,141,Total Cards,4.5,Over,2.18,1.89,False
+4732667,142,A Red Card in Match,,Yes,4.51,4.51,False
+4732667,142,A Red Card in Match,,No,1.18,1.18,True
+4732667,139,Total Shots On Target,8.5,Under,1.82,1.82,True
+4732667,139,Total Shots On Target,8.5,Over,1.82,1.82,False
+4732667,13,Both Teams To Score 2nd Half,,Yes,3.0,3.1,False
+4732667,13,Both Teams To Score 2nd Half,,No,1.34,1.32,True
+4732670,1,Full Time Result,,1,1.95,1.63,False
+4732670,1,Full Time Result,,X,4.1,4.2,True
+4732670,1,Full Time Result,,2,3.3,4.8,False
+4732670,14,Double Chance,,1X,1.32,1.17,True
+4732670,14,Double Chance,,12,1.23,1.22,False
+4732670,14,Double Chance,,X2,1.82,2.2,True
+4732670,3,Total Goals In Match,3.5,Under,1.98,1.68,False
+4732670,3,Total Goals In Match,3.5,Over,1.73,2.05,True
+4732670,3,Total Goals In Match,2.5,Under,3.3,2.6,False
+4732670,3,Total Goals In Match,2.5,Over,1.3,1.44,True
+4732670,3,Total Goals In Match,4.5,Under,1.43,1.28,False
+4732670,3,Total Goals In Match,4.5,Over,2.65,3.4,True
+4732670,12,Both Teams To Score,,Yes,1.31,1.49,True
+4732670,12,Both Teams To Score,,No,3.1,2.4,False
+4732670,7,First To Score,,Home,1.66,1.5,False
+4732670,7,First To Score,,No Goal,29.0,21.0,False
+4732670,7,First To Score,,Away,2.09,2.49,True
+4732670,11,Asian Handicap,-0.5,Home,1.95,1.57,False
+4732670,11,Asian Handicap,-0.5,Away,1.9,2.2,True
+4732670,11,Asian Handicap,-0.25,Home,1.7,1.43,False
+4732670,11,Asian Handicap,-0.25,Away,2.1,2.75,True
+4732670,11,Asian Handicap,-0.75,Home,2.1,1.75,False
+4732670,11,Asian Handicap,-0.75,Away,1.7,2.05,True
+4732670,15,Draw No Bet,,Home,1.47,1.25,False
+4732670,15,Draw No Bet,,Away,2.45,3.6,False
+4732670,5,1st Half Result,,1,2.25,2.0,True
+4732670,5,1st Half Result,,X,2.7,2.5,False
+4732670,5,1st Half Result,,2,3.25,4.4,False
+4732670,6,2nd Half Result,,1,2.1,1.87,False
+4732670,6,2nd Half Result,,X,3.0,2.9,False
+4732670,6,2nd Half Result,,2,3.1,4.1,True
+4732670,9,1st Half Goals,1.5,Under,1.84,1.67,False
+4732670,9,1st Half Goals,1.5,Over,1.84,2.11,True
+4732670,9,1st Half Goals,2.5,Under,1.24,1.17,False
+4732670,9,1st Half Goals,2.5,Over,3.72,4.46,True
+4732670,9,1st Half Goals,0.5,Under,4.54,4.03,False
+4732670,9,1st Half Goals,0.5,Over,1.19,1.23,True
+4732670,137,Total Corners,10.5,Under,1.78,1.71,False
+4732670,137,Total Corners,10.5,Over,1.89,1.98,True
+4732670,127,Half Time Correct Score,0-0,Yes,4.5,4.0,False
+4732670,127,Half Time Correct Score,1-0,Yes,4.5,4.0,False
+4732670,127,Half Time Correct Score,0-1,Yes,6.0,7.0,False
+4732670,127,Half Time Correct Score,1-1,Yes,6.0,7.0,False
+4732670,127,Half Time Correct Score,2-0,Yes,8.5,8.0,False
+4732670,127,Half Time Correct Score,0-2,Yes,15.0,23.0,False
+4732670,127,Half Time Correct Score,1-2,Yes,15.0,23.0,False
+4732670,127,Half Time Correct Score,2-1,Yes,12.0,13.0,False
+4732670,127,Half Time Correct Score,2-2,Yes,29.0,41.0,False
+4732670,127,Half Time Correct Score,3-0,Yes,23.0,21.0,False
+4732670,127,Half Time Correct Score,0-3,Yes,41.0,67.0,False
+4732670,127,Half Time Correct Score,3-1,Yes,29.0,34.0,False
+4732670,127,Half Time Correct Score,1-3,Yes,41.0,67.0,False
+4732670,127,Half Time Correct Score,2-3,Yes,67.0,101.0,False
+4732670,127,Half Time Correct Score,3-2,Yes,51.0,81.0,True
+4732670,127,Half Time Correct Score,3-3,Yes,151.0,251.0,False
+4732670,127,Half Time Correct Score,0-4,Yes,126.0,301.0,False
+4732670,127,Half Time Correct Score,4-0,Yes,51.0,51.0,False
+4732670,127,Half Time Correct Score,4-1,Yes,67.0,81.0,False
+4732670,127,Half Time Correct Score,1-4,Yes,126.0,301.0,False
+4732670,127,Half Time Correct Score,4-2,Yes,151.0,201.0,False
+4732670,127,Half Time Correct Score,2-4,Yes,251.0,501.0,False
+4732670,127,Half Time Correct Score,4-3,Yes,501.0,501.0,False
+4732670,127,Half Time Correct Score,5-0,Yes,151.0,151.0,False
+4732670,127,Half Time Correct Score,5-1,Yes,251.0,301.0,False
+4732670,126,Correct Score,0-0,Yes,29.0,21.0,False
+4732670,126,Correct Score,1-0,Yes,15.0,11.0,False
+4732670,126,Correct Score,0-1,Yes,21.0,21.0,False
+4732670,126,Correct Score,1-1,Yes,9.5,8.5,False
+4732670,126,Correct Score,2-0,Yes,15.0,10.0,False
+4732670,126,Correct Score,0-2,Yes,23.0,29.0,False
+4732670,126,Correct Score,2-1,Yes,9.5,8.5,False
+4732670,126,Correct Score,1-2,Yes,13.0,17.0,False
+4732670,126,Correct Score,2-2,Yes,11.0,12.0,False
+4732670,126,Correct Score,3-0,Yes,19.0,13.0,False
+4732670,126,Correct Score,0-3,Yes,41.0,51.0,False
+4732670,126,Correct Score,3-1,Yes,13.0,12.0,False
+4732670,126,Correct Score,1-3,Yes,21.0,34.0,False
+4732670,126,Correct Score,3-2,Yes,15.0,17.0,False
+4732670,126,Correct Score,2-3,Yes,21.0,29.0,False
+4732670,126,Correct Score,3-3,Yes,23.0,34.0,False
+4732670,126,Correct Score,4-0,Yes,34.0,23.0,False
+4732670,126,Correct Score,0-4,Yes,67.0,101.0,False
+4732670,126,Correct Score,1-4,Yes,41.0,67.0,False
+4732670,126,Correct Score,4-1,Yes,21.0,21.0,False
+4732670,126,Correct Score,4-2,Yes,26.0,29.0,False
+4732670,126,Correct Score,2-4,Yes,41.0,67.0,False
+4732670,126,Correct Score,3-4,Yes,41.0,81.0,False
+4732670,126,Correct Score,4-3,Yes,41.0,51.0,False
+4732670,126,Correct Score,4-4,Yes,51.0,101.0,True
+4732670,126,Correct Score,5-0,Yes,51.0,41.0,False
+4732670,126,Correct Score,0-5,Yes,126.0,251.0,False
+4732670,126,Correct Score,1-5,Yes,81.0,201.0,False
+4732670,126,Correct Score,5-1,Yes,41.0,41.0,False
+4732670,126,Correct Score,2-5,Yes,67.0,151.0,False
+4732670,126,Correct Score,5-2,Yes,41.0,51.0,False
+4732670,126,Correct Score,3-5,Yes,81.0,201.0,False
+4732670,126,Correct Score,5-3,Yes,51.0,81.0,False
+4732670,126,Correct Score,5-4,Yes,126.0,201.0,False
+4732670,126,Correct Score,4-5,Yes,151.0,251.0,False
+4732670,126,Correct Score,5-5,Yes,251.0,251.0,False
+4732670,126,Correct Score,6-0,Yes,101.0,81.0,False
+4732670,126,Correct Score,0-6,Yes,401.0,401.0,False
+4732670,126,Correct Score,1-6,Yes,201.0,201.0,False
+4732670,126,Correct Score,6-1,Yes,67.0,67.0,False
+4732670,126,Correct Score,6-2,Yes,81.0,81.0,False
+4732670,126,Correct Score,2-6,Yes,201.0,151.0,False
+4732670,126,Correct Score,3-6,Yes,251.0,251.0,False
+4732670,126,Correct Score,6-3,Yes,126.0,151.0,False
+4732670,126,Correct Score,6-4,Yes,251.0,251.0,False
+4732670,126,Correct Score,4-6,Yes,401.0,401.0,False
+4732670,126,Correct Score,7-0,Yes,251.0,151.0,False
+4732670,126,Correct Score,7-1,Yes,151.0,151.0,False
+4732670,126,Correct Score,7-2,Yes,201.0,201.0,False
+4732670,126,Correct Score,7-3,Yes,301.0,301.0,False
+4732670,144,Home Team - Clean Sheet,,Yes,4.54,3.28,False
+4732670,144,Home Team - Clean Sheet,,No,1.19,1.34,True
+4732670,145,Away Team - Clean Sheet,,Yes,8.0,8.0,False
+4732670,145,Away Team - Clean Sheet,,No,1.08,1.08,True
+4732670,143,A Penalty In The Match,,Yes,3.73,3.73,True
+4732670,143,A Penalty In The Match,,No,1.24,1.24,False
+4732670,141,Total Cards,2.5,Under,2.21,2.11,False
+4732670,141,Total Cards,2.5,Over,1.62,1.67,True
+4732670,141,Total Cards,3.5,Under,1.63,1.63,False
+4732670,141,Total Cards,3.5,Over,2.22,2.22,True
+4732670,142,A Red Card in Match,,Yes,5.55,5.55,False
+4732670,142,A Red Card in Match,,No,1.15,1.15,True
+4732670,139,Total Shots On Target,10.5,Under,1.98,1.71,False
+4732670,139,Total Shots On Target,10.5,Over,1.71,1.98,True
+4732670,13,Both Teams To Score 2nd Half,,Yes,2.1,2.5,True
+4732670,13,Both Teams To Score 2nd Half,,No,1.65,1.46,False

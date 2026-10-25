@@ -4575,3 +4575,8 @@ game_id,competition,start_utc,home_team,away_team,home_goals,away_goals,ht_home_
 4731939,COL,2026-10-25T01:15:00Z,Once Caldas,Deportivo Pereira,1,1,0.0,0.0,True,2026-10-25T03:10:25Z
 4732666,SA,2026-10-25T11:30:00Z,Inter Milan,Fiorentina,2,1,0.0,0.0,True,2026-10-25T13:35:26Z
 4750820,PD,2026-10-25T13:00:00Z,Athletic Bilbao,Getafe,4,0,2.0,0.0,True,2026-10-25T14:55:24Z
+4742022,PL,2026-10-25T14:00:00Z,Manchester United,Bournemouth,0,3,0.0,2.0,True,2026-10-25T15:55:21Z
+4742023,PL,2026-10-25T14:00:00Z,Liverpool,Brighton,2,0,2.0,0.0,True,2026-10-25T15:55:21Z
+4742025,PL,2026-10-25T14:00:00Z,Hull City,Brentford,1,1,1.0,0.0,True,2026-10-25T15:55:21Z
+4732667,SA,2026-10-25T14:00:00Z,Genoa,Venezia,1,0,1.0,0.0,True,2026-10-25T15:55:21Z
+4732670,SA,2026-10-25T14:00:00Z,Atalanta,Frosinone,4,4,3.0,2.0,True,2026-10-25T15:55:21Z

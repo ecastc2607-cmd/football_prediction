@@ -37632,3 +37632,34 @@ game_id,side,minute,added_time,half,type,subtype,player
 4750820,home,72.0,0,2,Yellow Card,,Beñat Gerenabarrena
 4750820,away,86.0,0,2,Red Card,,Mario Martín
 4750820,home,88.0,0,2,Goal,Field Goal,Yuri Berchiche
+4742022,home,22.0,0,1,Yellow Card,,Andrey Santos
+4742022,away,27.0,0,1,Yellow Card,,Tyler Adams
+4742022,home,37.0,0,1,Yellow Card,,Ayden Heaven
+4742022,away,38.0,0,1,Goal,Field Goal,Rayan
+4742022,home,40.0,0,1,Yellow Card,,Youri Tielemans
+4742022,away,43.0,0,1,Goal,Field Goal,Marcus Tavernier
+4742022,home,45.0,3,1,Yellow Card,,Harry Maguire
+4742022,away,71.0,0,2,Goal,Field Goal,Evanilson
+4742023,home,17.0,0,1,Goal,Own Goal,Pascal Gross
+4742023,home,21.0,0,1,Goal,Field Goal,Alexander Isak
+4742023,away,36.0,0,1,Woodwork,,Yasin Ayari
+4742023,away,45.0,3,1,Yellow Card,,Olivier Boscagli
+4742023,away,73.0,0,2,Yellow Card,,Costinha
+4742025,away,23.0,0,1,Yellow Card,,Aaron Hickey
+4742025,home,24.0,0,1,Goal,Penalty,Oliver McBurnie
+4742025,away,63.0,0,2,Goal,Field Goal,Dango Ouattara
+4732667,home,25.0,0,1,Goal,Field Goal,Mikael Ellertsson
+4732667,home,55.0,0,2,Yellow Card,,Sebastian Otoa
+4732670,away,1.0,0,1,Goal,Field Goal,Romano Schmid
+4732670,away,7.0,0,1,Yellow Card,,Gabriele Bracaglia
+4732670,home,14.0,0,1,Goal,Field Goal,Nikola Krstovic
+4732670,away,17.0,0,1,Goal,Field Goal,Romano Schmid
+4732670,away,28.0,0,1,Yellow Card,,Giorgi Kvernadze
+4732670,home,33.0,0,1,Goal,Penalty,Éderson
+4732670,home,45.0,0,1,Goal,Field Goal,Nikola Krstovic
+4732670,away,48.0,0,2,Goal,Field Goal,Giacomo Calò
+4732670,home,50.0,0,2,Goal,Field Goal,Eljif Elmas
+4732670,home,69.0,0,2,Yellow Card,,Éderson
+4732670,away,82.0,0,2,Goal,Field Goal,Aleksa Terzić
+4732670,away,86.0,0,2,Yellow Card,,Aleksa Terzić
+4732670,away,90.0,2,2,Yellow Card,,Antonio Raimondo
