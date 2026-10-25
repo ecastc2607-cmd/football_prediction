@@ -37763,3 +37763,8 @@ game_id,side,minute,added_time,half,type,subtype,player
 4731944,home,45.0,1,1,Goal,Field Goal,Franco Pulicastro
 4731944,home,81.0,0,2,Red Card,,Brandon Mejía
 4731944,home,86.0,0,2,Yellow Card,,David Ramírez
+4732661,away,6.0,0,1,Goal,Field Goal,Christian Pulisic
+4732661,away,39.0,0,1,Yellow Card,,Gonçalo Ramos
+4732661,home,43.0,0,1,Yellow Card,,Jesper Karlström
+4732661,away,65.0,0,2,Goal,Field Goal,Omari Hutchinson
+4732661,away,90.0,0,2,Yellow Card,,Luka Modric
