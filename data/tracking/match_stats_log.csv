@@ -6427,3 +6427,7 @@ SA,2026,8.0,2026-10-25T14:00:00Z,Genoa CFC,Venezia FC,Genoa CFC,True,2.0,13.0,1.
 SA,2026,8.0,2026-10-25T14:00:00Z,Genoa CFC,Venezia FC,Venezia FC,False,10.0,11.0,0.0,0.0,55.0,5.0,19.0,0.0
 SA,2026,8.0,2026-10-25T14:00:00Z,Atalanta BC,Frosinone Calcio,Atalanta BC,True,8.0,7.0,1.0,0.0,46.0,9.0,22.0,2.0
 SA,2026,8.0,2026-10-25T14:00:00Z,Atalanta BC,Frosinone Calcio,Frosinone Calcio,False,9.0,13.0,4.0,0.0,54.0,10.0,24.0,2.0
+PL,2026,8.0,2026-10-25T14:00:00Z,Crystal Palace FC,Newcastle United FC,Crystal Palace FC,True,7.0,12.0,3.0,0.0,52.0,4.0,17.0,4.0
+PL,2026,8.0,2026-10-25T14:00:00Z,Crystal Palace FC,Newcastle United FC,Newcastle United FC,False,4.0,10.0,3.0,0.0,48.0,2.0,10.0,1.0
+FL1,2026,8.0,2026-10-25T14:00:00Z,AS Monaco FC,Lille OSC,AS Monaco FC,True,6.0,18.0,3.0,0.0,64.0,6.0,20.0,3.0
+FL1,2026,8.0,2026-10-25T14:00:00Z,AS Monaco FC,Lille OSC,Lille OSC,False,1.0,13.0,4.0,1.0,36.0,2.0,4.0,2.0

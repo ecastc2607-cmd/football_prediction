@@ -37663,3 +37663,22 @@ game_id,side,minute,added_time,half,type,subtype,player
 4732670,away,82.0,0,2,Goal,Field Goal,Aleksa Terzić
 4732670,away,86.0,0,2,Yellow Card,,Aleksa Terzić
 4732670,away,90.0,2,2,Yellow Card,,Antonio Raimondo
+4742026,away,36.0,0,1,Yellow Card,,Nico González
+4742026,away,45.0,1,1,Yellow Card,,Fabian Schär
+4742026,away,47.0,0,2,Goal,Field Goal,William Osula
+4742026,away,53.0,0,2,Goal Disallowed,Var,Joe Willock
+4742026,away,58.0,0,2,Goal,Field Goal,Harvey Barnes
+4742026,home,75.0,0,2,Yellow Card,,Yeremy Pino
+4742026,away,78.0,0,2,Yellow Card,,Lewis Hall
+4742026,home,79.0,0,2,Yellow Card,,Anan Khalaili
+4742026,home,90.0,3,2,Yellow Card,,Jaydee Canvot
+4735230,away,24.0,0,1,Goal,Field Goal,Ethan Mbappé
+4735230,home,32.0,0,1,Yellow Card,,Mamadou Coulibaly
+4735230,away,34.0,0,1,Yellow Card,,Hakon Haraldsson
+4735230,home,56.0,0,2,Yellow Card,,Mathys Detourbet
+4735230,away,66.0,0,2,Yellow Card,,Romain Perraud
+4735230,away,66.0,0,2,Red Card,,Tanguy Nianzou
+4735230,home,74.0,0,2,Goal,Field Goal,Edan Diop
+4735230,home,90.0,1,2,Yellow Card,,Vanderson
+4735230,away,90.0,2,2,Yellow Card,,Maxima Goffi
+4735230,away,90.0,4,2,Yellow Card,,Berke Özer
