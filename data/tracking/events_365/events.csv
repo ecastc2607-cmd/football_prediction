@@ -37745,3 +37745,7 @@ game_id,side,minute,added_time,half,type,subtype,player
 4755367,home,82.0,0,2,Goal,Own Goal,Tom Bischof
 4755367,home,85.0,0,2,Yellow Card,,Maximilian Eggestein
 4755367,away,90.0,5,2,Goal,Field Goal,Michael Olise
+4732664,away,29.0,0,1,Goal,Field Goal,Weston McKennie
+4732664,away,41.0,0,1,Goal,Field Goal,Douglas Luiz
+4732664,home,76.0,0,2,Yellow Card,,Kialonda Gaspar
+4732664,home,90.0,4,2,Red Card,Second Yellow Card,Kialonda Gaspar
