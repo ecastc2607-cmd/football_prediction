@@ -37695,3 +37695,7 @@ game_id,side,minute,added_time,half,type,subtype,player
 4755368,home,90.0,1,2,Red Card,Second Yellow Card,Alexander Prass
 4755368,home,90.0,4,2,Woodwork,,Andrej Kramaric
 4755368,home,90.0,5,2,Goal,Field Goal,Max Moerstedt
+4750817,home,30.0,0,1,Yellow Card,,Ilaix Moriba
+4750817,away,43.0,0,1,Yellow Card,,Diego Llorente
+4750817,away,53.0,0,2,Woodwork,,Nelson Deossa
+4750817,home,80.0,0,2,Yellow Card,,Sergio Carreira
