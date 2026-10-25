@@ -4586,3 +4586,6 @@ game_id,competition,start_utc,home_team,away_team,home_goals,away_goals,ht_home_
 4750817,PD,2026-10-25T15:15:00Z,Celta Vigo,Real Betis,0,0,0.0,0.0,True,2026-10-25T17:10:28Z
 4735228,FL1,2026-10-25T16:15:00Z,Toulouse,Troyes,0,0,0.0,0.0,True,2026-10-25T18:10:26Z
 4735235,FL1,2026-10-25T16:15:00Z,Angers,Lorient,0,0,0.0,0.0,True,2026-10-25T18:10:26Z
+4735229,FL1,2026-10-25T16:15:00Z,Rennes,Strasbourg,3,0,2.0,0.0,True,2026-10-25T18:15:26Z
+4735231,FL1,2026-10-25T16:15:00Z,Olympique de Marseille,Le Havre,4,3,2.0,0.0,True,2026-10-25T18:15:26Z
+4735234,FL1,2026-10-25T16:15:00Z,Auxerre,Le Mans,1,1,0.0,0.0,True,2026-10-25T18:15:26Z
