@@ -37623,3 +37623,12 @@ game_id,side,minute,added_time,half,type,subtype,player
 4732666,home,90.0,1,2,Goal,Field Goal,Marcus Thuram
 4732666,home,90.0,8,2,Goal,Penalty,Piotr Zielinski
 4732666,away,90.0,11,2,Yellow Card,,Dos Santos Dodo
+4750820,home,17.0,0,1,Goal,Field Goal,Álex Berenguer
+4750820,home,35.0,0,1,Goal,Field Goal,Iñaki Williams
+4750820,away,39.0,0,1,Yellow Card,,Ramón Terrats
+4750820,away,43.0,0,1,Yellow Card,,Dani Carvajal
+4750820,away,63.0,0,2,Yellow Card,,Johan Mojica
+4750820,home,70.0,0,2,Goal,Field Goal,Aitor Paredes
+4750820,home,72.0,0,2,Yellow Card,,Beñat Gerenabarrena
+4750820,away,86.0,0,2,Red Card,,Mario Martín
+4750820,home,88.0,0,2,Goal,Field Goal,Yuri Berchiche
