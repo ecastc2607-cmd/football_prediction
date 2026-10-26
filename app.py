@@ -846,7 +846,13 @@ comp_code = st.sidebar.selectbox(
 # ya calcula cuál está en curso); el usuario puede seguir ajustándolas a mano.
 if st.session_state.get("_last_comp") != comp_code:
     try:
-        status = auto_status(comp_code)
+        # Dentro de la barra lateral: el spinner de auto_status (solo corre la
+        # primera vez o al cambiar de liga) dejaba un elemento ANTES de las
+        # pestañas en el área principal; en la ejecución siguiente ya no estaba,
+        # las pestañas cambiaban de posición y Streamlit las volvía a dibujar en
+        # "Jornada" (el primer clic en Reportes > Mis apuestas devolvía a Jornada).
+        with st.sidebar:
+            status = auto_status(comp_code)
         st.session_state["season_input"] = status.season
         st.session_state["matchday_input"] = status.matchday
         st.session_state["_status_reason"] = status.reason
