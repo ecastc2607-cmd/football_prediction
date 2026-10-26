@@ -513,12 +513,12 @@ def plan_check(df: pd.DataFrame, presupuesto: float = PLAN_DAILY_BUDGET) -> pd.D
     for _, c in t.iterrows():
         motivos = []
         if c["n_piernas"] > PLAN_MAX_LEGS:
-            motivos.append(f"{int(c['n_piernas'])} piernas (máx. {PLAN_MAX_LEGS})")
+            motivos.append(f"{int(c['n_piernas'])} selecciones (máx. {PLAN_MAX_LEGS})")
         if c["_acumulado"] > presupuesto:
             motivos.append(f"supera el presupuesto del día (${c['_acumulado']:,.0f})")
         for n, m in zip(df.loc[df["coupon_id"] == c["coupon_id"], "pierna"],
                         df.loc[df["coupon_id"] == c["coupon_id"], "_motivos"]):
-            motivos += [f"pierna {int(n)}: {x}" for x in m]
+            motivos += [f"selección {int(n)}: {x}" for x in m]
         filas.append({"coupon_id": c["coupon_id"], "cumple": not motivos, "motivos": motivos})
     return pd.DataFrame(filas)
 
@@ -552,9 +552,9 @@ def simulate(df: pd.DataFrame, stake: float = 10_000) -> pd.DataFrame:
                       "acierto_pct": 100 * (sub["resultado"] == ACIERTO).mean(),
                       "apostado": stake * len(sub), "ganancia": g})
 
-    sencillas("Todas tus piernas como sencillas", d)
-    sencillas("Solo piernas que cumplen el plan (sencillas)", d[d["cumple"]])
-    sencillas(f"Solo piernas con modelo ≥ {PLAN_MIN_PROB:.0f}% (sencillas)", d[d["prob"] >= PLAN_MIN_PROB])
+    sencillas("Todas tus selecciones como sencillas", d)
+    sencillas("Solo selecciones que cumplen el plan (sencillas)", d[d["cumple"]])
+    sencillas(f"Solo selecciones con modelo ≥ {PLAN_MIN_PROB:.0f}% (sencillas)", d[d["prob"] >= PLAN_MIN_PROB])
     sencillas("Sin 'Ambos marcan: Sí' (sencillas)", d[~((d["mercado"] == "Ambos marcan") & (d["lado"] == "Sí"))])
     out = pd.DataFrame(filas)
     out["retorno_pct"] = 100 * out["ganancia"] / out["apostado"]
@@ -657,6 +657,22 @@ def _model_now(code: str | None, local: str, visita: str, fecha: datetime, merca
     return None
 
 
+def _texto_opcion(mercado, lado, linea, local, visita) -> str | None:
+    equipo = {"local": local, "visita": visita, "empate": "Empate"}.get(lado, lado)
+    if mercado == "1X2":
+        return f"Resultado final: {equipo}"
+    if mercado == "Empate no válido":
+        return f"Empate no válido: {equipo}"
+    if mercado == "Doble oportunidad":
+        return f"Doble oportunidad: {lado}"
+    if mercado == "Ambos marcan":
+        return f"Ambos marcan: {lado}"
+    if mercado in ("Goles", "Goles 1T", "Corners", "Tarjetas") and linea is not None:
+        nombre = {"Goles": "Total de goles", "Goles 1T": "Goles 1er tiempo"}.get(mercado, mercado)
+        return f"{nombre}: {lado} de {linea:g}"
+    return None
+
+
 def analyze_slip(texto: str) -> tuple[pd.DataFrame, dict]:
     """(piernas analizadas, resumen del combinado) de un boleto sin confirmar."""
     piernas = parse_slip(texto)
@@ -689,6 +705,16 @@ def analyze_slip(texto: str) -> tuple[pd.DataFrame, dict]:
             fila["cuota_justa"] = round(1 / q, 2)
             fila["valor_pct"] = round(100 * (ajustada * c - 1), 1)
         fila["motivos"] = leg_issues(fila, fuerza)
+        fila["recomendada"] = (not fila["motivos"] and fila["valor_pct"] is not None
+                               and fila["valor_pct"] >= 100 * VALUE_MIN_EDGE)
+        fila["alternativas"] = pd.DataFrame()
+        if not fila["recomendada"] and g:
+            try:
+                fila["alternativas"] = alternatives(
+                    _codigo_liga(liga), g.get("id"), p["local"], p["visita"], p["cuota"],
+                    excluir=_texto_opcion(merc, lado, linea, p["local"], p["visita"]), fecha=ahora)
+            except Exception:
+                pass
         filas.append(fila)
     df = pd.DataFrame(filas)
     resumen: dict = {}
@@ -700,11 +726,11 @@ def analyze_slip(texto: str) -> tuple[pd.DataFrame, dict]:
     prob_total = float(probs.prod()) if probs.notna().all() else None
     motivos = []
     if len(df) > PLAN_MAX_LEGS:
-        motivos.append(f"{len(df)} piernas (máx. {PLAN_MAX_LEGS})")
+        motivos.append(f"{len(df)} selecciones (máx. {PLAN_MAX_LEGS})")
     if df["partido"].duplicated().any():
-        motivos.append("dos piernas del mismo partido (están correlacionadas)")
+        motivos.append("dos selecciones del mismo partido (están correlacionadas)")
     for n, m in enumerate(df["motivos"], 1):
-        motivos += [f"pierna {n}: {x}" for x in m]
+        motivos += [f"selección {n}: {x}" for x in m]
     valor_total = None
     if cuota_total and prob_total:
         ajustadas = [VALUE_MODEL_WEIGHT * q + (1 - VALUE_MODEL_WEIGHT) / c for q, c in zip(probs, cuotas)]
@@ -714,10 +740,164 @@ def analyze_slip(texto: str) -> tuple[pd.DataFrame, dict]:
         valor_total = 100 * (prod * cuota_total - 1)
     valores = pd.to_numeric(df["valor_pct"], errors="coerce")
     if (valores < 100 * VALUE_MIN_EDGE).any() or valores.isna().any():
-        motivos.append("alguna pierna no tiene valor contra la cuota")
+        motivos.append("alguna selección no tiene valor contra la cuota")
     sencillas = df[(valores >= 100 * VALUE_MIN_EDGE) & df["motivos"].map(len).eq(0)]
+    sugerido = []
+    for _, f in df.iterrows():
+        if f["recomendada"]:
+            sugerido.append({"opcion": f"{f['mercado_txt']}: {f['pick']}", "partido": f["partido"],
+                             "cuota": f["cuota"], "prob_modelo": f["prob_modelo"], "cambio": False})
+        elif isinstance(f["alternativas"], pd.DataFrame) and not f["alternativas"].empty                 and f["alternativas"].iloc[0]["nivel"].startswith("✅"):
+            mejor = f["alternativas"].iloc[0]
+            sugerido.append({"opcion": mejor["opcion"], "partido": f["partido"], "cuota": mejor["cuota"],
+                             "prob_modelo": mejor["prob_modelo"], "cambio": True})
+    sugerido = pd.DataFrame(sugerido)
+    if len(sugerido) != len(df) or not sugerido["cambio"].any():
+        sugerido = pd.DataFrame()  # solo si TODAS las selecciones quedan cubiertas y algo cambió
     resumen = {"piernas": len(df), "cuota": cuota_total, "prob": prob_total,
                "cuota_justa": 1 / prob_total if prob_total else None, "valor_pct": valor_total,
-               "motivos": motivos, "sencillas_ok": sencillas["pick"].tolist(),
+               "motivos": motivos, "sencillas_ok": sencillas["pick"].tolist(), "sugerido": sugerido,
                "factible": bool(valor_total is not None and valor_total >= 100 * VALUE_MIN_EDGE and not motivos)}
     return df, resumen
+
+
+# --- Alternativas del mismo partido para una selección no recomendada -------------
+# Pedido del usuario (oct-2026): si una selección no se recomienda, proponer otra
+# opción del MISMO partido, de lo que ofrece la casa, con una cuota parecida.
+ALT_MAX = 3
+ALT_WEIGHT_MAIN = 0.5      # 1X2, doble oportunidad, empate no válido, goles, ambos marcan
+ALT_WEIGHT_OTHER = 0.35    # corners, tarjetas, hándicap, 1er tiempo... (igual que Tips)
+
+
+def _match_model(code: str | None, local: str, visita: str, fecha: datetime):
+    """(predicción de goles, nombre local, nombre visita) del modelo, con los
+    nombres del proyecto; None si no se puede."""
+    if not code:
+        return None
+    from .poisson_model import predict_match
+    from .team_strength import team_strength_for_competition
+
+    temporada = _season_for(code, fecha)
+    try:
+        fuerza = team_strength_for_competition(code, [temporada, temporada - 1])
+    except Exception:
+        return None
+    equipos = list(fuerza.index)
+    if not equipos:
+        return None
+    h = max(equipos, key=lambda e: _sim(local, e))
+    a = max(equipos, key=lambda e: _sim(visita, e))
+    if _sim(local, h) < 0.6 or _sim(visita, a) < 0.6:
+        return None
+    try:
+        return predict_match(fuerza, h, a), h, a
+    except Exception:
+        return None
+
+
+def alternatives(code: str | None, game_id, local: str, visita: str, cuota_ref: float | None,
+                 excluir: str | None = None, fecha: datetime | None = None) -> pd.DataFrame:
+    """Opciones del mismo partido (líneas de BWIN en 365scores) con valor y
+    modelo >= PLAN_MIN_PROB, ordenadas por cercanía a `cuota_ref`."""
+    import math
+
+    import numpy as np
+
+    from . import events365, special_markets, totals_model
+
+    if not game_id:
+        return pd.DataFrame()
+    fecha = fecha or datetime.now(timezone.utc)
+    modelo = _match_model(code, local, visita, fecha)
+    if modelo is None:
+        return pd.DataFrame()
+    pr, h, a = modelo
+    lineas = pd.DataFrame(events365.line_rows(int(game_id), scores365.game_lines(int(game_id))))
+    if lineas.empty:
+        return pd.DataFrame()
+    m = pr.score_matrix
+    g = np.arange(m.shape[0])
+    H, A = np.meshgrid(g, g, indexing="ij")
+    hx, ax = pr.home_xg, pr.away_xg
+    share = special_markets.DEFAULT_FIRST_HALF_SHARE
+    try:
+        share = pd.read_csv(special_markets.SHARE_PATH, index_col=0).iloc[:, 0].to_dict().get(code, share)
+    except Exception:
+        pass
+    nombre = {"Home": local, "Away": visita, "1": local, "2": visita, "X": "Empate"}
+    filas = []
+    for r in lineas.itertuples(index=False):
+        c = r.odds
+        if not c or c <= 1.01:
+            continue
+        tipo, op = int(r.line_type_id), str(r.option)
+        try:
+            ln = float(r.line) if r.line is not None and str(r.line) not in ("", "nan", "None") else None
+        except ValueError:
+            ln = None
+        q, texto, peso = None, None, ALT_WEIGHT_OTHER
+        if tipo == 1 and op in ("1", "X", "2"):
+            q = {"1": pr.home_win, "X": pr.draw, "2": pr.away_win}[op]
+            texto, peso = f"Resultado final: {nombre[op]}", ALT_WEIGHT_MAIN
+        elif tipo == 14 and op in ("1X", "12", "X2"):
+            q = {"1X": pr.home_win + pr.draw, "12": pr.home_win + pr.away_win, "X2": pr.away_win + pr.draw}[op]
+            texto, peso = f"Doble oportunidad: {op}", ALT_WEIGHT_MAIN
+        elif tipo == 15 and op in ("Home", "Away"):
+            w, l = (pr.home_win, pr.away_win) if op == "Home" else (pr.away_win, pr.home_win)
+            q, texto, peso = w / (w + l), f"Empate no válido: {nombre[op]}", ALT_WEIGHT_MAIN
+        elif tipo == 12 and op in ("Yes", "No"):
+            q = pr.btts if op == "Yes" else 1 - pr.btts
+            texto, peso = f"Ambos marcan: {'Sí' if op == 'Yes' else 'No'}", ALT_WEIGHT_MAIN
+        elif tipo == 3 and ln is not None and op in ("Over", "Under"):
+            mas = float(m[(H + A) > ln].sum())
+            q = mas if op == "Over" else 1 - mas
+            texto, peso = f"Total de goles: {'Más' if op == 'Over' else 'Menos'} de {ln:g}", ALT_WEIGHT_MAIN
+        elif tipo == 9 and ln is not None and op in ("Over", "Under"):
+            lam = (hx + ax) * share
+            from scipy.stats import poisson
+            mas = 1 - float(poisson.cdf(math.floor(ln), lam))
+            q = mas if op == "Over" else 1 - mas
+            texto = f"Goles 1er tiempo: {'Más' if op == 'Over' else 'Menos'} de {ln:g}"
+        elif tipo == 11 and ln is not None and op in ("Home", "Away") and abs(ln * 2 - round(ln * 2)) < 1e-9 \
+                and round(ln * 2) % 2:  # solo líneas .5 (sin devolución)
+            margen = (H - A) if op == "Home" else (A - H)
+            linea_lado = ln if op == "Home" else -ln
+            q = float(m[(margen + linea_lado) > 0].sum())
+            texto = f"Hándicap asiático: {nombre[op]} {linea_lado:+g}"
+        elif tipo in (137, 141) and ln is not None and op in ("Over", "Under"):
+            res = totals_model.predict(code, h, a, "corners" if tipo == 137 else "tarjetas", ln)
+            if res:
+                q = res[1] if op == "Over" else 1 - res[1]
+                texto = f"{'Corners' if tipo == 137 else 'Tarjetas'}: {'Más' if op == 'Over' else 'Menos'} de {ln:g}"
+        elif tipo in (139, 140) and ln is not None and op in ("Over", "Under"):
+            st = special_markets.stat_prediction(code, h, a, "sot" if tipo == 139 else "off", ln)
+            if st:
+                q = st["p_mas"] if op == "Over" else 1 - st["p_mas"]
+                texto = (f"{'Tiros al arco' if tipo == 139 else 'Fueras de juego'}: "
+                         f"{'Más' if op == 'Over' else 'Menos'} de {ln:g}")
+        elif tipo in (144, 145) and op in ("Yes", "No"):
+            recibe = A if tipo == 144 else H  # 144 = valla invicta del local: el visitante no marca
+            invicta = float(m[recibe == 0].sum())
+            q = invicta if op == "Yes" else 1 - invicta
+            equipo = local if tipo == 144 else visita
+            texto = f"Valla invicta {equipo}: {'Sí' if op == 'Yes' else 'No'}"
+        elif tipo == 7 and op in ("Home", "Away"):
+            lam = hx + ax
+            q = (hx if op == "Home" else ax) / lam * (1 - math.exp(-lam)) if lam > 0 else None
+            texto = f"Primer gol: {nombre[op]}"
+        if q is None or texto is None or (excluir and texto.lower() == excluir.lower()):
+            continue
+        ajustada = peso * q + (1 - peso) / c
+        filas.append({"opcion": texto, "cuota": c, "prob_modelo": round(100 * q, 1), "prob_casa": round(100 / c, 1),
+                      "valor_pct": round(100 * (ajustada * c - 1), 1),
+                      "distancia": abs(math.log(c / cuota_ref)) if cuota_ref else 0.0})
+    alt = pd.DataFrame(filas)
+    if alt.empty:
+        return alt
+    # Dos niveles: con valor claro (regla de Tips) y "margen justo" (no pierde,
+    # pero la ventaja es chica). Nunca por debajo del mínimo del plan.
+    alt = alt[(alt["prob_modelo"] >= PLAN_MIN_PROB) & (alt["valor_pct"] >= 0)].copy()
+    alt["nivel"] = alt["valor_pct"].map(lambda v: "✅ Recomendada" if v >= 100 * VALUE_MIN_EDGE else "🟡 Margen justo")
+    alt["_n"] = (alt["valor_pct"] < 100 * VALUE_MIN_EDGE).astype(int)
+    alt = alt.sort_values(["_n", "distancia", "valor_pct"], ascending=[True, True, False]).head(ALT_MAX)
+    return alt.drop(columns=["distancia", "_n"])[["nivel", "opcion", "cuota", "prob_modelo", "prob_casa", "valor_pct"]]

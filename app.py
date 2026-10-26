@@ -2154,7 +2154,8 @@ def _render_slip_check() -> None:
     """Analiza un boleto ANTES de apostarlo (pedido del usuario, oct-2026)."""
     with st.expander("🔍 Analizar un cupón antes de apostar", expanded=True):
         st.caption("Pega el boleto que estás armando (BetPlay o bwin: pick, mercado, partido y cuota) y el modelo "
-                   "te dice si cada pierna y el combinado tienen sentido. Nada se guarda.")
+                   "te dice si cada selección y el combinado tienen sentido; si una no conviene, te propone otra opción del "
+                   "mismo partido con cuota parecida. Nada se guarda.")
         texto = st.text_area("Boleto sin confirmar", height=160, key="mb_slip",
                              placeholder="PSG\nResultado Final\nPSG - Lyon\n1.34\n\nMenos de 2.5\nTotal de goles\n"
                                          "Sevilla - Osasuna\n1.73")
@@ -2168,10 +2169,10 @@ def _render_slip_check() -> None:
             return
         _, piernas, res = guardado
         if piernas.empty:
-            st.warning("No se reconoció ninguna pierna: pega pick, mercado, partido ('Local - Visitante') y cuota.")
+            st.warning("No se reconoció ninguna selección: pega pick, mercado, partido ('Local - Visitante') y cuota.")
             return
         if res["factible"]:
-            st.success("✅ **Factible**: todas las piernas cumplen el plan y el combinado tiene valor contra la cuota.")
+            st.success("✅ **Factible**: todas las selecciones cumplen el plan y el combinado tiene valor contra la cuota.")
         else:
             st.error("⛔ **No recomendado** — " + "; ".join(res["motivos"]) + ".")
         k1, k2, k3, k4 = st.columns(4)
@@ -2198,20 +2199,48 @@ def _render_slip_check() -> None:
                          "valor_pct": st.column_config.NumberColumn("Valor", format="%+.0f%%"),
                          "plan": st.column_config.Column("Plan", width="medium"),
                          "fuente": "Fuente"})
+        for n, f in enumerate(piernas.itertuples(), 1):
+            if f.recomendada:
+                continue
+            alt = f.alternativas
+            st.markdown(f"**🔄 Selección {n} ({f.pick} · {f.partido}) — otras opciones del mismo partido**")
+            if not isinstance(alt, pd.DataFrame) or alt.empty:
+                st.caption("Ninguna opción de este partido llega a 65% en el modelo sin perder contra la cuota: "
+                           "mejor sacarlo del boleto.")
+                continue
+            st.dataframe(alt, hide_index=True, width="stretch", column_config={
+                "nivel": st.column_config.Column(
+                    "Nivel", help="✅ Recomendada: ≥ 65% y paga al menos 3% más de lo que vale (regla de Tips). "
+                                  "🟡 Margen justo: ≥ 65% y no pierde contra la cuota, pero la ventaja es chica."),
+                "opcion": "Opción", "cuota": st.column_config.NumberColumn("Cuota BWIN", format="%.2f"),
+                "prob_modelo": st.column_config.NumberColumn("Prob. modelo", format="%.0f%%"),
+                "prob_casa": st.column_config.NumberColumn("Prob. de la casa", format="%.0f%%"),
+                "valor_pct": st.column_config.NumberColumn("Valor", format="%+.0f%%")})
+        sugerido = res.get("sugerido")
+        if isinstance(sugerido, pd.DataFrame) and not sugerido.empty:
+            cuota_s = float(pd.to_numeric(sugerido["cuota"]).prod())
+            prob_s = float((pd.to_numeric(sugerido["prob_modelo"]) / 100).prod())
+            st.success(
+                f"🔁 **Boleto sugerido** (cambiando lo no recomendado por la opción más parecida): cuota "
+                f"{cuota_s:.2f} · prob. según el modelo {prob_s:.0%} · cuota justa {1 / prob_s:.2f}\n\n"
+                + "\n".join(f"- {'🔄 ' if r.cambio else ''}{r.opcion} — {r.partido} @ {r.cuota:.2f}"
+                             for r in sugerido.itertuples()))
+        st.caption("Las alternativas usan las cuotas de BWIN (365scores) como referencia: en tu casa pueden variar un "
+                   "poco — confírmalas antes de apostar.")
         if res.get("sencillas_ok"):
-            st.info("💡 Estas piernas sí tienen valor y cumplen el plan — mejor jugarlas como **sencillas**: "
+            st.info("💡 Estas selecciones sí tienen valor y cumplen el plan — mejor jugarlas como **sencillas**: "
                     + ", ".join(res["sencillas_ok"]) + ".")
         elif not res["factible"]:
-            st.info("💡 Ninguna pierna tiene valor según el modelo. Recomendación: no apostar este boleto y revisar "
+            st.info("💡 Ninguna selección tiene valor según el modelo. Recomendación: no apostar este boleto y revisar "
                     "los picks con 'Apostar' en 💡 Tips.")
         st.caption("Prob. del modelo: la predicción guardada del día (la misma de Jornada) o, si no hay, el modelo "
-                   "calculado en el momento. El combinado multiplica las piernas (supone que son independientes).")
+                   "calculado en el momento. El combinado multiplica las selecciones (supone que son independientes).")
 
 
 def _render_my_bets(desde, hasta) -> None:
     """Cupones reales del usuario (historial de bwin) resueltos con 365scores."""
     st.caption("Pega aquí tu historial de bwin tal como lo copias de 'Mis apuestas' (puede incluir cupones ya "
-               "cargados: se actualizan, no se duplican). Cada pierna se resuelve sola con el marcador y las "
+               "cargados: se actualizan, no se duplican). Cada selección se resuelve sola con el marcador y las "
                "estadísticas finales de 365scores y se compara con lo que decía el modelo. 🔒 Los cupones se "
                "guardan solo en este PC (data/tracking/my_bets.csv no se sube a GitHub: el repo es público).")
     _render_slip_check()
@@ -2221,16 +2250,16 @@ def _render_my_bets(desde, hasta) -> None:
         c1, c2 = st.columns(2)
         if c1.button("💾 Guardar y resolver", key="mb_guardar", type="primary", disabled=not texto.strip()):
             nuevos, actualizados = my_bets.add_coupons(texto)
-            with st.spinner("Buscando los resultados de cada pierna en 365scores..."):
+            with st.spinner("Buscando los resultados de cada selección en 365scores..."):
                 resueltas = my_bets.resolve()
             if nuevos or actualizados:
-                st.success(f"{nuevos} cupones nuevos, {actualizados} actualizados, {resueltas} piernas resueltas.")
+                st.success(f"{nuevos} cupones nuevos, {actualizados} actualizados, {resueltas} selecciones resueltas.")
             else:
                 st.warning("No se reconoció ningún cupón en el texto: cópialo tal como lo muestra bwin "
                            "(con 'ID del cupón', 'Cuotas' y 'Apuesta').")
         if c2.button("🔄 Resolver pendientes", key="mb_resolver"):
             with st.spinner("Buscando resultados..."):
-                st.success(f"{my_bets.resolve()} piernas resueltas.")
+                st.success(f"{my_bets.resolve()} selecciones resueltas.")
 
     df = my_bets.load()
     if df.empty:
@@ -2253,8 +2282,8 @@ def _render_my_bets(desde, hasta) -> None:
     k1.metric("Apostado", f"${apostado:,.0f}")
     k2.metric("Ganancia neta", f"${neto:,.0f}", f"{neto / apostado:+.0%}" if apostado else None)
     k3.metric("Cupones ganados", f"{ganados} de {len(con_monto)}")
-    k4.metric("Acierto por pierna", f"{(piernas['resultado'] == 'acierto').mean():.0%}" if len(piernas) else "-",
-              f"{len(piernas)} piernas", delta_color="off")
+    k4.metric("Acierto por selección", f"{(piernas['resultado'] == 'acierto').mean():.0%}" if len(piernas) else "-",
+              f"{len(piernas)} selecciones", delta_color="off")
 
     # --- ¿Cumple el plan? ---
     st.markdown("**✅ ¿Tus cupones cumplen el plan?**")
@@ -2262,7 +2291,7 @@ def _render_my_bets(desde, hasta) -> None:
         "Presupuesto diario (COP)", min_value=5_000, value=my_bets.PLAN_DAILY_BUDGET, step=5_000,
         key="mb_presupuesto", help="Lo máximo para apostar en un día; los cupones que lo superan se marcan.")
     st.caption(
-        f"Reglas (sacadas de tu propio historial): máximo {my_bets.PLAN_MAX_LEGS} piernas por cupón · cada pierna "
+        f"Reglas (sacadas de tu propio historial): máximo {my_bets.PLAN_MAX_LEGS} selecciones por cupón · cada selección "
         f"de 1X2 / empate no válido / doble oportunidad / goles 2.5 con el modelo ≥ {my_bets.PLAN_MIN_PROB:.0f}% · "
         "nada de 'Ambos marcan: Sí' · corners y tarjetas solo donde Reportes los marca como fortaleza de la liga "
         f"(≥ +{my_bets.PLAN_MIN_STAT_STRENGTH:.0f} pts) · sin pasar el presupuesto del día.")
@@ -2282,10 +2311,10 @@ def _render_my_bets(desde, hasta) -> None:
         "ganancia": st.column_config.NumberColumn("Ganancia neta", format="$%d"),
         "retorno_pct": st.column_config.NumberColumn("Retorno", format="%+.0f%%"),
     })
-    motivos = pd.Series([m.split(": ", 1)[-1] if m.startswith("pierna") else m
+    motivos = pd.Series([m.split(": ", 1)[-1] if m.startswith("selección") else m
                          for ms in plan["motivos"] for m in ms])
     if not motivos.empty:
-        motivos = motivos.str.replace(r"modelo [0-9.]+% \(< .*", "pierna con el modelo < 65%", regex=True)
+        motivos = motivos.str.replace(r"modelo [0-9.]+% \(< .*", "selección con el modelo < 65%", regex=True)
         motivos = motivos.str.replace(r"supera el presupuesto del día.*", "supera el presupuesto del día", regex=True)
         motivos = motivos.str.replace(r"no es fortaleza en la liga.*", "no es fortaleza en la liga", regex=True)
         st.caption("Reglas que más rompes: " + " · ".join(f"{k} ({v})" for k, v in motivos.value_counts().head(5).items()))
@@ -2293,7 +2322,7 @@ def _render_my_bets(desde, hasta) -> None:
     # --- Simulación con tus mismas piernas ---
     sim = my_bets.simulate(df)
     if not sim.empty:
-        st.markdown("**🔁 ¿Y si las hubieras jugado distinto?** (tus mismas piernas, $10.000 cada sencilla)")
+        st.markdown("**🔁 ¿Y si las hubieras jugado distinto?** (tus mismas selecciones, $10.000 cada sencilla)")
         st.dataframe(sim, hide_index=True, width="stretch", column_config={
             "estrategia": "Estrategia", "apuestas": "Apuestas",
             "acierto_pct": st.column_config.NumberColumn("Acierto", format="%.0f%%"),
@@ -2301,7 +2330,7 @@ def _render_my_bets(desde, hasta) -> None:
             "ganancia": st.column_config.NumberColumn("Ganancia neta", format="$%d"),
             "retorno_pct": st.column_config.NumberColumn("Retorno", format="%+.0f%%"),
         })
-        st.caption("La cuota de cada pierna se estima como la raíz de la cuota del cupón (bwin no la muestra por "
+        st.caption("La cuota de cada selección se estima como la raíz de la cuota del cupón (bwin no la muestra por "
                    "separado): es aproximada. Las reglas del plan salieron de estos mismos cupones, así que el "
                    "resultado positivo hay que confirmarlo con las semanas siguientes — por eso conviene seguir "
                    "cargando el historial.")
@@ -2319,10 +2348,10 @@ def _render_my_bets(desde, hasta) -> None:
     por_n["ganados_pct"] = 100 * por_n["ganados"] / por_n["cupones"]
     por_n["retorno_pct"] = 100 * por_n["ganancia"] / por_n["apostado"]
     st.dataframe(por_n, hide_index=True, width="stretch", column_config={
-        "n_piernas": "Piernas", "cupones": "Cupones", "ganados": "Ganados",
+        "n_piernas": "Selecciones", "cupones": "Cupones", "ganados": "Ganados",
         "ganados_pct": st.column_config.NumberColumn("% ganados", format="%.0f%%"),
         "perdidos_por_una": st.column_config.NumberColumn(
-            "Perdidos por 1 pierna", help="Cupones que se perdieron con una sola pierna fallada."),
+            "Perdidos por 1 selección", help="Cupones que se perdieron con una sola selección fallada."),
         "apostado": st.column_config.NumberColumn("Apostado", format="$%d"),
         "ganancia": st.column_config.NumberColumn("Ganancia neta", format="$%d"),
         "retorno_pct": st.column_config.NumberColumn("Retorno", format="%+.0f%%"),
@@ -2332,10 +2361,10 @@ def _render_my_bets(desde, hasta) -> None:
         dejado = float((pd.to_numeric(perdido_cobro["cuota"]) * pd.to_numeric(perdido_cobro["monto"])
                         - pd.to_numeric(perdido_cobro["pago"])).sum())
         st.caption(f"💸 Cobro anticipado: {len(perdido_cobro)} cupón(es) cobrados antes de tiempo terminaron con "
-                   f"todas las piernas acertadas — se dejaron ${dejado:,.0f} sobre la mesa.")
+                   f"todas las selecciones acertadas — se dejaron ${dejado:,.0f} sobre la mesa.")
 
     # --- Por mercado (con lo que esperaba el modelo cuando hay predicción) ---
-    st.markdown("**Acierto por mercado** (piernas resueltas)")
+    st.markdown("**Acierto por mercado** (selecciones resueltas)")
     pm = piernas.assign(ok=piernas["resultado"] == "acierto",
                         prob=pd.to_numeric(piernas["prob_modelo"], errors="coerce"))
     tabla_m = pm.groupby("mercado").agg(predicciones=("ok", "size"), aciertos=("ok", "sum"),
@@ -2344,7 +2373,7 @@ def _render_my_bets(desde, hasta) -> None:
     if not tabla_m.empty:
         st.altair_chart(_bars_vs_expected(tabla_m, "mercado", "Mercado"), use_container_width=True)
         st.caption("Barra azul: tu acierto · marca naranja: la probabilidad media que el modelo les daba a esas "
-                   "piernas (solo 1X2, empate no válido, doble oportunidad, ambos marcan y goles 2.5; corners y "
+                   "selecciones (solo 1X2, empate no válido, doble oportunidad, ambos marcan y goles 2.5; corners y "
                    "tarjetas no tienen marca).")
     # --- ¿Con o sin el modelo? ---
     pm["apoyo"] = pd.cut(pm["prob"], [-1, 50, 65, 101], labels=["Modelo < 50%", "Modelo 50-65%", "Modelo ≥ 65%"])
@@ -2352,16 +2381,16 @@ def _render_my_bets(desde, hasta) -> None:
         piernas=("ok", "size"), aciertos=("ok", "sum")).reset_index()
     if not apoyo.empty:
         apoyo["acierto_pct"] = 100 * apoyo["aciertos"] / apoyo["piernas"]
-        st.markdown("**¿Seguir al modelo ayuda?** Tus piernas según la probabilidad que les daba el modelo")
+        st.markdown("**¿Seguir al modelo ayuda?** Tus selecciones según la probabilidad que les daba el modelo")
         st.dataframe(apoyo, hide_index=True, width="stretch", column_config={
-            "apoyo": "Lo que decía el modelo", "piernas": "Piernas", "aciertos": "Aciertos",
+            "apoyo": "Lo que decía el modelo", "piernas": "Selecciones", "aciertos": "Aciertos",
             "acierto_pct": st.column_config.NumberColumn("Tu acierto", format="%.0f%%")})
     por_liga = pm.groupby("liga").agg(piernas=("ok", "size"), aciertos=("ok", "sum")).reset_index()
     if not por_liga.empty:
         por_liga["acierto_pct"] = 100 * por_liga["aciertos"] / por_liga["piernas"]
         with st.expander("Acierto por liga"):
             st.dataframe(por_liga.sort_values("piernas", ascending=False), hide_index=True, width="stretch",
-                         column_config={"liga": "Liga", "piernas": "Piernas", "aciertos": "Aciertos",
+                         column_config={"liga": "Liga", "piernas": "Selecciones", "aciertos": "Aciertos",
                                         "acierto_pct": st.column_config.NumberColumn("Acierto", format="%.0f%%")})
 
     # --- Cupones ---
@@ -2381,13 +2410,13 @@ def _render_my_bets(desde, hasta) -> None:
                                               else "⚠ " + "\n⚠ ".join(chequeo.iloc[0]["motivos"]))
         lineas.append({"Cupón": f"{pd.Timestamp(fila['placed_at']).tz_convert(BOGOTA_TZ):%d-%b %H:%M}\n"
                                 f"{fila['tipo']}\n{cid}",
-                       "Piernas": "\n".join(piezas), "Cuota": fila["cuota"], "Monto": fila["monto"],
+                       "Selecciones": "\n".join(piezas), "Cuota": fila["cuota"], "Monto": fila["monto"],
                        "Estado": fila["estado"], "Ganancia": fila["ganancia"], "Plan": plan_txt})
     pesos = lambda v: f"${v:,.0f}" if pd.notna(v) else "-"  # noqa: E731
     st.table(pd.DataFrame(lineas).style.hide(axis="index")
              .format({"Cuota": lambda v: f"{v:.2f}" if pd.notna(v) else "-", "Monto": pesos, "Ganancia": pesos})
              .set_properties(subset=["Cupón"], **{"white-space": "pre-wrap", "min-width": "8em"})
-             .set_properties(subset=["Piernas"], **{"white-space": "pre-wrap", "min-width": "24em"})
+             .set_properties(subset=["Selecciones"], **{"white-space": "pre-wrap", "min-width": "24em"})
              .set_properties(subset=["Cuota", "Monto", "Estado", "Ganancia"], **{"white-space": "nowrap"})
              .set_properties(subset=["Plan"], **{"white-space": "pre-wrap", "min-width": "14em", "font-size": "0.85em"}))
 
