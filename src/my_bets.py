@@ -422,3 +422,130 @@ def tickets(df: pd.DataFrame) -> pd.DataFrame:
     t["ganancia"] = (pago - monto).where(t["estado"] != "Abierta")
     t.loc[t["estado"] == "Nula", "ganancia"] = 0.0
     return t.sort_values("placed_at", ascending=False)
+
+
+# --- Plan de apuestas: chequeo por cupón y simulación de alternativas -------------
+# Reglas acordadas con el usuario (oct-2026), sacadas de su propio historial:
+# con 3-4 piernas perdía casi todo; las piernas con el modelo >= 65% acertaban
+# 83%; "Ambos marcan: Sí" 42%; corners solo rendían donde Reportes los marca fuertes.
+PLAN_MAX_LEGS = 2
+PLAN_MIN_PROB = 65.0
+PLAN_DAILY_BUDGET = 50_000
+PLAN_MIN_STAT_STRENGTH = 5.0  # puntos (fuerza de Reportes, encogida) para aceptar corners/tarjetas
+MODEL_MARKETS = {"1X2", "Empate no válido", "Doble oportunidad", "Ambos marcan", "Goles"}
+STAT_MARKETS_REPORT = {"Corners": "Corners", "Tarjetas": "Tarjetas"}
+LIGA_A_CODIGO = [("Bundesliga", "BL1"), ("Premier", "PL"), ("LaLiga", "PD"), ("Serie A", "SA"), ("Ligue 1", "FL1"),
+                 ("Champions", "CL"), ("Europa League", "EL"), ("Conference", "ECL"), ("BetPlay", "COL"),
+                 ("Nations League", "NT")]
+
+
+def _codigo_liga(liga) -> str | None:
+    for clave, codigo in LIGA_A_CODIGO:
+        if isinstance(liga, str) and clave.lower() in liga.lower():
+            return codigo
+    return None
+
+
+def _league_strength() -> pd.DataFrame:
+    """Liga × mercado de Reportes (diferencia acierto − esperado)."""
+    from . import reports
+    from .prediction_log import load_log
+
+    log = load_log()
+    if log.empty:
+        return pd.DataFrame()
+    liga, _ = reports.strength_tables(reports.predictions_long(log, include_backtest=True))
+    return liga
+
+
+def leg_issues(r, fuerza: pd.DataFrame | None = None) -> list[str]:
+    """Reglas del plan que rompe una pierna (vacío = cumple)."""
+    from .reports import STRENGTH_PRIOR
+
+    motivos = []
+    prob = pd.to_numeric(r.get("prob_modelo"), errors="coerce")
+    if r.get("mercado") == "Ambos marcan" and r.get("lado") == "Sí":
+        motivos.append("Ambos marcan: Sí")
+    elif r.get("mercado") in MODEL_MARKETS:
+        if pd.isna(prob):
+            motivos.append("sin predicción del modelo")
+        elif prob < PLAN_MIN_PROB:
+            motivos.append(f"modelo {prob:.1f}% (< {PLAN_MIN_PROB:.0f}%)")
+    elif r.get("mercado") in STAT_MARKETS_REPORT:
+        codigo = _codigo_liga(r.get("liga"))
+        clave = (codigo, STAT_MARKETS_REPORT[r["mercado"]])
+        if fuerza is None or fuerza.empty or clave not in fuerza.index:
+            motivos.append(f"{r['mercado'].lower()} sin historial en la liga")
+        else:
+            # Misma fuerza que colorea Jornada: acercada a neutro con poca muestra.
+            fila = fuerza.loc[clave]
+            n = float(fila["predicciones"])
+            f = float(fila["diferencia"]) * n / (n + STRENGTH_PRIOR)
+            if f < PLAN_MIN_STAT_STRENGTH:
+                motivos.append(f"{r['mercado'].lower()} no es fortaleza en la liga ({f:+.0f} pts)")
+    else:
+        motivos.append("mercado sin respaldo del modelo")
+    return motivos
+
+
+def plan_check(df: pd.DataFrame, presupuesto: float = PLAN_DAILY_BUDGET) -> pd.DataFrame:
+    """Por cupón: si cumple el plan y qué reglas rompe."""
+    if df.empty:
+        return pd.DataFrame(columns=["coupon_id", "cumple", "motivos"])
+    fuerza = _league_strength()
+    df = df.copy()
+    df["_motivos"] = [leg_issues(r, fuerza) for r in df.to_dict("records")]
+    t = tickets(df)
+    t["_dia"] = pd.to_datetime(t["placed_at"], utc=True, errors="coerce").dt.tz_convert(BOGOTA).dt.date
+    t = t.sort_values("placed_at")
+    t["_acumulado"] = pd.to_numeric(t["monto"], errors="coerce").fillna(0).groupby(t["_dia"]).cumsum()
+    filas = []
+    for _, c in t.iterrows():
+        motivos = []
+        if c["n_piernas"] > PLAN_MAX_LEGS:
+            motivos.append(f"{int(c['n_piernas'])} piernas (máx. {PLAN_MAX_LEGS})")
+        if c["_acumulado"] > presupuesto:
+            motivos.append(f"supera el presupuesto del día (${c['_acumulado']:,.0f})")
+        for n, m in zip(df.loc[df["coupon_id"] == c["coupon_id"], "pierna"],
+                        df.loc[df["coupon_id"] == c["coupon_id"], "_motivos"]):
+            motivos += [f"pierna {int(n)}: {x}" for x in m]
+        filas.append({"coupon_id": c["coupon_id"], "cumple": not motivos, "motivos": motivos})
+    return pd.DataFrame(filas)
+
+
+def simulate(df: pd.DataFrame, stake: float = 10_000) -> pd.DataFrame:
+    """Qué habría pasado con TUS mismas piernas jugadas de otra forma. La cuota
+    de cada pierna se estima como la raíz n-ésima de la cuota del cupón (bwin
+    no la muestra por separado): es aproximada."""
+    if df.empty:
+        return pd.DataFrame()
+    fuerza = _league_strength()
+    d = df[df["estado"] != "Nula"].copy()
+    d["cuota_c"] = pd.to_numeric(d["cuota"], errors="coerce")
+    d["cuota_pierna"] = d["cuota_c"] ** (1 / d["n_piernas"].astype(float))
+    d = d[d["resultado"].isin([ACIERTO, FALLO, DEVUELTO]) & d["cuota_pierna"].notna()]
+    d["cumple"] = [not leg_issues(r, fuerza) for r in d.to_dict("records")]
+    d["prob"] = pd.to_numeric(d["prob_modelo"], errors="coerce")
+    t = tickets(df)
+    real = t[t["estado"].isin(["Ganada", "Perdida", "Cobro anticipado"])]
+    apostado_real = pd.to_numeric(real["monto"], errors="coerce").sum()
+    filas = [{"estrategia": "Lo que hiciste (combinadas)", "apuestas": len(real),
+              "acierto_pct": 100 * real["estado"].isin(["Ganada", "Cobro anticipado"]).mean() if len(real) else None,
+              "apostado": apostado_real, "ganancia": pd.to_numeric(real["ganancia"], errors="coerce").sum()}]
+
+    def sencillas(nombre, sub):
+        if sub.empty:
+            return
+        g = sub.apply(lambda r: stake * (r["cuota_pierna"] - 1) if r["resultado"] == ACIERTO
+                      else 0.0 if r["resultado"] == DEVUELTO else -stake, axis=1).sum()
+        filas.append({"estrategia": nombre, "apuestas": len(sub),
+                      "acierto_pct": 100 * (sub["resultado"] == ACIERTO).mean(),
+                      "apostado": stake * len(sub), "ganancia": g})
+
+    sencillas("Todas tus piernas como sencillas", d)
+    sencillas("Solo piernas que cumplen el plan (sencillas)", d[d["cumple"]])
+    sencillas(f"Solo piernas con modelo ≥ {PLAN_MIN_PROB:.0f}% (sencillas)", d[d["prob"] >= PLAN_MIN_PROB])
+    sencillas("Sin 'Ambos marcan: Sí' (sencillas)", d[~((d["mercado"] == "Ambos marcan") & (d["lado"] == "Sí"))])
+    out = pd.DataFrame(filas)
+    out["retorno_pct"] = 100 * out["ganancia"] / out["apostado"]
+    return out
