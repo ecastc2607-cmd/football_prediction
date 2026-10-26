@@ -18,7 +18,7 @@ import altair as alt
 import pandas as pd
 import streamlit as st
 
-from src import (config, half_backtest, special_markets, national_teams, odds_api, reports, same_day, scores365, season_store,
+from src import (config, half_backtest, my_bets, special_markets, national_teams, odds_api, reports, same_day, scores365, season_store,
                  tips_log)
 from src.live_odds import record as record_live_odds
 from src.competition_status import resolve_current_season_and_matchday
@@ -2147,6 +2147,138 @@ def _render_strengths_map(datos: pd.DataFrame) -> None:
                "la marca = el modelo es más fuerte de lo que cree en ese mercado.")
 
 
+RESULTADO_ICONO = {"acierto": "✔", "fallo": "✘", "devuelto": "↺", "pendiente": "·", "sin resultado": "?"}
+
+
+def _render_my_bets(desde, hasta) -> None:
+    """Cupones reales del usuario (historial de bwin) resueltos con 365scores."""
+    st.caption("Pega aquí tu historial de bwin tal como lo copias de 'Mis apuestas' (puede incluir cupones ya "
+               "cargados: se actualizan, no se duplican). Cada pierna se resuelve sola con el marcador y las "
+               "estadísticas finales de 365scores y se compara con lo que decía el modelo. 🔒 Los cupones se "
+               "guardan solo en este PC (data/tracking/my_bets.csv no se sube a GitHub: el repo es público).")
+    with st.expander("➕ Pegar cupones de bwin", expanded=my_bets.load().empty):
+        texto = st.text_area("Historial de bwin", height=200, key="mb_texto",
+                             placeholder="TriplePerdida\n24 de oct de 2026 • 10:42 a. m.\nID del cupón: ...")
+        c1, c2 = st.columns(2)
+        if c1.button("💾 Guardar y resolver", key="mb_guardar", type="primary", disabled=not texto.strip()):
+            nuevos, actualizados = my_bets.add_coupons(texto)
+            with st.spinner("Buscando los resultados de cada pierna en 365scores..."):
+                resueltas = my_bets.resolve()
+            if nuevos or actualizados:
+                st.success(f"{nuevos} cupones nuevos, {actualizados} actualizados, {resueltas} piernas resueltas.")
+            else:
+                st.warning("No se reconoció ningún cupón en el texto: cópialo tal como lo muestra bwin "
+                           "(con 'ID del cupón', 'Cuotas' y 'Apuesta').")
+        if c2.button("🔄 Resolver pendientes", key="mb_resolver"):
+            with st.spinner("Buscando resultados..."):
+                st.success(f"{my_bets.resolve()} piernas resueltas.")
+
+    df = my_bets.load()
+    if df.empty:
+        st.info("Todavía no hay cupones guardados.")
+        return
+    df["_dia"] = pd.to_datetime(df["placed_at"], utc=True, errors="coerce").dt.tz_convert(BOGOTA_TZ).dt.date
+    df = df[(df["_dia"] >= desde) & (df["_dia"] <= hasta)]
+    if df.empty:
+        st.caption("Sin cupones en el rango de fechas elegido arriba.")
+        return
+    t = my_bets.tickets(df)
+    cerrados = t[t["estado"].isin(["Ganada", "Perdida", "Cobro anticipado", "Nula"])]
+    monto = pd.to_numeric(cerrados["monto"], errors="coerce")
+    apostado = float(monto[cerrados["estado"] != "Nula"].sum())
+    neto = float(pd.to_numeric(cerrados["ganancia"], errors="coerce").sum())
+    con_monto = cerrados[cerrados["estado"] != "Nula"]
+    ganados = int(con_monto["estado"].isin(["Ganada", "Cobro anticipado"]).sum())
+    piernas = df[df["resultado"].isin(["acierto", "fallo"])]
+    k1, k2, k3, k4 = st.columns(4)
+    k1.metric("Apostado", f"${apostado:,.0f}")
+    k2.metric("Ganancia neta", f"${neto:,.0f}", f"{neto / apostado:+.0%}" if apostado else None)
+    k3.metric("Cupones ganados", f"{ganados} de {len(con_monto)}")
+    k4.metric("Acierto por pierna", f"{(piernas['resultado'] == 'acierto').mean():.0%}" if len(piernas) else "-",
+              f"{len(piernas)} piernas", delta_color="off")
+
+    # --- Por tamaño de cupón ---
+    st.markdown("**Por tamaño de cupón**")
+    por_n = con_monto.assign(
+        ganado=con_monto["estado"].isin(["Ganada", "Cobro anticipado"]),
+        por_una=(con_monto["fallos"] == 1),
+        monto_n=pd.to_numeric(con_monto["monto"], errors="coerce"),
+        ganancia_n=pd.to_numeric(con_monto["ganancia"], errors="coerce"),
+    ).groupby("n_piernas").agg(cupones=("coupon_id", "size"), ganados=("ganado", "sum"),
+                               perdidos_por_una=("por_una", "sum"), apostado=("monto_n", "sum"),
+                               ganancia=("ganancia_n", "sum")).reset_index()
+    por_n["ganados_pct"] = 100 * por_n["ganados"] / por_n["cupones"]
+    por_n["retorno_pct"] = 100 * por_n["ganancia"] / por_n["apostado"]
+    st.dataframe(por_n, hide_index=True, width="stretch", column_config={
+        "n_piernas": "Piernas", "cupones": "Cupones", "ganados": "Ganados",
+        "ganados_pct": st.column_config.NumberColumn("% ganados", format="%.0f%%"),
+        "perdidos_por_una": st.column_config.NumberColumn(
+            "Perdidos por 1 pierna", help="Cupones que se perdieron con una sola pierna fallada."),
+        "apostado": st.column_config.NumberColumn("Apostado", format="$%d"),
+        "ganancia": st.column_config.NumberColumn("Ganancia neta", format="$%d"),
+        "retorno_pct": st.column_config.NumberColumn("Retorno", format="%+.0f%%"),
+    })
+    perdido_cobro = t[(t["estado"] == "Cobro anticipado") & (t["fallos"] == 0) & (t["pendientes"] == 0)]
+    if not perdido_cobro.empty:
+        dejado = float((pd.to_numeric(perdido_cobro["cuota"]) * pd.to_numeric(perdido_cobro["monto"])
+                        - pd.to_numeric(perdido_cobro["pago"])).sum())
+        st.caption(f"💸 Cobro anticipado: {len(perdido_cobro)} cupón(es) cobrados antes de tiempo terminaron con "
+                   f"todas las piernas acertadas — se dejaron ${dejado:,.0f} sobre la mesa.")
+
+    # --- Por mercado (con lo que esperaba el modelo cuando hay predicción) ---
+    st.markdown("**Acierto por mercado** (piernas resueltas)")
+    pm = piernas.assign(ok=piernas["resultado"] == "acierto",
+                        prob=pd.to_numeric(piernas["prob_modelo"], errors="coerce"))
+    tabla_m = pm.groupby("mercado").agg(predicciones=("ok", "size"), aciertos=("ok", "sum"),
+                                        esperado_pct=("prob", "mean")).reset_index()
+    tabla_m["acierto_pct"] = 100 * tabla_m["aciertos"] / tabla_m["predicciones"]
+    if not tabla_m.empty:
+        st.altair_chart(_bars_vs_expected(tabla_m, "mercado", "Mercado"), use_container_width=True)
+        st.caption("Barra azul: tu acierto · marca naranja: la probabilidad media que el modelo les daba a esas "
+                   "piernas (solo 1X2, empate no válido, doble oportunidad, ambos marcan y goles 2.5; corners y "
+                   "tarjetas no tienen marca).")
+    # --- ¿Con o sin el modelo? ---
+    pm["apoyo"] = pd.cut(pm["prob"], [-1, 50, 65, 101], labels=["Modelo < 50%", "Modelo 50-65%", "Modelo ≥ 65%"])
+    apoyo = pm.dropna(subset=["prob"]).groupby("apoyo", observed=True).agg(
+        piernas=("ok", "size"), aciertos=("ok", "sum")).reset_index()
+    if not apoyo.empty:
+        apoyo["acierto_pct"] = 100 * apoyo["aciertos"] / apoyo["piernas"]
+        st.markdown("**¿Seguir al modelo ayuda?** Tus piernas según la probabilidad que les daba el modelo")
+        st.dataframe(apoyo, hide_index=True, width="stretch", column_config={
+            "apoyo": "Lo que decía el modelo", "piernas": "Piernas", "aciertos": "Aciertos",
+            "acierto_pct": st.column_config.NumberColumn("Tu acierto", format="%.0f%%")})
+    por_liga = pm.groupby("liga").agg(piernas=("ok", "size"), aciertos=("ok", "sum")).reset_index()
+    if not por_liga.empty:
+        por_liga["acierto_pct"] = 100 * por_liga["aciertos"] / por_liga["piernas"]
+        with st.expander("Acierto por liga"):
+            st.dataframe(por_liga.sort_values("piernas", ascending=False), hide_index=True, width="stretch",
+                         column_config={"liga": "Liga", "piernas": "Piernas", "aciertos": "Aciertos",
+                                        "acierto_pct": st.column_config.NumberColumn("Acierto", format="%.0f%%")})
+
+    # --- Cupones ---
+    st.markdown(f"**Cupones** ({len(t)}) — ✔ acertada · ✘ fallada · ↺ devuelta · · pendiente")
+    lineas = []
+    for cid, g in df.sort_values(["placed_at", "pierna"], ascending=[False, True]).groupby("coupon_id", sort=False):
+        piezas = []
+        for r in g.itertuples():
+            prob = f" · modelo {r.prob_modelo:.0f}%" if pd.notna(r.prob_modelo) else ""
+            dato = f" ({r.dato})" if isinstance(r.dato, str) and r.dato else ""
+            marcador = f" [{r.marcador}{dato}]" if isinstance(r.marcador, str) else ""
+            piezas.append(f"{RESULTADO_ICONO.get(r.resultado, '·')} {r.mercado_bwin}: {r.pick_bwin} — "
+                          f"{r.partido_bwin}{marcador}{prob}")
+        fila = t[t["coupon_id"] == cid].iloc[0]
+        lineas.append({"Cupón": f"{pd.Timestamp(fila['placed_at']).tz_convert(BOGOTA_TZ):%d-%b %H:%M}\n"
+                                f"{fila['tipo']}\n{cid}",
+                       "Piernas": "\n".join(piezas), "Cuota": fila["cuota"], "Monto": fila["monto"],
+                       "Estado": fila["estado"], "Ganancia": fila["ganancia"]})
+    pesos = lambda v: f"${v:,.0f}" if pd.notna(v) else "-"  # noqa: E731
+    st.table(pd.DataFrame(lineas).style.hide(axis="index")
+             .format({"Cuota": lambda v: f"{v:.2f}" if pd.notna(v) else "-", "Monto": pesos, "Ganancia": pesos})
+             .set_properties(subset=["Cupón"], **{"white-space": "pre-wrap", "min-width": "8em"})
+             .set_properties(subset=["Piernas"], **{"white-space": "pre-wrap", "min-width": "24em"})
+             .set_properties(subset=["Cuota", "Monto", "Estado", "Ganancia"], **{"white-space": "nowrap"}))
+
+
 def _render_tips_report(boletos: pd.DataFrame, cerrados: pd.DataFrame, mostrar_planes: bool = True) -> None:
     if boletos.empty:
         st.info("Todavía no hay boletos guardados. Se guardan solos cada vez que la pestaña Tips arma el Plan "
@@ -2359,9 +2491,9 @@ with tab_reportes:
         ganancia_tips = pd.to_numeric(cerrados["ganancia"], errors="coerce").sum() if len(cerrados) else 0
         k4.metric("Ganancia neta de Tips", f"${ganancia_tips:+,.0f}")
 
-        t_partidos, t_dia, t_liga, t_equipo, t_mercado, t_fd, t_tips = st.tabs(
+        t_partidos, t_dia, t_liga, t_equipo, t_mercado, t_fd, t_tips, t_mias = st.tabs(
             ["Partidos del día", "Por día", "Por liga", "Por equipo", "Por mercado", "Fortalezas y debilidades",
-             "Boletos de Tips"])
+             "Boletos de Tips", "Mis apuestas"])
 
         with t_partidos:
             _render_day_matches(log_pred, log_tips, ligas, equipos, mercados, incluir_bt, hasta, tipo)
@@ -2441,6 +2573,9 @@ with tab_reportes:
 
         with t_tips:
             _render_tips_report(boletos, cerrados, mostrar_planes=tipo == reports.TIPO_MODELO)
+
+        with t_mias:
+            _render_my_bets(desde, hasta)
 
 # ---------------------------------------------------------------------------
 # Vista "Avanzada (mercados especiales)" — src/special_markets.py

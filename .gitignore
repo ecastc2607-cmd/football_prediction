@@ -6,3 +6,6 @@ data/processed/*.csv
 !data/raw/.gitkeep
 !data/processed/.gitkeep
 logs/
+
+# Apuestas personales (montos reales): solo en el PC, el repo es público.
+data/tracking/my_bets.csv
