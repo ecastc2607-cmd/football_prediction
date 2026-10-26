@@ -139,9 +139,17 @@ def parse_coupons(texto: str) -> list[dict]:
 
 # --- Mercados ---------------------------------------------------------------------
 
+# Abreviaturas que usan las casas y que no se parecen al nombre completo.
+ALIASES = {"psg": "paris saint germain", "man utd": "manchester united", "man city": "manchester city",
+           "spurs": "tottenham hotspur", "barca": "barcelona", "atleti": "atletico madrid", "bvb": "borussia dortmund",
+           "inter": "internazionale inter", "lyon": "olympique lyonnais lyon", "marsella": "olympique marseille",
+           "napoles": "napoli", "om": "olympique marseille"}
+
+
 def _norm(s) -> str:
     s = unicodedata.normalize("NFKD", str(s)).encode("ascii", "ignore").decode().lower()
     s = re.sub(r"[^a-z0-9 ]", " ", s)
+    s = ALIASES.get(" ".join(s.split()), s)
     quitar = {"fc", "cf", "ac", "as", "sc", "afc", "club", "deportivo", "sa", "s", "a", "cd", "rc", "ssc", "1907"}
     return " ".join(w for w in s.split() if w not in quitar)
 
@@ -211,6 +219,8 @@ def _games_del_dia(dia: str) -> list[dict]:
                     continue
                 e = por_id.setdefault(g["id"], {"game": g, "names": []})
                 e["names"].append((h.get("name", ""), a.get("name", "")))
+                if h.get("longName") or a.get("longName"):  # "PSG" -> "Paris Saint-Germain"
+                    e["names"].append((h.get("longName") or h.get("name", ""), a.get("longName") or a.get("name", "")))
                 if lang == 1:
                     e["game"] = g
         _DAY_CACHE[dia] = list(por_id.values())
@@ -549,3 +559,165 @@ def simulate(df: pd.DataFrame, stake: float = 10_000) -> pd.DataFrame:
     out = pd.DataFrame(filas)
     out["retorno_pct"] = 100 * out["ganancia"] / out["apostado"]
     return out
+
+
+# --- Analizar un cupón ANTES de apostarlo ----------------------------------------
+# Pedido del usuario (oct-2026): pegar el boleto que está armando (BetPlay o bwin)
+# y ver si el modelo lo ve factible antes de confirmarlo.
+VALUE_MODEL_WEIGHT = 0.5   # misma regla de valor que Tips (value_tips.MODEL_WEIGHT)
+VALUE_MIN_EDGE = 0.03
+
+
+def parse_slip(texto: str) -> list[dict]:
+    """Piernas de un boleto sin confirmar. Acepta el formato de BetPlay
+    (pick / mercado / partido / cuota, con o sin viñetas y links) y el de bwin
+    ("Mercado: pick" / partido / cuota)."""
+    lineas = []
+    for l in str(texto).replace("\r", "").split("\n"):
+        l = re.sub(r"\[([^\]]+)\]\([^)]*\)", r"\1", l)       # [PSG - Lyon](url) -> PSG - Lyon
+        l = re.sub(r"^\s*[*•·\-–]\s*", "", l).strip()          # viñetas
+        if l:
+            lineas.append(l)
+
+    def es_partido(l):
+        return " - " in l and _num(l) is None and ":" not in l
+
+    piernas = []
+    for i, l in enumerate(lineas):
+        if not es_partido(l):
+            continue
+        antes = [x for x in lineas[max(0, i - 2):i] if _num(x) is None and not es_partido(x)]
+        if antes and ":" in antes[-1]:
+            mercado, pick = [x.strip() for x in antes[-1].split(":", 1)]
+        elif len(antes) >= 2:
+            pick, mercado = antes[-2], antes[-1]
+        else:
+            continue
+        cuota = next((_num(x) for x in lineas[i + 1:i + 3] if _num(x) is not None), None)
+        local, _, visita = l.partition(" - ")
+        piernas.append({"mercado_txt": mercado, "pick": pick, "local": local.strip(), "visita": visita.strip(),
+                        "cuota": cuota})
+    return piernas
+
+
+def _season_for(code: str, fecha: datetime) -> int:
+    if code == "COL":
+        return fecha.year
+    return fecha.year if fecha.month >= 7 else fecha.year - 1
+
+
+def _model_now(code: str | None, local: str, visita: str, fecha: datetime, mercado: str, lado, linea):
+    """Probabilidad (%) del modelo calculada en el momento, cuando el partido no
+    está en predictions_log (o para corners y tarjetas)."""
+    if not code:
+        return None
+    import numpy as np
+
+    from . import totals_model
+    from .poisson_model import predict_match
+    from .team_strength import team_strength_for_competition
+
+    temporada = _season_for(code, fecha)
+    try:
+        fuerza = team_strength_for_competition(code, [temporada, temporada - 1])
+    except Exception:
+        return None
+    equipos = list(fuerza.index)
+    if not equipos:
+        return None
+    h = max(equipos, key=lambda e: _sim(local, e))
+    a = max(equipos, key=lambda e: _sim(visita, e))
+    if _sim(local, h) < 0.6 or _sim(visita, a) < 0.6:
+        return None
+    if mercado in ("Corners", "Tarjetas") and linea is not None:
+        r = totals_model.predict(code, h, a, "corners" if mercado == "Corners" else "tarjetas", float(linea))
+        if not r:
+            return None
+        return 100 * (r[1] if lado == "Más" else 1 - r[1])
+    try:
+        pr = predict_match(fuerza, h, a)
+    except Exception:
+        return None
+    m = pr.score_matrix
+    g = np.arange(m.shape[0])
+    tot = g[:, None] + g[None, :]
+    if mercado == "1X2":
+        return 100 * {"local": pr.home_win, "empate": pr.draw, "visita": pr.away_win}.get(lado, np.nan)
+    if mercado == "Empate no válido":
+        w, l = (pr.home_win, pr.away_win) if lado == "local" else (pr.away_win, pr.home_win)
+        return 100 * w / (w + l)
+    if mercado == "Doble oportunidad":
+        return 100 * {"1X": pr.home_win + pr.draw, "X2": pr.away_win + pr.draw,
+                      "12": pr.home_win + pr.away_win}.get(lado, np.nan)
+    if mercado == "Ambos marcan":
+        return 100 * (pr.btts if lado == "Sí" else 1 - pr.btts)
+    if mercado == "Goles" and linea is not None:
+        mas = float(m[tot > linea].sum())
+        return 100 * (mas if lado == "Más" else 1 - mas)
+    return None
+
+
+def analyze_slip(texto: str) -> tuple[pd.DataFrame, dict]:
+    """(piernas analizadas, resumen del combinado) de un boleto sin confirmar."""
+    piernas = parse_slip(texto)
+    ahora = datetime.now(timezone.utc)
+    fuerza = _league_strength()
+    filas = []
+    for p in piernas:
+        merc, lado, linea = classify(p["mercado_txt"], p["pick"], p["local"], p["visita"])
+        g = find_game(p["local"], p["visita"], (ahora - timedelta(days=1)).strftime("%Y-%m-%dT%H:%M:%SZ"))
+        liga = g.get("competitionDisplayName") if g else None
+        inicio = scores365._utc(g.get("startTime")) if g else None
+        nombres_365 = (((g.get("homeCompetitor") or {}).get("longName") or (g.get("homeCompetitor") or {}).get("name", ""),
+                        (g.get("awayCompetitor") or {}).get("longName") or (g.get("awayCompetitor") or {}).get("name", ""))
+                       if g else None)
+        prob = model_prob(p["local"], p["visita"], inicio, merc, lado, linea, nombres_365) if inicio else None
+        fuente = "predicción del día" if prob is not None and not pd.isna(prob) else None
+        if prob is None or pd.isna(prob):
+            prob = _model_now(_codigo_liga(liga), p["local"], p["visita"], ahora, merc, lado, linea)
+            fuente = "modelo (calculado ahora)" if prob is not None and not pd.isna(prob) else "sin modelo"
+        fila = {"pick": p["pick"], "mercado_txt": p["mercado_txt"], "partido": f"{p['local']} - {p['visita']}",
+                "mercado": merc, "lado": lado, "linea": linea, "liga": liga, "inicio": inicio, "cuota": p["cuota"],
+                "prob_modelo": None if prob is None or pd.isna(prob) else round(float(prob), 1), "fuente": fuente,
+                "prob_casa": None, "cuota_justa": None, "valor_pct": None}
+        q = fila["prob_modelo"] / 100 if fila["prob_modelo"] is not None else None
+        c = p["cuota"]
+        if c:
+            fila["prob_casa"] = round(100 / c, 1)
+        if q and c:
+            ajustada = VALUE_MODEL_WEIGHT * q + (1 - VALUE_MODEL_WEIGHT) / c
+            fila["cuota_justa"] = round(1 / q, 2)
+            fila["valor_pct"] = round(100 * (ajustada * c - 1), 1)
+        fila["motivos"] = leg_issues(fila, fuerza)
+        filas.append(fila)
+    df = pd.DataFrame(filas)
+    resumen: dict = {}
+    if df.empty:
+        return df, resumen
+    cuotas = pd.to_numeric(df["cuota"], errors="coerce")
+    probs = pd.to_numeric(df["prob_modelo"], errors="coerce") / 100
+    cuota_total = float(cuotas.prod()) if cuotas.notna().all() else None
+    prob_total = float(probs.prod()) if probs.notna().all() else None
+    motivos = []
+    if len(df) > PLAN_MAX_LEGS:
+        motivos.append(f"{len(df)} piernas (máx. {PLAN_MAX_LEGS})")
+    if df["partido"].duplicated().any():
+        motivos.append("dos piernas del mismo partido (están correlacionadas)")
+    for n, m in enumerate(df["motivos"], 1):
+        motivos += [f"pierna {n}: {x}" for x in m]
+    valor_total = None
+    if cuota_total and prob_total:
+        ajustadas = [VALUE_MODEL_WEIGHT * q + (1 - VALUE_MODEL_WEIGHT) / c for q, c in zip(probs, cuotas)]
+        prod = 1.0
+        for x in ajustadas:
+            prod *= x
+        valor_total = 100 * (prod * cuota_total - 1)
+    valores = pd.to_numeric(df["valor_pct"], errors="coerce")
+    if (valores < 100 * VALUE_MIN_EDGE).any() or valores.isna().any():
+        motivos.append("alguna pierna no tiene valor contra la cuota")
+    sencillas = df[(valores >= 100 * VALUE_MIN_EDGE) & df["motivos"].map(len).eq(0)]
+    resumen = {"piernas": len(df), "cuota": cuota_total, "prob": prob_total,
+               "cuota_justa": 1 / prob_total if prob_total else None, "valor_pct": valor_total,
+               "motivos": motivos, "sencillas_ok": sencillas["pick"].tolist(),
+               "factible": bool(valor_total is not None and valor_total >= 100 * VALUE_MIN_EDGE and not motivos)}
+    return df, resumen

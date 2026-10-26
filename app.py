@@ -2150,12 +2150,71 @@ def _render_strengths_map(datos: pd.DataFrame) -> None:
 RESULTADO_ICONO = {"acierto": "✔", "fallo": "✘", "devuelto": "↺", "pendiente": "·", "sin resultado": "?"}
 
 
+def _render_slip_check() -> None:
+    """Analiza un boleto ANTES de apostarlo (pedido del usuario, oct-2026)."""
+    with st.expander("🔍 Analizar un cupón antes de apostar", expanded=True):
+        st.caption("Pega el boleto que estás armando (BetPlay o bwin: pick, mercado, partido y cuota) y el modelo "
+                   "te dice si cada pierna y el combinado tienen sentido. Nada se guarda.")
+        texto = st.text_area("Boleto sin confirmar", height=160, key="mb_slip",
+                             placeholder="PSG\nResultado Final\nPSG - Lyon\n1.34\n\nMenos de 2.5\nTotal de goles\n"
+                                         "Sevilla - Osasuna\n1.73")
+        # El resultado queda en la sesión mientras no cambie el texto: así no se
+        # borra con cualquier otro clic de la página.
+        if st.button("🔍 Analizar", key="mb_slip_btn", disabled=not texto.strip()):
+            with st.spinner("Buscando los partidos y lo que dice el modelo..."):
+                st.session_state["mb_slip_res"] = (texto, *my_bets.analyze_slip(texto))
+        guardado = st.session_state.get("mb_slip_res")
+        if not guardado or guardado[0] != texto:
+            return
+        _, piernas, res = guardado
+        if piernas.empty:
+            st.warning("No se reconoció ninguna pierna: pega pick, mercado, partido ('Local - Visitante') y cuota.")
+            return
+        if res["factible"]:
+            st.success("✅ **Factible**: todas las piernas cumplen el plan y el combinado tiene valor contra la cuota.")
+        else:
+            st.error("⛔ **No recomendado** — " + "; ".join(res["motivos"]) + ".")
+        k1, k2, k3, k4 = st.columns(4)
+        k1.metric("Cuota del boleto", f"{res['cuota']:.2f}" if res.get("cuota") else "-")
+        k2.metric("Prob. según el modelo", f"{res['prob']:.0%}" if res.get("prob") else "-",
+                  f"la casa dice {1 / res['cuota']:.0%}" if res.get("cuota") else None, delta_color="off")
+        k3.metric("Cuota justa", f"{res['cuota_justa']:.2f}" if res.get("cuota_justa") else "-",
+                  help="La cuota mínima para que el boleto no pierda plata a la larga, según el modelo.")
+        k4.metric("Valor esperado", f"{res['valor_pct']:+.0f}%" if res.get("valor_pct") is not None else "-",
+                  help="Con la misma regla de Tips (mitad modelo, mitad lo que dice la cuota). Positivo = paga más "
+                       "de lo que vale.")
+        tabla = piernas.assign(
+            hora=piernas["inicio"].map(lambda x: format_bogota(x) if isinstance(x, str) else "-"),
+            plan=piernas["motivos"].map(lambda m: "✅" if not m else "⚠ " + "; ".join(m)))
+        st.dataframe(tabla[["pick", "mercado_txt", "partido", "liga", "hora", "cuota", "prob_modelo", "prob_casa",
+                            "cuota_justa", "valor_pct", "plan", "fuente"]],
+                     hide_index=True, width="stretch", column_config={
+                         "pick": "Pick", "mercado_txt": "Mercado", "partido": "Partido", "liga": "Liga", "hora": "Hora",
+                         "cuota": st.column_config.NumberColumn("Cuota", format="%.2f"),
+                         "prob_modelo": st.column_config.NumberColumn("Prob. modelo", format="%.0f%%"),
+                         "prob_casa": st.column_config.NumberColumn(
+                             "Prob. de la casa", format="%.0f%%", help="Lo que implica la cuota (1 / cuota)."),
+                         "cuota_justa": st.column_config.NumberColumn("Cuota justa", format="%.2f"),
+                         "valor_pct": st.column_config.NumberColumn("Valor", format="%+.0f%%"),
+                         "plan": st.column_config.Column("Plan", width="medium"),
+                         "fuente": "Fuente"})
+        if res.get("sencillas_ok"):
+            st.info("💡 Estas piernas sí tienen valor y cumplen el plan — mejor jugarlas como **sencillas**: "
+                    + ", ".join(res["sencillas_ok"]) + ".")
+        elif not res["factible"]:
+            st.info("💡 Ninguna pierna tiene valor según el modelo. Recomendación: no apostar este boleto y revisar "
+                    "los picks con 'Apostar' en 💡 Tips.")
+        st.caption("Prob. del modelo: la predicción guardada del día (la misma de Jornada) o, si no hay, el modelo "
+                   "calculado en el momento. El combinado multiplica las piernas (supone que son independientes).")
+
+
 def _render_my_bets(desde, hasta) -> None:
     """Cupones reales del usuario (historial de bwin) resueltos con 365scores."""
     st.caption("Pega aquí tu historial de bwin tal como lo copias de 'Mis apuestas' (puede incluir cupones ya "
                "cargados: se actualizan, no se duplican). Cada pierna se resuelve sola con el marcador y las "
                "estadísticas finales de 365scores y se compara con lo que decía el modelo. 🔒 Los cupones se "
                "guardan solo en este PC (data/tracking/my_bets.csv no se sube a GitHub: el repo es público).")
+    _render_slip_check()
     with st.expander("➕ Pegar cupones de bwin", expanded=my_bets.load().empty):
         texto = st.text_area("Historial de bwin", height=200, key="mb_texto",
                              placeholder="TriplePerdida\n24 de oct de 2026 • 10:42 a. m.\nID del cupón: ...")
