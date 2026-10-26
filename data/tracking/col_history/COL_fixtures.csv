@@ -805,3 +805,5 @@ id,start_utc,status_group,status_text,home_team,away_team,home_id,away_id,home_g
 4731939,2026-10-25T01:15:00Z,4,Ended,Once Caldas,Deportivo Pereira,7289,8638,1.0,1.0,Clausura,16.0,Round
 4731944,2026-10-25T19:00:00Z,4,Ended,Fortaleza FC,Deportivo Cali,9844,8639,1.0,1.0,Clausura,16.0,Round
 4731943,2026-10-25T21:05:00Z,4,Ended,Alianza FC,Internacional de Bogota,10209,8542,1.0,0.0,Clausura,16.0,Round
+4731947,2026-10-25T23:10:00Z,4,Ended,Atletico Nacional,Independiente Medellin,8640,8643,2.0,1.0,Clausura,16.0,Round
+4731945,2026-10-26T01:15:00Z,4,Ended,Deportes Tolima,Deportivo Pasto,7635,9048,0.0,1.0,Clausura,16.0,Round
