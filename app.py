@@ -2162,9 +2162,7 @@ def _render_slip_check() -> None:
         st.caption("Pega el boleto que estás armando (BetPlay o bwin: pick, mercado, partido y cuota) y el modelo "
                    "te dice si cada selección y el combinado tienen sentido; si una no conviene, te propone otra opción del "
                    "mismo partido con cuota parecida. Nada se guarda.")
-        texto = st.text_area("Boleto sin confirmar", height=160, key="mb_slip",
-                             placeholder="PSG\nResultado Final\nPSG - Lyon\n1.34\n\nMenos de 2.5\nTotal de goles\n"
-                                         "Sevilla - Osasuna\n1.73")
+        texto = st.text_area("Boleto sin confirmar", height=160, key="mb_slip")
         # El resultado queda en la sesión mientras no cambie el texto: así no se
         # borra con cualquier otro clic de la página.
         if st.button("🔍 Analizar", key="mb_slip_btn", disabled=not texto.strip()):
