@@ -24154,3 +24154,103 @@ game_id,line_type_id,market,line,option,odds,opening_odds,won
 4750813,139,Total Shots On Target,7.5,Over,1.65,1.65,True
 4750813,13,Both Teams To Score 2nd Half,,Yes,3.75,3.5,False
 4750813,13,Both Teams To Score 2nd Half,,No,1.23,1.26,True
+4731946,1,Full Time Result,,1,2.55,2.5,True
+4731946,1,Full Time Result,,X,3.2,3.2,False
+4731946,1,Full Time Result,,2,2.5,2.6,False
+4731946,14,Double Chance,,1X,1.47,1.46,True
+4731946,14,Double Chance,,12,1.31,1.32,True
+4731946,14,Double Chance,,X2,1.46,1.47,False
+4731946,3,Total Goals In Match,2.5,Under,1.78,1.71,True
+4731946,3,Total Goals In Match,2.5,Over,1.9,2.0,False
+4731946,3,Total Goals In Match,1.5,Under,3.4,3.1,True
+4731946,3,Total Goals In Match,1.5,Over,1.28,1.31,False
+4731946,3,Total Goals In Match,3.5,Under,1.29,1.25,True
+4731946,3,Total Goals In Match,3.5,Over,3.25,3.5,False
+4731946,12,Both Teams To Score,,Yes,1.7,1.75,False
+4731946,12,Both Teams To Score,,No,2.0,1.93,True
+4731946,7,First To Score,,Home,1.97,1.97,True
+4731946,7,First To Score,,No Goal,10.0,10.0,False
+4731946,7,First To Score,,Away,1.97,1.97,False
+4731946,11,Asian Handicap,0.25,Home,1.61,1.61,True
+4731946,11,Asian Handicap,0.25,Away,2.23,2.23,False
+4731946,11,Asian Handicap,0.5,Home,1.5,1.47,True
+4731946,11,Asian Handicap,0.5,Away,2.5,2.6,False
+4731946,11,Asian Handicap,-0.25,Home,2.27,2.27,True
+4731946,11,Asian Handicap,-0.25,Away,1.64,1.64,False
+4731946,15,Draw No Bet,,Home,1.87,1.82,True
+4731946,15,Draw No Bet,,Away,1.82,1.87,False
+4731946,5,1st Half Result,,1,3.1,3.0,False
+4731946,5,1st Half Result,,X,2.15,2.15,True
+4731946,5,1st Half Result,,2,2.95,3.1,False
+4731946,6,2nd Half Result,,1,2.85,2.87,True
+4731946,6,2nd Half Result,,X,2.4,2.3,False
+4731946,6,2nd Half Result,,2,2.8,2.9,False
+4731946,9,1st Half Goals,1.5,Under,1.4,1.36,True
+4731946,9,1st Half Goals,1.5,Over,2.75,3.0,False
+4731946,9,1st Half Goals,0.5,Under,2.97,2.72,True
+4731946,9,1st Half Goals,0.5,Over,1.35,1.39,False
+4731946,9,1st Half Goals,2.5,Under,1.07,1.07,True
+4731946,9,1st Half Goals,2.5,Over,8.0,8.0,False
+4731946,137,Total Corners,9.5,Under,1.68,1.85,False
+4731946,137,Total Corners,9.5,Over,2.12,1.85,True
+4731946,127,Half Time Correct Score,0-0,Yes,2.98,2.74,True
+4731946,127,Half Time Correct Score,1-0,Yes,4.5,4.75,False
+4731946,127,Half Time Correct Score,0-1,Yes,4.49,4.74,False
+4731946,127,Half Time Correct Score,1-1,Yes,7.0,7.5,False
+4731946,127,Half Time Correct Score,0-2,Yes,13.0,15.0,False
+4731946,127,Half Time Correct Score,2-0,Yes,13.0,15.0,False
+4731946,127,Half Time Correct Score,2-1,Yes,21.0,23.0,False
+4731946,127,Half Time Correct Score,1-2,Yes,21.0,23.0,False
+4731946,127,Half Time Correct Score,2-2,Yes,41.0,51.0,False
+4731946,127,Half Time Correct Score,0-3,Yes,41.0,51.0,False
+4731946,127,Half Time Correct Score,3-0,Yes,41.0,51.0,False
+4731946,127,Half Time Correct Score,1-3,Yes,51.0,67.0,False
+4731946,127,Half Time Correct Score,3-1,Yes,51.0,67.0,False
+4731946,127,Half Time Correct Score,2-3,Yes,151.0,151.0,False
+4731946,127,Half Time Correct Score,3-2,Yes,151.0,151.0,False
+4731946,127,Half Time Correct Score,4-0,Yes,201.0,151.0,False
+4731946,127,Half Time Correct Score,0-4,Yes,151.0,151.0,False
+4731946,127,Half Time Correct Score,1-4,Yes,251.0,251.0,False
+4731946,127,Half Time Correct Score,4-1,Yes,301.0,251.0,False
+4731946,126,Correct Score,0-0,Yes,11.0,10.0,False
+4731946,126,Correct Score,1-0,Yes,9.0,9.0,True
+4731946,126,Correct Score,0-1,Yes,9.0,9.0,False
+4731946,126,Correct Score,1-1,Yes,6.0,6.0,False
+4731946,126,Correct Score,2-0,Yes,13.0,13.0,False
+4731946,126,Correct Score,0-2,Yes,13.0,13.0,False
+4731946,126,Correct Score,2-1,Yes,9.5,10.0,False
+4731946,126,Correct Score,1-2,Yes,9.5,10.0,False
+4731946,126,Correct Score,2-2,Yes,13.0,13.0,False
+4731946,126,Correct Score,0-3,Yes,23.0,26.0,False
+4731946,126,Correct Score,3-0,Yes,23.0,26.0,False
+4731946,126,Correct Score,3-1,Yes,21.0,21.0,False
+4731946,126,Correct Score,1-3,Yes,21.0,21.0,False
+4731946,126,Correct Score,3-2,Yes,26.0,29.0,False
+4731946,126,Correct Score,2-3,Yes,26.0,29.0,False
+4731946,126,Correct Score,3-3,Yes,41.0,41.0,False
+4731946,126,Correct Score,4-0,Yes,51.0,51.0,False
+4731946,126,Correct Score,0-4,Yes,51.0,51.0,False
+4731946,126,Correct Score,4-1,Yes,41.0,41.0,False
+4731946,126,Correct Score,1-4,Yes,41.0,41.0,False
+4731946,126,Correct Score,4-2,Yes,51.0,51.0,False
+4731946,126,Correct Score,2-4,Yes,51.0,51.0,False
+4731946,126,Correct Score,4-3,Yes,81.0,101.0,False
+4731946,126,Correct Score,3-4,Yes,81.0,101.0,False
+4731946,126,Correct Score,4-4,Yes,201.0,201.0,False
+4731946,126,Correct Score,0-5,Yes,101.0,126.0,False
+4731946,126,Correct Score,5-0,Yes,101.0,126.0,False
+4731946,126,Correct Score,5-1,Yes,81.0,101.0,False
+4731946,126,Correct Score,1-5,Yes,81.0,101.0,False
+4731946,126,Correct Score,5-2,Yes,126.0,151.0,False
+4731946,126,Correct Score,2-5,Yes,126.0,151.0,False
+4731946,126,Correct Score,3-5,Yes,251.0,251.0,False
+4731946,126,Correct Score,5-3,Yes,301.0,301.0,False
+4731946,126,Correct Score,0-6,Yes,301.0,301.0,False
+4731946,126,Correct Score,6-1,Yes,351.0,351.0,False
+4731946,126,Correct Score,1-6,Yes,251.0,351.0,False
+4731946,144,Home Team - Clean Sheet,,Yes,3.5,3.4,True
+4731946,144,Home Team - Clean Sheet,,No,1.29,1.3,False
+4731946,145,Away Team - Clean Sheet,,Yes,3.51,3.41,False
+4731946,145,Away Team - Clean Sheet,,No,1.29,1.3,True
+4731946,13,Both Teams To Score 2nd Half,,Yes,3.2,3.3,False
+4731946,13,Both Teams To Score 2nd Half,,No,1.3,1.28,True
