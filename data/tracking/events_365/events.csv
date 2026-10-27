@@ -37854,3 +37854,12 @@ game_id,side,minute,added_time,half,type,subtype,player
 4732654,home,85.0,0,2,Goal,Field Goal,Rodrigo Mora
 4732654,home,87.0,0,2,Goal,Field Goal,Donyell Malen
 4732654,away,90.0,4,2,Yellow Card,,Juan Rodríguez
+4732652,away,6.0,0,1,Goal Disallowed,Var,Goal Disallowed
+4732652,home,24.0,0,1,Goal,Field Goal,Che Adams
+4732652,away,54.0,0,2,Woodwork,,Maxence Caqueret
+4732652,home,60.0,0,2,Woodwork,,Rafik Belghali
+4732652,home,60.0,0,2,Woodwork,,Giovanni Simeone
+4732652,home,72.0,0,2,Yellow Card,,Rafik Belghali
+4732652,away,81.0,0,2,Goal,Field Goal,Jacobo Ramón
+4732652,away,87.0,0,2,Goal,Field Goal,Nico Paz
+4732652,away,90.0,2,2,Goal,Field Goal,Martin Baturina
