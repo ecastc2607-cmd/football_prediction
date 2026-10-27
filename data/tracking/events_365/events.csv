@@ -37847,3 +37847,10 @@ game_id,side,minute,added_time,half,type,subtype,player
 4732653,home,58.0,0,2,Yellow Card,,Domenico Berardi
 4732653,away,61.0,0,2,Penalty Miss,,Davide Frattesi
 4732653,away,65.0,0,2,Goal,Field Goal,Tijanni Noslin
+4732654,away,10.0,0,1,Goal,Penalty,M'Bala Nzola
+4732654,home,15.0,0,1,Goal,Field Goal,Emanuele Lulli
+4732654,home,21.0,0,1,Goal,Field Goal,Niccolò Pisilli
+4732654,away,81.0,0,2,Goal,Field Goal,Daniel Maldini
+4732654,home,85.0,0,2,Goal,Field Goal,Rodrigo Mora
+4732654,home,87.0,0,2,Goal,Field Goal,Donyell Malen
+4732654,away,90.0,4,2,Yellow Card,,Juan Rodríguez
