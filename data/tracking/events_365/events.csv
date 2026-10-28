@@ -37878,3 +37878,22 @@ game_id,side,minute,added_time,half,type,subtype,player
 4732053,away,84.0,0,2,Goal,Field Goal,Jesus Rivas
 4732053,away,89.0,0,2,Red Card,,Sebastian Viera
 4732053,away,90.0,5,2,Yellow Card,,Bryan Castrillón
+4732651,away,28.0,0,1,Yellow Card,,Alessandro Bastoni
+4732651,home,29.0,0,1,Goal Disallowed,Var,Lion Lauberbach
+4732651,home,36.0,0,1,Woodwork,,Lion Lauberbach
+4732651,away,56.0,0,2,Yellow Card,,Nicolo Barella
+4732651,away,79.0,0,2,Goal,Own Goal,Matias Moreno
+4732651,away,82.0,0,2,Goal,Own Goal,Redouane Halhal
+4732655,home,29.0,0,1,Yellow Card,,Alberto Gilardino
+4732655,away,45.0,1,1,Yellow Card,,Jesper Karlström
+4732655,home,69.0,0,2,Penalty Miss,,Adrian Bernabe
+4732655,away,81.0,0,2,Yellow Card,,Nicolò Zaniolo
+4732655,home,81.0,0,2,Yellow Card,,Simone Lontani
+4732657,away,8.0,0,1,Goal,Field Goal,Samuel Mbangula
+4732657,home,14.0,0,1,Goal,Field Goal,Alphadjo Cisse
+4732657,home,27.0,0,1,Goal,Field Goal,Alphadjo Cisse
+4732657,away,60.0,0,2,Goal,Own Goal,Davide Bartesaghi
+4732657,away,62.0,0,2,Goal,Field Goal,Samuel Mbangula
+4732657,away,76.0,0,2,Yellow Card,,Tommaso Pobega
+4732657,away,84.0,0,2,Yellow Card,,Torbjörn Heggem
+4732657,away,86.0,0,2,Goal,Field Goal,Samuel Mbangula
