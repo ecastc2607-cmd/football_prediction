@@ -37917,3 +37917,13 @@ game_id,side,minute,added_time,half,type,subtype,player
 4732051,away,75.0,0,2,Yellow Card,,Cristian Vergara
 4732051,home,77.0,0,2,Yellow Card,,Daniel Londoño
 4732051,away,81.0,0,2,Yellow Card,,Israel Alba
+4732056,home,24.0,0,1,Goal,Field Goal,Johan Caballero
+4732056,away,44.0,0,1,Yellow Card,,Frank Fabra
+4732056,home,49.0,0,2,Red Card,,Ronaldo Junior
+4732056,home,50.0,0,2,Yellow Card,,Larry Vásquez
+4732056,away,57.0,0,2,Yellow Card,,Daniel Cataño
+4732056,home,61.0,0,2,Yellow Card,,Joan Castro
+4732056,away,67.0,0,2,Goal,Field Goal,Jeison Medina
+4732056,home,73.0,0,2,Goal,Penalty,Fabricio Sanguinetti
+4732056,away,82.0,0,2,Yellow Card,,Didier Moreno
+4732056,home,90.0,2,2,Goal,Field Goal,Diego Duarte
