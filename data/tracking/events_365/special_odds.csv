@@ -25493,3 +25493,99 @@ game_id,line_type_id,market,line,option,odds,opening_odds,won
 4732658,139,Total Shots On Target,9.5,Over,2.09,2.09,False
 4732658,13,Both Teams To Score 2nd Half,,Yes,4.2,3.6,False
 4732658,13,Both Teams To Score 2nd Half,,No,1.19,1.25,True
+4732051,1,Full Time Result,,1,1.44,1.57,True
+4732051,1,Full Time Result,,X,3.97,3.75,False
+4732051,1,Full Time Result,,2,7.5,5.25,False
+4732051,14,Double Chance,,1X,1.08,1.11,True
+4732051,14,Double Chance,,12,1.21,1.22,True
+4732051,14,Double Chance,,X2,2.48,2.55,False
+4732051,3,Total Goals In Match,2.5,Under,1.9,1.75,True
+4732051,3,Total Goals In Match,2.5,Over,1.79,1.95,False
+4732051,3,Total Goals In Match,3.5,Under,1.34,1.27,True
+4732051,3,Total Goals In Match,3.5,Over,3.26,3.4,False
+4732051,3,Total Goals In Match,1.5,Under,3.52,3.2,True
+4732051,3,Total Goals In Match,1.5,Over,1.3,1.3,False
+4732051,12,Both Teams To Score,,Yes,1.98,2.05,False
+4732051,12,Both Teams To Score,,No,1.71,1.68,True
+4732051,7,First To Score,,Home,1.45,1.41,True
+4732051,7,First To Score,,No Goal,10.0,10.0,False
+4732051,7,First To Score,,Away,3.12,3.22,False
+4732051,11,Asian Handicap,-1,Home,1.8,1.73,False
+4732051,11,Asian Handicap,-1,Away,2.01,2.08,False
+4732051,11,Asian Handicap,-1.25,Home,2.07,2.02,False
+4732051,11,Asian Handicap,-1.25,Away,1.72,1.77,True
+4732051,11,Asian Handicap,-0.75,Home,1.61,1.56,True
+4732051,11,Asian Handicap,-0.75,Away,2.32,2.4,False
+4732051,15,Draw No Bet,,Home,1.15,1.15,True
+4732051,15,Draw No Bet,,Away,5.54,5.0,False
+4732051,5,1st Half Result,,1,1.93,1.93,False
+4732051,5,1st Half Result,,X,2.3,2.35,True
+4732051,5,1st Half Result,,2,5.75,5.75,False
+4732051,6,2nd Half Result,,1,1.77,1.82,True
+4732051,6,2nd Half Result,,X,2.65,2.55,False
+4732051,6,2nd Half Result,,2,5.5,5.5,False
+4732051,9,1st Half Goals,1.5,Under,1.4,1.4,True
+4732051,9,1st Half Goals,1.5,Over,2.75,2.75,False
+4732051,9,1st Half Goals,0.5,Under,3.0,3.0,True
+4732051,9,1st Half Goals,0.5,Over,1.37,1.37,False
+4732051,9,1st Half Goals,2.5,Under,1.12,1.11,True
+4732051,9,1st Half Goals,2.5,Over,6.5,7.0,False
+4732051,137,Total Corners,9.5,Under,1.84,1.84,True
+4732051,137,Total Corners,9.5,Over,1.84,1.84,False
+4732051,127,Half Time Correct Score,0-0,Yes,3.02,3.02,True
+4732051,127,Half Time Correct Score,0-1,Yes,8.5,8.5,False
+4732051,127,Half Time Correct Score,1-0,Yes,3.17,3.22,False
+4732051,127,Half Time Correct Score,1-1,Yes,9.0,9.5,False
+4732051,127,Half Time Correct Score,0-2,Yes,41.0,41.0,False
+4732051,127,Half Time Correct Score,2-0,Yes,6.5,7.0,False
+4732051,127,Half Time Correct Score,1-2,Yes,41.0,41.0,False
+4732051,127,Half Time Correct Score,2-1,Yes,19.0,19.0,False
+4732051,127,Half Time Correct Score,2-2,Yes,67.0,67.0,False
+4732051,127,Half Time Correct Score,3-0,Yes,19.0,21.0,False
+4732051,127,Half Time Correct Score,0-3,Yes,126.0,151.0,False
+4732051,127,Half Time Correct Score,1-3,Yes,201.0,151.0,False
+4732051,127,Half Time Correct Score,3-1,Yes,41.0,41.0,False
+4732051,127,Half Time Correct Score,3-2,Yes,126.0,151.0,False
+4732051,127,Half Time Correct Score,2-3,Yes,351.0,351.0,False
+4732051,127,Half Time Correct Score,4-0,Yes,51.0,51.0,False
+4732051,127,Half Time Correct Score,4-1,Yes,101.0,126.0,False
+4732051,127,Half Time Correct Score,5-0,Yes,151.0,151.0,False
+4732051,126,Correct Score,0-0,Yes,11.0,10.0,False
+4732051,126,Correct Score,0-1,Yes,15.0,17.0,False
+4732051,126,Correct Score,1-0,Yes,6.5,6.5,True
+4732051,126,Correct Score,1-1,Yes,7.5,8.0,False
+4732051,126,Correct Score,0-2,Yes,34.0,34.0,False
+4732051,126,Correct Score,2-0,Yes,6.5,6.5,False
+4732051,126,Correct Score,1-2,Yes,21.0,21.0,False
+4732051,126,Correct Score,2-1,Yes,8.5,8.5,False
+4732051,126,Correct Score,2-2,Yes,19.0,21.0,False
+4732051,126,Correct Score,3-0,Yes,9.5,9.5,False
+4732051,126,Correct Score,0-3,Yes,67.0,81.0,False
+4732051,126,Correct Score,3-1,Yes,12.0,13.0,False
+4732051,126,Correct Score,1-3,Yes,51.0,51.0,False
+4732051,126,Correct Score,3-2,Yes,29.0,29.0,False
+4732051,126,Correct Score,2-3,Yes,51.0,51.0,False
+4732051,126,Correct Score,3-3,Yes,51.0,67.0,False
+4732051,126,Correct Score,4-0,Yes,17.0,19.0,False
+4732051,126,Correct Score,0-4,Yes,351.0,301.0,False
+4732051,126,Correct Score,4-1,Yes,23.0,23.0,False
+4732051,126,Correct Score,1-4,Yes,126.0,151.0,False
+4732051,126,Correct Score,4-2,Yes,41.0,41.0,False
+4732051,126,Correct Score,2-4,Yes,126.0,151.0,False
+4732051,126,Correct Score,3-4,Yes,251.0,251.0,False
+4732051,126,Correct Score,4-3,Yes,101.0,101.0,False
+4732051,126,Correct Score,5-0,Yes,34.0,41.0,False
+4732051,126,Correct Score,5-1,Yes,41.0,41.0,False
+4732051,126,Correct Score,5-2,Yes,81.0,81.0,False
+4732051,126,Correct Score,5-3,Yes,251.0,251.0,False
+4732051,126,Correct Score,6-0,Yes,67.0,67.0,False
+4732051,126,Correct Score,6-1,Yes,81.0,81.0,False
+4732051,126,Correct Score,6-2,Yes,151.0,201.0,False
+4732051,126,Correct Score,7-0,Yes,151.0,151.0,False
+4732051,126,Correct Score,7-1,Yes,201.0,201.0,False
+4732051,144,Home Team - Clean Sheet,,Yes,1.9,1.9,True
+4732051,144,Home Team - Clean Sheet,,No,1.8,1.8,False
+4732051,145,Away Team - Clean Sheet,,Yes,6.0,6.0,False
+4732051,145,Away Team - Clean Sheet,,No,1.12,1.12,True
+4732051,13,Both Teams To Score 2nd Half,,Yes,3.6,3.9,False
+4732051,13,Both Teams To Score 2nd Half,,No,1.24,1.22,True

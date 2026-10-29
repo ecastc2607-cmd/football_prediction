@@ -37910,3 +37910,10 @@ game_id,side,minute,added_time,half,type,subtype,player
 4732658,home,28.0,0,1,Goal,Field Goal,Tommaso Baldanzi
 4732658,away,70.0,0,2,Yellow Card,,Edon Zhegrova
 4732658,away,90.0,1,2,Woodwork,,Teun Koopmeiners
+4732051,home,20.0,0,1,Woodwork,,Pipe Gomez
+4732051,home,52.0,0,2,Goal,Penalty,Michael Barrios
+4732051,home,69.0,0,2,Yellow Card,,Michael Barrios
+4732051,away,71.0,0,2,Yellow Card,,Juan Viveros
+4732051,away,75.0,0,2,Yellow Card,,Cristian Vergara
+4732051,home,77.0,0,2,Yellow Card,,Daniel Londoño
+4732051,away,81.0,0,2,Yellow Card,,Israel Alba
