@@ -809,3 +809,5 @@ id,start_utc,status_group,status_text,home_team,away_team,home_id,away_id,home_g
 4731945,2026-10-26T01:15:00Z,4,Ended,Deportes Tolima,Deportivo Pasto,7635,9048,0.0,1.0,Clausura,16.0,Round
 4731946,2026-10-26T23:00:00Z,4,Ended,Jaguares de Córdoba,Llaneros FC,10377,10378,1.0,0.0,Clausura,16.0,Round
 4731964,2026-10-27T01:05:00Z,4,Ended,Independiente Santa Fe,Atlético Bucaramanga,7644,10224,2.0,1.0,Clausura,14.0,Round
+4732055,2026-10-27T23:00:00Z,4,Ended,Cucuta Deportivo,Águilas Doradas,8634,20841,0.0,2.0,Clausura,5.0,Round
+4732053,2026-10-28T01:05:00Z,4,Ended,Boyaca Chico,Junior FC,8641,7204,1.0,1.0,Clausura,5.0,Round
