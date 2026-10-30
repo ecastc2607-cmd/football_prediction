@@ -37982,3 +37982,15 @@ game_id,side,minute,added_time,half,type,subtype,player
 4735221,home,84.0,0,2,Yellow Card,,Youssouf Ndayishimiye
 4735221,away,84.0,0,2,Yellow Card,,Charlie Cresswell
 4735221,away,84.0,0,2,Yellow Card,,Mohamed Amoura
+4755354,away,4.0,0,1,Yellow Card,,Phillipp Mwene
+4755354,home,7.0,0,1,Goal,Field Goal,Felix Keidel
+4755354,home,26.0,0,1,Goal,Field Goal,Francis Onyeka
+4755354,away,33.0,0,1,Yellow Card,,Danny da Costa
+4755354,home,45.0,1,1,Goal,Field Goal,Maurice Krattenmacher
+4755354,away,65.0,0,2,Goal Disallowed,Var,Ransford Königsdörffer
+4755354,away,75.0,0,2,Yellow Card,,Ransford Königsdörffer
+4755354,away,85.0,0,2,Yellow Card,,Stefan Posch
+4755354,away,90.0,1,2,Woodwork,,Ransford Königsdörffer
+4755354,home,90.0,1,2,Goal,Field Goal,Cole Campbell
+4755354,away,90.0,2,2,Goal,Field Goal,Benedict Hollerbach
+4755354,away,90.0,5,2,Red Card,Second Yellow Card,Stefan Posch
