@@ -37994,3 +37994,11 @@ game_id,side,minute,added_time,half,type,subtype,player
 4755354,home,90.0,1,2,Goal,Field Goal,Cole Campbell
 4755354,away,90.0,2,2,Goal,Field Goal,Benedict Hollerbach
 4755354,away,90.0,5,2,Red Card,Second Yellow Card,Stefan Posch
+4750802,away,21.0,0,1,Yellow Card,,Rafel Bauzà
+4750802,away,41.0,0,1,Yellow Card,,Roger Hinojo
+4750802,away,50.0,0,2,Goal Disallowed,Var,Roberto Fernández
+4750802,home,53.0,0,2,Yellow Card,,Sergi Cardona
+4750802,home,56.0,0,2,Yellow Card,,Santi Comesaña
+4750802,away,60.0,0,2,Goal,Field Goal,Leandro Cabrera
+4750802,away,75.0,0,2,Yellow Card,,Bryan Zaragoza
+4750802,home,90.0,1,2,Yellow Card,,Carlos Maciá
