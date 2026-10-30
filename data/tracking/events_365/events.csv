@@ -38007,3 +38007,8 @@ game_id,side,minute,added_time,half,type,subtype,player
 4735225,home,45.0,0,1,Yellow Card,,Davide Ancelotti
 4735225,home,66.0,0,2,Woodwork,,Hakon Haraldsson
 4735225,home,86.0,0,2,Goal,Field Goal,Olivier Giroud
+4732048,away,3.0,0,1,Yellow Card,,Juan Franco
+4732048,home,12.0,0,1,Goal Disallowed,Var,Anderson Plata
+4732048,home,31.0,0,1,Yellow Card,,Jhon Largacha
+4732048,home,71.0,0,2,Goal,Field Goal,Anderson Plata
+4732048,away,90.0,2,2,Yellow Card,,Jonathan Lovera
