@@ -37968,3 +37968,17 @@ game_id,side,minute,added_time,half,type,subtype,player
 4735226,home,62.0,0,2,Woodwork,,Josh Maja
 4735226,away,62.0,0,2,Goal,Field Goal,Senny Mayulu
 4735226,away,69.0,0,2,Goal,Field Goal,Achraf Hakimi
+4735221,home,12.0,0,1,Goal,Penalty,Elye Wahi
+4735221,away,15.0,0,1,Goal,Field Goal,Sebastian Szymanski
+4735221,home,34.0,0,1,Goal,Penalty,Elye Wahi
+4735221,home,45.0,2,1,Goal,Field Goal,Jonathan Clauss
+4735221,home,52.0,0,2,Goal,Field Goal,Mohamed Amoura
+4735221,away,58.0,0,2,Goal,Penalty,Boulaye Dia
+4735221,away,61.0,0,2,Yellow Card,,Anthony Rouault
+4735221,home,62.0,0,2,Yellow Card,,Elye Wahi
+4735221,away,71.0,0,2,Goal Disallowed,Var,Goal Disallowed
+4735221,home,73.0,0,2,Goal,Field Goal,Elye Wahi
+4735221,home,84.0,0,2,Yellow Card,,Mahdi Camara
+4735221,home,84.0,0,2,Yellow Card,,Youssouf Ndayishimiye
+4735221,away,84.0,0,2,Yellow Card,,Charlie Cresswell
+4735221,away,84.0,0,2,Yellow Card,,Mohamed Amoura
