@@ -38041,3 +38041,14 @@ game_id,side,minute,added_time,half,type,subtype,player
 4750805,away,36.0,0,1,Goal,Field Goal,Alex Grimaldo
 4750805,away,55.0,0,2,Woodwork,,Lee Kang-in
 4750805,away,62.0,0,2,Goal,Field Goal,Giuliano Simeone
+4732649,away,6.0,0,1,Goal,Penalty,Gustavo Varela
+4732649,away,12.0,0,1,Yellow Card,,Ricardo Mangas
+4732649,home,17.0,0,1,Yellow Card,,Jens Odgaard
+4732649,home,23.0,0,1,Yellow Card,,Tommaso Pobega
+4732649,home,33.0,0,1,Goal,Field Goal,Tommaso Pobega
+4732649,away,58.0,0,2,Yellow Card,,Lorenzo Lucchesi
+4732649,home,59.0,0,2,Goal,Penalty,Federico Bernardeschi
+4732649,home,74.0,0,2,Yellow Card,,Nadir Zortea
+4732649,away,76.0,0,2,Yellow Card,,Idrissa Touré
+4732649,away,81.0,0,2,Penalty Miss,,Patrick Cutrone
+4732649,home,90.0,0,2,Yellow Card,,Mikel Amondarain
