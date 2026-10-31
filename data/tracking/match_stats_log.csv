@@ -6549,3 +6549,7 @@ SA,2026,10.0,2026-10-31T17:00:00Z,Udinese Calcio,AS Roma,Udinese Calcio,True,7.0
 SA,2026,10.0,2026-10-31T17:00:00Z,Udinese Calcio,AS Roma,AS Roma,False,4.0,9.0,1.0,0.0,54.0,9.0,14.0,0.0
 PL,2026,9.0,2026-10-31T17:30:00Z,Tottenham Hotspur FC,Crystal Palace FC,Tottenham Hotspur FC,True,20.0,8.0,1.0,0.0,79.0,9.0,34.0,2.0
 PL,2026,9.0,2026-10-31T17:30:00Z,Tottenham Hotspur FC,Crystal Palace FC,Crystal Palace FC,False,0.0,10.0,1.0,1.0,21.0,1.0,2.0,1.0
+PD,2026,11.0,2026-10-31T17:30:00Z,Real Betis Balompié,Málaga CF,Real Betis Balompié,True,10.0,10.0,2.0,0.0,59.0,6.0,23.0,3.0
+PD,2026,11.0,2026-10-31T17:30:00Z,Real Betis Balompié,Málaga CF,Málaga CF,False,3.0,15.0,2.0,0.0,41.0,4.0,10.0,3.0
+BL1,2026,8.0,2026-10-31T17:30:00Z,FC Bayern München,Borussia Dortmund,FC Bayern München,True,5.0,11.0,2.0,0.0,56.0,5.0,23.0,3.0
+BL1,2026,8.0,2026-10-31T17:30:00Z,FC Bayern München,Borussia Dortmund,Borussia Dortmund,False,2.0,6.0,1.0,0.0,44.0,6.0,12.0,3.0
