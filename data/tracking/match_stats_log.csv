@@ -6533,3 +6533,9 @@ BL1,2026,8.0,2026-10-31T14:30:00Z,FC Augsburg,SC Freiburg,FC Augsburg,True,1.0,7
 BL1,2026,8.0,2026-10-31T14:30:00Z,FC Augsburg,SC Freiburg,SC Freiburg,False,2.0,11.0,3.0,0.0,49.0,2.0,10.0,2.0
 BL1,2026,8.0,2026-10-31T14:30:00Z,Bayer 04 Leverkusen,VfB Stuttgart,Bayer 04 Leverkusen,True,12.0,9.0,4.0,0.0,63.0,8.0,24.0,1.0
 BL1,2026,8.0,2026-10-31T14:30:00Z,Bayer 04 Leverkusen,VfB Stuttgart,VfB Stuttgart,False,3.0,13.0,4.0,0.0,37.0,7.0,15.0,0.0
+PL,2026,9.0,2026-10-31T15:00:00Z,Manchester City FC,Brighton & Hove Albion FC,Manchester City FC,True,8.0,9.0,0.0,0.0,62.0,6.0,21.0,2.0
+PL,2026,9.0,2026-10-31T15:00:00Z,Manchester City FC,Brighton & Hove Albion FC,Brighton & Hove Albion FC,False,2.0,13.0,3.0,0.0,38.0,3.0,7.0,2.0
+PL,2026,9.0,2026-10-31T15:00:00Z,Hull City AFC,Ipswich Town FC,Hull City AFC,True,6.0,13.0,3.0,0.0,38.0,3.0,9.0,4.0
+PL,2026,9.0,2026-10-31T15:00:00Z,Hull City AFC,Ipswich Town FC,Ipswich Town FC,False,3.0,12.0,3.0,0.0,62.0,3.0,15.0,3.0
+PL,2026,9.0,2026-10-31T15:00:00Z,Brentford FC,Nottingham Forest FC,Brentford FC,True,3.0,6.0,1.0,0.0,42.0,1.0,7.0,1.0
+PL,2026,9.0,2026-10-31T15:00:00Z,Brentford FC,Nottingham Forest FC,Nottingham Forest FC,False,4.0,17.0,3.0,0.0,58.0,1.0,15.0,1.0
