@@ -4629,3 +4629,7 @@ game_id,competition,start_utc,home_team,away_team,home_goals,away_goals,ht_home_
 4742017,PL,2026-10-31T12:30:00Z,Chelsea,Manchester United,2,0,0.0,0.0,True,2026-10-31T14:30:41Z
 4750805,PD,2026-10-31T13:00:00Z,Levante,Atletico Madrid,0,2,0.0,1.0,True,2026-10-31T14:55:29Z
 4732649,SA,2026-10-31T14:00:00Z,Bologna,Monza,2,1,1.0,1.0,True,2026-10-31T16:00:36Z
+4755355,BL1,2026-10-31T14:30:00Z,Schalke 04,RB Leipzig,0,2,0.0,1.0,True,2026-10-31T16:25:26Z
+4755356,BL1,2026-10-31T14:30:00Z,Werder Bremen,Hoffenheim,2,0,0.0,0.0,True,2026-10-31T16:25:26Z
+4755357,BL1,2026-10-31T14:30:00Z,Borussia Mönchengladbach,SC Paderborn 07,0,0,0.0,0.0,True,2026-10-31T16:25:26Z
+4755359,BL1,2026-10-31T14:30:00Z,FC Augsburg,Freiburg,1,2,1.0,0.0,True,2026-10-31T16:25:26Z
