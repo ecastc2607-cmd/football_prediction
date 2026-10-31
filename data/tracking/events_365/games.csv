@@ -4637,3 +4637,5 @@ game_id,competition,start_utc,home_team,away_team,home_goals,away_goals,ht_home_
 4742013,PL,2026-10-31T15:00:00Z,Manchester City,Brighton,0,1,0.0,1.0,True,2026-10-31T16:55:21Z
 4742015,PL,2026-10-31T15:00:00Z,Hull City,Ipswich,2,2,0.0,1.0,True,2026-10-31T16:55:21Z
 4742018,PL,2026-10-31T15:00:00Z,Brentford,Nottingham Forest,2,0,1.0,0.0,True,2026-10-31T16:55:21Z
+4742016,PL,2026-10-31T15:00:00Z,Coventry,Sunderland,3,1,2.0,0.0,True,2026-10-31T17:00:26Z
+4742020,PL,2026-10-31T15:00:00Z,Bournemouth,Leeds United,2,0,1.0,0.0,True,2026-10-31T17:00:26Z
