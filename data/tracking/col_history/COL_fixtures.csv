@@ -417,14 +417,14 @@ id,start_utc,status_group,status_text,home_team,away_team,home_id,away_id,home_g
 4474632,2025-11-10T01:30:00Z,4,Ended,Independiente Santa Fe,Deportivo Cali,7644,8639,1.0,0.0,Final,19.0,Round
 4587968,2025-11-12T21:00:00Z,4,Ended,Internacional de Bogota,Deportivo Pereira,8542,8638,4.0,0.0,Final,20.0,Round
 4587963,2025-11-13T01:20:00Z,4,Ended,Boyaca Chico,Millonarios,8641,8637,1.0,2.0,Final,20.0,Round
+4587967,2025-11-14T00:00:00Z,4,Ended,Junior FC,Atletico Nacional,7204,8640,2.0,1.0,Final,20.0,Round
 4587970,2025-11-14T00:00:00Z,4,Ended,Deportivo Pasto,Atlético Bucaramanga,9048,10224,3.0,0.0,Final,20.0,Round
 4587969,2025-11-14T00:00:00Z,4,Ended,Deportivo Cali,Once Caldas,8639,7289,1.0,1.0,Final,20.0,Round
 4587966,2025-11-14T00:00:00Z,4,Ended,Independiente Medellin,America de Cali,8643,8645,3.0,0.0,Final,20.0,Round
-4587967,2025-11-14T00:00:00Z,4,Ended,Junior FC,Atletico Nacional,7204,8640,2.0,1.0,Final,20.0,Round
-4587964,2025-11-14T00:00:00Z,4,Ended,Union Magdalena,Fortaleza FC,9832,9844,2.0,0.0,Final,20.0,Round
 4587965,2025-11-14T00:00:00Z,4,Ended,Independiente Santa Fe,Alianza FC,7644,10209,1.0,0.0,Final,20.0,Round
 4587962,2025-11-14T00:00:00Z,4,Ended,Águilas Doradas,Deportes Tolima,20841,7635,1.0,2.0,Final,20.0,Round
 4587961,2025-11-14T00:00:00Z,4,Ended,Llaneros FC,Envigado FC,10378,8642,0.0,3.0,Final,20.0,Round
+4587964,2025-11-14T00:00:00Z,4,Ended,Union Magdalena,Fortaleza FC,9832,9844,2.0,0.0,Final,20.0,Round
 4617926,2025-11-18T23:30:00Z,4,Ended,Fortaleza FC,Deportes Tolima,9844,7635,0.0,1.0,Clausura,1.0,Round
 4617930,2025-11-19T23:30:00Z,4,Ended,Atlético Bucaramanga,Independiente Santa Fe,10224,7644,1.0,0.0,Clausura,1.0,Round
 4617929,2025-11-20T01:30:00Z,4,Ended,Junior FC,Independiente Medellin,7204,8643,1.0,0.0,Clausura,1.0,Round
@@ -813,3 +813,6 @@ id,start_utc,status_group,status_text,home_team,away_team,home_id,away_id,home_g
 4732053,2026-10-28T01:05:00Z,4,Ended,Boyaca Chico,Junior FC,8641,7204,1.0,1.0,Clausura,5.0,Round
 4732051,2026-10-28T23:00:00Z,4,Ended,Once Caldas,Alianza FC,7289,10209,1.0,0.0,Clausura,5.0,Round
 4732056,2026-10-29T01:05:00Z,4,Ended,Internacional de Bogota,Independiente Medellin,8542,8643,3.0,1.0,Clausura,5.0,Round
+4732050,2026-10-29T23:30:00Z,4,Ended,America de Cali,Fortaleza FC,8645,9844,2.0,1.0,Clausura,5.0,Round
+4732057,2026-10-30T01:30:00Z,4,Ended,Atletico Nacional,Independiente Santa Fe,8640,7644,2.0,0.0,Clausura,5.0,Round
+4732048,2026-10-30T21:00:00Z,4,Ended,Deportivo Pereira,Jaguares de Córdoba,8638,10377,1.0,0.0,Clausura,5.0,Round
