@@ -38356,3 +38356,9 @@ game_id,side,minute,added_time,half,type,subtype,player
 4750811,away,65.0,0,2,Yellow Card,,Pellegrino Matarazzo
 4750811,away,74.0,0,2,Yellow Card,,Jon Aramburu
 4750811,home,84.0,0,2,Yellow Card,,Hugo Rincón
+4731930,home,32.0,0,1,Goal,Field Goal,Carlos Bacca
+4731930,away,37.0,0,1,Yellow Card,,Alejandro Maya
+4731930,home,45.0,3,1,Yellow Card,,Jose Moya
+4731930,home,59.0,0,2,Red Card,,Nicolás Benedetti
+4731930,away,67.0,0,2,Yellow Card,,Estiven Sarria
+4731930,home,79.0,0,2,Goal,Field Goal,Juan Dinenno
