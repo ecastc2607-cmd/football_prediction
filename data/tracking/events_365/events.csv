@@ -38383,3 +38383,14 @@ game_id,side,minute,added_time,half,type,subtype,player
 4732642,away,90.0,2,2,Yellow Card,,Wilfried Gnonto
 4732642,away,90.0,3,2,Goal,Field Goal,Víctor Valdepeñas
 4732642,home,90.0,5,2,Yellow Card,,Gabriel Kulla
+4732650,home,9.0,0,1,Goal Disallowed,Var,Goal Disallowed
+4732650,away,41.0,0,1,Goal,Field Goal,Giovanni Fabbian
+4732650,away,47.0,0,2,Goal,Own Goal,Davide Zappacosta
+4732650,away,58.0,0,2,Goal,Field Goal,Simone Lontani
+4732650,home,79.0,0,2,Woodwork,,Mario Pasalic
+4735224,away,41.0,0,1,Yellow Card,,Mama Balde
+4735224,home,58.0,0,2,Yellow Card,,Isaak Touré
+4735224,away,69.0,0,2,Goal,Field Goal,Ludovic Ajorque
+4735224,home,90.0,0,2,Woodwork,,Aiyegun Tosin
+4735224,home,90.0,1,2,Penalty Miss,,Aiyegun Tosin
+4735224,away,90.0,2,2,Goal,Field Goal,Noah Edjouma

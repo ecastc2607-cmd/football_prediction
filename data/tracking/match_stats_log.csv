@@ -6601,3 +6601,7 @@ COL,2026,36.0,2026-11-01T23:10:00Z,Independiente Medellin,Alianza FC,Independien
 COL,2026,36.0,2026-11-01T23:10:00Z,Independiente Medellin,Alianza FC,Alianza FC,False,3.0,18.0,3.0,0.0,54.0,2.0,8.0,0.0
 SA,2026,10.0,2026-11-02T17:30:00Z,US Sassuolo Calcio,ACF Fiorentina,US Sassuolo Calcio,True,5.0,12.0,2.0,0.0,58.0,2.0,7.0,4.0
 SA,2026,10.0,2026-11-02T17:30:00Z,US Sassuolo Calcio,ACF Fiorentina,ACF Fiorentina,False,3.0,15.0,3.0,0.0,42.0,6.0,15.0,0.0
+SA,2026,10.0,2026-11-02T19:45:00Z,Atalanta BC,Parma Calcio 1913,Atalanta BC,True,8.0,8.0,0.0,0.0,70.0,7.0,20.0,4.0
+SA,2026,10.0,2026-11-02T19:45:00Z,Atalanta BC,Parma Calcio 1913,Parma Calcio 1913,False,4.0,10.0,0.0,0.0,30.0,3.0,6.0,0.0
+FL1,2026,9.0,2026-11-02T19:45:00Z,FC Lorient,Stade Brestois 29,FC Lorient,True,8.0,11.0,1.0,0.0,52.0,0.0,15.0,1.0
+FL1,2026,9.0,2026-11-02T19:45:00Z,FC Lorient,Stade Brestois 29,Stade Brestois 29,False,2.0,16.0,1.0,0.0,48.0,4.0,12.0,0.0
