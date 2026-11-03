@@ -38449,3 +38449,58 @@ game_id,side,minute,added_time,half,type,subtype,player
 4828448,home,85.0,0,2,Yellow Card,,Lucas Torreira
 4828442,home,76.0,0,2,Yellow Card,,Kjetil Knutsen
 4828442,away,83.0,0,2,Yellow Card,,Nathan Ngoy
+4828440,away,3.0,0,1,Yellow Card,,Hakan Calhanoglu
+4828440,away,8.0,0,1,Goal,Field Goal,Yann Bisseck
+4828440,away,34.0,0,1,Goal,Field Goal,Pio Esposito
+4828440,home,39.0,0,1,Yellow Card,,Gjivai Zechiël
+4828440,away,39.0,0,1,Yellow Card,,Manuel Akanji
+4828440,away,54.0,0,2,Goal,Field Goal,Piotr Zielinski
+4828441,away,11.0,0,1,Goal,Field Goal,Matías Soulé
+4828441,away,17.0,0,1,Goal,Penalty,Donyell Malen
+4828441,home,20.0,0,1,Yellow Card,,Bruno Fernandes
+4828441,away,20.0,0,1,Yellow Card,,Matías Soulé
+4828441,away,35.0,0,1,Yellow Card,,Emanuele Lulli
+4828441,away,42.0,0,1,Yellow Card,,Donyell Malen
+4828441,away,45.0,1,1,Woodwork,,Matías Soulé
+4828441,home,58.0,0,2,Goal,Penalty,Bruno Fernandes
+4828441,home,59.0,0,2,Woodwork,,Bryan Mbeumo
+4828441,home,70.0,0,2,Yellow Card,,Ayden Heaven
+4828441,home,78.0,0,2,Yellow Card,,Harry Maguire
+4828441,home,83.0,0,2,Goal,Field Goal,Matheus Cunha
+4828441,home,86.0,0,2,Goal,Field Goal,Matheus Cunha
+4828441,home,87.0,0,2,Yellow Card,,Matheus Cunha
+4828441,home,90.0,1,2,Red Card,Second Yellow Card,Matheus Cunha
+4828443,home,19.0,0,1,Goal,Field Goal,Kasper Jorgensen
+4828443,away,25.0,0,1,Yellow Card,,Cristian Martinez
+4828443,away,36.0,0,1,Yellow Card,,Kevin Wimmer
+4828443,home,37.0,0,1,Goal,Field Goal,Kasper Jorgensen
+4828443,home,44.0,0,1,Goal,Field Goal,Robert Ljubicic
+4828443,home,48.0,0,2,Goal,Field Goal,Samuel Adeniran
+4828443,home,90.0,0,2,Woodwork,,Andres Andrade
+4828443,home,90.0,0,2,Woodwork,,Sasa Kalajdzic
+4828444,away,54.0,0,2,Goal,Field Goal,Lennart Karl
+4828444,away,56.0,0,2,Yellow Card,,Joshua Kimmich
+4828444,away,73.0,0,2,Woodwork,,Dayot Upamecano
+4828444,away,74.0,0,2,Goal,Field Goal,Konrad Laimer
+4828444,home,79.0,0,2,Yellow Card,,Giuliano Simeone
+4828444,away,82.0,0,2,Goal Disallowed,Var,Goal Disallowed
+4828444,away,90.0,1,2,Yellow Card,,Josip Stanišić
+4828445,home,7.0,0,1,Goal,Field Goal,Lamine Yamal
+4828445,away,11.0,0,1,Yellow Card,,Ian Maatsen
+4828445,away,31.0,0,1,Yellow Card,,Emilliano Buendía
+4828445,home,45.0,0,1,Yellow Card,,Raphinha
+4828445,away,45.0,0,1,Yellow Card,,Nicolas Jackson
+4828445,home,52.0,0,2,Goal,Field Goal,Raphinha
+4828445,home,64.0,0,2,Goal,Field Goal,Raphinha
+4828445,away,69.0,0,2,Woodwork,,Leon Goretzka
+4828446,away,9.0,0,1,Goal,Field Goal,João Neves
+4828446,away,12.0,0,1,Goal,Field Goal,Désiré Doué
+4828446,away,13.0,0,1,Goal,Field Goal,Senny Mayulu
+4828446,away,17.0,0,1,Goal,Field Goal,Fabián Ruiz
+4828446,home,45.0,0,1,Yellow Card,,Santi Comesaña
+4828446,away,50.0,0,2,Goal,Field Goal,Fabián Ruiz
+4828446,home,50.0,0,2,Yellow Card,,Santiago Mouriño
+4828446,home,66.0,0,2,Yellow Card,,Sergi Cardona
+4828446,away,74.0,0,2,Yellow Card,,Quentin Ndjantou
+4828446,away,78.0,0,2,Goal,Field Goal,David Boly
+4828446,home,78.0,0,2,Yellow Card,,Alberto Moleiro
