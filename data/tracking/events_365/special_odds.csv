@@ -33729,3 +33729,100 @@ game_id,line_type_id,market,line,option,odds,opening_odds,won
 4828446,139,Total Shots On Target,11.5,Over,1.89,1.89,True
 4828446,13,Both Teams To Score 2nd Half,,Yes,2.55,2.87,False
 4828446,13,Both Teams To Score 2nd Half,,No,1.44,1.36,True
+4731928,1,Full Time Result,,1,4.75,5.0,False
+4731928,1,Full Time Result,,X,3.5,3.6,False
+4731928,1,Full Time Result,,2,1.66,1.63,True
+4731928,14,Double Chance,,1X,1.91,2.15,False
+4731928,14,Double Chance,,12,1.3,1.26,True
+4731928,14,Double Chance,,X2,1.14,1.16,True
+4731928,3,Total Goals In Match,2.5,Under,1.7,1.77,False
+4731928,3,Total Goals In Match,2.5,Over,2.0,1.93,True
+4731928,3,Total Goals In Match,1.5,Under,3.1,3.25,False
+4731928,3,Total Goals In Match,1.5,Over,1.32,1.29,True
+4731928,3,Total Goals In Match,3.5,Under,1.25,1.28,False
+4731928,3,Total Goals In Match,3.5,Over,3.6,3.3,True
+4731928,12,Both Teams To Score,,Yes,1.98,1.9,True
+4731928,12,Both Teams To Score,,No,1.72,1.78,False
+4731928,7,First To Score,,Home,2.9,3.03,False
+4731928,7,First To Score,,No Goal,8.0,10.0,False
+4731928,7,First To Score,,Away,1.58,1.46,True
+4731928,11,Asian Handicap,0.75,Home,1.82,2.19,False
+4731928,11,Asian Handicap,0.75,Away,1.97,1.65,True
+4731928,11,Asian Handicap,1,Home,1.57,1.9,False
+4731928,11,Asian Handicap,1,Away,2.35,1.9,True
+4731928,11,Asian Handicap,0.5,Home,2.06,2.4,False
+4731928,11,Asian Handicap,0.5,Away,1.71,1.51,True
+4731928,15,Draw No Bet,,Home,3.78,3.75,False
+4731928,15,Draw No Bet,,Away,1.26,1.23,True
+4731928,5,1st Half Result,,1,4.8,5.0,False
+4731928,5,1st Half Result,,X,2.2,2.25,False
+4731928,5,1st Half Result,,2,2.15,2.1,True
+4731928,6,2nd Half Result,,1,4.6,4.75,False
+4731928,6,2nd Half Result,,X,2.4,2.4,True
+4731928,6,2nd Half Result,,2,2.05,2.0,False
+4731928,9,1st Half Goals,0.5,Under,2.73,2.97,False
+4731928,9,1st Half Goals,0.5,Over,1.39,1.35,True
+4731928,9,1st Half Goals,1.5,Under,1.41,1.41,False
+4731928,9,1st Half Goals,1.5,Over,2.77,2.77,True
+4731928,137,Total Corners,9.5,Under,1.84,1.67,True
+4731928,137,Total Corners,9.5,Over,1.84,2.1,False
+4731928,137,Total Corners,8.5,Under,2.08,1.98,True
+4731928,137,Total Corners,8.5,Over,1.65,1.71,False
+4731928,127,Half Time Correct Score,0-0,Yes,2.72,2.97,False
+4731928,127,Half Time Correct Score,0-1,Yes,3.58,3.38,False
+4731928,127,Half Time Correct Score,1-0,Yes,7.0,7.5,False
+4731928,127,Half Time Correct Score,1-1,Yes,7.5,9.0,False
+4731928,127,Half Time Correct Score,0-2,Yes,8.0,7.5,False
+4731928,127,Half Time Correct Score,2-0,Yes,23.0,34.0,False
+4731928,127,Half Time Correct Score,1-2,Yes,19.0,19.0,False
+4731928,127,Half Time Correct Score,2-1,Yes,29.0,41.0,False
+4731928,127,Half Time Correct Score,2-2,Yes,51.0,51.0,False
+4731928,127,Half Time Correct Score,0-3,Yes,23.0,23.0,False
+4731928,127,Half Time Correct Score,3-0,Yes,101.0,126.0,False
+4731928,127,Half Time Correct Score,3-1,Yes,101.0,151.0,False
+4731928,127,Half Time Correct Score,1-3,Yes,41.0,41.0,True
+4731928,127,Half Time Correct Score,2-3,Yes,151.0,151.0,False
+4731928,127,Half Time Correct Score,3-2,Yes,301.0,301.0,False
+4731928,127,Half Time Correct Score,0-4,Yes,67.0,51.0,False
+4731928,127,Half Time Correct Score,1-4,Yes,151.0,126.0,False
+4731928,127,Half Time Correct Score,0-5,Yes,301.0,201.0,False
+4731928,126,Correct Score,0-0,Yes,8.0,10.0,False
+4731928,126,Correct Score,0-1,Yes,6.0,6.5,False
+4731928,126,Correct Score,1-0,Yes,12.0,15.0,False
+4731928,126,Correct Score,1-1,Yes,6.0,7.5,False
+4731928,126,Correct Score,2-0,Yes,23.0,34.0,False
+4731928,126,Correct Score,0-2,Yes,7.5,7.0,False
+4731928,126,Correct Score,1-2,Yes,8.5,8.5,False
+4731928,126,Correct Score,2-1,Yes,17.0,19.0,False
+4731928,126,Correct Score,2-2,Yes,15.0,19.0,False
+4731928,126,Correct Score,0-3,Yes,13.0,10.0,False
+4731928,126,Correct Score,3-0,Yes,51.0,67.0,False
+4731928,126,Correct Score,1-3,Yes,15.0,13.0,True
+4731928,126,Correct Score,3-1,Yes,41.0,51.0,False
+4731928,126,Correct Score,2-3,Yes,29.0,29.0,False
+4731928,126,Correct Score,3-2,Yes,41.0,51.0,False
+4731928,126,Correct Score,3-3,Yes,51.0,51.0,False
+4731928,126,Correct Score,0-4,Yes,26.0,21.0,False
+4731928,126,Correct Score,4-0,Yes,201.0,201.0,False
+4731928,126,Correct Score,1-4,Yes,29.0,26.0,False
+4731928,126,Correct Score,4-1,Yes,101.0,126.0,False
+4731928,126,Correct Score,2-4,Yes,51.0,41.0,False
+4731928,126,Correct Score,4-2,Yes,101.0,151.0,False
+4731928,126,Correct Score,4-3,Yes,201.0,201.0,False
+4731928,126,Correct Score,3-4,Yes,101.0,101.0,False
+4731928,126,Correct Score,4-4,Yes,301.0,351.0,False
+4731928,126,Correct Score,0-5,Yes,51.0,41.0,False
+4731928,126,Correct Score,1-5,Yes,51.0,51.0,False
+4731928,126,Correct Score,2-5,Yes,101.0,81.0,False
+4731928,126,Correct Score,3-5,Yes,301.0,251.0,False
+4731928,126,Correct Score,0-6,Yes,126.0,81.0,False
+4731928,126,Correct Score,1-6,Yes,126.0,101.0,False
+4731928,126,Correct Score,2-6,Yes,251.0,201.0,False
+4731928,126,Correct Score,0-7,Yes,351.0,201.0,False
+4731928,126,Correct Score,1-7,Yes,351.0,251.0,False
+4731928,144,Home Team - Clean Sheet,,Yes,4.51,5.51,False
+4731928,144,Home Team - Clean Sheet,,No,1.18,1.14,True
+4731928,145,Away Team - Clean Sheet,,Yes,2.2,2.0,False
+4731928,145,Away Team - Clean Sheet,,No,1.62,1.73,True
+4731928,13,Both Teams To Score 2nd Half,,Yes,3.8,3.7,False
+4731928,13,Both Teams To Score 2nd Half,,No,1.23,1.24,True
