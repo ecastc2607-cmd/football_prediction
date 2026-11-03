@@ -32824,3 +32824,127 @@ game_id,line_type_id,market,line,option,odds,opening_odds,won
 4828448,139,Total Shots On Target,10.5,Over,1.72,1.82,False
 4828448,13,Both Teams To Score 2nd Half,,Yes,2.1,2.6,False
 4828448,13,Both Teams To Score 2nd Half,,No,1.65,1.43,True
+4828442,1,Full Time Result,,1,1.57,2.1,False
+4828442,1,Full Time Result,,X,4.6,3.59,True
+4828442,1,Full Time Result,,2,5.0,3.24,False
+4828442,14,Double Chance,,1X,1.17,1.33,True
+4828442,14,Double Chance,,12,1.19,1.27,False
+4828442,14,Double Chance,,X2,2.35,1.71,True
+4828442,3,Total Goals In Match,3.5,Under,1.7,1.52,True
+4828442,3,Total Goals In Match,3.5,Over,2.05,2.37,False
+4828442,3,Total Goals In Match,2.5,Under,2.7,2.51,True
+4828442,3,Total Goals In Match,2.5,Over,1.41,1.54,False
+4828442,3,Total Goals In Match,4.5,Under,1.29,1.2,True
+4828442,3,Total Goals In Match,4.5,Over,3.3,4.2,False
+4828442,12,Both Teams To Score,,Yes,1.52,1.5,False
+4828442,12,Both Teams To Score,,No,2.35,2.37,True
+4828442,7,First To Score,,Home,1.5,1.66,False
+4828442,7,First To Score,,No Goal,21.0,19.0,True
+4828442,7,First To Score,,Away,2.5,2.1,False
+4828442,11,Asian Handicap,-1,Home,1.9,2.67,False
+4828442,11,Asian Handicap,-1,Away,1.95,1.45,True
+4828442,11,Asian Handicap,-1.25,Home,2.09,2.98,False
+4828442,11,Asian Handicap,-1.25,Away,1.69,1.36,True
+4828442,11,Asian Handicap,-0.75,Home,1.67,2.24,False
+4828442,11,Asian Handicap,-0.75,Away,2.14,1.62,True
+4828442,15,Draw No Bet,,Home,1.23,1.52,False
+4828442,15,Draw No Bet,,Away,3.75,2.35,False
+4828442,5,1st Half Result,,1,1.9,2.45,False
+4828442,5,1st Half Result,,X,2.7,2.37,True
+4828442,5,1st Half Result,,2,4.33,3.4,False
+4828442,6,2nd Half Result,,1,1.8,2.3,False
+4828442,6,2nd Half Result,,X,2.95,2.6,True
+4828442,6,2nd Half Result,,2,4.33,3.2,False
+4828442,9,1st Half Goals,1.5,Under,1.72,1.66,True
+4828442,9,1st Half Goals,1.5,Over,1.99,2.09,False
+4828442,9,1st Half Goals,2.5,Under,1.21,1.19,True
+4828442,9,1st Half Goals,2.5,Over,4.36,4.53,False
+4828442,9,1st Half Goals,0.5,Under,3.97,3.72,True
+4828442,9,1st Half Goals,0.5,Over,1.21,1.24,False
+4828442,137,Total Corners,9.5,Under,2.11,2.11,True
+4828442,137,Total Corners,9.5,Over,1.68,1.68,False
+4828442,127,Half Time Correct Score,0-0,Yes,4.0,4.0,True
+4828442,127,Half Time Correct Score,1-0,Yes,3.72,4.71,False
+4828442,127,Half Time Correct Score,0-1,Yes,7.5,5.51,False
+4828442,127,Half Time Correct Score,1-1,Yes,7.0,6.5,False
+4828442,127,Half Time Correct Score,0-2,Yes,23.0,15.0,False
+4828442,127,Half Time Correct Score,2-0,Yes,6.5,11.0,False
+4828442,127,Half Time Correct Score,1-2,Yes,23.0,19.0,False
+4828442,127,Half Time Correct Score,2-1,Yes,12.0,15.0,False
+4828442,127,Half Time Correct Score,2-2,Yes,34.0,34.0,False
+4828442,127,Half Time Correct Score,0-3,Yes,81.0,41.0,False
+4828442,127,Half Time Correct Score,3-0,Yes,17.0,34.0,False
+4828442,127,Half Time Correct Score,3-1,Yes,29.0,41.0,False
+4828442,127,Half Time Correct Score,1-3,Yes,67.0,51.0,False
+4828442,127,Half Time Correct Score,3-2,Yes,67.0,81.0,False
+4828442,127,Half Time Correct Score,2-3,Yes,101.0,81.0,False
+4828442,127,Half Time Correct Score,3-3,Yes,201.0,251.0,False
+4828442,127,Half Time Correct Score,4-0,Yes,41.0,81.0,False
+4828442,127,Half Time Correct Score,0-4,Yes,351.0,151.0,False
+4828442,127,Half Time Correct Score,1-4,Yes,351.0,151.0,False
+4828442,127,Half Time Correct Score,4-1,Yes,67.0,101.0,False
+4828442,127,Half Time Correct Score,4-2,Yes,151.0,251.0,False
+4828442,127,Half Time Correct Score,2-4,Yes,501.0,351.0,False
+4828442,127,Half Time Correct Score,5-0,Yes,101.0,351.0,False
+4828442,127,Half Time Correct Score,5-1,Yes,201.0,451.0,False
+4828442,126,Correct Score,0-0,Yes,21.0,21.0,True
+4828442,126,Correct Score,0-1,Yes,21.0,17.0,False
+4828442,126,Correct Score,1-0,Yes,11.0,13.0,False
+4828442,126,Correct Score,1-1,Yes,9.0,7.5,False
+4828442,126,Correct Score,0-2,Yes,29.0,21.0,False
+4828442,126,Correct Score,2-0,Yes,10.0,15.0,False
+4828442,126,Correct Score,2-1,Yes,8.5,9.5,False
+4828442,126,Correct Score,1-2,Yes,15.0,12.0,False
+4828442,126,Correct Score,2-2,Yes,12.0,10.0,False
+4828442,126,Correct Score,3-0,Yes,13.0,21.0,False
+4828442,126,Correct Score,0-3,Yes,51.0,34.0,False
+4828442,126,Correct Score,3-1,Yes,11.0,15.0,False
+4828442,126,Correct Score,1-3,Yes,34.0,21.0,False
+4828442,126,Correct Score,3-2,Yes,17.0,19.0,False
+4828442,126,Correct Score,2-3,Yes,29.0,23.0,False
+4828442,126,Correct Score,3-3,Yes,34.0,26.0,False
+4828442,126,Correct Score,0-4,Yes,101.0,51.0,False
+4828442,126,Correct Score,4-0,Yes,21.0,41.0,False
+4828442,126,Correct Score,1-4,Yes,67.0,41.0,False
+4828442,126,Correct Score,4-1,Yes,19.0,29.0,False
+4828442,126,Correct Score,2-4,Yes,51.0,41.0,False
+4828442,126,Correct Score,4-2,Yes,29.0,34.0,False
+4828442,126,Correct Score,4-3,Yes,51.0,51.0,False
+4828442,126,Correct Score,3-4,Yes,67.0,51.0,False
+4828442,126,Correct Score,4-4,Yes,101.0,81.0,False
+4828442,126,Correct Score,5-0,Yes,41.0,67.0,False
+4828442,126,Correct Score,0-5,Yes,351.0,126.0,False
+4828442,126,Correct Score,1-5,Yes,151.0,81.0,False
+4828442,126,Correct Score,5-1,Yes,34.0,51.0,False
+4828442,126,Correct Score,5-2,Yes,41.0,51.0,False
+4828442,126,Correct Score,2-5,Yes,151.0,81.0,False
+4828442,126,Correct Score,3-5,Yes,201.0,126.0,False
+4828442,126,Correct Score,5-3,Yes,81.0,81.0,False
+4828442,126,Correct Score,5-4,Yes,201.0,201.0,False
+4828442,126,Correct Score,4-5,Yes,351.0,251.0,False
+4828442,126,Correct Score,6-0,Yes,67.0,151.0,False
+4828442,126,Correct Score,6-1,Yes,51.0,101.0,False
+4828442,126,Correct Score,1-6,Yes,251.0,251.0,False
+4828442,126,Correct Score,6-2,Yes,81.0,126.0,False
+4828442,126,Correct Score,6-3,Yes,151.0,201.0,False
+4828442,126,Correct Score,6-4,Yes,401.0,401.0,False
+4828442,126,Correct Score,7-0,Yes,151.0,301.0,False
+4828442,126,Correct Score,7-1,Yes,126.0,301.0,False
+4828442,126,Correct Score,7-2,Yes,201.0,251.0,False
+4828442,126,Correct Score,7-3,Yes,401.0,401.0,False
+4828442,126,Correct Score,8-0,Yes,451.0,351.0,False
+4828442,126,Correct Score,8-1,Yes,351.0,301.0,False
+4828442,144,Home Team - Clean Sheet,,Yes,3.0,3.76,True
+4828442,144,Home Team - Clean Sheet,,No,1.37,1.25,False
+4828442,145,Away Team - Clean Sheet,,Yes,8.0,6.0,True
+4828442,145,Away Team - Clean Sheet,,No,1.09,1.13,False
+4828442,143,A Penalty In The Match,,Yes,2.74,2.74,False
+4828442,143,A Penalty In The Match,,No,1.39,1.39,True
+4828442,141,Total Cards,3.5,Under,1.83,1.83,True
+4828442,141,Total Cards,3.5,Over,1.83,1.83,False
+4828442,142,A Red Card in Match,,Yes,5.49,5.49,False
+4828442,142,A Red Card in Match,,No,1.14,1.14,True
+4828442,139,Total Shots On Target,10.5,Under,1.79,1.72,True
+4828442,139,Total Shots On Target,10.5,Over,1.9,1.99,False
+4828442,13,Both Teams To Score 2nd Half,,Yes,2.65,2.65,False
+4828442,13,Both Teams To Score 2nd Half,,No,1.42,1.42,True
