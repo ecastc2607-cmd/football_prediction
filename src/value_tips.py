@@ -254,7 +254,8 @@ def day_summary(evaluated: pd.DataFrame, bankroll: float) -> dict:
 
 # --- Mercados especiales (vista Avanzada, special_markets.py) -------------------
 # Solo entran los mercados que el backtest walk-forward marca "Candidato" o
-# "Prometedor", en las ligas donde sus picks aciertan >= 75% con muestra, y que
+# "Prometedor" (o los de umbral 65%, sm.LOWER_PROB_MARKETS, por calibración),
+# en las ligas donde sus picks aciertan >= 75% con muestra, y que
 # BWIN ofrece (si no hay cuota no hay qué evaluar). Experimental: las cuotas
 # especiales de BWIN se guardan recién desde oct-2026, así que el modelo pesa
 # poco frente a la cuota, igual que en corners/tarjetas.
@@ -296,11 +297,18 @@ def special_rules() -> tuple[dict, set]:
         else:
             bt = bt[~bt["familia"].isin(SPECIAL_EXCLUDED_FAMILIES)
                     & (bt["mercado"].isin(SPECIAL_TIPS_MARKET) | (bt["familia"] == "Estadísticas"))]
-            total = sm.summarize(bt)
+            bajos = bt["mercado"].isin(sm.LOWER_PROB_MARKETS)
+            total = sm.summarize(bt[~bajos])
             total["veredicto"] = total.apply(sm.verdict, axis=1)
             buenos = total[total["veredicto"].isin(SPECIAL_VERDICTS)]
             correccion = ((buenos["acierto_pct"] - buenos["esperado_pct"]) / 100).set_axis(buenos["mercado"]).to_dict()
-            liga = sm.summarize(bt[bt["mercado"].isin(correccion)], by=["competition"])
+            # Mercados con umbral 65%: aprobados por calibración (no por veredicto
+            # a 75%); la corrección solo resta, nunca infla la probabilidad.
+            bajo = sm.summarize(bt[bajos], min_prob=sm.LOWER_PROB)
+            correccion |= ((bajo["acierto_pct"] - bajo["esperado_pct"]).clip(upper=0) / 100
+                           ).set_axis(bajo["mercado"]).to_dict()
+            liga = pd.concat([sm.summarize(bt[~bajos & bt["mercado"].isin(correccion)], by=["competition"]),
+                              sm.summarize(bt[bajos], min_prob=sm.LOWER_PROB, by=["competition"])])
             ok = liga[(liga["picks"] >= SPECIAL_MIN_LEAGUE_PICKS) & (liga["acierto_pct"] >= sm.MIN_PROB * 100)]
             _SPECIAL_CACHE[clave] = (correccion, set(zip(ok["competition"], ok["mercado"])))
     return _SPECIAL_CACHE[clave]
@@ -326,7 +334,7 @@ def special_candidates(day_predictions: pd.DataFrame, lines_for) -> pd.DataFrame
         fav_local = hx >= ax
         picks = [(merc, prob, p_dev) for _, merc, prob, p_dev in
                  sm.goal_market_probs(sm.Match(hx, ax, share.get(comp, sm.DEFAULT_FIRST_HALF_SHARE)))
-                 if (comp, merc) in permitidos and prob >= sm.MIN_PROB]
+                 if (comp, merc) in permitidos and prob >= sm.min_prob_for(merc)]
         # Tiros al arco / fueras de juego en las líneas que el backtest aprueba en la liga.
         stat_picks = []
         for col, nombre in STAT_TIPS.items():
@@ -336,7 +344,7 @@ def special_candidates(day_predictions: pd.DataFrame, lines_for) -> pd.DataFrame
                     break
                 for lado, prob in (("más", pr["p_mas"]), ("menos", 1 - pr["p_mas"])):
                     merc = f"{nombre}: {lado} de {linea:g}"
-                    if (comp, merc) in permitidos and prob >= sm.MIN_PROB:
+                    if (comp, merc) in permitidos and prob >= sm.min_prob_for(merc):
                         stat_picks.append((merc, nombre, lado, linea, prob, pr["esperado"]))
         if not picks and not stat_picks:
             continue

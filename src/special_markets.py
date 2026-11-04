@@ -37,6 +37,19 @@ from . import config
 BACKTEST_PATH = config.ROOT_DIR / "data" / "tracking" / "special_markets_backtest.csv.gz"  # comprimido: ~10x menos
 SHARE_PATH = config.ROOT_DIR / "data" / "tracking" / "special_markets_share.csv"
 MIN_PROB = 0.75          # umbral del pedido del usuario
+# Mercados donde el modelo cumple (o supera) lo que promete también entre 65% y
+# 75%, estable en 2025 y 2026 (análisis nov-2026): para ellos el pick entra
+# desde 65%, pero la liga igual debe acertar >= MIN_PROB con esos picks.
+# Empate no válido, primer gol y 1T prometen de más bajo 75%: quedan en 75%.
+LOWER_PROB = 0.65
+LOWER_PROB_MARKETS = {"No favorito +1", "No favorito +1.5", "Fueras de juego: más de 2.5",
+                      "Fueras de juego: menos de 4.5", "Tiros al arco: más de 7.5"}
+
+
+def min_prob_for(mercado: str) -> float:
+    """Probabilidad mínima del modelo para que el mercado sea pick."""
+    return LOWER_PROB if mercado in LOWER_PROB_MARKETS else MIN_PROB
+
 MIN_PICKS_VERDICT = 30   # con menos picks, un 100% no dice nada
 MIN_PREV_MATCHES = 5     # cada equipo con al menos estos partidos previos
 DEFAULT_FIRST_HALF_SHARE = 0.44
@@ -799,7 +812,7 @@ def best_special_pick(competition: str, home_xg: float, away_xg: float, home: st
     fav_local = home_xg >= away_xg
     mejores = []
     for _, merc, prob, _ in goal_market_probs(Match(home_xg, away_xg, share.get(competition, DEFAULT_FIRST_HALF_SHARE))):
-        if (competition, merc) in permitidos and prob >= MIN_PROB:
+        if (competition, merc) in permitidos and prob >= min_prob_for(merc):
             mejores.append((min(prob + correccion.get(merc, 0.0), 0.99), merc))
     if not mejores:
         return None

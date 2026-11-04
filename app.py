@@ -946,7 +946,7 @@ def _jornada_strength(show: pd.DataFrame, comp: str) -> pd.DataFrame:
             salida[nombre] = [v if show.at[i, nombre] != "Sin datos" else None for i in show.index]
     if "_especial_mercado" in show.columns:
         salida["Especial (Avanzada)"] = [
-            _special_strength(bt, comp, lambda d, m=m: (d["mercado"] == m) & (d["prob"] >= special_markets.MIN_PROB))
+            _special_strength(bt, comp, lambda d, m=m: (d["mercado"] == m) & (d["prob"] >= special_markets.min_prob_for(m)))
             if isinstance(m, str) else None for m in show["_especial_mercado"]]
     return salida.astype(float)
 
@@ -2735,6 +2735,12 @@ VEREDICTO_AYUDA = (
     "obvio: ≥75% solo porque el mercado casi siempre sale — paga muy poco y el modelo no aporta. "
     "✘ Descartado: los picks del modelo aciertan menos de 75%. … Muestra chica: menos de 30 picks, todavía no se "
     "puede juzgar.")
+TIPS_UMBRAL_AYUDA = (
+    "En Tips entran los mercados ✅/🟡 con el modelo ≥75%. Excepción: "
+    + ", ".join(sorted(special_markets.LOWER_PROB_MARKETS))
+    + " entran desde 65%, porque en el backtest el modelo cumple lo que promete también entre 65% y 75% "
+    "(estable en 2025 y 2026). En todos los casos la liga tiene que acertar ≥75% con esos picks y la cuota "
+    "tiene que dejar valor ≥3%.")
 
 
 @st.cache_data(ttl=3600, show_spinner="Cargando el análisis de mercados especiales...")
@@ -2829,7 +2835,8 @@ def render_advanced_tab() -> None:
             "frecuencia normal del mercado, y si **BWIN paga más que la cuota justa** (la mínima para no perder).\n"
             "- El **piso** es el acierto mínimo creíble con esa muestra: con 20 picks, un 85% puede ser 70% real.\n"
             "- Las cuotas especiales de BWIN se guardan desde oct-2026 (365 las borra a los ~10 días): el "
-            "'Retorno BWIN' tiene poca muestra al principio y se vuelve confiable con las semanas.")
+            "'Retorno BWIN' tiene poca muestra al principio y se vuelve confiable con las semanas.\n"
+            f"- **Qué pasa a Tips:** {TIPS_UMBRAL_AYUDA}")
     with st.expander("📖 Qué significa cada mercado"):
         st.markdown("**Favorito** = el equipo al que el modelo le da más goles esperados en ESE partido (puede ser "
                     "el local o el visitante); **no favorito** = el otro. **Devuelto** = no se gana ni se pierde: "
