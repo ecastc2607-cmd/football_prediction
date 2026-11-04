@@ -38527,3 +38527,22 @@ game_id,side,minute,added_time,half,type,subtype,player
 4828710,home,44.0,0,1,Goal Disallowed,Var,Goal Disallowed
 4828710,home,88.0,0,2,Yellow Card,,Valentin Rongier
 4828710,home,90.0,3,2,Yellow Card,,Franck Haise
+4828437,away,25.0,0,1,Goal,Field Goal,Trey Nyoni
+4828437,home,25.0,0,1,Yellow Card,,Archie Brown
+4828437,home,27.0,0,1,Woodwork,,Irfan Kahveci
+4828437,home,27.0,0,1,Yellow Card,,Dirk Kuyt
+4828437,home,29.0,0,1,Goal,Field Goal,Mason Greenwood
+4828437,away,69.0,0,2,Goal,Field Goal,Alexander Isak
+4828437,home,73.0,0,2,Goal,Field Goal,Archie Brown
+4828437,home,79.0,0,2,Goal,Field Goal,Vedat Muriqi
+4828437,away,85.0,0,2,Yellow Card,,Alexis Mac Allister
+4828439,home,12.0,0,1,Goal,Field Goal,Aboubakary Koita
+4828439,away,29.0,0,1,Goal Disallowed,Var,Goal Disallowed
+4828439,away,32.0,0,1,Goal,Field Goal,Jude Bellingham
+4828439,home,34.0,0,1,Yellow Card,,Kervin Arriaga
+4828439,away,65.0,0,2,Yellow Card,,Marc Cucurella
+4828439,home,75.0,0,2,Goal,Field Goal,Stavros Pilios
+4828439,away,78.0,0,2,Goal,Field Goal,Kylian Mbappe
+4828439,away,86.0,0,2,Woodwork,,Kylian Mbappe
+4828439,away,90.0,2,2,Goal,Field Goal,Federico Valverde
+4828439,home,90.0,5,2,Red Card,,Aboubakary Koita
