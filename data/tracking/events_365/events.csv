@@ -38851,3 +38851,61 @@ game_id,side,minute,added_time,half,type,subtype,player
 4828896,home,52.0,0,2,Goal Disallowed,Var,Takumi Minamino
 4828896,away,66.0,0,2,Yellow Card,,Victor Nelsson
 4828896,home,90.0,1,2,Goal,Field Goal,Matthis Abline
+4828692,away,19.0,0,1,Goal,Field Goal,Teun Koopmeiners
+4828692,home,28.0,0,1,Yellow Card,,Wesley Hoedt
+4828692,away,37.0,0,1,Goal,Field Goal,Randal Kolo Muani
+4828692,away,48.0,0,2,Yellow Card,,Andrea Cambiaso
+4828692,away,85.0,0,2,Yellow Card,,Jeff Ekhator
+4828692,home,88.0,0,2,Goal,Field Goal,Mexx Meerdink
+4828692,away,90.0,4,2,Yellow Card,,Juan Cabal
+4828694,home,13.0,0,1,Goal,Field Goal,Jorge Aguirre
+4828694,home,25.0,0,1,Red Card,,Jorge Aguirre
+4828694,away,41.0,0,1,Goal,Field Goal,Karen Muradyan
+4828694,away,43.0,0,1,Yellow Card,,Bruno Wilson
+4828694,away,45.0,2,1,Yellow Card,,Karen Muradyan
+4828694,home,45.0,2,1,Yellow Card,,Volnei Feltes
+4828694,away,48.0,0,2,Yellow Card,,Bernardo Dias
+4828694,away,58.0,0,2,Goal,Field Goal,Bruno Wilson
+4828694,away,76.0,0,2,Red Card,,João Bravim
+4828694,away,79.0,0,2,Yellow Card,,Arman Nersesyan
+4828694,home,80.0,0,2,Woodwork,,Javi Vazquez
+4828694,away,84.0,0,2,Yellow Card,,Carlos França
+4828694,home,88.0,0,2,Yellow Card,,Musa Drammeh
+4828694,home,90.0,3,2,Goal,Field Goal,Javi Vazquez
+4828694,home,90.0,5,2,Goal,Field Goal,Musa Drammeh
+4828695,away,22.0,0,1,Goal,Field Goal,Luka Stojkovic
+4828695,away,25.0,0,1,Yellow Card,,Niko Galesic
+4828695,home,28.0,0,1,Yellow Card,,Granit Xhaka
+4828695,home,36.0,0,1,Yellow Card,,Kevin Danso
+4828695,away,39.0,0,1,Goal,Field Goal,Dion Beljo
+4828695,away,46.0,0,2,Yellow Card,,Lukas Kacavenda
+4828695,home,47.0,0,2,Goal Disallowed,Var,Wilson Isidor
+4828695,home,55.0,0,2,Yellow Card,,Trai Hume
+4828695,home,58.0,0,2,Woodwork,,Reinildo Mandava
+4828695,home,58.0,0,2,Woodwork,,Kevin Danso
+4828699,home,6.0,0,1,Yellow Card,,Miguel Gutiérrez
+4828699,away,39.0,0,1,Yellow Card,,Igor Paixão
+4828699,home,43.0,0,1,Woodwork,,Miguel Gutiérrez
+4828699,away,54.0,0,2,Yellow Card,,Ulisses Garcia
+4828699,away,77.0,0,2,Goal,Field Goal,Amine Gouiri
+4828699,away,90.0,0,2,Yellow Card,,Tochukwu Nnadi
+4828701,away,23.0,0,1,Yellow Card,,Nikolaos Athanasiou
+4828701,away,26.0,0,1,Woodwork,,Taxiarchis Fountas
+4828701,away,45.0,2,1,Goal,Field Goal,Achilleas Poungouras
+4828701,away,56.0,0,2,Goal,Field Goal,Taxiarchis Fountas
+4828701,home,69.0,0,2,Yellow Card,,Forson Amankwah
+4828701,home,83.0,0,2,Yellow Card,,Muhamad Kanaan
+4828701,away,90.0,2,2,Goal Disallowed,Var,Athanasios Androutsos
+4828701,home,90.0,3,2,Yellow Card,,Djibril Diop
+4828895,away,5.0,0,1,Yellow Card,,Zviad Natchkebia
+4828895,home,7.0,0,1,Yellow Card,,Geovanni Vianney
+4828895,away,18.0,0,1,Yellow Card,,Giorgi Makaridze
+4828895,home,19.0,0,1,Goal,Field Goal,Mohamed Elyounoussi
+4828895,home,22.0,0,1,Goal,Own Goal,Vahid Selimovic
+4828895,away,30.0,0,1,Goal,Own Goal,Amiran Dzagania
+4828895,away,44.0,0,1,Yellow Card,,Nikoloz Dadiani
+4828895,away,53.0,0,2,Goal Disallowed,Var,Jean-Marc Tiboué
+4828895,home,54.0,0,2,Yellow Card,,Diant Ramaj
+4828895,home,74.0,0,2,Yellow Card,,Ákos Markgráf
+4828895,away,76.0,0,2,Yellow Card,,Vahid Selimovic
+4828895,away,90.0,4,2,Yellow Card,,Lucas Cafe
