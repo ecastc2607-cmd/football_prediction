@@ -2408,6 +2408,9 @@ def _render_my_bets(desde, hasta) -> None:
             marcador = f" [{r.marcador}{dato}]" if isinstance(r.marcador, str) else ""
             piezas.append(f"{RESULTADO_ICONO.get(r.resultado, '·')} {r.mercado_bwin}: {r.pick_bwin} — "
                           f"{r.partido_bwin}{marcador}{prob}")
+            porque = my_bets.explain_leg(r._asdict())
+            if porque:
+                piezas.append(f"   ↳ {porque}")
         fila = t[t["coupon_id"] == cid].iloc[0]
         chequeo = plan[plan["coupon_id"] == cid]
         plan_txt = "-" if chequeo.empty else ("✅" if chequeo.iloc[0]["cumple"]
@@ -2855,6 +2858,23 @@ def render_advanced_tab() -> None:
         cols_ley = st.columns(2)
         for n, fam in enumerate([f for f in orden if f in grupos] + [f for f in grupos if f not in orden]):
             cols_ley[n % 2].markdown(f"**{fam}**\n" + "\n".join(grupos[fam]))
+    with st.expander("⚖️ Cómo se resuelve un hándicap asiático (tabla)"):
+        st.markdown(
+            "Al equipo que apostaste se le **suma** (o resta) la línea al marcador final y se mira quién gana "
+            "con ese ajuste. Ejemplo: **Santa Fe +0.5** y el partido termina Cúcuta 1-0 Santa Fe → Santa Fe "
+            "perdió por 1; con el +0.5 queda −0.5 → **perdida**. Con +0.5 solo se gana si tu equipo gana o "
+            "empata (es igual a la doble oportunidad). Las líneas de cuarto (.25 / .75) parten la plata en dos "
+            "apuestas: una a la línea de abajo y otra a la de arriba, por eso pueden salir *medio ganadas* o "
+            "*medio perdidas*.")
+        margenes = {"Gana por 2+": 2, "Gana por 1": 1, "Empata": 0, "Pierde por 1": -1, "Pierde por 2": -2}
+        icono = {1.0: "✔ gana", 0.5: "½ gana", 0.0: "↺ devuelve", -0.5: "½ pierde", -1.0: "✘ pierde"}
+        tabla = pd.DataFrame([
+            {"Línea de tu equipo": f"{l:+g}" if l else "0 (empate no válido)"}
+            | {k: icono[special_markets.ah_settle(v, l)] for k, v in margenes.items()}
+            for l in (2.5, 1.5, 1.0, 0.75, 0.5, 0.25, 0.0, -0.25, -0.5, -0.75, -1.0, -1.5)])
+        st.dataframe(tabla, hide_index=True, width="stretch")
+        st.caption("Tu equipo es el que aparece en el pick (no importa si es local o visitante). "
+                   "En Reportes → Mis apuestas cada selección trae su explicación con el marcador real.")
     archivo = special_markets.BACKTEST_PATH
     bt = load_special_backtest(archivo.stat().st_mtime if archivo.exists() else 0.0)
     if bt.empty:

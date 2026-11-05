@@ -185,6 +185,12 @@ def classify(mercado: str, pick: str, local: str, visita: str) -> tuple[str, str
         return "Doble oportunidad", lado, None
     if m.startswith("ambos equipos"):
         return "Ambos marcan", "Sí" if pick.lower().startswith("s") else "No", None
+    if "asiático" in m or "asiatico" in m:
+        # "Independiente Santa Fe +0.5" / "Santa Fe (-1,25)": equipo + su hándicap.
+        hm = re.match(r"^(.*?)\s*\(?\s*([+-]?\d+(?:[.,]\d+)?)\s*\)?$", pick.strip())
+        if not hm:
+            return "Otro", None, None
+        return "Hándicap asiático", equipo(hm.group(1)), float(hm.group(2).replace(",", "."))
     if "esquina" in m:
         return "Corners", lado_total, linea
     if "tarjeta" in m:
@@ -267,6 +273,14 @@ def settle_leg(mercado: str, lado, linea, hg: int, ag: int, game_id: int) -> tup
     if mercado == "Ambos marcan":
         ambos = hg > 0 and ag > 0
         return (ACIERTO if ambos == (lado == "Sí") else FALLO), ""
+    if mercado == "Hándicap asiático":
+        if linea is None or lado not in ("local", "visita"):
+            return SIN_DATO, ""
+        from .special_markets import ah_settle
+
+        x = ah_settle(hg - ag if lado == "local" else ag - hg, linea)
+        # Líneas de cuarto: medio ganado cuenta como acierto, medio perdido como fallo.
+        return (ACIERTO if x > 0 else FALLO if x < 0 else DEVUELTO), ("" if abs(x) in (0, 1) else "media")
     if linea is None or lado not in ("Más", "Menos"):
         return SIN_DATO, ""
     if mercado == "Goles":
@@ -289,6 +303,80 @@ def settle_leg(mercado: str, lado, linea, hg: int, ag: int, game_id: int) -> tup
         return SIN_DATO, ""
     ok = total > linea if lado == "Más" else total < linea
     return (ACIERTO if ok else FALLO), f"{total:g}"
+
+
+def _ah_meaning(equipo: str, linea: float) -> str:
+    """Qué tiene que pasar para ganar un hándicap asiático, en palabras."""
+    if abs(linea * 4 - round(linea * 4)) < 1e-9 and round(linea * 4) % 2:  # .25 / .75
+        from .special_markets import ah_settle
+
+        a, b = linea - 0.25, linea + 0.25
+        nombre = {1.0: "ganas", 0.5: "medio ganas", 0.0: "te devuelven", -0.5: "medio pierdes", -1.0: "pierdes"}
+        casos = {"gana por 2+": 2, "gana por 1": 1, "empata": 0, "pierde por 1": -1, "pierde por 2+": -2}
+        return (f"mitad de la plata va a {a:+g} y mitad a {b:+g}: "
+                + ", ".join(f"si {equipo} {k} {nombre[ah_settle(v, linea)]}" for k, v in casos.items()))
+    n = int(abs(linea))
+    if linea > 0 and linea % 1:  # +0.5, +1.5...
+        return f"ganas si {equipo} gana o empata" if n == 0 else \
+            f"ganas si {equipo} gana, empata o pierde por {n} gol{'es' if n > 1 else ''} o menos"
+    if linea < 0 and linea % 1:  # -0.5, -1.5...
+        return f"ganas solo si {equipo} gana" + ("" if n == 0 else f" por {n + 1} goles o más")
+    if linea == 0:
+        return f"ganas si {equipo} gana; si empata te devuelven"
+    if linea > 0:  # +1, +2
+        return (f"ganas si {equipo} gana" + (" o empata" if n == 1 else f", empata o pierde por {n - 1}")
+                + f"; si pierde por {n} te devuelven")
+    return f"ganas si {equipo} gana por {n + 1} o más; si gana por {n} te devuelven"  # -1, -2
+
+
+def explain_leg(r) -> str:
+    """Explicación en palabras de una selección: qué pedía y por qué salió así.
+    `r`: fila de my_bets (con mercado, lado, linea, local, visita, marcador)."""
+    mercado, lado = r["mercado"], r["lado"]
+    linea = pd.to_numeric(r.get("linea"), errors="coerce")
+    local, visita = str(r["local"]), str(r["visita"])
+    equipo = {"local": local, "visita": visita}.get(lado)
+    if mercado == "1X2":
+        pide = "ganas si el partido termina empatado" if lado == "empate" else f"ganas si {equipo} gana"
+    elif mercado == "Empate no válido":
+        pide = f"ganas si {equipo} gana; si empatan te devuelven"
+    elif mercado == "Doble oportunidad":
+        pide = {"1X": f"ganas si {local} gana o empata", "X2": f"ganas si {visita} gana o empata",
+                "12": "ganas si alguno de los dos gana (no empate)"}.get(lado, "")
+    elif mercado == "Ambos marcan":
+        pide = "ganas si los dos equipos marcan" if lado == "Sí" else "ganas si al menos uno no marca"
+    elif mercado == "Hándicap asiático" and equipo and pd.notna(linea):
+        ajuste = "" if not linea else (
+            f"a {equipo} se le {'suma' if linea > 0 else 'resta'}{'n' if abs(linea) > 1 else ''} {abs(linea):g} "
+            f"gol{'es' if abs(linea) > 1 else ''} en el marcador final: ")
+        pide = ajuste + _ah_meaning(equipo, float(linea))
+    elif pd.notna(linea) and lado in ("Más", "Menos"):
+        que = {"Goles": "goles", "Goles 1T": "goles en el 1er tiempo", "Corners": "tiros de esquina",
+               "Tarjetas": "tarjetas"}.get(mercado, mercado)
+        tope = int(linea) if lado == "Menos" else int(linea) + 1
+        pide = f"ganas si hay {tope} {que} o {'menos' if lado == 'Menos' else 'más'}"
+    else:
+        return ""
+    marcador = r.get("marcador")
+    if not isinstance(marcador, str) or "-" not in marcador:
+        return pide[0].upper() + pide[1:] + "."
+    hg, ag = (int(x) for x in marcador.split("-"))
+    paso = f"Terminó {local} {hg}-{ag} {visita}"
+    dato = r.get("dato")
+    if mercado == "Hándicap asiático" and equipo and pd.notna(linea):
+        margen = hg - ag if lado == "local" else ag - hg
+        como = "ganó" if margen > 0 else "empató" if margen == 0 else "perdió"
+        paso += (f": {equipo} {como}" + (f" por {abs(margen)}" if margen else "")
+                 + (f"; con el {linea:+g} queda " + (f"{margen + linea:+g}" if margen + linea else "0")
+                    if linea else ""))
+    elif mercado in ("Goles 1T", "Corners", "Tarjetas") and isinstance(dato, str) and dato:
+        paso += f"; hubo {dato}"
+    elif mercado == "Goles":
+        paso += f"; hubo {hg + ag} gol{'es' if hg + ag != 1 else ''}"
+    veredicto = {ACIERTO: "acertada", FALLO: "perdida", DEVUELTO: "devuelta"}.get(r.get("resultado"), "")
+    if veredicto and dato == "media":
+        veredicto = "medio " + ("ganada" if r.get("resultado") == ACIERTO else "perdida")
+    return pide[0].upper() + pide[1:] + ". " + paso + (f" → {veredicto}." if veredicto else ".")
 
 
 # --- Probabilidad del modelo para la pierna ---------------------------------------
@@ -325,6 +413,33 @@ def model_prob(local: str, visita: str, inicio: str | None, mercado: str, lado, 
     if mercado == "Goles" and linea == 2.5 and lado in ("Más", "Menos"):
         o = num("over_2_5_pct")
         return o if lado == "Más" else 100 - o
+    hx, ax = num("home_xg"), num("away_xg")
+    if pd.notna(hx) and pd.notna(ax):
+        from .special_markets import score_matrix
+
+        return _matrix_prob(score_matrix(float(hx), float(ax)), mercado, lado, linea)
+    return None
+
+
+def _matrix_prob(m, mercado: str, lado, linea) -> float | None:
+    """Probabilidad (%) de goles a otra línea y hándicap asiático desde la
+    matriz de marcadores del modelo. En el asiático es sin contar devolución
+    (como empate no válido) y las medias cuentan medio."""
+    import numpy as np
+
+    if linea is None:
+        return None
+    i, j = np.indices(m.shape)
+    if mercado == "Goles" and lado in ("Más", "Menos"):
+        mas = float(m[(i + j) > linea].sum())
+        return 100 * (mas if lado == "Más" else 1 - mas)
+    if mercado == "Hándicap asiático" and lado in ("local", "visita"):
+        from .special_markets import ah_settle
+
+        margen = (i - j) if lado == "local" else (j - i)
+        x = np.vectorize(lambda d: ah_settle(int(d), float(linea)))(margen)
+        gana, pierde = float((m * x.clip(min=0)).sum()), float((m * -x.clip(max=0)).sum())
+        return 100 * gana / (gana + pierde) if gana + pierde else None
     return None
 
 
@@ -381,6 +496,14 @@ def resolve() -> int:
     for col in ("resultado", "marcador", "dato", "liga", "inicio", "resuelto_at"):
         df[col] = df[col].astype(object)
     ahora = datetime.now(timezone.utc)
+    # Selecciones de mercados que antes no se reconocían (ej. hándicap asiático):
+    # se reclasifican y se vuelven a resolver.
+    for i in df.index[(df["mercado"] == "Otro") & (df["resultado"].isin([SIN_DATO, PENDIENTE]))]:
+        merc, lado, linea = classify(str(df.at[i, "mercado_bwin"]), str(df.at[i, "pick_bwin"]),
+                                     str(df.at[i, "local"]), str(df.at[i, "visita"]))
+        if merc != "Otro":
+            df.at[i, "mercado"], df.at[i, "lado"], df.at[i, "linea"] = merc, lado, linea
+            df.at[i, "resultado"] = PENDIENTE
     hechas = 0
     for i in df.index[df["resultado"] == PENDIENTE]:
         r = df.loc[i]
@@ -442,7 +565,7 @@ PLAN_MAX_LEGS = 2
 PLAN_MIN_PROB = 65.0
 PLAN_DAILY_BUDGET = 50_000
 PLAN_MIN_STAT_STRENGTH = 5.0  # puntos (fuerza de Reportes, encogida) para aceptar corners/tarjetas
-MODEL_MARKETS = {"1X2", "Empate no válido", "Doble oportunidad", "Ambos marcan", "Goles"}
+MODEL_MARKETS = {"1X2", "Empate no válido", "Doble oportunidad", "Ambos marcan", "Goles", "Hándicap asiático"}
 STAT_MARKETS_REPORT = {"Corners": "Corners", "Tarjetas": "Tarjetas"}
 LIGA_A_CODIGO = [("Bundesliga", "BL1"), ("Premier", "PL"), ("LaLiga", "PD"), ("Serie A", "SA"), ("Ligue 1", "FL1"),
                  ("Champions", "CL"), ("Europa League", "EL"), ("Conference", "ECL"), ("BetPlay", "COL"),
@@ -654,7 +777,7 @@ def _model_now(code: str | None, local: str, visita: str, fecha: datetime, merca
     if mercado == "Goles" and linea is not None:
         mas = float(m[tot > linea].sum())
         return 100 * (mas if lado == "Más" else 1 - mas)
-    return None
+    return _matrix_prob(m, mercado, lado, linea)
 
 
 def _texto_opcion(mercado, lado, linea, local, visita) -> str | None:
@@ -667,6 +790,8 @@ def _texto_opcion(mercado, lado, linea, local, visita) -> str | None:
         return f"Doble oportunidad: {lado}"
     if mercado == "Ambos marcan":
         return f"Ambos marcan: {lado}"
+    if mercado == "Hándicap asiático" and linea is not None:
+        return f"Hándicap asiático: {equipo} {linea:+g}"
     if mercado in ("Goles", "Goles 1T", "Corners", "Tarjetas") and linea is not None:
         nombre = {"Goles": "Total de goles", "Goles 1T": "Goles 1er tiempo"}.get(mercado, mercado)
         return f"{nombre}: {lado} de {linea:g}"
