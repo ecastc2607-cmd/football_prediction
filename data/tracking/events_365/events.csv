@@ -38769,3 +38769,85 @@ game_id,side,minute,added_time,half,type,subtype,player
 4828903,away,67.0,0,2,Goal,Field Goal,Davy Klaassen
 4828903,away,74.0,0,2,Goal,Field Goal,Oscar Gloukh
 4828903,away,82.0,0,2,Goal,Field Goal,Marcos Leonardo
+4828696,away,54.0,0,2,Penalty Miss,,Junior Olaitan
+4828696,away,54.0,0,2,Goal,Field Goal,Junior Olaitan
+4828696,home,60.0,0,2,Yellow Card,,Benjamin Nygren
+4828696,home,62.0,0,2,Goal,Field Goal,Callum Osmand
+4828696,home,78.0,0,2,Goal,Field Goal,Camilo Duran
+4828696,away,85.0,0,2,Goal,Field Goal,Orkun Kökçü
+4828696,home,87.0,0,2,Goal,Field Goal,Camilo Duran
+4828696,away,90.0,4,2,Yellow Card,,Amir Murillo
+4828696,away,90.0,5,2,Yellow Card,,Emirhan Topçu
+4828697,away,17.0,0,1,Yellow Card,,Artemijus Tutyškinas
+4828697,away,29.0,0,1,Goal,Field Goal,Svit Sešlar
+4828697,home,40.0,0,1,Goal,Field Goal,Oumar Diakité
+4828697,away,45.0,0,1,Goal,Field Goal,Benjamin Verbic
+4828697,home,69.0,0,2,Yellow Card,,Oumar Diakité
+4828697,away,73.0,0,2,Goal,Field Goal,Svit Sešlar
+4828697,away,90.0,2,2,Yellow Card,,Milot Avdyli
+4828697,home,90.0,3,2,Goal,Field Goal,Oumar Diakité
+4828698,home,6.0,0,1,Goal,Field Goal,Rafa Silva
+4828698,away,27.0,0,1,Yellow Card,,Yannick Agnero
+4828698,home,42.0,0,1,Yellow Card,,Daniel Banjaqui
+4828698,home,60.0,0,2,Yellow Card,,Manu Silva
+4828698,home,67.0,0,2,Goal,Field Goal,Gianluca Prestianni
+4828698,away,72.0,0,2,Goal,Field Goal,Leo Bengtsson
+4828698,home,90.0,0,2,Goal,Field Goal,Georgiy Sudakov
+4828700,home,11.0,0,1,Goal,Field Goal,Pablo Durán
+4828700,away,35.0,0,1,Goal,Field Goal,Besfort Zeneli
+4828700,away,49.0,0,2,Goal,Field Goal,Besfort Zeneli
+4828700,away,71.0,0,2,Yellow Card,,Guilherme Smith
+4828700,away,80.0,0,2,Penalty Miss,,Besfort Zeneli
+4828700,home,90.0,5,2,Yellow Card,,Pablo Durán
+4828888,home,24.0,0,1,Goal,Field Goal,Alexandru Cicaldau
+4828888,home,32.0,0,1,Goal,Field Goal,Nicusor Bancu
+4828888,home,34.0,0,1,Yellow Card,,Nikola Stevanović
+4828888,home,74.0,0,2,Yellow Card,,Alexandru Cicaldau
+4828888,home,79.0,0,2,Yellow Card,,S. Elisor
+4828888,away,79.0,0,2,Yellow Card,,Eneo Bitri
+4828888,away,83.0,0,2,Red Card,Second Yellow Card,Eneo Bitri
+4828888,home,90.0,0,2,Yellow Card,,David Matei
+4828889,away,20.0,0,1,Yellow Card,,Dusan Pavlovic
+4828889,home,34.0,0,1,Goal,Penalty,Reginaldo Ramires
+4828889,away,49.0,0,2,Goal,Field Goal,Sebastian Nebyla
+4828889,home,53.0,0,2,Goal Disallowed,Var,Salah Oulad M'Hand
+4828889,home,55.0,0,2,Yellow Card,,Maksims Tonisevs
+4828889,away,56.0,0,2,Yellow Card,,Jiří Sláma
+4828890,home,41.0,0,1,Goal,Field Goal,Davide Calabria
+4828890,away,44.0,0,1,Goal,Field Goal,Dinis Almeida
+4828890,home,45.0,0,1,Yellow Card,,Rick van Drongelen
+4828890,home,53.0,0,2,Yellow Card,,Imran Louza
+4828890,home,68.0,0,2,Goal,Field Goal,Vicente Taborda
+4828890,home,77.0,0,2,Yellow Card,,Etienne Camara
+4828890,home,81.0,0,2,Yellow Card,,Santino Andino
+4828891,home,48.0,0,2,Goal,Field Goal,Nelson Ishiwatari
+4828891,home,77.0,0,2,Yellow Card,,Arbnor Muja
+4828891,away,78.0,0,2,Goal,Field Goal,Ulrik Mathisen
+4828891,away,89.0,0,2,Yellow Card,,Sævar Magnússon
+4828892,away,33.0,0,1,Yellow Card,,Costinha
+4828892,away,38.0,0,1,Woodwork,,Jaouen Hadjam
+4828892,away,58.0,0,2,Yellow Card,,Jaouen Hadjam
+4828892,away,64.0,0,2,Goal,Field Goal,Malick Yalcouyé
+4828892,away,83.0,0,2,Yellow Card,,Michael Svoboda
+4828892,away,84.0,0,2,Yellow Card,,Georginio Rutter
+4828892,home,86.0,0,2,Yellow Card,,Johan Mojica
+4828893,home,34.0,0,1,Yellow Card,,Ruud Nijstad
+4828893,away,39.0,0,1,Goal,Field Goal,Lele
+4828893,away,40.0,0,1,Yellow Card,,Lele
+4828893,home,62.0,0,2,Goal,Field Goal,Ruud Nijstad
+4828893,away,64.0,0,2,Red Card,Second Yellow Card,Lele
+4828893,home,76.0,0,2,Goal,Field Goal,Sondre Ørjasæter
+4828893,home,82.0,0,2,Goal,Field Goal,Daouda Weidmann
+4828894,home,11.0,0,1,Goal,Field Goal,Yanis Cimignani
+4828894,away,13.0,0,1,Yellow Card,,Anthony Kalik
+4828894,home,24.0,0,1,Woodwork,,Albian Ajeti
+4828894,home,24.0,0,1,Goal,Field Goal,Ezgjan Alioski
+4828894,home,32.0,0,1,Goal,Field Goal,Daniel Dos Santos
+4828894,away,51.0,0,2,Yellow Card,,Anton Tolordava
+4828894,home,58.0,0,2,Yellow Card,,Damian Kelvin
+4828896,home,17.0,0,1,Yellow Card,,Ilane Touré
+4828896,away,30.0,0,1,Yellow Card,,Noah Markmann
+4828896,home,33.0,0,1,Goal,Field Goal,Mathys Detourbet
+4828896,home,52.0,0,2,Goal Disallowed,Var,Takumi Minamino
+4828896,away,66.0,0,2,Yellow Card,,Victor Nelsson
+4828896,home,90.0,1,2,Goal,Field Goal,Matthis Abline

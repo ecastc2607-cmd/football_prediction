@@ -6693,3 +6693,27 @@ ECL,2026,3.0,2026-11-05T17:45:00Z,Thun,Hearts,Thun,True,4.0,26.0,4.0,0.0,46.0,8.
 ECL,2026,3.0,2026-11-05T17:45:00Z,Thun,Hearts,Hearts,False,5.0,8.0,1.0,0.0,54.0,4.0,15.0,3.0
 ECL,2026,3.0,2026-11-05T17:45:00Z,Midtjylland,Ajax,Midtjylland,True,1.0,10.0,2.0,1.0,29.0,4.0,10.0,1.0
 ECL,2026,3.0,2026-11-05T17:45:00Z,Midtjylland,Ajax,Ajax,False,8.0,8.0,0.0,0.0,71.0,11.0,24.0,0.0
+EL,2026,4.0,2026-11-05T20:00:00Z,Celtic,Beşiktaş,Celtic,True,5.0,10.0,1.0,0.0,38.0,6.0,10.0,2.0
+EL,2026,4.0,2026-11-05T20:00:00Z,Celtic,Beşiktaş,Beşiktaş,False,7.0,11.0,2.0,0.0,62.0,4.0,15.0,2.0
+EL,2026,4.0,2026-11-05T20:00:00Z,Sturm Graz,Celje,Sturm Graz,True,13.0,16.0,1.0,0.0,61.0,7.0,29.0,0.0
+EL,2026,4.0,2026-11-05T20:00:00Z,Sturm Graz,Celje,Celje,False,2.0,13.0,2.0,0.0,39.0,7.0,8.0,1.0
+EL,2026,4.0,2026-11-05T20:00:00Z,Benfica,Lech Poznań,Benfica,True,6.0,15.0,2.0,0.0,56.0,11.0,24.0,1.0
+EL,2026,4.0,2026-11-05T20:00:00Z,Benfica,Lech Poznań,Lech Poznań,False,3.0,11.0,1.0,0.0,44.0,5.0,6.0,3.0
+EL,2026,4.0,2026-11-05T20:00:00Z,Celta de Vigo,Union Saint-Gilloise,Celta de Vigo,True,11.0,16.0,1.0,0.0,58.0,4.0,14.0,1.0
+EL,2026,4.0,2026-11-05T20:00:00Z,Celta de Vigo,Union Saint-Gilloise,Union Saint-Gilloise,False,1.0,11.0,1.0,0.0,42.0,3.0,15.0,1.0
+ECL,2026,3.0,2026-11-05T20:00:00Z,Universitatea Craiova,Egnatia Rrogozhinë,Universitatea Craiova,True,5.0,12.0,4.0,0.0,54.0,9.0,19.0,3.0
+ECL,2026,3.0,2026-11-05T20:00:00Z,Universitatea Craiova,Egnatia Rrogozhinë,Egnatia Rrogozhinë,False,6.0,8.0,1.0,1.0,46.0,4.0,9.0,7.0
+ECL,2026,3.0,2026-11-05T20:00:00Z,Riga,Jablonec,Riga,True,5.0,17.0,1.0,0.0,59.0,2.0,13.0,1.0
+ECL,2026,3.0,2026-11-05T20:00:00Z,Riga,Jablonec,Jablonec,False,5.0,7.0,2.0,0.0,41.0,3.0,11.0,0.0
+ECL,2026,3.0,2026-11-05T20:00:00Z,Panathinaikos,CSKA Sofia,Panathinaikos,True,12.0,12.0,4.0,0.0,63.0,12.0,24.0,2.0
+ECL,2026,3.0,2026-11-05T20:00:00Z,Panathinaikos,CSKA Sofia,CSKA Sofia,False,4.0,16.0,0.0,0.0,37.0,5.0,9.0,2.0
+ECL,2026,3.0,2026-11-05T20:00:00Z,Sint-Truiden,Brann,Sint-Truiden,True,4.0,13.0,1.0,0.0,43.0,5.0,17.0,0.0
+ECL,2026,3.0,2026-11-05T20:00:00Z,Sint-Truiden,Brann,Brann,False,7.0,10.0,1.0,0.0,57.0,5.0,9.0,1.0
+ECL,2026,3.0,2026-11-05T20:00:00Z,Getafe,Brighton & Hove Albion,Getafe,True,5.0,10.0,1.0,0.0,39.0,4.0,8.0,3.0
+ECL,2026,3.0,2026-11-05T20:00:00Z,Getafe,Brighton & Hove Albion,Brighton & Hove Albion,False,5.0,13.0,4.0,0.0,61.0,3.0,15.0,1.0
+ECL,2026,3.0,2026-11-05T20:00:00Z,Twente,Pafos,Twente,True,12.0,13.0,1.0,0.0,76.0,13.0,29.0,1.0
+ECL,2026,3.0,2026-11-05T20:00:00Z,Twente,Pafos,Pafos,False,1.0,9.0,1.0,1.0,24.0,4.0,6.0,2.0
+ECL,2026,3.0,2026-11-05T20:00:00Z,Lugano,Kauno Žalgiris,Lugano,True,4.0,8.0,1.0,0.0,65.0,5.0,14.0,3.0
+ECL,2026,3.0,2026-11-05T20:00:00Z,Lugano,Kauno Žalgiris,Kauno Žalgiris,False,2.0,14.0,2.0,0.0,35.0,1.0,5.0,3.0
+ECL,2026,3.0,2026-11-05T20:00:00Z,Monaco,Nordsjælland,Monaco,True,4.0,6.0,1.0,0.0,58.0,5.0,11.0,5.0
+ECL,2026,3.0,2026-11-05T20:00:00Z,Monaco,Nordsjælland,Nordsjælland,False,3.0,7.0,2.0,0.0,42.0,1.0,3.0,1.0
