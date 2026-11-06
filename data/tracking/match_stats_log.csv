@@ -6731,3 +6731,7 @@ ECL,2026,3.0,2026-11-05T20:00:00Z,København,Iberia 1999,København,True,3.0,15.
 ECL,2026,3.0,2026-11-05T20:00:00Z,København,Iberia 1999,Iberia 1999,False,2.0,17.0,5.0,0.0,47.0,2.0,5.0,3.0
 BL1,2026,9.0,2026-11-06T19:30:00Z,Hamburger SV,Borussia Mönchengladbach,Hamburger SV,True,5.0,6.0,1.0,0.0,62.0,9.0,18.0,1.0
 BL1,2026,9.0,2026-11-06T19:30:00Z,Hamburger SV,Borussia Mönchengladbach,Borussia Mönchengladbach,False,3.0,16.0,2.0,1.0,38.0,6.0,19.0,1.0
+SA,2026,11.0,2026-11-06T19:45:00Z,Venezia FC,Udinese Calcio,Venezia FC,True,3.0,11.0,1.0,0.0,46.0,4.0,15.0,4.0
+SA,2026,11.0,2026-11-06T19:45:00Z,Venezia FC,Udinese Calcio,Udinese Calcio,False,7.0,6.0,1.0,0.0,54.0,5.0,13.0,3.0
+FL1,2026,10.0,2026-11-06T19:45:00Z,Toulouse FC,RC Strasbourg Alsace,Toulouse FC,True,7.0,16.0,3.0,0.0,47.0,5.0,10.0,1.0
+FL1,2026,10.0,2026-11-06T19:45:00Z,Toulouse FC,RC Strasbourg Alsace,RC Strasbourg Alsace,False,1.0,15.0,3.0,0.0,53.0,4.0,9.0,1.0
