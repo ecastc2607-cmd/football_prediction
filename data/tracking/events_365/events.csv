@@ -39054,3 +39054,8 @@ game_id,side,minute,added_time,half,type,subtype,player
 4732634,away,72.0,0,2,Goal,Penalty,Riccardo Orsolini
 4732634,away,80.0,0,2,Yellow Card,,Martin Vitik
 4732634,home,81.0,0,2,Goal,Penalty,Vincent Sierro
+4755351,home,7.0,0,1,Goal,Field Goal,Maximilian Mittelstadt
+4755351,away,24.0,0,1,Yellow Card,,Niclas Füllkrug
+4755351,away,45.0,0,1,Yellow Card,,Olivier Deman
+4755351,away,53.0,0,2,Yellow Card,,Marco Grüll
+4755351,home,57.0,0,2,Woodwork,,Maximilian Mittelstadt
