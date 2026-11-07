@@ -39776,3 +39776,118 @@ game_id,line_type_id,market,line,option,odds,opening_odds,won
 4755348,139,Total Shots On Target,11.5,Over,2.0,2.0,False
 4755348,13,Both Teams To Score 2nd Half,,Yes,2.5,2.15,True
 4755348,13,Both Teams To Score 2nd Half,,No,1.47,1.61,False
+4742011,1,Full Time Result,,1,1.17,1.16,True
+4742011,1,Full Time Result,,X,8.0,6.5,False
+4742011,1,Full Time Result,,2,15.5,13.0,False
+4742011,14,Double Chance,,1X,1.03,1.05,True
+4742011,14,Double Chance,,12,1.09,1.12,True
+4742011,14,Double Chance,,X2,5.54,5.04,False
+4742011,3,Total Goals In Match,3.5,Under,1.66,1.63,True
+4742011,3,Total Goals In Match,3.5,Over,2.2,2.15,False
+4742011,3,Total Goals In Match,2.5,Under,2.76,2.76,True
+4742011,3,Total Goals In Match,2.5,Over,1.45,1.45,False
+4742011,3,Total Goals In Match,4.5,Under,1.29,1.26,True
+4742011,3,Total Goals In Match,4.5,Over,3.78,3.6,False
+4742011,12,Both Teams To Score,,Yes,2.26,2.15,False
+4742011,12,Both Teams To Score,,No,1.58,1.62,True
+4742011,7,First To Score,,Home,1.21,1.23,True
+4742011,7,First To Score,,No Goal,17.0,17.0,False
+4742011,7,First To Score,,Away,4.54,4.37,False
+4742011,11,Asian Handicap,-2.25,Home,2.01,2.11,False
+4742011,11,Asian Handicap,-2.25,Away,1.86,1.71,True
+4742011,11,Asian Handicap,-2,Home,1.73,1.91,False
+4742011,11,Asian Handicap,-2,Away,2.08,1.96,True
+4742011,11,Asian Handicap,-2.5,Home,2.21,2.38,False
+4742011,11,Asian Handicap,-2.5,Away,1.66,1.56,True
+4742011,15,Draw No Bet,,Home,1.03,1.03,True
+4742011,15,Draw No Bet,,Away,13.0,13.0,False
+4742011,5,1st Half Result,,1,1.43,1.52,False
+4742011,5,1st Half Result,,X,3.17,2.97,True
+4742011,5,1st Half Result,,2,13.0,11.0,False
+4742011,6,2nd Half Result,,1,1.34,1.43,True
+4742011,6,2nd Half Result,,X,3.63,3.3,False
+4742011,6,2nd Half Result,,2,11.0,8.75,False
+4742011,9,1st Half Goals,1.5,Under,1.72,1.61,True
+4742011,9,1st Half Goals,1.5,Over,2.0,2.2,False
+4742011,9,1st Half Goals,0.5,Under,3.77,3.77,True
+4742011,9,1st Half Goals,0.5,Over,1.26,1.26,False
+4742011,9,1st Half Goals,2.5,Under,1.19,1.18,True
+4742011,9,1st Half Goals,2.5,Over,4.54,5.04,False
+4742011,137,Total Corners,10.5,Under,1.73,1.83,False
+4742011,137,Total Corners,10.5,Over,2.0,1.83,True
+4742011,127,Half Time Correct Score,0-0,Yes,3.96,3.72,True
+4742011,127,Half Time Correct Score,1-0,Yes,3.12,3.12,False
+4742011,127,Half Time Correct Score,0-1,Yes,13.0,15.0,False
+4742011,127,Half Time Correct Score,1-1,Yes,11.0,12.0,False
+4742011,127,Half Time Correct Score,2-0,Yes,4.48,4.72,False
+4742011,127,Half Time Correct Score,0-2,Yes,51.0,67.0,False
+4742011,127,Half Time Correct Score,2-1,Yes,15.0,19.0,False
+4742011,127,Half Time Correct Score,1-2,Yes,51.0,51.0,False
+4742011,127,Half Time Correct Score,2-2,Yes,67.0,81.0,False
+4742011,127,Half Time Correct Score,0-3,Yes,301.0,451.0,False
+4742011,127,Half Time Correct Score,3-0,Yes,9.5,11.0,False
+4742011,127,Half Time Correct Score,1-3,Yes,251.0,401.0,False
+4742011,127,Half Time Correct Score,3-1,Yes,29.0,41.0,False
+4742011,127,Half Time Correct Score,2-3,Yes,501.0,401.0,False
+4742011,127,Half Time Correct Score,3-2,Yes,101.0,151.0,False
+4742011,127,Half Time Correct Score,4-0,Yes,23.0,29.0,False
+4742011,127,Half Time Correct Score,4-1,Yes,51.0,67.0,False
+4742011,127,Half Time Correct Score,4-2,Yes,251.0,401.0,False
+4742011,127,Half Time Correct Score,5-0,Yes,51.0,67.0,False
+4742011,127,Half Time Correct Score,5-1,Yes,126.0,201.0,False
+4742011,127,Half Time Correct Score,6-0,Yes,151.0,251.0,False
+4742011,127,Half Time Correct Score,6-1,Yes,501.0,501.0,False
+4742011,126,Correct Score,0-0,Yes,21.0,19.0,False
+4742011,126,Correct Score,0-1,Yes,34.0,34.0,False
+4742011,126,Correct Score,1-0,Yes,8.5,10.0,True
+4742011,126,Correct Score,1-1,Yes,15.0,15.0,False
+4742011,126,Correct Score,2-0,Yes,6.5,7.0,False
+4742011,126,Correct Score,0-2,Yes,67.0,81.0,False
+4742011,126,Correct Score,1-2,Yes,41.0,41.0,False
+4742011,126,Correct Score,2-1,Yes,10.0,11.0,False
+4742011,126,Correct Score,2-2,Yes,29.0,29.0,False
+4742011,126,Correct Score,3-0,Yes,6.5,7.5,False
+4742011,126,Correct Score,0-3,Yes,201.0,301.0,False
+4742011,126,Correct Score,1-3,Yes,101.0,126.0,False
+4742011,126,Correct Score,3-1,Yes,11.0,12.0,False
+4742011,126,Correct Score,2-3,Yes,81.0,101.0,False
+4742011,126,Correct Score,3-2,Yes,29.0,34.0,False
+4742011,126,Correct Score,3-3,Yes,81.0,126.0,False
+4742011,126,Correct Score,4-0,Yes,9.0,11.0,False
+4742011,126,Correct Score,1-4,Yes,501.0,501.0,False
+4742011,126,Correct Score,4-1,Yes,15.0,17.0,False
+4742011,126,Correct Score,4-2,Yes,41.0,41.0,False
+4742011,126,Correct Score,2-4,Yes,351.0,351.0,False
+4742011,126,Correct Score,4-3,Yes,101.0,126.0,False
+4742011,126,Correct Score,3-4,Yes,351.0,401.0,False
+4742011,126,Correct Score,4-4,Yes,501.0,501.0,False
+4742011,126,Correct Score,5-0,Yes,15.0,19.0,False
+4742011,126,Correct Score,5-1,Yes,23.0,29.0,False
+4742011,126,Correct Score,5-2,Yes,51.0,51.0,False
+4742011,126,Correct Score,5-3,Yes,151.0,201.0,False
+4742011,126,Correct Score,6-0,Yes,26.0,34.0,False
+4742011,126,Correct Score,6-1,Yes,41.0,51.0,False
+4742011,126,Correct Score,6-2,Yes,81.0,101.0,False
+4742011,126,Correct Score,6-3,Yes,251.0,351.0,False
+4742011,126,Correct Score,7-0,Yes,41.0,67.0,False
+4742011,126,Correct Score,7-1,Yes,67.0,81.0,False
+4742011,126,Correct Score,7-2,Yes,151.0,201.0,False
+4742011,126,Correct Score,8-0,Yes,81.0,126.0,False
+4742011,126,Correct Score,8-1,Yes,126.0,201.0,False
+4742011,126,Correct Score,8-2,Yes,351.0,501.0,False
+4742011,126,Correct Score,9-0,Yes,201.0,351.0,False
+4742011,126,Correct Score,9-1,Yes,301.0,501.0,False
+4742011,144,Home Team - Clean Sheet,,Yes,1.63,1.63,True
+4742011,144,Home Team - Clean Sheet,,No,2.22,2.22,False
+4742011,145,Away Team - Clean Sheet,,Yes,13.0,11.0,False
+4742011,145,Away Team - Clean Sheet,,No,1.04,1.05,True
+4742011,143,A Penalty In The Match,,Yes,4.48,4.48,False
+4742011,143,A Penalty In The Match,,No,1.18,1.18,True
+4742011,141,Total Cards,3.5,Under,1.73,1.73,False
+4742011,141,Total Cards,3.5,Over,2.0,2.0,True
+4742011,141,Total Cards,2.5,Under,2.22,2.22,False
+4742011,141,Total Cards,2.5,Over,1.63,1.63,True
+4742011,139,Total Shots On Target,9.5,Under,1.74,1.74,False
+4742011,139,Total Shots On Target,9.5,Over,2.01,2.01,True
+4742011,13,Both Teams To Score 2nd Half,,Yes,4.02,3.8,False
+4742011,13,Both Teams To Score 2nd Half,,No,1.23,1.22,True
