@@ -39082,3 +39082,6 @@ game_id,side,minute,added_time,half,type,subtype,player
 4735216,away,63.0,0,2,Goal,Field Goal,Lassine Sinayoko
 4735216,home,80.0,0,2,Yellow Card,,Will Still
 4735216,home,88.0,0,2,Yellow Card,,Kévin Danois
+4732633,home,27.0,0,1,Goal,Field Goal,Mario Hermoso
+4732633,home,30.0,0,1,Goal,Own Goal,Sebastian Walukiewicz
+4732633,home,58.0,0,2,Goal,Field Goal,Rodrigo Mora
