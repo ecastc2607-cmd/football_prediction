@@ -38943,3 +38943,12 @@ game_id,side,minute,added_time,half,type,subtype,player
 4750794,home,47.0,0,2,Yellow Card,,Arouna Sangante
 4750794,away,63.0,0,2,Yellow Card,,Toni Martinez
 4750794,away,64.0,0,2,Yellow Card,,Nicolás Valentini
+4731361,away,33.0,0,1,Goal,Own Goal,Cristian Blanco
+4731361,home,44.0,0,1,Goal,Penalty,Juan Díaz
+4731361,away,50.0,0,2,Yellow Card,,Mateo Rodas
+4731361,away,54.0,0,2,Goal Disallowed,Var,Carlos Vivas
+4731361,home,59.0,0,2,Goal,Penalty,Juan Díaz
+4731361,away,65.0,0,2,Red Card,,Ricardo Valiño
+4731361,home,81.0,0,2,Yellow Card,,Daniel Polanco
+4731361,home,81.0,0,2,Yellow Card,,Delio Ramírez
+4731361,away,85.0,0,2,Yellow Card,,Joan Castro
