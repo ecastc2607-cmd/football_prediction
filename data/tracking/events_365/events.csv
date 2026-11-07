@@ -39032,3 +39032,8 @@ game_id,side,minute,added_time,half,type,subtype,player
 4742011,home,72.0,0,2,Goal,Field Goal,Martin Odegaard
 4742011,away,75.0,0,2,Yellow Card,,Elliot Stroud
 4742011,away,87.0,0,2,Yellow Card,,Nobel Mendy
+4742007,home,14.0,0,1,Woodwork,,Gonzalo García
+4742007,away,80.0,0,2,Goal,Field Goal,Jacob Murphy
+4742007,home,83.0,0,2,Goal,Field Goal,Rodrigo Muniz
+4742007,away,90.0,0,2,Yellow Card,,Fabian Schär
+4742007,away,90.0,2,2,Yellow Card,,Amar Dedić
