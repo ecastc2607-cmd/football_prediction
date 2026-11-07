@@ -38991,3 +38991,31 @@ game_id,side,minute,added_time,half,type,subtype,player
 4732632,away,73.0,0,2,Goal,Field Goal,Konan N’Dri
 4732632,away,84.0,0,2,Yellow Card,,Amar Fatah
 4732632,home,88.0,0,2,Woodwork,,Che Adams
+4755345,away,23.0,0,1,Goal,Field Goal,Jonathan Burkardt
+4755345,home,28.0,0,1,Woodwork,,Stefano Marino
+4755345,home,45.0,0,1,Goal,Field Goal,Raphael Obermair
+4755345,away,55.0,0,2,Woodwork,,Fares Chaibi
+4755345,away,60.0,0,2,Yellow Card,,Elias Baum
+4755345,home,73.0,0,2,Goal,Penalty,Marvin Pieringer
+4755345,away,75.0,0,2,Red Card,Second Yellow Card,Elias Baum
+4755345,home,80.0,0,2,Yellow Card,,Deniz Zeitler
+4755345,away,86.0,0,2,Yellow Card,,Nnamdi Collins
+4755345,away,90.0,3,2,Goal,Field Goal,Jonathan Burkardt
+4755352,away,1.0,0,1,Goal,Field Goal,Anton Kade
+4755352,home,26.0,0,1,Yellow Card,,David Raum
+4755352,home,33.0,0,1,Goal,Field Goal,Ezechiel Banzuzi
+4755352,home,35.0,0,1,Goal,Field Goal,Christopher Nkunku
+4755352,away,45.0,0,1,Yellow Card,,Jeffrey Gouweleeuw
+4755352,home,45.0,1,1,Goal,Field Goal,David Raum
+4755352,home,60.0,0,2,Goal,Field Goal,Rômulo
+4755352,home,66.0,0,2,Goal,Field Goal,Christoph Baumgartner
+4755352,away,72.0,0,2,Yellow Card,,Robin Fellhauer
+4755352,away,90.0,2,2,Goal,Field Goal,Uchenna Ogundu
+4755353,home,22.0,0,1,Yellow Card,,Felix Nmecha
+4755353,home,55.0,0,2,Goal,Field Goal,Felix Nmecha
+4755353,away,59.0,0,2,Yellow Card,,Vincent Wagner
+4755353,home,60.0,0,2,Yellow Card,,Fábio Silva
+4755353,away,65.0,0,2,Yellow Card,,Lasse Gunther
+4755353,home,71.0,0,2,Goal,Field Goal,Felix Nmecha
+4755353,home,76.0,0,2,Yellow Card,,Waldemar Anton
+4755353,away,81.0,0,2,Goal,Field Goal,Noel Futkeu
