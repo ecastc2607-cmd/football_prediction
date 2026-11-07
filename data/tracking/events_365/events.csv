@@ -39045,3 +39045,12 @@ game_id,side,minute,added_time,half,type,subtype,player
 4750798,away,82.0,0,2,Yellow Card,,Lorenzo Amatucci
 4750798,home,89.0,0,2,Yellow Card,,Gabriel Moscardo
 4750798,away,89.0,0,2,Yellow Card,,Pierre Aubameyang
+4732634,home,9.0,0,1,Red Card,,Abdoulaye Ndiaye
+4732634,home,14.0,0,1,Yellow Card,,David Romero
+4732634,away,20.0,0,1,Yellow Card,,Nicolò Casale
+4732634,home,42.0,0,1,Yellow Card,,Mariano Troilo
+4732634,away,53.0,0,2,Goal,Field Goal,Arthur Theate
+4732634,home,72.0,0,2,Yellow Card,,Enrico Del Prato
+4732634,away,72.0,0,2,Goal,Penalty,Riccardo Orsolini
+4732634,away,80.0,0,2,Yellow Card,,Martin Vitik
+4732634,home,81.0,0,2,Goal,Penalty,Vincent Sierro
