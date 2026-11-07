@@ -417,14 +417,14 @@ id,start_utc,status_group,status_text,home_team,away_team,home_id,away_id,home_g
 4474632,2025-11-10T01:30:00Z,4,Ended,Independiente Santa Fe,Deportivo Cali,7644,8639,1.0,0.0,Final,19.0,Round
 4587968,2025-11-12T21:00:00Z,4,Ended,Internacional de Bogota,Deportivo Pereira,8542,8638,4.0,0.0,Final,20.0,Round
 4587963,2025-11-13T01:20:00Z,4,Ended,Boyaca Chico,Millonarios,8641,8637,1.0,2.0,Final,20.0,Round
-4587970,2025-11-14T00:00:00Z,4,Ended,Deportivo Pasto,Atlético Bucaramanga,9048,10224,3.0,0.0,Final,20.0,Round
+4587966,2025-11-14T00:00:00Z,4,Ended,Independiente Medellin,America de Cali,8643,8645,3.0,0.0,Final,20.0,Round
 4587969,2025-11-14T00:00:00Z,4,Ended,Deportivo Cali,Once Caldas,8639,7289,1.0,1.0,Final,20.0,Round
 4587967,2025-11-14T00:00:00Z,4,Ended,Junior FC,Atletico Nacional,7204,8640,2.0,1.0,Final,20.0,Round
-4587966,2025-11-14T00:00:00Z,4,Ended,Independiente Medellin,America de Cali,8643,8645,3.0,0.0,Final,20.0,Round
-4587961,2025-11-14T00:00:00Z,4,Ended,Llaneros FC,Envigado FC,10378,8642,0.0,3.0,Final,20.0,Round
+4587970,2025-11-14T00:00:00Z,4,Ended,Deportivo Pasto,Atlético Bucaramanga,9048,10224,3.0,0.0,Final,20.0,Round
+4587964,2025-11-14T00:00:00Z,4,Ended,Union Magdalena,Fortaleza FC,9832,9844,2.0,0.0,Final,20.0,Round
 4587965,2025-11-14T00:00:00Z,4,Ended,Independiente Santa Fe,Alianza FC,7644,10209,1.0,0.0,Final,20.0,Round
 4587962,2025-11-14T00:00:00Z,4,Ended,Águilas Doradas,Deportes Tolima,20841,7635,1.0,2.0,Final,20.0,Round
-4587964,2025-11-14T00:00:00Z,4,Ended,Union Magdalena,Fortaleza FC,9832,9844,2.0,0.0,Final,20.0,Round
+4587961,2025-11-14T00:00:00Z,4,Ended,Llaneros FC,Envigado FC,10378,8642,0.0,3.0,Final,20.0,Round
 4617926,2025-11-18T23:30:00Z,4,Ended,Fortaleza FC,Deportes Tolima,9844,7635,0.0,1.0,Clausura,1.0,Round
 4617930,2025-11-19T23:30:00Z,4,Ended,Atlético Bucaramanga,Independiente Santa Fe,10224,7644,1.0,0.0,Clausura,1.0,Round
 4617929,2025-11-20T01:30:00Z,4,Ended,Junior FC,Independiente Medellin,7204,8643,1.0,0.0,Clausura,1.0,Round
@@ -824,12 +824,14 @@ id,start_utc,status_group,status_text,home_team,away_team,home_id,away_id,home_g
 4731933,2026-11-03T01:15:00Z,4,Ended,Atlético Bucaramanga,Atletico Nacional,10224,8640,1.0,1.0,Clausura,17.0,Round
 4731928,2026-11-03T20:30:00Z,4,Ended,Deportivo Pereira,Deportes Tolima,8638,7635,1.0,3.0,Clausura,17.0,Round
 4731931,2026-11-03T23:20:00Z,4,Ended,Deportivo Pasto,Jaguares de Córdoba,9048,10377,2.0,0.0,Clausura,17.0,Round
-4731354,2026-11-12T14:00:00Z,4,Postponed,Cucuta Deportivo,Jaguares de Córdoba,8634,10377,,,Clausura,19.0,Round
+4731935,2026-11-04T23:30:00Z,4,Ended,Cucuta Deportivo,Independiente Santa Fe,8634,7644,1.0,0.0,Clausura,17.0,Round
+4731934,2026-11-05T01:30:00Z,4,Ended,Millonarios,America de Cali,8637,8645,0.0,0.0,Clausura,17.0,Round
 4731349,2026-11-12T17:00:00Z,4,Postponed,Deportivo Pereira,America de Cali,8638,8645,,,Clausura,19.0,Round
 4731350,2026-11-12T17:00:00Z,4,Postponed,Deportivo Pasto,Junior FC,9048,7204,,,Clausura,19.0,Round
 4731351,2026-11-12T17:00:00Z,4,Postponed,Deportivo Cali,Deportes Tolima,8639,7635,,,Clausura,19.0,Round
 4731352,2026-11-12T17:00:00Z,4,Postponed,Atlético Bucaramanga,Fortaleza FC,10224,9844,,,Clausura,19.0,Round
 4731353,2026-11-12T17:00:00Z,4,Postponed,Llaneros FC,Boyaca Chico,10378,8641,,,Clausura,19.0,Round
+4731354,2026-11-12T17:00:00Z,4,Postponed,Cucuta Deportivo,Jaguares de Córdoba,8634,10377,,,Clausura,19.0,Round
 4731355,2026-11-12T17:00:00Z,4,Postponed,Millonarios,Alianza FC,8637,10209,,,Clausura,19.0,Round
 4731356,2026-11-12T17:00:00Z,4,Postponed,Internacional de Bogota,Independiente Santa Fe,8542,7644,,,Clausura,19.0,Round
 4731357,2026-11-12T17:00:00Z,4,Postponed,Águilas Doradas,Independiente Medellin,20841,8643,,,Clausura,19.0,Round
