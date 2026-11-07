@@ -56,7 +56,7 @@ from src.support_leagues import ensure_support_leagues
 from src.prediction_log import MARKETS
 from src.daily_plan import MAX_TICKETS, build_plans, ticket_rows
 from src.timezones import BOGOTA_TZ, format_bogota, to_bogota
-from src.value_tips import (LIVE_MODEL_WEIGHT, MAX_DAILY_EXPOSURE, MIN_MODEL_PROB, candidate_picks,
+from src.value_tips import (GAP_STATE, LIVE_MODEL_WEIGHT, MAX_DAILY_EXPOSURE, MIN_MODEL_PROB, candidate_picks,
                              day_summary, evaluate, live_candidate_picks, special_candidates, totals_candidates)
 
 st.set_page_config(page_title="Football Analytics · Jornada", page_icon="⚽", layout="wide")
@@ -1731,7 +1731,7 @@ with tab_tips:
 
             st.divider()
             if resumen["n"] == 0:
-                evaluados = evaluado["estado"].isin(["Sin valor", "Otro pick del mismo partido"]).sum()
+                evaluados = evaluado["estado"].isin(["Sin valor", "Otro pick del mismo partido", GAP_STATE]).sum()
                 pendientes = len(evaluado) - evaluados
                 if evaluados == 0:
                     st.info(
@@ -2295,10 +2295,14 @@ def _render_my_bets(desde, hasta) -> None:
         "Presupuesto diario (COP)", min_value=5_000, value=my_bets.PLAN_DAILY_BUDGET, step=5_000,
         key="mb_presupuesto", help="Lo máximo para apostar en un día; los cupones que lo superan se marcan.")
     st.caption(
-        f"Reglas (sacadas de tu propio historial): máximo {my_bets.PLAN_MAX_LEGS} selecciones por cupón · cada selección "
-        f"de 1X2 / empate no válido / doble oportunidad / goles 2.5 con el modelo ≥ {my_bets.PLAN_MIN_PROB:.0f}% · "
-        "nada de 'Ambos marcan: Sí' · corners y tarjetas solo donde Reportes los marca como fortaleza de la liga "
-        f"(≥ +{my_bets.PLAN_MIN_STAT_STRENGTH:.0f} pts) · sin pasar el presupuesto del día.")
+        f"Reglas (sacadas de tu propio historial): máximo {my_bets.PLAN_MAX_LEGS} selecciones por cupón (mejor "
+        f"sencillas) · máximo {my_bets.PLAN_MAX_DAILY_BETS} apuestas por día, cada una de no más de "
+        f"1/{my_bets.PLAN_MAX_DAILY_BETS} del presupuesto · cada selección de 1X2 / empate no válido / doble "
+        f"oportunidad / goles con el modelo ≥ {my_bets.PLAN_MIN_PROB:.0f}% (goles con la probabilidad recalibrada) y "
+        f"sin darle más de {my_bets.PLAN_MAX_GAP:.0f} pts por encima de la casa · nada de 'Ambos marcan: Sí' · "
+        "hándicap asiático solo +1 / +1.5 al no favorito en ligas aprobadas por Avanzada · corners y tarjetas solo "
+        f"donde Reportes los marca como fortaleza de la liga (≥ +{my_bets.PLAN_MIN_STAT_STRENGTH:.0f} pts) · sin "
+        "pasar el presupuesto del día.")
     plan = my_bets.plan_check(df, presupuesto_mb)
     con_plan = con_monto.merge(plan, on="coupon_id", how="left")
     resumen_plan = con_plan.assign(

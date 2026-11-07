@@ -64,6 +64,12 @@ MAX_DAILY_EXPOSURE = 0.20  # suma de todas las apuestas del día, de la banca
 # En ambos casos se marca para revisar en vez de recomendar esa apuesta.
 MAX_VALID_ODDS = 20.0
 MAX_ODDS_VS_FAIR = 1.5
+# Cuando el modelo le da al pick mucho más que la casa, casi siempre se equivoca
+# el modelo (tips resueltos a nov-2026: con >15 puntos de diferencia acertaron
+# 39% y perdieron 31% de lo apostado; con <=5 puntos, 80% y +8.5%). Esos picks
+# no se recomiendan: es más probable una noticia que el modelo no conoce.
+MAX_MODEL_GAP = 0.15
+GAP_STATE = "Discrepa mucho con la casa (> 15 pts): probable error del modelo"
 
 # (columna de probabilidad en el DataFrame de predicciones, mercado, pick, clave de cuota)
 _OPCIONES = [
@@ -83,7 +89,12 @@ def candidate_picks(predictions: pd.DataFrame, min_prob: float = MIN_MODEL_PROB)
     la regla de uno-por-partido se aplica después, al ver cuál tiene más valor."""
     if predictions.empty:
         return pd.DataFrame()
+    from .calibration import recalibrate_over
+
     preds = predictions.copy()
+    # Goles: el modelo es demasiado extremo ahí (calibration.py); se usa la
+    # probabilidad recalibrada con resultados reales.
+    preds["over_2_5"] = preds["over_2_5"].map(lambda v: 100 * recalibrate_over(v / 100) if pd.notna(v) else v)
     preds["under_2_5"] = 100 - preds["over_2_5"]
     preds["dc_1x"] = preds["home_win"] + preds["draw"]
     preds["dc_x2"] = preds["away_win"] + preds["draw"]
@@ -209,8 +220,10 @@ def evaluate(picks: pd.DataFrame, bankroll: float, max_exposure: float = MAX_DAI
         "Cuota demasiado alta: ¿error de tipeo, o noticia que el modelo no conoce?"
     )
     df.loc[tiene_cuota & (df["valor"] < MIN_EDGE), "estado"] = "Sin valor"
-    apostable = tiene_cuota & (df["valor"] >= MIN_EDGE)
+    discrepa = tiene_cuota & (df["prob_modelo"] - prob_mercado > MAX_MODEL_GAP)
+    apostable = tiene_cuota & (df["valor"] >= MIN_EDGE) & ~discrepa
     df.loc[apostable, "estado"] = "Apostar"
+    df.loc[discrepa & (df["valor"] >= MIN_EDGE), "estado"] = GAP_STATE
 
     # Uno por partido: si un partido tiene varios picks con valor, se queda el
     # de mayor valor y los demás pasan a "Otro pick del mismo partido".

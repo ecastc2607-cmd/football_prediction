@@ -203,3 +203,99 @@ class Calibrator:
             filas.append({"Mercado": mercado, "Tramo del modelo": f"{BINS[i]:.0%}–{min(BINS[i + 1], 1):.0%}",
                           "Casos": n, "Acierto real": aciertos / n if n else None})
         return pd.DataFrame(filas)
+
+
+# --- Recalibración logística de goles, ambos anotan y hándicap asiático ----------
+# Reanálisis nov-2026 (1.034 partidos del log + backtest walk-forward de Avanzada):
+#   - Goles y ambos anotan: el modelo predice menos goles de los que hay (más de
+#     2.5: 49% vs 53% real; ambos anotan: 50% vs 54%) y sus probabilidades son
+#     demasiado extremas — su log-loss (0.70) es peor que tirar una moneda. Un
+#     "menos de 2.5 al 70%" acertaba ~55%.
+#   - Hándicap asiático: el lado del favorito promete de más (pendiente 0.84-0.92);
+#     el del no favorito está bien o se queda corto.
+# Se ajusta p' = sigmoide(a + b·logit(p)) con los resultados reales. Se recalcula
+# sola cuando cambian el log o el backtest; las predicciones guardadas siguen
+# siendo las crudas del modelo (si no, el ajuste se ajustaría sobre sí mismo).
+LOGISTIC_MIN_ROWS = 300
+_LOGISTIC_CACHE: dict = {}
+AH_FAV_MARKETS = ("Favorito -0.5 (gana)", "Favorito -1", "Favorito empate no válido (HA 0)")
+AH_UND_MARKETS = ("No favorito +1", "No favorito +1.5", "No favorito +2.5")
+
+
+def _fit_logistic(p, y) -> tuple[float, float]:
+    """(a, b) de p' = sigmoide(a + b·logit(p)); (0, 1) = sin cambio."""
+    import numpy as np
+    from scipy.optimize import minimize
+
+    p = np.clip(np.asarray(p, float), 0.02, 0.98)
+    y = np.asarray(y, float)
+    if len(p) < LOGISTIC_MIN_ROWS:
+        return 0.0, 1.0
+    z = np.log(p / (1 - p))
+
+    def perdida(w):
+        q = np.clip(1 / (1 + np.exp(-(w[0] + w[1] * z))), 1e-6, 1 - 1e-6)
+        return -np.mean(y * np.log(q) + (1 - y) * np.log(1 - q))
+
+    a, b = minimize(perdida, [0.0, 1.0]).x
+    return float(a), float(b)
+
+
+def _apply(w: tuple[float, float], p: float) -> float:
+    import math
+
+    p = min(max(float(p), 0.02), 0.98)
+    return 1 / (1 + math.exp(-(w[0] + w[1] * math.log(p / (1 - p)))))
+
+
+def logistic_fits() -> dict:
+    """{'over_1.5'|'over_2.5'|'under_3.5'|'btts'|'ah_fav'|'ah_und': (a, b)}."""
+    from . import special_markets as sm
+    from .prediction_log import LOG_PATH, load_log
+
+    clave = tuple(p.stat().st_mtime if p.exists() else 0 for p in (LOG_PATH, sm.BACKTEST_PATH))
+    if clave not in _LOGISTIC_CACHE:
+        fits = {}
+        r = resolved_rows(load_log())
+        r = r.drop_duplicates(["competition", "home_team", "away_team", "utc_date"], keep="last") \
+            if not r.empty else r
+        if not r.empty:
+            goles = r["actual_home_goals"] + r["actual_away_goals"]
+            d = r.dropna(subset=["over_2_5_pct"])
+            fits["over_2.5"] = _fit_logistic(d["over_2_5_pct"] / 100, goles[d.index] > 2.5)
+            d = r.dropna(subset=["btts_pct"])
+            fits["btts"] = _fit_logistic(d["btts_pct"] / 100,
+                                         (d["actual_home_goals"] > 0) & (d["actual_away_goals"] > 0))
+        bt = sm.load_backtest()
+        if not bt.empty:
+            bt = bt.dropna(subset=["gano"])
+            for nombre, mercados in (("over_1.5", ["Más de 1.5 goles"]), ("under_3.5", ["Menos de 3.5 goles"]),
+                                     ("ah_fav", list(AH_FAV_MARKETS)), ("ah_und", list(AH_UND_MARKETS))):
+                d = bt[bt["mercado"].isin(mercados)]
+                fits[nombre] = _fit_logistic(d["prob"], d["gano"])
+        _LOGISTIC_CACHE.clear()
+        _LOGISTIC_CACHE[clave] = fits
+    return _LOGISTIC_CACHE[clave]
+
+
+def recalibrate_over(p_over: float, linea: float = 2.5) -> float:
+    """P(más de `linea` goles) recalibrada (0-1). Líneas sin ajuste propio usan
+    la más cercana de 1.5 / 2.5 / 3.5."""
+    fits = logistic_fits()
+    cerca = min((1.5, 2.5, 3.5), key=lambda l: abs(l - linea))
+    if cerca == 3.5:
+        w = fits.get("under_3.5")
+        return p_over if w is None else 1 - _apply(w, 1 - p_over)
+    w = fits.get(f"over_{cerca}")
+    return p_over if w is None else _apply(w, p_over)
+
+
+def recalibrate_btts(p_si: float) -> float:
+    w = logistic_fits().get("btts")
+    return p_si if w is None else _apply(w, p_si)
+
+
+def recalibrate_ah(p: float, lado_favorito: bool) -> float:
+    """Hándicap asiático (prob. sin contar devolución) del lado apostado."""
+    w = logistic_fits().get("ah_fav" if lado_favorito else "ah_und")
+    return p if w is None else _apply(w, p)

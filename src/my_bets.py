@@ -34,6 +34,7 @@ from datetime import datetime, timedelta, timezone
 import pandas as pd
 
 from . import config, scores365
+from .calibration import recalibrate_ah, recalibrate_btts, recalibrate_over
 
 PATH = config.ROOT_DIR / "data" / "tracking" / "my_bets.csv"
 COLUMNS = [
@@ -407,11 +408,12 @@ def model_prob(local: str, visita: str, inicio: str | None, mercado: str, lado, 
         return 100 * w / (w + l) if w + l else None
     if mercado == "Doble oportunidad":
         return {"1X": ph + px, "X2": pa + px, "12": ph + pa}.get(lado)
+    # Goles y ambos marcan: probabilidad recalibrada (calibration.py, nov-2026).
     if mercado == "Ambos marcan":
-        b = num("btts_pct")
+        b = 100 * recalibrate_btts(num("btts_pct") / 100)
         return b if lado == "Sí" else 100 - b
     if mercado == "Goles" and linea == 2.5 and lado in ("Más", "Menos"):
-        o = num("over_2_5_pct")
+        o = 100 * recalibrate_over(num("over_2_5_pct") / 100)
         return o if lado == "Más" else 100 - o
     hx, ax = num("home_xg"), num("away_xg")
     if pd.notna(hx) and pd.notna(ax):
@@ -423,15 +425,16 @@ def model_prob(local: str, visita: str, inicio: str | None, mercado: str, lado, 
 
 def _matrix_prob(m, mercado: str, lado, linea) -> float | None:
     """Probabilidad (%) de goles a otra línea y hándicap asiático desde la
-    matriz de marcadores del modelo. En el asiático es sin contar devolución
-    (como empate no válido) y las medias cuentan medio."""
+    matriz de marcadores del modelo, recalibrada con resultados reales
+    (calibration.py). En el asiático es sin contar devolución (como empate no
+    válido) y las medias cuentan medio."""
     import numpy as np
 
     if linea is None:
         return None
     i, j = np.indices(m.shape)
     if mercado == "Goles" and lado in ("Más", "Menos"):
-        mas = float(m[(i + j) > linea].sum())
+        mas = recalibrate_over(float(m[(i + j) > linea].sum()), float(linea))
         return 100 * (mas if lado == "Más" else 1 - mas)
     if mercado == "Hándicap asiático" and lado in ("local", "visita"):
         from .special_markets import ah_settle
@@ -439,7 +442,11 @@ def _matrix_prob(m, mercado: str, lado, linea) -> float | None:
         margen = (i - j) if lado == "local" else (j - i)
         x = np.vectorize(lambda d: ah_settle(int(d), float(linea)))(margen)
         gana, pierde = float((m * x.clip(min=0)).sum()), float((m * -x.clip(max=0)).sum())
-        return 100 * gana / (gana + pierde) if gana + pierde else None
+        if not gana + pierde:
+            return None
+        # El lado del favorito promete de más en el backtest: se corrige por lado.
+        local_fav = float((m * i).sum()) >= float((m * j).sum())
+        return 100 * recalibrate_ah(gana / (gana + pierde), local_fav == (lado == "local"))
     return None
 
 
@@ -561,9 +568,18 @@ def tickets(df: pd.DataFrame) -> pd.DataFrame:
 # Reglas acordadas con el usuario (oct-2026), sacadas de su propio historial:
 # con 3-4 piernas perdía casi todo; las piernas con el modelo >= 65% acertaban
 # 83%; "Ambos marcan: Sí" 42%; corners solo rendían donde Reportes los marca fuertes.
+# Nov-2026 (42 cupones, -58%): se suman tope de apuestas por día y de monto por
+# cupón (los peores días fueron muchos cupones grandes), la regla de no ir contra
+# la casa por mucho (value_tips.MAX_MODEL_GAP) y el hándicap asiático solo donde
+# Avanzada lo validó. Goles y ambos marcan ya usan la probabilidad recalibrada.
 PLAN_MAX_LEGS = 2
 PLAN_MIN_PROB = 65.0
 PLAN_DAILY_BUDGET = 50_000
+PLAN_MAX_DAILY_BETS = 3
+PLAN_MAX_GAP = 15.0  # puntos del modelo por encima de la probabilidad de la cuota
+# Hándicap asiático validado en Avanzada: +1 / +1.5 al no favorito, en las ligas
+# que special_rules aprueba para ese mercado.
+PLAN_AH_LINES = {1.0: "No favorito +1", 1.5: "No favorito +1.5"}
 PLAN_MIN_STAT_STRENGTH = 5.0  # puntos (fuerza de Reportes, encogida) para aceptar corners/tarjetas
 MODEL_MARKETS = {"1X2", "Empate no válido", "Doble oportunidad", "Ambos marcan", "Goles", "Hándicap asiático"}
 STAT_MARKETS_REPORT = {"Corners": "Corners", "Tarjetas": "Tarjetas"}
@@ -599,11 +615,17 @@ def leg_issues(r, fuerza: pd.DataFrame | None = None) -> list[str]:
     prob = pd.to_numeric(r.get("prob_modelo"), errors="coerce")
     if r.get("mercado") == "Ambos marcan" and r.get("lado") == "Sí":
         motivos.append("Ambos marcan: Sí")
+    elif r.get("mercado") == "Hándicap asiático" and not _ah_validado(r):
+        motivos.append("hándicap asiático fuera de lo validado en Avanzada (+1 / +1.5 al no favorito en ligas aprobadas)")
     elif r.get("mercado") in MODEL_MARKETS:
         if pd.isna(prob):
             motivos.append("sin predicción del modelo")
         elif prob < PLAN_MIN_PROB:
             motivos.append(f"modelo {prob:.1f}% (< {PLAN_MIN_PROB:.0f}%)")
+        casa = pd.to_numeric(r.get("prob_casa"), errors="coerce")
+        if pd.notna(prob) and pd.notna(casa) and prob - casa > PLAN_MAX_GAP:
+            motivos.append(f"el modelo da {prob - casa:.0f} pts más que la casa (> {PLAN_MAX_GAP:.0f}): "
+                           "probable error del modelo")
     elif r.get("mercado") in STAT_MARKETS_REPORT:
         codigo = _codigo_liga(r.get("liga"))
         clave = (codigo, STAT_MARKETS_REPORT[r["mercado"]])
@@ -621,6 +643,14 @@ def leg_issues(r, fuerza: pd.DataFrame | None = None) -> list[str]:
     return motivos
 
 
+def _ah_validado(r) -> bool:
+    from .value_tips import special_rules
+
+    linea = pd.to_numeric(r.get("linea"), errors="coerce")
+    mercado = PLAN_AH_LINES.get(float(linea)) if pd.notna(linea) else None
+    return bool(mercado) and (_codigo_liga(r.get("liga")), mercado) in special_rules()[1]
+
+
 def plan_check(df: pd.DataFrame, presupuesto: float = PLAN_DAILY_BUDGET) -> pd.DataFrame:
     """Por cupón: si cumple el plan y qué reglas rompe."""
     if df.empty:
@@ -632,11 +662,17 @@ def plan_check(df: pd.DataFrame, presupuesto: float = PLAN_DAILY_BUDGET) -> pd.D
     t["_dia"] = pd.to_datetime(t["placed_at"], utc=True, errors="coerce").dt.tz_convert(BOGOTA).dt.date
     t = t.sort_values("placed_at")
     t["_acumulado"] = pd.to_numeric(t["monto"], errors="coerce").fillna(0).groupby(t["_dia"]).cumsum()
+    t["_n_dia"] = t.groupby("_dia").cumcount() + 1
+    tope_cupon = presupuesto / PLAN_MAX_DAILY_BETS
     filas = []
     for _, c in t.iterrows():
         motivos = []
         if c["n_piernas"] > PLAN_MAX_LEGS:
             motivos.append(f"{int(c['n_piernas'])} selecciones (máx. {PLAN_MAX_LEGS})")
+        if c["_n_dia"] > PLAN_MAX_DAILY_BETS:
+            motivos.append(f"apuesta n.º {int(c['_n_dia'])} del día (máx. {PLAN_MAX_DAILY_BETS})")
+        if pd.to_numeric(c["monto"], errors="coerce") > tope_cupon:
+            motivos.append(f"monto mayor a 1/{PLAN_MAX_DAILY_BETS} del presupuesto diario (${tope_cupon:,.0f})")
         if c["_acumulado"] > presupuesto:
             motivos.append(f"supera el presupuesto del día (${c['_acumulado']:,.0f})")
         for n, m in zip(df.loc[df["coupon_id"] == c["coupon_id"], "pierna"],
@@ -762,8 +798,6 @@ def _model_now(code: str | None, local: str, visita: str, fecha: datetime, merca
     except Exception:
         return None
     m = pr.score_matrix
-    g = np.arange(m.shape[0])
-    tot = g[:, None] + g[None, :]
     if mercado == "1X2":
         return 100 * {"local": pr.home_win, "empate": pr.draw, "visita": pr.away_win}.get(lado, np.nan)
     if mercado == "Empate no válido":
@@ -773,10 +807,8 @@ def _model_now(code: str | None, local: str, visita: str, fecha: datetime, merca
         return 100 * {"1X": pr.home_win + pr.draw, "X2": pr.away_win + pr.draw,
                       "12": pr.home_win + pr.away_win}.get(lado, np.nan)
     if mercado == "Ambos marcan":
-        return 100 * (pr.btts if lado == "Sí" else 1 - pr.btts)
-    if mercado == "Goles" and linea is not None:
-        mas = float(m[tot > linea].sum())
-        return 100 * (mas if lado == "Más" else 1 - mas)
+        b = recalibrate_btts(pr.btts)
+        return 100 * (b if lado == "Sí" else 1 - b)
     return _matrix_prob(m, mercado, lado, linea)
 
 
@@ -971,10 +1003,11 @@ def alternatives(code: str | None, game_id, local: str, visita: str, cuota_ref: 
             w, l = (pr.home_win, pr.away_win) if op == "Home" else (pr.away_win, pr.home_win)
             q, texto, peso = w / (w + l), f"Empate no válido: {nombre[op]}", ALT_WEIGHT_MAIN
         elif tipo == 12 and op in ("Yes", "No"):
-            q = pr.btts if op == "Yes" else 1 - pr.btts
+            b = recalibrate_btts(pr.btts)
+            q = b if op == "Yes" else 1 - b
             texto, peso = f"Ambos marcan: {'Sí' if op == 'Yes' else 'No'}", ALT_WEIGHT_MAIN
         elif tipo == 3 and ln is not None and op in ("Over", "Under"):
-            mas = float(m[(H + A) > ln].sum())
+            mas = recalibrate_over(float(m[(H + A) > ln].sum()), ln)
             q = mas if op == "Over" else 1 - mas
             texto, peso = f"Total de goles: {'Más' if op == 'Over' else 'Menos'} de {ln:g}", ALT_WEIGHT_MAIN
         elif tipo == 9 and ln is not None and op in ("Over", "Under"):
@@ -987,7 +1020,7 @@ def alternatives(code: str | None, game_id, local: str, visita: str, cuota_ref: 
                 and round(ln * 2) % 2:  # solo líneas .5 (sin devolución)
             margen = (H - A) if op == "Home" else (A - H)
             linea_lado = ln if op == "Home" else -ln
-            q = float(m[(margen + linea_lado) > 0].sum())
+            q = recalibrate_ah(float(m[(margen + linea_lado) > 0].sum()), (hx >= ax) == (op == "Home"))
             texto = f"Hándicap asiático: {nombre[op]} {linea_lado:+g}"
         elif tipo in (137, 141) and ln is not None and op in ("Over", "Under"):
             res = totals_model.predict(code, h, a, "corners" if tipo == 137 else "tarjetas", ln)
