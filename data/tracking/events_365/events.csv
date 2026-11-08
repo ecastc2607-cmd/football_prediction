@@ -39275,3 +39275,7 @@ game_id,side,minute,added_time,half,type,subtype,player
 4742004,home,90.0,2,2,Goal,Field Goal,Joshua Zirkzee
 4742004,home,90.0,6,2,Goal,Field Goal,Patrick Dorgu
 4742004,away,90.0,7,2,Yellow Card,,Zion Suzuki
+4732637,home,12.0,0,1,Goal,Field Goal,Pio Esposito
+4732637,home,19.0,0,1,Goal,Field Goal,Marcus Thuram
+4732637,home,72.0,0,2,Yellow Card,,Pio Esposito
+4732637,away,83.0,0,2,Woodwork,,Nico Paz
