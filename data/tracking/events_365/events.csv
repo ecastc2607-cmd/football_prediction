@@ -39279,3 +39279,9 @@ game_id,side,minute,added_time,half,type,subtype,player
 4732637,home,19.0,0,1,Goal,Field Goal,Marcus Thuram
 4732637,home,72.0,0,2,Yellow Card,,Pio Esposito
 4732637,away,83.0,0,2,Woodwork,,Nico Paz
+4750792,away,32.0,0,1,Yellow Card,,Mario Martín
+4750792,away,62.0,0,2,Yellow Card,,Nemanja Gudelj
+4750792,home,67.0,0,2,Yellow Card,,Santi Comesaña
+4750792,home,76.0,0,2,Yellow Card,,Renato Veiga
+4750792,home,80.0,0,2,Goal,Field Goal,Tajon Buchanan
+4750792,home,90.0,1,2,Goal,Field Goal,Carlos Romero
