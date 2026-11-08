@@ -4774,3 +4774,5 @@ game_id,competition,start_utc,home_team,away_team,home_goals,away_goals,ht_home_
 4750795,PD,2026-11-08T15:15:00Z,Real Sociedad,Rayo Vallecano,1,0,0.0,0.0,True,2026-11-08T17:15:28Z
 4735215,FL1,2026-11-08T16:15:00Z,Brest,Lyon,2,0,1.0,0.0,True,2026-11-08T18:10:34Z
 4735217,FL1,2026-11-08T16:15:00Z,Angers,OGC Nice,0,2,0.0,1.0,True,2026-11-08T18:10:34Z
+4735213,FL1,2026-11-08T16:15:00Z,Le Mans,Monaco,1,1,0.0,1.0,True,2026-11-08T18:15:27Z
+4735214,FL1,2026-11-08T16:15:00Z,Le Havre,Lorient,0,2,0.0,1.0,True,2026-11-08T18:15:27Z
