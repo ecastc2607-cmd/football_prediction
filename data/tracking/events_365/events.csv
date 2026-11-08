@@ -39305,3 +39305,10 @@ game_id,side,minute,added_time,half,type,subtype,player
 4731363,home,62.0,0,2,Woodwork,,Franco Fagúndez
 4731363,home,62.0,0,2,Goal,Field Goal,Hugo Rodallega
 4731363,home,71.0,0,2,Goal,Field Goal,Hugo Rodallega
+4735209,away,2.0,0,1,Goal,Field Goal,Amine Gouiri
+4735209,home,20.0,0,1,Goal,Field Goal,Florian Thauvin
+4735209,away,25.0,0,1,Woodwork,,Amine Gouiri
+4735209,home,79.0,0,2,Yellow Card,,Yassine Titraoui
+4735209,away,81.0,0,2,Yellow Card,,Amine Gouiri
+4735209,away,82.0,0,2,Goal,Field Goal,Keyliane Abdallah
+4735209,away,90.0,2,2,Yellow Card,,Jeffrey de Lange
