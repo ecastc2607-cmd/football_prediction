@@ -39167,3 +39167,41 @@ game_id,side,minute,added_time,half,type,subtype,player
 4735211,away,68.0,0,2,Goal,Field Goal,Nathan Ngoy
 4735211,away,73.0,0,2,Yellow Card,,Maurits Kjærgaard
 4735211,away,77.0,0,2,Yellow Card,,Nathan Ngoy
+4742006,away,5.0,0,1,Goal,Field Goal,Evanilson
+4742006,home,43.0,0,1,Yellow Card,,Julio Enciso
+4742006,away,43.0,0,1,Yellow Card,,Marcus Tavernier
+4742006,away,46.0,0,2,Goal,Own Goal,Leif Davis
+4742006,home,73.0,0,2,Goal,Penalty,Jack Clarke
+4742006,away,90.0,3,2,Yellow Card,,Antonio Silva
+4742006,home,90.0,9,2,Yellow Card,,Zian Flemming
+4742009,home,18.0,0,1,Woodwork,,Yeremy Pino
+4742009,away,24.0,0,1,Yellow Card,,Ronald Araujo
+4742009,home,34.0,0,1,Goal Disallowed,Var,Goal Disallowed
+4742009,away,40.0,0,1,Goal,Field Goal,Alexis Mac Allister
+4742009,away,54.0,0,2,Goal,Field Goal,Florian Wirtz
+4742009,away,59.0,0,2,Yellow Card,,Bradley Barcola
+4742009,home,71.0,0,2,Yellow Card,,Yeremy Pino
+4742009,away,82.0,0,2,Yellow Card,,Víctor Muñoz
+4742009,home,82.0,0,2,Yellow Card,,Jefferson Lerma
+4742009,away,83.0,0,2,Yellow Card,,Alexis Mac Allister
+4742009,away,89.0,0,2,Goal,Field Goal,Alexander Isak
+4742009,home,90.0,5,2,Goal,Penalty,Eddie Nketiah
+4742010,away,5.0,0,1,Yellow Card,,Kristoffer Ajer
+4742010,home,15.0,0,1,Goal,Field Goal,Diego Gomez
+4742010,home,22.0,0,1,Yellow Card,,Chema Andrés
+4742010,away,23.0,0,1,Red Card,,Igor Thiago
+4742010,home,27.0,0,1,Yellow Card,,Olivier Boscagli
+4742010,home,42.0,0,1,Goal,Penalty,Pascal Gross
+4742010,home,52.0,0,2,Yellow Card,,Mats Wieffer
+4742010,home,61.0,0,2,Yellow Card,,Lewis Dunk
+4742010,away,69.0,0,2,Yellow Card,,Kevin Schade
+4732638,away,13.0,0,1,Goal,Field Goal,Alphadjo Cisse
+4732638,away,19.0,0,1,Goal,Field Goal,Christian Pulisic
+4732638,away,28.0,0,1,Yellow Card,,Sankhoun Diawara
+4732638,home,31.0,0,1,Goal Disallowed,Var,Goal Disallowed
+4732638,home,50.0,0,2,Yellow Card,,Alessandro Marcandalli
+4732638,away,50.0,0,2,Yellow Card,,Adrien Rabiot
+4732638,away,76.0,0,2,Yellow Card,,Christian Pulisic
+4732638,away,87.0,0,2,Yellow Card,,Mario Gila
+4732638,home,88.0,0,2,Goal,Field Goal,Mikael Ellertsson
+4732638,home,90.0,4,2,Yellow Card,,Kingsley Ehizibue

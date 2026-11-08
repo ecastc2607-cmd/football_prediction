@@ -6795,3 +6795,11 @@ SA,2026,11.0,2026-11-08T14:00:00Z,AC Monza,Atalanta BC,AC Monza,True,7.0,11.0,4.
 SA,2026,11.0,2026-11-08T14:00:00Z,AC Monza,Atalanta BC,Atalanta BC,False,2.0,6.0,2.0,0.0,51.0,7.0,13.0,0.0
 FL1,2026,10.0,2026-11-08T14:00:00Z,Stade Rennais FC 1901,Lille OSC,Stade Rennais FC 1901,True,7.0,7.0,0.0,0.0,56.0,2.0,15.0,2.0
 FL1,2026,10.0,2026-11-08T14:00:00Z,Stade Rennais FC 1901,Lille OSC,Lille OSC,False,2.0,15.0,3.0,0.0,44.0,3.0,8.0,0.0
+PL,2026,10.0,2026-11-08T14:00:00Z,Ipswich Town FC,AFC Bournemouth,Ipswich Town FC,True,2.0,6.0,2.0,0.0,56.0,2.0,10.0,2.0
+PL,2026,10.0,2026-11-08T14:00:00Z,Ipswich Town FC,AFC Bournemouth,AFC Bournemouth,False,7.0,20.0,3.0,0.0,44.0,4.0,15.0,1.0
+PL,2026,10.0,2026-11-08T14:00:00Z,Crystal Palace FC,Liverpool FC,Crystal Palace FC,True,4.0,10.0,2.0,0.0,53.0,7.0,19.0,3.0
+PL,2026,10.0,2026-11-08T14:00:00Z,Crystal Palace FC,Liverpool FC,Liverpool FC,False,7.0,18.0,4.0,0.0,47.0,8.0,20.0,0.0
+PL,2026,10.0,2026-11-08T14:00:00Z,Brighton & Hove Albion FC,Brentford FC,Brighton & Hove Albion FC,True,7.0,11.0,4.0,0.0,75.0,6.0,20.0,1.0
+PL,2026,10.0,2026-11-08T14:00:00Z,Brighton & Hove Albion FC,Brentford FC,Brentford FC,False,3.0,7.0,2.0,1.0,25.0,0.0,5.0,3.0
+SA,2026,11.0,2026-11-08T14:00:00Z,Genoa CFC,AC Milan,Genoa CFC,True,3.0,14.0,2.0,0.0,38.0,5.0,17.0,3.0
+SA,2026,11.0,2026-11-08T14:00:00Z,Genoa CFC,AC Milan,AC Milan,False,0.0,13.0,4.0,0.0,62.0,2.0,6.0,1.0
