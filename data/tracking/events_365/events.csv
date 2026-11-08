@@ -39264,3 +39264,14 @@ game_id,side,minute,added_time,half,type,subtype,player
 4755349,home,67.0,0,2,Goal,Field Goal,Yuito Suzuki
 4755349,home,84.0,0,2,Penalty Miss,,Vincenzo Grifo
 4755349,away,89.0,0,2,Yellow Card,,Woo-Yeong Jeong
+4742004,away,1.0,0,1,Goal,Field Goal,Alysson Edward
+4742004,away,4.0,0,1,Goal,Field Goal,Nicolas Jackson
+4742004,home,16.0,0,1,Goal,Penalty,Bruno Fernandes
+4742004,home,44.0,0,1,Goal,Field Goal,Youri Tielemans
+4742004,away,48.0,0,2,Goal,Penalty,John McGinn
+4742004,away,53.0,0,2,Goal,Field Goal,Leon Goretzka
+4742004,home,57.0,0,2,Yellow Card,,Ayden Heaven
+4742004,home,89.0,0,2,Woodwork,,Mason Mount
+4742004,home,90.0,2,2,Goal,Field Goal,Joshua Zirkzee
+4742004,home,90.0,6,2,Goal,Field Goal,Patrick Dorgu
+4742004,away,90.0,7,2,Yellow Card,,Zion Suzuki
