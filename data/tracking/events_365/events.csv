@@ -39329,3 +39329,11 @@ game_id,side,minute,added_time,half,type,subtype,player
 4750801,away,74.0,0,2,Yellow Card,,Marc Bernal
 4750801,home,87.0,0,2,Yellow Card,,Marcos Llorente
 4750801,home,88.0,0,2,Yellow Card,,Marc Pubill
+4731926,home,9.0,0,1,Red Card,,Franklin Mosquera
+4731926,away,12.0,0,1,Goal,Penalty,Brandon Caicedo
+4731926,away,14.0,0,1,Goal,Own Goal,Rafael Bustamante
+4731926,away,34.0,0,1,Yellow Card,,Aldair Zarate
+4731926,away,62.0,0,2,Yellow Card,,Fabian Sambueza
+4731926,away,76.0,0,2,Goal,Field Goal,Brandon Caicedo
+4731926,away,79.0,0,2,Goal,Field Goal,Fabian Sambueza
+4731926,home,90.0,0,2,Yellow Card,,Luis Jiménez
