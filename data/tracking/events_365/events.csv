@@ -39337,3 +39337,17 @@ game_id,side,minute,added_time,half,type,subtype,player
 4731926,away,76.0,0,2,Goal,Field Goal,Brandon Caicedo
 4731926,away,79.0,0,2,Goal,Field Goal,Fabian Sambueza
 4731926,home,90.0,0,2,Yellow Card,,Luis Jiménez
+4731925,away,8.0,0,1,Goal,Field Goal,Juan Cuadrado
+4731925,home,10.0,0,1,Yellow Card,,Homer Martínez
+4731925,away,14.0,0,1,Yellow Card,,Mateo García
+4731925,away,18.0,0,1,Yellow Card,,Stiven Vega
+4731925,home,25.0,0,1,Goal,Penalty,Ever Valencia
+4731925,away,27.0,0,1,Yellow Card,,Juan Cuadrado
+4731925,home,36.0,0,1,Goal,Field Goal,Kelvin Florez
+4731925,home,45.0,1,1,Yellow Card,,Junior Hernández
+4731925,away,45.0,3,1,Yellow Card,,Sergio Mosquera
+4731925,home,46.0,0,2,Yellow Card,,Kelvin Florez
+4731925,home,74.0,0,2,Goal Disallowed,Var,Jan Angulo
+4731925,home,75.0,0,2,Yellow Card,,Jherson Mosquera
+4731925,home,82.0,0,2,Yellow Card,,Luis Sandoval
+4731925,home,90.0,5,2,Red Card,,Sergio Aguayo
