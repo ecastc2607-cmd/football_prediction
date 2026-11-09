@@ -829,6 +829,10 @@ id,start_utc,status_group,status_text,home_team,away_team,home_id,away_id,home_g
 4731361,2026-11-06T23:00:00Z,4,Ended,Boyaca Chico,Internacional de Bogota,8641,8542,2.0,1.0,Clausura,18.0,Round
 4731924,2026-11-07T01:00:00Z,4,Ended,Fortaleza FC,Independiente Medellin,9844,8643,0.0,3.0,Clausura,18.0,Round
 4731362,2026-11-07T21:05:00Z,4,Ended,Once Caldas,Águilas Doradas,7289,20841,1.0,0.0,Clausura,18.0,Round
+4731927,2026-11-07T23:10:00Z,4,Ended,Atletico Nacional,Deportivo Pereira,8640,8638,4.0,3.0,Clausura,18.0,Round
+4731359,2026-11-08T01:45:00Z,4,Ended,America de Cali,Deportivo Cali,8645,8639,0.0,0.0,Clausura,18.0,Round
+4731363,2026-11-08T19:00:00Z,4,Ended,Independiente Santa Fe,Deportivo Pasto,7644,9048,5.0,0.0,Clausura,18.0,Round
+4731926,2026-11-08T21:05:00Z,4,Ended,Jaguares de Córdoba,Atlético Bucaramanga,10377,10224,0.0,4.0,Clausura,18.0,Round
 4731349,2026-11-12T17:00:00Z,4,Postponed,Deportivo Pereira,America de Cali,8638,8645,,,Clausura,19.0,Round
 4731350,2026-11-12T17:00:00Z,4,Postponed,Deportivo Pasto,Junior FC,9048,7204,,,Clausura,19.0,Round
 4731351,2026-11-12T17:00:00Z,4,Postponed,Deportivo Cali,Deportes Tolima,8639,7635,,,Clausura,19.0,Round
