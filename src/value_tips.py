@@ -89,9 +89,10 @@ def candidate_picks(predictions: pd.DataFrame, min_prob: float = MIN_MODEL_PROB)
     la regla de uno-por-partido se aplica después, al ver cuál tiene más valor."""
     if predictions.empty:
         return pd.DataFrame()
-    from .calibration import recalibrate_over
+    from .calibration import adjust_predictions, recalibrate_over
 
-    preds = predictions.copy()
+    # Favorito corregido en las ligas donde el modelo lo sobrevalora (Nations League).
+    preds = adjust_predictions(predictions).copy()
     # Goles: el modelo es demasiado extremo ahí (calibration.py); se usa la
     # probabilidad recalibrada con resultados reales.
     preds["over_2_5"] = preds["over_2_5"].map(lambda v: 100 * recalibrate_over(v / 100) if pd.notna(v) else v)

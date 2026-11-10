@@ -220,6 +220,12 @@ LOGISTIC_MIN_ROWS = 300
 _LOGISTIC_CACHE: dict = {}
 AH_FAV_MARKETS = ("Favorito -0.5 (gana)", "Favorito -1", "Favorito empate no válido (HA 0)")
 AH_UND_MARKETS = ("No favorito +1", "No favorito +1.5", "No favorito +2.5")
+# Ligas donde el modelo sobrevalora al favorito más que en el resto (nov-2026).
+# Nations League, 104 partidos: el lado del favorito acierta 5-20 pts menos de lo
+# prometido (empate no válido -10, favorito +1.5 goles -20; en el log, favorito
+# al 50-60% ganó 37%); el ajuste lleva un 70% a ~62% y un 80% a ~72%. En las
+# ligas el 1X2 del log está calibrado (pendiente ~0.96), por eso no se toca.
+FAV_RECAL_LEAGUES = {"NT"}
 
 
 def _fit_logistic(p, y) -> tuple[float, float]:
@@ -273,6 +279,9 @@ def logistic_fits() -> dict:
                                      ("ah_fav", list(AH_FAV_MARKETS)), ("ah_und", list(AH_UND_MARKETS))):
                 d = bt[bt["mercado"].isin(mercados)]
                 fits[nombre] = _fit_logistic(d["prob"], d["gano"])
+            for comp in FAV_RECAL_LEAGUES:
+                d = bt[(bt["competition"] == comp) & bt["mercado"].isin(AH_FAV_MARKETS)]
+                fits[f"fav_{comp}"] = _fit_logistic(d["prob"], d["gano"])
         _LOGISTIC_CACHE.clear()
         _LOGISTIC_CACHE[clave] = fits
     return _LOGISTIC_CACHE[clave]
@@ -295,7 +304,44 @@ def recalibrate_btts(p_si: float) -> float:
     return p_si if w is None else _apply(w, p_si)
 
 
-def recalibrate_ah(p: float, lado_favorito: bool) -> float:
-    """Hándicap asiático (prob. sin contar devolución) del lado apostado."""
-    w = logistic_fits().get("ah_fav" if lado_favorito else "ah_und")
+def recalibrate_ah(p: float, lado_favorito: bool, competition: str | None = None) -> float:
+    """Hándicap asiático (prob. sin contar devolución) del lado apostado. En las
+    ligas de FAV_RECAL_LEAGUES el lado del favorito usa el ajuste de esa liga."""
+    fits = logistic_fits()
+    w = (fits.get(f"fav_{competition}") if lado_favorito and competition in FAV_RECAL_LEAGUES else None) \
+        or fits.get("ah_fav" if lado_favorito else "ah_und")
     return p if w is None else _apply(w, p)
+
+
+def adjust_1x2(home: float, draw: float, away: float, competition: str | None):
+    """1X2 con el favorito corregido en las ligas de FAV_RECAL_LEAGUES (mismas
+    unidades que la entrada). Solo baja al favorito; lo que pierde se reparte
+    entre empate y no favorito en proporción. Fuera de esas ligas, sin cambio."""
+    w = logistic_fits().get(f"fav_{competition}") if competition in FAV_RECAL_LEAGUES else None
+    if w is None or any(pd.isna(x) for x in (home, draw, away)):
+        return home, draw, away
+    total = home + draw + away
+    if not total:
+        return home, draw, away
+    h, d, a = home / total, draw / total, away / total
+    fav = max(h, a)
+    nuevo = min(fav, _apply(w, fav))
+    escala = (1 - nuevo) / (1 - fav) if fav < 1 else 1.0
+    if h >= a:
+        h, d, a = nuevo, d * escala, a * escala
+    else:
+        h, d, a = h * escala, d * escala, nuevo
+    return h * total, d * total, a * total
+
+
+def adjust_predictions(df: pd.DataFrame) -> pd.DataFrame:
+    """Aplica adjust_1x2 a un DataFrame de predicciones (home_win/draw/away_win
+    en %, columna competition). Solo para mostrar y recomendar: el log guarda
+    las crudas."""
+    if df.empty or "competition" not in df or not df["competition"].isin(FAV_RECAL_LEAGUES).any()             or "fav_ajustado" in df:  # ya ajustado (Jornada y Tips comparten predicciones)
+        return df
+    df = df.copy()
+    nuevos = [adjust_1x2(r.home_win, r.draw, r.away_win, r.competition) for r in df.itertuples()]
+    df[["home_win", "draw", "away_win"]] = pd.DataFrame(nuevos, index=df.index, columns=["home_win", "draw", "away_win"])
+    df["fav_ajustado"] = df["competition"].isin(FAV_RECAL_LEAGUES)
+    return df

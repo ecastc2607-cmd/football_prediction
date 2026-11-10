@@ -42,6 +42,7 @@ from src.market_anchor import anchored_prematch_xg
 from src.match_stats_log import get_cached_stats, log_match_stats
 from src.match_context import get_standings_map, rivalry_label
 from src.match_tendencies import load_team_averages, pick_tendencies
+from src.calibration import adjust_predictions
 from src.matchday_predictions import matchday_predictions_df
 from src.calibration import Calibrator
 from src.parlay_backtest import backtest as parlay_backtest
@@ -179,7 +180,8 @@ def _prepare_competition(code: str, season: int, matchday: int | None = None) ->
 @st.cache_data(ttl=1800, show_spinner="Calculando predicciones...")
 def get_predictions(code: str, season: int, matchday: int) -> pd.DataFrame:
     _prepare_competition(code, season, matchday)
-    return matchday_predictions_df(code, season, matchday, seasons_back=1)
+    # Favorito corregido en Nations League (calibration.FAV_RECAL_LEAGUES); el log guarda las crudas.
+    return adjust_predictions(matchday_predictions_df(code, season, matchday, seasons_back=1))
 
 
 @st.cache_data(ttl=300, show_spinner="Calculando predicciones...")
@@ -191,7 +193,8 @@ def get_predictions_con_jugados(code: str, season: int, matchday: int) -> pd.Dat
     hacer desaparecer un partido de la tabla apenas arranca o termina — TTL
     más corto porque el estado en vivo cambia rápido."""
     _prepare_competition(code, season, matchday)
-    return matchday_predictions_df(code, season, matchday, seasons_back=1, include_played=True)
+    # Favorito corregido en Nations League (calibration.FAV_RECAL_LEAGUES); el log guarda las crudas.
+    return adjust_predictions(matchday_predictions_df(code, season, matchday, seasons_back=1, include_played=True))
 
 
 @st.cache_data(ttl=1800, show_spinner="Detectando jornada actual...")

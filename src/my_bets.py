@@ -34,7 +34,7 @@ from datetime import datetime, timedelta, timezone
 import pandas as pd
 
 from . import config, scores365
-from .calibration import recalibrate_ah, recalibrate_btts, recalibrate_over
+from .calibration import adjust_1x2, recalibrate_ah, recalibrate_btts, recalibrate_over
 
 PATH = config.ROOT_DIR / "data" / "tracking" / "my_bets.csv"
 COLUMNS = [
@@ -400,7 +400,8 @@ def model_prob(local: str, visita: str, inicio: str | None, mercado: str, lado, 
         return None
     r = d.loc[sc.idxmax()]
     num = lambda c: pd.to_numeric(r.get(c), errors="coerce")  # noqa: E731
-    ph, px, pa = num("pred_home_pct"), num("pred_draw_pct"), num("pred_away_pct")
+    # Favorito corregido en las ligas donde el modelo lo sobrevalora (calibration.py).
+    ph, px, pa = adjust_1x2(num("pred_home_pct"), num("pred_draw_pct"), num("pred_away_pct"), r.get("competition"))
     if mercado == "1X2":
         return {"local": ph, "empate": px, "visita": pa}.get(lado)
     if mercado == "Empate no válido":
@@ -419,11 +420,11 @@ def model_prob(local: str, visita: str, inicio: str | None, mercado: str, lado, 
     if pd.notna(hx) and pd.notna(ax):
         from .special_markets import score_matrix
 
-        return _matrix_prob(score_matrix(float(hx), float(ax)), mercado, lado, linea)
+        return _matrix_prob(score_matrix(float(hx), float(ax)), mercado, lado, linea, r.get("competition"))
     return None
 
 
-def _matrix_prob(m, mercado: str, lado, linea) -> float | None:
+def _matrix_prob(m, mercado: str, lado, linea, competition: str | None = None) -> float | None:
     """Probabilidad (%) de goles a otra línea y hándicap asiático desde la
     matriz de marcadores del modelo, recalibrada con resultados reales
     (calibration.py). En el asiático es sin contar devolución (como empate no
@@ -446,7 +447,7 @@ def _matrix_prob(m, mercado: str, lado, linea) -> float | None:
             return None
         # El lado del favorito promete de más en el backtest: se corrige por lado.
         local_fav = float((m * i).sum()) >= float((m * j).sum())
-        return 100 * recalibrate_ah(gana / (gana + pierde), local_fav == (lado == "local"))
+        return 100 * recalibrate_ah(gana / (gana + pierde), local_fav == (lado == "local"), competition)
     return None
 
 
@@ -798,18 +799,18 @@ def _model_now(code: str | None, local: str, visita: str, fecha: datetime, merca
     except Exception:
         return None
     m = pr.score_matrix
+    ph, px, pa = adjust_1x2(pr.home_win, pr.draw, pr.away_win, code)
     if mercado == "1X2":
-        return 100 * {"local": pr.home_win, "empate": pr.draw, "visita": pr.away_win}.get(lado, np.nan)
+        return 100 * {"local": ph, "empate": px, "visita": pa}.get(lado, np.nan)
     if mercado == "Empate no válido":
-        w, l = (pr.home_win, pr.away_win) if lado == "local" else (pr.away_win, pr.home_win)
+        w, l = (ph, pa) if lado == "local" else (pa, ph)
         return 100 * w / (w + l)
     if mercado == "Doble oportunidad":
-        return 100 * {"1X": pr.home_win + pr.draw, "X2": pr.away_win + pr.draw,
-                      "12": pr.home_win + pr.away_win}.get(lado, np.nan)
+        return 100 * {"1X": ph + px, "X2": pa + px, "12": ph + pa}.get(lado, np.nan)
     if mercado == "Ambos marcan":
         b = recalibrate_btts(pr.btts)
         return 100 * (b if lado == "Sí" else 1 - b)
-    return _matrix_prob(m, mercado, lado, linea)
+    return _matrix_prob(m, mercado, lado, linea, code)
 
 
 def _texto_opcion(mercado, lado, linea, local, visita) -> str | None:
@@ -976,6 +977,7 @@ def alternatives(code: str | None, game_id, local: str, visita: str, cuota_ref: 
     g = np.arange(m.shape[0])
     H, A = np.meshgrid(g, g, indexing="ij")
     hx, ax = pr.home_xg, pr.away_xg
+    ph, px, pa = adjust_1x2(pr.home_win, pr.draw, pr.away_win, code)
     share = special_markets.DEFAULT_FIRST_HALF_SHARE
     try:
         share = pd.read_csv(special_markets.SHARE_PATH, index_col=0).iloc[:, 0].to_dict().get(code, share)
@@ -994,13 +996,13 @@ def alternatives(code: str | None, game_id, local: str, visita: str, cuota_ref: 
             ln = None
         q, texto, peso = None, None, ALT_WEIGHT_OTHER
         if tipo == 1 and op in ("1", "X", "2"):
-            q = {"1": pr.home_win, "X": pr.draw, "2": pr.away_win}[op]
+            q = {"1": ph, "X": px, "2": pa}[op]
             texto, peso = f"Resultado final: {nombre[op]}", ALT_WEIGHT_MAIN
         elif tipo == 14 and op in ("1X", "12", "X2"):
-            q = {"1X": pr.home_win + pr.draw, "12": pr.home_win + pr.away_win, "X2": pr.away_win + pr.draw}[op]
+            q = {"1X": ph + px, "12": ph + pa, "X2": pa + px}[op]
             texto, peso = f"Doble oportunidad: {op}", ALT_WEIGHT_MAIN
         elif tipo == 15 and op in ("Home", "Away"):
-            w, l = (pr.home_win, pr.away_win) if op == "Home" else (pr.away_win, pr.home_win)
+            w, l = (ph, pa) if op == "Home" else (pa, ph)
             q, texto, peso = w / (w + l), f"Empate no válido: {nombre[op]}", ALT_WEIGHT_MAIN
         elif tipo == 12 and op in ("Yes", "No"):
             b = recalibrate_btts(pr.btts)
@@ -1020,7 +1022,7 @@ def alternatives(code: str | None, game_id, local: str, visita: str, cuota_ref: 
                 and round(ln * 2) % 2:  # solo líneas .5 (sin devolución)
             margen = (H - A) if op == "Home" else (A - H)
             linea_lado = ln if op == "Home" else -ln
-            q = recalibrate_ah(float(m[(margen + linea_lado) > 0].sum()), (hx >= ax) == (op == "Home"))
+            q = recalibrate_ah(float(m[(margen + linea_lado) > 0].sum()), (hx >= ax) == (op == "Home"), code)
             texto = f"Hándicap asiático: {nombre[op]} {linea_lado:+g}"
         elif tipo in (137, 141) and ln is not None and op in ("Over", "Under"):
             res = totals_model.predict(code, h, a, "corners" if tipo == 137 else "tarjetas", ln)
