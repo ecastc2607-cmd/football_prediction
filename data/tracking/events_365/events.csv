@@ -39381,3 +39381,9 @@ game_id,side,minute,added_time,half,type,subtype,player
 4672309,home,60.0,0,2,Yellow Card,,Georgiy Harutyunyan
 4672309,home,72.0,0,2,Yellow Card,,Narek Grigoryan
 4672309,home,81.0,0,2,Yellow Card,,Edgar Sevikyan
+4672307,away,32.0,0,1,Yellow Card,,Leo Walta
+4672307,home,35.0,0,1,Goal,Field Goal,Ernest Muçi
+4672307,away,45.0,0,1,Yellow Card,,Adam Markhiev
+4672307,home,50.0,0,2,Goal,Field Goal,Rey Manaj
+4672307,home,58.0,0,2,Yellow Card,,Ylber Ramadani
+4672307,away,67.0,0,2,Red Card,,Miro Tenho
