@@ -39387,3 +39387,38 @@ game_id,side,minute,added_time,half,type,subtype,player
 4672307,home,50.0,0,2,Goal,Field Goal,Rey Manaj
 4672307,home,58.0,0,2,Yellow Card,,Ylber Ramadani
 4672307,away,67.0,0,2,Red Card,,Miro Tenho
+4672303,home,24.0,0,1,Goal,Field Goal,Morgan Rogers
+4672303,away,59.0,0,2,Goal,Field Goal,Petar Sucic
+4672303,away,63.0,0,2,Yellow Card,,Ivan Smolčić
+4672303,home,64.0,0,2,Goal,Penalty,Harry Kane
+4672305,away,10.0,0,1,Goal,Field Goal,Michael Olise
+4672305,away,13.0,0,1,Yellow Card,,Jérémy Jacquet
+4672305,home,26.0,0,1,Goal,Field Goal,Pio Esposito
+4672305,away,35.0,0,1,Woodwork,,Bradley Barcola
+4672305,home,39.0,0,1,Yellow Card,,Pio Esposito
+4672305,away,52.0,0,2,Woodwork,,Rayan Cherki
+4672305,home,60.0,0,2,Penalty Miss,,Sebastiano Esposito
+4672305,home,63.0,0,2,Goal,Field Goal,Davide Frattesi
+4672305,home,71.0,0,2,Yellow Card,,Alessandro Bastoni
+4672305,home,75.0,0,2,Goal,Penalty,Pio Esposito
+4672305,away,90.0,3,2,Yellow Card,,Eli Kroupi
+4672306,away,12.0,0,1,Goal,Field Goal,Kirill Gomanov
+4672306,away,17.0,0,1,Goal,Field Goal,Artem Kontsevoy
+4672306,home,40.0,0,1,Yellow Card,,Gabriel Capicchioni
+4672306,home,71.0,0,2,Yellow Card,,Samuele Zannoni
+4672306,away,76.0,0,2,Yellow Card,,Aleksandr Svirepa
+4672306,home,80.0,0,2,Yellow Card,,Filippo Fabbri
+4672306,away,90.0,3,2,Red Card,Second Yellow Card,Aleksandr Svirepa
+4697787,home,6.0,0,1,Yellow Card,,Sead Haksabanovic
+4697787,home,20.0,0,1,Yellow Card,,Nikola Krstovic
+4697787,home,36.0,0,1,Yellow Card,,Stefan Savic
+4697787,home,57.0,0,2,Yellow Card,,Marko Jankovic
+4697787,home,57.0,0,2,Red Card,Second Yellow Card,Stefan Savic
+4697787,away,65.0,0,2,Yellow Card,,Dmitrijs Zelenkovs
+4697787,home,70.0,0,2,Goal,Field Goal,Nikola Krstovic
+4697787,away,72.0,0,2,Goal,Field Goal,Deniss Meļņiks
+4697787,away,78.0,0,2,Yellow Card,,Dennis Cirkin
+4697787,away,86.0,0,2,Yellow Card,,Lūkass Vapne
+4697787,away,90.0,0,2,Yellow Card,,Roberts Savaļnieks
+4697787,home,90.0,1,2,Goal,Field Goal,Aleksa Maraš
+4697787,home,90.0,2,2,Yellow Card,,Aleksa Maraš
