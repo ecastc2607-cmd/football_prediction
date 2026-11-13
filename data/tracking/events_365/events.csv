@@ -39443,3 +39443,10 @@ game_id,side,minute,added_time,half,type,subtype,player
 4731353,away,29.0,0,1,Yellow Card,,Santiago Mera
 4731353,home,49.0,0,2,Yellow Card,,Jhon Vásquez
 4731353,away,50.0,0,2,Yellow Card,,Jefferson Mena
+4672301,home,39.0,0,1,Goal,Field Goal,Petru Popescu
+4672301,away,51.0,0,2,Goal,Field Goal,Islam Chesnokov
+4672301,home,73.0,0,2,Yellow Card,,Iurie Iovu
+4672301,home,77.0,0,2,Goal,Field Goal,Petru Popescu
+4672301,home,90.0,3,2,Yellow Card,,Petru Popescu
+4672301,away,90.0,4,2,Yellow Card,,Maksim Samorodov
+4672301,away,90.0,4,2,Red Card,Second Yellow Card,Maksim Samorodov
