@@ -39450,3 +39450,11 @@ game_id,side,minute,added_time,half,type,subtype,player
 4672301,home,90.0,3,2,Yellow Card,,Petru Popescu
 4672301,away,90.0,4,2,Yellow Card,,Maksim Samorodov
 4672301,away,90.0,4,2,Red Card,Second Yellow Card,Maksim Samorodov
+4672299,home,6.0,0,1,Goal,Field Goal,Crysencio Summerville
+4672299,home,12.0,0,1,Goal,Field Goal,Tijjani Reijnders
+4672299,home,18.0,0,1,Goal,Field Goal,Tijjani Reijnders
+4672299,away,25.0,0,1,Goal Disallowed,Var,Fotis Ioannidis
+4672299,home,33.0,0,1,Goal,Field Goal,Tijjani Reijnders
+4672299,home,40.0,0,1,Goal,Field Goal,Jurriën Timber
+4672299,home,59.0,0,2,Goal,Field Goal,Jurriën Timber
+4672299,home,61.0,0,2,Goal,Field Goal,Donyell Malen
