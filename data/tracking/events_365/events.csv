@@ -39432,3 +39432,10 @@ game_id,side,minute,added_time,half,type,subtype,player
 4672304,home,72.0,0,2,Red Card,,Ladislav Krejčí
 4672304,away,90.0,5,2,Woodwork,,Roberto Fernández
 4672304,away,90.0,6,2,Goal,Field Goal,Marc Pubill
+4731350,away,20.0,0,1,Yellow Card,,Carlos Perez
+4731350,home,21.0,0,1,Yellow Card,,Juan Carlos Revollo
+4731350,away,31.0,0,1,Yellow Card,,Andres Schmalbach
+4731350,away,60.0,0,2,Goal,Field Goal,Carlos Perez
+4731350,away,73.0,0,2,Yellow Card,,Guillermo Celis
+4731350,away,74.0,0,2,Red Card,,Guillermo Paiva
+4731350,away,88.0,0,2,Yellow Card,,Fabián Ángel
