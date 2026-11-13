@@ -39458,3 +39458,51 @@ game_id,side,minute,added_time,half,type,subtype,player
 4672299,home,40.0,0,1,Goal,Field Goal,Jurriën Timber
 4672299,home,59.0,0,2,Goal,Field Goal,Jurriën Timber
 4672299,home,61.0,0,2,Goal,Field Goal,Donyell Malen
+4672296,home,54.0,0,2,Goal,Field Goal,John McGinn
+4672296,away,57.0,0,2,Goal,Field Goal,Elmin Rastoder
+4672296,home,74.0,0,2,Goal,Penalty,John McGinn
+4672296,home,89.0,0,2,Yellow Card,,Lewis Ferguson
+4672297,away,8.0,0,1,Woodwork,,Toral Bayramov
+4672297,away,22.0,0,1,Goal Disallowed,Var,Goal Disallowed
+4672297,away,26.0,0,1,Goal,Field Goal,Mahir Emreli
+4672297,home,43.0,0,1,Yellow Card,,Emanuel Zund
+4672297,home,47.0,0,2,Yellow Card,,Marcel Büchel
+4672297,away,90.0,2,2,Yellow Card,,Emil Balayev
+4672298,away,3.0,0,1,Goal,Own Goal,Srdan Babic
+4672298,away,14.0,0,1,Goal,Field Goal,Florian Wirtz
+4672298,away,41.0,0,1,Yellow Card,,Brajan Gruda
+4672298,away,50.0,0,2,Goal,Field Goal,Brajan Gruda
+4672298,home,56.0,0,2,Goal,Field Goal,Srdan Babic
+4672298,home,62.0,0,2,Yellow Card,,Srdan Babic
+4672298,away,66.0,0,2,Goal Disallowed,Var,Goal Disallowed
+4672298,away,70.0,0,2,Woodwork,,Derry Scherhant
+4672298,home,76.0,0,2,Red Card,,Vanja Dragojević
+4672298,home,87.0,0,2,Yellow Card,,Petar Sukacev
+4672298,home,89.0,0,2,Yellow Card,,Andrija Zivkovic
+4672298,home,89.0,0,2,Red Card,,Andrija Zivkovic
+4672302,home,17.0,0,1,Goal,Field Goal,Erik Prekop
+4672302,away,30.0,0,1,Goal,Penalty,Viljormur Davidsen
+4672302,away,47.0,0,2,Goal,Field Goal,Áki Samuelsen
+4672302,home,55.0,0,2,Yellow Card,,Martin Valjent
+4672302,away,62.0,0,2,Yellow Card,,Petur Knudsen
+4672302,away,64.0,0,2,Woodwork,,Petur Knudsen
+4672302,home,66.0,0,2,Yellow Card,,Dominik Greif
+4672302,away,68.0,0,2,Yellow Card,,Jóannes Danielsen
+4672302,home,74.0,0,2,Goal,Field Goal,Lukas Haraslín
+4672302,away,77.0,0,2,Woodwork,,Poul Kallsberg
+4672302,away,82.0,0,2,Yellow Card,,Andrias Edmundsson
+4697788,away,19.0,0,1,Yellow Card,,Tjay De Barr
+4697788,home,24.0,0,1,Goal,Field Goal,Guillaume Lopez
+4697788,home,35.0,0,1,Goal,Field Goal,Albert Rosas
+4697788,home,54.0,0,2,Yellow Card,,Éric Izquierdo
+4697788,away,55.0,0,2,Yellow Card,,Carlos Richards
+4697788,away,56.0,0,2,Yellow Card,,Julian Valarino
+4697788,away,58.0,0,2,Yellow Card,,Louie Annesley
+4697788,away,64.0,0,2,Penalty Miss,,Tjay De Barr
+4697788,home,77.0,0,2,Yellow Card,,Jordi Aláez
+4697788,away,79.0,0,2,Yellow Card,,Dan Bent
+4697790,away,42.0,0,1,Goal,Field Goal,Maksim Paskotsi
+4697790,home,61.0,0,2,Yellow Card,,Omar Natami
+4697790,away,74.0,0,2,Goal Disallowed,Var,Goal Disallowed
+4697790,home,80.0,0,2,Yellow Card,,Jayson Videira
+4697790,home,90.0,5,2,Yellow Card,,Laurent Jans
