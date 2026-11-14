@@ -4819,3 +4819,7 @@ game_id,competition,start_utc,home_team,away_team,home_goals,away_goals,ht_home_
 4672289,NT,2026-11-14T19:45:00Z,Austria,Ireland,1,0,0.0,0.0,True,2026-11-14T21:40:25Z
 4672290,NT,2026-11-14T19:45:00Z,Northern Ireland,Ukraine,1,0,0.0,0.0,True,2026-11-14T21:40:25Z
 4672291,NT,2026-11-14T19:45:00Z,Portugal,Denmark,1,4,0.0,1.0,True,2026-11-14T21:40:25Z
+4731349,COL,2026-11-14T20:30:00Z,Deportivo Pereira,America de Cali,0,2,0.0,1.0,True,2026-11-14T22:30:37Z
+4731354,COL,2026-11-14T20:30:00Z,Cucuta Deportivo,Jaguares de Córdoba,2,0,1.0,0.0,True,2026-11-14T22:30:37Z
+4731355,COL,2026-11-14T20:30:00Z,Millonarios,Alianza FC,2,0,1.0,0.0,False,2026-11-14T22:30:37Z
+4731357,COL,2026-11-14T20:30:00Z,Águilas Doradas,Independiente Medellin,0,1,0.0,0.0,True,2026-11-14T22:30:37Z

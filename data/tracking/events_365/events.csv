@@ -39580,3 +39580,32 @@ game_id,side,minute,added_time,half,type,subtype,player
 4672291,away,75.0,0,2,Goal,Field Goal,Joachim Andersen
 4672291,home,87.0,0,2,Yellow Card,,João Palhinha
 4672291,home,90.0,3,2,Goal,Field Goal,Bernardo Silva
+4731349,home,6.0,0,1,Yellow Card,,Danilo Ortiz
+4731349,away,27.0,0,1,Goal,Penalty,Tomas Angel
+4731349,home,30.0,0,1,Red Card,,Aléxis Márquez
+4731349,home,37.0,0,1,Yellow Card,,Sebastian Urrea
+4731349,home,48.0,0,2,Red Card,,Felipe Mosquera
+4731349,away,60.0,0,2,Goal,Field Goal,Edson Tortolero
+4731349,home,62.0,0,2,Yellow Card,,Walmer Pacheco
+4731349,home,72.0,0,2,Yellow Card,,Yuber Quiñones
+4731354,home,23.0,0,1,Yellow Card,,Carlos Renteria
+4731354,away,30.0,0,1,Yellow Card,,Rafael Bustamante
+4731354,home,36.0,0,1,Goal,Field Goal,Dayan Perez
+4731354,home,54.0,0,2,Yellow Card,,Jaime Peralta
+4731354,home,72.0,0,2,Goal,Field Goal,Gustavo Torres
+4731354,home,76.0,0,2,Yellow Card,,Jhonatan Agudelo
+4731354,away,90.0,2,2,Yellow Card,,Jonathan Lovera
+4731355,away,2.0,0,1,Yellow Card,,Brayan Viafara
+4731355,home,32.0,0,1,Yellow Card,,Stiven Barreiro
+4731355,away,34.0,0,1,Yellow Card,,Sebastian Quiñones
+4731355,home,40.0,0,1,Goal,Field Goal,Mateo García
+4731355,home,48.0,0,2,Yellow Card,,Francisco Chaverra
+4731355,home,65.0,0,2,Yellow Card,,Juan Cuadrado
+4731355,home,78.0,0,2,Goal,Field Goal,Darwin Quintero
+4731355,home,81.0,0,2,Yellow Card,,Rodrigo Contreras
+4731357,home,3.0,0,1,Penalty Miss,,Jorge Soto
+4731357,away,30.0,0,1,Woodwork,,Frank Fabra
+4731357,away,41.0,0,1,Yellow Card,,Didier Moreno
+4731357,away,78.0,0,2,Yellow Card,,Frank Fabra
+4731357,away,83.0,0,2,Goal,Field Goal,Léider Berrío
+4731357,home,90.0,0,2,Yellow Card,,Jhon Melendez
