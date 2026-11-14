@@ -39520,3 +39520,6 @@ game_id,side,minute,added_time,half,type,subtype,player
 4672300,away,68.0,0,2,Goal,Field Goal,Andri Guðjohnsen
 4672300,away,73.0,0,2,Woodwork,,Gylfi Sigurdsson
 4672300,away,79.0,0,2,Goal,Field Goal,Andri Guðjohnsen
+4731356,away,30.0,0,1,Goal,Field Goal,Emerson Rodríguez
+4731356,home,35.0,0,1,Yellow Card,,Facundo Boné
+4731356,away,63.0,0,2,Goal,Field Goal,Emmanuel Olivera
