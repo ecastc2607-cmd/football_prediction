@@ -39626,3 +39626,17 @@ game_id,side,minute,added_time,half,type,subtype,player
 4731358,away,79.0,0,2,Goal Disallowed,Var,Juan Pablo Nieto
 4731358,home,84.0,0,2,Yellow Card,,Milton Casco
 4731358,home,90.0,3,2,Yellow Card,,Alfredo Morelos
+4731351,home,8.0,0,1,Goal,Penalty,Juan Dinenno
+4731351,away,19.0,0,1,Yellow Card,,Edwar López
+4731351,home,27.0,0,1,Woodwork,,Emanuel Reynoso
+4731351,home,35.0,0,1,Yellow Card,,Juan Dinenno
+4731351,away,45.0,7,1,Yellow Card,,Juan Jose Mera
+4731351,away,47.0,0,2,Goal,Field Goal,Luis Sandoval
+4731351,home,50.0,0,2,Yellow Card,,Edwin Velasco
+4731351,home,54.0,0,2,Yellow Card,,Daniel Giraldo
+4731351,away,58.0,0,2,Red Card,Second Yellow Card,Juan Jose Mera
+4731351,away,62.0,0,2,Goal,Field Goal,Luis Sandoval
+4731351,home,82.0,0,2,Yellow Card,,José Caldera
+4731351,home,84.0,0,2,Goal,Field Goal,Steven Rodríguez
+4731351,home,85.0,0,2,Yellow Card,,Gustavo Cuellar
+4731351,away,85.0,0,2,Yellow Card,,Luis Sandoval
