@@ -39530,3 +39530,17 @@ game_id,side,minute,added_time,half,type,subtype,player
 4672294,home,66.0,0,2,Red Card,Second Yellow Card,Veldin Hodza
 4672294,away,74.0,0,2,Yellow Card,,Omri Gandelman
 4672294,away,90.0,2,2,Yellow Card,,Raz Shlomo
+4672292,away,18.0,0,1,Yellow Card,,Willi Orban
+4672292,home,43.0,0,1,Goal Disallowed,Var,Goal Disallowed
+4672292,away,51.0,0,2,Yellow Card,,Milán Vitális
+4672292,home,60.0,0,2,Yellow Card,,Giorgi Tsitaishvili
+4672292,away,73.0,0,2,Goal,Own Goal,Lasha Dvali
+4672292,away,85.0,0,2,Goal,Field Goal,Barnabas Varga
+4672293,away,16.0,0,1,Yellow Card,,Ethan Ampadu
+4672293,home,59.0,0,2,Goal,Field Goal,Antonio Nusa
+4672293,home,68.0,0,2,Goal,Field Goal,Andreas Schjelderup
+4672293,away,76.0,0,2,Woodwork,,Ethan Ampadu
+4672293,away,79.0,0,2,Goal,Field Goal,David Brooks
+4672293,away,85.0,0,2,Yellow Card,,Connor Roberts
+4672293,away,87.0,0,2,Yellow Card,,Harry Wilson
+4672293,home,88.0,0,2,Goal,Penalty,Erling Haaland
