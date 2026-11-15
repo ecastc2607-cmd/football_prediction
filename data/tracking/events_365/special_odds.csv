@@ -46882,3 +46882,58 @@ game_id,line_type_id,market,line,option,odds,opening_odds,won
 4672285,145,Away Team - Clean Sheet,,No,1.68,1.62,False
 4672285,13,Both Teams To Score 2nd Half,,Yes,4.33,3.8,False
 4672285,13,Both Teams To Score 2nd Half,,No,1.19,1.23,True
+4672281,1,Full Time Result,,1,1.36,1.58,True
+4672281,1,Full Time Result,,X,5.0,4.1,False
+4672281,1,Full Time Result,,2,8.0,5.25,False
+4672281,14,Double Chance,,1X,1.08,1.15,True
+4672281,14,Double Chance,,12,1.17,1.23,True
+4672281,14,Double Chance,,X2,3.1,2.3,False
+4672281,3,Total Goals In Match,2.5,Under,2.1,1.98,False
+4672281,3,Total Goals In Match,2.5,Over,1.65,1.72,True
+4672281,3,Total Goals In Match,3.5,Under,1.42,1.38,True
+4672281,3,Total Goals In Match,3.5,Over,2.6,2.8,False
+4672281,3,Total Goals In Match,1.5,Under,4.1,3.9,False
+4672281,3,Total Goals In Match,1.5,Over,1.2,1.22,True
+4672281,12,Both Teams To Score,,Yes,2.0,1.78,True
+4672281,12,Both Teams To Score,,No,1.7,1.9,False
+4672281,7,First To Score,,Home,1.37,1.41,True
+4672281,7,First To Score,,No Goal,13.0,13.0,False
+4672281,7,First To Score,,Away,3.27,3.12,False
+4672281,11,Asian Handicap,-1.5,Home,1.96,2.1,False
+4672281,11,Asian Handicap,-1.5,Away,1.86,1.65,True
+4672281,11,Asian Handicap,-1.25,Home,1.69,1.94,False
+4672281,11,Asian Handicap,-1.25,Away,2.08,1.89,True
+4672281,11,Asian Handicap,-1.75,Home,2.19,2.42,False
+4672281,11,Asian Handicap,-1.75,Away,1.64,1.52,True
+4672281,15,Draw No Bet,,Home,1.11,1.21,True
+4672281,15,Draw No Bet,,Away,6.0,3.9,False
+4672281,5,1st Half Result,,1,1.75,1.98,True
+4672281,5,1st Half Result,,X,2.55,2.45,False
+4672281,5,1st Half Result,,2,6.5,4.8,False
+4672281,6,2nd Half Result,,1,1.61,1.9,False
+4672281,6,2nd Half Result,,X,2.95,2.6,True
+4672281,6,2nd Half Result,,2,6.5,4.75,False
+4672281,9,1st Half Goals,1.5,Under,1.5,1.5,True
+4672281,9,1st Half Goals,1.5,Over,2.49,2.49,False
+4672281,9,1st Half Goals,0.5,Under,3.25,3.4,False
+4672281,9,1st Half Goals,0.5,Over,1.33,1.3,True
+4672281,9,1st Half Goals,2.5,Under,1.1,1.11,True
+4672281,9,1st Half Goals,2.5,Over,6.5,6.0,False
+4672281,137,Total Corners,8.5,Under,2.01,2.11,True
+4672281,137,Total Corners,8.5,Over,1.74,1.68,False
+4672281,144,Home Team - Clean Sheet,,Yes,1.85,2.22,False
+4672281,144,Home Team - Clean Sheet,,No,1.85,1.63,True
+4672281,145,Away Team - Clean Sheet,,Yes,8.0,7.0,False
+4672281,145,Away Team - Clean Sheet,,No,1.09,1.1,True
+4672281,143,A Penalty In The Match,,Yes,3.72,3.72,False
+4672281,143,A Penalty In The Match,,No,1.24,1.24,True
+4672281,141,Total Cards,3.5,Under,1.82,1.82,True
+4672281,141,Total Cards,3.5,Over,1.82,1.82,False
+4672281,142,A Red Card in Match,,Yes,6.5,6.5,False
+4672281,142,A Red Card in Match,,No,1.1,1.1,True
+4672281,139,Total Shots On Target,8.5,Under,2.0,2.0,False
+4672281,139,Total Shots On Target,8.5,Over,1.73,1.73,True
+4672281,139,Total Shots On Target,9.5,Under,1.66,1.72,True
+4672281,139,Total Shots On Target,9.5,Over,2.09,1.99,False
+4672281,13,Both Teams To Score 2nd Half,,Yes,3.7,3.4,True
+4672281,13,Both Teams To Score 2nd Half,,No,1.24,1.27,False
