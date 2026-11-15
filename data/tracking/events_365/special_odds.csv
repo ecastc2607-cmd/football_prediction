@@ -46795,3 +46795,47 @@ game_id,line_type_id,market,line,option,odds,opening_odds,won
 4697785,145,Away Team - Clean Sheet,,No,1.51,1.45,False
 4697785,13,Both Teams To Score 2nd Half,,Yes,3.5,3.1,False
 4697785,13,Both Teams To Score 2nd Half,,No,1.26,1.32,True
+4672284,1,Full Time Result,,1,1.03,1.04,True
+4672284,1,Full Time Result,,X,21.0,13.0,False
+4672284,1,Full Time Result,,2,41.0,41.0,False
+4672284,3,Total Goals In Match,4.5,Under,1.73,1.49,False
+4672284,3,Total Goals In Match,4.5,Over,1.95,2.49,True
+4672284,3,Total Goals In Match,3.5,Under,2.55,2.09,False
+4672284,3,Total Goals In Match,3.5,Over,1.44,1.66,True
+4672284,3,Total Goals In Match,5.5,Under,1.35,1.22,False
+4672284,3,Total Goals In Match,5.5,Over,2.9,3.99,True
+4672284,12,Both Teams To Score,,Yes,4.51,3.76,True
+4672284,12,Both Teams To Score,,No,1.17,1.25,False
+4672284,7,First To Score,,Home,1.09,1.12,True
+4672284,7,First To Score,,No Goal,34.0,23.0,False
+4672284,7,First To Score,,Away,8.0,6.5,False
+4672284,11,Asian Handicap,-4,Home,2.0,2.68,True
+4672284,11,Asian Handicap,-4,Away,1.8,1.45,False
+4672284,11,Asian Handicap,-4.25,Home,2.21,2.87,True
+4672284,11,Asian Handicap,-4.25,Away,1.66,1.41,False
+4672284,11,Asian Handicap,-3.75,Home,1.8,2.3,True
+4672284,11,Asian Handicap,-3.75,Away,2.0,1.6,False
+4672284,15,Draw No Bet,,Home,,,True
+4672284,15,Draw No Bet,,Away,21.0,21.0,False
+4672284,5,1st Half Result,,1,1.14,1.2,True
+4672284,5,1st Half Result,,X,5.5,4.35,False
+4672284,5,1st Half Result,,2,29.0,29.0,False
+4672284,6,2nd Half Result,,1,1.12,1.19,True
+4672284,6,2nd Half Result,,X,6.25,5.0,False
+4672284,6,2nd Half Result,,2,29.0,18.5,False
+4672284,9,1st Half Goals,2.5,Under,1.51,1.31,False
+4672284,9,1st Half Goals,2.5,Over,2.51,3.42,True
+4672284,9,1st Half Goals,3.5,Under,1.18,1.11,False
+4672284,9,1st Half Goals,3.5,Over,5.04,6.5,True
+4672284,9,1st Half Goals,1.5,Under,2.52,2.01,False
+4672284,9,1st Half Goals,1.5,Over,1.51,1.74,True
+4672284,137,Total Corners,9.5,Under,1.79,1.79,True
+4672284,137,Total Corners,9.5,Over,1.9,1.9,False
+4672284,137,Total Corners,8.5,Under,2.12,2.12,True
+4672284,137,Total Corners,8.5,Over,1.68,1.68,False
+4672284,144,Home Team - Clean Sheet,,Yes,1.22,1.28,False
+4672284,144,Home Team - Clean Sheet,,No,3.98,3.48,True
+4672284,145,Away Team - Clean Sheet,,Yes,15.0,13.0,False
+4672284,145,Away Team - Clean Sheet,,No,1.01,1.01,True
+4672284,13,Both Teams To Score 2nd Half,,Yes,7.25,5.25,True
+4672284,13,Both Teams To Score 2nd Half,,No,1.08,1.14,False
