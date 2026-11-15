@@ -39692,3 +39692,26 @@ game_id,side,minute,added_time,half,type,subtype,player
 4672282,away,73.0,0,2,Yellow Card,,Salih Özcan
 4672282,home,80.0,0,2,Goal,Field Goal,Eli Kroupi
 4672282,away,90.0,0,2,Goal,Field Goal,Abdulkerim Bardakci
+4672280,away,15.0,0,1,Yellow Card,,Declan Rice
+4672280,away,45.0,0,1,Goal,Penalty,Harry Kane
+4672280,home,50.0,0,2,Yellow Card,,Marc Cucurella
+4672280,away,53.0,0,2,Goal,Field Goal,Ezri Konsa
+4672280,away,57.0,0,2,Goal,Field Goal,Ben White
+4672280,home,58.0,0,2,Yellow Card,,Lamine Yamal
+4672280,away,63.0,0,2,Red Card,,Elliot Anderson
+4672280,home,65.0,0,2,Goal,Penalty,Mikel Oyarzabal
+4672280,away,67.0,0,2,Yellow Card,,Djed Spence
+4672280,home,68.0,0,2,Yellow Card,,Álex Baena
+4672280,home,75.0,0,2,Goal,Field Goal,Nico Williams
+4672283,away,11.0,0,1,Goal,Field Goal,Pio Esposito
+4672283,home,15.0,0,1,Goal,Field Goal,Maxim de Cuyper
+4672283,home,22.0,0,1,Goal,Field Goal,Nathan Ngoy
+4672283,home,26.0,0,1,Goal,Field Goal,Jeremy Doku
+4672283,home,43.0,0,1,Woodwork,,Kevin De Bruyne
+4672283,away,45.0,1,1,Yellow Card,,Sandro Tonali
+4672283,away,51.0,0,2,Yellow Card,,Giorgio Scalvini
+4672283,home,54.0,0,2,Woodwork,,Charles de Ketelaere
+4672283,home,71.0,0,2,Woodwork,,Diego Moreira
+4672283,home,80.0,0,2,Goal,Field Goal,Diego Moreira
+4672283,away,81.0,0,2,Yellow Card,,Gianluigi Donnarumma
+4672283,away,90.0,1,2,Penalty Miss,,Pio Esposito
