@@ -39685,3 +39685,10 @@ game_id,side,minute,added_time,half,type,subtype,player
 4672281,away,84.0,0,2,Goal,Field Goal,Adam Hložek
 4672281,home,87.0,0,2,Goal,Field Goal,Lovro Majer
 4672281,away,89.0,0,2,Yellow Card,,Adam Hložek
+4672282,home,49.0,0,2,Goal,Own Goal,Emirhan Topçu
+4672282,away,53.0,0,2,Goal Disallowed,Var,Arda Güler
+4672282,home,55.0,0,2,Yellow Card,,Ibrahima Konaté
+4672282,away,56.0,0,2,Yellow Card,,Baris Yilmaz
+4672282,away,73.0,0,2,Yellow Card,,Salih Özcan
+4672282,home,80.0,0,2,Goal,Field Goal,Eli Kroupi
+4672282,away,90.0,0,2,Goal,Field Goal,Abdulkerim Bardakci
