@@ -39741,3 +39741,16 @@ game_id,side,minute,added_time,half,type,subtype,player
 4672277,home,69.0,0,2,Yellow Card,,Michael Schjønning-Larsen
 4672277,home,86.0,0,2,Yellow Card,,Karel Mustmaa
 4672277,home,90.0,1,2,Red Card,Second Yellow Card,Karel Mustmaa
+4672276,home,16.0,0,1,Woodwork,,Manfredas Ruzgis
+4672276,home,16.0,0,1,Goal,Field Goal,Eligijus Jankauskas
+4672276,home,21.0,0,1,Yellow Card,,Domantas Šluta
+4672276,home,50.0,0,2,Goal,Penalty,Manfredas Ruzgis
+4672276,home,55.0,0,2,Yellow Card,,Justas Lasickas
+4672276,home,58.0,0,2,Yellow Card,,Gvidas Gineitis
+4672276,away,60.0,0,2,Goal,Field Goal,Aron Sele
+4672276,home,67.0,0,2,Yellow Card,,Manfredas Ruzgis
+4672276,away,79.0,0,2,Yellow Card,,Niklas Beck
+4697792,home,25.0,0,1,Goal,Field Goal,Brynjolfur Darri Willumsson
+4697792,home,27.0,0,1,Woodwork,,Brynjolfur Darri Willumsson
+4697792,home,37.0,0,1,Goal,Penalty,Andri Guðjohnsen
+4697792,home,50.0,0,2,Goal,Field Goal,Mikael Ellertsson
