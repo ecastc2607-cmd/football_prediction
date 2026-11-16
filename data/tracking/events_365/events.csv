@@ -39754,3 +39754,18 @@ game_id,side,minute,added_time,half,type,subtype,player
 4697792,home,27.0,0,1,Woodwork,,Brynjolfur Darri Willumsson
 4697792,home,37.0,0,1,Goal,Penalty,Andri Guðjohnsen
 4697792,home,50.0,0,2,Goal,Field Goal,Mikael Ellertsson
+4672272,away,22.0,0,1,Yellow Card,,Adam Čerin
+4672272,away,29.0,0,1,Goal,Field Goal,Danijel Šturm
+4672272,away,48.0,0,2,Yellow Card,,Zan Karnicnik
+4672272,home,57.0,0,2,Yellow Card,,Ezgjan Alioski
+4672272,away,66.0,0,2,Goal,Field Goal,David Zec
+4672272,away,75.0,0,2,Yellow Card,,Benjamin Verbic
+4672272,away,90.0,1,2,Goal,Field Goal,Danijel Šturm
+4672275,home,32.0,0,1,Woodwork,,Derry Scherhant
+4672275,home,41.0,0,1,Goal,Field Goal,Derry Scherhant
+4672275,home,60.0,0,2,Goal,Field Goal,Florian Wirtz
+4672275,home,65.0,0,2,Goal,Field Goal,Nico Schlotterbeck
+4672275,home,71.0,0,2,Goal,Field Goal,Florian Wirtz
+4672275,home,77.0,0,2,Woodwork,,Derry Scherhant
+4672275,home,77.0,0,2,Goal,Field Goal,Brajan Gruda
+4672275,away,86.0,0,2,Yellow Card,,Mexx Meerdink
