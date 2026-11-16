@@ -4841,3 +4841,6 @@ game_id,competition,start_utc,home_team,away_team,home_goals,away_goals,ht_home_
 4697792,NT,2026-11-16T17:00:00Z,Iceland,Luxembourg,3,0,2.0,0.0,True,2026-11-16T18:55:19Z
 4672272,NT,2026-11-16T19:45:00Z,North Macedonia,Slovenia,0,3,0.0,1.0,True,2026-11-16T21:35:36Z
 4672275,NT,2026-11-16T19:45:00Z,Germany,Netherlands,5,0,1.0,0.0,True,2026-11-16T21:35:36Z
+4672273,NT,2026-11-16T19:45:00Z,Switzerland,Scotland,4,0,1.0,0.0,True,2026-11-16T21:40:20Z
+4672274,NT,2026-11-16T19:45:00Z,Greece,Serbia,1,0,0.0,0.0,True,2026-11-16T21:40:20Z
+4697791,NT,2026-11-16T19:45:00Z,Gibraltar,Malta,1,1,0.0,1.0,True,2026-11-16T21:40:20Z
