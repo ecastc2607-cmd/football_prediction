@@ -175,6 +175,8 @@ def _prepare_competition(code: str, season: int, matchday: int | None = None) ->
         load_competition(code, season - 1)
     if code in config.CUP_STYLE_COMPETITIONS:
         load_support_leagues(season)
+    if code in config.STRENGTH_FROM:  # Copa BetPlay: las fuerzas salen de la Liga BetPlay
+        _prepare_competition(config.strength_code(code), season)
 
 
 @st.cache_data(ttl=1800, show_spinner="Calculando predicciones...")
@@ -928,6 +930,7 @@ def _special_strength(bt: pd.DataFrame, comp: str, filtro) -> float | None:
 
 def _jornada_strength(show: pd.DataFrame, comp: str) -> pd.DataFrame:
     """Fuerza por celda de la tabla Jornada: una columna por mercado mostrado."""
+    comp = config.strength_code(comp)  # Copa BetPlay: la fuerza de la Liga BetPlay
     ruta_pred = config.ROOT_DIR / "data" / "tracking" / "predictions_log.csv"
     ruta_bt = special_markets.BACKTEST_PATH
     liga, equipo, bt = _strength_sources(ruta_pred.stat().st_mtime if ruta_pred.exists() else 0,
@@ -1025,7 +1028,7 @@ with tab_jornada:
             ),
             order=alt.Order("orden:Q"),
             tooltip=["partido_completo", "resultado", alt.Tooltip("probabilidad:Q", format=".1f")],
-        ).properties(height=40 * len(df) + 40)
+        ).properties(height=alt.Step(34))  # alto por partido: con 2 partidos las etiquetas se encimaban
 
         st.altair_chart(chart, use_container_width=True)
 

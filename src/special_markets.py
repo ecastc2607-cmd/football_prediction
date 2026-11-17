@@ -229,7 +229,9 @@ def walk_forward_xg(codes: list[str] | None = None) -> pd.DataFrame:
             return pd.read_csv(config.CLOSED_SEASONS_DIR / f"matches_{code}_{s}.csv")
 
     filas = []
-    for code in codes or list(config.COMPETITIONS):
+    # Sin las que se predicen con la fuerza de otra (Copa BetPlay): sus pocos
+    # partidos no dan para un walk-forward propio; usan las reglas de su liga.
+    for code in codes or [c for c in config.COMPETITIONS if c not in config.STRENGTH_FROM]:
         temporadas = sorted({int(p.stem.rsplit("_", 1)[1])
                              for carpeta in (config.PROCESSED_DIR, config.CLOSED_SEASONS_DIR)
                              for p in carpeta.glob(f"matches_{code}_*.csv")})
@@ -819,6 +821,7 @@ def best_special_pick(competition: str, home_xg: float, away_xg: float, home: st
     from .value_tips import special_rules
 
     correccion, permitidos = special_rules()
+    competition = config.strength_code(competition)  # Copa BetPlay: reglas de la Liga BetPlay
     share = pd.read_csv(SHARE_PATH, index_col=0).iloc[:, 0].to_dict() if SHARE_PATH.exists() else {}
     fav_local = home_xg >= away_xg
     mejores = []

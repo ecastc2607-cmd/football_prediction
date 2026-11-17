@@ -1,0 +1,157 @@
+id,start_utc,status_group,status_text,home_team,away_team,home_id,away_id,home_goals,away_goals,stage,round_num,round_name
+4432338,2025-05-28T20:00:00Z,4,Ended,Leones,Internacional de Bogota,9829,8542,1.0,2.0,,1.0,Round
+4432337,2025-05-28T21:00:00Z,4,Ended,Llaneros FC,Atlético FC,10378,10362,1.0,1.0,,1.0,Round
+4432336,2025-05-29T20:00:00Z,4,Ended,Real Santander,Union Magdalena,9834,9832,0.0,2.0,,1.0,Round
+4432335,2025-05-29T21:00:00Z,4,Ended,Deportes Quindio,Boyaca Chico,8636,8641,2.0,1.0,,1.0,Round
+4432332,2025-05-30T21:00:00Z,4,Ended,Fortaleza FC,Bogotá FC,9844,10226,2.0,0.0,,1.0,Round
+4432331,2025-05-30T21:00:00Z,4,Ended,Orsomarso,Envigado FC,28953,8642,0.0,1.0,,1.0,Round
+4432333,2025-05-31T00:00:00Z,4,Ended,Deportivo Cali,Boca Juniors Cali,8639,10346,2.0,1.0,,1.0,Round
+4432334,2025-05-31T23:00:00Z,4,Ended,Águilas Doradas,Barranquilla FC,20841,13912,1.0,0.0,,1.0,Round
+4432895,2025-06-01T20:00:00Z,4,Ended,Atlético FC,Real Santander,10362,9834,3.0,2.0,,2.0,Round
+4432893,2025-06-02T23:00:00Z,4,Ended,Atlético Bucaramanga,Deportivo Cali,10224,8639,3.0,1.0,,2.0,Round
+4432889,2025-06-02T23:00:00Z,4,Ended,Deportivo Pasto,Llaneros FC,9048,10378,3.0,0.0,,2.0,Round
+4432890,2025-06-03T01:15:00Z,4,Ended,Deportivo Pereira,Fortaleza FC,8638,9844,0.0,0.0,,2.0,Round
+4432894,2025-06-03T19:00:00Z,4,Ended,Boca Juniors Cali,Deportes Quindio,10346,8636,2.0,0.0,,2.0,Round
+4432891,2025-06-03T21:00:00Z,4,Ended,Bogotá FC,Leones,10226,9829,0.0,0.0,,2.0,Round
+4432892,2025-06-04T00:00:00Z,4,Ended,Barranquilla FC,Orsomarso,13912,28953,2.0,0.0,,2.0,Round
+4432888,2025-06-04T21:15:00Z,4,Ended,Alianza FC,Águilas Doradas,10209,20841,4.0,0.0,,2.0,Round
+4443968,2025-06-05T21:00:00Z,4,Ended,Union Magdalena,Atlético FC,9832,10362,0.0,0.0,,3.0,Round
+4443969,2025-06-05T21:00:00Z,4,Ended,Real Santander,Deportivo Pasto,9834,9048,1.0,1.0,,3.0,Round
+4443967,2025-06-07T00:00:00Z,4,Ended,Deportes Quindio,Atlético Bucaramanga,8636,10224,2.0,2.0,,3.0,Round
+4443965,2025-06-07T19:00:00Z,4,Ended,Envigado FC,Barranquilla FC,8642,13912,2.0,1.0,,3.0,Round
+4443966,2025-06-07T23:00:00Z,4,Ended,Boyaca Chico,Boca Juniors Cali,8641,10346,1.0,0.0,,3.0,Round
+4443963,2025-06-08T00:00:00Z,4,Ended,Internacional de Bogota,Bogotá FC,8542,10226,1.0,2.0,,3.0,Round
+4443964,2025-06-08T01:20:00Z,4,Ended,Leones,Deportivo Pereira,9829,8638,2.0,2.0,,3.0,Round
+4443962,2025-06-08T19:00:00Z,4,Ended,Orsomarso,Alianza FC,28953,10209,2.0,2.0,,3.0,Round
+4445107,2025-06-09T21:00:00Z,4,Ended,Llaneros FC,Real Santander,10378,9834,2.0,1.0,,4.0,Round
+4445106,2025-06-10T01:05:00Z,4,Ended,Deportivo Cali,Deportes Quindio,8639,8636,0.0,2.0,,4.0,Round
+4445105,2025-06-10T22:00:00Z,4,Ended,Atlético Bucaramanga,Boyaca Chico,10224,8641,3.0,2.0,,4.0,Round
+4445104,2025-06-11T21:00:00Z,4,Ended,Alianza FC,Envigado FC,10209,8642,3.0,3.0,,4.0,Round
+4445103,2025-06-11T23:00:00Z,4,Ended,Águilas Doradas,Orsomarso,20841,28953,2.0,1.0,,4.0,Round
+4445101,2025-06-12T00:00:00Z,4,Ended,Deportivo Pasto,Union Magdalena,9048,9832,3.0,1.0,,4.0,Round
+4445102,2025-06-12T00:00:00Z,4,Ended,Deportivo Pereira,Internacional de Bogota,8638,8542,2.0,0.0,,4.0,Round
+4445100,2025-06-12T20:00:00Z,4,Ended,Fortaleza FC,Leones,9844,9829,1.0,1.0,,4.0,Round
+4445099,2025-06-14T01:00:00Z,4,Ended,Boca Juniors Cali,Atlético Bucaramanga,10346,10224,0.0,1.0,,5.0,Round
+4445810,2025-06-14T20:00:00Z,4,Ended,Boyaca Chico,Deportivo Cali,8641,8639,1.0,0.0,,5.0,Round
+4445811,2025-06-15T01:10:00Z,4,Ended,Atlético FC,Deportivo Pasto,10362,9048,1.0,0.0,,5.0,Round
+4445097,2025-06-15T20:00:00Z,4,Ended,Internacional de Bogota,Fortaleza FC,8542,9844,0.0,2.0,,5.0,Round
+4445096,2025-06-15T20:45:00Z,4,Ended,Barranquilla FC,Alianza FC,13912,10209,0.0,1.0,,5.0,Round
+4445098,2025-06-15T20:45:00Z,4,Ended,Envigado FC,Águilas Doradas,8642,20841,2.0,0.0,,5.0,Round
+4445095,2025-06-15T21:00:00Z,4,Ended,Union Magdalena,Llaneros FC,9832,10378,0.0,0.0,,5.0,Round
+4445094,2025-06-16T20:00:00Z,4,Ended,Bogotá FC,Deportivo Pereira,10226,8638,0.0,3.0,,5.0,Round
+4485625,2025-07-29T23:00:00Z,4,Ended,Independiente Santa Fe,Internacional FC,7644,9836,2.0,0.0,Phase 1B,,Round
+4485626,2025-07-29T23:00:00Z,4,Ended,Atletico Nacional,Cucuta Deportivo,8640,8634,1.0,0.0,Phase 1B,,Round
+4485623,2025-07-30T00:30:00Z,4,Ended,Junior FC,Independiente Valle del Cauca,7204,7642,2.0,2.0,Phase 1B,,Round
+4485624,2025-07-30T00:30:00Z,4,Ended,Deportes Tolima,Real Cundinamarca,7635,9835,1.0,2.0,Phase 1B,,Round
+4485622,2025-07-30T01:20:00Z,4,Ended,America de Cali,Tigres,8645,10361,5.0,0.0,Phase 1B,,Round
+4485621,2025-07-31T00:30:00Z,4,Ended,Once Caldas,Patriotas,7289,9049,6.0,0.0,Phase 1B,,Round
+4485620,2025-07-31T23:00:00Z,4,Ended,Independiente Medellin,Jaguares de Córdoba,8643,10377,1.0,1.0,Phase 1B,,Round
+4485619,2025-08-01T01:10:00Z,4,Ended,Millonarios,Real Cartagena,8637,8635,3.0,1.0,Phase 1B,,Round
+4485618,2025-08-05T21:00:00Z,4,Ended,Cucuta Deportivo,Atletico Nacional,8634,8640,0.0,3.0,Phase 1B,,Round
+4485617,2025-08-06T01:00:00Z,4,Ended,Internacional FC,Independiente Santa Fe,9836,7644,0.0,0.0,Phase 1B,,Round
+4485616,2025-08-06T22:00:00Z,4,Ended,Tigres,America de Cali,10361,8645,0.0,1.0,Phase 1B,,Round
+4485611,2025-08-07T00:30:00Z,4,After Penalties,Independiente Valle del Cauca,Junior FC,7642,7204,1.0,1.0,Phase 1B,,Round
+4485612,2025-08-07T22:00:00Z,4,Ended,Jaguares de Córdoba,Independiente Medellin,10377,8643,0.0,1.0,Phase 1B,,Round
+4485615,2025-08-14T00:00:00Z,4,Ended,Real Cundinamarca,Deportes Tolima,9835,7635,1.0,0.0,Phase 1B,,Round
+4485613,2025-08-22T21:00:00Z,4,Ended,Patriotas,Once Caldas,9049,7289,1.0,0.0,Phase 1B,,Round
+4528235,2025-08-26T23:30:00Z,4,Ended,Junior FC,Atlético FC,7204,10362,2.0,0.0,Round of 16,,Round
+4528234,2025-08-27T00:00:00Z,4,Ended,Deportivo Pereira,Real Cundinamarca,8638,9835,4.0,3.0,Round of 16,,Round
+4485614,2025-08-27T01:10:00Z,4,Ended,Real Cartagena,Millonarios,8635,8637,2.0,1.0,Phase 1B,,Round
+4528233,2025-08-27T20:00:00Z,4,Ended,Fortaleza FC,Independiente Medellin,9844,8643,0.0,0.0,Round of 16,,Round
+4528231,2025-08-27T23:30:00Z,4,Ended,Atlético Bucaramanga,America de Cali,10224,8645,1.0,0.0,Round of 16,,Round
+4528232,2025-08-28T01:30:00Z,4,Ended,Atletico Nacional,Deportes Quindio,8640,8636,4.0,0.0,Round of 16,,Round
+4528230,2025-08-28T21:00:00Z,4,Ended,Alianza FC,Independiente Santa Fe,10209,7644,1.0,1.0,Round of 16,,Round
+4532745,2025-08-29T00:30:00Z,4,Ended,Deportivo Pasto,Once Caldas,9048,7289,1.0,2.0,Round of 16,,Round
+4528229,2025-09-03T00:00:00Z,4,After Penalties,Real Cundinamarca,Deportivo Pereira,9835,8638,2.0,1.0,Round of 16,,Round
+4528225,2025-09-03T00:30:00Z,4,After Penalties,Atlético FC,Junior FC,10362,7204,2.0,0.0,Round of 16,,Round
+4535257,2025-09-03T20:00:00Z,4,Ended,Envigado FC,Millonarios,8642,8637,1.0,0.0,Round of 16,,Round
+4528226,2025-09-03T22:15:00Z,4,Ended,America de Cali,Atlético Bucaramanga,8645,10224,2.0,0.0,Round of 16,,Round
+4528224,2025-09-04T00:30:00Z,4,Ended,Independiente Medellin,Fortaleza FC,8643,9844,2.0,1.0,Round of 16,,Round
+4528227,2025-09-04T00:45:00Z,4,Ended,Deportes Quindio,Atletico Nacional,8636,8640,2.0,2.0,Round of 16,,Round
+4528228,2025-09-10T01:30:00Z,4,Ended,Independiente Santa Fe,Alianza FC,7644,10209,4.0,1.0,Round of 16,,Round
+4535256,2025-09-17T01:10:00Z,4,Ended,Millonarios,Envigado FC,8637,8642,0.0,0.0,Round of 16,,Round
+4556965,2025-09-24T23:00:00Z,4,Ended,Independiente Medellin,Independiente Santa Fe,8643,7644,1.0,2.0,Quarter Finals,,Round
+4532966,2025-10-02T00:00:00Z,4,Ended,Once Caldas,Deportivo Pasto,7289,9048,4.0,0.0,Round of 16,,Round
+4556962,2025-10-02T01:00:00Z,4,Ended,Independiente Santa Fe,Independiente Medellin,7644,8643,0.0,3.0,Quarter Finals,,Round
+4556961,2025-10-03T01:00:00Z,4,Ended,Junior FC,America de Cali,7204,8645,1.0,2.0,Quarter Finals,,Round
+4556964,2025-10-07T20:00:00Z,4,Ended,Envigado FC,Deportivo Pereira,8642,8638,2.0,1.0,Quarter Finals,,Round
+4579013,2025-10-10T00:30:00Z,4,Ended,Once Caldas,Atletico Nacional,7289,8640,0.0,1.0,Quarter Finals,,Round
+4556966,2025-10-16T01:20:00Z,4,After Penalties,America de Cali,Junior FC,8645,7204,0.0,1.0,Quarter Finals,,Round
+4556963,2025-10-22T01:00:00Z,4,After Penalties,Deportivo Pereira,Envigado FC,8638,8642,1.0,0.0,Quarter Finals,,Round
+4586951,2025-10-22T23:00:00Z,4,Ended,Atletico Nacional,Once Caldas,8640,7289,2.0,0.0,Quarter Finals,,Round
+4605974,2025-11-02T23:30:00Z,4,Ended,Atletico Nacional,America de Cali,8640,8645,4.0,1.0,Semi Finals,,Round
+4605973,2025-11-03T21:00:00Z,4,Ended,Envigado FC,Independiente Medellin,8642,8643,0.0,1.0,Semi Finals,,Round
+4605975,2025-11-11T00:30:00Z,4,Ended,Independiente Medellin,Envigado FC,8643,8642,1.0,1.0,Semi Finals,,Round
+4605976,2025-11-16T22:00:00Z,4,Ended,America de Cali,Atletico Nacional,8645,8640,2.0,2.0,Semi Finals,,Round
+4618909,2025-12-13T22:00:00Z,4,Ended,Atletico Nacional,Independiente Medellin,8640,8643,0.0,0.0,Final,,Round
+4618910,2025-12-18T00:30:00Z,4,Ended,Independiente Medellin,Atletico Nacional,8643,8640,0.0,1.0,Final,,Round
+4711289,2026-05-07T00:00:00Z,4,Ended,Patriotas,Boyaca Chico,9049,8641,0.0,0.0,,1.0,Round
+4711288,2026-05-07T21:00:00Z,4,Ended,Jaguares de Córdoba,Real Cundinamarca,10377,9835,1.0,2.0,,1.0,Round
+4711291,2026-05-07T22:00:00Z,4,Ended,Llaneros FC,Atlético FC,10378,10362,3.0,0.0,,1.0,Round
+4711290,2026-05-07T23:00:00Z,4,Ended,Independiente Valle del Cauca,Deportivo Pereira,7642,8638,1.0,1.0,,1.0,Round
+4711294,2026-05-08T01:00:00Z,4,Ended,Atlético Bucaramanga,Real Santander,10224,9834,5.0,0.0,,1.0,Round
+4711287,2026-05-08T20:00:00Z,4,Ended,Boca Juniors Cali,Alianza FC,10346,10209,1.0,1.0,,1.0,Round
+4711292,2026-05-08T20:00:00Z,4,Ended,Fortaleza FC,Leones,9844,9829,4.0,1.0,,1.0,Round
+4711293,2026-05-09T22:00:00Z,4,Ended,Orsomarso,Cucuta Deportivo,28953,8634,1.0,1.0,,1.0,Round
+4711495,2026-05-10T20:00:00Z,4,Ended,Águilas Doradas,Jaguares de Córdoba,20841,10377,0.0,0.0,,2.0,Round
+4711498,2026-05-11T20:00:00Z,4,Ended,Atlético FC,Patriotas,10362,9049,1.0,1.0,,2.0,Round
+4711497,2026-05-11T21:00:00Z,4,Ended,Independiente Medellin,Fortaleza FC,8643,9844,1.0,0.0,,2.0,Round
+4711493,2026-05-11T23:00:00Z,4,Ended,Deportivo Cali,Atlético Bucaramanga,8639,10224,2.0,0.0,,2.0,Round
+4711499,2026-05-12T01:00:00Z,4,Ended,Millonarios,Llaneros FC,8637,10378,1.0,0.0,,2.0,Round
+4711496,2026-05-12T19:00:00Z,4,Ended,Leones,Orsomarso,9829,28953,2.0,0.0,,2.0,Round
+4711492,2026-05-12T20:00:00Z,4,Ended,Real Santander,Boca Juniors Cali,9834,10346,0.0,3.0,,2.0,Round
+4711494,2026-05-13T19:00:00Z,4,Ended,Real Cundinamarca,Independiente Valle del Cauca,9835,7642,2.0,0.0,,2.0,Round
+4711485,2026-05-15T21:00:00Z,4,Ended,Boca Juniors Cali,Deportivo Cali,10346,8639,1.0,5.0,,3.0,Round
+4711491,2026-05-15T23:00:00Z,4,Ended,Patriotas,Millonarios,9049,8637,2.0,3.0,,3.0,Round
+4711489,2026-05-16T01:00:00Z,4,Ended,Orsomarso,Independiente Medellin,28953,8643,1.0,1.0,,3.0,Round
+4711483,2026-05-16T20:30:00Z,4,Ended,Alianza FC,Real Santander,10209,9834,3.0,0.0,,3.0,Round
+4711488,2026-05-16T20:30:00Z,4,Ended,Cucuta Deportivo,Leones,8634,9829,0.0,0.0,,3.0,Round
+4711490,2026-05-16T20:30:00Z,4,Ended,Boyaca Chico,Atlético FC,8641,10362,4.0,0.0,,3.0,Round
+4711486,2026-05-17T20:30:00Z,4,Ended,Deportivo Pereira,Real Cundinamarca,8638,9835,1.0,0.0,,3.0,Round
+4711487,2026-05-18T00:30:00Z,4,Ended,Independiente Valle del Cauca,Águilas Doradas,7642,20841,1.0,4.0,,3.0,Round
+4711482,2026-05-20T20:00:00Z,4,Ended,Fortaleza FC,Orsomarso,9844,28953,1.0,1.0,,4.0,Round
+4711480,2026-05-20T22:00:00Z,4,Ended,Llaneros FC,Patriotas,10378,9049,3.0,1.0,,4.0,Round
+4711476,2026-05-21T00:00:00Z,4,Ended,Atlético Bucaramanga,Boca Juniors Cali,10224,10346,2.0,3.0,,4.0,Round
+4711477,2026-05-21T00:40:00Z,4,Ended,Deportivo Cali,Alianza FC,8639,10209,1.0,0.0,,4.0,Round
+4711479,2026-05-21T20:30:00Z,4,Ended,Águilas Doradas,Deportivo Pereira,20841,8638,1.0,1.0,,4.0,Round
+4711478,2026-05-21T21:00:00Z,4,Ended,Jaguares de Córdoba,Independiente Valle del Cauca,10377,7642,3.0,0.0,,4.0,Round
+4711481,2026-05-23T20:00:00Z,4,Ended,Millonarios,Boyaca Chico,8637,8641,2.0,2.0,,4.0,Round
+4711467,2026-05-24T20:30:00Z,4,Ended,Alianza FC,Atlético Bucaramanga,10209,10224,2.0,1.0,,5.0,Round
+4711469,2026-05-24T20:30:00Z,4,Ended,Real Santander,Deportivo Cali,9834,8639,1.0,2.0,,5.0,Round
+4711470,2026-05-26T20:30:00Z,4,Ended,Deportivo Pereira,Jaguares de Córdoba,8638,10377,1.0,0.0,,5.0,Round
+4711468,2026-05-26T20:30:00Z,4,Ended,Real Cundinamarca,Águilas Doradas,9835,20841,2.0,2.0,,5.0,Round
+4727656,2026-05-27T21:00:00Z,4,Ended,Boyaca Chico,Llaneros FC,8641,10378,0.0,1.0,,5.0,Round
+4711475,2026-05-29T21:00:00Z,4,Ended,Cucuta Deportivo,Fortaleza FC,8634,9844,0.0,0.0,,5.0,Round
+4711474,2026-05-29T23:00:00Z,4,Ended,Leones,Independiente Medellin,9829,8643,1.0,1.0,,5.0,Round
+4711473,2026-05-30T01:10:00Z,4,Ended,Atlético FC,Millonarios,10362,8637,1.0,8.0,,5.0,Round
+4711484,2026-06-02T21:00:00Z,4,Ended,Independiente Medellin,Cucuta Deportivo,8643,8634,2.0,1.0,,4.0,Round
+4713987,2026-07-21T21:00:00Z,4,Ended,Atletico Nacional,Tigres,8640,10361,2.0,0.0,Phase 1B,,Round
+4713991,2026-07-21T22:00:00Z,4,Ended,Internacional de Bogota,Internacional FC,8542,9836,1.0,0.0,Phase 1B,,Round
+4713990,2026-07-21T23:00:00Z,4,Ended,Deportes Tolima,Deportes Quindio,7635,8636,2.0,1.0,Phase 1B,,Round
+4713984,2026-07-22T00:00:00Z,4,Ended,Once Caldas,Envigado FC,7289,8642,3.0,0.0,Phase 1B,,Round
+4711472,2026-07-22T00:00:00Z,4,Ended,Deportivo Pasto,Bogotá FC,9048,10226,0.0,1.0,Phase 1B,,Round
+4713989,2026-07-22T00:30:00Z,4,Ended,America de Cali,Real Cartagena,8645,8635,2.0,1.0,Phase 1B,,Round
+4713988,2026-07-23T00:30:00Z,4,Ended,Junior FC,Barranquilla FC,7204,13912,2.0,2.0,Phase 1B,,Round
+4713983,2026-07-28T23:15:00Z,4,After Penalties,Deportes Quindio,Deportes Tolima,8636,7635,2.0,1.0,Phase 1B,,Round
+4711466,2026-07-29T00:00:00Z,4,Ended,Bogotá FC,Deportivo Pasto,10226,9048,0.0,3.0,Phase 1B,,Round
+4713980,2026-07-29T01:30:00Z,4,Ended,Tigres,Atletico Nacional,10361,8640,0.0,2.0,Phase 1B,,Round
+4713986,2026-07-29T22:00:00Z,4,Ended,Internacional FC,Internacional de Bogota,9836,8542,1.0,2.0,Phase 1B,,Round
+4713979,2026-07-29T22:30:00Z,4,After Penalties,Barranquilla FC,Junior FC,13912,7204,3.0,3.0,Phase 1B,,Round
+4713981,2026-07-30T01:00:00Z,4,Ended,Real Cartagena,America de Cali,8635,8645,1.0,1.0,Phase 1B,,Round
+4713978,2026-07-30T20:30:00Z,4,Ended,Envigado FC,Once Caldas,8642,7289,0.0,3.0,Phase 1B,,Round
+4713985,2026-08-06T00:00:00Z,4,Ended,Independiente Santa Fe,Union Magdalena,7644,9832,2.0,0.0,Phase 1B,,Round
+4796830,2026-09-02T22:30:00Z,4,After Penalties,Deportes Quindio,Llaneros FC,8636,10378,1.0,1.0,Round of 16,,Round
+4797356,2026-09-08T01:15:00Z,4,Ended,Atletico Nacional,Deportivo Cali,8640,8639,3.0,0.0,Round of 16,,Round
+4798199,2026-09-09T23:00:00Z,4,Ended,Real Cundinamarca,Internacional de Bogota,9835,8542,1.0,2.0,Round of 16,,Round
+4798285,2026-09-09T23:00:00Z,4,Ended,America de Cali,Deportivo Pereira,8645,8638,4.0,1.0,Round of 16,,Round
+4801682,2026-09-10T00:00:00Z,4,Ended,Once Caldas,Alianza FC,7289,10209,1.0,0.0,Round of 16,,Round
+4797357,2026-09-10T01:10:00Z,4,Ended,Deportivo Pasto,Independiente Medellin,9048,8643,1.0,4.0,Round of 16,,Round
+4853643,2026-09-25T23:00:00Z,4,Ended,Union Magdalena,Independiente Santa Fe,9832,7644,1.0,1.0,Phase 1B,,Round
+4798284,2026-10-03T23:10:00Z,4,After Penalties,Barranquilla FC,Millonarios,13912,8637,1.0,1.0,Round of 16,,Round
+4870905,2026-10-11T19:00:00Z,4,After Penalties,Independiente Santa Fe,Fortaleza FC,7644,9844,2.0,2.0,Round of 16,,Round
+4871494,2026-10-15T01:30:00Z,4,Ended,Atletico Nacional,Independiente Medellin,8640,8643,3.0,2.0,Quarter Finals,,Round
+4871495,2026-10-15T23:00:00Z,4,Ended,Internacional de Bogota,Llaneros FC,8542,10378,4.0,1.0,Quarter Finals,,Round
+4871496,2026-10-22T00:30:00Z,4,Ended,Barranquilla FC,America de Cali,13912,8645,0.0,4.0,Quarter Finals,,Round
+4877788,2026-11-02T01:15:00Z,4,Ended,Independiente Santa Fe,Once Caldas,7644,7289,0.0,2.0,Quarter Finals,,Round
+4889565,2026-11-10T23:30:00Z,4,Ended,Internacional de Bogota,America de Cali,8542,8645,1.0,2.0,Semi Finals,,Round
+4889564,2026-11-11T01:30:00Z,4,Ended,Once Caldas,Atletico Nacional,7289,8640,1.0,1.0,Semi Finals,,Round

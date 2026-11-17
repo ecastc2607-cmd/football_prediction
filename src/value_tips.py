@@ -26,6 +26,8 @@ from __future__ import annotations
 
 import pandas as pd
 
+from . import config
+
 # 65% (antes 70%). Calibración con ~450 picks resueltos (oct-2026, partidos
 # reales + backtest): el tramo 65-70% acertó 72% — igual que el de 70-75%
 # (67%) —, mientras que 60-65% acertó solo 51% (el modelo se sobreestima ahí).
@@ -51,7 +53,8 @@ TOTALS_MARKETS = {"corners": "Corners", "cards": "Tarjetas"}
 # 1.038 vs 1.067) y doble oportunidad acierta 77%.
 # Corners en Colombia (totals_backtest, 732 partidos): peor que la frecuencia
 # de la liga en las 3 líneas; tarjetas sí le gana (1.2-1.8%) y está calibrado.
-EXCLUDED_MARKETS = {"COL": {"Goles", "Ambos anotan", "Corners"}}
+EXCLUDED_MARKETS = {"COL": {"Goles", "Ambos anotan", "Corners"},
+                    "CBP": {"Goles", "Ambos anotan", "Corners"}}  # Copa BetPlay: modelo de la liga
 # Picks ya prácticamente decididos: la casa paga ~1.01, no aportan nada.
 LIVE_MAX_PROB = 0.97
 MIN_EDGE = 0.03  # valor esperado mínimo (+3% por peso apostado), ya descontado
@@ -340,7 +343,8 @@ def special_candidates(day_predictions: pd.DataFrame, lines_for) -> pd.DataFrame
     share = pd.read_csv(sm.SHARE_PATH, index_col=0).iloc[:, 0].to_dict() if sm.SHARE_PATH.exists() else {}
     filas = []
     for _, r in day_predictions.iterrows():
-        comp = r.get("competition")
+        # Copa BetPlay: reglas, reparto por tiempo y estadísticas de la Liga BetPlay.
+        comp = config.strength_code(r.get("competition"))
         try:
             hx, ax = float(r["home_xg"]), float(r["away_xg"])
         except (TypeError, ValueError, KeyError):
@@ -378,7 +382,7 @@ def special_candidates(day_predictions: pd.DataFrame, lines_for) -> pd.DataFrame
             cuota = sm.event_or_stat_price(merc, lineas) if not lineas.empty else None
             prob_cal = min(max(prob + correccion.get(merc, 0.0), 0.01), 0.99)
             filas.append({
-                "competition": comp, "competition_name": r.get("competition_name", ""),
+                "competition": r.get("competition"), "competition_name": r.get("competition_name", ""),
                 "utc_date": r["utc_date"], "home_team": r["home_team"], "away_team": r["away_team"],
                 "home_team_short": home_short, "away_team_short": away_short,
                 "partido": f"{home_short} vs {away_short}", "mercado": nombre,
@@ -402,7 +406,7 @@ def special_candidates(day_predictions: pd.DataFrame, lines_for) -> pd.DataFrame
                 pick = extra
             prob_cal = min(max(prob + correccion.get(merc, 0.0), 0.01), 0.99)
             filas.append({
-                "competition": comp, "competition_name": r.get("competition_name", ""),
+                "competition": r.get("competition"), "competition_name": r.get("competition_name", ""),
                 "utc_date": r["utc_date"], "home_team": r["home_team"], "away_team": r["away_team"],
                 "home_team_short": home_short, "away_team_short": away_short,
                 "partido": f"{home_short} vs {away_short}", "mercado": mercado, "pick": pick,

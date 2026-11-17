@@ -36,7 +36,7 @@ def log_competition(code: str, season: int, matchday: int, seasons_back: int = 1
     backfill explícito con datos previos al partido (same_day.backfill_day),
     que se marca con su propio `source` para no mezclarlo con lo logueado a tiempo."""
     seasons = [season - i for i in range(seasons_back + 1)]
-    strength = team_strength_for_competition(code, seasons)
+    strength = team_strength_for_competition(config.strength_code(code), seasons)
     fixtures = upcoming_fixtures(code, season, matchday)
     if not only_future:
         from .predict_matchday import matchday_fixtures
@@ -62,7 +62,7 @@ def log_competition(code: str, season: int, matchday: int, seasons_back: int = 1
     # todavía no tiene historial en match_stats_log.csv, sale vacío y esos
     # campos quedan en None para todos los partidos (no es un error).
     tendency_averages = load_team_averages(code)
-    mitades = half_strengths(code, seasons)
+    mitades = half_strengths(config.strength_code(code), seasons)
 
     now = datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
     rows = []

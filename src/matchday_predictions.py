@@ -30,7 +30,9 @@ def matchday_predictions_df(competition_code: str, season: int, matchday: int,
     tabla y marca el Contexto).
     """
     seasons = [season - i for i in range(seasons_back + 1)]
-    strength = team_strength_for_competition(competition_code, seasons)
+    # Copa BetPlay: fuerzas de la Liga BetPlay (config.STRENGTH_FROM).
+    fuente = config.strength_code(competition_code)
+    strength = team_strength_for_competition(fuente, seasons)
     if include_played:
         fixtures = matchday_fixtures(competition_code, season, matchday)
         # Deja afuera estados raros (POSTPONED/CANCELLED/SUSPENDED/AWARDED):
@@ -54,7 +56,7 @@ def matchday_predictions_df(competition_code: str, season: int, matchday: int,
     # Fuerza por tiempo (1T/2T), para analizar apuestas de un solo tiempo. Solo
     # con datos propios de la competición: equipos sin historial propio (ej.
     # los de Europa League que usan su liga doméstica) quedan sin este dato.
-    mitades = half_strengths(competition_code, seasons)
+    mitades = half_strengths(fuente, seasons)
 
     rows = []
     for _, row in fixtures.iterrows():

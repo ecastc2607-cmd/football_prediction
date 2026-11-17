@@ -37,6 +37,7 @@ COMPETITIONS = {
     "EL": "Europa League",
     "ECL": "Conference League",
     "COL": "Liga BetPlay (Colombia)",
+    "CBP": "Copa BetPlay (Colombia)",
     "NT": "Selecciones (Nations League)",
 }
 
@@ -47,7 +48,19 @@ COMPETITIONS = {
 # "COL" (Liga BetPlay): tampoco está en football-data.org; corre sobre 365scores
 # (src/colombia.py). El nombre del conjunto quedó de cuando todas las fuentes
 # externas eran Goal API: hoy significa "no viene de football-data.org".
-GOAL_API_COMPETITIONS = {"EL", "ECL", "NT", "COL"}
+# "CBP" (Copa BetPlay): también 365scores (src/copa_betplay.py).
+GOAL_API_COMPETITIONS = {"EL", "ECL", "NT", "COL", "CBP"}
+
+# Competiciones que se predicen con la fuerza de OTRA (sin modelo propio): la
+# Copa BetPlay tiene muy pocos partidos por equipo (eliminatorias, rotación),
+# así que usa la fuerza de los equipos en la Liga BetPlay (pedido del usuario,
+# nov-2026). Equipos de Primera B no tienen fuerza en la liga: no se predicen.
+STRENGTH_FROM = {"CBP": "COL"}
+
+
+def strength_code(code: str) -> str:
+    """Competición de la que salen las fuerzas de equipo para predecir `code`."""
+    return STRENGTH_FROM.get(code, code)
 
 # Qué módulo aislado resuelve cada competición fuera de football-data.org. Los
 # puntos de integración (app.py, resolve_predictions.py, fetch_football_data.py)
@@ -63,6 +76,9 @@ def goal_api_module(code: str):
     if code == "COL":
         from . import colombia
         return colombia
+    if code == "CBP":
+        from . import copa_betplay
+        return copa_betplay
     if code == "NT":
         from . import national_teams
         return national_teams

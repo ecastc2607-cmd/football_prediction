@@ -54,19 +54,19 @@ def _flatten(g: dict) -> dict:
     }
 
 
-def _load_history() -> pd.DataFrame:
-    if not HISTORY_PATH.exists():
+def _load_history(path=HISTORY_PATH) -> pd.DataFrame:
+    if not path.exists():
         return pd.DataFrame(columns=HISTORY_COLUMNS)
-    return pd.read_csv(HISTORY_PATH)
+    return pd.read_csv(path)
 
 
-def _save_history(df: pd.DataFrame) -> None:
+def _save_history(df: pd.DataFrame, path=HISTORY_PATH) -> None:
     terminados = df[df["status_group"] == 4]
     if terminados.empty:
         return
-    HISTORY_PATH.parent.mkdir(parents=True, exist_ok=True)
+    path.parent.mkdir(parents=True, exist_ok=True)
     terminados.drop_duplicates("id", keep="last").sort_values("start_utc").reindex(columns=HISTORY_COLUMNS) \
-        .to_csv(HISTORY_PATH, index=False, encoding="utf-8")
+        .to_csv(path, index=False, encoding="utf-8")
 
 
 def _month_closed(hist: pd.DataFrame, y: int, m: int, now: datetime) -> bool:
@@ -77,21 +77,22 @@ def _month_closed(hist: pd.DataFrame, y: int, m: int, now: datetime) -> bool:
     return hist["start_utc"].astype(str).str.startswith(f"{y}-{m:02d}").any()
 
 
-def _download_year(year: int) -> pd.DataFrame:
+def _download_year(year: int, competition_id: int = COMPETITION_ID, history_path=HISTORY_PATH) -> pd.DataFrame:
+    """Partidos del año (la Copa BetPlay reusa esto con su id y su archivo)."""
     now = datetime.now(timezone.utc)
-    hist = _load_history()
+    hist = _load_history(history_path)
     frescos = []
     for m in range(1, 13):
         if _month_closed(hist, year, m, now):
             continue
         ult = calendar.monthrange(year, m)[1]
-        data = scores365._get("/games/", {"competitions": COMPETITION_ID,
+        data = scores365._get("/games/", {"competitions": competition_id,
                                           "startDate": f"01/{m:02d}/{year}", "endDate": f"{ult:02d}/{m:02d}/{year}"})
         frescos += [_flatten(g) for g in (data or {}).get("games", [])]
     todo = pd.concat([hist, pd.DataFrame(frescos, columns=HISTORY_COLUMNS)], ignore_index=True) \
         .drop_duplicates("id", keep="last")
     try:
-        _save_history(todo)
+        _save_history(todo, history_path)
     except OSError:
         pass
     return todo[todo["start_utc"].astype(str).str.startswith(str(year))]
