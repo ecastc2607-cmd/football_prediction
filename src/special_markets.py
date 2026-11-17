@@ -219,14 +219,25 @@ def walk_forward_xg(codes: list[str] | None = None) -> pd.DataFrame:
     from .poisson_model import expected_goals
     from .team_strength import _load_season_file, build_team_strength
 
+    def _temporada(code: str, s: int) -> pd.DataFrame:
+        # En GitHub Actions data/processed solo trae lo que bajó la descarga
+        # diaria; las temporadas cerradas viven versionadas en closed_seasons
+        # (sin esto el análisis semanal perdía la 2025-26 de las ligas grandes).
+        try:
+            return _load_season_file(code, s)
+        except FileNotFoundError:
+            return pd.read_csv(config.CLOSED_SEASONS_DIR / f"matches_{code}_{s}.csv")
+
     filas = []
     for code in codes or list(config.COMPETITIONS):
-        temporadas = sorted({int(p.stem.rsplit("_", 1)[1]) for p in config.PROCESSED_DIR.glob(f"matches_{code}_*.csv")})
+        temporadas = sorted({int(p.stem.rsplit("_", 1)[1])
+                             for carpeta in (config.PROCESSED_DIR, config.CLOSED_SEASONS_DIR)
+                             for p in carpeta.glob(f"matches_{code}_*.csv")})
         for season in temporadas[-2:]:
             frames = []
             for s in (season, season - 1):
                 try:
-                    frames.append(_load_season_file(code, s))
+                    frames.append(_temporada(code, s))
                 except Exception:
                     pass
             todos = pd.concat(frames, ignore_index=True)

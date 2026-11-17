@@ -225,7 +225,11 @@ AH_UND_MARKETS = ("No favorito +1", "No favorito +1.5", "No favorito +2.5")
 # prometido (empate no válido -10, favorito +1.5 goles -20; en el log, favorito
 # al 50-60% ganó 37%); el ajuste lleva un 70% a ~62% y un 80% a ~72%. En las
 # ligas el 1X2 del log está calibrado (pendiente ~0.96), por eso no se toca.
-FAV_RECAL_LEAGUES = {"NT"}
+# Premier League (16-nov-2026, backtest con la 2025-26 completa, 1.050 casos del
+# lado favorito): 70% -> ~63%, 80% -> ~71%; el log en vivo coincide (favorito
+# >=55%: 65% esperado, 55% real; doble oportunidad 86% vs 73%). En LaLiga,
+# Serie A, Bundesliga, Ligue 1 y Liga BetPlay el favorito está bien o por debajo.
+FAV_RECAL_LEAGUES = {"NT", "PL"}
 
 
 def _fit_logistic(p, y) -> tuple[float, float]:

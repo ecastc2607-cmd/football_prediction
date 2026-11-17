@@ -428,6 +428,12 @@ def main() -> None:
     try:
         if in_match_window():
             run_once()
+        elif IN_GITHUB_ACTIONS:
+            # Fuera de la ventana no se captura nada, pero la descarga diaria y el
+            # análisis semanal de Avanzada (pasos previos del workflow) sí corren:
+            # sin este commit se perdían en el servidor efímero (lunes 16-nov-2026,
+            # a las 00:01 UTC no había partidos y el recálculo semanal se botó).
+            commit_if_changed()
     except Exception:
         _log("ERROR " + traceback.format_exc().replace("\n", " | "))
 
