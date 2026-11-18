@@ -39849,3 +39849,24 @@ game_id,side,minute,added_time,half,type,subtype,player
 4672267,away,83.0,0,2,Goal,Field Goal,Martin Odegaard
 4672267,away,90.0,6,2,Goal,Penalty,Erling Haaland
 4672267,away,90.0,7,2,Yellow Card,,Erling Haaland
+4889565,home,5.0,0,1,Goal,Field Goal,Fabricio Sanguinetti
+4889565,home,11.0,0,1,Red Card,,Dewar Victoria
+4889565,home,14.0,0,1,Yellow Card,,Cristian Dajome
+4889565,away,14.0,0,1,Yellow Card,,Jean
+4889565,away,14.0,0,1,Yellow Card,,Josen Escobar
+4889565,home,22.0,0,1,Yellow Card,,Miguel Pernía
+4889565,away,23.0,0,1,Goal Disallowed,Var,Tomas Angel
+4889565,away,32.0,0,1,Yellow Card,,Omar Bertel
+4889565,home,41.0,0,1,Yellow Card,,Agustín Irazoque
+4889565,away,41.0,0,1,Yellow Card,,Dany Rosero
+4889565,away,42.0,0,1,Goal,Field Goal,Marlon Torres
+4889565,away,44.0,0,1,Goal,Field Goal,Edson Tortolero
+4889565,away,50.0,0,2,Yellow Card,,Jose Cavadia
+4889565,away,75.0,0,2,Yellow Card,,Luis Quiñónes
+4889565,away,79.0,0,2,Yellow Card,,Jhon Palacios
+4889564,home,12.0,0,1,Yellow Card,,Pipe Gomez
+4889564,away,13.0,0,1,Yellow Card,,Alfredo Morelos
+4889564,home,38.0,0,1,Goal,Field Goal,Pipe Gomez
+4889564,home,75.0,0,2,Red Card,Second Yellow Card,Pipe Gomez
+4889564,away,80.0,0,2,Red Card,,Elías Cabrera
+4889564,away,82.0,0,2,Goal,Field Goal,James Rodriguez

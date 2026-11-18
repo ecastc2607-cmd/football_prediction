@@ -838,3 +838,11 @@ id,start_utc,status_group,status_text,home_team,away_team,home_id,away_id,home_g
 4731360,2026-11-10T00:00:00Z,4,Ended,Junior FC,Cucuta Deportivo,7204,8634,2.0,0.0,Clausura,18.0,Round
 4731350,2026-11-12T23:00:00Z,4,Ended,Deportivo Pasto,Junior FC,9048,7204,0.0,1.0,Clausura,19.0,Round
 4731353,2026-11-13T00:00:00Z,4,Ended,Llaneros FC,Boyaca Chico,10378,8641,0.0,0.0,Clausura,19.0,Round
+4731356,2026-11-14T01:30:00Z,4,Ended,Internacional de Bogota,Independiente Santa Fe,8542,7644,0.0,2.0,Clausura,19.0,Round
+4731349,2026-11-14T20:30:00Z,4,Ended,Deportivo Pereira,America de Cali,8638,8645,0.0,2.0,Clausura,19.0,Round
+4731351,2026-11-14T20:30:00Z,4,Ended,Deportivo Cali,Deportes Tolima,8639,7635,2.0,2.0,Clausura,19.0,Round
+4731352,2026-11-14T20:30:00Z,4,Ended,Atlético Bucaramanga,Fortaleza FC,10224,9844,1.0,0.0,Clausura,19.0,Round
+4731354,2026-11-14T20:30:00Z,4,Ended,Cucuta Deportivo,Jaguares de Córdoba,8634,10377,2.0,0.0,Clausura,19.0,Round
+4731355,2026-11-14T20:30:00Z,4,Ended,Millonarios,Alianza FC,8637,10209,2.0,0.0,Clausura,19.0,Round
+4731357,2026-11-14T20:30:00Z,4,Ended,Águilas Doradas,Independiente Medellin,20841,8643,0.0,1.0,Clausura,19.0,Round
+4731358,2026-11-14T20:30:00Z,4,Ended,Atletico Nacional,Once Caldas,8640,7289,1.0,1.0,Clausura,19.0,Round
