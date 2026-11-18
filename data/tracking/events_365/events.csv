@@ -39870,3 +39870,27 @@ game_id,side,minute,added_time,half,type,subtype,player
 4889564,home,75.0,0,2,Red Card,Second Yellow Card,Pipe Gomez
 4889564,away,80.0,0,2,Red Card,,Elías Cabrera
 4889564,away,82.0,0,2,Goal,Field Goal,James Rodriguez
+4889628,home,6.0,0,1.0,Yellow Card,,Elías Cabrera
+4889628,away,10.0,0,1.0,Yellow Card,,Andrés Colorado
+4889628,home,36.0,0,1.0,Goal,Field Goal,Elías Cabrera
+4889628,home,38.0,0,1.0,Goal,Field Goal,James Rodriguez
+4889628,away,40.0,0,1.0,Yellow Card,,Andres Roa
+4889628,home,45.0,3,1.0,Yellow Card,,Alfredo Morelos
+4889628,home,45.0,3,1.0,Yellow Card,,Andres Sarmiento
+4889628,away,45.0,3,1.0,Yellow Card,,Juan Castaño
+4889628,away,51.0,0,2.0,Goal,Penalty,Michael Barrios
+4889628,away,55.0,0,2.0,Goal,Field Goal,Juan Pablo Nieto
+4889628,away,61.0,0,2.0,Yellow Card,,Jefry Zapata
+4889628,home,75.0,0,2.0,Yellow Card,,Marlos Moreno
+4889628,away,89.0,0,2.0,Yellow Card,,Michael Barrios
+4889628,away,90.0,3,2.0,Yellow Card,,Edwin Torres
+4889628,home,121.0,0,,Goal,Field Goal,William Tesillo
+4889628,away,121.0,0,,Goal,Field Goal,Edwin Torres
+4889628,home,122.0,0,,Goal,Field Goal,Edwin Cardona
+4889628,away,122.0,0,,Goal,Field Goal,Daniel Londoño
+4889628,home,123.0,0,,Penalty Miss,,Nicolas Rodriguez
+4889628,away,123.0,0,,Penalty Miss,,Michael Barrios
+4889628,home,124.0,0,,Penalty Miss,,Jorman Campuzano
+4889628,away,124.0,0,,Goal,Field Goal,Jaime Alvarado
+4889628,home,125.0,0,,Goal,Field Goal,Alfredo Morelos
+4889628,away,125.0,0,,Goal,Field Goal,Juan Patiño
