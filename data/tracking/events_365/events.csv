@@ -39894,3 +39894,8 @@ game_id,side,minute,added_time,half,type,subtype,player
 4889628,away,124.0,0,,Goal,Field Goal,Jaime Alvarado
 4889628,home,125.0,0,,Goal,Field Goal,Alfredo Morelos
 4889628,away,125.0,0,,Goal,Field Goal,Juan Patiño
+4889629,home,44.0,0,1,Penalty Miss,,Yeison Guzmán
+4889629,home,50.0,0,2,Yellow Card,,Luis Quiñónes
+4889629,away,53.0,0,2,Goal,Field Goal,Johan Caballero
+4889629,away,54.0,0,2,Yellow Card,,Rubén Manjarrés
+4889629,home,87.0,0,2,Goal,Field Goal,Marcos Mina

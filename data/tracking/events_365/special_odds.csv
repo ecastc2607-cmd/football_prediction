@@ -48111,3 +48111,52 @@ game_id,line_type_id,market,line,option,odds,opening_odds,won
 4889628,145,Away Team - Clean Sheet,,No,1.18,1.17,True
 4889628,13,Both Teams To Score 2nd Half,,Yes,3.3,3.7,True
 4889628,13,Both Teams To Score 2nd Half,,No,1.27,1.24,False
+4889629,1,Full Time Result,,1,1.52,1.42,False
+4889629,1,Full Time Result,,X,4.0,4.0,True
+4889629,1,Full Time Result,,2,4.75,6.25,False
+4889629,14,Double Chance,,1X,1.16,1.1,True
+4889629,14,Double Chance,,12,1.21,1.21,False
+4889629,14,Double Chance,,X2,2.35,2.6,True
+4889629,39,To Qualify,,1,1.09,1.08,True
+4889629,39,To Qualify,,2,8.0,9.0,False
+4889629,3,Total Goals In Match,2.5,Under,2.08,1.72,True
+4889629,3,Total Goals In Match,2.5,Over,1.66,1.98,False
+4889629,3,Total Goals In Match,1.5,Under,4.0,3.1,False
+4889629,3,Total Goals In Match,1.5,Over,1.21,1.32,True
+4889629,3,Total Goals In Match,3.5,Under,1.44,1.26,True
+4889629,3,Total Goals In Match,3.5,Over,2.62,3.5,False
+4889629,12,Both Teams To Score,,Yes,1.79,2.3,True
+4889629,12,Both Teams To Score,,No,1.9,1.55,False
+4889629,7,First To Score,,Home,1.44,1.44,False
+4889629,7,First To Score,,No Goal,13.0,10.0,False
+4889629,7,First To Score,,Away,2.88,3.2,True
+4889629,11,Asian Handicap,-1,Home,1.84,1.79,False
+4889629,11,Asian Handicap,-1,Away,1.94,1.99,True
+4889629,11,Asian Handicap,-1.25,Home,2.11,2.09,False
+4889629,11,Asian Handicap,-1.25,Away,1.71,1.73,True
+4889629,11,Asian Handicap,-0.75,Home,1.64,1.59,False
+4889629,11,Asian Handicap,-0.75,Away,2.19,2.29,True
+4889629,15,Draw No Bet,,Home,1.22,1.14,False
+4889629,15,Draw No Bet,,Away,3.9,5.0,False
+4889629,5,1st Half Result,,1,1.98,1.93,False
+4889629,5,1st Half Result,,X,2.45,2.25,True
+4889629,5,1st Half Result,,2,4.8,6.25,False
+4889629,6,2nd Half Result,,1,1.85,1.77,False
+4889629,6,2nd Half Result,,X,2.7,2.55,True
+4889629,6,2nd Half Result,,2,4.75,6.0,False
+4889629,9,1st Half Goals,1.5,Under,1.52,1.39,True
+4889629,9,1st Half Goals,1.5,Over,2.36,2.73,False
+4889629,9,1st Half Goals,2.5,Under,1.15,1.09,True
+4889629,9,1st Half Goals,2.5,Over,5.53,8.0,False
+4889629,9,1st Half Goals,0.5,Under,3.37,2.72,True
+4889629,9,1st Half Goals,0.5,Over,1.29,1.39,False
+4889629,137,Total Corners,9.5,Under,2.1,2.1,True
+4889629,137,Total Corners,9.5,Over,1.66,1.66,False
+4889629,137,Total Corners,10.5,Under,1.67,1.67,True
+4889629,137,Total Corners,10.5,Over,2.1,2.1,False
+4889629,144,Home Team - Clean Sheet,,Yes,2.24,1.82,False
+4889629,144,Home Team - Clean Sheet,,No,1.56,1.82,True
+4889629,145,Away Team - Clean Sheet,,Yes,6.5,5.45,False
+4889629,145,Away Team - Clean Sheet,,No,1.1,1.13,True
+4889629,13,Both Teams To Score 2nd Half,,Yes,3.25,4.33,True
+4889629,13,Both Teams To Score 2nd Half,,No,1.3,1.19,False
