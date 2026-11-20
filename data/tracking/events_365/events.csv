@@ -39904,3 +39904,14 @@ game_id,side,minute,added_time,half,type,subtype,player
 4755344,away,56.0,0,2,Yellow Card,,Paul Okon-Engstler
 4755344,home,62.0,0,2,Yellow Card,,Dayot Upamecano
 4755344,away,66.0,0,2,Yellow Card,,Said El Mala
+4735200,away,3.0,0,1,Goal,Field Goal,Josh Maja
+4735200,home,19.0,0,1,Goal,Field Goal,Antoine Mille
+4735200,away,34.0,0,1,Yellow Card,,Josh Maja
+4735200,away,40.0,0,1,Yellow Card,,Junior Mwanga
+4735200,home,40.0,0,1,Yellow Card,,Dermane Karim
+4735200,home,64.0,0,2,Yellow Card,,Ismaël Boura
+4735200,home,69.0,0,2,Goal,Field Goal,Antoine Mille
+4735200,away,77.0,0,2,Yellow Card,,Ahmed Touba
+4735200,away,88.0,0,2,Yellow Card,,Enzo Koffi
+4735200,away,88.0,0,2,Red Card,,Enzo Koffi
+4735200,home,90.0,8,2,Goal,Penalty,Renaud Ripart
