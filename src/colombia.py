@@ -113,6 +113,20 @@ def _matchdays(df: pd.DataFrame) -> pd.Series:
     offset = int(apertura_max) if pd.notna(apertura_max) else 0
     md = df["round_num"].where(regular)
     md = md.where(df["stage"] != "Clausura", md + offset)
+    # Cuadrangulares y final del Clausura (nov-2026): siguen la numeración tras
+    # la última fecha (39, 40...), una jornada por ronda en orden de fecha. 365
+    # a veces deja una ronda sin etapa (ej. la fecha 4 de cuadrangulares). Los
+    # del Apertura (mitad de año) siguen sin jornada para no correr los números
+    # del Clausura.
+    clausura = regular & (df["stage"] == "Clausura")
+    if clausura.any():
+        inicio = pd.to_datetime(df["start_utc"], utc=True, errors="coerce")
+        tras = ~regular & (inicio > inicio[clausura].max()) & df["round_num"].notna()
+        if tras.any():
+            ronda = df["stage"].fillna("?").astype(str) + "|" + df["round_num"].astype(str)
+            orden = inicio[tras].groupby(ronda[tras]).min().sort_values()
+            base = int(md[clausura].max())
+            md = md.where(~tras, ronda.map({r: base + i + 1 for i, r in enumerate(orden.index)}))
     return md.astype("Int64")
 
 
