@@ -58,7 +58,7 @@ from src.prediction_log import MARKETS
 from src.daily_plan import MAX_TICKETS, build_plans, ticket_rows
 from src.timezones import BOGOTA_TZ, format_bogota, to_bogota
 from src.value_tips import (GAP_STATE, LIVE_MODEL_WEIGHT, MAX_DAILY_EXPOSURE, MIN_MODEL_PROB, candidate_picks,
-                             strength_marks,
+                             drop_redundant, strength_marks,
                              day_summary, evaluate, live_candidate_picks, special_candidates, totals_candidates)
 
 st.set_page_config(page_title="Football Analytics · Jornada", page_icon="⚽", layout="wide")
@@ -1676,6 +1676,11 @@ with tab_tips:
             especiales = pd.DataFrame()
         if not especiales.empty:
             candidatos = pd.concat([candidatos, especiales], ignore_index=True)
+        n_antes = len(candidatos)
+        candidatos = drop_redundant(candidatos).reset_index(drop=True)
+        if len(candidatos) < n_antes:
+            st.caption(f"Se quitaron {n_antes - len(candidatos)} picks redundantes (mismo partido, mercado y lado a "
+                       "otra línea): queda el de mejor valor contra su cuota, o el de más fuerza si no hay cuota.")
 
         st.caption(f"{len(dia)} partidos por jugar ese día · {len(candidatos)} picks con ≥{MIN_MODEL_PROB:.0%} "
                    "en partidos sin baja confianza"

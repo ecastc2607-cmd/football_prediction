@@ -72,6 +72,17 @@ MAX_ODDS_VS_FAIR = 1.5
 # 39% y perdieron 31% de lo apostado; con <=5 puntos, 80% y +8.5%). Esos picks
 # no se recomiendan: es más probable una noticia que el modelo no conoce.
 MAX_MODEL_GAP = 0.15
+# Regla de CONSENSO (nov-2026) para "Menos de 3.5 goles": buscar valor contra la
+# casa ahí pierde (backtest con cuotas BWIN: 19 picks, 47% de acierto, -33%),
+# porque el "valor" aparece cuando la cuota está alta, o sea cuando la casa
+# espera muchos goles, y suele tener razón. Lo que gana es lo contrario: apostar
+# cuando el modelo (>= 70%) y la casa coinciden (a <= 10 pts): 141 partidos, 83%
+# de acierto a cuota 1,31, +8,3% (+11% oct, +6% nov; de +3% a +17% variando los
+# límites). Monto fijo y chico: el margen es delgado.
+CONSENSUS_MARKETS = {"Menos de 3.5 goles"}
+CONSENSUS_MIN_PROB = 0.70
+CONSENSUS_MAX_GAP = 0.10
+CONSENSUS_STAKE = 0.015  # de la banca
 GAP_STATE = "Discrepa mucho con la casa (> 15 pts): probable error del modelo"
 
 # (columna de probabilidad en el DataFrame de predicciones, mercado, pick, clave de cuota)
@@ -225,9 +236,15 @@ def evaluate(picks: pd.DataFrame, bankroll: float, max_exposure: float = MAX_DAI
     )
     df.loc[tiene_cuota & (df["valor"] < MIN_EDGE), "estado"] = "Sin valor"
     discrepa = tiene_cuota & (df["prob_modelo"] - prob_mercado > MAX_MODEL_GAP)
-    apostable = tiene_cuota & (df["valor"] >= MIN_EDGE) & ~discrepa
+    # Mercados de consenso: no se mira el valor sino que modelo y casa coincidan.
+    consenso = (df["consenso"].fillna(False).astype(bool) if "consenso" in df
+                else pd.Series(False, index=df.index)) & tiene_cuota
+    prob_cruda = df["prob_raw"] if "prob_raw" in df else df["prob_modelo"]
+    acuerdo = consenso & (prob_cruda >= CONSENSUS_MIN_PROB) & ((prob_cruda - prob_mercado).abs() <= CONSENSUS_MAX_GAP)
+    apostable = (tiene_cuota & (df["valor"] >= MIN_EDGE) & ~discrepa & ~consenso) | acuerdo
     df.loc[apostable, "estado"] = "Apostar"
-    df.loc[discrepa & (df["valor"] >= MIN_EDGE), "estado"] = GAP_STATE
+    df.loc[discrepa & (df["valor"] >= MIN_EDGE) & ~consenso, "estado"] = GAP_STATE
+    df.loc[consenso & ~acuerdo, "estado"] = "Sin consenso con la casa (regla de Menos de 3.5)"
 
     # Uno por partido: si un partido tiene varios picks con valor, se queda el
     # de mayor valor y los demás pasan a "Otro pick del mismo partido".
@@ -240,7 +257,8 @@ def evaluate(picks: pd.DataFrame, bankroll: float, max_exposure: float = MAX_DAI
     apostable = apostable & ~duplicado
     df = df.drop(columns="_orden")
 
-    fraccion = (kelly * KELLY_FRACTION).clip(lower=0, upper=MAX_STAKE_PER_BET).where(apostable, 0.0)
+    fraccion = (kelly * KELLY_FRACTION).clip(lower=0, upper=MAX_STAKE_PER_BET)
+    fraccion = fraccion.where(~consenso, CONSENSUS_STAKE).where(apostable, 0.0)
     total = fraccion.sum()
     if total > max_exposure:
         fraccion = fraccion * (max(max_exposure, 0.0) / total)
@@ -390,6 +408,42 @@ def strength_label(fuerza: float | None) -> str:
     return f"⚪ Neutral ({fuerza:+.0f})"
 
 
+# --- Candidatos redundantes ----------------------------------------------------
+# Pedido del usuario (nov-2026): "Newcastle: Menos de 5.5" y "Newcastle: Menos de
+# 6.5" son la misma apuesta a otra línea. De cada grupo (partido, mercado,
+# equipo, Más/Menos) queda una sola: la de más valor contra su cuota; si BWIN no
+# trae cuota para ninguna, la de más fuerza en la liga (y, empatadas, la línea
+# más exigente, que paga más).
+_FAMILIA = {"Goles (otra línea)": "Goles"}
+
+
+def drop_redundant(picks: pd.DataFrame, model_weight: float = MODEL_WEIGHT) -> pd.DataFrame:
+    import re
+
+    if picks.empty or "pick" not in picks:
+        return picks
+    patron = re.compile(r"^\s*(?:(.+?): )?(Más|Menos) de ([0-9]+(?:\.[0-9]+)?)")
+    partes = picks["pick"].astype(str).map(lambda p: patron.match(p))
+    con_linea = partes.map(bool)
+    if not con_linea.any():
+        return picks
+    d = picks[con_linea].copy()
+    m = partes[con_linea]
+    d["_grupo"] = (d["partido"].astype(str) + "|" + d["mercado"].map(lambda x: _FAMILIA.get(x, x)) + "|"
+                   + m.map(lambda x: x.group(1) or "") + "|" + m.map(lambda x: x.group(2)))
+    d["_linea"] = m.map(lambda x: float(x.group(3)))
+    cuota = pd.to_numeric(d["cuota_auto"], errors="coerce") if "cuota_auto" in d else pd.Series(float("nan"), index=d.index)
+    peso = d["peso_modelo"].fillna(model_weight) if "peso_modelo" in d else model_weight
+    d["_valor"] = (peso * d["prob_modelo"] + (1 - peso) / cuota) * cuota - 1
+    d["_con_cuota"] = cuota.notna()
+    d["_fuerza"] = [market_strength(r.competition, r.mercado, r.odds_key, r.pick) for r in d.itertuples()]
+    # Línea más exigente: la más alta en "Más", la más baja en "Menos".
+    d["_exigencia"] = d["_linea"].where(m.map(lambda x: x.group(2)) == "Más", -d["_linea"])
+    d = d.sort_values(["_con_cuota", "_valor", "_fuerza", "_exigencia"], ascending=False, na_position="last")
+    quedan = d.drop_duplicates("_grupo").index
+    return picks[~con_linea | picks.index.isin(quedan)]
+
+
 def strength_marks(picks: pd.DataFrame) -> pd.Series:
     """Etiqueta de fortaleza por fila de candidatos de Tips."""
     if picks.empty:
@@ -448,9 +502,11 @@ def special_candidates(day_predictions: pd.DataFrame, lines_for) -> pd.DataFrame
         except (TypeError, ValueError, KeyError):
             continue
         fav_local = hx >= ax
+        # Menos de 3.5 va por regla de consenso (CONSENSUS_MARKETS) en cualquier liga.
         picks = [(merc, prob, p_dev) for _, merc, prob, p_dev in
                  sm.goal_market_probs(sm.Match(hx, ax, share.get(comp, sm.DEFAULT_FIRST_HALF_SHARE)))
-                 if (comp, merc) in permitidos and prob >= sm.min_prob_for(merc)]
+                 if (merc in CONSENSUS_MARKETS and prob >= CONSENSUS_MIN_PROB)
+                 or (merc not in CONSENSUS_MARKETS and (comp, merc) in permitidos and prob >= sm.min_prob_for(merc))]
         # Tiros al arco / fueras de juego en las líneas que el backtest aprueba en la liga.
         stat_picks = []
         for col, nombre in STAT_TIPS.items():
@@ -521,8 +577,11 @@ def special_candidates(day_predictions: pd.DataFrame, lines_for) -> pd.DataFrame
                 "partido": f"{home_short} vs {away_short}", "mercado": mercado, "pick": pick,
                 "odds_key": f"especial:{merc}", "prob_modelo": prob_cal, "cuota_justa": round(1 / prob_cal, 2),
                 "cuota_auto": precio[0], "casa": "BWIN", "peso_modelo": SPECIAL_MODEL_WEIGHT,
+                "consenso": merc in CONSENSUS_MARKETS, "prob_raw": prob,
                 "explicacion": sm.market_help(merc)
                 + (f" (Si se devuelve: {p_dev:.0%} de probabilidad; la prob. es sin contar devolución.)"
-                   if p_dev else ""),
+                   if p_dev else "")
+                + (f" Regla de consenso: se apuesta solo si el modelo ({prob:.0%}) y la casa coinciden a ≤10 pts; "
+                   "monto fijo chico." if merc in CONSENSUS_MARKETS else ""),
             })
     return pd.DataFrame(filas)

@@ -319,6 +319,8 @@ def capture_daily_tips(fecha: str) -> int:
                                    ignore_index=True)
     except Exception as e:
         _log(f"mercados especiales: error {e}")
+    from .value_tips import drop_redundant
+    candidatos = drop_redundant(candidatos).reset_index(drop=True)
     if candidatos.empty:
         return 0
     evaluado = evaluate(candidatos, TIPS_BANKROLL)
