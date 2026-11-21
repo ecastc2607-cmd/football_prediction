@@ -64,6 +64,15 @@ class TotalsStrength:
     away_avg: float
     dispersion: float  # k de la binomial negativa (más chico = más disperso); inf = Poisson
     teams: pd.DataFrame  # índice equipo: prod_home, conc_home, prod_away, conc_away
+    # Lo mismo para lo de UN equipo (local / visitante), para mercados por equipo.
+    disp_home: float = float("inf")
+    disp_away: float = float("inf")
+
+
+def _dispersion(serie: pd.Series) -> float:
+    """k de la binomial negativa: var = media + media²/k."""
+    media, var = serie.mean(), serie.var()
+    return media ** 2 / (var - media) if var > media else float("inf")
 
 
 def _factor(suma: pd.Series, partidos: pd.Series, promedio: float) -> pd.Series:
@@ -86,29 +95,39 @@ def fit(prior: pd.DataFrame, market: str) -> TotalsStrength | None:
         "prod_away": _factor(t["prod_a"], t["n_a"], away_avg),
         "conc_away": _factor(t["conc_a"], t["n_a"], home_avg),
     })
-    total = d[h] + d[a]
-    media, var = total.mean(), total.var()
     # Binomial negativa: var = media + media²/k  ->  k = media² / (var - media).
-    dispersion = media ** 2 / (var - media) if var > media else float("inf")
-    return TotalsStrength(home_avg, away_avg, dispersion, teams)
+    return TotalsStrength(home_avg, away_avg, _dispersion(d[h] + d[a]), teams, _dispersion(d[h]), _dispersion(d[a]))
 
 
 def expected_total(s: TotalsStrength, home: str, away: str) -> float:
+    return float(sum(expected_sides(s, home, away)))
+
+
+def expected_sides(s: TotalsStrength, home: str, away: str) -> tuple[float, float]:
+    """(esperados del local, esperados del visitante)."""
     t = s.teams
     ph = t.at[home, "prod_home"] if home in t.index else 1.0
     ch = t.at[home, "conc_home"] if home in t.index else 1.0
     pa = t.at[away, "prod_away"] if away in t.index else 1.0
     ca = t.at[away, "conc_away"] if away in t.index else 1.0
-    return float(s.home_avg * ph * ca + s.away_avg * pa * ch)
+    return float(s.home_avg * ph * ca), float(s.away_avg * pa * ch)
+
+
+def _prob_over(mu: float, line: float, dispersion: float) -> float:
+    k = int(np.floor(line))
+    if not np.isfinite(dispersion):
+        return float(1 - poisson.cdf(k, mu))
+    return float(1 - nbinom.cdf(k, dispersion, dispersion / (dispersion + mu)))
 
 
 def prob_over(s: TotalsStrength, mu: float, line: float) -> float:
     """P(total > línea) — líneas de medio punto (8.5, 9.5...)."""
-    k = int(np.floor(line))
-    if not np.isfinite(s.dispersion):
-        return float(1 - poisson.cdf(k, mu))
-    n = s.dispersion
-    return float(1 - nbinom.cdf(k, n, n / (n + mu)))
+    return _prob_over(mu, line, s.dispersion)
+
+
+def prob_over_side(s: TotalsStrength, mu: float, line: float, side: str) -> float:
+    """P(lo de UN equipo > línea); side 'home' o 'away'."""
+    return _prob_over(mu, line, s.disp_home if side == "home" else s.disp_away)
 
 
 # --- Uso en vivo (Tips): fuerzas con TODO el historial de la liga ---

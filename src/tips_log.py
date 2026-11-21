@@ -41,7 +41,11 @@ WON_VOID = "devuelta"  # boleto con todas sus piernas devueltas
 # Mercados especiales (vista Avanzada) que necesitan el detalle del partido.
 DETAIL_MARKETS = ("Primer gol", "1er tiempo")
 # Mercados que se liquidan con las estadísticas finales de 365scores.
-STAT_MARKETS = ("Corners", "Tarjetas", "Fueras de juego", "Tiros al arco")
+STAT_MARKETS = ("Corners", "Tarjetas", "Fueras de juego", "Tiros al arco", "Faltas", "Remates totales",
+                "Tiros al arco por equipo")
+# Campo de las estadísticas de 365 (scores365.live_stats) de cada mercado; tarjetas suma amarillas + rojas.
+STAT_FIELDS = {"Corners": "corners", "Fueras de juego": "fueras_de_juego", "Tiros al arco": "remates_a_puerta",
+               "Faltas": "faltas", "Remates totales": "remates_totales", "Tiros al arco por equipo": "remates_a_puerta"}
 WON, LOST = "ganada", "perdida"
 # Un partido se da por terminado (y se busca su marcador) pasado este tiempo
 # desde el inicio; si a los NO_DATA_AFTER_DAYS no apareció, queda "sin resultado".
@@ -214,13 +218,17 @@ def leg_outcome(market: str, pick: str, hg: int, ag: int, stats: dict | None = N
             total = hg + ag
         return total > lp[1] if lp[0] == "Más" else total < lp[1]
     if market in STAT_MARKETS:
+        lados = ("home", "away")
+        if market == "Tiros al arco por equipo":  # "<equipo>: Más de 3.5 (esp. 4.6)"
+            equipo, _, pick = str(pick or "").rpartition(": ")
+            lados = ("home",) if equipo == home_team else ("away",) if equipo == away_team else ()
+            if not lados:
+                return None
         lp = _line_pick(pick)
         if not lp or not stats:
             return None
-        if market in ("Corners", "Fueras de juego", "Tiros al arco"):
-            campo = {"Corners": "corners", "Fueras de juego": "fueras_de_juego",
-                     "Tiros al arco": "remates_a_puerta"}[market]
-            total = sum((stats.get(l) or {}).get(campo) or 0 for l in ("home", "away"))
+        if market in STAT_FIELDS:
+            total = sum((stats.get(l) or {}).get(STAT_FIELDS[market]) or 0 for l in lados)
         else:
             total = sum(((stats.get(l) or {}).get("tarjetas_amarillas") or 0) + ((stats.get(l) or {}).get("tarjetas_rojas") or 0)
                         for l in ("home", "away"))

@@ -286,6 +286,7 @@ SPECIAL_EXCLUDED_FAMILIES = {"Eventos"}
 # europeas de 365): mismo modelo que corners/tarjetas, misma regla de ligas.
 STAT_TIPS = {"off": "Fueras de juego", "sot": "Tiros al arco", "cor": "Corners", "tar": "Tarjetas",
              "fal": "Faltas", "sho": "Remates totales"}
+TEAM_STAT_TIPS_MARKET = "Tiros al arco por equipo"  # pick: "<equipo>: Más de 3.5 (esp. 4.6)"
 # Nombre del mercado en Tips / tips_log y cómo se arma el pick.
 SPECIAL_TIPS_MARKET = {
     "Favorito empate no válido (HA 0)": ("Empate no válido", "fav", None),
@@ -460,7 +461,18 @@ def special_candidates(day_predictions: pd.DataFrame, lines_for) -> pd.DataFrame
                 for lado, prob in (("más", pr["p_mas"]), ("menos", 1 - pr["p_mas"])):
                     merc = f"{nombre}: {lado} de {linea:g}"
                     if (comp, merc) in permitidos and prob >= sm.min_prob_for(merc):
-                        stat_picks.append((merc, nombre, lado, linea, prob, pr["esperado"]))
+                        stat_picks.append((merc, nombre, lado, linea, prob, pr["esperado"], None))
+        # Por equipo (tiros al arco del local / del visitante).
+        for col, (nombre, lineas_eq) in sm.TEAM_STAT_LINES.items():
+            for side, equipo in (("home", r["home_team"]), ("away", r["away_team"])):
+                for linea in lineas_eq:
+                    pr = sm.stat_prediction_side(comp, r["home_team"], r["away_team"], col, side, linea)
+                    if not pr:
+                        break
+                    for lado, prob in (("más", pr["p_mas"]), ("menos", 1 - pr["p_mas"])):
+                        merc = f"{nombre} {sm.SIDE_NAMES[side]}: {lado} de {linea:g}"
+                        if (comp, merc) in permitidos and prob >= sm.min_prob_for(merc):
+                            stat_picks.append((merc, TEAM_STAT_TIPS_MARKET, lado, linea, prob, pr["esperado"], equipo))
         if not picks and not stat_picks:
             continue
         lineas = lines_for(r)
@@ -473,7 +485,7 @@ def special_candidates(day_predictions: pd.DataFrame, lines_for) -> pd.DataFrame
         home_short = r.get("home_team_short") or r["home_team"]
         away_short = r.get("away_team_short") or r["away_team"]
         fav, und = (r["home_team"], r["away_team"]) if fav_local else (r["away_team"], r["home_team"])
-        for merc, nombre, lado, linea, prob, esperado in stat_picks:
+        for merc, nombre, lado, linea, prob, esperado, equipo in stat_picks:
             # Sin esa línea en BWIN queda sin cuota: el pick se ve en Tips como
             # "Falta cuota" y se puede escribir la de otra casa a mano.
             cuota = sm.event_or_stat_price(merc, lineas) if not lineas.empty else None
@@ -483,7 +495,7 @@ def special_candidates(day_predictions: pd.DataFrame, lines_for) -> pd.DataFrame
                 "utc_date": r["utc_date"], "home_team": r["home_team"], "away_team": r["away_team"],
                 "home_team_short": home_short, "away_team_short": away_short,
                 "partido": f"{home_short} vs {away_short}", "mercado": nombre,
-                "pick": f"{lado.capitalize()} de {linea:g} (esp. {esperado:.1f})",
+                "pick": (f"{equipo}: " if equipo else "") + f"{lado.capitalize()} de {linea:g} (esp. {esperado:.1f})",
                 "odds_key": f"especial:{merc}", "prob_modelo": prob_cal, "cuota_justa": round(1 / prob_cal, 2),
                 "cuota_auto": cuota, "casa": "BWIN" if cuota else "", "peso_modelo": SPECIAL_MODEL_WEIGHT,
                 "explicacion": sm.market_help(merc) + ("" if cuota else " BWIN no ofrece esta línea en este partido: "

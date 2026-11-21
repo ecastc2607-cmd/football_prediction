@@ -517,6 +517,11 @@ STAT_LINES = {"sot": ("Tiros al arco", 139, [7.5, 8.5, 9.5, 10.5]),
               "tar": ("Tarjetas", 141, [2.5, 3.5, 4.5, 5.5, 6.5]),
               "fal": ("Faltas", None, [19.5, 21.5, 23.5, 25.5, 27.5]),
               "sho": ("Remates totales", None, [18.5, 20.5, 22.5, 24.5, 26.5, 28.5])}
+# Mercados POR EQUIPO (lo de un solo equipo, no la suma), pedido del usuario
+# (nov-2026): tiros al arco del local / del visitante. BWIN no publica esas
+# líneas en 365: en Tips salen con "Falta cuota" para la cuota manual.
+TEAM_STAT_LINES = {"sot": ("Tiros al arco", [1.5, 2.5, 3.5, 4.5, 5.5, 6.5])}
+SIDE_NAMES = {"home": "del local", "away": "del visitante"}
 # Columna(s) de match_stats_log de cada estadística (la suma si son varias).
 STAT_SOURCE = {"sot": ["remates_a_puerta"], "off": ["fueras_de_juego"], "cor": ["corners"],
                "tar": ["tarjetas_amarillas", "tarjetas_rojas"], "fal": ["faltas"], "sho": ["remates_totales"]}
@@ -604,16 +609,24 @@ def stats_backtest(games_index: pd.DataFrame) -> pd.DataFrame:
                     continue
                 mu = tm.expected_total(s, m["home_team"], m["away_team"])
                 real = m[f"{col}_home"] + m[f"{col}_away"]
-                for linea in lineas:
-                    p_mas = 0.5 + tm.CALIBRATION_SLOPE * (tm.prob_over(s, mu, linea) - 0.5)
-                    for lado, prob, gano in (("más", p_mas, real > linea), ("menos", 1 - p_mas, real < linea)):
-                        filas.append({
-                            "competition": comp, "season": m["season"], "utc_date": m["utc_date"],
-                            "home_team": m["home_team"], "away_team": m["away_team"], "favorito": m["favorito"],
-                            "no_favorito": m["no_favorito"], "game_id": m["game_id"], "familia": "Estadísticas",
-                            "mercado": f"{nombre}: {lado} de {linea:g}", "prob": round(float(prob), 4),
-                            "p_devuelve": 0.0, "gano": float(gano), "marcador": m["marcador"],
-                        })
+                casos = [(f"{nombre}: ", mu, real, lineas, None)]
+                if col in TEAM_STAT_LINES:  # además, lo de cada equipo por separado
+                    mu_h, mu_a = tm.expected_sides(s, m["home_team"], m["away_team"])
+                    for lado_eq, mu_eq in (("home", mu_h), ("away", mu_a)):
+                        casos.append((f"{TEAM_STAT_LINES[col][0]} {SIDE_NAMES[lado_eq]}: ", mu_eq,
+                                      m[f"{col}_{lado_eq}"], TEAM_STAT_LINES[col][1], lado_eq))
+                for prefijo, media, valor, lineas_caso, lado_eq in casos:
+                    for linea in lineas_caso:
+                        p = tm.prob_over(s, media, linea) if lado_eq is None else tm.prob_over_side(s, media, linea, lado_eq)
+                        p_mas = 0.5 + tm.CALIBRATION_SLOPE * (p - 0.5)
+                        for lado, prob, gano in (("más", p_mas, valor > linea), ("menos", 1 - p_mas, valor < linea)):
+                            filas.append({
+                                "competition": comp, "season": m["season"], "utc_date": m["utc_date"],
+                                "home_team": m["home_team"], "away_team": m["away_team"], "favorito": m["favorito"],
+                                "no_favorito": m["no_favorito"], "game_id": m["game_id"], "familia": "Estadísticas",
+                                "mercado": f"{prefijo}{lado} de {linea:g}", "prob": round(float(prob), 4),
+                                "p_devuelve": 0.0, "gano": float(gano), "marcador": m["marcador"],
+                            })
     return pd.DataFrame(filas)
 
 
@@ -774,6 +787,10 @@ MARKET_HELP = {
 STAT_HELP = {
     "Tiros al arco": "Tiros al arco (a puerta) de los dos equipos sumados, más o menos que la línea.",
     "Fueras de juego": "Fueras de juego de los dos equipos sumados, más o menos que la línea.",
+    "Tiros al arco del local": "Tiros al arco SOLO del equipo local, más o menos que la línea. BWIN no publica "
+                               "esta línea: escribe la cuota de tu casa.",
+    "Tiros al arco del visitante": "Tiros al arco SOLO del equipo visitante, más o menos que la línea. BWIN no "
+                                   "publica esta línea: escribe la cuota de tu casa.",
     "Corners": "Tiros de esquina de los dos equipos sumados, más o menos que la línea.",
     "Tarjetas": "Tarjetas (amarillas + rojas) de los dos equipos sumadas, más o menos que la línea.",
     "Faltas": "Faltas cometidas por los dos equipos sumadas. BWIN no publica esta línea: escribe la cuota de tu casa.",
@@ -833,6 +850,21 @@ def stat_prediction(competition: str, home: str, away: str, col: str, linea: flo
     p_mas = 0.5 + tm.CALIBRATION_SLOPE * (tm.prob_over(s, mu, linea) - 0.5)
     lado, prob = ("Más", p_mas) if p_mas >= 0.5 else ("Menos", 1 - p_mas)
     return {"esperado": mu, "linea": linea, "lado": lado, "prob": prob, "p_mas": p_mas}
+
+
+def stat_prediction_side(competition: str, home: str, away: str, col: str, side: str, linea: float) -> dict | None:
+    """Como stat_prediction, pero de UN equipo ('home'/'away'): {"esperado", "linea", "p_mas"}."""
+    from . import totals_model as tm
+
+    if stat_prediction(competition, home, away, col, linea) is None:  # llena la caché del ajuste
+        return None
+    from . import match_stats_log
+    path = match_stats_log.LOG_PATH
+    s = _STAT_FIT_CACHE[(competition, col, path.stat().st_mtime if path.exists() else 0)]
+    mu_h, mu_a = tm.expected_sides(s, home, away)
+    mu = mu_h if side == "home" else mu_a
+    p_mas = 0.5 + tm.CALIBRATION_SLOPE * (tm.prob_over_side(s, mu, linea, side) - 0.5)
+    return {"esperado": mu, "linea": linea, "p_mas": p_mas}
 
 
 def best_special_pick(competition: str, home_xg: float, away_xg: float, home: str, away: str) -> dict | None:
