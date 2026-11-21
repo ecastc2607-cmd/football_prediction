@@ -509,7 +509,31 @@ EVENT_MARKETS = {
     "Sin penal": "penal",
 }
 STAT_LINES = {"sot": ("Tiros al arco", 139, [7.5, 8.5, 9.5, 10.5]),
-              "off": ("Fueras de juego", 140, [2.5, 3.5, 4.5])}
+              "off": ("Fueras de juego", 140, [2.5, 3.5, 4.5]),
+              # Nov-2026 (pedido del usuario): corners, tarjetas, faltas y remates
+              # totales en varias líneas. Faltas y remates totales no tienen línea
+              # en BWIN (365): salen en Tips como "Falta cuota" para la cuota manual.
+              "cor": ("Corners", 137, [6.5, 7.5, 8.5, 9.5, 10.5, 11.5, 12.5]),
+              "tar": ("Tarjetas", 141, [2.5, 3.5, 4.5, 5.5, 6.5]),
+              "fal": ("Faltas", None, [19.5, 21.5, 23.5, 25.5, 27.5]),
+              "sho": ("Remates totales", None, [18.5, 20.5, 22.5, 24.5, 26.5, 28.5])}
+# Columna(s) de match_stats_log de cada estadística (la suma si son varias).
+STAT_SOURCE = {"sot": ["remates_a_puerta"], "off": ["fueras_de_juego"], "cor": ["corners"],
+               "tar": ["tarjetas_amarillas", "tarjetas_rojas"], "fal": ["faltas"], "sho": ["remates_totales"]}
+
+
+def _stat_columns(log: pd.DataFrame) -> pd.DataFrame:
+    """match_stats_log con una columna numérica por clave de STAT_LINES."""
+    nuevas = {}
+    for col, fuentes in STAT_SOURCE.items():
+        partes = [pd.to_numeric(log[f], errors="coerce") for f in fuentes if f in log]
+        if not partes:
+            nuevas[col] = float("nan")
+        elif len(partes) == 1:
+            nuevas[col] = partes[0]
+        else:  # tarjetas: amarillas + rojas (las rojas faltantes valen 0)
+            nuevas[col] = partes[0] + sum(p.fillna(0) for p in partes[1:])
+    return log.assign(**nuevas)
 MIN_LEAGUE_PRIOR = 30  # partidos previos de la liga para estimar su frecuencia
 
 
@@ -558,16 +582,10 @@ def stats_backtest(games_index: pd.DataFrame) -> pd.DataFrame:
     from . import match_stats_log
     from . import totals_model as tm
 
-    log = match_stats_log.load_log()
-    if log.empty:
+    df = stat_totals_frame()
+    if df.empty:
         return pd.DataFrame()
-    log = log.assign(sot=pd.to_numeric(log["remates_a_puerta"], errors="coerce"),
-                     off=pd.to_numeric(log["fueras_de_juego"], errors="coerce"))
-    es_local = log["is_home"].astype(str).str.lower().isin(["true", "1"])
     k = ["competition", "utc_date", "home_team", "away_team"]
-    df = (log[es_local].drop_duplicates(k).set_index(k)[["sot", "off"]]
-          .join(log[~es_local].drop_duplicates(k).set_index(k)[["sot", "off"]], lsuffix="_home", rsuffix="_away",
-                how="inner").reset_index())
     df["inicio"] = pd.to_datetime(df["utc_date"], utc=True, errors="coerce")
     idx = games_index.drop_duplicates(["competition", "home_team", "away_team", "utc_date"])
     df = df.merge(idx[["competition", "utc_date", "home_team", "away_team", "season", "favorito", "no_favorito",
@@ -611,7 +629,7 @@ def event_or_stat_price(mercado: str, lineas: pd.DataFrame) -> float | None:
     if mercado in fijos:
         return op(*fijos[mercado])
     for nombre, tipo, _ in STAT_LINES.values():
-        if mercado.startswith(nombre + ":"):
+        if tipo and mercado.startswith(nombre + ":"):
             lado, linea = mercado.split(": ")[1].split(" de ")
             return op(tipo, "Over" if lado == "más" else "Under", float(linea))
     return None
@@ -686,9 +704,6 @@ def main() -> int:
     return 0
 
 
-if __name__ == "__main__":
-    sys.exit(main())
-
 
 def bwin_lines_for(code: str, home: str, away: str, utc_date: str) -> pd.DataFrame | None:
     """Líneas actuales de BWIN (365scores) de un partido por jugar, con las
@@ -759,6 +774,11 @@ MARKET_HELP = {
 STAT_HELP = {
     "Tiros al arco": "Tiros al arco (a puerta) de los dos equipos sumados, más o menos que la línea.",
     "Fueras de juego": "Fueras de juego de los dos equipos sumados, más o menos que la línea.",
+    "Corners": "Tiros de esquina de los dos equipos sumados, más o menos que la línea.",
+    "Tarjetas": "Tarjetas (amarillas + rojas) de los dos equipos sumadas, más o menos que la línea.",
+    "Faltas": "Faltas cometidas por los dos equipos sumadas. BWIN no publica esta línea: escribe la cuota de tu casa.",
+    "Remates totales": "Todos los remates (al arco, desviados y bloqueados) de los dos equipos. BWIN no publica "
+                       "esta línea: escribe la cuota de tu casa.",
 }
 
 
@@ -772,24 +792,24 @@ def market_help(mercado: str) -> str:
 
 
 # --- Predicción de tiros al arco / fueras de juego para la vista Jornada -------
-STAT_DISPLAY_LINES = {"off": 3.5, "sot": 9.5}  # líneas principales de BWIN (oct-2026)
+STAT_DISPLAY_LINES = {"off": 3.5, "sot": 9.5, "cor": 9.5, "tar": 4.5, "fal": 23.5, "sho": 24.5}  # líneas principales de BWIN (oct-2026)
 _STAT_FIT_CACHE: dict = {}
 
 
 def stat_totals_frame() -> pd.DataFrame:
-    """Un renglón por partido con tiros al arco (sot) y fueras de juego (off)
-    de local y visitante, desde match_stats_log.csv."""
+    """Un renglón por partido con cada estadística de STAT_LINES (sot, off,
+    cor, tar, fal, sho) de local y visitante, desde match_stats_log.csv."""
     from . import match_stats_log
 
     log = match_stats_log.load_log()
     if log.empty:
         return pd.DataFrame()
-    log = log.assign(sot=pd.to_numeric(log["remates_a_puerta"], errors="coerce"),
-                     off=pd.to_numeric(log["fueras_de_juego"], errors="coerce"))
+    log = _stat_columns(log)
+    cols = list(STAT_LINES)
     es_local = log["is_home"].astype(str).str.lower().isin(["true", "1"])
     k = ["competition", "utc_date", "home_team", "away_team"]
-    return (log[es_local].drop_duplicates(k).set_index(k)[["sot", "off"]]
-            .join(log[~es_local].drop_duplicates(k).set_index(k)[["sot", "off"]], lsuffix="_home",
+    return (log[es_local].drop_duplicates(k).set_index(k)[cols]
+            .join(log[~es_local].drop_duplicates(k).set_index(k)[cols], lsuffix="_home",
                   rsuffix="_away", how="inner").reset_index())
 
 
@@ -834,3 +854,7 @@ def best_special_pick(competition: str, home_xg: float, away_xg: float, home: st
     fav, und = (home, away) if fav_local else (away, home)
     equipo = und if merc.startswith("No favorito") else fav if merc.startswith("Favorito") else None
     return {"mercado": merc, "equipo": equipo, "prob": prob}
+
+
+if __name__ == "__main__":
+    sys.exit(main())

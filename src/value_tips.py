@@ -284,7 +284,8 @@ SPECIAL_VERDICTS = {"Candidato", "Prometedor"}
 SPECIAL_EXCLUDED_FAMILIES = {"Eventos"}
 # Tiros al arco y fueras de juego (desde oct-2026, con las estadísticas
 # europeas de 365): mismo modelo que corners/tarjetas, misma regla de ligas.
-STAT_TIPS = {"off": "Fueras de juego", "sot": "Tiros al arco"}
+STAT_TIPS = {"off": "Fueras de juego", "sot": "Tiros al arco", "cor": "Corners", "tar": "Tarjetas",
+             "fal": "Faltas", "sho": "Remates totales"}
 # Nombre del mercado en Tips / tips_log y cómo se arma el pick.
 SPECIAL_TIPS_MARKET = {
     "Favorito empate no válido (HA 0)": ("Empate no válido", "fav", None),
@@ -298,6 +299,102 @@ SPECIAL_TIPS_MARKET = {
     "1T menos de 1.5": ("1er tiempo", None, "Menos de 1.5"),
 }
 _SPECIAL_CACHE: dict = {}
+
+
+# --- Marca de fortaleza del mercado en la liga (columna de Tips) ---------------
+# Fuerza = cuánto acierta el pick por ENCIMA de lo que saldría sin modelo, en
+# puntos, encogida hacia 0 con poca muestra (n/(n+10), igual que Jornada):
+#   - 1X2 / doble oportunidad / goles 2.5: tabla de Reportes (acierto − esperado).
+#   - Corners / tarjetas en la línea principal (totals_candidates): mismo
+#     modelo que las estadísticas de Avanzada, así que se mide con su backtest
+#     (todas las líneas de esa estadística en la liga), no con la tendencia de
+#     Reportes, que tiene apenas ~40 partidos por liga.
+#   - Mercados de Avanzada: acierto de los picks del backtest en la liga menos
+#     la frecuencia de ese mercado en TODOS los partidos de la liga.
+# Backtest de nov-2026: tarjetas y faltas sí le ganan a la frecuencia de la
+# liga (+15 a +27 pts en las líneas medias), corners casi nada (0 a +9).
+STRENGTH_MARK_MIN = 5.0
+STRENGTH_PRIOR = 10
+_REPORT_MARKET = {"Resultado": "Resultado (1X2)", "Doble oportunidad": "Doble oportunidad",
+                  "Goles": "Goles +/-2.5", "Corners": "Corners", "Tarjetas": "Tarjetas"}
+_STRENGTH_CACHE: dict = {}
+
+
+def _strength_sources() -> tuple[pd.DataFrame, pd.DataFrame]:
+    from . import reports, special_markets as sm
+    from .prediction_log import LOG_PATH, load_log
+
+    clave = tuple(p.stat().st_mtime if p.exists() else 0 for p in (LOG_PATH, sm.BACKTEST_PATH))
+    if clave not in _STRENGTH_CACHE:
+        log = load_log()
+        liga = (reports.strength_tables(reports.predictions_long(log, include_backtest=True))[0]
+                if not log.empty else pd.DataFrame())
+        bt = sm.load_backtest()
+        filas = []
+        if not bt.empty:
+            bt = bt.dropna(subset=["gano"])
+            bt = bt.assign(base=bt.groupby(["competition", "mercado"])["gano"].transform("mean"))
+            for (comp, merc), g in bt.groupby(["competition", "mercado"]):
+                picks = g[g["prob"] >= sm.min_prob_for(merc)]
+                if len(picks):
+                    filas.append({"competition": comp, "mercado": merc, "n": len(picks),
+                                  "diferencia": 100 * (picks["gano"] - picks["base"]).mean()})
+            # Por estadística completa (todas sus líneas): para corners/tarjetas de Tips.
+            est = bt[(bt["familia"] == "Estadísticas") & (bt["prob"] >= 0.65)]
+            for (comp, stat), g in est.groupby([est["competition"], est["mercado"].str.split(":").str[0]]):
+                filas.append({"competition": comp, "mercado": f"stat:{stat}", "n": len(g),
+                              "diferencia": 100 * (g["gano"] - g["base"]).mean()})
+        _STRENGTH_CACHE.clear()
+        _STRENGTH_CACHE[clave] = (liga, pd.DataFrame(filas).set_index(["competition", "mercado"]) if filas
+                                  else pd.DataFrame())
+    return _STRENGTH_CACHE[clave]
+
+
+def market_strength(competition: str, mercado: str, odds_key: str, pick: str = "") -> float | None:
+    """Fuerza (pts, encogida) del mercado del pick en su liga; None sin datos."""
+    import re
+
+    liga, especial = _strength_sources()
+    comp = config.strength_code(competition)
+    if str(odds_key).startswith(("corners_", "cards_")):
+        # La línea exacta del pick si el backtest la tiene; si no, la estadística completa.
+        stat = "Corners" if str(odds_key).startswith("corners_") else "Tarjetas"
+        m = re.match(r"(Más|Menos) de ([0-9.]+)", str(pick))
+        exacta = f"{stat}: {m.group(1).lower()} de {float(m.group(2)):g}" if m else None
+        clave = next((c for c in ((comp, exacta), (comp, f"stat:{stat}"))
+                      if c[1] and not especial.empty and c in especial.index), None)
+        if clave is None:
+            return None
+        n, dif = float(especial.loc[clave, "n"]), float(especial.loc[clave, "diferencia"])
+    elif str(odds_key).startswith("especial:"):
+        clave, tabla = (comp, str(odds_key).split(":", 1)[1]), especial
+        if tabla.empty or clave not in tabla.index:
+            return None
+        n, dif = float(tabla.loc[clave, "n"]), float(tabla.loc[clave, "diferencia"])
+    else:
+        nombre = _REPORT_MARKET.get(mercado)
+        if not nombre or liga.empty or (comp, nombre) not in liga.index:
+            return None
+        n, dif = float(liga.loc[(comp, nombre), "predicciones"]), float(liga.loc[(comp, nombre), "diferencia"])
+    return dif * n / (n + STRENGTH_PRIOR)
+
+
+def strength_label(fuerza: float | None) -> str:
+    if fuerza is None or pd.isna(fuerza):
+        return "· sin datos"
+    if fuerza >= STRENGTH_MARK_MIN:
+        return f"🔵 Fortaleza ({fuerza:+.0f})"
+    if fuerza <= -STRENGTH_MARK_MIN:
+        return f"🔴 Débil ({fuerza:+.0f})"
+    return f"⚪ Neutral ({fuerza:+.0f})"
+
+
+def strength_marks(picks: pd.DataFrame) -> pd.Series:
+    """Etiqueta de fortaleza por fila de candidatos de Tips."""
+    if picks.empty:
+        return pd.Series(dtype=str)
+    return pd.Series([strength_label(market_strength(r.competition, r.mercado, r.odds_key, r.pick))
+                      for r in picks[["competition", "mercado", "odds_key", "pick"]].itertuples()], index=picks.index)
 
 
 def special_rules() -> tuple[dict, set]:

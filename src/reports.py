@@ -7,7 +7,13 @@ boletos de Tips.
 local). Si a la larga el acierto real queda por encima, el modelo es más
 fuerte de lo que cree en ese mercado/liga; por debajo, se sobreestima.
 Corners/faltas/tarjetas no guardan probabilidad: su pick es "más o menos que
-una línea" puesta en el promedio, así que se comparan contra 50%.
+una línea fija" (8.5 / 22.5 / 3.5). Hasta nov-2026 se comparaban contra 50%, y
+eso los pintaba de fortaleza casi en todas las ligas por puro sesgo de línea:
+en la Liga BetPlay el pick era siempre "más de 3.5 tarjetas", que sale 85% de
+las veces sin modelo (+29 pts de "fuerza" con aporte real 0). Ahora el
+esperado es la frecuencia con que ese lado salía en la liga ANTES del partido
+(stat_base_rate): la fuerza mide lo que el pick agrega sobre apostar siempre
+a ese lado.
 """
 from __future__ import annotations
 
@@ -25,7 +31,56 @@ MARKETS = [
     ("Faltas", "hit_faltas"),
     ("Tarjetas", "hit_tarjetas"),
 ]
-STAT_MARKET_BASELINE = 0.5
+STAT_MARKET_BASELINE = 0.5  # solo mientras la liga no tiene historial
+STAT_BASE_PRIOR = 10  # partidos "fantasma" al 50% para la frecuencia previa de la liga
+STAT_LINES_COLS = {"hit_corners": "corners", "hit_faltas": "faltas", "hit_tarjetas": "tarjetas"}
+
+
+_STATS_TOTALS_CACHE: dict = {}
+
+
+def _stat_match_totals() -> pd.DataFrame:
+    """Totales por partido (ambos equipos) de match_stats_log: competition, t,
+    corners, faltas, tarjetas. Cacheado por fecha de modificación del archivo."""
+    from .match_stats_log import LOG_PATH, load_log
+
+    clave = LOG_PATH.stat().st_mtime if LOG_PATH.exists() else 0
+    if clave not in _STATS_TOTALS_CACHE:
+        s = load_log()
+        if s.empty:
+            tot = pd.DataFrame(columns=["competition", "t", "corners", "faltas", "tarjetas"])
+        else:
+            s = s.assign(tarjetas=pd.to_numeric(s["tarjetas_amarillas"], errors="coerce").fillna(0)
+                         + pd.to_numeric(s["tarjetas_rojas"], errors="coerce").fillna(0),
+                         corners=pd.to_numeric(s["corners"], errors="coerce"),
+                         faltas=pd.to_numeric(s["faltas"], errors="coerce"))
+            k = ["competition", "utc_date", "home_team", "away_team"]
+            tot = s.groupby(k)[["corners", "faltas", "tarjetas"]].sum(min_count=2).reset_index()
+            tot["t"] = pd.to_datetime(tot["utc_date"], utc=True, errors="coerce")
+        _STATS_TOTALS_CACHE.clear()
+        _STATS_TOTALS_CACHE[clave] = tot.dropna(subset=["t"]).sort_values("t")
+    return _STATS_TOTALS_CACHE[clave]
+
+
+def stat_base_rate(r: pd.DataFrame, m: str) -> pd.Series:
+    """Probabilidad "sin modelo" del pick de corners/faltas/tarjetas: con qué
+    frecuencia salía ese lado de la línea en la liga, con TODOS los partidos de
+    match_stats_log anteriores a este (miles, no solo los logueados), acercada
+    a 50% si la liga tiene poca historia."""
+    linea, lado = r.get(f"pred_{m}_line"), r.get(f"pred_{m}_probable")
+    salida = pd.Series(STAT_MARKET_BASELINE, index=r.index, dtype=float)
+    if linea is None or lado is None:
+        return salida
+    tot = _stat_match_totals()
+    t = pd.to_datetime(r.get("utc_date"), utc=True, errors="coerce")
+    for idx in r.index:
+        ln = pd.to_numeric(linea.get(idx), errors="coerce")
+        if pd.isna(ln) or pd.isna(t.get(idx)) or lado.get(idx) not in ("Sí", "No"):
+            continue
+        previos = tot[(tot["competition"] == r.at[idx, "competition"]) & (tot["t"] < t[idx])][m].dropna()
+        p_mas = ((previos > ln).sum() + STAT_MARKET_BASELINE * STAT_BASE_PRIOR) / (len(previos) + STAT_BASE_PRIOR)
+        salida[idx] = p_mas if lado[idx] == "Sí" else 1 - p_mas
+    return salida
 # Tipo de predicción (segmento de Reportes): las del modelo, o los picks que
 # entraron en boletos de Tips según su plan.
 TIPO_MODELO = "Modelo"
@@ -108,6 +163,7 @@ def predictions_long(log: pd.DataFrame, include_backtest: bool = True) -> pd.Dat
         "hit_dc": prob_dc,
         "hit_over_2_5": over.where(over >= 0.5, 1 - over),
         "hit_btts": btts.where(btts >= 0.5, 1 - btts),
+        **{col: stat_base_rate(r, m) for col, m in STAT_LINES_COLS.items()},
     }
     filas = []
     for mercado, col in MARKETS:

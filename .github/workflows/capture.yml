@@ -35,7 +35,7 @@ jobs:
   capture:
     if: vars.CAPTURE_ENABLED == 'true'
     runs-on: ubuntu-latest
-    timeout-minutes: 20
+    timeout-minutes: 40  # el análisis semanal de Avanzada tarda ~10 min (nov-2026)
     steps:
       - uses: actions/checkout@v4
 

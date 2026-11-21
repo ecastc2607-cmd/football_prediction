@@ -58,6 +58,7 @@ from src.prediction_log import MARKETS
 from src.daily_plan import MAX_TICKETS, build_plans, ticket_rows
 from src.timezones import BOGOTA_TZ, format_bogota, to_bogota
 from src.value_tips import (GAP_STATE, LIVE_MODEL_WEIGHT, MAX_DAILY_EXPOSURE, MIN_MODEL_PROB, candidate_picks,
+                             strength_marks,
                              day_summary, evaluate, live_candidate_picks, special_candidates, totals_candidates)
 
 st.set_page_config(page_title="Football Analytics · Jornada", page_icon="⚽", layout="wide")
@@ -973,6 +974,11 @@ def _diverging_cell_css(diferencia, tope: float) -> str:
     return f"background-color: {fondo}; color: #ffffff; text-align: center"
 
 
+FUERZA_TIPS_AYUDA = (
+    "Cuánto acierta este mercado en esta liga POR ENCIMA de lo que saldría sin modelo (puntos). "
+    "🔵 Fortaleza ≥ +5 · ⚪ Neutral · 🔴 Débil ≤ −5. Corners, faltas y tarjetas se miden contra la frecuencia "
+    "real de la línea en la liga (antes se comparaban contra 50% y salían 'fuertes' en casi todas por sesgo).")
+
 tab_jornada, tab_vivo, tab_amistosos, tab_tips, tab_reportes, tab_avanzada = st.tabs(
     ["📅 Jornada", "🔴 En vivo", "🌍 Amistosos", "💡 Tips", "📊 Reportes", "🧪 Avanzada"]
 )
@@ -1696,6 +1702,7 @@ with tab_tips:
                 "Hora": candidatos["utc_date"].map(format_bogota),
                 "Mercado": candidatos["mercado"],
                 "Pick": candidatos["pick"],
+                "Fuerza en la liga": strength_marks(candidatos),
                 "Prob. modelo": (candidatos["prob_modelo"] * 100).round(0),
                 "Cuota justa": candidatos["cuota_justa"],
                 "Mejor cuota": pd.to_numeric(candidatos["cuota_auto"], errors="coerce").astype(float),
@@ -1712,6 +1719,7 @@ with tab_tips:
                 disabled=[c for c in editor.columns if c != "Cuota manual"],
                 column_config={
                     "Partido": st.column_config.Column(pinned=True),
+                    "Fuerza en la liga": st.column_config.Column(help=FUERZA_TIPS_AYUDA),
                     "Qué significa": st.column_config.Column(
                         width="large", help="Solo en los mercados especiales (vista 🧪 Avanzada)."),
                     "Prob. modelo": st.column_config.NumberColumn(format="%.0f%%"),
@@ -1782,6 +1790,7 @@ with tab_tips:
                             "Hora": apuestas["utc_date"].map(format_bogota),
                             "Mercado": apuestas["mercado"],
                             "Pick": apuestas["pick"],
+                            "Fuerza en la liga": strength_marks(apuestas),
                             "Cuota": apuestas["cuota"].astype(float).round(2),
                             "Casa": apuestas["casa"].where(manual.reindex(apuestas.index).isna(), "Tu casa (manual)"),
                             "Valor": (apuestas["valor"] * 100).round(1),
