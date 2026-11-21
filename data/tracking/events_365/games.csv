@@ -4871,3 +4871,6 @@ game_id,competition,start_utc,home_team,away_team,home_goals,away_goals,ht_home_
 4755340,BL1,2026-11-21T14:30:00Z,Union Berlin,RB Leipzig,1,5,1.0,1.0,True,2026-11-21T16:25:29Z
 4755342,BL1,2026-11-21T14:30:00Z,Eintracht Frankfurt,Hoffenheim,1,0,1.0,0.0,True,2026-11-21T16:25:29Z
 4755343,BL1,2026-11-21T14:30:00Z,Bayer Leverkusen,SC Paderborn 07,4,0,1.0,0.0,True,2026-11-21T16:25:29Z
+4741991,PL,2026-11-21T15:00:00Z,Tottenham,Ipswich,2,0,1.0,0.0,True,2026-11-21T16:55:36Z
+4742000,PL,2026-11-21T15:00:00Z,Aston Villa,Sunderland,0,0,0.0,0.0,True,2026-11-21T16:55:36Z
+4742001,PL,2026-11-21T15:00:00Z,Bournemouth,Nottingham Forest,2,0,2.0,0.0,True,2026-11-21T16:55:36Z
