@@ -6987,3 +6987,13 @@ SA,2026,12.0,2026-11-21T14:00:00Z,SS Lazio,US Lecce,SS Lazio,True,9.0,11.0,1.0,0
 SA,2026,12.0,2026-11-21T14:00:00Z,SS Lazio,US Lecce,US Lecce,False,3.0,13.0,2.0,0.0,39.0,2.0,10.0,1.0
 SA,2026,12.0,2026-11-21T14:00:00Z,Como 1907,Cagliari Calcio,Como 1907,True,3.0,6.0,0.0,0.0,63.0,6.0,10.0,0.0
 SA,2026,12.0,2026-11-21T14:00:00Z,Como 1907,Cagliari Calcio,Cagliari Calcio,False,3.0,12.0,0.0,0.0,37.0,1.0,6.0,4.0
+BL1,2026,10.0,2026-11-21T14:30:00Z,SV 07 Elversberg,SC Freiburg,SV 07 Elversberg,True,5.0,12.0,0.0,0.0,58.0,2.0,10.0,1.0
+BL1,2026,10.0,2026-11-21T14:30:00Z,SV 07 Elversberg,SC Freiburg,SC Freiburg,False,3.0,11.0,3.0,0.0,42.0,1.0,9.0,2.0
+BL1,2026,10.0,2026-11-21T14:30:00Z,Borussia Mönchengladbach,Borussia Dortmund,Borussia Mönchengladbach,True,7.0,16.0,2.0,0.0,42.0,2.0,9.0,0.0
+BL1,2026,10.0,2026-11-21T14:30:00Z,Borussia Mönchengladbach,Borussia Dortmund,Borussia Dortmund,False,7.0,7.0,1.0,0.0,58.0,5.0,15.0,2.0
+BL1,2026,10.0,2026-11-21T14:30:00Z,1. FC Union Berlin,RB Leipzig,1. FC Union Berlin,True,4.0,10.0,2.0,0.0,33.0,8.0,13.0,2.0
+BL1,2026,10.0,2026-11-21T14:30:00Z,1. FC Union Berlin,RB Leipzig,RB Leipzig,False,8.0,12.0,2.0,0.0,67.0,10.0,32.0,1.0
+BL1,2026,10.0,2026-11-21T14:30:00Z,Eintracht Frankfurt,TSG 1899 Hoffenheim,Eintracht Frankfurt,True,9.0,11.0,2.0,0.0,41.0,6.0,21.0,3.0
+BL1,2026,10.0,2026-11-21T14:30:00Z,Eintracht Frankfurt,TSG 1899 Hoffenheim,TSG 1899 Hoffenheim,False,5.0,12.0,2.0,1.0,59.0,4.0,16.0,2.0
+BL1,2026,10.0,2026-11-21T14:30:00Z,Bayer 04 Leverkusen,SC Paderborn 07,Bayer 04 Leverkusen,True,8.0,9.0,2.0,0.0,64.0,10.0,20.0,1.0
+BL1,2026,10.0,2026-11-21T14:30:00Z,Bayer 04 Leverkusen,SC Paderborn 07,SC Paderborn 07,False,3.0,8.0,0.0,0.0,36.0,1.0,8.0,0.0

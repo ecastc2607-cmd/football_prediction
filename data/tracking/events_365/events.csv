@@ -39973,3 +39973,37 @@ game_id,side,minute,added_time,half,type,subtype,player
 4732628,home,24.0,0,1,Goal,Field Goal,Jacobo Ramón
 4732628,home,56.0,0,2,Goal,Field Goal,Lucas Da Cunha
 4732628,home,90.0,2,2,Woodwork,,Anastasios Douvikas
+4755336,away,33.0,0,1,Yellow Card,,Jan-Niklas Beste
+4755336,away,68.0,0,2,Goal,Field Goal,Igor Matanovic
+4755336,away,70.0,0,2,Yellow Card,,Igor Matanovic
+4755336,away,78.0,0,2,Yellow Card,,Philipp Lienhart
+4755339,away,16.0,0,1,Yellow Card,,Joane Gadou
+4755339,home,32.0,0,1,Yellow Card,,Zento Uno
+4755339,home,71.0,0,2,Yellow Card,,Kevin Diks
+4755339,away,80.0,0,2,Goal,Field Goal,Felix Nmecha
+4755340,away,5.0,0,1,Yellow Card,,Brajan Gruda
+4755340,home,9.0,0,1,Yellow Card,,Andras Schafer
+4755340,away,13.0,0,1,Yellow Card,,Ezechiel Banzuzi
+4755340,home,17.0,0,1,Yellow Card,,Zeno Van Den Bosch
+4755340,away,18.0,0,1,Goal,Penalty,Antonio Nusa
+4755340,home,41.0,0,1,Goal,Field Goal,Michel Aebischer
+4755340,away,50.0,0,2,Goal,Field Goal,Rômulo
+4755340,away,72.0,0,2,Goal,Field Goal,Brajan Gruda
+4755340,away,76.0,0,2,Goal,Field Goal,Rocco Reitz
+4755340,away,89.0,0,2,Goal,Field Goal,Ridle Baku
+4755342,home,25.0,0,1,Goal,Field Goal,Jonathan Burkardt
+4755342,home,33.0,0,1,Woodwork,,Jonathan Burkardt
+4755342,away,41.0,0,1,Penalty Miss,,Andrej Kramaric
+4755342,home,44.0,0,1,Penalty Miss,,Jonathan Burkardt
+4755342,away,69.0,0,2,Yellow Card,,Leon Avdullahu
+4755342,away,88.0,0,2,Yellow Card,,Wouter Burger
+4755342,away,90.0,3,2,Red Card,,Ozan Kabak
+4755342,home,90.0,4,2,Yellow Card,,Noah Atubolu
+4755342,home,90.0,5,2,Yellow Card,,Malik Pimpong
+4755342,home,90.0,5,2,Yellow Card,,Adi Hütter
+4755343,home,14.0,0,1,Goal,Field Goal,Afonso Moreira
+4755343,home,48.0,0,2,Goal,Field Goal,Afonso Moreira
+4755343,home,51.0,0,2,Goal,Field Goal,Patrik Schick
+4755343,home,54.0,0,2,Yellow Card,,Ezequiel Fernández
+4755343,home,56.0,0,2,Yellow Card,,Miguel Gutiérrez
+4755343,home,59.0,0,2,Goal,Field Goal,Ezequiel Fernández

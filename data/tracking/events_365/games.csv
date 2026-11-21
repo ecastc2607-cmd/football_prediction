@@ -4866,3 +4866,8 @@ game_id,competition,start_utc,home_team,away_team,home_goals,away_goals,ht_home_
 4750791,PD,2026-11-21T13:00:00Z,Alaves,Deportivo A Coruña,3,1,1.0,1.0,True,2026-11-21T14:55:31Z
 4732626,SA,2026-11-21T14:00:00Z,Lazio,Lecce,3,0,1.0,0.0,True,2026-11-21T15:55:38Z
 4732628,SA,2026-11-21T14:00:00Z,Como,Cagliari,2,0,1.0,0.0,True,2026-11-21T16:00:38Z
+4755336,BL1,2026-11-21T14:30:00Z,SV 07 Elversberg,Freiburg,0,1,0.0,0.0,True,2026-11-21T16:25:29Z
+4755339,BL1,2026-11-21T14:30:00Z,Borussia Mönchengladbach,Borussia Dortmund,0,1,0.0,0.0,True,2026-11-21T16:25:29Z
+4755340,BL1,2026-11-21T14:30:00Z,Union Berlin,RB Leipzig,1,5,1.0,1.0,True,2026-11-21T16:25:29Z
+4755342,BL1,2026-11-21T14:30:00Z,Eintracht Frankfurt,Hoffenheim,1,0,1.0,0.0,True,2026-11-21T16:25:29Z
+4755343,BL1,2026-11-21T14:30:00Z,Bayer Leverkusen,SC Paderborn 07,4,0,1.0,0.0,True,2026-11-21T16:25:29Z
