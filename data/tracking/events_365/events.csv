@@ -40101,3 +40101,18 @@ game_id,side,minute,added_time,half,type,subtype,player
 4735208,home,47.0,0,2,Goal,Field Goal,Mickael Cuisance
 4735208,home,62.0,0,2,Yellow Card,,Amadou Haidara
 4735208,home,90.0,0,2,Woodwork,,Abdallah Sima
+4735201,home,13.0,0,1,Yellow Card,,Dario Essugo
+4735201,home,13.0,0,1,Yellow Card,,Vitor Matos
+4735201,away,22.0,0,1,Goal,Field Goal,Noah Edjouma
+4735201,home,24.0,0,1,Yellow Card,,Sebastian Nanasi
+4735201,away,56.0,0,2,Yellow Card,,Lucas Tousart
+4735201,home,86.0,0,2,Yellow Card,,Diogo Sousa
+4735201,home,90.0,5,2,Penalty Miss,,Martial Godo
+4735201,away,90.0,7,2,Yellow Card,,Julien Lachuer
+4735204,away,29.0,0,1,Goal,Field Goal,Romain Faivre
+4735204,home,82.0,0,2,Goal,Field Goal,Edan Diop
+4735204,home,88.0,0,2,Yellow Card,,Filipe Luis
+4735204,away,90.0,5,2,Yellow Card,,Paul Nardi
+4735207,away,40.0,0,1,Goal,Field Goal,Mads Bidstrup
+4735207,away,42.0,0,1,Goal Disallowed,Var,Ernest Nuamah
+4735207,away,90.0,3,2,Yellow Card,,Corentin Tolisso
