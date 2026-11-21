@@ -50290,3 +50290,237 @@ game_id,line_type_id,market,line,option,odds,opening_odds,won
 4742001,139,Total Shots On Target,8.5,Over,2.0,2.0,False
 4742001,13,Both Teams To Score 2nd Half,,Yes,3.4,2.95,False
 4742001,13,Both Teams To Score 2nd Half,,No,1.28,1.35,True
+4741997,1,Full Time Result,,1,2.45,2.23,True
+4741997,1,Full Time Result,,X,3.5,3.57,False
+4741997,1,Full Time Result,,2,2.75,2.88,False
+4741997,14,Double Chance,,1X,1.43,1.41,True
+4741997,14,Double Chance,,12,1.3,1.29,True
+4741997,14,Double Chance,,X2,1.52,1.63,False
+4741997,3,Total Goals In Match,2.5,Under,2.1,2.32,False
+4741997,3,Total Goals In Match,2.5,Over,1.66,1.62,True
+4741997,3,Total Goals In Match,1.5,Under,4.2,4.46,False
+4741997,3,Total Goals In Match,1.5,Over,1.2,1.19,True
+4741997,3,Total Goals In Match,3.5,Under,1.43,1.53,False
+4741997,3,Total Goals In Match,3.5,Over,2.65,2.49,True
+4741997,12,Both Teams To Score,,Yes,1.53,1.54,True
+4741997,12,Both Teams To Score,,No,2.3,2.39,False
+4741997,7,First To Score,,Home,1.9,1.8,True
+4741997,7,First To Score,,No Goal,13.0,15.0,False
+4741997,7,First To Score,,Away,1.95,2.04,False
+4741997,11,Asian Handicap,-0.25,Home,2.19,1.99,True
+4741997,11,Asian Handicap,-0.25,Away,1.64,1.84,False
+4741997,11,Asian Handicap,-0.5,Home,2.52,2.27,True
+4741997,11,Asian Handicap,-0.5,Away,1.51,1.64,False
+4741997,11,Asian Handicap,0.25,Home,1.61,1.49,True
+4741997,11,Asian Handicap,0.25,Away,2.23,2.48,False
+4741997,15,Draw No Bet,,Home,1.75,1.66,True
+4741997,15,Draw No Bet,,Away,1.95,2.09,False
+4741997,5,1st Half Result,,1,2.8,2.73,False
+4741997,5,1st Half Result,,X,2.3,2.36,True
+4741997,5,1st Half Result,,2,3.0,3.38,False
+4741997,6,2nd Half Result,,1,2.6,2.65,True
+4741997,6,2nd Half Result,,X,2.55,2.55,False
+4741997,6,2nd Half Result,,2,2.85,2.8,False
+4741997,9,1st Half Goals,1.5,Under,1.5,1.53,False
+4741997,9,1st Half Goals,1.5,Over,2.5,2.37,True
+4741997,9,1st Half Goals,2.5,Under,1.12,1.14,False
+4741997,9,1st Half Goals,2.5,Over,6.0,5.49,True
+4741997,9,1st Half Goals,0.5,Under,3.42,3.53,False
+4741997,9,1st Half Goals,0.5,Over,1.31,1.3,True
+4741997,137,Total Corners,9.5,Under,1.74,1.74,False
+4741997,137,Total Corners,9.5,Over,2.01,2.01,True
+4741997,127,Half Time Correct Score,0-0,Yes,3.42,3.52,False
+4741997,127,Half Time Correct Score,0-1,Yes,4.78,5.03,False
+4741997,127,Half Time Correct Score,1-0,Yes,4.52,4.77,False
+4741997,127,Half Time Correct Score,1-1,Yes,6.5,7.0,False
+4741997,127,Half Time Correct Score,0-2,Yes,13.0,15.0,False
+4741997,127,Half Time Correct Score,2-0,Yes,12.0,12.0,False
+4741997,127,Half Time Correct Score,2-1,Yes,17.0,17.0,False
+4741997,127,Half Time Correct Score,1-2,Yes,19.0,21.0,False
+4741997,127,Half Time Correct Score,2-2,Yes,41.0,41.0,True
+4741997,127,Half Time Correct Score,0-3,Yes,41.0,41.0,False
+4741997,127,Half Time Correct Score,3-0,Yes,41.0,41.0,False
+4741997,127,Half Time Correct Score,3-1,Yes,51.0,51.0,False
+4741997,127,Half Time Correct Score,1-3,Yes,51.0,51.0,False
+4741997,127,Half Time Correct Score,2-3,Yes,101.0,101.0,False
+4741997,127,Half Time Correct Score,3-2,Yes,101.0,101.0,False
+4741997,127,Half Time Correct Score,3-3,Yes,301.0,351.0,False
+4741997,127,Half Time Correct Score,4-0,Yes,101.0,101.0,False
+4741997,127,Half Time Correct Score,0-4,Yes,126.0,151.0,False
+4741997,127,Half Time Correct Score,4-1,Yes,151.0,151.0,False
+4741997,127,Half Time Correct Score,1-4,Yes,151.0,201.0,False
+4741997,127,Half Time Correct Score,2-4,Yes,501.0,501.0,False
+4741997,127,Half Time Correct Score,4-2,Yes,501.0,401.0,False
+4741997,127,Half Time Correct Score,5-0,Yes,501.0,501.0,False
+4741997,126,Correct Score,0-0,Yes,13.0,15.0,False
+4741997,126,Correct Score,0-1,Yes,11.0,15.0,False
+4741997,126,Correct Score,1-0,Yes,11.0,12.0,False
+4741997,126,Correct Score,1-1,Yes,6.5,8.0,False
+4741997,126,Correct Score,0-2,Yes,15.0,19.0,False
+4741997,126,Correct Score,2-0,Yes,13.0,15.0,False
+4741997,126,Correct Score,1-2,Yes,10.0,12.0,False
+4741997,126,Correct Score,2-1,Yes,9.5,10.0,False
+4741997,126,Correct Score,2-2,Yes,11.0,13.0,False
+4741997,126,Correct Score,3-0,Yes,23.0,23.0,False
+4741997,126,Correct Score,0-3,Yes,26.0,34.0,False
+4741997,126,Correct Score,1-3,Yes,19.0,23.0,False
+4741997,126,Correct Score,3-1,Yes,19.0,19.0,False
+4741997,126,Correct Score,2-3,Yes,23.0,29.0,False
+4741997,126,Correct Score,3-2,Yes,23.0,23.0,True
+4741997,126,Correct Score,3-3,Yes,34.0,41.0,False
+4741997,126,Correct Score,0-4,Yes,51.0,67.0,False
+4741997,126,Correct Score,4-0,Yes,41.0,41.0,False
+4741997,126,Correct Score,1-4,Yes,41.0,51.0,False
+4741997,126,Correct Score,4-1,Yes,41.0,41.0,False
+4741997,126,Correct Score,4-2,Yes,41.0,41.0,False
+4741997,126,Correct Score,2-4,Yes,41.0,51.0,False
+4741997,126,Correct Score,4-3,Yes,67.0,67.0,False
+4741997,126,Correct Score,3-4,Yes,67.0,81.0,False
+4741997,126,Correct Score,4-4,Yes,126.0,151.0,False
+4741997,126,Correct Score,0-5,Yes,101.0,151.0,False
+4741997,126,Correct Score,5-0,Yes,101.0,101.0,False
+4741997,126,Correct Score,1-5,Yes,81.0,101.0,False
+4741997,126,Correct Score,5-1,Yes,81.0,67.0,False
+4741997,126,Correct Score,5-2,Yes,81.0,81.0,False
+4741997,126,Correct Score,2-5,Yes,101.0,126.0,False
+4741997,126,Correct Score,5-3,Yes,151.0,151.0,False
+4741997,126,Correct Score,3-5,Yes,151.0,201.0,False
+4741997,126,Correct Score,4-5,Yes,351.0,451.0,False
+4741997,126,Correct Score,5-4,Yes,351.0,401.0,False
+4741997,126,Correct Score,6-0,Yes,301.0,251.0,False
+4741997,126,Correct Score,0-6,Yes,301.0,351.0,False
+4741997,126,Correct Score,6-1,Yes,201.0,201.0,False
+4741997,126,Correct Score,1-6,Yes,201.0,351.0,False
+4741997,126,Correct Score,6-2,Yes,251.0,251.0,False
+4741997,126,Correct Score,2-6,Yes,301.0,451.0,False
+4741997,144,Home Team - Clean Sheet,,Yes,4.01,3.76,False
+4741997,144,Home Team - Clean Sheet,,No,1.23,1.25,True
+4741997,145,Away Team - Clean Sheet,,Yes,4.01,4.51,False
+4741997,145,Away Team - Clean Sheet,,No,1.22,1.18,True
+4741997,143,A Penalty In The Match,,Yes,4.04,4.04,False
+4741997,143,A Penalty In The Match,,No,1.23,1.23,True
+4741997,141,Total Cards,3.5,Under,2.09,1.57,True
+4741997,141,Total Cards,3.5,Over,1.66,2.24,False
+4741997,142,A Red Card in Match,,Yes,8.0,8.0,False
+4741997,142,A Red Card in Match,,No,1.09,1.09,True
+4741997,139,Total Shots On Target,8.5,Under,1.84,2.01,False
+4741997,139,Total Shots On Target,8.5,Over,1.84,1.73,True
+4741997,140,Total Offsides,4.5,Under,1.72,1.72,True
+4741997,140,Total Offsides,4.5,Over,1.99,1.99,False
+4741997,13,Both Teams To Score 2nd Half,,Yes,2.75,2.7,False
+4741997,13,Both Teams To Score 2nd Half,,No,1.39,1.4,True
+4741998,1,Full Time Result,,1,1.95,1.75,False
+4741998,1,Full Time Result,,X,3.6,3.7,False
+4741998,1,Full Time Result,,2,3.7,4.21,True
+4741998,14,Double Chance,,1X,1.25,1.21,False
+4741998,14,Double Chance,,12,1.28,1.28,True
+4741998,14,Double Chance,,X2,1.83,1.98,True
+4741998,12,Both Teams To Score,,Yes,1.68,1.7,True
+4741998,12,Both Teams To Score,,No,2.05,2.05,False
+4741998,3,Total Goals In Match,2.5,Under,2.08,2.08,False
+4741998,3,Total Goals In Match,2.5,Over,1.71,1.71,True
+4741998,3,Total Goals In Match,1.5,Under,3.75,4.34,False
+4741998,3,Total Goals In Match,1.5,Over,1.24,1.23,True
+4741998,3,Total Goals In Match,3.5,Under,1.35,1.44,False
+4741998,3,Total Goals In Match,3.5,Over,2.95,2.75,True
+4741998,7,First To Score,,Home,1.66,1.61,True
+4741998,7,First To Score,,No Goal,12.0,13.0,False
+4741998,7,First To Score,,Away,2.29,2.39,False
+4741998,11,Asian Handicap,-0.5,Home,1.99,1.84,False
+4741998,11,Asian Handicap,-0.5,Away,1.84,1.99,True
+4741998,11,Asian Handicap,-0.75,Home,2.27,2.04,False
+4741998,11,Asian Handicap,-0.75,Away,1.64,1.84,True
+4741998,11,Asian Handicap,-0.25,Home,1.66,1.56,False
+4741998,11,Asian Handicap,-0.25,Away,2.22,2.39,True
+4741998,15,Draw No Bet,,Home,1.4,1.32,False
+4741998,15,Draw No Bet,,Away,2.7,3.22,True
+4741998,5,1st Half Result,,1,2.37,2.28,False
+4741998,5,1st Half Result,,X,2.25,2.28,True
+4741998,5,1st Half Result,,2,3.8,4.47,False
+4741998,6,2nd Half Result,,1,2.2,2.1,False
+4741998,6,2nd Half Result,,X,2.5,2.6,False
+4741998,6,2nd Half Result,,2,3.7,3.8,True
+4741998,9,1st Half Goals,1.5,Under,1.5,1.5,False
+4741998,9,1st Half Goals,1.5,Over,2.51,2.51,True
+4741998,9,1st Half Goals,0.5,Under,3.0,3.24,False
+4741998,9,1st Half Goals,0.5,Over,1.36,1.33,True
+4741998,9,1st Half Goals,2.5,Under,1.12,1.12,True
+4741998,9,1st Half Goals,2.5,Over,6.5,6.5,False
+4741998,137,Total Corners,9.5,Under,1.99,1.99,True
+4741998,137,Total Corners,9.5,Over,1.72,1.72,False
+4741998,127,Half Time Correct Score,0-0,Yes,3.26,3.26,False
+4741998,127,Half Time Correct Score,1-0,Yes,4.01,4.01,False
+4741998,127,Half Time Correct Score,0-1,Yes,5.53,6.5,False
+4741998,127,Half Time Correct Score,1-1,Yes,7.0,7.5,True
+4741998,127,Half Time Correct Score,2-0,Yes,9.5,9.0,False
+4741998,127,Half Time Correct Score,0-2,Yes,17.0,21.0,False
+4741998,127,Half Time Correct Score,1-2,Yes,21.0,26.0,False
+4741998,127,Half Time Correct Score,2-1,Yes,17.0,17.0,False
+4741998,127,Half Time Correct Score,2-2,Yes,41.0,51.0,False
+4741998,127,Half Time Correct Score,3-0,Yes,29.0,29.0,False
+4741998,127,Half Time Correct Score,0-3,Yes,51.0,67.0,False
+4741998,127,Half Time Correct Score,3-1,Yes,41.0,41.0,False
+4741998,127,Half Time Correct Score,1-3,Yes,67.0,81.0,False
+4741998,127,Half Time Correct Score,2-3,Yes,126.0,151.0,False
+4741998,127,Half Time Correct Score,3-2,Yes,101.0,101.0,False
+4741998,127,Half Time Correct Score,3-3,Yes,501.0,501.0,False
+4741998,127,Half Time Correct Score,4-0,Yes,81.0,81.0,False
+4741998,127,Half Time Correct Score,0-4,Yes,201.0,351.0,False
+4741998,127,Half Time Correct Score,4-1,Yes,126.0,126.0,False
+4741998,127,Half Time Correct Score,1-4,Yes,251.0,451.0,False
+4741998,127,Half Time Correct Score,4-2,Yes,351.0,401.0,False
+4741998,127,Half Time Correct Score,5-0,Yes,351.0,301.0,False
+4741998,126,Correct Score,0-0,Yes,13.0,13.0,False
+4741998,126,Correct Score,1-0,Yes,8.5,9.0,False
+4741998,126,Correct Score,0-1,Yes,12.0,15.0,False
+4741998,126,Correct Score,1-1,Yes,7.0,8.0,False
+4741998,126,Correct Score,0-2,Yes,19.0,26.0,False
+4741998,126,Correct Score,2-0,Yes,10.0,10.0,False
+4741998,126,Correct Score,2-1,Yes,8.5,9.0,False
+4741998,126,Correct Score,1-2,Yes,12.0,15.0,False
+4741998,126,Correct Score,2-2,Yes,12.0,15.0,False
+4741998,126,Correct Score,3-0,Yes,17.0,17.0,False
+4741998,126,Correct Score,0-3,Yes,41.0,51.0,False
+4741998,126,Correct Score,3-1,Yes,15.0,15.0,False
+4741998,126,Correct Score,1-3,Yes,26.0,34.0,False
+4741998,126,Correct Score,3-2,Yes,21.0,26.0,False
+4741998,126,Correct Score,2-3,Yes,29.0,41.0,False
+4741998,126,Correct Score,3-3,Yes,41.0,51.0,False
+4741998,126,Correct Score,4-0,Yes,34.0,34.0,False
+4741998,126,Correct Score,0-4,Yes,81.0,126.0,False
+4741998,126,Correct Score,4-1,Yes,29.0,29.0,False
+4741998,126,Correct Score,1-4,Yes,51.0,81.0,True
+4741998,126,Correct Score,2-4,Yes,51.0,81.0,False
+4741998,126,Correct Score,4-2,Yes,41.0,41.0,False
+4741998,126,Correct Score,4-3,Yes,67.0,81.0,False
+4741998,126,Correct Score,3-4,Yes,81.0,126.0,False
+4741998,126,Correct Score,4-4,Yes,151.0,201.0,False
+4741998,126,Correct Score,0-5,Yes,201.0,451.0,False
+4741998,126,Correct Score,5-0,Yes,51.0,51.0,False
+4741998,126,Correct Score,5-1,Yes,51.0,51.0,False
+4741998,126,Correct Score,1-5,Yes,151.0,251.0,False
+4741998,126,Correct Score,5-2,Yes,81.0,81.0,False
+4741998,126,Correct Score,2-5,Yes,151.0,301.0,False
+4741998,126,Correct Score,3-5,Yes,251.0,501.0,False
+4741998,126,Correct Score,5-3,Yes,151.0,201.0,False
+4741998,126,Correct Score,5-4,Yes,401.0,501.0,False
+4741998,126,Correct Score,6-0,Yes,151.0,151.0,False
+4741998,126,Correct Score,6-1,Yes,126.0,126.0,False
+4741998,126,Correct Score,6-2,Yes,201.0,201.0,False
+4741998,126,Correct Score,6-3,Yes,401.0,501.0,False
+4741998,126,Correct Score,7-0,Yes,501.0,501.0,False
+4741998,126,Correct Score,7-1,Yes,401.0,451.0,False
+4741998,144,Home Team - Clean Sheet,,Yes,3.02,2.65,False
+4741998,144,Home Team - Clean Sheet,,No,1.38,1.46,True
+4741998,145,Away Team - Clean Sheet,,Yes,4.98,5.48,False
+4741998,145,Away Team - Clean Sheet,,No,1.16,1.14,True
+4741998,143,A Penalty In The Match,,Yes,4.04,4.04,True
+4741998,143,A Penalty In The Match,,No,1.23,1.23,False
+4741998,141,Total Cards,4.5,Under,1.83,1.83,True
+4741998,141,Total Cards,4.5,Over,1.83,1.83,False
+4741998,142,A Red Card in Match,,Yes,4.98,4.98,False
+4741998,142,A Red Card in Match,,No,1.14,1.14,True
+4741998,139,Total Shots On Target,8.5,Under,1.82,1.82,False
+4741998,139,Total Shots On Target,8.5,Over,1.82,1.82,True
+4741998,13,Both Teams To Score 2nd Half,,Yes,3.1,3.0,False
+4741998,13,Both Teams To Score 2nd Half,,No,1.32,1.34,True

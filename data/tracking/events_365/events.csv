@@ -40027,3 +40027,22 @@ game_id,side,minute,added_time,half,type,subtype,player
 4742001,away,57.0,0,2,Yellow Card,,Daniel Munoz
 4742001,home,87.0,0,2,Yellow Card,,Alex Scott
 4742001,away,90.0,1,2,Yellow Card,,Murillo
+4741997,home,5.0,0,1,Goal,Field Goal,Taiwo Awoniyi
+4741997,away,13.0,0,1,Goal,Field Goal,Yeremy Pino
+4741997,home,30.0,0,1,Goal,Field Goal,Tatsuhiro Sakamoto
+4741997,away,36.0,0,1,Yellow Card,,Adam Wharton
+4741997,home,41.0,0,1,Yellow Card,,Frank Lampard
+4741997,away,45.0,1,1,Goal,Field Goal,Jørgen Strand Larsen
+4741997,home,61.0,0,2,Yellow Card,,Matt Grimes
+4741997,away,75.0,0,2,Yellow Card,,Yeremy Pino
+4741997,home,85.0,0,2,Goal,Own Goal,Dwight McNeil
+4741998,away,18.0,0,1,Woodwork,,Dominic Calvert-Lewin
+4741998,home,25.0,0,1,Goal,Field Goal,Emmanuel Emegha
+4741998,away,28.0,0,1,Goal,Field Goal,Noah Okafor
+4741998,away,38.0,0,1,Yellow Card,,Gabriel Gudmundsson
+4741998,home,47.0,0,2,Yellow Card,,Roméo Lavia
+4741998,away,53.0,0,2,Goal,Penalty,Dominic Calvert-Lewin
+4741998,away,58.0,0,2,Goal,Field Goal,Noah Okafor
+4741998,away,68.0,0,2,Yellow Card,,Jayden Bogle
+4741998,away,83.0,0,2,Yellow Card,,Sean Longstaff
+4741998,away,90.0,1,2,Goal,Field Goal,Brenden Aaronson

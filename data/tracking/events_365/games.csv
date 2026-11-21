@@ -4874,3 +4874,5 @@ game_id,competition,start_utc,home_team,away_team,home_goals,away_goals,ht_home_
 4741991,PL,2026-11-21T15:00:00Z,Tottenham,Ipswich,2,0,1.0,0.0,True,2026-11-21T16:55:36Z
 4742000,PL,2026-11-21T15:00:00Z,Aston Villa,Sunderland,0,0,0.0,0.0,True,2026-11-21T16:55:36Z
 4742001,PL,2026-11-21T15:00:00Z,Bournemouth,Nottingham Forest,2,0,2.0,0.0,True,2026-11-21T16:55:36Z
+4741997,PL,2026-11-21T15:00:00Z,Coventry,Crystal Palace,3,2,2.0,2.0,True,2026-11-21T17:00:30Z
+4741998,PL,2026-11-21T15:00:00Z,Chelsea,Leeds United,1,4,1.0,1.0,True,2026-11-21T17:00:30Z
