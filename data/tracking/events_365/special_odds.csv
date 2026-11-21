@@ -49067,3 +49067,121 @@ game_id,line_type_id,market,line,option,odds,opening_odds,won
 4750791,139,Total Shots On Target,7.5,Over,1.68,1.68,True
 4750791,13,Both Teams To Score 2nd Half,,Yes,3.3,3.5,False
 4750791,13,Both Teams To Score 2nd Half,,No,1.28,1.27,True
+4732626,1,Full Time Result,,1,1.45,1.36,True
+4732626,1,Full Time Result,,X,4.5,4.76,False
+4732626,1,Full Time Result,,2,7.0,8.0,False
+4732626,14,Double Chance,,1X,1.11,1.09,True
+4732626,14,Double Chance,,12,1.19,1.19,True
+4732626,14,Double Chance,,X2,2.52,3.02,False
+4732626,3,Total Goals In Match,2.5,Under,2.2,2.36,False
+4732626,3,Total Goals In Match,2.5,Over,1.6,1.56,True
+4732626,3,Total Goals In Match,1.5,Under,4.5,5.01,False
+4732626,3,Total Goals In Match,1.5,Over,1.18,1.17,True
+4732626,3,Total Goals In Match,3.5,Under,1.47,1.58,True
+4732626,3,Total Goals In Match,3.5,Over,2.5,2.39,False
+4732626,12,Both Teams To Score,,Yes,1.71,1.8,False
+4732626,12,Both Teams To Score,,No,2.0,1.95,True
+4732626,7,First To Score,,Home,1.44,1.36,True
+4732626,7,First To Score,,No Goal,17.0,17.0,False
+4732626,7,First To Score,,Away,2.62,3.19,False
+4732626,11,Asian Handicap,-1,Home,1.96,1.56,True
+4732626,11,Asian Handicap,-1,Away,1.91,2.39,False
+4732626,11,Asian Handicap,-1.25,Home,2.2,1.75,True
+4732626,11,Asian Handicap,-1.25,Away,1.65,2.05,False
+4732626,11,Asian Handicap,-0.75,Home,1.64,1.41,True
+4732626,11,Asian Handicap,-0.75,Away,2.18,2.73,False
+4732626,15,Draw No Bet,,Home,1.21,1.1,True
+4732626,15,Draw No Bet,,Away,3.97,6.5,False
+4732626,5,1st Half Result,,1,1.95,1.78,True
+4732626,5,1st Half Result,,X,2.45,2.6,False
+4732626,5,1st Half Result,,2,4.8,7.0,False
+4732626,6,2nd Half Result,,1,1.77,1.63,True
+4732626,6,2nd Half Result,,X,2.85,2.95,False
+4732626,6,2nd Half Result,,2,4.8,6.0,False
+4732626,9,1st Half Goals,1.5,Under,1.52,1.56,True
+4732626,9,1st Half Goals,1.5,Over,2.36,2.23,False
+4732626,9,1st Half Goals,2.5,Under,1.12,1.13,True
+4732626,9,1st Half Goals,2.5,Over,6.0,5.46,False
+4732626,9,1st Half Goals,0.5,Under,3.53,3.79,False
+4732626,9,1st Half Goals,0.5,Over,1.3,1.26,True
+4732626,137,Total Corners,9.5,Under,1.83,1.66,False
+4732626,137,Total Corners,9.5,Over,1.83,2.1,True
+4732626,127,Half Time Correct Score,0-0,Yes,3.5,3.75,False
+4732626,127,Half Time Correct Score,0-1,Yes,7.0,9.0,False
+4732626,127,Half Time Correct Score,1-0,Yes,3.48,3.38,True
+4732626,127,Half Time Correct Score,1-1,Yes,7.5,8.5,False
+4732626,127,Half Time Correct Score,2-0,Yes,7.0,6.0,False
+4732626,127,Half Time Correct Score,0-2,Yes,26.0,41.0,False
+4732626,127,Half Time Correct Score,2-1,Yes,15.0,15.0,False
+4732626,127,Half Time Correct Score,1-2,Yes,29.0,34.0,False
+4732626,127,Half Time Correct Score,2-2,Yes,41.0,51.0,False
+4732626,127,Half Time Correct Score,3-0,Yes,19.0,17.0,False
+4732626,127,Half Time Correct Score,0-3,Yes,81.0,151.0,False
+4732626,127,Half Time Correct Score,3-1,Yes,41.0,34.0,False
+4732626,127,Half Time Correct Score,1-3,Yes,101.0,126.0,False
+4732626,127,Half Time Correct Score,2-3,Yes,151.0,201.0,False
+4732626,127,Half Time Correct Score,3-2,Yes,81.0,101.0,False
+4732626,127,Half Time Correct Score,3-3,Yes,501.0,501.0,False
+4732626,127,Half Time Correct Score,0-4,Yes,501.0,501.0,False
+4732626,127,Half Time Correct Score,4-0,Yes,51.0,41.0,False
+4732626,127,Half Time Correct Score,4-1,Yes,81.0,81.0,False
+4732626,127,Half Time Correct Score,4-2,Yes,251.0,301.0,False
+4732626,127,Half Time Correct Score,5-0,Yes,151.0,126.0,False
+4732626,127,Half Time Correct Score,5-1,Yes,301.0,251.0,False
+4732626,127,Half Time Correct Score,6-0,Yes,501.0,501.0,False
+4732626,126,Correct Score,0-0,Yes,15.0,17.0,False
+4732626,126,Correct Score,0-1,Yes,17.0,23.0,False
+4732626,126,Correct Score,1-0,Yes,8.0,8.5,False
+4732626,126,Correct Score,1-1,Yes,8.5,9.5,False
+4732626,126,Correct Score,0-2,Yes,29.0,41.0,False
+4732626,126,Correct Score,2-0,Yes,8.0,7.5,False
+4732626,126,Correct Score,1-2,Yes,15.0,23.0,False
+4732626,126,Correct Score,2-1,Yes,8.0,8.5,False
+4732626,126,Correct Score,2-2,Yes,15.0,17.0,False
+4732626,126,Correct Score,3-0,Yes,12.0,9.5,True
+4732626,126,Correct Score,0-3,Yes,51.0,81.0,False
+4732626,126,Correct Score,1-3,Yes,41.0,51.0,False
+4732626,126,Correct Score,3-1,Yes,11.0,11.0,False
+4732626,126,Correct Score,2-3,Yes,34.0,51.0,False
+4732626,126,Correct Score,3-2,Yes,21.0,23.0,False
+4732626,126,Correct Score,3-3,Yes,41.0,51.0,False
+4732626,126,Correct Score,4-0,Yes,21.0,15.0,False
+4732626,126,Correct Score,0-4,Yes,126.0,301.0,False
+4732626,126,Correct Score,4-1,Yes,21.0,17.0,False
+4732626,126,Correct Score,1-4,Yes,81.0,151.0,False
+4732626,126,Correct Score,4-2,Yes,34.0,34.0,False
+4732626,126,Correct Score,2-4,Yes,81.0,151.0,False
+4732626,126,Correct Score,4-3,Yes,67.0,67.0,False
+4732626,126,Correct Score,3-4,Yes,101.0,151.0,False
+4732626,126,Correct Score,4-4,Yes,151.0,201.0,False
+4732626,126,Correct Score,5-0,Yes,41.0,29.0,False
+4732626,126,Correct Score,5-1,Yes,41.0,34.0,False
+4732626,126,Correct Score,1-5,Yes,251.0,451.0,False
+4732626,126,Correct Score,2-5,Yes,251.0,501.0,False
+4732626,126,Correct Score,5-2,Yes,51.0,51.0,False
+4732626,126,Correct Score,3-5,Yes,351.0,501.0,False
+4732626,126,Correct Score,5-3,Yes,126.0,126.0,False
+4732626,126,Correct Score,5-4,Yes,351.0,451.0,False
+4732626,126,Correct Score,6-0,Yes,67.0,51.0,False
+4732626,126,Correct Score,6-1,Yes,67.0,51.0,False
+4732626,126,Correct Score,6-2,Yes,126.0,101.0,False
+4732626,126,Correct Score,6-3,Yes,251.0,251.0,False
+4732626,126,Correct Score,7-0,Yes,151.0,101.0,False
+4732626,126,Correct Score,7-1,Yes,151.0,126.0,False
+4732626,126,Correct Score,7-2,Yes,301.0,251.0,False
+4732626,126,Correct Score,8-0,Yes,501.0,301.0,False
+4732626,126,Correct Score,8-1,Yes,401.0,301.0,False
+4732626,144,Home Team - Clean Sheet,,Yes,2.5,2.1,True
+4732626,144,Home Team - Clean Sheet,,No,1.5,1.66,False
+4732626,145,Away Team - Clean Sheet,,Yes,7.0,9.0,False
+4732626,145,Away Team - Clean Sheet,,No,1.09,1.06,True
+4732626,143,A Penalty In The Match,,Yes,3.49,3.49,False
+4732626,143,A Penalty In The Match,,No,1.28,1.28,True
+4732626,141,Total Cards,3.5,Under,1.84,2.1,True
+4732626,141,Total Cards,3.5,Over,1.84,1.67,False
+4732626,142,A Red Card in Match,,Yes,4.0,4.0,False
+4732626,142,A Red Card in Match,,No,1.22,1.22,True
+4732626,139,Total Shots On Target,9.5,Under,1.74,1.74,True
+4732626,139,Total Shots On Target,9.5,Over,2.02,2.02,False
+4732626,13,Both Teams To Score 2nd Half,,Yes,3.0,3.2,False
+4732626,13,Both Teams To Score 2nd Half,,No,1.33,1.3,True
