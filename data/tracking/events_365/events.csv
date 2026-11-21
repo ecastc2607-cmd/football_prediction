@@ -40116,3 +40116,10 @@ game_id,side,minute,added_time,half,type,subtype,player
 4735207,away,40.0,0,1,Goal,Field Goal,Mads Bidstrup
 4735207,away,42.0,0,1,Goal Disallowed,Var,Ernest Nuamah
 4735207,away,90.0,3,2,Yellow Card,,Corentin Tolisso
+4750783,away,6.0,0,1,Goal,Field Goal,Pablo Durán
+4750783,home,39.0,0,1,Penalty Miss,,Kylian Mbappe
+4750783,home,66.0,0,2,Goal,Field Goal,Jude Bellingham
+4750783,away,74.0,0,2,Yellow Card,,Yoel Lago
+4750783,away,82.0,0,2,Yellow Card,,Javi Rodríguez
+4750783,home,85.0,0,2,Goal,Field Goal,Carlos Espí
+4750783,home,90.0,4,2,Yellow Card,,Carlos Espí
