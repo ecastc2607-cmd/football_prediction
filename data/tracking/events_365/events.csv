@@ -40051,3 +40051,10 @@ game_id,side,minute,added_time,half,type,subtype,player
 4750784,away,64.0,0,2,Yellow Card,,Javi Guerra
 4750784,home,71.0,0,2,Yellow Card,,Jorge De Frutos
 4750784,home,79.0,0,2,Woodwork,,Unai López
+4735203,home,8.0,0,1,Goal,Field Goal,Mohamed Amoura
+4735203,away,31.0,0,1,Goal,Penalty,Senny Mayulu
+4735203,away,32.0,0,1,Goal,Field Goal,Désiré Doué
+4735203,home,54.0,0,2,Yellow Card,,Hicham Boudaoui
+4735203,home,75.0,0,2,Yellow Card,,Alidu Seidu
+4735203,away,85.0,0,2,Goal,Field Goal,Ferran Torres
+4735203,home,90.0,5,2,Goal,Field Goal,Ali Abdi
