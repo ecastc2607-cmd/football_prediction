@@ -104,9 +104,9 @@ id,start_utc,status_group,status_text,home_team,away_team,home_id,away_id,home_g
 4711485,2026-05-15T21:00:00Z,4,Ended,Boca Juniors Cali,Deportivo Cali,10346,8639,1.0,5.0,,3.0,Round
 4711491,2026-05-15T23:00:00Z,4,Ended,Patriotas,Millonarios,9049,8637,2.0,3.0,,3.0,Round
 4711489,2026-05-16T01:00:00Z,4,Ended,Orsomarso,Independiente Medellin,28953,8643,1.0,1.0,,3.0,Round
+4711483,2026-05-16T20:30:00Z,4,Ended,Alianza FC,Real Santander,10209,9834,3.0,0.0,,3.0,Round
 4711488,2026-05-16T20:30:00Z,4,Ended,Cucuta Deportivo,Leones,8634,9829,0.0,0.0,,3.0,Round
 4711490,2026-05-16T20:30:00Z,4,Ended,Boyaca Chico,Atlético FC,8641,10362,4.0,0.0,,3.0,Round
-4711483,2026-05-16T20:30:00Z,4,Ended,Alianza FC,Real Santander,10209,9834,3.0,0.0,,3.0,Round
 4711486,2026-05-17T20:30:00Z,4,Ended,Deportivo Pereira,Real Cundinamarca,8638,9835,1.0,0.0,,3.0,Round
 4711487,2026-05-18T00:30:00Z,4,Ended,Independiente Valle del Cauca,Águilas Doradas,7642,20841,1.0,4.0,,3.0,Round
 4711482,2026-05-20T20:00:00Z,4,Ended,Fortaleza FC,Orsomarso,9844,28953,1.0,1.0,,4.0,Round
@@ -152,8 +152,8 @@ id,start_utc,status_group,status_text,home_team,away_team,home_id,away_id,home_g
 4871494,2026-10-15T01:30:00Z,4,Ended,Atletico Nacional,Independiente Medellin,8640,8643,3.0,2.0,Quarter Finals,,Round
 4871495,2026-10-15T23:00:00Z,4,Ended,Internacional de Bogota,Llaneros FC,8542,10378,4.0,1.0,Quarter Finals,,Round
 4871496,2026-10-22T00:30:00Z,4,Ended,Barranquilla FC,America de Cali,13912,8645,0.0,4.0,Quarter Finals,,Round
-4877788,2026-11-02T01:15:00Z,4,PWN365,Independiente Santa Fe,Once Caldas,7644,7289,0.0,2.0,Quarter Finals,,Round
-4889565,2026-11-10T23:30:00Z,4,PWN365,Internacional de Bogota,America de Cali,8542,8645,1.0,2.0,Semi Finals,,Round
-4889564,2026-11-11T01:30:00Z,4,PWN365,Once Caldas,Atletico Nacional,7289,8640,1.0,1.0,Semi Finals,,Round
+4877788,2026-11-02T01:15:00Z,4,Ended,Independiente Santa Fe,Once Caldas,7644,7289,0.0,2.0,Quarter Finals,,Round
+4889565,2026-11-10T23:30:00Z,4,Ended,Internacional de Bogota,America de Cali,8542,8645,1.0,2.0,Semi Finals,,Round
+4889564,2026-11-11T01:30:00Z,4,Ended,Once Caldas,Atletico Nacional,7289,8640,1.0,1.0,Semi Finals,,Round
 4889628,2026-11-17T23:30:00Z,4,After Penalties,Atletico Nacional,Once Caldas,8640,7289,2.0,2.0,Semi Finals,,Round
-4889629,2026-11-18T01:30:00Z,4,PWN365,America de Cali,Internacional de Bogota,8645,8542,1.0,1.0,Semi Finals,,Round
+4889629,2026-11-18T01:30:00Z,4,Ended,America de Cali,Internacional de Bogota,8645,8542,1.0,1.0,Semi Finals,,Round
