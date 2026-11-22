@@ -40184,3 +40184,13 @@ game_id,side,minute,added_time,half,type,subtype,player
 4755341,away,75.0,0,2,Yellow Card,,Stefan Posch
 4755341,away,76.0,0,2,Yellow Card,,Silvan Widmer
 4755341,home,81.0,0,2,Woodwork,,Uchenna Ogundu
+4750785,home,6.0,0,1,Goal,Field Goal,Yassir Zabiri
+4750785,home,8.0,0,1,Goal,Field Goal,Yassir Zabiri
+4750785,away,45.0,1,1,Goal,Field Goal,Mikel Oyarzabal
+4750785,home,45.0,2,1,Woodwork,,Sergio Canales
+4750785,away,60.0,0,2,Goal,Field Goal,Goncalo Guedes
+4750785,away,66.0,0,2,Yellow Card,,Álex Remiro
+4750785,home,68.0,0,2,Goal,Penalty,Sergio Canales
+4750785,home,74.0,0,2,Yellow Card,,Iker Luque
+4750785,away,80.0,0,2,Yellow Card,,Mamadou Sarr
+4750785,home,90.0,1,2,Yellow Card,,Iñigo Vicente
