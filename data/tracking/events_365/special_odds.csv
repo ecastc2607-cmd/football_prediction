@@ -53864,3 +53864,108 @@ game_id,line_type_id,market,line,option,odds,opening_odds,won
 4735205,139,Total Shots On Target,9.5,Over,1.85,1.81,True
 4735205,13,Both Teams To Score 2nd Half,,Yes,3.23,2.85,False
 4735205,13,Both Teams To Score 2nd Half,,No,1.32,1.37,True
+4750788,1,Full Time Result,,1,6.25,4.74,False
+4750788,1,Full Time Result,,X,3.9,3.49,False
+4750788,1,Full Time Result,,2,1.55,1.72,True
+4750788,14,Double Chance,,1X,2.37,2.06,False
+4750788,14,Double Chance,,12,1.25,1.29,True
+4750788,14,Double Chance,,X2,1.12,1.19,True
+4750788,3,Total Goals In Match,2.5,Under,1.74,1.68,False
+4750788,3,Total Goals In Match,2.5,Over,2.11,2.21,True
+4750788,3,Total Goals In Match,3.5,Under,1.24,1.26,True
+4750788,3,Total Goals In Match,3.5,Over,3.75,4.02,False
+4750788,3,Total Goals In Match,1.5,Under,3.0,3.23,False
+4750788,3,Total Goals In Match,1.5,Over,1.34,1.38,True
+4750788,12,Both Teams To Score,,Yes,2.24,1.99,False
+4750788,12,Both Teams To Score,,No,1.56,1.74,True
+4750788,7,First To Score,,Home,3.23,2.73,False
+4750788,7,First To Score,,No Goal,8.0,8.5,False
+4750788,7,First To Score,,Away,1.43,1.56,True
+4750788,11,Asian Handicap,1,Home,1.89,1.59,False
+4750788,11,Asian Handicap,1,Away,1.99,2.37,True
+4750788,11,Asian Handicap,1.25,Home,1.63,1.43,False
+4750788,11,Asian Handicap,1.25,Away,2.26,2.76,True
+4750788,11,Asian Handicap,0.75,Home,2.09,1.84,False
+4750788,11,Asian Handicap,0.75,Away,1.69,1.99,True
+4750788,15,Draw No Bet,,Home,4.5,3.48,False
+4750788,15,Draw No Bet,,Away,1.17,1.28,True
+4750788,5,1st Half Result,,1,6.0,5.48,False
+4750788,5,1st Half Result,,X,2.15,2.09,False
+4750788,5,1st Half Result,,2,2.05,2.36,True
+4750788,6,2nd Half Result,,1,6.0,5.0,False
+4750788,6,2nd Half Result,,X,2.39,2.5,False
+4750788,6,2nd Half Result,,2,1.82,1.93,True
+4750788,9,1st Half Goals,0.5,Under,2.6,2.6,False
+4750788,9,1st Half Goals,0.5,Over,1.43,1.43,True
+4750788,9,1st Half Goals,1.5,Under,1.37,1.34,False
+4750788,9,1st Half Goals,1.5,Over,3.02,3.27,True
+4750788,137,Total Corners,9.5,Under,1.8,1.72,True
+4750788,137,Total Corners,9.5,Over,1.91,2.0,False
+4750788,127,Half Time Correct Score,0-0,Yes,2.64,2.64,False
+4750788,127,Half Time Correct Score,0-1,Yes,3.18,3.57,False
+4750788,127,Half Time Correct Score,1-0,Yes,7.0,6.5,False
+4750788,127,Half Time Correct Score,1-1,Yes,9.0,9.0,False
+4750788,127,Half Time Correct Score,2-0,Yes,34.0,29.0,False
+4750788,127,Half Time Correct Score,0-2,Yes,7.5,9.0,True
+4750788,127,Half Time Correct Score,1-2,Yes,21.0,21.0,False
+4750788,127,Half Time Correct Score,2-1,Yes,41.0,34.0,False
+4750788,127,Half Time Correct Score,2-2,Yes,67.0,67.0,False
+4750788,127,Half Time Correct Score,3-0,Yes,126.0,101.0,False
+4750788,127,Half Time Correct Score,0-3,Yes,23.0,29.0,False
+4750788,127,Half Time Correct Score,3-1,Yes,151.0,126.0,False
+4750788,127,Half Time Correct Score,1-3,Yes,51.0,51.0,False
+4750788,127,Half Time Correct Score,2-3,Yes,151.0,151.0,False
+4750788,127,Half Time Correct Score,3-2,Yes,301.0,301.0,False
+4750788,127,Half Time Correct Score,0-4,Yes,67.0,81.0,False
+4750788,127,Half Time Correct Score,1-4,Yes,151.0,151.0,False
+4750788,127,Half Time Correct Score,0-5,Yes,251.0,401.0,False
+4750788,126,Correct Score,0-0,Yes,9.0,8.5,False
+4750788,126,Correct Score,0-1,Yes,5.49,6.0,False
+4750788,126,Correct Score,1-0,Yes,12.0,11.0,False
+4750788,126,Correct Score,1-1,Yes,7.5,7.0,False
+4750788,126,Correct Score,0-2,Yes,6.0,7.5,False
+4750788,126,Correct Score,2-0,Yes,29.0,23.0,False
+4750788,126,Correct Score,1-2,Yes,8.5,8.5,False
+4750788,126,Correct Score,2-1,Yes,19.0,17.0,False
+4750788,126,Correct Score,2-2,Yes,21.0,19.0,False
+4750788,126,Correct Score,0-3,Yes,10.0,13.0,True
+4750788,126,Correct Score,3-0,Yes,67.0,51.0,False
+4750788,126,Correct Score,3-1,Yes,51.0,41.0,False
+4750788,126,Correct Score,1-3,Yes,13.0,15.0,False
+4750788,126,Correct Score,2-3,Yes,34.0,34.0,False
+4750788,126,Correct Score,3-2,Yes,51.0,51.0,False
+4750788,126,Correct Score,3-3,Yes,81.0,67.0,False
+4750788,126,Correct Score,0-4,Yes,21.0,29.0,False
+4750788,126,Correct Score,4-0,Yes,251.0,151.0,False
+4750788,126,Correct Score,1-4,Yes,29.0,34.0,False
+4750788,126,Correct Score,4-1,Yes,151.0,101.0,False
+4750788,126,Correct Score,4-2,Yes,151.0,126.0,False
+4750788,126,Correct Score,2-4,Yes,51.0,51.0,False
+4750788,126,Correct Score,4-3,Yes,301.0,201.0,False
+4750788,126,Correct Score,3-4,Yes,126.0,126.0,False
+4750788,126,Correct Score,4-4,Yes,501.0,451.0,False
+4750788,126,Correct Score,0-5,Yes,41.0,51.0,False
+4750788,126,Correct Score,5-1,Yes,501.0,451.0,False
+4750788,126,Correct Score,1-5,Yes,51.0,67.0,False
+4750788,126,Correct Score,5-2,Yes,501.0,501.0,False
+4750788,126,Correct Score,2-5,Yes,101.0,126.0,False
+4750788,126,Correct Score,3-5,Yes,301.0,301.0,False
+4750788,126,Correct Score,0-6,Yes,81.0,151.0,False
+4750788,126,Correct Score,1-6,Yes,126.0,151.0,False
+4750788,126,Correct Score,2-6,Yes,251.0,351.0,False
+4750788,126,Correct Score,0-7,Yes,251.0,501.0,False
+4750788,126,Correct Score,1-7,Yes,351.0,451.0,False
+4750788,144,Home Team - Clean Sheet,,Yes,5.01,5.01,False
+4750788,144,Home Team - Clean Sheet,,No,1.17,1.17,True
+4750788,145,Away Team - Clean Sheet,,Yes,1.84,1.84,True
+4750788,145,Away Team - Clean Sheet,,No,1.84,1.84,False
+4750788,143,A Penalty In The Match,,Yes,3.49,3.49,True
+4750788,143,A Penalty In The Match,,No,1.28,1.28,False
+4750788,141,Total Cards,5.5,Under,1.83,1.99,False
+4750788,141,Total Cards,5.5,Over,1.83,1.72,True
+4750788,142,A Red Card in Match,,Yes,4.5,6.0,True
+4750788,142,A Red Card in Match,,No,1.2,1.12,False
+4750788,139,Total Shots On Target,8.5,Under,1.73,1.73,False
+4750788,139,Total Shots On Target,8.5,Over,2.0,2.0,True
+4750788,13,Both Teams To Score 2nd Half,,Yes,4.32,3.6,False
+4750788,13,Both Teams To Score 2nd Half,,No,1.2,1.24,True

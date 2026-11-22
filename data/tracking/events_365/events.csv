@@ -40263,3 +40263,11 @@ game_id,side,minute,added_time,half,type,subtype,player
 4735205,away,84.0,0,2,Goal,Field Goal,Erwan Colas
 4735205,away,88.0,0,2,Yellow Card,,Daouda Traoré
 4735205,away,90.0,5,2,Goal,Field Goal,Jean Vercruysse
+4750788,away,10.0,0,1,Goal,Field Goal,Álex Baena
+4750788,away,30.0,0,1,Goal,Field Goal,Johnny Cardoso
+4750788,away,36.0,0,1,Yellow Card,,Johnny Cardoso
+4750788,away,49.0,0,2,Yellow Card,,Robin Le Normand
+4750788,home,71.0,0,2,Yellow Card,,Dakonam Djené
+4750788,home,84.0,0,2,Yellow Card,,Mario Martín
+4750788,home,90.0,1,2,Red Card,,Dakonam Djené
+4750788,away,90.0,2,2,Goal,Penalty,Alex Grimaldo
