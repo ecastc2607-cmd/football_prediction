@@ -40174,3 +40174,13 @@ game_id,side,minute,added_time,half,type,subtype,player
 4741996,away,89.0,0,2,Red Card,Second Yellow Card,Costinha
 4741996,home,90.0,2,2,Goal,Field Goal,Oliver McBurnie
 4741996,home,90.0,5,2,Goal,Field Goal,Oliver McBurnie
+4755341,home,19.0,0,1,Goal,Field Goal,Michael Gregoritsch
+4755341,home,36.0,0,1,Goal,Field Goal,Juma Bah
+4755341,away,43.0,0,1,Yellow Card,,Nadiem Amiri
+4755341,home,43.0,0,1,Red Card,,Manuel Baum
+4755341,home,44.0,0,1,Yellow Card,,Robin Fellhauer
+4755341,home,48.0,0,2,Goal,Field Goal,Michael Gregoritsch
+4755341,away,51.0,0,2,Goal,Field Goal,Ransford Königsdörffer
+4755341,away,75.0,0,2,Yellow Card,,Stefan Posch
+4755341,away,76.0,0,2,Yellow Card,,Silvan Widmer
+4755341,home,81.0,0,2,Woodwork,,Uchenna Ogundu
