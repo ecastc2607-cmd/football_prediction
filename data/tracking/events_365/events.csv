@@ -40248,3 +40248,18 @@ game_id,side,minute,added_time,half,type,subtype,player
 4732630,home,80.0,0,2,Goal,Field Goal,Charles de Ketelaere
 4732630,home,90.0,1,2,Goal,Penalty,Franck Kessié
 4732630,away,90.0,5,2,Yellow Card,,Carlos Augusto
+4735205,home,18.0,0,1,Goal Disallowed,Var,Goal Disallowed
+4735205,home,21.0,0,1,Woodwork,,Igor Paixão
+4735205,home,33.0,0,1,Goal,Field Goal,Amine Gouiri
+4735205,home,40.0,0,1,Goal,Field Goal,Igor Paixão
+4735205,away,53.0,0,2,Yellow Card,,Antoine Rabillard
+4735205,home,67.0,0,2,Yellow Card,,Tochukwu Nnadi
+4735205,home,69.0,0,2,Yellow Card,,Geoffrey Kondogbia
+4735205,away,70.0,0,2,Goal,Field Goal,Louis Mafouta
+4735205,away,71.0,0,2,Yellow Card,,Harold Voyer
+4735205,away,79.0,0,2,Penalty Miss,,Louis Mafouta
+4735205,home,80.0,0,2,Yellow Card,,Himad Abdelli
+4735205,away,80.0,0,2,Yellow Card,,Rayan Bamba
+4735205,away,84.0,0,2,Goal,Field Goal,Erwan Colas
+4735205,away,88.0,0,2,Yellow Card,,Daouda Traoré
+4735205,away,90.0,5,2,Goal,Field Goal,Jean Vercruysse
