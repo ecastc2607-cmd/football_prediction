@@ -40134,3 +40134,19 @@ game_id,side,minute,added_time,half,type,subtype,player
 4732627,home,71.0,0,2,Goal,Penalty,Randal Kolo Muani
 4732627,away,77.0,0,2,Woodwork,,Redouane Halhal
 4732627,away,90.0,1,2,Woodwork,,John Yeboah
+4750789,away,5.0,0,1,Goal,Field Goal,Tajon Buchanan
+4750789,away,7.0,0,1,Goal,Field Goal,Tani Oluwaseyi
+4750789,away,11.0,0,1,Yellow Card,,Pape Gueye
+4750789,home,23.0,0,1,Penalty Miss,,Lamine Yamal
+4750789,away,32.0,0,1,Yellow Card,,Alberto Moleiro
+4750789,away,47.0,0,2,Yellow Card,,Pau Navarro
+4750789,away,49.0,0,2,Yellow Card,,Alex Freeman
+4750789,home,57.0,0,2,Woodwork,,João Cancelo
+4750789,home,57.0,0,2,Goal,Field Goal,Gerard Martín
+4750789,home,61.0,0,2,Goal,Field Goal,Fermín López
+4750789,away,63.0,0,2,Yellow Card,,Carlos Romero
+4750789,home,67.0,0,2,Goal,Own Goal,Pau Navarro
+4750789,home,74.0,0,2,Yellow Card,,Hans-Dieter Flick
+4750789,home,77.0,0,2,Yellow Card,,Raphinha
+4750789,home,80.0,0,2,Yellow Card,,Marc Bernal
+4750789,away,90.0,3,2,Red Card,Second Yellow Card,Pau Navarro
