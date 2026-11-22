@@ -40128,3 +40128,9 @@ game_id,side,minute,added_time,half,type,subtype,player
 4894900,away,40.0,0,1,Red Card,,Felipe Marin
 4894900,away,72.0,0,2,Yellow Card,,Matheus Uribe
 4894900,away,90.0,1,2,Yellow Card,,William Tesillo
+4732627,home,53.0,0,2,Goal,Field Goal,Nick Woltemade
+4732627,home,59.0,0,2,Goal,Field Goal,Teun Koopmeiners
+4732627,home,65.0,0,2,Goal,Field Goal,Juan Cabal
+4732627,home,71.0,0,2,Goal,Penalty,Randal Kolo Muani
+4732627,away,77.0,0,2,Woodwork,,Redouane Halhal
+4732627,away,90.0,1,2,Woodwork,,John Yeboah
