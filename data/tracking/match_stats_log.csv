@@ -7067,3 +7067,5 @@ SA,2026,12.0,2026-11-23T19:45:00Z,AC Monza,ACF Fiorentina,AC Monza,True,3.0,8.0,
 SA,2026,12.0,2026-11-23T19:45:00Z,AC Monza,ACF Fiorentina,ACF Fiorentina,False,7.0,13.0,1.0,0.0,55.0,8.0,17.0,1.0
 PD,2026,13.0,2026-11-23T20:00:00Z,Levante UD,Elche CF,Levante UD,True,5.0,14.0,4.0,0.0,51.0,2.0,18.0,2.0
 PD,2026,13.0,2026-11-23T20:00:00Z,Levante UD,Elche CF,Elche CF,False,1.0,12.0,1.0,0.0,49.0,2.0,4.0,0.0
+PL,2026,11.0,2026-11-23T20:00:00Z,Brentford FC,Everton FC,Brentford FC,True,6.0,8.0,0.0,0.0,72.0,7.0,21.0,2.0
+PL,2026,11.0,2026-11-23T20:00:00Z,Brentford FC,Everton FC,Everton FC,False,3.0,9.0,1.0,1.0,28.0,2.0,4.0,0.0
