@@ -40344,3 +40344,13 @@ game_id,side,minute,added_time,half,type,subtype,player
 4828427,home,81.0,0,2,Yellow Card,,Eduardo Camavinga
 4828427,home,84.0,0,2,Goal,Field Goal,Kylian Mbappe
 4828427,home,87.0,0,2,Goal,Field Goal,Vinicius Júnior
+4828423,away,2.0,0,1,Goal,Own Goal,Oussama Targhalline
+4828423,away,13.0,0,1,Yellow Card,,Victor Froholdt
+4828423,away,22.0,0,1,Yellow Card,,Alberto Costa
+4828423,away,69.0,0,2,Yellow Card,,Jakub Kiwior
+4828423,home,71.0,0,2,Yellow Card,,Thijs Kraaijeveld
+4828423,home,81.0,0,2,Woodwork,,Oussama Targhalline
+4828423,home,87.0,0,2,Woodwork,,Nacho Ferri
+4828423,home,88.0,0,2,Goal Disallowed,Var,Nacho Ferri
+4828423,home,90.0,4,2,Yellow Card,,Gonçalo Borges
+4828423,away,90.0,4,2,Yellow Card,,Pablo Rosario
