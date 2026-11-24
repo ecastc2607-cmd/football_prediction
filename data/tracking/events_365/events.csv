@@ -40290,3 +40290,14 @@ game_id,side,minute,added_time,half,type,subtype,player
 4741999,away,40.0,0,1,Red Card,,James Tarkowski
 4741999,home,67.0,0,2,Goal,Field Goal,Vitaly Janelt
 4741999,home,90.0,0,2,Goal,Field Goal,Fabio Carvalho
+4828429,away,41.0,0,1,Yellow Card,,Nicolas Jackson
+4828429,away,52.0,0,2,Yellow Card,,John McGinn
+4828429,home,53.0,0,2,Yellow Card,,Aleksey Batrakov
+4828429,away,58.0,0,2,Yellow Card,,João Gomes
+4828429,home,58.0,0,2,Yellow Card,,Yunus Akgün
+4828429,home,77.0,0,2,Goal,Field Goal,Deniz Gul
+4828429,away,90.0,0,2,Yellow Card,,Ross Barkley
+4828429,away,90.0,1,2,Yellow Card,,Unai Emery
+4828430,away,71.0,0,2,Yellow Card,,Krystof Danek
+4828430,home,89.0,0,2,Yellow Card,,Jostein Gundersen
+4828430,home,90.0,2,2,Goal,Own Goal,Melayro Bogarde
