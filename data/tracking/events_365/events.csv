@@ -40301,3 +40301,26 @@ game_id,side,minute,added_time,half,type,subtype,player
 4828430,away,71.0,0,2,Yellow Card,,Krystof Danek
 4828430,home,89.0,0,2,Yellow Card,,Jostein Gundersen
 4828430,home,90.0,2,2,Goal,Own Goal,Melayro Bogarde
+4828424,home,10.0,0,1,Goal,Field Goal,Viktor Gyökeres
+4828424,away,55.0,0,2,Goal,Field Goal,Maximilian Beier
+4828424,home,84.0,0,2,Woodwork,,Declan Rice
+4828425,away,7.0,0,1,Yellow Card,,Facundo Bernal
+4828425,home,29.0,0,1,Yellow Card,,Rahim Ibrahim
+4828425,away,43.0,0,1,Goal,Field Goal,Cucho Hernández
+4828425,away,57.0,0,2,Goal,Field Goal,Cucho Hernández
+4828426,away,55.0,0,2,Goal,Field Goal,Rasmus Höjlund
+4828426,home,67.0,0,2,Goal,Field Goal,Ayyoub Bouaddi
+4828426,away,76.0,0,2,Goal,Field Goal,Noa Lang
+4828426,home,81.0,0,2,Woodwork,,Josko Gvardiol
+4828426,home,82.0,0,2,Yellow Card,,Marc Guéhi
+4828426,home,86.0,0,2,Goal,Field Goal,Rayan Cherki
+4828428,home,6.0,0,1,Goal,Field Goal,David Raum
+4828428,home,9.0,0,1,Goal,Field Goal,Antonio Nusa
+4828428,away,35.0,0,1,Yellow Card,,Ismaëlo Ganiou
+4828428,away,43.0,0,1,Yellow Card,,Florian Sotoca
+4828428,away,58.0,0,2,Goal,Field Goal,Matthieu Udol
+4828428,away,61.0,0,2,Yellow Card,,Matthieu Udol
+4828428,home,63.0,0,2,Yellow Card,,Brajan Gruda
+4828428,away,79.0,0,2,Yellow Card,,Michal Skóraś
+4828428,home,90.0,3,2,Yellow Card,,Neil El Aynaoui
+4828428,home,90.0,4,2,Goal,Field Goal,Antonio Nusa

@@ -4910,3 +4910,7 @@ game_id,competition,start_utc,home_team,away_team,home_goals,away_goals,ht_home_
 4741999,PL,2026-11-23T20:00:00Z,Brentford,Everton,4,0,2.0,0.0,True,2026-11-23T22:05:25Z
 4828429,CL,2026-11-24T17:45:00Z,Galatasaray,Aston Villa,1,0,0.0,0.0,True,2026-11-24T19:40:33Z
 4828430,CL,2026-11-24T17:45:00Z,Bodo Glimt,LASK Linz,1,0,0.0,0.0,True,2026-11-24T19:40:33Z
+4828424,CL,2026-11-24T20:00:00Z,Arsenal,Borussia Dortmund,1,1,1.0,0.0,True,2026-11-24T21:50:27Z
+4828425,CL,2026-11-24T20:00:00Z,Slovan Bratislava,Real Betis,0,2,0.0,1.0,True,2026-11-24T21:50:27Z
+4828426,CL,2026-11-24T20:00:00Z,Manchester City,Napoli,2,2,0.0,0.0,True,2026-11-24T21:50:27Z
+4828428,CL,2026-11-24T20:00:00Z,RB Leipzig,Lens,3,1,2.0,0.0,True,2026-11-24T21:50:27Z
