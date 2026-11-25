@@ -40391,3 +40391,47 @@ game_id,side,minute,added_time,half,type,subtype,player
 4828419,away,80.0,0,2,Yellow Card,,Pape Gueye
 4828419,away,90.0,3,2,Yellow Card,,Tajon Buchanan
 4828419,away,90.0,4,2,Yellow Card,,Carlos Romero
+4828413,home,30.0,0,1,Penalty Miss,,Luis Suarez
+4828413,away,31.0,0,1,Yellow Card,,Senne Lammens
+4828413,home,33.0,0,1,Goal,Penalty,Luis Suarez
+4828413,away,40.0,0,1,Yellow Card,,Youri Tielemans
+4828413,away,48.0,0,2,Goal,Penalty,Bruno Fernandes
+4828413,away,50.0,0,2,Goal,Field Goal,Bruno Fernandes
+4828413,home,53.0,0,2,Yellow Card,,Eduardo Quaresma
+4828413,home,80.0,0,2,Goal,Field Goal,Luis Suarez
+4828413,away,82.0,0,2,Goal Disallowed,Var,Kaique Pereira
+4828413,home,87.0,0,2,Yellow Card,,Nestory Irankunda
+4828413,away,90.0,3,2,Red Card,Second Yellow Card,Youri Tielemans
+4828414,home,19.0,0,1,Goal,Field Goal,Alexander Sorloth
+4828414,home,24.0,0,1,Goal,Field Goal,Julian Alvarez
+4828414,away,46.0,0,2,Yellow Card,,Gianni Stensness
+4828414,home,65.0,0,2,Woodwork,,Johnny Cardoso
+4828414,away,90.0,1,2,Red Card,,Henrik Falchener
+4828415,away,13.0,0,1,Goal,Field Goal,Alexander Isak
+4828415,away,63.0,0,2,Yellow Card,,Andoni Iraola
+4828415,away,79.0,0,2,Goal,Field Goal,Florian Wirtz
+4828415,away,82.0,0,2,Goal,Field Goal,Alexander Isak
+4828416,away,15.0,0,1,Goal,Field Goal,Dayot Upamecano
+4828416,home,48.0,0,2,Goal Disallowed,Var,Joshua Kimmich
+4828416,away,53.0,0,2,Yellow Card,,Konrad Laimer
+4828416,home,59.0,0,2,Yellow Card,,Davide Ancelotti
+4828416,home,62.0,0,2,Goal,Field Goal,Ayase Ueda
+4828416,home,65.0,0,2,Woodwork,,Ethan Mbappé
+4828416,home,65.0,0,2,Goal,Own Goal,Aleksandar Pavlović
+4828417,away,19.0,0,1,Goal Disallowed,Var,Vedat Muriqi
+4828417,away,53.0,0,2,Yellow Card,,İsmail Yüksek
+4828417,away,56.0,0,2,Goal,Field Goal,Vedat Muriqi
+4828417,home,69.0,0,2,Yellow Card,,Valeriy Bondar
+4828417,home,73.0,0,2,Yellow Card,,Pedro Henrique
+4828418,away,5.0,0,1,Goal,Field Goal,Mario Hermoso
+4828418,home,31.0,0,1,Goal,Field Goal,Ilya Zabarnyi
+4828418,away,41.0,0,1,Yellow Card,,Gianluca Mancini
+4828418,away,60.0,0,2,Yellow Card,,Wesley
+4828418,home,62.0,0,2,Goal,Penalty,Ousmane Dembélé
+4828418,away,78.0,0,2,Goal,Penalty,Donyell Malen
+4828420,home,13.0,0,1,Yellow Card,,Marcus Thuram
+4828420,home,43.0,0,1,Woodwork,,Nicolo Barella
+4828420,away,48.0,0,2,Yellow Card,,Finn Jeltsch
+4828420,home,57.0,0,2,Goal,Penalty,Petar Sucic
+4828420,home,74.0,0,2,Goal,Field Goal,Lautaro Martinez
+4828420,home,78.0,0,2,Yellow Card,,Manuel Akanji
