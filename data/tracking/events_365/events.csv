@@ -40364,3 +40364,12 @@ game_id,side,minute,added_time,half,type,subtype,player
 4894901,home,70.0,0,2,Goal,Penalty,Rodrigo Contreras
 4894901,away,81.0,0,2,Yellow Card,,Luciano Pons
 4894901,home,90.0,2,2,Yellow Card,,Francisco Chaverra
+4894902,home,22.0,0,1,Yellow Card,,Jhon Murillo
+4894902,away,25.0,0,1,Yellow Card,,Ronaldo Pajaro
+4894902,home,38.0,0,1,Goal,Field Goal,Tomas Angel
+4894902,home,42.0,0,1,Yellow Card,,Rafael Carrascal
+4894902,away,44.0,0,1,Yellow Card,,Fabián Viáfara
+4894902,home,48.0,0,2,Goal,Field Goal,Tomas Angel
+4894902,away,51.0,0,2,Goal,Field Goal,Steven Rodríguez
+4894902,away,73.0,0,2,Yellow Card,,Johan Martinez
+4894902,home,89.0,0,2,Yellow Card,,Yani Quintero
