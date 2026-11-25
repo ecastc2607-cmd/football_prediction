@@ -40354,3 +40354,13 @@ game_id,side,minute,added_time,half,type,subtype,player
 4828423,home,88.0,0,2,Goal Disallowed,Var,Nacho Ferri
 4828423,home,90.0,4,2,Yellow Card,,Gonçalo Borges
 4828423,away,90.0,4,2,Yellow Card,,Pablo Rosario
+4894901,home,14.0,0,1,Goal,Field Goal,Francisco Chaverra
+4894901,home,19.0,0,1,Goal,Field Goal,Rodrigo Contreras
+4894901,away,28.0,0,1,Goal,Field Goal,Jose García
+4894901,home,43.0,0,1,Yellow Card,,Mateo García
+4894901,home,49.0,0,2,Goal,Field Goal,Rodrigo Ureña
+4894901,away,67.0,0,2,Yellow Card,,Fredy Hinestroza
+4894901,away,68.0,0,2,Yellow Card,,Jose Ortiz
+4894901,home,70.0,0,2,Goal,Penalty,Rodrigo Contreras
+4894901,away,81.0,0,2,Yellow Card,,Luciano Pons
+4894901,home,90.0,2,2,Yellow Card,,Francisco Chaverra
