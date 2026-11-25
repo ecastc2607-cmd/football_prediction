@@ -40373,3 +40373,12 @@ game_id,side,minute,added_time,half,type,subtype,player
 4894902,away,51.0,0,2,Goal,Field Goal,Steven Rodríguez
 4894902,away,73.0,0,2,Yellow Card,,Johan Martinez
 4894902,home,89.0,0,2,Yellow Card,,Yani Quintero
+4828421,home,27.0,0,1,Woodwork,,Ivan Lepinjica
+4828421,away,31.0,0,1,Goal,Field Goal,Anthony Gordon
+4828421,away,34.0,0,1,Goal Disallowed,Var,Goal Disallowed
+4828421,away,51.0,0,2,Goal,Field Goal,Anthony Gordon
+4828421,away,55.0,0,2,Goal,Field Goal,Karim Adeyemi
+4828421,away,60.0,0,2,Goal,Field Goal,Gabriel Jesus
+4828421,home,63.0,0,2,Goal,Field Goal,Joy-Lance Mickels
+4828421,home,69.0,0,2,Yellow Card,,Ivan Lepinjica
+4828421,away,80.0,0,2,Woodwork,,Karim Adeyemi
