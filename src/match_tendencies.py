@@ -6,9 +6,12 @@ La fuente es data/tracking/match_stats_log.csv, que se alimenta de dos formas:
   - Automáticamente, cada vez que la pestaña "En vivo" consulta un partido real.
   - A propósito, corriendo scripts/backfill_match_stats.py contra Goal API.
 
-Esto es una TENDENCIA simple ("estos dos equipos, en promedio, generan más o
-menos corners/faltas/tarjetas que tal línea de referencia"), no una predicción
-del modelo de Poisson. Con pocos partidos en el log el promedio es poco fiable
+Desde nov-2026, si se pasa la competición, el esperado sale del mismo modelo
+de Tips (totals_model: lo que genera cada equipo Y lo que le generan sus
+rivales, encogido hacia el promedio de la liga). La suma simple de promedios
+propios acertaba Sí/No en 8.5 corners el 55% de las veces (peor que decir
+siempre "Sí", 58%) y en Champions erraba por 3.7 corners de media contra 3.0
+del modelo. Sin competición queda la tendencia simple de antes. Con pocos partidos en el log el promedio es poco fiable
 — por eso cada pick se marca como de baja confianza cuando alguno de los dos
 equipos tiene menos de match_stats_log.MIN_SAMPLE_FOR_CONFIDENCE partidos.
 
@@ -61,11 +64,38 @@ def _lookup(averages_by_team: pd.DataFrame, team: str, column: str) -> tuple[flo
     return row[column], int(row["partidos"])
 
 
-def pick_tendencies(averages_by_team: pd.DataFrame, home_team: str, away_team: str) -> list[TendencyPick]:
-    """Sugerencias de corners/faltas/tarjetas para un partido, a partir de la
-    tabla de promedios ya calculada con load_team_averages(). Nunca falla: si
-    falta la muestra de alguno de los dos equipos, esa fila queda en "Sin datos".
+def _model_pick(competition: str, home_team: str, away_team: str, label: str, line: float,
+                h_n: int, a_n: int) -> TendencyPick | None:
+    """El pick con el modelo de Tips (special_markets.stat_prediction), o None
+    si la liga no tiene historial suficiente."""
+    from . import config
+    from . import special_markets as sm
+
+    col = {"Corners": "cor", "Faltas": "fal", "Tarjetas": "tar"}[label]
+    try:
+        pr = sm.stat_prediction(config.strength_code(competition), home_team, away_team, col, line)
+    except Exception:
+        return None
+    if not pr:
+        return None
+    return TendencyPick(label, line, round(pr["esperado"], 1), "Sí" if pr["p_mas"] >= 0.5 else "No",
+                        h_n < MIN_SAMPLE_FOR_CONFIDENCE or a_n < MIN_SAMPLE_FOR_CONFIDENCE, h_n, a_n)
+
+
+def pick_tendencies(averages_by_team: pd.DataFrame, home_team: str, away_team: str,
+                    competition: str | None = None) -> list[TendencyPick]:
+    """Sugerencias de corners/faltas/tarjetas para un partido. Con `competition`,
+    el esperado es el del modelo de Tips; sin ella (o sin historial de la liga),
+    la suma de los promedios de load_team_averages(). Nunca falla: si falta la
+    muestra de alguno de los dos equipos, esa fila queda en "Sin datos".
     """
+    if competition:
+        _, h_n = _lookup(averages_by_team, home_team, "partidos")
+        _, a_n = _lookup(averages_by_team, away_team, "partidos")
+        modelo = [_model_pick(competition, home_team, away_team, label, line, h_n, a_n)
+                  for label, line in (("Corners", CORNERS_LINE), ("Faltas", FALTAS_LINE), ("Tarjetas", TARJETAS_LINE))]
+        if all(modelo):
+            return modelo
     picks = []
     for label, column, line in [
         ("Corners", "corners_prom", CORNERS_LINE),

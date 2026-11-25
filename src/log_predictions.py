@@ -104,7 +104,7 @@ def log_competition(code: str, season: int, matchday: int, seasons_back: int = 1
 
         # pick.label es "Corners"/"Faltas"/"Tarjetas" — en minúscula calza
         # directo con las claves de prediction_log.STAT_MARKETS.
-        picks = pick_tendencies(tendency_averages, row["home_team"], row["away_team"])
+        picks = pick_tendencies(tendency_averages, row["home_team"], row["away_team"], code)
         for pick in picks:
             prefijo = pick.label.lower()
             fila[f"pred_{prefijo}_expected"] = pick.expected

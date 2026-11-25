@@ -305,6 +305,11 @@ SPECIAL_EXCLUDED_FAMILIES = {"Eventos"}
 STAT_TIPS = {"off": "Fueras de juego", "sot": "Tiros al arco", "cor": "Corners", "tar": "Tarjetas",
              "fal": "Faltas", "sho": "Remates totales"}
 TEAM_STAT_TIPS_MARKET = "Tiros al arco por equipo"  # pick: "<equipo>: Más de 3.5 (esp. 4.6)"
+# Pedido del usuario (nov-2026): las casas de Colombia no siempre abren fueras de
+# juego ni tiros al arco. Esos picks entran a Tips solo si BWIN publica ese
+# mercado (tipo de línea de 365) en el partido. Tiros al arco por equipo no
+# tiene línea propia en 365: se toma el total de tiros al arco como señal.
+BWIN_REQUIRED_MARKET = {"Fueras de juego": 140, "Tiros al arco": 139, TEAM_STAT_TIPS_MARKET: 139}
 # Nombre del mercado en Tips / tips_log y cómo se arma el pick.
 SPECIAL_TIPS_MARKET = {
     "Favorito empate no válido (HA 0)": ("Empate no válido", "fav", None),
@@ -444,6 +449,140 @@ def drop_redundant(picks: pd.DataFrame, model_weight: float = MODEL_WEIGHT) -> p
     return picks[~con_linea | picks.index.isin(quedan)]
 
 
+# --- Cuánto se dio el mercado en cada equipo (columnas "Fortaleza local/visitante") ---
+# Pedido del usuario (nov-2026): de los últimos TEAM_FORM_GAMES partidos de cada
+# equipo (cualquier competición con datos), en cuántos se dio lo que pide el
+# pick. Si el pick es de UN equipo (1X2, hándicap, tiros al arco por equipo),
+# al otro se le cuenta lo que lograron SUS rivales: p. ej. "Arsenal +1.5" →
+# visitante = en cuántos partidos del visitante su rival no perdió por 2 o más.
+TEAM_FORM_GAMES = 10
+TEAM_FORM_MIN = 3
+_STAT_PICK_COL = {"Corners": "cor", "Tarjetas": "tar", "Fueras de juego": "off", "Tiros al arco": "sot",
+                  "Faltas": "fal", "Remates totales": "sho", TEAM_STAT_TIPS_MARKET: "sot"}
+_FORM_CACHE: dict = {}
+
+
+def _team_history() -> tuple[pd.DataFrame, pd.DataFrame]:
+    """(goles, estadísticas): un renglón por equipo y partido, con 'gf'/'ga'
+    (goles) o '<col>_own'/'<col>_opp' (estadísticas), del más reciente al más viejo."""
+    from . import match_stats_log
+    from . import special_markets as sm
+    from .prediction_log import LOG_PATH, load_log
+
+    rutas = (LOG_PATH, match_stats_log.LOG_PATH)
+    clave = tuple(p.stat().st_mtime if p.exists() else 0 for p in rutas)
+    if clave in _FORM_CACHE:
+        return _FORM_CACHE[clave]
+
+    def largo(df, pares):
+        partes = []
+        for propio, rival, equipo in (("home", "away", "home_team"), ("away", "home", "away_team")):
+            d = df[["utc_date", equipo]].rename(columns={equipo: "team"})
+            for nombre, (c_home, c_away) in pares.items():
+                d[f"{nombre}_own"] = df[c_home if propio == "home" else c_away].values
+                d[f"{nombre}_opp"] = df[c_away if propio == "home" else c_home].values
+            partes.append(d)
+        out = pd.concat(partes, ignore_index=True)
+        out["_t"] = pd.to_datetime(out["utc_date"], utc=True, errors="coerce")
+        return out.sort_values("_t", ascending=False)
+
+    log = load_log()
+    goles = pd.DataFrame()
+    if not log.empty:
+        log = log[log["status"] == "resolved"].copy()
+        for c in ("actual_home_goals", "actual_away_goals"):
+            log[c] = pd.to_numeric(log[c], errors="coerce")
+        log = log.dropna(subset=["actual_home_goals", "actual_away_goals"]).drop_duplicates(
+            ["home_team", "away_team", "utc_date"], keep="last")
+        goles = largo(log, {"g": ("actual_home_goals", "actual_away_goals")})
+    stats = sm.stat_totals_frame()
+    if not stats.empty:
+        stats = largo(stats, {c: (f"{c}_home", f"{c}_away") for c in sm.STAT_LINES})
+    _FORM_CACHE.clear()
+    _FORM_CACHE[clave] = (goles, stats)
+    return goles, stats
+
+
+def _form_event(mercado: str, pick: str, home: str, away: str):
+    """(fuente, función(fila, es_el_equipo_del_pick) -> bool, equipo del pick) o None."""
+    import re
+
+    m = re.match(r"^\s*(?:(.+?): )?(Más|Menos) de ([0-9]+(?:\.[0-9]+)?)", str(pick))
+    if mercado in _STAT_PICK_COL and m:
+        col, mas, linea = _STAT_PICK_COL[mercado], m.group(2) == "Más", float(m.group(3))
+        if mercado == TEAM_STAT_TIPS_MARKET:
+            def ev(f, propio):
+                v = f[f"{col}_own"] if propio else f[f"{col}_opp"]
+                return v > linea if mas else v < linea
+            return "stats", ev, m.group(1)
+        return "stats", lambda f, _: (f[f"{col}_own"] + f[f"{col}_opp"] > linea) if mas else \
+            (f[f"{col}_own"] + f[f"{col}_opp"] < linea), None
+    if mercado in ("Goles", "Goles (otra línea)") and m:
+        mas, linea = m.group(2) == "Más", float(m.group(3))
+        return "goles", lambda f, _: (f["g_own"] + f["g_opp"] > linea) if mas else (f["g_own"] + f["g_opp"] < linea), None
+    if mercado == "Ambos anotan":
+        si = str(pick).strip().lower().startswith("s")
+        return "goles", lambda f, _: ((f["g_own"] > 0) & (f["g_opp"] > 0)) == si, None
+
+    def margen(cond):  # cond(goles a favor, goles en contra) desde el equipo del pick
+        return lambda f, propio: cond(f["g_own"], f["g_opp"]) if propio else cond(f["g_opp"], f["g_own"])
+
+    if mercado == "Resultado":
+        if pick == "Empate":
+            return "goles", lambda f, _: f["g_own"] == f["g_opp"], None
+        return "goles", margen(lambda a, b: a > b), home if pick == "Local" else away
+    if mercado == "Doble oportunidad":
+        return "goles", margen(lambda a, b: a >= b), home if str(pick).startswith("1X") else away
+    if mercado == "Empate no válido":
+        return "goles", margen(lambda a, b: a > b), pick
+    h = re.match(r"^(.+) ([+-][0-9]+(?:\.[0-9]+)?)$", str(pick))
+    if mercado == "Hándicap asiático" and h:
+        linea = float(h.group(2))
+        return "goles", margen(lambda a, b: a - b + linea > 0), h.group(1)
+    return None
+
+
+def team_form(mercado: str, pick: str, home: str, away: str) -> tuple[str, str]:
+    """Textos "70% (7/10)" para el local y el visitante; "–" si el mercado no
+    se puede medir así (1er tiempo, primer gol) o el equipo no tiene historial."""
+    regla = _form_event(mercado, pick, home, away)
+    if regla is None:
+        return "–", "–"
+    fuente, ev, del_pick = regla
+    goles, stats = _team_history()
+    datos = goles if fuente == "goles" else stats
+    textos = []
+    for equipo in (home, away):
+        if datos.empty:
+            textos.append("–")
+            continue
+        d = datos[datos["team"] == equipo]
+        cols = [c for c in d.columns if c.endswith(("_own", "_opp"))]
+        d = d.dropna(subset=cols if fuente == "goles" else
+                     [c for c in cols if c.split("_")[0] in {"g", _STAT_PICK_COL.get(mercado)}]).head(TEAM_FORM_GAMES)
+        if len(d) < TEAM_FORM_MIN:
+            textos.append("–")
+            continue
+        propio = del_pick is None or del_pick == equipo
+        si = int(pd.Series(ev(d, propio)).astype(bool).sum())
+        textos.append(f"{si / len(d):.0%} ({si}/{len(d)})")
+    return textos[0], textos[1]
+
+
+def team_form_columns(picks: pd.DataFrame) -> tuple[pd.Series, pd.Series]:
+    """(columna local, columna visitante) para la tabla de Tips."""
+    if picks.empty:
+        return pd.Series(dtype=str), pd.Series(dtype=str)
+    pares = []
+    for r in picks[["mercado", "pick", "home_team", "away_team"]].itertuples():
+        try:
+            pares.append(team_form(r.mercado, r.pick, r.home_team, r.away_team))
+        except Exception:
+            pares.append(("–", "–"))
+    return (pd.Series([p[0] for p in pares], index=picks.index),
+            pd.Series([p[1] for p in pares], index=picks.index))
+
+
 def strength_marks(picks: pd.DataFrame) -> pd.Series:
     """Etiqueta de fortaleza por fila de candidatos de Tips."""
     if picks.empty:
@@ -533,11 +672,13 @@ def special_candidates(day_predictions: pd.DataFrame, lines_for) -> pd.DataFrame
             continue
         lineas = lines_for(r)
         if lineas is None or lineas.empty:
-            if not stat_picks:
-                continue
-            # Sin líneas de BWIN: los de tiros/fueras igual se muestran ("Falta cuota")
-            # para cargar la cuota de la casa a mano.
             lineas = pd.DataFrame(columns=["line_type_id", "option", "line", "odds"])
+        # Fueras de juego / tiros al arco: fuera si BWIN no abre ese mercado.
+        tipos = set(pd.to_numeric(lineas["line_type_id"], errors="coerce").dropna().astype(int))
+        stat_picks = [s for s in stat_picks
+                      if BWIN_REQUIRED_MARKET.get(s[1]) is None or BWIN_REQUIRED_MARKET[s[1]] in tipos]
+        if lineas.empty and not stat_picks:
+            continue
         home_short = r.get("home_team_short") or r["home_team"]
         away_short = r.get("away_team_short") or r["away_team"]
         fav, und = (r["home_team"], r["away_team"]) if fav_local else (r["away_team"], r["home_team"])
@@ -554,8 +695,11 @@ def special_candidates(day_predictions: pd.DataFrame, lines_for) -> pd.DataFrame
                 "pick": (f"{equipo}: " if equipo else "") + f"{lado.capitalize()} de {linea:g} (esp. {esperado:.1f})",
                 "odds_key": f"especial:{merc}", "prob_modelo": prob_cal, "cuota_justa": round(1 / prob_cal, 2),
                 "cuota_auto": cuota, "casa": "BWIN" if cuota else "", "peso_modelo": SPECIAL_MODEL_WEIGHT,
-                "explicacion": sm.market_help(merc) + ("" if cuota else " BWIN no ofrece esta línea en este partido: "
-                                                                    "escribe la cuota de tu casa en 'Cuota manual'."),
+                "explicacion": sm.market_help(merc) + (
+                    "" if cuota else
+                    " BWIN abre este mercado en el partido, pero no esta línea: escribe la cuota de tu casa en "
+                    "'Cuota manual'." if nombre in BWIN_REQUIRED_MARKET else
+                    " BWIN no ofrece esta línea en este partido: escribe la cuota de tu casa en 'Cuota manual'."),
             })
         for merc, prob, p_dev in picks:
             precio = sm.bwin_price(merc, fav_local, lineas)

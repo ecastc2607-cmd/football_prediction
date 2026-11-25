@@ -58,7 +58,7 @@ from src.prediction_log import MARKETS
 from src.daily_plan import MAX_TICKETS, build_plans, ticket_rows
 from src.timezones import BOGOTA_TZ, format_bogota, to_bogota
 from src.value_tips import (GAP_STATE, LIVE_MODEL_WEIGHT, MAX_DAILY_EXPOSURE, MIN_MODEL_PROB, candidate_picks,
-                             drop_redundant, strength_marks,
+                             drop_redundant, strength_marks, team_form_columns,
                              day_summary, evaluate, live_candidate_picks, special_candidates, totals_candidates)
 
 st.set_page_config(page_title="Football Analytics · Jornada", page_icon="⚽", layout="wide")
@@ -978,6 +978,12 @@ FUERZA_TIPS_AYUDA = (
     "Cuánto acierta este mercado en esta liga POR ENCIMA de lo que saldría sin modelo (puntos). "
     "🔵 Fortaleza ≥ +5 · ⚪ Neutral · 🔴 Débil ≤ −5. Corners, faltas y tarjetas se miden contra la frecuencia "
     "real de la línea en la liga (antes se comparaban contra 50% y salían 'fuertes' en casi todas por sesgo).")
+FORMA_TIPS_AYUDA = (
+    "En cuántos de los últimos 10 partidos del equipo (cualquier competición con datos) se dio lo que pide "
+    "el pick. Si el pick es de UN equipo (resultado, hándicap, tiros al arco por equipo), al otro se le "
+    "cuenta lo que lograron SUS rivales: p. ej. 'Arsenal +1.5' → en el visitante, en cuántos de sus "
+    "partidos el rival no perdió por 2 o más. '–' = sin historial suficiente o mercado que no se mide así "
+    "(1er tiempo, primer gol).")
 
 tab_jornada, tab_vivo, tab_amistosos, tab_tips, tab_reportes, tab_avanzada = st.tabs(
     ["📅 Jornada", "🔴 En vivo", "🌍 Amistosos", "💡 Tips", "📊 Reportes", "🧪 Avanzada"]
@@ -1110,15 +1116,16 @@ with tab_jornada:
             )
         else:
             picks_por_partido = [
-                pick_tendencies(tendency_averages, r.home_team, r.away_team) for r in show.itertuples()
+                pick_tendencies(tendency_averages, r.home_team, r.away_team, comp_code) for r in show.itertuples()
             ]
             for i, label in enumerate(("Corners", "Faltas", "Tarjetas")):
                 linea = picks_por_partido[0][i].line
                 show[f"{label} (+{linea})"] = [p[i].describe() for p in picks_por_partido]
             columnas_tabla += [c for c in show.columns if c.startswith(("Corners (", "Faltas (", "Tarjetas ("))]
             st.caption(
-                "📐 Corners/faltas/tarjetas: tendencia a partir del promedio histórico real de cada "
-                "equipo (no es el modelo de goles). ⚠ = alguno de los dos equipos tiene menos de "
+                "📐 Corners/faltas/tarjetas: total esperado de los dos equipos con el mismo modelo de "
+                "Tips (lo que genera cada equipo y lo que le generan sus rivales, no el modelo de goles); "
+                "Sí/No = más o menos probable que la línea. ⚠ = alguno de los dos equipos tiene menos de "
                 "5 partidos registrados todavía — el número es orientativo, no confiable aún."
             )
 
@@ -1701,6 +1708,7 @@ with tab_tips:
                 st.caption(f"Créditos de The Odds API restantes este mes: {restante}")
 
             # --- Tabla editable: la cuota manual manda sobre la automática ---
+            forma_local, forma_visita = team_form_columns(candidatos)
             editor = pd.DataFrame({
                 "Partido": candidatos["partido"],
                 "Liga": candidatos["competition_name"],
@@ -1708,6 +1716,8 @@ with tab_tips:
                 "Mercado": candidatos["mercado"],
                 "Pick": candidatos["pick"],
                 "Fuerza en la liga": strength_marks(candidatos),
+                "Fortaleza local": forma_local,
+                "Fortaleza visitante": forma_visita,
                 "Prob. modelo": (candidatos["prob_modelo"] * 100).round(0),
                 "Cuota justa": candidatos["cuota_justa"],
                 "Mejor cuota": pd.to_numeric(candidatos["cuota_auto"], errors="coerce").astype(float),
@@ -1725,6 +1735,8 @@ with tab_tips:
                 column_config={
                     "Partido": st.column_config.Column(pinned=True),
                     "Fuerza en la liga": st.column_config.Column(help=FUERZA_TIPS_AYUDA),
+                    "Fortaleza local": st.column_config.Column(help=FORMA_TIPS_AYUDA),
+                    "Fortaleza visitante": st.column_config.Column(help=FORMA_TIPS_AYUDA),
                     "Qué significa": st.column_config.Column(
                         width="large", help="Solo en los mercados especiales (vista 🧪 Avanzada)."),
                     "Prob. modelo": st.column_config.NumberColumn(format="%.0f%%"),
@@ -1796,6 +1808,8 @@ with tab_tips:
                             "Mercado": apuestas["mercado"],
                             "Pick": apuestas["pick"],
                             "Fuerza en la liga": strength_marks(apuestas),
+                            "Fortaleza local": forma_local.reindex(apuestas.index),
+                            "Fortaleza visitante": forma_visita.reindex(apuestas.index),
                             "Cuota": apuestas["cuota"].astype(float).round(2),
                             "Casa": apuestas["casa"].where(manual.reindex(apuestas.index).isna(), "Tu casa (manual)"),
                             "Valor": (apuestas["valor"] * 100).round(1),
