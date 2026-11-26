@@ -130,3 +130,128 @@ def detail_table(d: pd.DataFrame, home_label: str, away_label: str) -> pd.DataFr
                         for s, g, n in zip(orden["stat_id"], orden["group"], orden["name"])],
         away_label: [visita.get(s, "") for s in orden["stat_id"]],
     })
+
+
+# --- Alarma de Tips: el pick del modelo contra lo que dicen las cifras de 365 ---
+# Pedido del usuario (nov-2026), caso Kairat–Mjällby: el modelo daba de favorito
+# al visitante (27/25/48) y en 365 Kairat gana el 54% de sus partidos y Mjällby
+# el 8%. No cambia el estado del pick: es un aviso para revisarlo antes de apostar.
+# Umbrales (pts de diferencia en % de partidos ganados del equipo del pick
+# contra su rival): ganar / empate no válido / hándicap negativo 20, doble
+# oportunidad 30, hándicap positivo 40 (ahí el pick no dice que gane).
+ALARM_WIN_GAP = {"gana": 0.20, "doble": 0.30, "positivo": 0.40}
+# Goles: promedio de "más de 2.5" / "ambos marcaron" de los dos equipos en 365.
+ALARM_GOALS = {("Más", 1.5): ("<", 0.25), ("Más", 2.5): ("<", 0.40), ("Menos", 2.5): (">", 0.60),
+               ("Menos", 3.5): (">", 0.70)}
+ALARM_BTTS = {"Sí": ("<", 0.35), "No": (">", 0.65)}
+# Estadísticas: suma de los promedios por partido de cada equipo en 365.
+ALARM_STAT_ID = {"Corners": 171, "Tarjetas": 174, "Tiros al arco": 168, "Remates totales": 165}
+
+
+def _numero(valor) -> float | None:
+    """'9 (60%)' -> 0.60 · '17/26 (65%)' -> 0.65 · '5.28' -> 5.28."""
+    import re
+
+    s = str(valor)
+    m = re.search(r"\(([0-9.]+)%\)", s)
+    if m:
+        return float(m.group(1)) / 100
+    try:
+        return float(s)
+    except ValueError:
+        return None
+
+
+def _valores(d: pd.DataFrame) -> dict:
+    v = {"home": {}, "away": {}}
+    for r in d.itertuples():
+        if r.side in v:
+            n = _numero(r.value)
+            if n is not None:
+                v[r.side][int(r.stat_id)] = n
+    return v
+
+
+def alarm(d: pd.DataFrame, mercado: str, pick: str, home: str, away: str,
+          home_label: str = "", away_label: str = "") -> str:
+    """Texto de alarma si las cifras de 365 contradicen el pick; '' si no."""
+    import re
+
+    if d is None or d.empty:
+        return ""
+    v = _valores(d)
+    nombres = {"home": home_label or home, "away": away_label or away}
+    pick = str(pick)
+
+    def lado_de(equipo: str) -> str | None:
+        e = equipo.strip().lower()
+        for lado, nombre in (("home", home), ("away", away), ("home", home_label), ("away", away_label)):
+            if nombre and e == str(nombre).strip().lower():
+                return lado
+        return None
+
+    def por_ganar(lado: str | None, tipo: str) -> str:
+        if lado is None:
+            return ""
+        otro = "away" if lado == "home" else "home"
+        g, r = v[lado].get(141), v[otro].get(141)
+        if g is None or r is None or r - g < ALARM_WIN_GAP[tipo]:
+            return ""
+        return (f"⚠ 365: {nombres[lado]} gana {g:.0%} de sus partidos y {nombres[otro]} {r:.0%}, "
+                f"pero el pick va con {nombres[lado]}")
+
+    if mercado == "Resultado" and pick in ("Local", "Visitante"):
+        return por_ganar("home" if pick == "Local" else "away", "gana")
+    if mercado == "Doble oportunidad":
+        return por_ganar("home" if pick.startswith("1X") else "away", "doble")
+    if mercado in ("Empate no válido", "Primer gol"):
+        if mercado == "Primer gol":
+            lado = lado_de(pick)
+            if lado is None:
+                return ""
+            otro = "away" if lado == "home" else "home"
+            p, r = v[lado].get(144), v[otro].get(144)
+            if p is not None and r is not None and r - p >= ALARM_WIN_GAP["gana"]:
+                return f"⚠ 365: {nombres[lado]} marca primero {p:.0%} y {nombres[otro]} {r:.0%}"
+            return ""
+        return por_ganar(lado_de(pick), "gana")
+    h = re.match(r"^(.+) ([+-][0-9]+(?:\.[0-9]+)?)$", pick)
+    if mercado == "Hándicap asiático" and h:
+        return por_ganar(lado_de(h.group(1)), "positivo" if float(h.group(2)) > 0 else "gana")
+
+    m = re.match(r"^\s*(?:(.+?): )?(Más|Menos) de ([0-9]+(?:\.[0-9]+)?)", pick)
+    if mercado in ("Goles", "Goles (otra línea)") and m:
+        regla = ALARM_GOALS.get((m.group(2), float(m.group(3))))
+        a, b = v["home"].get(143), v["away"].get(143)
+        if regla is None or a is None or b is None:
+            return ""
+        prom = (a + b) / 2
+        if (regla[0] == "<" and prom < regla[1]) or (regla[0] == ">" and prom > regla[1]):
+            return (f"⚠ 365: más de 2.5 goles en {a:.0%} de los partidos de {nombres['home']} y {b:.0%} "
+                    f"de los de {nombres['away']}")
+        return ""
+    if mercado == "Ambos anotan":
+        regla = ALARM_BTTS.get("Sí" if pick.lower().startswith("s") else "No")
+        a, b = v["home"].get(142), v["away"].get(142)
+        if a is None or b is None:
+            return ""
+        prom = (a + b) / 2
+        if (regla[0] == "<" and prom < regla[1]) or (regla[0] == ">" and prom > regla[1]):
+            return f"⚠ 365: ambos marcaron en {a:.0%} / {b:.0%} de sus partidos"
+        return ""
+    if m and (mercado in ALARM_STAT_ID or mercado == "Tiros al arco por equipo"):
+        sid = ALARM_STAT_ID.get(mercado, 168)
+        mas, linea = m.group(2) == "Más", float(m.group(3))
+        if m.group(1):  # por equipo: lo del equipo del pick
+            lado = lado_de(m.group(1))
+            if lado is None or v[lado].get(sid) is None:
+                return ""
+            total, detalle = v[lado][sid], f"{nombres[lado]} promedia {v[lado][sid]:.1f}"
+        else:
+            a, b = v["home"].get(sid), v["away"].get(sid)
+            if a is None or b is None:
+                return ""
+            total, detalle = a + b, f"{nombres['home']} {a:.1f} + {nombres['away']} {b:.1f} = {a + b:.1f}"
+        if (mas and total < linea) or (not mas and total > linea):
+            return f"⚠ 365: {detalle} por partido, {'debajo' if mas else 'encima'} de la línea {linea:g}"
+    return ""

@@ -511,6 +511,12 @@ def render_daily_plan(evaluado: pd.DataFrame, presupuesto: float, banca: float,
         .set_properties(subset=["Picks"], **{"white-space": "pre-wrap", "min-width": "16em"})
         .set_properties(subset=numeros, **{"white-space": "nowrap"})
     )
+    if "alerta_365" in evaluado:  # picks del plan que van en contra de las cifras de 365scores
+        avisos = [f"- Boleto {n}: **{evaluado.at[i, 'partido']} · {evaluado.at[i, 'pick']}** — "
+                  f"{evaluado.at[i, 'alerta_365'].replace('⚠ ', '')}"
+                  for n, t in enumerate(plan.tickets, 1) for i in t.picks if evaluado.at[i, "alerta_365"]]
+        if avisos:
+            st.warning("⚠ Alerta 365 en este plan:\n" + "\n".join(avisos))
     m = plan.metrics
     st.caption(
         f"Apuestas ${m['apostado']:,.0f} en {len(plan.tickets)} boleto(s), repartidos según el valor de cada uno. "
@@ -1008,6 +1014,12 @@ FUERZA_TIPS_AYUDA = (
     "Cuánto acierta este mercado en esta liga POR ENCIMA de lo que saldría sin modelo (puntos). "
     "🔵 Fortaleza ≥ +5 · ⚪ Neutral · 🔴 Débil ≤ −5. Corners, faltas y tarjetas se miden contra la frecuencia "
     "real de la línea en la liga (antes se comparaban contra 50% y salían 'fuertes' en casi todas por sesgo).")
+ALERTA_365_AYUDA = (
+    "Aviso cuando las cifras de 365scores (últimos partidos de cada equipo, todas las competiciones) "
+    "contradicen el pick: el equipo del pick gana 20+ pts menos de sus partidos que el rival (30 en doble "
+    "oportunidad, 40 en hándicap positivo); goles o ambos marcan muy lejos de lo que pide el pick; o la suma "
+    "de promedios de corners / tarjetas / tiros al arco del otro lado de la línea. No cambia el estado: "
+    "revisa el partido antes de apostar.")
 FORMA_TIPS_AYUDA = (
     "En cuántos de los últimos 10 partidos del equipo (cualquier competición con datos) se dio lo que pide "
     "el pick. Si el pick es de UN equipo (resultado, hándicap, tiros al arco por equipo), al otro se le "
@@ -1772,6 +1784,27 @@ with tab_tips:
 
             # --- Tabla editable: la cuota manual manda sobre la automática ---
             forma_local, forma_visita = team_form_columns(candidatos)
+            # Alarma 365 (pedido del usuario): el pick contra las cifras de 365scores.
+            from src import pregame_stats
+            alerta_365 = pd.Series("", index=candidatos.index)
+            for code, grupo in candidatos.groupby("competition"):
+                if code not in scores365.COMPETITION_IDS:
+                    continue
+                partidos = tuple(dict.fromkeys(
+                    (r.home_team, r.away_team, r.utc_date, r.home_team_short, r.away_team_short)
+                    for r in grupo.itertuples()))
+                try:
+                    ids_365, stats_365 = load_pregame_stats(code, partidos)
+                except Exception:
+                    continue
+                for i, r in grupo.iterrows():
+                    d = pregame_stats.for_match(stats_365, ids_365.get((r["home_team"], r["away_team"], r["utc_date"])))
+                    alerta_365.at[i] = pregame_stats.alarm(d, r["mercado"], r["pick"], r["home_team"], r["away_team"],
+                                                           r.get("home_team_short") or "", r.get("away_team_short") or "")
+            n_alertas = int((alerta_365 != "").sum())
+            if n_alertas:
+                st.warning(f"⚠ {n_alertas} pick(s) van en contra de las estadísticas de 365scores: mira la columna "
+                           "'Alerta 365' antes de apostar.")
             editor = pd.DataFrame({
                 "Partido": candidatos["partido"],
                 "Liga": candidatos["competition_name"],
@@ -1781,6 +1814,7 @@ with tab_tips:
                 "Fuerza en la liga": strength_marks(candidatos),
                 "Fortaleza local": forma_local,
                 "Fortaleza visitante": forma_visita,
+                "Alerta 365": alerta_365,
                 "Prob. modelo": (candidatos["prob_modelo"] * 100).round(0),
                 "Cuota justa": candidatos["cuota_justa"],
                 "Mejor cuota": pd.to_numeric(candidatos["cuota_auto"], errors="coerce").astype(float),
@@ -1800,6 +1834,7 @@ with tab_tips:
                     "Fuerza en la liga": st.column_config.Column(help=FUERZA_TIPS_AYUDA),
                     "Fortaleza local": st.column_config.Column(help=FORMA_TIPS_AYUDA),
                     "Fortaleza visitante": st.column_config.Column(help=FORMA_TIPS_AYUDA),
+                    "Alerta 365": st.column_config.Column(width="large", help=ALERTA_365_AYUDA),
                     "Qué significa": st.column_config.Column(
                         width="large", help="Solo en los mercados especiales (vista 🧪 Avanzada)."),
                     "Prob. modelo": st.column_config.NumberColumn(format="%.0f%%"),
@@ -1820,6 +1855,7 @@ with tab_tips:
             # queda marcada como inválida para que se corrija a la vista.
             candidatos["cuota"] = manual.where(manual.notna(), auto)
             evaluado = evaluate(candidatos, float(banca))
+            evaluado["alerta_365"] = alerta_365.reindex(evaluado.index).fillna("")
             resumen = day_summary(evaluado, float(banca))
             expuesto_prepartido = float(evaluado["fraccion"].sum())
 
@@ -1873,6 +1909,7 @@ with tab_tips:
                             "Fuerza en la liga": strength_marks(apuestas),
                             "Fortaleza local": forma_local.reindex(apuestas.index),
                             "Fortaleza visitante": forma_visita.reindex(apuestas.index),
+                            "Alerta 365": alerta_365.reindex(apuestas.index),
                             "Cuota": apuestas["cuota"].astype(float).round(2),
                             "Casa": apuestas["casa"].where(manual.reindex(apuestas.index).isna(), "Tu casa (manual)"),
                             "Valor": (apuestas["valor"] * 100).round(1),
