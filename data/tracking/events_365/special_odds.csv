@@ -57047,3 +57047,46 @@ game_id,line_type_id,market,line,option,odds,opening_odds,won
 4894898,145,Away Team - Clean Sheet,,No,1.17,1.15,True
 4894898,13,Both Teams To Score 2nd Half,,Yes,3.4,3.0,False
 4894898,13,Both Teams To Score 2nd Half,,No,1.27,1.34,True
+4828887,1,Full Time Result,,1,2.05,2.3,True
+4828887,1,Full Time Result,,X,3.1,3.4,False
+4828887,1,Full Time Result,,2,3.4,2.75,False
+4828887,14,Double Chance,,1X,1.28,1.41,True
+4828887,14,Double Chance,,12,1.33,1.29,True
+4828887,14,Double Chance,,X2,1.7,1.57,False
+4828887,3,Total Goals In Match,2.5,Under,1.6,1.9,True
+4828887,3,Total Goals In Match,2.5,Over,2.15,1.78,False
+4828887,3,Total Goals In Match,3.5,Under,1.22,1.35,True
+4828887,3,Total Goals In Match,3.5,Over,3.9,2.95,False
+4828887,3,Total Goals In Match,1.5,Under,2.87,3.7,True
+4828887,3,Total Goals In Match,1.5,Over,1.36,1.24,False
+4828887,12,Both Teams To Score,,Yes,1.9,1.65,False
+4828887,12,Both Teams To Score,,No,1.78,2.1,True
+4828887,7,First To Score,,Home,1.73,1.91,True
+4828887,7,First To Score,,No Goal,8.0,11.0,False
+4828887,7,First To Score,,Away,2.38,2.0,False
+4828887,11,Asian Handicap,-0.5,Home,2.03,2.25,True
+4828887,11,Asian Handicap,-0.5,Away,1.74,1.57,False
+4828887,11,Asian Handicap,-0.75,Home,2.37,2.85,True
+4828887,11,Asian Handicap,-0.75,Away,1.55,1.4,False
+4828887,11,Asian Handicap,-0.25,Home,1.74,2.09,True
+4828887,11,Asian Handicap,-0.25,Away,2.04,1.69,False
+4828887,15,Draw No Bet,,Home,1.47,1.68,True
+4828887,15,Draw No Bet,,Away,2.45,2.05,False
+4828887,5,1st Half Result,,1,2.6,2.75,True
+4828887,5,1st Half Result,,X,2.1,2.25,False
+4828887,5,1st Half Result,,2,3.9,3.1,False
+4828887,6,2nd Half Result,,1,2.45,2.6,False
+4828887,6,2nd Half Result,,X,2.25,2.5,True
+4828887,6,2nd Half Result,,2,3.6,2.95,False
+4828887,9,1st Half Goals,0.5,Under,2.64,2.76,False
+4828887,9,1st Half Goals,0.5,Over,1.45,1.41,True
+4828887,9,1st Half Goals,1.5,Under,1.34,1.4,True
+4828887,9,1st Half Goals,1.5,Over,3.26,2.76,False
+4828887,137,Total Corners,9.5,Under,1.72,1.72,True
+4828887,137,Total Corners,9.5,Over,1.99,1.99,False
+4828887,144,Home Team - Clean Sheet,,Yes,2.36,2.98,True
+4828887,144,Home Team - Clean Sheet,,No,1.52,1.35,False
+4828887,145,Away Team - Clean Sheet,,Yes,3.75,3.75,False
+4828887,145,Away Team - Clean Sheet,,No,1.25,1.25,True
+4828887,13,Both Teams To Score 2nd Half,,Yes,3.7,3.0,False
+4828887,13,Both Teams To Score 2nd Half,,No,1.24,1.33,True
