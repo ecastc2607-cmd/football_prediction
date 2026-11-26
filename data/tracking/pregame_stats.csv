@@ -1121,3 +1121,37 @@ fetched_at,competition,game_id,utc_date,home_team,away_team,side,stat_id,group,n
 2026-11-26T17:00:31Z,ECL,4828877,2026-11-26T20:00:00Z,FC Nordsjælland,Panathinaikos,away,171,2,Saques de Esquina,6.36,Últimos 22 partidos
 2026-11-26T17:00:31Z,ECL,4828877,2026-11-26T20:00:00Z,FC Nordsjælland,Panathinaikos,away,174,2,Tarjetas,2.09,Últimos 22 partidos
 2026-11-26T17:00:31Z,ECL,4828877,2026-11-26T20:00:00Z,FC Nordsjælland,Panathinaikos,away,175,2,Penales convertidos/penales ejecutados,5/6,Últimos 22 partidos
+2026-11-26T17:10:29Z,EL,4828687,2026-11-26T17:45:00Z,Dinamo Zagreb,Bayer Leverkusen,home,141,1,Partidos ganados,13 (108%),Últimos 12 partidos
+2026-11-26T17:10:29Z,EL,4828687,2026-11-26T17:45:00Z,Dinamo Zagreb,Bayer Leverkusen,home,142,1,Ambos equipos marcaron,14 (117%),Últimos 12 partidos
+2026-11-26T17:10:29Z,EL,4828687,2026-11-26T17:45:00Z,Dinamo Zagreb,Bayer Leverkusen,home,143,1,Más de 2.5 goles,16 (133%),Últimos 12 partidos
+2026-11-26T17:10:29Z,EL,4828687,2026-11-26T17:45:00Z,Dinamo Zagreb,Bayer Leverkusen,home,144,1,Marcó primero,13 (108%),Últimos 12 partidos
+2026-11-26T17:10:29Z,EL,4828687,2026-11-26T17:45:00Z,Dinamo Zagreb,Bayer Leverkusen,home,146,1,Recibió gol primero,8 (67%),Últimos 12 partidos
+2026-11-26T17:10:29Z,EL,4828687,2026-11-26T17:45:00Z,Dinamo Zagreb,Bayer Leverkusen,home,148,1,Empató o Ganó,8 (67%),Últimos 12 partidos
+2026-11-26T17:10:29Z,EL,4828687,2026-11-26T17:45:00Z,Dinamo Zagreb,Bayer Leverkusen,home,149,1,Vencedor al entretiempo,11 (92%),Últimos 12 partidos
+2026-11-26T17:10:29Z,EL,4828687,2026-11-26T17:45:00Z,Dinamo Zagreb,Bayer Leverkusen,home,150,1,Valla invicta,3 (25%),Últimos 12 partidos
+2026-11-26T17:10:29Z,EL,4828687,2026-11-26T17:45:00Z,Dinamo Zagreb,Bayer Leverkusen,home,153,2,Goles convertidos,4.25,Últimos 12 partidos
+2026-11-26T17:10:29Z,EL,4828687,2026-11-26T17:45:00Z,Dinamo Zagreb,Bayer Leverkusen,home,156,2,Goles recibidos,2.25,Últimos 12 partidos
+2026-11-26T17:10:29Z,EL,4828687,2026-11-26T17:45:00Z,Dinamo Zagreb,Bayer Leverkusen,home,159,2,Goles esperados,1.48,Últimos 12 partidos
+2026-11-26T17:10:29Z,EL,4828687,2026-11-26T17:45:00Z,Dinamo Zagreb,Bayer Leverkusen,home,162,2,Goles esperados recibidos,1.2,Últimos 12 partidos
+2026-11-26T17:10:29Z,EL,4828687,2026-11-26T17:45:00Z,Dinamo Zagreb,Bayer Leverkusen,home,165,2,Remates,16.67,Últimos 12 partidos
+2026-11-26T17:10:29Z,EL,4828687,2026-11-26T17:45:00Z,Dinamo Zagreb,Bayer Leverkusen,home,168,2,Remates al arco,5.92,Últimos 12 partidos
+2026-11-26T17:10:29Z,EL,4828687,2026-11-26T17:45:00Z,Dinamo Zagreb,Bayer Leverkusen,home,171,2,Saques de Esquina,5.33,Últimos 12 partidos
+2026-11-26T17:10:29Z,EL,4828687,2026-11-26T17:45:00Z,Dinamo Zagreb,Bayer Leverkusen,home,174,2,Tarjetas,2.92,Últimos 12 partidos
+2026-11-26T17:10:29Z,EL,4828687,2026-11-26T17:45:00Z,Dinamo Zagreb,Bayer Leverkusen,home,175,2,Penales convertidos/penales ejecutados,4/4,Últimos 12 partidos
+2026-11-26T17:10:29Z,EL,4828687,2026-11-26T17:45:00Z,Dinamo Zagreb,Bayer Leverkusen,away,141,1,Partidos ganados,10 (67%),Últimos 15 partidos
+2026-11-26T17:10:29Z,EL,4828687,2026-11-26T17:45:00Z,Dinamo Zagreb,Bayer Leverkusen,away,142,1,Ambos equipos marcaron,6 (40%),Últimos 15 partidos
+2026-11-26T17:10:29Z,EL,4828687,2026-11-26T17:45:00Z,Dinamo Zagreb,Bayer Leverkusen,away,143,1,Más de 2.5 goles,11 (73%),Últimos 15 partidos
+2026-11-26T17:10:29Z,EL,4828687,2026-11-26T17:45:00Z,Dinamo Zagreb,Bayer Leverkusen,away,144,1,Marcó primero,10 (67%),Últimos 15 partidos
+2026-11-26T17:10:29Z,EL,4828687,2026-11-26T17:45:00Z,Dinamo Zagreb,Bayer Leverkusen,away,146,1,Recibió gol primero,5 (33%),Últimos 15 partidos
+2026-11-26T17:10:29Z,EL,4828687,2026-11-26T17:45:00Z,Dinamo Zagreb,Bayer Leverkusen,away,148,1,Empató o Ganó,11 (73%),Últimos 15 partidos
+2026-11-26T17:10:29Z,EL,4828687,2026-11-26T17:45:00Z,Dinamo Zagreb,Bayer Leverkusen,away,149,1,Vencedor al entretiempo,9 (60%),Últimos 15 partidos
+2026-11-26T17:10:29Z,EL,4828687,2026-11-26T17:45:00Z,Dinamo Zagreb,Bayer Leverkusen,away,150,1,Valla invicta,7 (47%),Últimos 15 partidos
+2026-11-26T17:10:29Z,EL,4828687,2026-11-26T17:45:00Z,Dinamo Zagreb,Bayer Leverkusen,away,153,2,Goles convertidos,2.6,Últimos 15 partidos
+2026-11-26T17:10:29Z,EL,4828687,2026-11-26T17:45:00Z,Dinamo Zagreb,Bayer Leverkusen,away,156,2,Goles recibidos,1.27,Últimos 15 partidos
+2026-11-26T17:10:29Z,EL,4828687,2026-11-26T17:45:00Z,Dinamo Zagreb,Bayer Leverkusen,away,159,2,Goles esperados,2.38,Últimos 15 partidos
+2026-11-26T17:10:29Z,EL,4828687,2026-11-26T17:45:00Z,Dinamo Zagreb,Bayer Leverkusen,away,162,2,Goles esperados recibidos,1.21,Últimos 15 partidos
+2026-11-26T17:10:29Z,EL,4828687,2026-11-26T17:45:00Z,Dinamo Zagreb,Bayer Leverkusen,away,165,2,Remates,19.73,Últimos 15 partidos
+2026-11-26T17:10:29Z,EL,4828687,2026-11-26T17:45:00Z,Dinamo Zagreb,Bayer Leverkusen,away,168,2,Remates al arco,7.47,Últimos 15 partidos
+2026-11-26T17:10:29Z,EL,4828687,2026-11-26T17:45:00Z,Dinamo Zagreb,Bayer Leverkusen,away,171,2,Saques de Esquina,7.27,Últimos 15 partidos
+2026-11-26T17:10:29Z,EL,4828687,2026-11-26T17:45:00Z,Dinamo Zagreb,Bayer Leverkusen,away,174,2,Tarjetas,2,Últimos 15 partidos
+2026-11-26T17:10:29Z,EL,4828687,2026-11-26T17:45:00Z,Dinamo Zagreb,Bayer Leverkusen,away,175,2,Penales convertidos/penales ejecutados,3/3,Últimos 15 partidos
