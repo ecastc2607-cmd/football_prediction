@@ -1284,31 +1284,35 @@ with tab_jornada:
         columnas_tabla += ["Contexto", "⚠"]  # al final: son avisos/contexto, no el pronóstico en sí
 
         # "Más …" al lado de su mercado principal, plegables (pedido del usuario,
-        # nov-2026): st.dataframe no agrupa columnas, así que cada grupo se
-        # despliega o se pliega con un botón encima de la tabla.
+        # nov-2026): clic en el encabezado del mercado (ej. "Tarjetas (+3.5) ▸")
+        # despliega "Más tarjetas" a su lado; otro clic (en cualquiera de las dos)
+        # la pliega. st.dataframe no agrupa columnas: se usa su selección de
+        # columna, y tras cada clic se cambia la key para limpiar la selección.
         grupos_mas = {"Tarjetas": ("Tarjetas (", "Más tarjetas"), "Corners": ("Corners (", "Más corners"),
                       "Faltas": ("Faltas (", "Más faltas"),
                       "Tiros al arco": ("Tiros al arco", "Más tiros al arco"),
                       "Fueras de juego": ("Fueras de juego", "Más fueras de juego")}
-        abiertos = st.pills(
-            "➕ Desplegar 'Más …' (qué equipo supera al rival) al lado de:", list(grupos_mas),
-            selection_mode="multi", default=[], key=f"jornada_mas_{comp_code}",
-            help="Cada botón despliega, junto a su columna, la de qué equipo recibe/saca/hace MÁS que el "
-                 "rival (local · empate · visitante). Vuelve a tocarlo para plegarla.") or []
+        clave_abiertos = f"jornada_mas_{comp_code}"
+        abiertos = st.session_state.setdefault(clave_abiertos, set())
         mas_cols = {mas for _, mas in grupos_mas.values()}
         orden = [c for c in columnas_tabla if c not in mas_cols]
-        for grupo in abiertos:
-            principal, mas = grupos_mas[grupo]
-            if mas not in show.columns:
-                continue
+        principal_de = {}  # columna principal de la tabla -> grupo
+        for grupo, (principal, mas) in grupos_mas.items():
             pos = next((i for i, c in enumerate(orden) if c == principal or c.startswith(principal)), None)
-            if pos is None:
-                orden.append(mas)
-            else:
+            if pos is None or mas not in show.columns:
+                continue
+            principal_de[orden[pos]] = grupo
+            if grupo in abiertos:
                 orden.insert(pos + 1, mas)
         columnas_tabla = orden
 
         renombre = {"over_2_5": "Over 2.5 %", "btts": "BTTS %", "top_score": "Marcador top"}
+        # Flecha en el encabezado: ▸ se puede desplegar, ▾ ya está desplegado.
+        renombre |= {c: f"{c} {'▾' if g in abiertos else '▸'}" for c, g in principal_de.items()}
+        grupo_de_columna = {renombre[c]: g for c, g in principal_de.items()}
+        grupo_de_columna |= {mas: g for g, (_, mas) in grupos_mas.items() if g in abiertos}
+        st.caption("👆 Haz clic en el encabezado de Tarjetas ▸, Corners ▸, Faltas ▸, Fueras de juego ▸ o Tiros al "
+                   "arco ▸ para desplegar a su lado qué equipo supera al rival en ese mercado; otro clic lo pliega.")
         tabla_j = show[columnas_tabla].rename(columns=renombre)
         colores_j = pd.DataFrame("", index=tabla_j.index, columns=tabla_j.columns)
         for col in fuerza.columns:
@@ -1317,9 +1321,11 @@ with tab_jornada:
                 colores_j[destino] = fuerza[col].map(lambda v: _diverging_cell_css(v, 25.0))
         # Over 2.5 y Ambos anotan sin decimales (pedido del usuario, oct-2026).
         formato_j = {c: "{:.0f}%" for c in ("Over 2.5 %", "BTTS %") if c in tabla_j.columns}
-        st.dataframe(
+        clave_tabla = f"tabla_jornada_{comp_code}_{st.session_state.get(clave_abiertos + '_n', 0)}"
+        evento_j = st.dataframe(
             tabla_j.style.apply(lambda _: colores_j, axis=None).format(formato_j, na_rep="-"),
-            width="stretch", hide_index=True,
+            width="stretch", hide_index=True, key=clave_tabla,
+            on_select="rerun", selection_mode="single-column",
             # Fija "Partido" para no perder la referencia de qué equipos son al
             # revisar las columnas de pronóstico más a la derecha.
             column_config={"Partido": st.column_config.Column(pinned=True),
@@ -1332,6 +1338,12 @@ with tab_jornada:
                                                    "+2.5 = más de 2.5 goles, Invicta = valla invicta (en %); "
                                                    "Corners y Tarj = promedio por partido. Detalle debajo de la tabla.")},
         )
+        elegidas = list(getattr(getattr(evento_j, "selection", None), "columns", None) or [])
+        if elegidas and elegidas[0] in grupo_de_columna:
+            grupo = grupo_de_columna[elegidas[0]]
+            abiertos.symmetric_difference_update({grupo})
+            st.session_state[clave_abiertos + "_n"] = st.session_state.get(clave_abiertos + "_n", 0) + 1
+            st.rerun()
         with st.expander("📊 Estadísticas de 365scores por partido (últimos partidos, todas las competiciones)"):
             con_365 = [i for i in show.index if not filas_365[i].empty]
             if not con_365:
