@@ -1307,12 +1307,15 @@ with tab_jornada:
         columnas_tabla = orden
 
         renombre = {"over_2_5": "Over 2.5 %", "btts": "BTTS %", "top_score": "Marcador top"}
-        # Flecha en el encabezado: ▸ se puede desplegar, ▾ ya está desplegado.
-        renombre |= {c: f"{c} {'▾' if g in abiertos else '▸'}" for c, g in principal_de.items()}
+        # Flecha AL INICIO del encabezado (▸ se puede desplegar, ▾ ya está
+        # desplegado): el menú ⋮ de la columna aparece a la derecha al pasar el
+        # mouse y tapaba la flecha cuando iba al final.
+        renombre |= {c: f"{'▾' if g in abiertos else '▸'} {c}" for c, g in principal_de.items()}
         grupo_de_columna = {renombre[c]: g for c, g in principal_de.items()}
         grupo_de_columna |= {mas: g for g, (_, mas) in grupos_mas.items() if g in abiertos}
-        st.caption("👆 Haz clic en el encabezado de Tarjetas ▸, Corners ▸, Faltas ▸, Fueras de juego ▸ o Tiros al "
-                   "arco ▸ para desplegar a su lado qué equipo supera al rival en ese mercado; otro clic lo pliega.")
+        st.caption("👆 Haz clic en el encabezado de ▸ Tarjetas, ▸ Corners, ▸ Faltas, ▸ Fueras de juego o ▸ Tiros "
+                   "al arco para desplegar a su lado qué equipo supera al rival en ese mercado (la flecha cambia a "
+                   "▾); otro clic en el mismo encabezado lo pliega. El menú ⋮ de la derecha es solo para ordenar.")
         tabla_j = show[columnas_tabla].rename(columns=renombre)
         colores_j = pd.DataFrame("", index=tabla_j.index, columns=tabla_j.columns)
         for col in fuerza.columns:
@@ -1329,6 +1332,11 @@ with tab_jornada:
             # Fija "Partido" para no perder la referencia de qué equipos son al
             # revisar las columnas de pronóstico más a la derecha.
             column_config={"Partido": st.column_config.Column(pinned=True),
+                           # Ancho para que se lea el encabezado completo con su flecha.
+                           **{renombre[c]: st.column_config.Column(
+                               width="medium", help=f"Clic para {'plegar' if g in abiertos else 'desplegar'} "
+                                                    f"'{grupos_mas[g][1]}' a su lado.")
+                              for c, g in principal_de.items()},
                            "Fuerza (mayor → menor)": st.column_config.Column(
                                width="large", help="Mercados de este partido ordenados de más fuerte a más débil "
                                                    "según Reportes (puntos de acierto real − esperado)."),
