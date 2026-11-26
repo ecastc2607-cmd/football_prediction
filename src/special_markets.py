@@ -867,6 +867,45 @@ def stat_prediction_side(competition: str, home: str, away: str, col: str, side:
     return {"esperado": mu, "linea": linea, "p_mas": p_mas}
 
 
+# --- Más tarjetas: qué equipo recibe MÁS tarjetas que el rival (pedido del usuario, nov-2026) ---
+# Tarjetas de cada equipo con el modelo de totales (lo que recibe ese equipo y lo
+# que le sacan a sus rivales, binomial negativa por lado), la diferencia entre
+# los dos y una recalibración logística medida walk-forward en 3.249 partidos:
+# el modelo crudo era sobreconfiado (prometía 54% y acertaba 49%), sobre todo con
+# el local. Recalibrado, cuando dice >= 48% acierta ~49% contra ~45% de la
+# frecuencia de ese lado en la liga: ventaja chica (+3 a +4 pts).
+MORE_CARDS_RECAL = {"home": (-0.357, 0.537), "away": (-0.148, 0.543)}  # p' = sigmoide(a + b·logit p)
+
+
+def more_cards_prediction(competition: str, home: str, away: str) -> dict | None:
+    """{"home", "draw", "away"}: prob. de que el local / ninguno / el visitante
+    reciba más tarjetas (amarillas + rojas), recalibradas; más "esp_home" /
+    "esp_away" (tarjetas esperadas de cada uno). None sin historial de la liga."""
+    from scipy.stats import nbinom, poisson
+
+    if stat_prediction(competition, home, away, "tar") is None:  # llena la caché del ajuste
+        return None
+    from . import match_stats_log
+    from . import totals_model as tm
+    path = match_stats_log.LOG_PATH
+    s = _STAT_FIT_CACHE[(competition, "tar", path.stat().st_mtime if path.exists() else 0)]
+    mh, ma = tm.expected_sides(s, home, away)
+    k = np.arange(0, 21)
+
+    def pmf(mu, disp):
+        return poisson.pmf(k, mu) if not np.isfinite(disp) else nbinom.pmf(k, disp, disp / (disp + mu))
+
+    m = np.outer(pmf(mh, s.disp_home), pmf(ma, s.disp_away))
+
+    def recal(p, lado):
+        a, b = MORE_CARDS_RECAL[lado]
+        p = min(max(p, 0.02), 0.98)
+        return float(1 / (1 + np.exp(-(a + b * np.log(p / (1 - p))))))
+
+    p_home, p_away = recal(float(np.tril(m, -1).sum()), "home"), recal(float(np.triu(m, 1).sum()), "away")
+    return {"home": p_home, "away": p_away, "draw": max(0.0, 1 - p_home - p_away), "esp_home": mh, "esp_away": ma}
+
+
 def best_special_pick(competition: str, home_xg: float, away_xg: float, home: str, away: str) -> dict | None:
     """El mercado especial más probable del partido entre los que el backtest
     aprueba en esa liga (value_tips.special_rules), o None."""

@@ -1018,7 +1018,8 @@ ALERTA_365_AYUDA = (
     "Aviso cuando las cifras de 365scores (últimos partidos de cada equipo, todas las competiciones) "
     "contradicen el pick: el equipo del pick gana 20+ pts menos de sus partidos que el rival (30 en doble "
     "oportunidad, 40 en hándicap positivo); goles o ambos marcan muy lejos de lo que pide el pick; o la suma "
-    "de promedios de corners / tarjetas / tiros al arco del otro lado de la línea. No cambia el estado: "
+    "de promedios de corners / tarjetas / tiros al arco del otro lado de la línea; en 'Más tarjetas', el "
+    "equipo del pick promedia 0.3+ tarjetas menos que el rival. No cambia el estado: "
     "revisa el partido antes de apostar.")
 FORMA_TIPS_AYUDA = (
     "En cuántos de los últimos 10 partidos del equipo (cualquier competición con datos) se dio lo que pide "
@@ -1187,13 +1188,21 @@ with tab_jornada:
             except (TypeError, ValueError):
                 pk = None
             especiales.append(pk)
+        def _mas_tarjetas(r):
+            pr = special_markets.more_cards_prediction(config.strength_code(comp_code), r.home_team, r.away_team)
+            if not pr:
+                return "Sin datos"
+            return (f"{r.home_team_short} {pr['home']:.0%} · empate {pr['draw']:.0%} · {r.away_team_short} "
+                    f"{pr['away']:.0%} ({pr['esp_home']:.1f} vs {pr['esp_away']:.1f})")
+
+        show["Más tarjetas"] = show.apply(_mas_tarjetas, axis=1)
         show["Fueras de juego"] = show.apply(lambda r: _stat_celda(r, "off"), axis=1)
         show["Tiros al arco"] = show.apply(lambda r: _stat_celda(r, "sot"), axis=1)
         show["Especial (Avanzada)"] = [
             "-" if not pk else pk["mercado"] + (f" · {cortos.get(pk['equipo'], pk['equipo'])}" if pk["equipo"] else "")
             + f" ({pk['prob']:.0%})" for pk in especiales]
         show["_especial_mercado"] = [pk["mercado"] if pk else None for pk in especiales]
-        columnas_tabla += ["Fueras de juego", "Tiros al arco", "Especial (Avanzada)"]
+        columnas_tabla += ["Más tarjetas", "Fueras de juego", "Tiros al arco", "Especial (Avanzada)"]
 
         # --- Estadísticas de 365scores (últimos partidos de cada equipo, todas las competiciones) ---
         from src import pregame_stats
@@ -1208,6 +1217,8 @@ with tab_jornada:
         show["Estadísticas 365"] = [pregame_stats.compact(filas_365[i]) for i in show.index]
         columnas_tabla += ["Estadísticas 365"]
         st.caption(
+            "🟨 **Más tarjetas**: probabilidad de que cada equipo reciba MÁS tarjetas que el otro (o empate), "
+            "con las tarjetas esperadas de cada uno; recalibrada, ventaja chica sobre la frecuencia de la liga. "
             "🚩 **Fueras de juego / 🎯 Tiros al arco**: total de los dos equipos (mismo modelo que corners/"
             "tarjetas: promedios de cada equipo + binomial negativa) contra la línea principal de BWIN; entre "
             "paréntesis, la probabilidad de ese lado. **Especial (Avanzada)**: el mercado especial más "
