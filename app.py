@@ -1958,8 +1958,11 @@ with tab_tips:
                 "Partido": vis["partido"],
                 "Liga": vis["competition_name"],
                 "Hora": vis["utc_date"].map(format_bogota),
-                "Mercado": [f"↳ {m}" if i in padre else m for i, m in zip(vis.index, vis["mercado"])],
+                # Flecha al inicio, como en la Jornada: ▸ plegado, ▾ desplegado.
                 "➕ Más": [(pick_id[i] in estado_tips["abiertos"]) if i in hijos else None for i in vis.index],
+                "Mercado": [f"↳ {m}" if i in padre
+                            else f"{'▾' if pick_id[i] in estado_tips['abiertos'] else '▸'} {m}" if i in hijos
+                            else m for i, m in zip(vis.index, vis["mercado"])],
                 "Pick": vis["pick"],
                 "Fuerza en la liga": strength_marks(vis),
                 "Fortaleza local": forma_local.reindex(vis.index),
@@ -1977,17 +1980,19 @@ with tab_tips:
             st.markdown("**Picks candidatos** — corrige 'Cuota manual' con la de tu casa antes de apostar "
                         "(decimales con coma, ej. 1,45):")
             if hijos:
-                st.caption("➕ Marca la casilla **➕ Más** en una fila de Tarjetas, Corners, Faltas, Tiros al arco o "
-                           "Fueras de juego para ver debajo qué equipo supera al rival en ese mercado (↳ Más …); "
-                           "desmárcala para plegarlo.")
+                st.caption("➕ Las filas con **▸** en 'Mercado' (Tarjetas, Corners, Faltas, Tiros al arco, Fueras de "
+                           "juego) tienen un pick 'Más …' plegado: marca su casilla **➕ Más** (fija a la izquierda, "
+                           "junto al partido) para verlo debajo (↳ Más …, la flecha cambia a ▾); desmárcala para "
+                           "plegarlo.")
             st.data_editor(
                 editor, hide_index=True, width="stretch",
                 key=f"tips_editor_{fecha_tips.isoformat()}_{estado_tips['ver']}",
                 disabled=[c for c in editor.columns if c not in ("Cuota manual", "➕ Más")],
                 column_config={
                     "Partido": st.column_config.Column(pinned=True),
+                    # Fija junto a "Partido": siempre a la vista al desplazar la tabla.
                     "➕ Más": st.column_config.CheckboxColumn(
-                        "➕ Más", help="En las filas de Tarjetas / Corners / Faltas / Tiros al arco / Fueras de juego "
+                        "➕ Más", pinned=True, help="En las filas de Tarjetas / Corners / Faltas / Tiros al arco / Fueras de juego "
                                       "que tienen pick 'Más …' en ese partido: márcala para verlo debajo."),
                     "Fuerza en la liga": st.column_config.Column(help=FUERZA_TIPS_AYUDA),
                     "Fortaleza local": st.column_config.Column(help=FORMA_TIPS_AYUDA),
