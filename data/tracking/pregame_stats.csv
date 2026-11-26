@@ -1,0 +1,545 @@
+fetched_at,competition,game_id,utc_date,home_team,away_team,side,stat_id,group,name,value,games_text
+2026-11-26T15:10:27Z,ECL,4828887,2026-11-26T15:30:00Z,Kairat Almaty,Mjällby AIF,home,141,1,Partidos ganados,22 (54%),Últimos 41 partidos
+2026-11-26T15:10:27Z,ECL,4828887,2026-11-26T15:30:00Z,Kairat Almaty,Mjällby AIF,home,142,1,Ambos equipos marcaron,18 (44%),Últimos 41 partidos
+2026-11-26T15:10:27Z,ECL,4828887,2026-11-26T15:30:00Z,Kairat Almaty,Mjällby AIF,home,143,1,Más de 2.5 goles,22 (54%),Últimos 41 partidos
+2026-11-26T15:10:27Z,ECL,4828887,2026-11-26T15:30:00Z,Kairat Almaty,Mjällby AIF,home,144,1,Marcó primero,17/26 (65%),Últimos 41 partidos
+2026-11-26T15:10:27Z,ECL,4828887,2026-11-26T15:30:00Z,Kairat Almaty,Mjällby AIF,home,146,1,Recibió gol primero,7/26 (27%),Últimos 41 partidos
+2026-11-26T15:10:27Z,ECL,4828887,2026-11-26T15:30:00Z,Kairat Almaty,Mjällby AIF,home,148,1,Empató o Ganó,32 (78%),Últimos 41 partidos
+2026-11-26T15:10:27Z,ECL,4828887,2026-11-26T15:30:00Z,Kairat Almaty,Mjällby AIF,home,149,1,Vencedor al entretiempo,13/39 (33%),Últimos 41 partidos
+2026-11-26T15:10:27Z,ECL,4828887,2026-11-26T15:30:00Z,Kairat Almaty,Mjällby AIF,home,150,1,Valla invicta,17 (41%),Últimos 41 partidos
+2026-11-26T15:10:27Z,ECL,4828887,2026-11-26T15:30:00Z,Kairat Almaty,Mjällby AIF,home,153,2,Goles convertidos,1.68,Últimos 41 partidos
+2026-11-26T15:10:27Z,ECL,4828887,2026-11-26T15:30:00Z,Kairat Almaty,Mjällby AIF,home,156,2,Goles recibidos,0.98,Últimos 41 partidos
+2026-11-26T15:10:27Z,ECL,4828887,2026-11-26T15:30:00Z,Kairat Almaty,Mjällby AIF,home,159,2,Goles esperados,0.82,Últimos 41 partidos
+2026-11-26T15:10:27Z,ECL,4828887,2026-11-26T15:30:00Z,Kairat Almaty,Mjällby AIF,home,162,2,Goles esperados recibidos,2.16,Últimos 41 partidos
+2026-11-26T15:10:27Z,ECL,4828887,2026-11-26T15:30:00Z,Kairat Almaty,Mjällby AIF,home,165,2,Remates,12.69,Últimos 41 partidos
+2026-11-26T15:10:27Z,ECL,4828887,2026-11-26T15:30:00Z,Kairat Almaty,Mjällby AIF,home,168,2,Remates al arco,5.18,Últimos 41 partidos
+2026-11-26T15:10:27Z,ECL,4828887,2026-11-26T15:30:00Z,Kairat Almaty,Mjällby AIF,home,171,2,Saques de Esquina,5.28,Últimos 41 partidos
+2026-11-26T15:10:27Z,ECL,4828887,2026-11-26T15:30:00Z,Kairat Almaty,Mjällby AIF,home,174,2,Tarjetas,2.22,Últimos 41 partidos
+2026-11-26T15:10:27Z,ECL,4828887,2026-11-26T15:30:00Z,Kairat Almaty,Mjällby AIF,home,175,2,Penales convertidos/penales ejecutados,2/2,Últimos 41 partidos
+2026-11-26T15:10:27Z,ECL,4828887,2026-11-26T15:30:00Z,Kairat Almaty,Mjällby AIF,away,141,1,Partidos ganados,3 (8%),Últimos 37 partidos
+2026-11-26T15:10:27Z,ECL,4828887,2026-11-26T15:30:00Z,Kairat Almaty,Mjällby AIF,away,142,1,Ambos equipos marcaron,16 (43%),Últimos 37 partidos
+2026-11-26T15:10:27Z,ECL,4828887,2026-11-26T15:30:00Z,Kairat Almaty,Mjällby AIF,away,143,1,Más de 2.5 goles,2 (5%),Últimos 37 partidos
+2026-11-26T15:10:27Z,ECL,4828887,2026-11-26T15:30:00Z,Kairat Almaty,Mjällby AIF,away,144,1,Marcó primero,11/36 (31%),Últimos 37 partidos
+2026-11-26T15:10:27Z,ECL,4828887,2026-11-26T15:30:00Z,Kairat Almaty,Mjällby AIF,away,146,1,Recibió gol primero,5/36 (14%),Últimos 37 partidos
+2026-11-26T15:10:27Z,ECL,4828887,2026-11-26T15:30:00Z,Kairat Almaty,Mjällby AIF,away,148,1,Empató o Ganó,21 (57%),Últimos 37 partidos
+2026-11-26T15:10:27Z,ECL,4828887,2026-11-26T15:30:00Z,Kairat Almaty,Mjällby AIF,away,149,1,Vencedor al entretiempo,1/36 (3%),Últimos 37 partidos
+2026-11-26T15:10:27Z,ECL,4828887,2026-11-26T15:30:00Z,Kairat Almaty,Mjällby AIF,away,150,1,Valla invicta,4 (11%),Últimos 37 partidos
+2026-11-26T15:10:27Z,ECL,4828887,2026-11-26T15:30:00Z,Kairat Almaty,Mjällby AIF,away,153,2,Goles convertidos,1.11,Últimos 37 partidos
+2026-11-26T15:10:27Z,ECL,4828887,2026-11-26T15:30:00Z,Kairat Almaty,Mjällby AIF,away,156,2,Goles recibidos,1.42,Últimos 37 partidos
+2026-11-26T15:10:27Z,ECL,4828887,2026-11-26T15:30:00Z,Kairat Almaty,Mjällby AIF,away,159,2,Goles esperados,1.67,Últimos 37 partidos
+2026-11-26T15:10:27Z,ECL,4828887,2026-11-26T15:30:00Z,Kairat Almaty,Mjällby AIF,away,162,2,Goles esperados recibidos,0.97,Últimos 37 partidos
+2026-11-26T15:10:27Z,ECL,4828887,2026-11-26T15:30:00Z,Kairat Almaty,Mjällby AIF,away,165,2,Remates,11.46,Últimos 37 partidos
+2026-11-26T15:10:27Z,ECL,4828887,2026-11-26T15:30:00Z,Kairat Almaty,Mjällby AIF,away,168,2,Remates al arco,4.23,Últimos 37 partidos
+2026-11-26T15:10:27Z,ECL,4828887,2026-11-26T15:30:00Z,Kairat Almaty,Mjällby AIF,away,171,2,Saques de Esquina,4.71,Últimos 37 partidos
+2026-11-26T15:10:27Z,ECL,4828887,2026-11-26T15:30:00Z,Kairat Almaty,Mjällby AIF,away,174,2,Tarjetas,2.14,Últimos 37 partidos
+2026-11-26T15:10:27Z,ECL,4828887,2026-11-26T15:30:00Z,Kairat Almaty,Mjällby AIF,away,175,2,Penales convertidos/penales ejecutados,0/0,Últimos 37 partidos
+2026-11-26T15:10:27Z,EL,4828685,2026-11-26T17:45:00Z,Besiktas,Hapoel Beer Sheva,home,141,1,Partidos ganados,15 (68%),Últimos 22 partidos
+2026-11-26T15:10:27Z,EL,4828685,2026-11-26T17:45:00Z,Besiktas,Hapoel Beer Sheva,home,142,1,Ambos equipos marcaron,10 (45%),Últimos 22 partidos
+2026-11-26T15:10:27Z,EL,4828685,2026-11-26T17:45:00Z,Besiktas,Hapoel Beer Sheva,home,143,1,Más de 2.5 goles,13 (59%),Últimos 22 partidos
+2026-11-26T15:10:27Z,EL,4828685,2026-11-26T17:45:00Z,Besiktas,Hapoel Beer Sheva,home,144,1,Marcó primero,17 (77%),Últimos 22 partidos
+2026-11-26T15:10:27Z,EL,4828685,2026-11-26T17:45:00Z,Besiktas,Hapoel Beer Sheva,home,146,1,Recibió gol primero,5 (23%),Últimos 22 partidos
+2026-11-26T15:10:27Z,EL,4828685,2026-11-26T17:45:00Z,Besiktas,Hapoel Beer Sheva,home,148,1,Empató o Ganó,17 (77%),Últimos 22 partidos
+2026-11-26T15:10:27Z,EL,4828685,2026-11-26T17:45:00Z,Besiktas,Hapoel Beer Sheva,home,149,1,Vencedor al entretiempo,11 (50%),Últimos 22 partidos
+2026-11-26T15:10:27Z,EL,4828685,2026-11-26T17:45:00Z,Besiktas,Hapoel Beer Sheva,home,150,1,Valla invicta,9 (41%),Últimos 22 partidos
+2026-11-26T15:10:27Z,EL,4828685,2026-11-26T17:45:00Z,Besiktas,Hapoel Beer Sheva,home,153,2,Goles convertidos,2.09,Últimos 22 partidos
+2026-11-26T15:10:27Z,EL,4828685,2026-11-26T17:45:00Z,Besiktas,Hapoel Beer Sheva,home,156,2,Goles recibidos,1.05,Últimos 22 partidos
+2026-11-26T15:10:27Z,EL,4828685,2026-11-26T17:45:00Z,Besiktas,Hapoel Beer Sheva,home,159,2,Goles esperados,1.97,Últimos 22 partidos
+2026-11-26T15:10:27Z,EL,4828685,2026-11-26T17:45:00Z,Besiktas,Hapoel Beer Sheva,home,162,2,Goles esperados recibidos,0.79,Últimos 22 partidos
+2026-11-26T15:10:27Z,EL,4828685,2026-11-26T17:45:00Z,Besiktas,Hapoel Beer Sheva,home,165,2,Remates,17.27,Últimos 22 partidos
+2026-11-26T15:10:27Z,EL,4828685,2026-11-26T17:45:00Z,Besiktas,Hapoel Beer Sheva,home,168,2,Remates al arco,5.82,Últimos 22 partidos
+2026-11-26T15:10:27Z,EL,4828685,2026-11-26T17:45:00Z,Besiktas,Hapoel Beer Sheva,home,171,2,Saques de Esquina,5.55,Últimos 22 partidos
+2026-11-26T15:10:27Z,EL,4828685,2026-11-26T17:45:00Z,Besiktas,Hapoel Beer Sheva,home,174,2,Tarjetas,2.09,Últimos 22 partidos
+2026-11-26T15:10:27Z,EL,4828685,2026-11-26T17:45:00Z,Besiktas,Hapoel Beer Sheva,home,175,2,Penales convertidos/penales ejecutados,5/6,Últimos 22 partidos
+2026-11-26T15:10:27Z,EL,4828685,2026-11-26T17:45:00Z,Besiktas,Hapoel Beer Sheva,away,141,1,Partidos ganados,13 (108%),Últimos 12 partidos
+2026-11-26T15:10:27Z,EL,4828685,2026-11-26T17:45:00Z,Besiktas,Hapoel Beer Sheva,away,142,1,Ambos equipos marcaron,12 (100%),Últimos 12 partidos
+2026-11-26T15:10:27Z,EL,4828685,2026-11-26T17:45:00Z,Besiktas,Hapoel Beer Sheva,away,143,1,Más de 2.5 goles,14 (117%),Últimos 12 partidos
+2026-11-26T15:10:27Z,EL,4828685,2026-11-26T17:45:00Z,Besiktas,Hapoel Beer Sheva,away,144,1,Marcó primero,13 (108%),Últimos 12 partidos
+2026-11-26T15:10:27Z,EL,4828685,2026-11-26T17:45:00Z,Besiktas,Hapoel Beer Sheva,away,146,1,Recibió gol primero,9 (75%),Últimos 12 partidos
+2026-11-26T15:10:27Z,EL,4828685,2026-11-26T17:45:00Z,Besiktas,Hapoel Beer Sheva,away,148,1,Empató o Ganó,9 (75%),Últimos 12 partidos
+2026-11-26T15:10:27Z,EL,4828685,2026-11-26T17:45:00Z,Besiktas,Hapoel Beer Sheva,away,149,1,Vencedor al entretiempo,5 (42%),Últimos 12 partidos
+2026-11-26T15:10:27Z,EL,4828685,2026-11-26T17:45:00Z,Besiktas,Hapoel Beer Sheva,away,150,1,Valla invicta,4 (33%),Últimos 12 partidos
+2026-11-26T15:10:27Z,EL,4828685,2026-11-26T17:45:00Z,Besiktas,Hapoel Beer Sheva,away,153,2,Goles convertidos,3.33,Últimos 12 partidos
+2026-11-26T15:10:27Z,EL,4828685,2026-11-26T17:45:00Z,Besiktas,Hapoel Beer Sheva,away,156,2,Goles recibidos,2.83,Últimos 12 partidos
+2026-11-26T15:10:27Z,EL,4828685,2026-11-26T17:45:00Z,Besiktas,Hapoel Beer Sheva,away,159,2,Goles esperados,1.45,Últimos 12 partidos
+2026-11-26T15:10:27Z,EL,4828685,2026-11-26T17:45:00Z,Besiktas,Hapoel Beer Sheva,away,162,2,Goles esperados recibidos,1.07,Últimos 12 partidos
+2026-11-26T15:10:27Z,EL,4828685,2026-11-26T17:45:00Z,Besiktas,Hapoel Beer Sheva,away,165,2,Remates,13.1,Últimos 12 partidos
+2026-11-26T15:10:27Z,EL,4828685,2026-11-26T17:45:00Z,Besiktas,Hapoel Beer Sheva,away,168,2,Remates al arco,4.5,Últimos 12 partidos
+2026-11-26T15:10:27Z,EL,4828685,2026-11-26T17:45:00Z,Besiktas,Hapoel Beer Sheva,away,171,2,Saques de Esquina,4.5,Últimos 12 partidos
+2026-11-26T15:10:27Z,EL,4828685,2026-11-26T17:45:00Z,Besiktas,Hapoel Beer Sheva,away,174,2,Tarjetas,5.45,Últimos 12 partidos
+2026-11-26T15:10:27Z,EL,4828685,2026-11-26T17:45:00Z,Besiktas,Hapoel Beer Sheva,away,175,2,Penales convertidos/penales ejecutados,4/4,Últimos 12 partidos
+2026-11-26T15:10:27Z,EL,4828686,2026-11-26T17:45:00Z,Olympique de Marseille,Levski Sofia,home,141,1,Partidos ganados,7 (50%),Últimos 14 partidos
+2026-11-26T15:10:27Z,EL,4828686,2026-11-26T17:45:00Z,Olympique de Marseille,Levski Sofia,home,142,1,Ambos equipos marcaron,7 (50%),Últimos 14 partidos
+2026-11-26T15:10:27Z,EL,4828686,2026-11-26T17:45:00Z,Olympique de Marseille,Levski Sofia,home,143,1,Más de 2.5 goles,8 (57%),Últimos 14 partidos
+2026-11-26T15:10:27Z,EL,4828686,2026-11-26T17:45:00Z,Olympique de Marseille,Levski Sofia,home,144,1,Marcó primero,7 (50%),Últimos 14 partidos
+2026-11-26T15:10:27Z,EL,4828686,2026-11-26T17:45:00Z,Olympique de Marseille,Levski Sofia,home,146,1,Recibió gol primero,7 (50%),Últimos 14 partidos
+2026-11-26T15:10:27Z,EL,4828686,2026-11-26T17:45:00Z,Olympique de Marseille,Levski Sofia,home,148,1,Empató o Ganó,7 (50%),Últimos 14 partidos
+2026-11-26T15:10:27Z,EL,4828686,2026-11-26T17:45:00Z,Olympique de Marseille,Levski Sofia,home,149,1,Vencedor al entretiempo,4 (29%),Últimos 14 partidos
+2026-11-26T15:10:27Z,EL,4828686,2026-11-26T17:45:00Z,Olympique de Marseille,Levski Sofia,home,150,1,Valla invicta,4 (29%),Últimos 14 partidos
+2026-11-26T15:10:27Z,EL,4828686,2026-11-26T17:45:00Z,Olympique de Marseille,Levski Sofia,home,153,2,Goles convertidos,1.86,Últimos 14 partidos
+2026-11-26T15:10:27Z,EL,4828686,2026-11-26T17:45:00Z,Olympique de Marseille,Levski Sofia,home,156,2,Goles recibidos,1.57,Últimos 14 partidos
+2026-11-26T15:10:27Z,EL,4828686,2026-11-26T17:45:00Z,Olympique de Marseille,Levski Sofia,home,159,2,Goles esperados,1.32,Últimos 14 partidos
+2026-11-26T15:10:27Z,EL,4828686,2026-11-26T17:45:00Z,Olympique de Marseille,Levski Sofia,home,162,2,Goles esperados recibidos,2.07,Últimos 14 partidos
+2026-11-26T15:10:27Z,EL,4828686,2026-11-26T17:45:00Z,Olympique de Marseille,Levski Sofia,home,165,2,Remates,12.57,Últimos 14 partidos
+2026-11-26T15:10:27Z,EL,4828686,2026-11-26T17:45:00Z,Olympique de Marseille,Levski Sofia,home,168,2,Remates al arco,4.21,Últimos 14 partidos
+2026-11-26T15:10:27Z,EL,4828686,2026-11-26T17:45:00Z,Olympique de Marseille,Levski Sofia,home,171,2,Saques de Esquina,4.07,Últimos 14 partidos
+2026-11-26T15:10:27Z,EL,4828686,2026-11-26T17:45:00Z,Olympique de Marseille,Levski Sofia,home,174,2,Tarjetas,1.86,Últimos 14 partidos
+2026-11-26T15:10:27Z,EL,4828686,2026-11-26T17:45:00Z,Olympique de Marseille,Levski Sofia,home,175,2,Penales convertidos/penales ejecutados,2/3,Últimos 14 partidos
+2026-11-26T15:10:27Z,EL,4828686,2026-11-26T17:45:00Z,Olympique de Marseille,Levski Sofia,away,141,1,Partidos ganados,19 (68%),Últimos 28 partidos
+2026-11-26T15:10:27Z,EL,4828686,2026-11-26T17:45:00Z,Olympique de Marseille,Levski Sofia,away,142,1,Ambos equipos marcaron,10 (36%),Últimos 28 partidos
+2026-11-26T15:10:27Z,EL,4828686,2026-11-26T17:45:00Z,Olympique de Marseille,Levski Sofia,away,143,1,Más de 2.5 goles,13 (46%),Últimos 28 partidos
+2026-11-26T15:10:27Z,EL,4828686,2026-11-26T17:45:00Z,Olympique de Marseille,Levski Sofia,away,144,1,Marcó primero,17 (61%),Últimos 28 partidos
+2026-11-26T15:10:27Z,EL,4828686,2026-11-26T17:45:00Z,Olympique de Marseille,Levski Sofia,away,146,1,Recibió gol primero,9 (32%),Últimos 28 partidos
+2026-11-26T15:10:27Z,EL,4828686,2026-11-26T17:45:00Z,Olympique de Marseille,Levski Sofia,away,148,1,Empató o Ganó,24 (86%),Últimos 28 partidos
+2026-11-26T15:10:27Z,EL,4828686,2026-11-26T17:45:00Z,Olympique de Marseille,Levski Sofia,away,149,1,Vencedor al entretiempo,10 (36%),Últimos 28 partidos
+2026-11-26T15:10:27Z,EL,4828686,2026-11-26T17:45:00Z,Olympique de Marseille,Levski Sofia,away,150,1,Valla invicta,14 (50%),Últimos 28 partidos
+2026-11-26T15:10:27Z,EL,4828686,2026-11-26T17:45:00Z,Olympique de Marseille,Levski Sofia,away,153,2,Goles convertidos,1.68,Últimos 28 partidos
+2026-11-26T15:10:27Z,EL,4828686,2026-11-26T17:45:00Z,Olympique de Marseille,Levski Sofia,away,156,2,Goles recibidos,0.75,Últimos 28 partidos
+2026-11-26T15:10:27Z,EL,4828686,2026-11-26T17:45:00Z,Olympique de Marseille,Levski Sofia,away,159,2,Goles esperados,0.92,Últimos 28 partidos
+2026-11-26T15:10:27Z,EL,4828686,2026-11-26T17:45:00Z,Olympique de Marseille,Levski Sofia,away,162,2,Goles esperados recibidos,1.41,Últimos 28 partidos
+2026-11-26T15:10:27Z,EL,4828686,2026-11-26T17:45:00Z,Olympique de Marseille,Levski Sofia,away,165,2,Remates,13.69,Últimos 28 partidos
+2026-11-26T15:10:27Z,EL,4828686,2026-11-26T17:45:00Z,Olympique de Marseille,Levski Sofia,away,168,2,Remates al arco,4.69,Últimos 28 partidos
+2026-11-26T15:10:27Z,EL,4828686,2026-11-26T17:45:00Z,Olympique de Marseille,Levski Sofia,away,171,2,Saques de Esquina,5.46,Últimos 28 partidos
+2026-11-26T15:10:27Z,EL,4828686,2026-11-26T17:45:00Z,Olympique de Marseille,Levski Sofia,away,174,2,Tarjetas,1.57,Últimos 28 partidos
+2026-11-26T15:10:27Z,EL,4828686,2026-11-26T17:45:00Z,Olympique de Marseille,Levski Sofia,away,175,2,Penales convertidos/penales ejecutados,1/1,Últimos 28 partidos
+2026-11-26T15:10:27Z,EL,4828688,2026-11-26T17:45:00Z,Union St. Gilloise,Lech Poznan,home,141,1,Partidos ganados,15 (79%),Últimos 19 partidos
+2026-11-26T15:10:27Z,EL,4828688,2026-11-26T17:45:00Z,Union St. Gilloise,Lech Poznan,home,142,1,Ambos equipos marcaron,9 (47%),Últimos 19 partidos
+2026-11-26T15:10:27Z,EL,4828688,2026-11-26T17:45:00Z,Union St. Gilloise,Lech Poznan,home,143,1,Más de 2.5 goles,14 (74%),Últimos 19 partidos
+2026-11-26T15:10:27Z,EL,4828688,2026-11-26T17:45:00Z,Union St. Gilloise,Lech Poznan,home,144,1,Marcó primero,11/19 (58%),Últimos 19 partidos
+2026-11-26T15:10:27Z,EL,4828688,2026-11-26T17:45:00Z,Union St. Gilloise,Lech Poznan,home,146,1,Recibió gol primero,7/19 (37%),Últimos 19 partidos
+2026-11-26T15:10:27Z,EL,4828688,2026-11-26T17:45:00Z,Union St. Gilloise,Lech Poznan,home,148,1,Empató o Ganó,19 (100%),Últimos 19 partidos
+2026-11-26T15:10:27Z,EL,4828688,2026-11-26T17:45:00Z,Union St. Gilloise,Lech Poznan,home,149,1,Vencedor al entretiempo,6/19 (32%),Últimos 19 partidos
+2026-11-26T15:10:27Z,EL,4828688,2026-11-26T17:45:00Z,Union St. Gilloise,Lech Poznan,home,150,1,Valla invicta,10 (53%),Últimos 19 partidos
+2026-11-26T15:10:27Z,EL,4828688,2026-11-26T17:45:00Z,Union St. Gilloise,Lech Poznan,home,153,2,Goles convertidos,2.84,Últimos 19 partidos
+2026-11-26T15:10:27Z,EL,4828688,2026-11-26T17:45:00Z,Union St. Gilloise,Lech Poznan,home,156,2,Goles recibidos,0.95,Últimos 19 partidos
+2026-11-26T15:10:27Z,EL,4828688,2026-11-26T17:45:00Z,Union St. Gilloise,Lech Poznan,home,159,2,Goles esperados,2.52,Últimos 19 partidos
+2026-11-26T15:10:27Z,EL,4828688,2026-11-26T17:45:00Z,Union St. Gilloise,Lech Poznan,home,162,2,Goles esperados recibidos,1.14,Últimos 19 partidos
+2026-11-26T15:10:27Z,EL,4828688,2026-11-26T17:45:00Z,Union St. Gilloise,Lech Poznan,home,165,2,Remates,17.5,Últimos 19 partidos
+2026-11-26T15:10:27Z,EL,4828688,2026-11-26T17:45:00Z,Union St. Gilloise,Lech Poznan,home,168,2,Remates al arco,7.28,Últimos 19 partidos
+2026-11-26T15:10:27Z,EL,4828688,2026-11-26T17:45:00Z,Union St. Gilloise,Lech Poznan,home,171,2,Saques de Esquina,5.61,Últimos 19 partidos
+2026-11-26T15:10:27Z,EL,4828688,2026-11-26T17:45:00Z,Union St. Gilloise,Lech Poznan,home,174,2,Tarjetas,1.95,Últimos 19 partidos
+2026-11-26T15:10:27Z,EL,4828688,2026-11-26T17:45:00Z,Union St. Gilloise,Lech Poznan,home,175,2,Penales convertidos/penales ejecutados,1/2,Últimos 19 partidos
+2026-11-26T15:10:27Z,EL,4828688,2026-11-26T17:45:00Z,Union St. Gilloise,Lech Poznan,away,141,1,Partidos ganados,16 (55%),Últimos 29 partidos
+2026-11-26T15:10:27Z,EL,4828688,2026-11-26T17:45:00Z,Union St. Gilloise,Lech Poznan,away,142,1,Ambos equipos marcaron,15 (52%),Últimos 29 partidos
+2026-11-26T15:10:27Z,EL,4828688,2026-11-26T17:45:00Z,Union St. Gilloise,Lech Poznan,away,143,1,Más de 2.5 goles,19 (66%),Últimos 29 partidos
+2026-11-26T15:10:27Z,EL,4828688,2026-11-26T17:45:00Z,Union St. Gilloise,Lech Poznan,away,144,1,Marcó primero,16/25 (64%),Últimos 29 partidos
+2026-11-26T15:10:27Z,EL,4828688,2026-11-26T17:45:00Z,Union St. Gilloise,Lech Poznan,away,146,1,Recibió gol primero,8/25 (32%),Últimos 29 partidos
+2026-11-26T15:10:27Z,EL,4828688,2026-11-26T17:45:00Z,Union St. Gilloise,Lech Poznan,away,148,1,Empató o Ganó,20 (69%),Últimos 29 partidos
+2026-11-26T15:10:27Z,EL,4828688,2026-11-26T17:45:00Z,Union St. Gilloise,Lech Poznan,away,149,1,Vencedor al entretiempo,9/25 (36%),Últimos 29 partidos
+2026-11-26T15:10:27Z,EL,4828688,2026-11-26T17:45:00Z,Union St. Gilloise,Lech Poznan,away,150,1,Valla invicta,7 (24%),Últimos 29 partidos
+2026-11-26T15:10:27Z,EL,4828688,2026-11-26T17:45:00Z,Union St. Gilloise,Lech Poznan,away,153,2,Goles convertidos,2.36,Últimos 29 partidos
+2026-11-26T15:10:27Z,EL,4828688,2026-11-26T17:45:00Z,Union St. Gilloise,Lech Poznan,away,156,2,Goles recibidos,1.16,Últimos 29 partidos
+2026-11-26T15:10:27Z,EL,4828688,2026-11-26T17:45:00Z,Union St. Gilloise,Lech Poznan,away,159,2,Goles esperados,1.41,Últimos 29 partidos
+2026-11-26T15:10:27Z,EL,4828688,2026-11-26T17:45:00Z,Union St. Gilloise,Lech Poznan,away,162,2,Goles esperados recibidos,2.12,Últimos 29 partidos
+2026-11-26T15:10:27Z,EL,4828688,2026-11-26T17:45:00Z,Union St. Gilloise,Lech Poznan,away,165,2,Remates,16.8,Últimos 29 partidos
+2026-11-26T15:10:27Z,EL,4828688,2026-11-26T17:45:00Z,Union St. Gilloise,Lech Poznan,away,168,2,Remates al arco,6.44,Últimos 29 partidos
+2026-11-26T15:10:27Z,EL,4828688,2026-11-26T17:45:00Z,Union St. Gilloise,Lech Poznan,away,171,2,Saques de Esquina,5.96,Últimos 29 partidos
+2026-11-26T15:10:27Z,EL,4828688,2026-11-26T17:45:00Z,Union St. Gilloise,Lech Poznan,away,174,2,Tarjetas,1.72,Últimos 29 partidos
+2026-11-26T15:10:27Z,EL,4828688,2026-11-26T17:45:00Z,Union St. Gilloise,Lech Poznan,away,175,2,Penales convertidos/penales ejecutados,1/1,Últimos 29 partidos
+2026-11-26T15:10:27Z,EL,4828689,2026-11-26T17:45:00Z,Viktoria Plzen,Benfica,home,141,1,Partidos ganados,9 (43%),Últimos 21 partidos
+2026-11-26T15:10:27Z,EL,4828689,2026-11-26T17:45:00Z,Viktoria Plzen,Benfica,home,142,1,Ambos equipos marcaron,14 (67%),Últimos 21 partidos
+2026-11-26T15:10:27Z,EL,4828689,2026-11-26T17:45:00Z,Viktoria Plzen,Benfica,home,143,1,Más de 2.5 goles,16 (76%),Últimos 21 partidos
+2026-11-26T15:10:27Z,EL,4828689,2026-11-26T17:45:00Z,Viktoria Plzen,Benfica,home,144,1,Marcó primero,13 (62%),Últimos 21 partidos
+2026-11-26T15:10:27Z,EL,4828689,2026-11-26T17:45:00Z,Viktoria Plzen,Benfica,home,146,1,Recibió gol primero,7 (33%),Últimos 21 partidos
+2026-11-26T15:10:27Z,EL,4828689,2026-11-26T17:45:00Z,Viktoria Plzen,Benfica,home,148,1,Empató o Ganó,14 (67%),Últimos 21 partidos
+2026-11-26T15:10:27Z,EL,4828689,2026-11-26T17:45:00Z,Viktoria Plzen,Benfica,home,149,1,Vencedor al entretiempo,8 (38%),Últimos 21 partidos
+2026-11-26T15:10:27Z,EL,4828689,2026-11-26T17:45:00Z,Viktoria Plzen,Benfica,home,150,1,Valla invicta,5 (24%),Últimos 21 partidos
+2026-11-26T15:10:27Z,EL,4828689,2026-11-26T17:45:00Z,Viktoria Plzen,Benfica,home,153,2,Goles convertidos,2.05,Últimos 21 partidos
+2026-11-26T15:10:27Z,EL,4828689,2026-11-26T17:45:00Z,Viktoria Plzen,Benfica,home,156,2,Goles recibidos,1.57,Últimos 21 partidos
+2026-11-26T15:10:27Z,EL,4828689,2026-11-26T17:45:00Z,Viktoria Plzen,Benfica,home,159,2,Goles esperados,2.11,Últimos 21 partidos
+2026-11-26T15:10:27Z,EL,4828689,2026-11-26T17:45:00Z,Viktoria Plzen,Benfica,home,162,2,Goles esperados recibidos,1.54,Últimos 21 partidos
+2026-11-26T15:10:27Z,EL,4828689,2026-11-26T17:45:00Z,Viktoria Plzen,Benfica,home,165,2,Remates,15.57,Últimos 21 partidos
+2026-11-26T15:10:27Z,EL,4828689,2026-11-26T17:45:00Z,Viktoria Plzen,Benfica,home,168,2,Remates al arco,5.48,Últimos 21 partidos
+2026-11-26T15:10:27Z,EL,4828689,2026-11-26T17:45:00Z,Viktoria Plzen,Benfica,home,171,2,Saques de Esquina,5.1,Últimos 21 partidos
+2026-11-26T15:10:27Z,EL,4828689,2026-11-26T17:45:00Z,Viktoria Plzen,Benfica,home,174,2,Tarjetas,1.95,Últimos 21 partidos
+2026-11-26T15:10:27Z,EL,4828689,2026-11-26T17:45:00Z,Viktoria Plzen,Benfica,home,175,2,Penales convertidos/penales ejecutados,5/7,Últimos 21 partidos
+2026-11-26T15:10:27Z,EL,4828689,2026-11-26T17:45:00Z,Viktoria Plzen,Benfica,away,141,1,Partidos ganados,19 (86%),Últimos 22 partidos
+2026-11-26T15:10:27Z,EL,4828689,2026-11-26T17:45:00Z,Viktoria Plzen,Benfica,away,142,1,Ambos equipos marcaron,15 (68%),Últimos 22 partidos
+2026-11-26T15:10:27Z,EL,4828689,2026-11-26T17:45:00Z,Viktoria Plzen,Benfica,away,143,1,Más de 2.5 goles,19 (86%),Últimos 22 partidos
+2026-11-26T15:10:27Z,EL,4828689,2026-11-26T17:45:00Z,Viktoria Plzen,Benfica,away,144,1,Marcó primero,18 (82%),Últimos 22 partidos
+2026-11-26T15:10:27Z,EL,4828689,2026-11-26T17:45:00Z,Viktoria Plzen,Benfica,away,146,1,Recibió gol primero,4 (18%),Últimos 22 partidos
+2026-11-26T15:10:27Z,EL,4828689,2026-11-26T17:45:00Z,Viktoria Plzen,Benfica,away,148,1,Empató o Ganó,20 (91%),Últimos 22 partidos
+2026-11-26T15:10:27Z,EL,4828689,2026-11-26T17:45:00Z,Viktoria Plzen,Benfica,away,149,1,Vencedor al entretiempo,16 (73%),Últimos 22 partidos
+2026-11-26T15:10:27Z,EL,4828689,2026-11-26T17:45:00Z,Viktoria Plzen,Benfica,away,150,1,Valla invicta,7 (32%),Últimos 22 partidos
+2026-11-26T15:10:27Z,EL,4828689,2026-11-26T17:45:00Z,Viktoria Plzen,Benfica,away,153,2,Goles convertidos,3.09,Últimos 22 partidos
+2026-11-26T15:10:27Z,EL,4828689,2026-11-26T17:45:00Z,Viktoria Plzen,Benfica,away,156,2,Goles recibidos,0.91,Últimos 22 partidos
+2026-11-26T15:10:27Z,EL,4828689,2026-11-26T17:45:00Z,Viktoria Plzen,Benfica,away,159,2,Goles esperados,2.26,Últimos 22 partidos
+2026-11-26T15:10:27Z,EL,4828689,2026-11-26T17:45:00Z,Viktoria Plzen,Benfica,away,162,2,Goles esperados recibidos,0.79,Últimos 22 partidos
+2026-11-26T15:10:27Z,EL,4828689,2026-11-26T17:45:00Z,Viktoria Plzen,Benfica,away,165,2,Remates,20.09,Últimos 22 partidos
+2026-11-26T15:10:27Z,EL,4828689,2026-11-26T17:45:00Z,Viktoria Plzen,Benfica,away,168,2,Remates al arco,7.36,Últimos 22 partidos
+2026-11-26T15:10:27Z,EL,4828689,2026-11-26T17:45:00Z,Viktoria Plzen,Benfica,away,171,2,Saques de Esquina,6.91,Últimos 22 partidos
+2026-11-26T15:10:27Z,EL,4828689,2026-11-26T17:45:00Z,Viktoria Plzen,Benfica,away,174,2,Tarjetas,2.14,Últimos 22 partidos
+2026-11-26T15:10:27Z,EL,4828689,2026-11-26T17:45:00Z,Viktoria Plzen,Benfica,away,175,2,Penales convertidos/penales ejecutados,8/8,Últimos 22 partidos
+2026-11-26T15:10:27Z,EL,4828690,2026-11-26T17:45:00Z,Celta Vigo,Bournemouth,home,141,1,Partidos ganados,4 (24%),Últimos 17 partidos
+2026-11-26T15:10:27Z,EL,4828690,2026-11-26T17:45:00Z,Celta Vigo,Bournemouth,home,142,1,Ambos equipos marcaron,7 (41%),Últimos 17 partidos
+2026-11-26T15:10:27Z,EL,4828690,2026-11-26T17:45:00Z,Celta Vigo,Bournemouth,home,143,1,Más de 2.5 goles,8 (47%),Últimos 17 partidos
+2026-11-26T15:10:27Z,EL,4828690,2026-11-26T17:45:00Z,Celta Vigo,Bournemouth,home,144,1,Marcó primero,7 (41%),Últimos 17 partidos
+2026-11-26T15:10:27Z,EL,4828690,2026-11-26T17:45:00Z,Celta Vigo,Bournemouth,home,146,1,Recibió gol primero,5 (29%),Últimos 17 partidos
+2026-11-26T15:10:27Z,EL,4828690,2026-11-26T17:45:00Z,Celta Vigo,Bournemouth,home,148,1,Empató o Ganó,11 (65%),Últimos 17 partidos
+2026-11-26T15:10:27Z,EL,4828690,2026-11-26T17:45:00Z,Celta Vigo,Bournemouth,home,149,1,Vencedor al entretiempo,5 (29%),Últimos 17 partidos
+2026-11-26T15:10:27Z,EL,4828690,2026-11-26T17:45:00Z,Celta Vigo,Bournemouth,home,150,1,Valla invicta,7 (41%),Últimos 17 partidos
+2026-11-26T15:10:27Z,EL,4828690,2026-11-26T17:45:00Z,Celta Vigo,Bournemouth,home,153,2,Goles convertidos,1.12,Últimos 17 partidos
+2026-11-26T15:10:27Z,EL,4828690,2026-11-26T17:45:00Z,Celta Vigo,Bournemouth,home,156,2,Goles recibidos,0.94,Últimos 17 partidos
+2026-11-26T15:10:27Z,EL,4828690,2026-11-26T17:45:00Z,Celta Vigo,Bournemouth,home,159,2,Goles esperados,1.25,Últimos 17 partidos
+2026-11-26T15:10:27Z,EL,4828690,2026-11-26T17:45:00Z,Celta Vigo,Bournemouth,home,162,2,Goles esperados recibidos,1.12,Últimos 17 partidos
+2026-11-26T15:10:27Z,EL,4828690,2026-11-26T17:45:00Z,Celta Vigo,Bournemouth,home,165,2,Remates,12.47,Últimos 17 partidos
+2026-11-26T15:10:27Z,EL,4828690,2026-11-26T17:45:00Z,Celta Vigo,Bournemouth,home,168,2,Remates al arco,3.88,Últimos 17 partidos
+2026-11-26T15:10:27Z,EL,4828690,2026-11-26T17:45:00Z,Celta Vigo,Bournemouth,home,171,2,Saques de Esquina,4.18,Últimos 17 partidos
+2026-11-26T15:10:27Z,EL,4828690,2026-11-26T17:45:00Z,Celta Vigo,Bournemouth,home,174,2,Tarjetas,1.47,Últimos 17 partidos
+2026-11-26T15:10:27Z,EL,4828690,2026-11-26T17:45:00Z,Celta Vigo,Bournemouth,home,175,2,Penales convertidos/penales ejecutados,1/1,Últimos 17 partidos
+2026-11-26T15:10:27Z,EL,4828690,2026-11-26T17:45:00Z,Celta Vigo,Bournemouth,away,141,1,Partidos ganados,10 (62%),Últimos 16 partidos
+2026-11-26T15:10:27Z,EL,4828690,2026-11-26T17:45:00Z,Celta Vigo,Bournemouth,away,142,1,Ambos equipos marcaron,8 (50%),Últimos 16 partidos
+2026-11-26T15:10:27Z,EL,4828690,2026-11-26T17:45:00Z,Celta Vigo,Bournemouth,away,143,1,Más de 2.5 goles,12 (75%),Últimos 16 partidos
+2026-11-26T15:10:27Z,EL,4828690,2026-11-26T17:45:00Z,Celta Vigo,Bournemouth,away,144,1,Marcó primero,12 (75%),Últimos 16 partidos
+2026-11-26T15:10:27Z,EL,4828690,2026-11-26T17:45:00Z,Celta Vigo,Bournemouth,away,146,1,Recibió gol primero,4 (25%),Últimos 16 partidos
+2026-11-26T15:10:27Z,EL,4828690,2026-11-26T17:45:00Z,Celta Vigo,Bournemouth,away,148,1,Empató o Ganó,13 (81%),Últimos 16 partidos
+2026-11-26T15:10:27Z,EL,4828690,2026-11-26T17:45:00Z,Celta Vigo,Bournemouth,away,149,1,Vencedor al entretiempo,12 (75%),Últimos 16 partidos
+2026-11-26T15:10:27Z,EL,4828690,2026-11-26T17:45:00Z,Celta Vigo,Bournemouth,away,150,1,Valla invicta,7 (44%),Últimos 16 partidos
+2026-11-26T15:10:27Z,EL,4828690,2026-11-26T17:45:00Z,Celta Vigo,Bournemouth,away,153,2,Goles convertidos,2.12,Últimos 16 partidos
+2026-11-26T15:10:27Z,EL,4828690,2026-11-26T17:45:00Z,Celta Vigo,Bournemouth,away,156,2,Goles recibidos,1,Últimos 16 partidos
+2026-11-26T15:10:27Z,EL,4828690,2026-11-26T17:45:00Z,Celta Vigo,Bournemouth,away,159,2,Goles esperados,1.85,Últimos 16 partidos
+2026-11-26T15:10:27Z,EL,4828690,2026-11-26T17:45:00Z,Celta Vigo,Bournemouth,away,162,2,Goles esperados recibidos,1.17,Últimos 16 partidos
+2026-11-26T15:10:27Z,EL,4828690,2026-11-26T17:45:00Z,Celta Vigo,Bournemouth,away,165,2,Remates,16.31,Últimos 16 partidos
+2026-11-26T15:10:27Z,EL,4828690,2026-11-26T17:45:00Z,Celta Vigo,Bournemouth,away,168,2,Remates al arco,5.75,Últimos 16 partidos
+2026-11-26T15:10:27Z,EL,4828690,2026-11-26T17:45:00Z,Celta Vigo,Bournemouth,away,171,2,Saques de Esquina,5.62,Últimos 16 partidos
+2026-11-26T15:10:27Z,EL,4828690,2026-11-26T17:45:00Z,Celta Vigo,Bournemouth,away,174,2,Tarjetas,2.44,Últimos 16 partidos
+2026-11-26T15:10:27Z,EL,4828690,2026-11-26T17:45:00Z,Celta Vigo,Bournemouth,away,175,2,Penales convertidos/penales ejecutados,3/4,Últimos 16 partidos
+2026-11-26T15:10:27Z,EL,4828691,2026-11-26T17:45:00Z,Red Bull Salzburg,FC Ararat-Armenia,home,141,1,Partidos ganados,16 (73%),Últimos 22 partidos
+2026-11-26T15:10:27Z,EL,4828691,2026-11-26T17:45:00Z,Red Bull Salzburg,FC Ararat-Armenia,home,142,1,Ambos equipos marcaron,10 (45%),Últimos 22 partidos
+2026-11-26T15:10:27Z,EL,4828691,2026-11-26T17:45:00Z,Red Bull Salzburg,FC Ararat-Armenia,home,143,1,Más de 2.5 goles,14 (64%),Últimos 22 partidos
+2026-11-26T15:10:27Z,EL,4828691,2026-11-26T17:45:00Z,Red Bull Salzburg,FC Ararat-Armenia,home,144,1,Marcó primero,17/22 (77%),Últimos 22 partidos
+2026-11-26T15:10:27Z,EL,4828691,2026-11-26T17:45:00Z,Red Bull Salzburg,FC Ararat-Armenia,home,146,1,Recibió gol primero,4/22 (18%),Últimos 22 partidos
+2026-11-26T15:10:27Z,EL,4828691,2026-11-26T17:45:00Z,Red Bull Salzburg,FC Ararat-Armenia,home,148,1,Empató o Ganó,20 (91%),Últimos 22 partidos
+2026-11-26T15:10:27Z,EL,4828691,2026-11-26T17:45:00Z,Red Bull Salzburg,FC Ararat-Armenia,home,149,1,Vencedor al entretiempo,10 (45%),Últimos 22 partidos
+2026-11-26T15:10:27Z,EL,4828691,2026-11-26T17:45:00Z,Red Bull Salzburg,FC Ararat-Armenia,home,150,1,Valla invicta,10 (45%),Últimos 22 partidos
+2026-11-26T15:10:27Z,EL,4828691,2026-11-26T17:45:00Z,Red Bull Salzburg,FC Ararat-Armenia,home,153,2,Goles convertidos,2.55,Últimos 22 partidos
+2026-11-26T15:10:27Z,EL,4828691,2026-11-26T17:45:00Z,Red Bull Salzburg,FC Ararat-Armenia,home,156,2,Goles recibidos,0.86,Últimos 22 partidos
+2026-11-26T15:10:27Z,EL,4828691,2026-11-26T17:45:00Z,Red Bull Salzburg,FC Ararat-Armenia,home,159,2,Goles esperados,1.49,Últimos 22 partidos
+2026-11-26T15:10:27Z,EL,4828691,2026-11-26T17:45:00Z,Red Bull Salzburg,FC Ararat-Armenia,home,162,2,Goles esperados recibidos,1.5,Últimos 22 partidos
+2026-11-26T15:10:27Z,EL,4828691,2026-11-26T17:45:00Z,Red Bull Salzburg,FC Ararat-Armenia,home,165,2,Remates,16.36,Últimos 22 partidos
+2026-11-26T15:10:27Z,EL,4828691,2026-11-26T17:45:00Z,Red Bull Salzburg,FC Ararat-Armenia,home,168,2,Remates al arco,5.91,Últimos 22 partidos
+2026-11-26T15:10:27Z,EL,4828691,2026-11-26T17:45:00Z,Red Bull Salzburg,FC Ararat-Armenia,home,171,2,Saques de Esquina,5.86,Últimos 22 partidos
+2026-11-26T15:10:27Z,EL,4828691,2026-11-26T17:45:00Z,Red Bull Salzburg,FC Ararat-Armenia,home,174,2,Tarjetas,1.41,Últimos 22 partidos
+2026-11-26T15:10:27Z,EL,4828691,2026-11-26T17:45:00Z,Red Bull Salzburg,FC Ararat-Armenia,home,175,2,Penales convertidos/penales ejecutados,2/3,Últimos 22 partidos
+2026-11-26T15:10:27Z,EL,4828691,2026-11-26T17:45:00Z,Red Bull Salzburg,FC Ararat-Armenia,away,141,1,Partidos ganados,5 (26%),Últimos 19 partidos
+2026-11-26T15:10:27Z,EL,4828691,2026-11-26T17:45:00Z,Red Bull Salzburg,FC Ararat-Armenia,away,142,1,Ambos equipos marcaron,10 (53%),Últimos 19 partidos
+2026-11-26T15:10:27Z,EL,4828691,2026-11-26T17:45:00Z,Red Bull Salzburg,FC Ararat-Armenia,away,143,1,Más de 2.5 goles,10 (53%),Últimos 19 partidos
+2026-11-26T15:10:27Z,EL,4828691,2026-11-26T17:45:00Z,Red Bull Salzburg,FC Ararat-Armenia,away,144,1,Marcó primero,5/15 (33%),Últimos 19 partidos
+2026-11-26T15:10:27Z,EL,4828691,2026-11-26T17:45:00Z,Red Bull Salzburg,FC Ararat-Armenia,away,146,1,Recibió gol primero,4/15 (27%),Últimos 19 partidos
+2026-11-26T15:10:27Z,EL,4828691,2026-11-26T17:45:00Z,Red Bull Salzburg,FC Ararat-Armenia,away,148,1,Empató o Ganó,6 (32%),Últimos 19 partidos
+2026-11-26T15:10:27Z,EL,4828691,2026-11-26T17:45:00Z,Red Bull Salzburg,FC Ararat-Armenia,away,149,1,Vencedor al entretiempo,4 (21%),Últimos 19 partidos
+2026-11-26T15:10:27Z,EL,4828691,2026-11-26T17:45:00Z,Red Bull Salzburg,FC Ararat-Armenia,away,150,1,Valla invicta,2 (11%),Últimos 19 partidos
+2026-11-26T15:10:27Z,EL,4828691,2026-11-26T17:45:00Z,Red Bull Salzburg,FC Ararat-Armenia,away,153,2,Goles convertidos,1.53,Últimos 19 partidos
+2026-11-26T15:10:27Z,EL,4828691,2026-11-26T17:45:00Z,Red Bull Salzburg,FC Ararat-Armenia,away,156,2,Goles recibidos,1.16,Últimos 19 partidos
+2026-11-26T15:10:27Z,EL,4828691,2026-11-26T17:45:00Z,Red Bull Salzburg,FC Ararat-Armenia,away,159,2,Goles esperados,1.15,Últimos 19 partidos
+2026-11-26T15:10:27Z,EL,4828691,2026-11-26T17:45:00Z,Red Bull Salzburg,FC Ararat-Armenia,away,162,2,Goles esperados recibidos,1.73,Últimos 19 partidos
+2026-11-26T15:10:27Z,EL,4828691,2026-11-26T17:45:00Z,Red Bull Salzburg,FC Ararat-Armenia,away,165,2,Remates,11.21,Últimos 19 partidos
+2026-11-26T15:10:27Z,EL,4828691,2026-11-26T17:45:00Z,Red Bull Salzburg,FC Ararat-Armenia,away,168,2,Remates al arco,4.63,Últimos 19 partidos
+2026-11-26T15:10:27Z,EL,4828691,2026-11-26T17:45:00Z,Red Bull Salzburg,FC Ararat-Armenia,away,171,2,Saques de Esquina,5,Últimos 19 partidos
+2026-11-26T15:10:27Z,EL,4828691,2026-11-26T17:45:00Z,Red Bull Salzburg,FC Ararat-Armenia,away,174,2,Tarjetas,2.47,Últimos 19 partidos
+2026-11-26T15:10:27Z,EL,4828691,2026-11-26T17:45:00Z,Red Bull Salzburg,FC Ararat-Armenia,away,175,2,Penales convertidos/penales ejecutados,0/0,Últimos 19 partidos
+2026-11-26T15:10:27Z,EL,4828693,2026-11-26T17:45:00Z,Olympiacos,AC Milan,home,141,1,Partidos ganados,9 (75%),Últimos 12 partidos
+2026-11-26T15:10:27Z,EL,4828693,2026-11-26T17:45:00Z,Olympiacos,AC Milan,home,142,1,Ambos equipos marcaron,4 (33%),Últimos 12 partidos
+2026-11-26T15:10:27Z,EL,4828693,2026-11-26T17:45:00Z,Olympiacos,AC Milan,home,143,1,Más de 2.5 goles,4 (33%),Últimos 12 partidos
+2026-11-26T15:10:27Z,EL,4828693,2026-11-26T17:45:00Z,Olympiacos,AC Milan,home,144,1,Marcó primero,14 (117%),Últimos 12 partidos
+2026-11-26T15:10:27Z,EL,4828693,2026-11-26T17:45:00Z,Olympiacos,AC Milan,home,146,1,Recibió gol primero,3 (25%),Últimos 12 partidos
+2026-11-26T15:10:27Z,EL,4828693,2026-11-26T17:45:00Z,Olympiacos,AC Milan,home,148,1,Empató o Ganó,11 (92%),Últimos 12 partidos
+2026-11-26T15:10:27Z,EL,4828693,2026-11-26T17:45:00Z,Olympiacos,AC Milan,home,149,1,Vencedor al entretiempo,8 (67%),Últimos 12 partidos
+2026-11-26T15:10:27Z,EL,4828693,2026-11-26T17:45:00Z,Olympiacos,AC Milan,home,150,1,Valla invicta,11 (92%),Últimos 12 partidos
+2026-11-26T15:10:27Z,EL,4828693,2026-11-26T17:45:00Z,Olympiacos,AC Milan,home,153,2,Goles convertidos,2,Últimos 12 partidos
+2026-11-26T15:10:27Z,EL,4828693,2026-11-26T17:45:00Z,Olympiacos,AC Milan,home,156,2,Goles recibidos,0.58,Últimos 12 partidos
+2026-11-26T15:10:27Z,EL,4828693,2026-11-26T17:45:00Z,Olympiacos,AC Milan,home,159,2,Goles esperados,1.47,Últimos 12 partidos
+2026-11-26T15:10:27Z,EL,4828693,2026-11-26T17:45:00Z,Olympiacos,AC Milan,home,162,2,Goles esperados recibidos,0.6,Últimos 12 partidos
+2026-11-26T15:10:27Z,EL,4828693,2026-11-26T17:45:00Z,Olympiacos,AC Milan,home,165,2,Remates,18.25,Últimos 12 partidos
+2026-11-26T15:10:27Z,EL,4828693,2026-11-26T17:45:00Z,Olympiacos,AC Milan,home,168,2,Remates al arco,5.08,Últimos 12 partidos
+2026-11-26T15:10:27Z,EL,4828693,2026-11-26T17:45:00Z,Olympiacos,AC Milan,home,171,2,Saques de Esquina,7.25,Últimos 12 partidos
+2026-11-26T15:10:27Z,EL,4828693,2026-11-26T17:45:00Z,Olympiacos,AC Milan,home,174,2,Tarjetas,1.58,Últimos 12 partidos
+2026-11-26T15:10:27Z,EL,4828693,2026-11-26T17:45:00Z,Olympiacos,AC Milan,home,175,2,Penales convertidos/penales ejecutados,2/3,Últimos 12 partidos
+2026-11-26T15:10:27Z,EL,4828693,2026-11-26T17:45:00Z,Olympiacos,AC Milan,away,141,1,Partidos ganados,8 (53%),Últimos 15 partidos
+2026-11-26T15:10:27Z,EL,4828693,2026-11-26T17:45:00Z,Olympiacos,AC Milan,away,142,1,Ambos equipos marcaron,8 (53%),Últimos 15 partidos
+2026-11-26T15:10:27Z,EL,4828693,2026-11-26T17:45:00Z,Olympiacos,AC Milan,away,143,1,Más de 2.5 goles,9 (60%),Últimos 15 partidos
+2026-11-26T15:10:27Z,EL,4828693,2026-11-26T17:45:00Z,Olympiacos,AC Milan,away,144,1,Marcó primero,10 (67%),Últimos 15 partidos
+2026-11-26T15:10:27Z,EL,4828693,2026-11-26T17:45:00Z,Olympiacos,AC Milan,away,146,1,Recibió gol primero,5 (33%),Últimos 15 partidos
+2026-11-26T15:10:27Z,EL,4828693,2026-11-26T17:45:00Z,Olympiacos,AC Milan,away,148,1,Empató o Ganó,11 (73%),Últimos 15 partidos
+2026-11-26T15:10:27Z,EL,4828693,2026-11-26T17:45:00Z,Olympiacos,AC Milan,away,149,1,Vencedor al entretiempo,7 (47%),Últimos 15 partidos
+2026-11-26T15:10:27Z,EL,4828693,2026-11-26T17:45:00Z,Olympiacos,AC Milan,away,150,1,Valla invicta,4 (27%),Últimos 15 partidos
+2026-11-26T15:10:27Z,EL,4828693,2026-11-26T17:45:00Z,Olympiacos,AC Milan,away,153,2,Goles convertidos,1.93,Últimos 15 partidos
+2026-11-26T15:10:27Z,EL,4828693,2026-11-26T17:45:00Z,Olympiacos,AC Milan,away,156,2,Goles recibidos,1.27,Últimos 15 partidos
+2026-11-26T15:10:27Z,EL,4828693,2026-11-26T17:45:00Z,Olympiacos,AC Milan,away,159,2,Goles esperados,1.51,Últimos 15 partidos
+2026-11-26T15:10:27Z,EL,4828693,2026-11-26T17:45:00Z,Olympiacos,AC Milan,away,162,2,Goles esperados recibidos,1.36,Últimos 15 partidos
+2026-11-26T15:10:27Z,EL,4828693,2026-11-26T17:45:00Z,Olympiacos,AC Milan,away,165,2,Remates,11.67,Últimos 15 partidos
+2026-11-26T15:10:27Z,EL,4828693,2026-11-26T17:45:00Z,Olympiacos,AC Milan,away,168,2,Remates al arco,4.33,Últimos 15 partidos
+2026-11-26T15:10:27Z,EL,4828693,2026-11-26T17:45:00Z,Olympiacos,AC Milan,away,171,2,Saques de Esquina,3.2,Últimos 15 partidos
+2026-11-26T15:10:27Z,EL,4828693,2026-11-26T17:45:00Z,Olympiacos,AC Milan,away,174,2,Tarjetas,2,Últimos 15 partidos
+2026-11-26T15:10:27Z,EL,4828693,2026-11-26T17:45:00Z,Olympiacos,AC Milan,away,175,2,Penales convertidos/penales ejecutados,0/0,Últimos 15 partidos
+2026-11-26T15:10:28Z,ECL,4828878,2026-11-26T17:45:00Z,Brann,Aarhus,home,141,1,Partidos ganados,20 (44%),Últimos 45 partidos
+2026-11-26T15:10:28Z,ECL,4828878,2026-11-26T17:45:00Z,Brann,Aarhus,home,142,1,Ambos equipos marcaron,34 (76%),Últimos 45 partidos
+2026-11-26T15:10:28Z,ECL,4828878,2026-11-26T17:45:00Z,Brann,Aarhus,home,143,1,Más de 2.5 goles,33 (73%),Últimos 45 partidos
+2026-11-26T15:10:28Z,ECL,4828878,2026-11-26T17:45:00Z,Brann,Aarhus,home,144,1,Marcó primero,18 (40%),Últimos 45 partidos
+2026-11-26T15:10:28Z,ECL,4828878,2026-11-26T17:45:00Z,Brann,Aarhus,home,146,1,Recibió gol primero,26 (58%),Últimos 45 partidos
+2026-11-26T15:10:28Z,ECL,4828878,2026-11-26T17:45:00Z,Brann,Aarhus,home,148,1,Empató o Ganó,29 (64%),Últimos 45 partidos
+2026-11-26T15:10:28Z,ECL,4828878,2026-11-26T17:45:00Z,Brann,Aarhus,home,149,1,Vencedor al entretiempo,16 (36%),Últimos 45 partidos
+2026-11-26T15:10:28Z,ECL,4828878,2026-11-26T17:45:00Z,Brann,Aarhus,home,150,1,Valla invicta,4 (9%),Últimos 45 partidos
+2026-11-26T15:10:28Z,ECL,4828878,2026-11-26T17:45:00Z,Brann,Aarhus,home,153,2,Goles convertidos,1.84,Últimos 45 partidos
+2026-11-26T15:10:28Z,ECL,4828878,2026-11-26T17:45:00Z,Brann,Aarhus,home,156,2,Goles recibidos,1.51,Últimos 45 partidos
+2026-11-26T15:10:28Z,ECL,4828878,2026-11-26T17:45:00Z,Brann,Aarhus,home,159,2,Goles esperados,1.58,Últimos 45 partidos
+2026-11-26T15:10:28Z,ECL,4828878,2026-11-26T17:45:00Z,Brann,Aarhus,home,162,2,Goles esperados recibidos,1.21,Últimos 45 partidos
+2026-11-26T15:10:28Z,ECL,4828878,2026-11-26T17:45:00Z,Brann,Aarhus,home,165,2,Remates,13.69,Últimos 45 partidos
+2026-11-26T15:10:28Z,ECL,4828878,2026-11-26T17:45:00Z,Brann,Aarhus,home,168,2,Remates al arco,5.36,Últimos 45 partidos
+2026-11-26T15:10:28Z,ECL,4828878,2026-11-26T17:45:00Z,Brann,Aarhus,home,171,2,Saques de Esquina,7,Últimos 45 partidos
+2026-11-26T15:10:28Z,ECL,4828878,2026-11-26T17:45:00Z,Brann,Aarhus,home,174,2,Tarjetas,1.75,Últimos 45 partidos
+2026-11-26T15:10:28Z,ECL,4828878,2026-11-26T17:45:00Z,Brann,Aarhus,home,175,2,Penales convertidos/penales ejecutados,10/11,Últimos 45 partidos
+2026-11-26T15:10:28Z,ECL,4828878,2026-11-26T17:45:00Z,Brann,Aarhus,away,141,1,Partidos ganados,6 (50%),Últimos 12 partidos
+2026-11-26T15:10:28Z,ECL,4828878,2026-11-26T17:45:00Z,Brann,Aarhus,away,142,1,Ambos equipos marcaron,7 (58%),Últimos 12 partidos
+2026-11-26T15:10:28Z,ECL,4828878,2026-11-26T17:45:00Z,Brann,Aarhus,away,143,1,Más de 2.5 goles,6 (50%),Últimos 12 partidos
+2026-11-26T15:10:28Z,ECL,4828878,2026-11-26T17:45:00Z,Brann,Aarhus,away,144,1,Marcó primero,6 (50%),Últimos 12 partidos
+2026-11-26T15:10:28Z,ECL,4828878,2026-11-26T17:45:00Z,Brann,Aarhus,away,146,1,Recibió gol primero,4 (33%),Últimos 12 partidos
+2026-11-26T15:10:28Z,ECL,4828878,2026-11-26T17:45:00Z,Brann,Aarhus,away,148,1,Empató o Ganó,10 (83%),Últimos 12 partidos
+2026-11-26T15:10:28Z,ECL,4828878,2026-11-26T17:45:00Z,Brann,Aarhus,away,149,1,Vencedor al entretiempo,4 (33%),Últimos 12 partidos
+2026-11-26T15:10:28Z,ECL,4828878,2026-11-26T17:45:00Z,Brann,Aarhus,away,150,1,Valla invicta,3 (25%),Últimos 12 partidos
+2026-11-26T15:10:28Z,ECL,4828878,2026-11-26T17:45:00Z,Brann,Aarhus,away,153,2,Goles convertidos,1.75,Últimos 12 partidos
+2026-11-26T15:10:28Z,ECL,4828878,2026-11-26T17:45:00Z,Brann,Aarhus,away,156,2,Goles recibidos,1,Últimos 12 partidos
+2026-11-26T15:10:28Z,ECL,4828878,2026-11-26T17:45:00Z,Brann,Aarhus,away,159,2,Goles esperados,0.93,Últimos 12 partidos
+2026-11-26T15:10:28Z,ECL,4828878,2026-11-26T17:45:00Z,Brann,Aarhus,away,162,2,Goles esperados recibidos,1.72,Últimos 12 partidos
+2026-11-26T15:10:28Z,ECL,4828878,2026-11-26T17:45:00Z,Brann,Aarhus,away,165,2,Remates,14.7,Últimos 12 partidos
+2026-11-26T15:10:28Z,ECL,4828878,2026-11-26T17:45:00Z,Brann,Aarhus,away,168,2,Remates al arco,4.4,Últimos 12 partidos
+2026-11-26T15:10:28Z,ECL,4828878,2026-11-26T17:45:00Z,Brann,Aarhus,away,171,2,Saques de Esquina,5.08,Últimos 12 partidos
+2026-11-26T15:10:28Z,ECL,4828878,2026-11-26T17:45:00Z,Brann,Aarhus,away,174,2,Tarjetas,1.17,Últimos 12 partidos
+2026-11-26T15:10:28Z,ECL,4828878,2026-11-26T17:45:00Z,Brann,Aarhus,away,175,2,Penales convertidos/penales ejecutados,1/1,Últimos 12 partidos
+2026-11-26T15:10:28Z,ECL,4828880,2026-11-26T17:45:00Z,KF Egnatia,Lincoln Red Imps,home,141,1,Partidos ganados,11 (50%),Últimos 22 partidos
+2026-11-26T15:10:28Z,ECL,4828880,2026-11-26T17:45:00Z,KF Egnatia,Lincoln Red Imps,home,142,1,Ambos equipos marcaron,16 (73%),Últimos 22 partidos
+2026-11-26T15:10:28Z,ECL,4828880,2026-11-26T17:45:00Z,KF Egnatia,Lincoln Red Imps,home,143,1,Más de 2.5 goles,13 (59%),Últimos 22 partidos
+2026-11-26T15:10:28Z,ECL,4828880,2026-11-26T17:45:00Z,KF Egnatia,Lincoln Red Imps,home,144,1,Marcó primero,14/22 (64%),Últimos 22 partidos
+2026-11-26T15:10:28Z,ECL,4828880,2026-11-26T17:45:00Z,KF Egnatia,Lincoln Red Imps,home,146,1,Recibió gol primero,7/22 (32%),Últimos 22 partidos
+2026-11-26T15:10:28Z,ECL,4828880,2026-11-26T17:45:00Z,KF Egnatia,Lincoln Red Imps,home,148,1,Empató o Ganó,17 (77%),Últimos 22 partidos
+2026-11-26T15:10:28Z,ECL,4828880,2026-11-26T17:45:00Z,KF Egnatia,Lincoln Red Imps,home,149,1,Vencedor al entretiempo,8 (36%),Últimos 22 partidos
+2026-11-26T15:10:28Z,ECL,4828880,2026-11-26T17:45:00Z,KF Egnatia,Lincoln Red Imps,home,150,1,Valla invicta,4 (18%),Últimos 22 partidos
+2026-11-26T15:10:28Z,ECL,4828880,2026-11-26T17:45:00Z,KF Egnatia,Lincoln Red Imps,home,153,2,Goles convertidos,2,Últimos 22 partidos
+2026-11-26T15:10:28Z,ECL,4828880,2026-11-26T17:45:00Z,KF Egnatia,Lincoln Red Imps,home,156,2,Goles recibidos,1.14,Últimos 22 partidos
+2026-11-26T15:10:28Z,ECL,4828880,2026-11-26T17:45:00Z,KF Egnatia,Lincoln Red Imps,home,159,2,Goles esperados,0.56,Últimos 22 partidos
+2026-11-26T15:10:28Z,ECL,4828880,2026-11-26T17:45:00Z,KF Egnatia,Lincoln Red Imps,home,162,2,Goles esperados recibidos,1.54,Últimos 22 partidos
+2026-11-26T15:10:28Z,ECL,4828880,2026-11-26T17:45:00Z,KF Egnatia,Lincoln Red Imps,home,165,2,Remates,11.95,Últimos 22 partidos
+2026-11-26T15:10:28Z,ECL,4828880,2026-11-26T17:45:00Z,KF Egnatia,Lincoln Red Imps,home,168,2,Remates al arco,5.9,Últimos 22 partidos
+2026-11-26T15:10:28Z,ECL,4828880,2026-11-26T17:45:00Z,KF Egnatia,Lincoln Red Imps,home,171,2,Saques de Esquina,5,Últimos 22 partidos
+2026-11-26T15:10:28Z,ECL,4828880,2026-11-26T17:45:00Z,KF Egnatia,Lincoln Red Imps,home,174,2,Tarjetas,2.41,Últimos 22 partidos
+2026-11-26T15:10:28Z,ECL,4828880,2026-11-26T17:45:00Z,KF Egnatia,Lincoln Red Imps,home,175,2,Penales convertidos/penales ejecutados,1/3,Últimos 22 partidos
+2026-11-26T15:10:28Z,ECL,4828880,2026-11-26T17:45:00Z,KF Egnatia,Lincoln Red Imps,away,141,1,Partidos ganados,8 (53%),Últimos 15 partidos
+2026-11-26T15:10:28Z,ECL,4828880,2026-11-26T17:45:00Z,KF Egnatia,Lincoln Red Imps,away,142,1,Ambos equipos marcaron,6 (40%),Últimos 15 partidos
+2026-11-26T15:10:28Z,ECL,4828880,2026-11-26T17:45:00Z,KF Egnatia,Lincoln Red Imps,away,143,1,Más de 2.5 goles,6 (40%),Últimos 15 partidos
+2026-11-26T15:10:28Z,ECL,4828880,2026-11-26T17:45:00Z,KF Egnatia,Lincoln Red Imps,away,144,1,Marcó primero,9/14 (64%),Últimos 15 partidos
+2026-11-26T15:10:28Z,ECL,4828880,2026-11-26T17:45:00Z,KF Egnatia,Lincoln Red Imps,away,146,1,Recibió gol primero,4/14 (29%),Últimos 15 partidos
+2026-11-26T15:10:28Z,ECL,4828880,2026-11-26T17:45:00Z,KF Egnatia,Lincoln Red Imps,away,148,1,Empató o Ganó,11 (73%),Últimos 15 partidos
+2026-11-26T15:10:28Z,ECL,4828880,2026-11-26T17:45:00Z,KF Egnatia,Lincoln Red Imps,away,149,1,Vencedor al entretiempo,3 (20%),Últimos 15 partidos
+2026-11-26T15:10:28Z,ECL,4828880,2026-11-26T17:45:00Z,KF Egnatia,Lincoln Red Imps,away,150,1,Valla invicta,6 (40%),Últimos 15 partidos
+2026-11-26T15:10:28Z,ECL,4828880,2026-11-26T17:45:00Z,KF Egnatia,Lincoln Red Imps,away,153,2,Goles convertidos,1.4,Últimos 15 partidos
+2026-11-26T15:10:28Z,ECL,4828880,2026-11-26T17:45:00Z,KF Egnatia,Lincoln Red Imps,away,156,2,Goles recibidos,1,Últimos 15 partidos
+2026-11-26T15:10:28Z,ECL,4828880,2026-11-26T17:45:00Z,KF Egnatia,Lincoln Red Imps,away,159,2,Goles esperados,0.17,Últimos 15 partidos
+2026-11-26T15:10:28Z,ECL,4828880,2026-11-26T17:45:00Z,KF Egnatia,Lincoln Red Imps,away,162,2,Goles esperados recibidos,2.77,Últimos 15 partidos
+2026-11-26T15:10:28Z,ECL,4828880,2026-11-26T17:45:00Z,KF Egnatia,Lincoln Red Imps,away,165,2,Remates,7.9,Últimos 15 partidos
+2026-11-26T15:10:28Z,ECL,4828880,2026-11-26T17:45:00Z,KF Egnatia,Lincoln Red Imps,away,168,2,Remates al arco,2.8,Últimos 15 partidos
+2026-11-26T15:10:28Z,ECL,4828880,2026-11-26T17:45:00Z,KF Egnatia,Lincoln Red Imps,away,171,2,Saques de Esquina,3.2,Últimos 15 partidos
+2026-11-26T15:10:28Z,ECL,4828880,2026-11-26T17:45:00Z,KF Egnatia,Lincoln Red Imps,away,174,2,Tarjetas,2.55,Últimos 15 partidos
+2026-11-26T15:10:28Z,ECL,4828880,2026-11-26T17:45:00Z,KF Egnatia,Lincoln Red Imps,away,175,2,Penales convertidos/penales ejecutados,1/1,Últimos 15 partidos
+2026-11-26T15:10:28Z,ECL,4828881,2026-11-26T17:45:00Z,Hearts,Monaco,home,141,1,Partidos ganados,7 (32%),Últimos 22 partidos
+2026-11-26T15:10:28Z,ECL,4828881,2026-11-26T17:45:00Z,Hearts,Monaco,home,142,1,Ambos equipos marcaron,15 (68%),Últimos 22 partidos
+2026-11-26T15:10:28Z,ECL,4828881,2026-11-26T17:45:00Z,Hearts,Monaco,home,143,1,Más de 2.5 goles,16 (73%),Últimos 22 partidos
+2026-11-26T15:10:28Z,ECL,4828881,2026-11-26T17:45:00Z,Hearts,Monaco,home,144,1,Marcó primero,9 (41%),Últimos 22 partidos
+2026-11-26T15:10:28Z,ECL,4828881,2026-11-26T17:45:00Z,Hearts,Monaco,home,146,1,Recibió gol primero,13 (59%),Últimos 22 partidos
+2026-11-26T15:10:28Z,ECL,4828881,2026-11-26T17:45:00Z,Hearts,Monaco,home,148,1,Empató o Ganó,12 (55%),Últimos 22 partidos
+2026-11-26T15:10:28Z,ECL,4828881,2026-11-26T17:45:00Z,Hearts,Monaco,home,149,1,Vencedor al entretiempo,7 (32%),Últimos 22 partidos
+2026-11-26T15:10:28Z,ECL,4828881,2026-11-26T17:45:00Z,Hearts,Monaco,home,150,1,Valla invicta,4 (18%),Últimos 22 partidos
+2026-11-26T15:10:28Z,ECL,4828881,2026-11-26T17:45:00Z,Hearts,Monaco,home,153,2,Goles convertidos,1.86,Últimos 22 partidos
+2026-11-26T15:10:28Z,ECL,4828881,2026-11-26T17:45:00Z,Hearts,Monaco,home,156,2,Goles recibidos,2.05,Últimos 22 partidos
+2026-11-26T15:10:28Z,ECL,4828881,2026-11-26T17:45:00Z,Hearts,Monaco,home,159,2,Goles esperados,1.04,Últimos 22 partidos
+2026-11-26T15:10:28Z,ECL,4828881,2026-11-26T17:45:00Z,Hearts,Monaco,home,162,2,Goles esperados recibidos,1.71,Últimos 22 partidos
+2026-11-26T15:10:28Z,ECL,4828881,2026-11-26T17:45:00Z,Hearts,Monaco,home,165,2,Remates,15.32,Últimos 22 partidos
+2026-11-26T15:10:28Z,ECL,4828881,2026-11-26T17:45:00Z,Hearts,Monaco,home,168,2,Remates al arco,5,Últimos 22 partidos
+2026-11-26T15:10:28Z,ECL,4828881,2026-11-26T17:45:00Z,Hearts,Monaco,home,171,2,Saques de Esquina,5.91,Últimos 22 partidos
+2026-11-26T15:10:28Z,ECL,4828881,2026-11-26T17:45:00Z,Hearts,Monaco,home,174,2,Tarjetas,1.77,Últimos 22 partidos
+2026-11-26T15:10:28Z,ECL,4828881,2026-11-26T17:45:00Z,Hearts,Monaco,home,175,2,Penales convertidos/penales ejecutados,5/5,Últimos 22 partidos
+2026-11-26T15:10:28Z,ECL,4828881,2026-11-26T17:45:00Z,Hearts,Monaco,away,141,1,Partidos ganados,9 (60%),Últimos 15 partidos
+2026-11-26T15:10:28Z,ECL,4828881,2026-11-26T17:45:00Z,Hearts,Monaco,away,142,1,Ambos equipos marcaron,11 (73%),Últimos 15 partidos
+2026-11-26T15:10:28Z,ECL,4828881,2026-11-26T17:45:00Z,Hearts,Monaco,away,143,1,Más de 2.5 goles,8 (53%),Últimos 15 partidos
+2026-11-26T15:10:28Z,ECL,4828881,2026-11-26T17:45:00Z,Hearts,Monaco,away,144,1,Marcó primero,10 (67%),Últimos 15 partidos
+2026-11-26T15:10:28Z,ECL,4828881,2026-11-26T17:45:00Z,Hearts,Monaco,away,146,1,Recibió gol primero,5 (33%),Últimos 15 partidos
+2026-11-26T15:10:28Z,ECL,4828881,2026-11-26T17:45:00Z,Hearts,Monaco,away,148,1,Empató o Ganó,14 (93%),Últimos 15 partidos
+2026-11-26T15:10:28Z,ECL,4828881,2026-11-26T17:45:00Z,Hearts,Monaco,away,149,1,Vencedor al entretiempo,10 (67%),Últimos 15 partidos
+2026-11-26T15:10:28Z,ECL,4828881,2026-11-26T17:45:00Z,Hearts,Monaco,away,150,1,Valla invicta,4 (27%),Últimos 15 partidos
+2026-11-26T15:10:28Z,ECL,4828881,2026-11-26T17:45:00Z,Hearts,Monaco,away,153,2,Goles convertidos,1.87,Últimos 15 partidos
+2026-11-26T15:10:28Z,ECL,4828881,2026-11-26T17:45:00Z,Hearts,Monaco,away,156,2,Goles recibidos,1,Últimos 15 partidos
+2026-11-26T15:10:28Z,ECL,4828881,2026-11-26T17:45:00Z,Hearts,Monaco,away,159,2,Goles esperados,1.35,Últimos 15 partidos
+2026-11-26T15:10:28Z,ECL,4828881,2026-11-26T17:45:00Z,Hearts,Monaco,away,162,2,Goles esperados recibidos,1.08,Últimos 15 partidos
+2026-11-26T15:10:28Z,ECL,4828881,2026-11-26T17:45:00Z,Hearts,Monaco,away,165,2,Remates,11.8,Últimos 15 partidos
+2026-11-26T15:10:28Z,ECL,4828881,2026-11-26T17:45:00Z,Hearts,Monaco,away,168,2,Remates al arco,4.73,Últimos 15 partidos
+2026-11-26T15:10:28Z,ECL,4828881,2026-11-26T17:45:00Z,Hearts,Monaco,away,171,2,Saques de Esquina,4,Últimos 15 partidos
+2026-11-26T15:10:28Z,ECL,4828881,2026-11-26T17:45:00Z,Hearts,Monaco,away,174,2,Tarjetas,1.53,Últimos 15 partidos
+2026-11-26T15:10:28Z,ECL,4828881,2026-11-26T17:45:00Z,Hearts,Monaco,away,175,2,Penales convertidos/penales ejecutados,0/0,Últimos 15 partidos
+2026-11-26T15:10:28Z,ECL,4828882,2026-11-26T17:45:00Z,Kauno Zalgiris,Riga,home,141,1,Partidos ganados,4 (10%),Últimos 40 partidos
+2026-11-26T15:10:28Z,ECL,4828882,2026-11-26T17:45:00Z,Kauno Zalgiris,Riga,home,142,1,Ambos equipos marcaron,7 (18%),Últimos 40 partidos
+2026-11-26T15:10:28Z,ECL,4828882,2026-11-26T17:45:00Z,Kauno Zalgiris,Riga,home,143,1,Más de 2.5 goles,13 (32%),Últimos 40 partidos
+2026-11-26T15:10:28Z,ECL,4828882,2026-11-26T17:45:00Z,Kauno Zalgiris,Riga,home,144,1,Marcó primero,4/23 (17%),Últimos 40 partidos
+2026-11-26T15:10:28Z,ECL,4828882,2026-11-26T17:45:00Z,Kauno Zalgiris,Riga,home,146,1,Recibió gol primero,7/23 (30%),Últimos 40 partidos
+2026-11-26T15:10:28Z,ECL,4828882,2026-11-26T17:45:00Z,Kauno Zalgiris,Riga,home,148,1,Empató o Ganó,5 (12%),Últimos 40 partidos
+2026-11-26T15:10:28Z,ECL,4828882,2026-11-26T17:45:00Z,Kauno Zalgiris,Riga,home,149,1,Vencedor al entretiempo,2/23 (9%),Últimos 40 partidos
+2026-11-26T15:10:28Z,ECL,4828882,2026-11-26T17:45:00Z,Kauno Zalgiris,Riga,home,150,1,Valla invicta,4 (10%),Últimos 40 partidos
+2026-11-26T15:10:28Z,ECL,4828882,2026-11-26T17:45:00Z,Kauno Zalgiris,Riga,home,153,2,Goles convertidos,1.65,Últimos 40 partidos
+2026-11-26T15:10:28Z,ECL,4828882,2026-11-26T17:45:00Z,Kauno Zalgiris,Riga,home,156,2,Goles recibidos,1.13,Últimos 40 partidos
+2026-11-26T15:10:28Z,ECL,4828882,2026-11-26T17:45:00Z,Kauno Zalgiris,Riga,home,159,2,Goles esperados,0.62,Últimos 40 partidos
+2026-11-26T15:10:28Z,ECL,4828882,2026-11-26T17:45:00Z,Kauno Zalgiris,Riga,home,162,2,Goles esperados recibidos,2.93,Últimos 40 partidos
+2026-11-26T15:10:28Z,ECL,4828882,2026-11-26T17:45:00Z,Kauno Zalgiris,Riga,home,165,2,Remates,12.87,Últimos 40 partidos
+2026-11-26T15:10:28Z,ECL,4828882,2026-11-26T17:45:00Z,Kauno Zalgiris,Riga,home,168,2,Remates al arco,5.22,Últimos 40 partidos
+2026-11-26T15:10:28Z,ECL,4828882,2026-11-26T17:45:00Z,Kauno Zalgiris,Riga,home,171,2,Saques de Esquina,4.83,Últimos 40 partidos
+2026-11-26T15:10:28Z,ECL,4828882,2026-11-26T17:45:00Z,Kauno Zalgiris,Riga,home,174,2,Tarjetas,2.26,Últimos 40 partidos
+2026-11-26T15:10:28Z,ECL,4828882,2026-11-26T17:45:00Z,Kauno Zalgiris,Riga,home,175,2,Penales convertidos/penales ejecutados,0/1,Últimos 40 partidos
+2026-11-26T15:10:28Z,ECL,4828882,2026-11-26T17:45:00Z,Kauno Zalgiris,Riga,away,141,1,Partidos ganados,29 (63%),Últimos 46 partidos
+2026-11-26T15:10:28Z,ECL,4828882,2026-11-26T17:45:00Z,Kauno Zalgiris,Riga,away,142,1,Ambos equipos marcaron,27 (59%),Últimos 46 partidos
+2026-11-26T15:10:28Z,ECL,4828882,2026-11-26T17:45:00Z,Kauno Zalgiris,Riga,away,143,1,Más de 2.5 goles,30 (65%),Últimos 46 partidos
+2026-11-26T15:10:28Z,ECL,4828882,2026-11-26T17:45:00Z,Kauno Zalgiris,Riga,away,144,1,Marcó primero,31/46 (67%),Últimos 46 partidos
+2026-11-26T15:10:28Z,ECL,4828882,2026-11-26T17:45:00Z,Kauno Zalgiris,Riga,away,146,1,Recibió gol primero,12/46 (26%),Últimos 46 partidos
+2026-11-26T15:10:28Z,ECL,4828882,2026-11-26T17:45:00Z,Kauno Zalgiris,Riga,away,148,1,Empató o Ganó,41 (89%),Últimos 46 partidos
+2026-11-26T15:10:28Z,ECL,4828882,2026-11-26T17:45:00Z,Kauno Zalgiris,Riga,away,149,1,Vencedor al entretiempo,26/46 (57%),Últimos 46 partidos
+2026-11-26T15:10:28Z,ECL,4828882,2026-11-26T17:45:00Z,Kauno Zalgiris,Riga,away,150,1,Valla invicta,17 (37%),Últimos 46 partidos
+2026-11-26T15:10:28Z,ECL,4828882,2026-11-26T17:45:00Z,Kauno Zalgiris,Riga,away,153,2,Goles convertidos,2.35,Últimos 46 partidos
+2026-11-26T15:10:28Z,ECL,4828882,2026-11-26T17:45:00Z,Kauno Zalgiris,Riga,away,156,2,Goles recibidos,1.02,Últimos 46 partidos
+2026-11-26T15:10:28Z,ECL,4828882,2026-11-26T17:45:00Z,Kauno Zalgiris,Riga,away,159,2,Goles esperados,1.71,Últimos 46 partidos
+2026-11-26T15:10:28Z,ECL,4828882,2026-11-26T17:45:00Z,Kauno Zalgiris,Riga,away,162,2,Goles esperados recibidos,1.14,Últimos 46 partidos
+2026-11-26T15:10:28Z,ECL,4828882,2026-11-26T17:45:00Z,Kauno Zalgiris,Riga,away,165,2,Remates,16.41,Últimos 46 partidos
+2026-11-26T15:10:28Z,ECL,4828882,2026-11-26T17:45:00Z,Kauno Zalgiris,Riga,away,168,2,Remates al arco,6.18,Últimos 46 partidos
+2026-11-26T15:10:28Z,ECL,4828882,2026-11-26T17:45:00Z,Kauno Zalgiris,Riga,away,171,2,Saques de Esquina,6.02,Últimos 46 partidos
+2026-11-26T15:10:28Z,ECL,4828882,2026-11-26T17:45:00Z,Kauno Zalgiris,Riga,away,174,2,Tarjetas,2.13,Últimos 46 partidos
+2026-11-26T15:10:28Z,ECL,4828882,2026-11-26T17:45:00Z,Kauno Zalgiris,Riga,away,175,2,Penales convertidos/penales ejecutados,9/11,Últimos 46 partidos
+2026-11-26T15:10:28Z,ECL,4828883,2026-11-26T17:45:00Z,FK Jablonec,FC Lugano,home,141,1,Partidos ganados,10 (42%),Últimos 24 partidos
+2026-11-26T15:10:28Z,ECL,4828883,2026-11-26T17:45:00Z,FK Jablonec,FC Lugano,home,142,1,Ambos equipos marcaron,11 (46%),Últimos 24 partidos
+2026-11-26T15:10:28Z,ECL,4828883,2026-11-26T17:45:00Z,FK Jablonec,FC Lugano,home,143,1,Más de 2.5 goles,10 (42%),Últimos 24 partidos
+2026-11-26T15:10:28Z,ECL,4828883,2026-11-26T17:45:00Z,FK Jablonec,FC Lugano,home,144,1,Marcó primero,11 (46%),Últimos 24 partidos
+2026-11-26T15:10:28Z,ECL,4828883,2026-11-26T17:45:00Z,FK Jablonec,FC Lugano,home,146,1,Recibió gol primero,11 (46%),Últimos 24 partidos
+2026-11-26T15:10:28Z,ECL,4828883,2026-11-26T17:45:00Z,FK Jablonec,FC Lugano,home,148,1,Empató o Ganó,15 (62%),Últimos 24 partidos
+2026-11-26T15:10:28Z,ECL,4828883,2026-11-26T17:45:00Z,FK Jablonec,FC Lugano,home,149,1,Vencedor al entretiempo,8 (33%),Últimos 24 partidos
+2026-11-26T15:10:28Z,ECL,4828883,2026-11-26T17:45:00Z,FK Jablonec,FC Lugano,home,150,1,Valla invicta,9 (38%),Últimos 24 partidos
+2026-11-26T15:10:28Z,ECL,4828883,2026-11-26T17:45:00Z,FK Jablonec,FC Lugano,home,153,2,Goles convertidos,1.17,Últimos 24 partidos
+2026-11-26T15:10:28Z,ECL,4828883,2026-11-26T17:45:00Z,FK Jablonec,FC Lugano,home,156,2,Goles recibidos,1.21,Últimos 24 partidos
+2026-11-26T15:10:28Z,ECL,4828883,2026-11-26T17:45:00Z,FK Jablonec,FC Lugano,home,159,2,Goles esperados,0.78,Últimos 24 partidos
+2026-11-26T15:10:28Z,ECL,4828883,2026-11-26T17:45:00Z,FK Jablonec,FC Lugano,home,162,2,Goles esperados recibidos,1.34,Últimos 24 partidos
+2026-11-26T15:10:28Z,ECL,4828883,2026-11-26T17:45:00Z,FK Jablonec,FC Lugano,home,165,2,Remates,12.83,Últimos 24 partidos
+2026-11-26T15:10:28Z,ECL,4828883,2026-11-26T17:45:00Z,FK Jablonec,FC Lugano,home,168,2,Remates al arco,4.33,Últimos 24 partidos
+2026-11-26T15:10:28Z,ECL,4828883,2026-11-26T17:45:00Z,FK Jablonec,FC Lugano,home,171,2,Saques de Esquina,4.75,Últimos 24 partidos
+2026-11-26T15:10:28Z,ECL,4828883,2026-11-26T17:45:00Z,FK Jablonec,FC Lugano,home,174,2,Tarjetas,1.62,Últimos 24 partidos
+2026-11-26T15:10:28Z,ECL,4828883,2026-11-26T17:45:00Z,FK Jablonec,FC Lugano,home,175,2,Penales convertidos/penales ejecutados,3/3,Últimos 24 partidos
+2026-11-26T15:10:28Z,ECL,4828883,2026-11-26T17:45:00Z,FK Jablonec,FC Lugano,away,141,1,Partidos ganados,20 (87%),Últimos 23 partidos
+2026-11-26T15:10:28Z,ECL,4828883,2026-11-26T17:45:00Z,FK Jablonec,FC Lugano,away,142,1,Ambos equipos marcaron,14 (61%),Últimos 23 partidos
+2026-11-26T15:10:28Z,ECL,4828883,2026-11-26T17:45:00Z,FK Jablonec,FC Lugano,away,143,1,Más de 2.5 goles,19 (83%),Últimos 23 partidos
+2026-11-26T15:10:28Z,ECL,4828883,2026-11-26T17:45:00Z,FK Jablonec,FC Lugano,away,144,1,Marcó primero,18 (78%),Últimos 23 partidos
+2026-11-26T15:10:28Z,ECL,4828883,2026-11-26T17:45:00Z,FK Jablonec,FC Lugano,away,146,1,Recibió gol primero,5 (22%),Últimos 23 partidos
+2026-11-26T15:10:28Z,ECL,4828883,2026-11-26T17:45:00Z,FK Jablonec,FC Lugano,away,148,1,Empató o Ganó,22 (96%),Últimos 23 partidos
+2026-11-26T15:10:28Z,ECL,4828883,2026-11-26T17:45:00Z,FK Jablonec,FC Lugano,away,149,1,Vencedor al entretiempo,15 (65%),Últimos 23 partidos
+2026-11-26T15:10:28Z,ECL,4828883,2026-11-26T17:45:00Z,FK Jablonec,FC Lugano,away,150,1,Valla invicta,8 (35%),Últimos 23 partidos
+2026-11-26T15:10:28Z,ECL,4828883,2026-11-26T17:45:00Z,FK Jablonec,FC Lugano,away,153,2,Goles convertidos,3.09,Últimos 23 partidos
+2026-11-26T15:10:28Z,ECL,4828883,2026-11-26T17:45:00Z,FK Jablonec,FC Lugano,away,156,2,Goles recibidos,0.96,Últimos 23 partidos
+2026-11-26T15:10:28Z,ECL,4828883,2026-11-26T17:45:00Z,FK Jablonec,FC Lugano,away,159,2,Goles esperados,2.1,Últimos 23 partidos
+2026-11-26T15:10:28Z,ECL,4828883,2026-11-26T17:45:00Z,FK Jablonec,FC Lugano,away,162,2,Goles esperados recibidos,1.22,Últimos 23 partidos
+2026-11-26T15:10:28Z,ECL,4828883,2026-11-26T17:45:00Z,FK Jablonec,FC Lugano,away,165,2,Remates,17.09,Últimos 23 partidos
+2026-11-26T15:10:28Z,ECL,4828883,2026-11-26T17:45:00Z,FK Jablonec,FC Lugano,away,168,2,Remates al arco,6.61,Últimos 23 partidos
+2026-11-26T15:10:28Z,ECL,4828883,2026-11-26T17:45:00Z,FK Jablonec,FC Lugano,away,171,2,Saques de Esquina,5.61,Últimos 23 partidos
+2026-11-26T15:10:28Z,ECL,4828883,2026-11-26T17:45:00Z,FK Jablonec,FC Lugano,away,174,2,Tarjetas,2.18,Últimos 23 partidos
+2026-11-26T15:10:28Z,ECL,4828883,2026-11-26T17:45:00Z,FK Jablonec,FC Lugano,away,175,2,Penales convertidos/penales ejecutados,2/2,Últimos 23 partidos
+2026-11-26T15:10:28Z,ECL,4828884,2026-11-26T17:45:00Z,FC Iberia 1999,Getafe,home,141,1,Partidos ganados,21 (46%),Últimos 46 partidos
+2026-11-26T15:10:28Z,ECL,4828884,2026-11-26T17:45:00Z,FC Iberia 1999,Getafe,home,142,1,Ambos equipos marcaron,25 (54%),Últimos 46 partidos
+2026-11-26T15:10:28Z,ECL,4828884,2026-11-26T17:45:00Z,FC Iberia 1999,Getafe,home,143,1,Más de 2.5 goles,22 (48%),Últimos 46 partidos
+2026-11-26T15:10:28Z,ECL,4828884,2026-11-26T17:45:00Z,FC Iberia 1999,Getafe,home,144,1,Marcó primero,26/45 (58%),Últimos 46 partidos
+2026-11-26T15:10:28Z,ECL,4828884,2026-11-26T17:45:00Z,FC Iberia 1999,Getafe,home,146,1,Recibió gol primero,17/45 (38%),Últimos 46 partidos
+2026-11-26T15:10:28Z,ECL,4828884,2026-11-26T17:45:00Z,FC Iberia 1999,Getafe,home,148,1,Empató o Ganó,31 (67%),Últimos 46 partidos
+2026-11-26T15:10:28Z,ECL,4828884,2026-11-26T17:45:00Z,FC Iberia 1999,Getafe,home,149,1,Vencedor al entretiempo,17/45 (38%),Últimos 46 partidos
+2026-11-26T15:10:28Z,ECL,4828884,2026-11-26T17:45:00Z,FC Iberia 1999,Getafe,home,150,1,Valla invicta,14 (30%),Últimos 46 partidos
+2026-11-26T15:10:28Z,ECL,4828884,2026-11-26T17:45:00Z,FC Iberia 1999,Getafe,home,153,2,Goles convertidos,1.36,Últimos 46 partidos
+2026-11-26T15:10:28Z,ECL,4828884,2026-11-26T17:45:00Z,FC Iberia 1999,Getafe,home,156,2,Goles recibidos,1.22,Últimos 46 partidos
+2026-11-26T15:10:28Z,ECL,4828884,2026-11-26T17:45:00Z,FC Iberia 1999,Getafe,home,159,2,Goles esperados,0.64,Últimos 46 partidos
+2026-11-26T15:10:28Z,ECL,4828884,2026-11-26T17:45:00Z,FC Iberia 1999,Getafe,home,162,2,Goles esperados recibidos,1.92,Últimos 46 partidos
+2026-11-26T15:10:28Z,ECL,4828884,2026-11-26T17:45:00Z,FC Iberia 1999,Getafe,home,165,2,Remates,9.68,Últimos 46 partidos
+2026-11-26T15:10:28Z,ECL,4828884,2026-11-26T17:45:00Z,FC Iberia 1999,Getafe,home,168,2,Remates al arco,4,Últimos 46 partidos
+2026-11-26T15:10:28Z,ECL,4828884,2026-11-26T17:45:00Z,FC Iberia 1999,Getafe,home,171,2,Saques de Esquina,4.43,Últimos 46 partidos
+2026-11-26T15:10:28Z,ECL,4828884,2026-11-26T17:45:00Z,FC Iberia 1999,Getafe,home,174,2,Tarjetas,2.98,Últimos 46 partidos
+2026-11-26T15:10:28Z,ECL,4828884,2026-11-26T17:45:00Z,FC Iberia 1999,Getafe,home,175,2,Penales convertidos/penales ejecutados,3/4,Últimos 46 partidos
+2026-11-26T15:10:28Z,ECL,4828884,2026-11-26T17:45:00Z,FC Iberia 1999,Getafe,away,141,1,Partidos ganados,5 (26%),Últimos 19 partidos
+2026-11-26T15:10:28Z,ECL,4828884,2026-11-26T17:45:00Z,FC Iberia 1999,Getafe,away,142,1,Ambos equipos marcaron,9 (47%),Últimos 19 partidos
+2026-11-26T15:10:28Z,ECL,4828884,2026-11-26T17:45:00Z,FC Iberia 1999,Getafe,away,143,1,Más de 2.5 goles,9 (47%),Últimos 19 partidos
+2026-11-26T15:10:28Z,ECL,4828884,2026-11-26T17:45:00Z,FC Iberia 1999,Getafe,away,144,1,Marcó primero,6/19 (32%),Últimos 19 partidos
+2026-11-26T15:10:28Z,ECL,4828884,2026-11-26T17:45:00Z,FC Iberia 1999,Getafe,away,146,1,Recibió gol primero,13/19 (68%),Últimos 19 partidos
+2026-11-26T15:10:28Z,ECL,4828884,2026-11-26T17:45:00Z,FC Iberia 1999,Getafe,away,148,1,Empató o Ganó,9 (47%),Últimos 19 partidos
+2026-11-26T15:10:28Z,ECL,4828884,2026-11-26T17:45:00Z,FC Iberia 1999,Getafe,away,149,1,Vencedor al entretiempo,1/19 (5%),Últimos 19 partidos
+2026-11-26T15:10:28Z,ECL,4828884,2026-11-26T17:45:00Z,FC Iberia 1999,Getafe,away,150,1,Valla invicta,2 (11%),Últimos 19 partidos
+2026-11-26T15:10:28Z,ECL,4828884,2026-11-26T17:45:00Z,FC Iberia 1999,Getafe,away,153,2,Goles convertidos,0.95,Últimos 19 partidos
+2026-11-26T15:10:28Z,ECL,4828884,2026-11-26T17:45:00Z,FC Iberia 1999,Getafe,away,156,2,Goles recibidos,1.74,Últimos 19 partidos
+2026-11-26T15:10:28Z,ECL,4828884,2026-11-26T17:45:00Z,FC Iberia 1999,Getafe,away,159,2,Goles esperados,0.89,Últimos 19 partidos
+2026-11-26T15:10:28Z,ECL,4828884,2026-11-26T17:45:00Z,FC Iberia 1999,Getafe,away,162,2,Goles esperados recibidos,1.4,Últimos 19 partidos
+2026-11-26T15:10:28Z,ECL,4828884,2026-11-26T17:45:00Z,FC Iberia 1999,Getafe,away,165,2,Remates,11.53,Últimos 19 partidos
+2026-11-26T15:10:28Z,ECL,4828884,2026-11-26T17:45:00Z,FC Iberia 1999,Getafe,away,168,2,Remates al arco,3.47,Últimos 19 partidos
+2026-11-26T15:10:28Z,ECL,4828884,2026-11-26T17:45:00Z,FC Iberia 1999,Getafe,away,171,2,Saques de Esquina,4.68,Últimos 19 partidos
+2026-11-26T15:10:28Z,ECL,4828884,2026-11-26T17:45:00Z,FC Iberia 1999,Getafe,away,174,2,Tarjetas,3.26,Últimos 19 partidos
+2026-11-26T15:10:28Z,ECL,4828884,2026-11-26T17:45:00Z,FC Iberia 1999,Getafe,away,175,2,Penales convertidos/penales ejecutados,0/0,Últimos 19 partidos
+2026-11-26T15:10:28Z,ECL,4828885,2026-11-26T17:45:00Z,Brighton,CS Universitatea Craiova,home,141,1,Partidos ganados,9 (56%),Últimos 16 partidos
+2026-11-26T15:10:28Z,ECL,4828885,2026-11-26T17:45:00Z,Brighton,CS Universitatea Craiova,home,142,1,Ambos equipos marcaron,4 (25%),Últimos 16 partidos
+2026-11-26T15:10:28Z,ECL,4828885,2026-11-26T17:45:00Z,Brighton,CS Universitatea Craiova,home,143,1,Más de 2.5 goles,7 (44%),Últimos 16 partidos
+2026-11-26T15:10:28Z,ECL,4828885,2026-11-26T17:45:00Z,Brighton,CS Universitatea Craiova,home,144,1,Marcó primero,9 (56%),Últimos 16 partidos
+2026-11-26T15:10:28Z,ECL,4828885,2026-11-26T17:45:00Z,Brighton,CS Universitatea Craiova,home,146,1,Recibió gol primero,5 (31%),Últimos 16 partidos
+2026-11-26T15:10:28Z,ECL,4828885,2026-11-26T17:45:00Z,Brighton,CS Universitatea Craiova,home,148,1,Empató o Ganó,13 (81%),Últimos 16 partidos
+2026-11-26T15:10:28Z,ECL,4828885,2026-11-26T17:45:00Z,Brighton,CS Universitatea Craiova,home,149,1,Vencedor al entretiempo,6 (38%),Últimos 16 partidos
+2026-11-26T15:10:28Z,ECL,4828885,2026-11-26T17:45:00Z,Brighton,CS Universitatea Craiova,home,150,1,Valla invicta,10 (62%),Últimos 16 partidos
+2026-11-26T15:10:28Z,ECL,4828885,2026-11-26T17:45:00Z,Brighton,CS Universitatea Craiova,home,153,2,Goles convertidos,2.06,Últimos 16 partidos
+2026-11-26T15:10:28Z,ECL,4828885,2026-11-26T17:45:00Z,Brighton,CS Universitatea Craiova,home,156,2,Goles recibidos,0.81,Últimos 16 partidos
+2026-11-26T15:10:28Z,ECL,4828885,2026-11-26T17:45:00Z,Brighton,CS Universitatea Craiova,home,159,2,Goles esperados,1.95,Últimos 16 partidos
+2026-11-26T15:10:28Z,ECL,4828885,2026-11-26T17:45:00Z,Brighton,CS Universitatea Craiova,home,162,2,Goles esperados recibidos,1.11,Últimos 16 partidos
+2026-11-26T15:10:28Z,ECL,4828885,2026-11-26T17:45:00Z,Brighton,CS Universitatea Craiova,home,165,2,Remates,17.88,Últimos 16 partidos
+2026-11-26T15:10:28Z,ECL,4828885,2026-11-26T17:45:00Z,Brighton,CS Universitatea Craiova,home,168,2,Remates al arco,5.38,Últimos 16 partidos
+2026-11-26T15:10:28Z,ECL,4828885,2026-11-26T17:45:00Z,Brighton,CS Universitatea Craiova,home,171,2,Saques de Esquina,5.56,Últimos 16 partidos
+2026-11-26T15:10:28Z,ECL,4828885,2026-11-26T17:45:00Z,Brighton,CS Universitatea Craiova,home,174,2,Tarjetas,2.44,Últimos 16 partidos
+2026-11-26T15:10:28Z,ECL,4828885,2026-11-26T17:45:00Z,Brighton,CS Universitatea Craiova,home,175,2,Penales convertidos/penales ejecutados,2/2,Últimos 16 partidos
+2026-11-26T15:10:28Z,ECL,4828885,2026-11-26T17:45:00Z,Brighton,CS Universitatea Craiova,away,141,1,Partidos ganados,16 (57%),Últimos 28 partidos
+2026-11-26T15:10:28Z,ECL,4828885,2026-11-26T17:45:00Z,Brighton,CS Universitatea Craiova,away,142,1,Ambos equipos marcaron,14 (50%),Últimos 28 partidos
+2026-11-26T15:10:28Z,ECL,4828885,2026-11-26T17:45:00Z,Brighton,CS Universitatea Craiova,away,143,1,Más de 2.5 goles,13 (46%),Últimos 28 partidos
+2026-11-26T15:10:28Z,ECL,4828885,2026-11-26T17:45:00Z,Brighton,CS Universitatea Craiova,away,144,1,Marcó primero,19 (68%),Últimos 28 partidos
+2026-11-26T15:10:28Z,ECL,4828885,2026-11-26T17:45:00Z,Brighton,CS Universitatea Craiova,away,146,1,Recibió gol primero,8 (29%),Últimos 28 partidos
+2026-11-26T15:10:28Z,ECL,4828885,2026-11-26T17:45:00Z,Brighton,CS Universitatea Craiova,away,148,1,Empató o Ganó,24 (86%),Últimos 28 partidos
+2026-11-26T15:10:28Z,ECL,4828885,2026-11-26T17:45:00Z,Brighton,CS Universitatea Craiova,away,149,1,Vencedor al entretiempo,13 (46%),Últimos 28 partidos
+2026-11-26T15:10:28Z,ECL,4828885,2026-11-26T17:45:00Z,Brighton,CS Universitatea Craiova,away,150,1,Valla invicta,11 (39%),Últimos 28 partidos
+2026-11-26T15:10:28Z,ECL,4828885,2026-11-26T17:45:00Z,Brighton,CS Universitatea Craiova,away,153,2,Goles convertidos,2.07,Últimos 28 partidos
+2026-11-26T15:10:28Z,ECL,4828885,2026-11-26T17:45:00Z,Brighton,CS Universitatea Craiova,away,156,2,Goles recibidos,0.82,Últimos 28 partidos
+2026-11-26T15:10:28Z,ECL,4828885,2026-11-26T17:45:00Z,Brighton,CS Universitatea Craiova,away,159,2,Goles esperados,1.54,Últimos 28 partidos
+2026-11-26T15:10:28Z,ECL,4828885,2026-11-26T17:45:00Z,Brighton,CS Universitatea Craiova,away,162,2,Goles esperados recibidos,0.83,Últimos 28 partidos
+2026-11-26T15:10:28Z,ECL,4828885,2026-11-26T17:45:00Z,Brighton,CS Universitatea Craiova,away,165,2,Remates,17.29,Últimos 28 partidos
+2026-11-26T15:10:28Z,ECL,4828885,2026-11-26T17:45:00Z,Brighton,CS Universitatea Craiova,away,168,2,Remates al arco,6.64,Últimos 28 partidos
+2026-11-26T15:10:28Z,ECL,4828885,2026-11-26T17:45:00Z,Brighton,CS Universitatea Craiova,away,171,2,Saques de Esquina,5.39,Últimos 28 partidos
+2026-11-26T15:10:28Z,ECL,4828885,2026-11-26T17:45:00Z,Brighton,CS Universitatea Craiova,away,174,2,Tarjetas,1.96,Últimos 28 partidos
+2026-11-26T15:10:28Z,ECL,4828885,2026-11-26T17:45:00Z,Brighton,CS Universitatea Craiova,away,175,2,Penales convertidos/penales ejecutados,6/7,Últimos 28 partidos
+2026-11-26T15:10:28Z,ECL,4828886,2026-11-26T17:45:00Z,Ajax,FC Thun,home,141,1,Partidos ganados,14 (74%),Últimos 19 partidos
+2026-11-26T15:10:28Z,ECL,4828886,2026-11-26T17:45:00Z,Ajax,FC Thun,home,142,1,Ambos equipos marcaron,16 (84%),Últimos 19 partidos
+2026-11-26T15:10:28Z,ECL,4828886,2026-11-26T17:45:00Z,Ajax,FC Thun,home,143,1,Más de 2.5 goles,17 (89%),Últimos 19 partidos
+2026-11-26T15:10:28Z,ECL,4828886,2026-11-26T17:45:00Z,Ajax,FC Thun,home,144,1,Marcó primero,17/20 (85%),Últimos 19 partidos
+2026-11-26T15:10:28Z,ECL,4828886,2026-11-26T17:45:00Z,Ajax,FC Thun,home,146,1,Recibió gol primero,3/20 (15%),Últimos 19 partidos
+2026-11-26T15:10:28Z,ECL,4828886,2026-11-26T17:45:00Z,Ajax,FC Thun,home,148,1,Empató o Ganó,19 (100%),Últimos 19 partidos
+2026-11-26T15:10:28Z,ECL,4828886,2026-11-26T17:45:00Z,Ajax,FC Thun,home,149,1,Vencedor al entretiempo,13/20 (65%),Últimos 19 partidos
+2026-11-26T15:10:28Z,ECL,4828886,2026-11-26T17:45:00Z,Ajax,FC Thun,home,150,1,Valla invicta,4 (21%),Últimos 19 partidos
+2026-11-26T15:10:28Z,ECL,4828886,2026-11-26T17:45:00Z,Ajax,FC Thun,home,153,2,Goles convertidos,2.9,Últimos 19 partidos
+2026-11-26T15:10:28Z,ECL,4828886,2026-11-26T17:45:00Z,Ajax,FC Thun,home,156,2,Goles recibidos,1.25,Últimos 19 partidos
+2026-11-26T15:10:28Z,ECL,4828886,2026-11-26T17:45:00Z,Ajax,FC Thun,home,159,2,Goles esperados,2.22,Últimos 19 partidos
+2026-11-26T15:10:28Z,ECL,4828886,2026-11-26T17:45:00Z,Ajax,FC Thun,home,162,2,Goles esperados recibidos,1.07,Últimos 19 partidos
+2026-11-26T15:10:28Z,ECL,4828886,2026-11-26T17:45:00Z,Ajax,FC Thun,home,165,2,Remates,20.95,Últimos 19 partidos
+2026-11-26T15:10:28Z,ECL,4828886,2026-11-26T17:45:00Z,Ajax,FC Thun,home,168,2,Remates al arco,8.25,Últimos 19 partidos
+2026-11-26T15:10:28Z,ECL,4828886,2026-11-26T17:45:00Z,Ajax,FC Thun,home,171,2,Saques de Esquina,6.95,Últimos 19 partidos
+2026-11-26T15:10:28Z,ECL,4828886,2026-11-26T17:45:00Z,Ajax,FC Thun,home,174,2,Tarjetas,1.65,Últimos 19 partidos
+2026-11-26T15:10:28Z,ECL,4828886,2026-11-26T17:45:00Z,Ajax,FC Thun,home,175,2,Penales convertidos/penales ejecutados,1/3,Últimos 19 partidos
+2026-11-26T15:10:28Z,ECL,4828886,2026-11-26T17:45:00Z,Ajax,FC Thun,away,141,1,Partidos ganados,3 (13%),Últimos 23 partidos
+2026-11-26T15:10:28Z,ECL,4828886,2026-11-26T17:45:00Z,Ajax,FC Thun,away,142,1,Ambos equipos marcaron,16 (70%),Últimos 23 partidos
+2026-11-26T15:10:28Z,ECL,4828886,2026-11-26T17:45:00Z,Ajax,FC Thun,away,143,1,Más de 2.5 goles,19 (83%),Últimos 23 partidos
+2026-11-26T15:10:28Z,ECL,4828886,2026-11-26T17:45:00Z,Ajax,FC Thun,away,144,1,Marcó primero,5/23 (22%),Últimos 23 partidos
+2026-11-26T15:10:28Z,ECL,4828886,2026-11-26T17:45:00Z,Ajax,FC Thun,away,146,1,Recibió gol primero,10/23 (43%),Últimos 23 partidos
+2026-11-26T15:10:28Z,ECL,4828886,2026-11-26T17:45:00Z,Ajax,FC Thun,away,148,1,Empató o Ganó,5 (22%),Últimos 23 partidos
+2026-11-26T15:10:28Z,ECL,4828886,2026-11-26T17:45:00Z,Ajax,FC Thun,away,149,1,Vencedor al entretiempo,2/23 (9%),Últimos 23 partidos
+2026-11-26T15:10:28Z,ECL,4828886,2026-11-26T17:45:00Z,Ajax,FC Thun,away,150,1,Valla invicta,0 (0%),Últimos 23 partidos
+2026-11-26T15:10:28Z,ECL,4828886,2026-11-26T17:45:00Z,Ajax,FC Thun,away,153,2,Goles convertidos,2.09,Últimos 23 partidos
+2026-11-26T15:10:28Z,ECL,4828886,2026-11-26T17:45:00Z,Ajax,FC Thun,away,156,2,Goles recibidos,2.39,Últimos 23 partidos
+2026-11-26T15:10:28Z,ECL,4828886,2026-11-26T17:45:00Z,Ajax,FC Thun,away,159,2,Goles esperados,1.11,Últimos 23 partidos
+2026-11-26T15:10:28Z,ECL,4828886,2026-11-26T17:45:00Z,Ajax,FC Thun,away,162,2,Goles esperados recibidos,1.55,Últimos 23 partidos
+2026-11-26T15:10:28Z,ECL,4828886,2026-11-26T17:45:00Z,Ajax,FC Thun,away,165,2,Remates,14.05,Últimos 23 partidos
+2026-11-26T15:10:28Z,ECL,4828886,2026-11-26T17:45:00Z,Ajax,FC Thun,away,168,2,Remates al arco,4.55,Últimos 23 partidos
+2026-11-26T15:10:28Z,ECL,4828886,2026-11-26T17:45:00Z,Ajax,FC Thun,away,171,2,Saques de Esquina,4.77,Últimos 23 partidos
+2026-11-26T15:10:28Z,ECL,4828886,2026-11-26T17:45:00Z,Ajax,FC Thun,away,174,2,Tarjetas,2.09,Últimos 23 partidos
+2026-11-26T15:10:28Z,ECL,4828886,2026-11-26T17:45:00Z,Ajax,FC Thun,away,175,2,Penales convertidos/penales ejecutados,1/1,Últimos 23 partidos
