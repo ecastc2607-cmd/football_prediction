@@ -101,6 +101,35 @@ if not ODDS_KEY:
         ODDS_KEY = ""
 
 
+def mantener_scroll(prefijo_clave: str, nonce) -> None:
+    """Conserva el desplazamiento horizontal de una tabla (st.dataframe con
+    key) cuando Streamlit la redibuja al abrir/cerrar columnas o detalles
+    (pedido del usuario: no volver al inicio). Un script mínimo en la misma
+    página guarda la posición en sessionStorage del navegador y la restaura
+    en la tabla nueva. `nonce` cambia en cada clic para que el script se
+    vuelva a ejecutar."""
+    import streamlit.components.v1 as components
+
+    components.html(f"""<script>
+    (function() {{
+      const doc = window.parent.document, mem = window.parent.sessionStorage;
+      const clave = "scroll_{prefijo_clave}", fin = Date.now() + 4000;
+      function vigilar() {{
+        doc.querySelectorAll('[class*="st-key-{prefijo_clave}"] .dvn-scroller').forEach(function(s) {{
+          if (!s.dataset.vigilado) {{
+            s.dataset.vigilado = "1";
+            const v = mem.getItem(clave);
+            if (v) {{ s.scrollLeft = +v; }}
+            s.addEventListener("scroll", function() {{ mem.setItem(clave, s.scrollLeft); }});
+          }}
+        }});
+        if (Date.now() < fin) {{ setTimeout(vigilar, 150); }}
+      }}
+      vigilar();
+    }})();
+    </script><!-- {nonce} -->""", height=0)
+
+
 def ayuda(texto: str, titulo: str = "ℹ️ Cómo leer esto") -> None:
     """Texto explicativo plegado (pedido del usuario, nov-2026): las vistas
     muestran primero los datos; la explicación se abre con un clic."""
@@ -1294,13 +1323,36 @@ with tab_jornada:
         # nov-2026): clic en el encabezado del mercado (ej. "Tarjetas (+3.5) ▸")
         # despliega "Más tarjetas" a su lado; otro clic (en cualquiera de las dos)
         # la pliega. st.dataframe no agrupa columnas: se usa su selección de
-        # columna, y tras cada clic se cambia la key para limpiar la selección.
+        # columna. La key y los nombres de columna NO cambian (la flecha va en la
+        # etiqueta): así la tabla no se reinicia y conserva la posición en que
+        # estabas (pedido del usuario). Cada cambio de selección se compara con
+        # el anterior: seleccionar una columna la abre/cierra, y deseleccionarla
+        # (segundo clic) también.
         grupos_mas = {"Tarjetas": ("Tarjetas (", "Más tarjetas"), "Corners": ("Corners (", "Más corners"),
                       "Faltas": ("Faltas (", "Más faltas"),
                       "Tiros al arco": ("Tiros al arco", "Más tiros al arco"),
                       "Fueras de juego": ("Fueras de juego", "Más fueras de juego")}
         clave_abiertos = f"jornada_mas_{comp_code}"
         abiertos = st.session_state.setdefault(clave_abiertos, set())
+        n_tabla = st.session_state.get(clave_abiertos + "_n", 0)
+        clave_tabla = f"tabla_jornada_{comp_code}_{n_tabla}"
+
+        def _grupo_de(col):
+            for g, (principal, mas) in grupos_mas.items():
+                if col == mas or col == principal or str(col).startswith(principal):
+                    return g
+            return None
+
+        # Clic de la corrida anterior: abre/cierra y la key avanza (tabla sin
+        # selección, lista para el próximo clic). Al redibujarse, la posición
+        # horizontal la restaura mantener_scroll.
+        sel_ahora = list(((st.session_state.get(clave_tabla) or {}).get("selection") or {}).get("columns") or [])
+        if sel_ahora and _grupo_de(sel_ahora[0]):
+            abiertos.symmetric_difference_update({_grupo_de(sel_ahora[0])})
+            st.session_state.pop(clave_tabla, None)
+            n_tabla += 1
+            st.session_state[clave_abiertos + "_n"] = n_tabla
+            clave_tabla = f"tabla_jornada_{comp_code}_{n_tabla}"
         mas_cols = {mas for _, mas in grupos_mas.values()}
         orden = [c for c in columnas_tabla if c not in mas_cols]
         principal_de = {}  # columna principal de la tabla -> grupo
@@ -1309,17 +1361,16 @@ with tab_jornada:
             if pos is None or mas not in show.columns:
                 continue
             principal_de[orden[pos]] = grupo
-            if grupo in abiertos:
-                orden.insert(pos + 1, mas)
+            orden.insert(pos + 1, mas)  # siempre en los datos; se muestra solo si está abierto
         columnas_tabla = orden
+        # Los datos de la tabla no cambian al abrir/cerrar (solo column_order):
+        # así la tabla no se vuelve a montar y no salta al inicio.
+        ocultas = {grupos_mas[g][1] for g in grupos_mas if g not in abiertos}
 
         renombre = {"over_2_5": "Over 2.5 %", "btts": "BTTS %", "top_score": "Marcador top"}
         # Flecha AL INICIO del encabezado (▸ se puede desplegar, ▾ ya está
         # desplegado): el menú ⋮ de la columna aparece a la derecha al pasar el
         # mouse y tapaba la flecha cuando iba al final.
-        renombre |= {c: f"{'▾' if g in abiertos else '▸'} {c}" for c, g in principal_de.items()}
-        grupo_de_columna = {renombre[c]: g for c, g in principal_de.items()}
-        grupo_de_columna |= {mas: g for g, (_, mas) in grupos_mas.items() if g in abiertos}
         st.caption("👆 Clic en un encabezado con ▸ para desplegar 'Más …' a su lado (▾ = desplegado).",
                    help="▸ Tarjetas, ▸ Corners, ▸ Faltas, ▸ Fueras de juego y ▸ Tiros al arco despliegan a su lado "
                         "qué equipo supera al rival en ese mercado; otro clic en el mismo encabezado lo pliega. El "
@@ -1332,17 +1383,17 @@ with tab_jornada:
                 colores_j[destino] = fuerza[col].map(lambda v: _diverging_cell_css(v, 25.0))
         # Over 2.5 y Ambos anotan sin decimales (pedido del usuario, oct-2026).
         formato_j = {c: "{:.0f}%" for c in ("Over 2.5 %", "BTTS %") if c in tabla_j.columns}
-        clave_tabla = f"tabla_jornada_{comp_code}_{st.session_state.get(clave_abiertos + '_n', 0)}"
-        evento_j = st.dataframe(
+        st.dataframe(
             tabla_j.style.apply(lambda _: colores_j, axis=None).format(formato_j, na_rep="-"),
             width="stretch", hide_index=True, key=clave_tabla,
+            column_order=[c for c in tabla_j.columns if c not in ocultas],
             on_select="rerun", selection_mode="single-column",
             # Fija "Partido" para no perder la referencia de qué equipos son al
             # revisar las columnas de pronóstico más a la derecha.
             column_config={"Partido": st.column_config.Column(pinned=True),
                            # Ancho para que se lea el encabezado completo con su flecha.
-                           **{renombre[c]: st.column_config.Column(
-                               width="medium", help=f"Clic para {'plegar' if g in abiertos else 'desplegar'} "
+                           **{c: st.column_config.Column(
+                               f"{'▾' if g in abiertos else '▸'} {c}", width="medium", help=f"Clic para {'plegar' if g in abiertos else 'desplegar'} "
                                                     f"'{grupos_mas[g][1]}' a su lado.")
                               for c, g in principal_de.items()},
                            "Fuerza (mayor → menor)": st.column_config.Column(
@@ -1354,12 +1405,7 @@ with tab_jornada:
                                                    "+2.5 = más de 2.5 goles, Invicta = valla invicta (en %); "
                                                    "Corners y Tarj = promedio por partido. Detalle debajo de la tabla.")},
         )
-        elegidas = list(getattr(getattr(evento_j, "selection", None), "columns", None) or [])
-        if elegidas and elegidas[0] in grupo_de_columna:
-            grupo = grupo_de_columna[elegidas[0]]
-            abiertos.symmetric_difference_update({grupo})
-            st.session_state[clave_abiertos + "_n"] = st.session_state.get(clave_abiertos + "_n", 0) + 1
-            st.rerun()
+        mantener_scroll(f"tabla_jornada_{comp_code}_", n_tabla)
         with st.expander("📊 Estadísticas de 365scores por partido (últimos partidos, todas las competiciones)"):
             con_365 = [i for i in show.index if not filas_365[i].empty]
             if not con_365:
@@ -1942,18 +1988,16 @@ with tab_tips:
             #    columna "Mercado" de una fila con ▸ abre (o cierra) su detalle abajo.
             #    Se lee al inicio y se cambia la key: así no hace falta st.rerun()
             #    (que devolvía la vista a la pestaña Jornada).
+            # La key no cambia: la tabla conserva su posición y orden. Cada cambio
+            # de selección se compara con el anterior (deseleccionar = cerrar).
             clave_tabla_prev = f"tips_tabla_{fecha_k}_{estado_tips['n_tabla']}"
             seleccion = (st.session_state.get(clave_tabla_prev) or {}).get("selection") or {}
-            celdas = seleccion.get("cells") or []
-            if celdas:
-                fila_sel, col_sel = celdas[0][0], celdas[0][1]
-                # Solo un clic en "Mercado" cambia algo; en otras celdas la tabla
-                # sigue igual (no se pierde el orden que hayas elegido).
-                if col_sel == "Mercado" and 0 <= int(fila_sel) < len(estado_tips["orden_tabla"]):
-                    pid = estado_tips["orden_tabla"][int(fila_sel)]
-                    estado_tips["detalle"] = None if estado_tips["detalle"] == pid else pid
-                    st.session_state.pop(clave_tabla_prev, None)
-                    estado_tips["n_tabla"] += 1
+            celdas = [tuple(c) for c in (seleccion.get("cells") or [])]
+            if celdas and celdas[0][1] == "Mercado" and 0 <= int(celdas[0][0]) < len(estado_tips["orden_tabla"]):
+                pid = estado_tips["orden_tabla"][int(celdas[0][0])]
+                estado_tips["detalle"] = None if estado_tips["detalle"] == pid else pid
+                st.session_state.pop(clave_tabla_prev, None)
+                estado_tips["n_tabla"] += 1  # tabla sin selección; mantener_scroll restaura la posición
             # 2) Cuotas escritas en la tabla de cuotas de la corrida anterior (por posición de fila).
             clave_previa = f"tips_editor_{fecha_k}_{estado_tips['ver']}"
             cambios = (st.session_state.get(clave_previa) or {}).get("edited_rows", {})
@@ -2026,6 +2070,7 @@ with tab_tips:
             st.dataframe(_tabla_picks(tabla, True), hide_index=True, width="stretch",
                          key=f"tips_tabla_{fecha_k}_{estado_tips['n_tabla']}",
                          on_select="rerun", selection_mode="single-cell", column_config=config_picks)
+            mantener_scroll(f"tips_tabla_{fecha_k}_", estado_tips["n_tabla"])
             if abierto is not None:
                 st.markdown(f"**↳ Detalle: {candidatos.at[abierto, 'partido']} · {candidatos.at[abierto, 'mercado']}** "
                             "— qué equipo supera al rival en ese mercado")
