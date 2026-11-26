@@ -40705,3 +40705,52 @@ game_id,side,minute,added_time,half,type,subtype,player
 4828876,away,90.0,0,2,Goal,Field Goal,Sead Kolasinac
 4828876,away,90.0,3,2,Goal,Field Goal,Davide Zappacosta
 4828876,away,90.0,6,2,Yellow Card,,Maurizio Sarri
+4828679,away,9.0,0,1,Goal,Own Goal,Javi Vazquez
+4828679,home,19.0,0,1,Woodwork,,Alejandro Alfaro
+4828679,home,19.0,0,1,Goal,Field Goal,Dany Jean
+4828679,away,35.0,0,1,Yellow Card,,Jota
+4828679,home,40.0,0,1,Yellow Card,,Javi Vazquez
+4828679,home,61.0,0,2,Yellow Card,,Mohamed Ali Diadié
+4828679,home,71.0,0,2,Yellow Card,,Jonathan Mutombo
+4828679,away,84.0,0,2,Goal,Field Goal,Camilo Duran
+4828870,home,11.0,0,1,Goal,Field Goal,Cyriaque Irié
+4828870,home,45.0,1,1,Yellow Card,,Christian Günter
+4828870,away,62.0,0,2,Goal,Field Goal,Younes Taha
+4828870,home,73.0,0,2,Woodwork,,Lucas Höler
+4828870,away,75.0,0,2,Yellow Card,,Bart van Rooij
+4828870,home,84.0,0,2,Yellow Card,,Yannik Engelhardt
+4828870,home,90.0,1,2,Yellow Card,,Lucas Höler
+4828870,home,90.0,1,2,Yellow Card,,N. Beste
+4828870,away,90.0,1,2,Yellow Card,,Stav Lemkin
+4828870,away,90.0,1,2,Yellow Card,,Wout Weghorst
+4828870,home,90.0,2,2,Woodwork,,Matthias Ginter
+4828870,home,90.0,3,2,Penalty Miss,,Matthias Ginter
+4828870,home,90.0,3,2,Goal,Field Goal,Jan-Niklas Beste
+4828872,home,10.0,0,1,Yellow Card,,Tamimou Ouorou
+4828872,home,32.0,0,1,Goal,Own Goal,Sidny Cabral
+4828872,away,39.0,0,1,Yellow Card,,Noah Saviolo
+4828872,home,52.0,0,2,Yellow Card,,Bruno Jordão
+4828872,home,59.0,0,2,Yellow Card,,Stefano Sensi
+4828872,away,69.0,0,2,Goal,Field Goal,Mohamed Salah
+4828872,away,81.0,0,2,Yellow Card,,Ozan Tufan
+4828872,away,82.0,0,2,Yellow Card,,Fabinho
+4828872,away,90.0,3,2,Goal,Field Goal,Noah Saviolo
+4828875,away,9.0,0,1,Goal Disallowed,Var,Joedrick Pupe
+4828875,away,33.0,0,1,Yellow Card,,Nelson Ishiwatari
+4828875,away,39.0,0,1,Yellow Card,,Leo Kokubo
+4828875,home,42.0,0,1,Yellow Card,,Dalisson de Almeida
+4828875,away,45.0,1,1,Goal,Field Goal,Samed Bazdar
+4828875,away,51.0,0,2,Goal,Field Goal,Shion Shinkawa
+4828875,home,81.0,0,2,Yellow Card,,Adam Guram
+4828875,home,90.0,2,2,Yellow Card,,Andjelo Sutalo
+4828877,home,23.0,0,1,Woodwork,,Lamine Sadio
+4828877,away,36.0,0,1,Yellow Card,,Adriano Jagusic
+4828877,away,45.0,0,1,Goal,Field Goal,Adriano Jagusic
+4828877,away,55.0,0,2,Goal,Field Goal,Elmin Rastoder
+4828877,home,61.0,0,2,Goal,Field Goal,Alexander Lind
+4828877,home,75.0,0,2,Yellow Card,,Justin Janssen
+4828877,home,78.0,0,2,Woodwork,,Alexander Lind
+4828877,home,78.0,0,2,Goal,Own Goal,Victor Kristiansen
+4828877,home,80.0,0,2,Goal,Field Goal,Alexander Lind
+4828877,home,82.0,0,2,Yellow Card,,Hjalte Rasmussen
+4828877,away,90.0,2,2,Yellow Card,,Vicente Taborda

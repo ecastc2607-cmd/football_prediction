@@ -7169,3 +7169,11 @@ ECL,2026,4.0,2026-11-26T20:00:00Z,Borac Banja Luka,Atalanta,Borac Banja Luka,Tru
 ECL,2026,4.0,2026-11-26T20:00:00Z,Borac Banja Luka,Atalanta,Atalanta,False,6.0,14.0,2.0,0.0,64.0,7.0,22.0,1.0
 ECL,2026,4.0,2026-11-26T20:00:00Z,Nordsjælland,Panathinaikos,Nordsjælland,True,5.0,15.0,2.0,0.0,41.0,2.0,12.0,3.0
 ECL,2026,4.0,2026-11-26T20:00:00Z,Nordsjælland,Panathinaikos,Panathinaikos,False,3.0,14.0,2.0,0.0,59.0,8.0,17.0,1.0
+EL,2026,5.0,2026-11-26T20:00:00Z,Torreense,Celtic,Torreense,True,3.0,11.0,3.0,0.0,38.0,3.0,11.0,1.0
+EL,2026,5.0,2026-11-26T20:00:00Z,Torreense,Celtic,Celtic,False,7.0,16.0,1.0,0.0,62.0,6.0,14.0,2.0
+ECL,2026,4.0,2026-11-26T20:00:00Z,Freiburg,Twente,Freiburg,True,2.0,8.0,4.0,0.0,42.0,4.0,15.0,1.0
+ECL,2026,4.0,2026-11-26T20:00:00Z,Freiburg,Twente,Twente,False,2.0,13.0,3.0,0.0,58.0,5.0,10.0,0.0
+ECL,2026,4.0,2026-11-26T20:00:00Z,CSKA Sofia,Trabzonspor,CSKA Sofia,True,4.0,19.0,3.0,0.0,50.0,4.0,16.0,1.0
+ECL,2026,4.0,2026-11-26T20:00:00Z,CSKA Sofia,Trabzonspor,Trabzonspor,False,1.0,9.0,3.0,0.0,50.0,6.0,10.0,2.0
+ECL,2026,4.0,2026-11-26T20:00:00Z,Hajduk Split,Sint-Truiden,Hajduk Split,True,6.0,18.0,3.0,0.0,50.0,4.0,9.0,3.0
+ECL,2026,4.0,2026-11-26T20:00:00Z,Hajduk Split,Sint-Truiden,Sint-Truiden,False,2.0,10.0,2.0,0.0,50.0,4.0,9.0,1.0
