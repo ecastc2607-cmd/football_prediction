@@ -596,16 +596,23 @@ def _codigo_liga(liga) -> str | None:
     return None
 
 
-def _league_strength() -> pd.DataFrame:
-    """Liga × mercado de Reportes (diferencia acierto − esperado)."""
-    from . import reports
-    from .prediction_log import load_log
+_LEAGUE_STRENGTH_CACHE: dict = {}
 
-    log = load_log()
-    if log.empty:
-        return pd.DataFrame()
-    liga, _ = reports.strength_tables(reports.predictions_long(log, include_backtest=True))
-    return liga
+
+def _league_strength() -> pd.DataFrame:
+    """Liga × mercado de Reportes (diferencia acierto − esperado). Guardado
+    mientras no cambien el log de predicciones ni el de estadísticas."""
+    from . import match_stats_log, reports
+    from .prediction_log import LOG_PATH, load_log
+
+    clave = tuple(p.stat().st_mtime if p.exists() else 0 for p in (LOG_PATH, match_stats_log.LOG_PATH))
+    if clave not in _LEAGUE_STRENGTH_CACHE:
+        log = load_log()
+        liga = pd.DataFrame() if log.empty else \
+            reports.strength_tables(reports.predictions_long(log, include_backtest=True))[0]
+        _LEAGUE_STRENGTH_CACHE.clear()
+        _LEAGUE_STRENGTH_CACHE[clave] = liga
+    return _LEAGUE_STRENGTH_CACHE[clave]
 
 
 def leg_issues(r, fuerza: pd.DataFrame | None = None) -> list[str]:

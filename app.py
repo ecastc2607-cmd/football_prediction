@@ -3118,6 +3118,16 @@ def load_scorers(_mtime: float) -> pd.DataFrame:
     return t.sort_values("anota_pct", ascending=False)
 
 
+@st.cache_data(ttl=6 * 3600, show_spinner="Resumiendo el análisis de mercados especiales...")
+def _special_views(mtime: float, ligas: tuple, familias: tuple, umbral: float):
+    """(resumen, por liga, patrones por equipo) del backtest filtrado: se guardan
+    por filtro, así un clic en otra pestaña no los recalcula (~35 s antes)."""
+    bt = load_special_backtest(mtime)
+    datos = bt[bt["competition"].isin(ligas) & bt["familia"].isin(familias)]
+    return (_special_summary(datos, umbral), _special_summary(datos, umbral, ["competition"]),
+            special_markets.team_patterns(datos, umbral, min_picks=1))
+
+
 def _special_summary(bt: pd.DataFrame, umbral: float, by: list[str] | None = None) -> pd.DataFrame:
     s = special_markets.summarize(bt, umbral, by)
     if s.empty:
@@ -3237,7 +3247,8 @@ def render_advanced_tab() -> None:
     if datos.empty:
         st.caption("Sin datos en el filtro.")
         return
-    resumen = _special_summary(datos, umbral)
+    resumen, por_liga_cache, patrones_cache = _special_views(
+        archivo.stat().st_mtime if archivo.exists() else 0.0, tuple(ligas), tuple(familias), float(umbral))
 
     t_rank, t_liga, t_equipo, t_goleadores, t_proximos = st.tabs(
         ["Ranking de mercados", "Por liga", "Por equipo", "Goleadores", "Próximos partidos"])
@@ -3283,7 +3294,7 @@ def render_advanced_tab() -> None:
             _render_special_detail(datos[(datos["mercado"] == merc) & (datos["prob"] >= umbral)])
 
     with t_liga:
-        por_liga = _special_summary(datos, umbral, ["competition"])
+        por_liga = por_liga_cache
         por_liga = por_liga[por_liga["picks"] > 0].dropna(subset=["acierto_pct"])
         # Por defecto, solo candidatos y prometedores (con todos, la tabla queda muy ancha).
         mercados_liga = [m for m in cand.sort_values("mejora", ascending=False)["mercado"]
@@ -3323,7 +3334,7 @@ def render_advanced_tab() -> None:
                                              & (datos["prob"] >= umbral)])
 
     with t_equipo:
-        patrones = special_markets.team_patterns(datos, umbral, min_picks=1)
+        patrones = patrones_cache
         if patrones.empty:
             st.caption("Sin picks en el filtro.")
         else:

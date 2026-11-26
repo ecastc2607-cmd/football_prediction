@@ -17,6 +17,7 @@ a ese lado.
 """
 from __future__ import annotations
 
+import numpy as np
 import pandas as pd
 
 from .timezones import to_bogota
@@ -73,13 +74,22 @@ def stat_base_rate(r: pd.DataFrame, m: str) -> pd.Series:
         return salida
     tot = _stat_match_totals()
     t = pd.to_datetime(r.get("utc_date"), utc=True, errors="coerce")
-    for idx in r.index:
-        ln = pd.to_numeric(linea.get(idx), errors="coerce")
-        if pd.isna(ln) or pd.isna(t.get(idx)) or lado.get(idx) not in ("Sí", "No"):
-            continue
-        previos = tot[(tot["competition"] == r.at[idx, "competition"]) & (tot["t"] < t[idx])][m].dropna()
-        p_mas = ((previos > ln).sum() + STAT_MARKET_BASELINE * STAT_BASE_PRIOR) / (len(previos) + STAT_BASE_PRIOR)
-        salida[idx] = p_mas if lado[idx] == "Sí" else 1 - p_mas
+    ln = pd.to_numeric(linea, errors="coerce")
+    validas = ln.notna() & t.notna() & lado.isin(["Sí", "No"])
+    if not validas.any():
+        return salida
+    # Por liga y línea: partidos previos (ordenados por fecha) y cuántos pasaron
+    # la línea hasta cada uno; searchsorted da los anteriores a cada predicción.
+    # (Antes era un filtro por fila: ~12 s en cada clic de la app.)
+    sub = pd.DataFrame({"comp": r["competition"], "ln": ln, "t": t})[validas]
+    for (comp, linea_v), g in sub.groupby(["comp", "ln"]):
+        prev = tot[(tot["competition"] == comp)][["t", m]].dropna().sort_values("t")
+        tiempos = prev["t"].values
+        pasaron = np.concatenate([[0], np.cumsum(prev[m].values > linea_v)])
+        n = np.searchsorted(tiempos, g["t"].values, side="left")
+        p_mas = (pasaron[n] + STAT_MARKET_BASELINE * STAT_BASE_PRIOR) / (n + STAT_BASE_PRIOR)
+        es_si = (lado[g.index] == "Sí").values
+        salida[g.index] = np.where(es_si, p_mas, 1 - p_mas)
     return salida
 # Tipo de predicción (segmento de Reportes): las del modelo, o los picks que
 # entraron en boletos de Tips según su plan.

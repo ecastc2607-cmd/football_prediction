@@ -660,18 +660,26 @@ def team_patterns(bt: pd.DataFrame, min_prob: float = MIN_PROB, min_picks: int =
     p["_t"] = pd.to_datetime(p["utc_date"], utc=True, errors="coerce")
     largo = pd.concat([p.assign(equipo=p["favorito"], rol="favorito"),
                        p.assign(equipo=p["no_favorito"], rol="no favorito")], ignore_index=True)
-    filas = []
-    for (comp, equipo, fam, mercado), g in largo.groupby(["competition", "equipo", "familia", "mercado"]):
-        if len(g) < min_picks:
-            continue
-        g = g.sort_values("_t")
-        mitad = len(g) // 2
-        a, b = g.iloc[:mitad], g.iloc[mitad:]
-        filas.append({"competition": comp, "equipo": equipo, "familia": fam, "mercado": mercado, "picks": len(g),
-                      "acierto_pct": 100 * g["gano"].mean(), "esperado_pct": 100 * g["prob"].mean(),
-                      "primera_mitad_pct": 100 * a["gano"].mean(), "segunda_mitad_pct": 100 * b["gano"].mean(),
-                      "piso_pct": 100 * wilson_lower(g["gano"].sum(), len(g))})
-    return pd.DataFrame(filas)
+    # Agregaciones de pandas en vez de un bucle por grupo (eran ~28 s por clic).
+    k = ["competition", "equipo", "familia", "mercado"]
+    largo = largo.sort_values("_t", kind="stable")
+    grupos = largo.groupby(k, sort=False)
+    largo["_n"] = grupos["gano"].transform("size")
+    largo = largo[largo["_n"] >= min_picks]
+    if largo.empty:
+        return pd.DataFrame()
+    largo["_primera"] = largo.groupby(k, sort=False).cumcount() < largo["_n"] // 2
+    total = largo.groupby(k).agg(picks=("gano", "size"), aciertos=("gano", "sum"),
+                                 acierto=("gano", "mean"), esperado=("prob", "mean"))
+    primera = largo[largo["_primera"]].groupby(k)["gano"].mean()
+    segunda = largo[~largo["_primera"]].groupby(k)["gano"].mean()
+    t = total.join(primera.rename("primera")).join(segunda.rename("segunda")).reset_index()
+    return pd.DataFrame({
+        "competition": t["competition"], "equipo": t["equipo"], "familia": t["familia"], "mercado": t["mercado"],
+        "picks": t["picks"], "acierto_pct": 100 * t["acierto"], "esperado_pct": 100 * t["esperado"],
+        "primera_mitad_pct": 100 * t["primera"], "segunda_mitad_pct": 100 * t["segunda"],
+        "piso_pct": [100 * wilson_lower(a, n) for a, n in zip(t["aciertos"], t["picks"])],
+    })
 
 
 # --- Próximos partidos -----------------------------------------------------------

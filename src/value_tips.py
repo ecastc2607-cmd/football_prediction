@@ -595,9 +595,24 @@ def _form_event(mercado: str, pick: str, home: str, away: str):
     return None
 
 
+_FORM_TEXT_CACHE: dict = {}
+
+
 def team_form(mercado: str, pick: str, home: str, away: str) -> tuple[str, str]:
     """Textos "70% (7/10)" para el local y el visitante; "–" si el mercado no
-    se puede medir así (1er tiempo, primer gol) o el equipo no tiene historial."""
+    se puede medir así (1er tiempo, primer gol) o el equipo no tiene historial.
+    Guardado por pick mientras no cambien los historiales (cada clic de la app
+    recalculaba ~190 picks)."""
+    _team_history()  # deja en _FORM_CACHE la clave de los historiales vigentes
+    clave = (next(iter(_FORM_CACHE), None), mercado, pick, home, away)
+    if clave not in _FORM_TEXT_CACHE:
+        if len(_FORM_TEXT_CACHE) > 5000:
+            _FORM_TEXT_CACHE.clear()
+        _FORM_TEXT_CACHE[clave] = _team_form(mercado, pick, home, away)
+    return _FORM_TEXT_CACHE[clave]
+
+
+def _team_form(mercado: str, pick: str, home: str, away: str) -> tuple[str, str]:
     regla = _form_event(mercado, pick, home, away)
     if regla is None:
         return "–", "–"
