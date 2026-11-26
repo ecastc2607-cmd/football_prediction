@@ -40471,3 +40471,117 @@ game_id,side,minute,added_time,half,type,subtype,player
 4828878,away,56.0,0,2,Goal,Field Goal,Stefen Tchamche
 4828878,away,60.0,0,2,Woodwork,,Tobias Bech
 4828878,away,60.0,0,2,Goal,Field Goal,Magnus Knudsen
+4828686,away,27.0,0,1,Yellow Card,,Aldair
+4828686,home,28.0,0,1,Goal,Penalty,Amine Gouiri
+4828686,away,35.0,0,1,Woodwork,,El Mehdi Moubarik
+4828686,home,51.0,0,2,Penalty Miss,,Amine Gouiri
+4828686,away,66.0,0,2,Yellow Card,,Alex Centelles
+4828686,home,70.0,0,2,Yellow Card,,Neal Maupay
+4828687,away,10.0,0,1,Goal,Field Goal,Malik Tillman
+4828687,away,45.0,0,1,Goal,Field Goal,Jarell Quansah
+4828687,home,48.0,0,2,Yellow Card,,Lukas Kacavenda
+4828687,home,56.0,0,2,Yellow Card,,Luka Stojkovic
+4828687,away,72.0,0,2,Goal Disallowed,Var,Goal Disallowed
+4828687,home,84.0,0,2,Yellow Card,,Kirill Kravtsov
+4828687,away,86.0,0,2,Yellow Card,,Loïc Badé
+4828688,away,15.0,0,1,Goal,Field Goal,Yannick Agnero
+4828688,away,18.0,0,1,Goal,Field Goal,Luis Palma
+4828688,home,29.0,0,1,Penalty Miss,,Raul Florucz
+4828688,home,42.0,0,1,Yellow Card,,Ross Sykes
+4828688,home,44.0,0,1,Yellow Card,,Guilherme Smith
+4828688,away,45.0,1,1,Yellow Card,,Robert Gumny
+4828688,home,47.0,0,2,Goal Disallowed,Var,Goal Disallowed
+4828688,home,54.0,0,2,Goal,Field Goal,Raul Florucz
+4828688,home,66.0,0,2,Goal,Field Goal,Kevin Rodriguez
+4828688,home,70.0,0,2,Woodwork,,Guilherme Smith
+4828688,away,90.0,0,2,Yellow Card,,Michał Gurgul
+4828688,away,90.0,1,2,Yellow Card,,Radoslaw Murawski
+4828689,home,30.0,0,1,Goal,Field Goal,Patrik Hrošovský
+4828689,home,43.0,0,1,Goal,Field Goal,Prince Kwabena Adu
+4828689,home,44.0,0,1,Goal,Field Goal,Christophe Kabongo
+4828689,home,46.0,0,2,Goal,Field Goal,Christophe Kabongo
+4828689,home,77.0,0,2,Yellow Card,,Adam Gabriel
+4828689,away,78.0,0,2,Yellow Card,,Andreas Schjelderup
+4828690,home,13.0,0,1,Goal Disallowed,Var,Goal Disallowed
+4828690,home,19.0,0,1,Goal,Field Goal,Iago Aspas
+4828690,away,23.0,0,1,Red Card,,Bafodé Diakite
+4828690,away,30.0,0,1,Yellow Card,,Álvaro Rodríguez
+4828690,away,33.0,0,1,Yellow Card,,Alex Scott
+4828690,away,47.0,0,2,Goal,Field Goal,Álvaro Rodríguez
+4828690,home,58.0,0,2,Yellow Card,,Javi Rodríguez
+4828690,home,60.0,0,2,Yellow Card,,Javi Rueda
+4828690,away,78.0,0,2,Goal,Field Goal,Rayan
+4828690,home,78.0,0,2,Yellow Card,,Iago Aspas
+4828691,away,36.0,0,1,Yellow Card,,Karen Muradyan
+4828691,home,44.0,0,1,Woodwork,,Gaoussou Diakité
+4828691,home,47.0,0,2,Goal,Field Goal,Bartosz Mazurek
+4828691,home,49.0,0,2,Yellow Card,,Gaoussou Diakité
+4828691,home,51.0,0,2,Goal,Field Goal,Bartosz Mazurek
+4828691,away,64.0,0,2,Yellow Card,,Alexandros Malis
+4828691,away,72.0,0,2,Yellow Card,,Zhirayr Shaghoyan
+4828691,away,77.0,0,2,Yellow Card,,Zidane Banjaqui
+4828691,home,90.0,1,2,Penalty Miss,,Karim Konaté
+4828693,home,31.0,0,1,Woodwork,,Lorenzo Pirola
+4828693,home,31.0,0,1,Goal,Own Goal,Mike Maignan
+4828693,away,43.0,0,1,Yellow Card,,Koni De Winter
+4828693,home,43.0,0,1,Yellow Card,,Jota Silva
+4828693,home,49.0,0,2,Goal,Field Goal,Jota Silva
+4828693,away,56.0,0,2,Goal,Field Goal,Omari Hutchinson
+4828693,home,58.0,0,2,Yellow Card,,Remo Freuler
+4828693,home,61.0,0,2,Yellow Card,,Panagiotis Retsos
+4828693,away,61.0,0,2,Yellow Card,,Sankhoun Diawara
+4828693,away,63.0,0,2,Goal,Field Goal,Alphadjo Cisse
+4828693,away,71.0,0,2,Goal,Field Goal,Christian Pulisic
+4828693,away,90.0,5,2,Goal,Field Goal,Diego Moreira
+4828879,home,24.0,0,1,Yellow Card,,Ivan Šunjić
+4828879,home,41.0,0,1,Yellow Card,,David Goldar
+4828879,away,44.0,0,1,Goal,Field Goal,Mileta Rajovic
+4828879,away,70.0,0,2,Yellow Card,,Pedro Bravo
+4828879,away,73.0,0,2,Yellow Card,,Mikael Uhre
+4828879,away,82.0,0,2,Goal,Field Goal,Mikel Gogorza
+4828879,home,89.0,0,2,Yellow Card,,Alexandre Brito
+4828880,home,42.0,0,1,Woodwork,,Guillem Jaume
+4828880,home,47.0,0,2,Goal,Field Goal,Alessandro Albanese
+4828880,away,49.0,0,2,Yellow Card,,Nano
+4828880,home,61.0,0,2,Yellow Card,,Altin Kryeziu
+4828880,home,63.0,0,2,Goal Disallowed,Var,Goal Disallowed
+4828880,home,65.0,0,2,Yellow Card,,Guillem Jaume
+4828880,away,79.0,0,2,Goal,Field Goal,Yussef Flalhi Idrissi
+4828880,home,81.0,0,2,Goal,Field Goal,Fernando Medeiros
+4828880,away,90.0,5,2,Yellow Card,,Christian Rutjens
+4828880,home,90.0,5,2,Yellow Card,,Albano Aleksi
+4828883,home,25.0,0,1,Yellow Card,,Nelson Okeke
+4828883,away,28.0,0,1,Yellow Card,,Joel Bichsel
+4828883,home,70.0,0,2,Goal,Field Goal,Martin Cedidla
+4828883,home,82.0,0,2,Yellow Card,,Jiří Sláma
+4828883,home,85.0,0,2,Woodwork,,Jiří Sláma
+4828883,home,85.0,0,2,Goal,Field Goal,Lamin Jawo
+4828883,home,90.0,0,2,Woodwork,,Saidou Alioum
+4828883,home,90.0,0,2,Yellow Card,,Vakhtang Chanturishvili
+4828884,home,22.0,0,1,Yellow Card,,Lucas Cafe
+4828884,home,25.0,0,1,Goal,Field Goal,Giorgi Kobuladze
+4828884,away,32.0,0,1,Yellow Card,,Ramón Terrats
+4828884,away,36.0,0,1,Yellow Card,,Davinchi
+4828884,away,56.0,0,2,Yellow Card,,Orel Mangala
+4828884,away,59.0,0,2,Red Card,Second Yellow Card,Orel Mangala
+4828884,home,65.0,0,2,Yellow Card,,Giorgi Kobuladze
+4828884,away,76.0,0,2,Yellow Card,,Andrés García
+4828885,home,3.0,0,1,Goal,Field Goal,Ibrahim Osman
+4828885,home,33.0,0,1,Goal,Field Goal,Maxim de Cuyper
+4828885,away,38.0,0,1,Red Card,,Vladimir Screciu
+4828885,home,46.0,0,2,Woodwork,,Jack Hinshelwood
+4828885,home,54.0,0,2,Yellow Card,,Yasin Ayari
+4828885,home,61.0,0,2,Goal,Field Goal,Charalampos Kostoulas
+4828885,home,63.0,0,2,Goal,Field Goal,Ibrahim Osman
+4828885,home,88.0,0,2,Yellow Card,,Costinha
+4828885,away,88.0,0,2,Yellow Card,,Oleksandr Romanchuk
+4828885,away,90.0,2,2,Yellow Card,,Nicusor Bancu
+4828886,home,6.0,0,1,Goal,Field Goal,Rayane Bounida
+4828886,home,34.0,0,1,Yellow Card,,Thilo Kehrer
+4828886,home,41.0,0,1,Goal,Field Goal,Marcos Leonardo
+4828886,home,70.0,0,2,Goal,Field Goal,Rayane Bounida
+4828886,away,78.0,0,2,Yellow Card,,Furkan Dursun
+4828886,away,79.0,0,2,Yellow Card,,Gian-Luca Privitelli
+4828886,away,84.0,0,2,Yellow Card,,Fabio Fehr
+4828886,away,88.0,0,2,Woodwork,,Furkan Dursun
+4828886,home,89.0,0,2,Goal,Field Goal,Steven Berghuis

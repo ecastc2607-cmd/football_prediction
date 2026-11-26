@@ -7111,3 +7111,29 @@ EL,2026,5.0,2026-11-26T17:45:00Z,Beşiktaş,Hapoel Be'er Sheva,Beşiktaş,True,1
 EL,2026,5.0,2026-11-26T17:45:00Z,Beşiktaş,Hapoel Be'er Sheva,Hapoel Be'er Sheva,False,2.0,4.0,1.0,0.0,45.0,4.0,4.0,0.0
 ECL,2026,4.0,2026-11-26T17:45:00Z,Brann,AGF,Brann,True,3.0,9.0,0.0,0.0,56.0,3.0,12.0,1.0
 ECL,2026,4.0,2026-11-26T17:45:00Z,Brann,AGF,AGF,False,5.0,15.0,0.0,0.0,44.0,6.0,14.0,0.0
+EL,2026,5.0,2026-11-26T17:45:00Z,Olympique Marseille,Levski Sofia,Olympique Marseille,True,3.0,7.0,1.0,0.0,52.0,5.0,12.0,0.0
+EL,2026,5.0,2026-11-26T17:45:00Z,Olympique Marseille,Levski Sofia,Levski Sofia,False,2.0,15.0,2.0,0.0,48.0,1.0,8.0,2.0
+EL,2026,5.0,2026-11-26T17:45:00Z,Dinamo Zagreb,Bayer Leverkusen,Dinamo Zagreb,True,6.0,16.0,3.0,0.0,38.0,3.0,14.0,0.0
+EL,2026,5.0,2026-11-26T17:45:00Z,Dinamo Zagreb,Bayer Leverkusen,Bayer Leverkusen,False,6.0,3.0,1.0,0.0,62.0,2.0,9.0,1.0
+EL,2026,5.0,2026-11-26T17:45:00Z,Union Saint-Gilloise,Lech Poznań,Union Saint-Gilloise,True,9.0,15.0,2.0,0.0,59.0,10.0,24.0,2.0
+EL,2026,5.0,2026-11-26T17:45:00Z,Union Saint-Gilloise,Lech Poznań,Lech Poznań,False,0.0,14.0,3.0,0.0,41.0,2.0,5.0,2.0
+EL,2026,5.0,2026-11-26T17:45:00Z,Viktoria Plzeň,Benfica,Viktoria Plzeň,True,4.0,15.0,1.0,0.0,31.0,11.0,15.0,1.0
+EL,2026,5.0,2026-11-26T17:45:00Z,Viktoria Plzeň,Benfica,Benfica,False,10.0,8.0,1.0,0.0,69.0,2.0,16.0,2.0
+EL,2026,5.0,2026-11-26T17:45:00Z,Celta de Vigo,AFC Bournemouth,Celta de Vigo,True,6.0,16.0,3.0,0.0,64.0,5.0,20.0,6.0
+EL,2026,5.0,2026-11-26T17:45:00Z,Celta de Vigo,AFC Bournemouth,AFC Bournemouth,False,5.0,12.0,2.0,1.0,36.0,6.0,10.0,1.0
+EL,2026,5.0,2026-11-26T17:45:00Z,Salzburg,Ararat-Armenia,Salzburg,True,9.0,15.0,1.0,0.0,62.0,8.0,24.0,4.0
+EL,2026,5.0,2026-11-26T17:45:00Z,Salzburg,Ararat-Armenia,Ararat-Armenia,False,3.0,9.0,4.0,0.0,38.0,1.0,8.0,5.0
+EL,2026,5.0,2026-11-26T17:45:00Z,Olympiakos Piraeus,Milan,Olympiakos Piraeus,True,6.0,13.0,3.0,0.0,41.0,5.0,18.0,3.0
+EL,2026,5.0,2026-11-26T17:45:00Z,Olympiakos Piraeus,Milan,Milan,False,1.0,15.0,2.0,0.0,59.0,6.0,12.0,2.0
+ECL,2026,4.0,2026-11-26T17:45:00Z,Pafos,Midtjylland,Pafos,True,5.0,12.0,3.0,0.0,58.0,3.0,14.0,2.0
+ECL,2026,4.0,2026-11-26T17:45:00Z,Pafos,Midtjylland,Midtjylland,False,5.0,20.0,2.0,0.0,42.0,9.0,15.0,2.0
+ECL,2026,4.0,2026-11-26T17:45:00Z,Egnatia Rrogozhinë,Lincoln Red Imps,Egnatia Rrogozhinë,True,10.0,20.0,3.0,0.0,64.0,9.0,19.0,2.0
+ECL,2026,4.0,2026-11-26T17:45:00Z,Egnatia Rrogozhinë,Lincoln Red Imps,Lincoln Red Imps,False,0.0,10.0,2.0,0.0,36.0,4.0,6.0,1.0
+ECL,2026,4.0,2026-11-26T17:45:00Z,Jablonec,Lugano,Jablonec,True,5.0,17.0,3.0,0.0,31.0,4.0,19.0,0.0
+ECL,2026,4.0,2026-11-26T17:45:00Z,Jablonec,Lugano,Lugano,False,3.0,8.0,1.0,0.0,69.0,4.0,14.0,0.0
+ECL,2026,4.0,2026-11-26T17:45:00Z,Iberia 1999,Getafe,Iberia 1999,True,3.0,17.0,2.0,0.0,35.0,6.0,12.0,1.0
+ECL,2026,4.0,2026-11-26T17:45:00Z,Iberia 1999,Getafe,Getafe,False,5.0,23.0,4.0,1.0,65.0,5.0,18.0,2.0
+ECL,2026,4.0,2026-11-26T17:45:00Z,Brighton & Hove Albion,Universitatea Craiova,Brighton & Hove Albion,True,9.0,12.0,2.0,0.0,75.0,10.0,27.0,3.0
+ECL,2026,4.0,2026-11-26T17:45:00Z,Brighton & Hove Albion,Universitatea Craiova,Universitatea Craiova,False,0.0,7.0,2.0,1.0,25.0,2.0,4.0,0.0
+ECL,2026,4.0,2026-11-26T17:45:00Z,Ajax,Thun,Ajax,True,6.0,15.0,1.0,0.0,65.0,9.0,21.0,2.0
+ECL,2026,4.0,2026-11-26T17:45:00Z,Ajax,Thun,Thun,False,5.0,21.0,2.0,0.0,35.0,4.0,10.0,0.0
