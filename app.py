@@ -101,6 +101,13 @@ if not ODDS_KEY:
         ODDS_KEY = ""
 
 
+def ayuda(texto: str, titulo: str = "ℹ️ Cómo leer esto") -> None:
+    """Texto explicativo plegado (pedido del usuario, nov-2026): las vistas
+    muestran primero los datos; la explicación se abre con un clic."""
+    with st.expander(titulo, expanded=False):
+        st.markdown(texto)
+
+
 @st.cache_data(ttl=1800, show_spinner="Descargando datos de la competición...")
 def load_competition(code: str, season: int) -> pd.DataFrame:
     # La Europa League no está en el plan gratis de football-data.org (verificado
@@ -772,7 +779,7 @@ def render_parlays(parlays: list, bankroll: float | None = None, avisos: list[st
     paga la casa (real si se trajo, estimada si no), valor esperado y monto
     sugerido. Debajo, cómo le habría ido a la estrategia en jornadas ya
     resueltas — para que cada número se pueda contrastar."""
-    st.caption(
+    ayuda(
         f"Probabilidades **calibradas** con los resultados reales del proyecto (no las del modelo "
         f"en bruto): solo entran picks con ≥{MIN_LEG_PROB:.0%} calibrado, así que un pick que en el "
         "histórico acertó poco queda fuera aunque el modelo le dé más. Un pick por partido como mucho "
@@ -1143,7 +1150,7 @@ with tab_jornada:
         # modelo de goles) para partidos que TODAVÍA no se juegan. ---
         tendency_averages = load_tendency_averages(comp_code)
         columnas_tabla = ["Partido", "Fecha", "Posiciones", "xG", "1X2", "over_2_5", "btts"]
-        st.caption(
+        ayuda(
             "⏱️ **1er / 2do tiempo**: goles esperados de cada equipo (L = local, V = visitante) solo en "
             "esa mitad; entre paréntesis, la probabilidad de que ESE equipo marque al menos un gol en "
             "la mitad; 'algún gol' = que marque cualquiera de los dos. Ej.: L 1.27 (72%) – V 0.23 (21%) "
@@ -1166,7 +1173,7 @@ with tab_jornada:
                 linea = picks_por_partido[0][i].line
                 show[f"{label} (+{linea})"] = [p[i].describe() for p in picks_por_partido]
             columnas_tabla += [c for c in show.columns if c.startswith(("Corners (", "Faltas (", "Tarjetas ("))]
-            st.caption(
+            ayuda(
                 "📐 Corners/faltas/tarjetas: total esperado de los dos equipos con el mismo modelo de "
                 "Tips (lo que genera cada equipo y lo que le generan sus rivales, no el modelo de goles); "
                 "Sí/No = más o menos probable que la línea. ⚠ = alguno de los dos equipos tiene menos de "
@@ -1253,7 +1260,7 @@ with tab_jornada:
                      for i, r in zip(show.index, show.itertuples())}
         show["Estadísticas 365"] = [pregame_stats.compact(filas_365[i]) for i in show.index]
         columnas_tabla += ["Estadísticas 365"]
-        st.caption(
+        ayuda(
             "🟨 **Más tarjetas**: probabilidad de que cada equipo reciba MÁS tarjetas que el otro (o empate), "
             "con las tarjetas esperadas de cada uno; recalibrada, ventaja chica sobre la frecuencia de la liga. "
             "🚩 **Más corners**: lo mismo con corners (acá el modelo tiene más ventaja: ~64% de acierto cuando dice "
@@ -1313,9 +1320,10 @@ with tab_jornada:
         renombre |= {c: f"{'▾' if g in abiertos else '▸'} {c}" for c, g in principal_de.items()}
         grupo_de_columna = {renombre[c]: g for c, g in principal_de.items()}
         grupo_de_columna |= {mas: g for g, (_, mas) in grupos_mas.items() if g in abiertos}
-        st.caption("👆 Haz clic en el encabezado de ▸ Tarjetas, ▸ Corners, ▸ Faltas, ▸ Fueras de juego o ▸ Tiros "
-                   "al arco para desplegar a su lado qué equipo supera al rival en ese mercado (la flecha cambia a "
-                   "▾); otro clic en el mismo encabezado lo pliega. El menú ⋮ de la derecha es solo para ordenar.")
+        st.caption("👆 Clic en un encabezado con ▸ para desplegar 'Más …' a su lado (▾ = desplegado).",
+                   help="▸ Tarjetas, ▸ Corners, ▸ Faltas, ▸ Fueras de juego y ▸ Tiros al arco despliegan a su lado "
+                        "qué equipo supera al rival en ese mercado; otro clic en el mismo encabezado lo pliega. El "
+                        "menú ⋮ de la derecha del encabezado es solo para ordenar.")
         tabla_j = show[columnas_tabla].rename(columns=renombre)
         colores_j = pd.DataFrame("", index=tabla_j.index, columns=tabla_j.columns)
         for col in fuerza.columns:
@@ -1366,7 +1374,7 @@ with tab_jornada:
                 st.dataframe(pregame_stats.detail_table(d, local_lbl, visita_lbl), hide_index=True, width="stretch")
                 st.caption(f"Foto tomada {format_bogota(d['fetched_at'].iloc[0])} (hora Colombia). Las cifras cambian "
                            "cada vez que el equipo juega; la captura automática guarda una por partido antes del inicio.")
-        st.caption(
+        ayuda(
             "🎨 **Color = fuerza del modelo en ese mercado según Reportes**: azul = acierta más de lo que "
             "espera (fortaleza), rojo = acierta menos (debilidad), gris = según lo esperado, sin color = sin "
             "historial. Sale de liga × mercado ('Fortalezas y debilidades') y de los dos equipos ('Por "
@@ -1463,7 +1471,7 @@ with tab_jornada:
         # por separado — para saber si un 75% de acierto viene sobre todo del
         # ganador del partido, de los goles, o de otra cosa.
         st.markdown("**Tendencia por liga y mercado**")
-        st.caption(
+        ayuda(
             "% de acierto de cada mercado por separado. Corners/Faltas/Tarjetas solo tienen "
             "datos desde que se empezó a registrar la tendencia junto con la predicción — "
             "'—' significa que todavía no hay muestra para ese cruce, no que haya fallado."
@@ -1512,7 +1520,7 @@ with tab_jornada:
 # ============================== PESTAÑA: EN VIVO ==============================
 with tab_vivo:
     st.title("🔴 Partidos en vivo")
-    st.caption(
+    ayuda(
         "Minuto: real en Europa League y selecciones; estimado desde la hora de inicio en las "
         "ligas (puede quedarse pegado si football-data.org tarda en marcar el final). 1X2 en vivo "
         "**ajustado por lo que pasa en la cancha**: el ritmo de gol de cada equipo se actualiza con "
@@ -1681,7 +1689,7 @@ with tab_vivo:
 # ============================== PESTAÑA: AMISTOSOS ==============================
 with tab_amistosos:
     st.title("🌍 Amistosos internacionales")
-    st.caption(
+    ayuda(
         "Amistosos de selecciones absolutas (sin categorías juveniles ni femenino), de ayer a los "
         "próximos 8 días. Sin jornada ni tabla — el modelo no tiene ese concepto acá, así que van "
         "aparte de la pestaña 'Jornada'. Cada selección se predice con SU propio historial (Nations "
@@ -1757,7 +1765,7 @@ with tab_amistosos:
 # ============================== PESTAÑA: TIPS ==============================
 with tab_tips:
     st.title("💡 Tips de valor del día")
-    st.caption(
+    ayuda(
         f"Picks de cualquier liga con probabilidad del modelo ≥{MIN_MODEL_PROB:.0%}, solo de partidos "
         "sin baja confianza, comparados contra la mejor cuota disponible. Se sugiere apostar solo "
         "si la cuota paga más de lo que el partido 'vale' — y aun así un pick de 75% falla 1 de cada 4."
@@ -2011,9 +2019,10 @@ with tab_tips:
             }
             st.markdown("**Picks candidatos**")
             if hijos:
-                st.caption("👆 Las filas con **▸** en 'Mercado' (Tarjetas, Corners, Faltas, Tiros al arco, Fueras de "
-                           "juego) tienen un pick 'Más …': haz clic en esa celda para ver debajo el detalle (qué equipo "
-                           "supera al rival); otro clic (▾) lo cierra.")
+                st.caption("👆 Clic en una celda **▸** de 'Mercado' para ver debajo su detalle (▾ = abierto).",
+                           help="Las filas de Tarjetas, Corners, Faltas, Tiros al arco y Fueras de juego con ▸ "
+                                "tienen un pick 'Más …' (qué equipo supera al rival); otro clic en la misma celda "
+                                "cierra el detalle.")
             st.dataframe(_tabla_picks(tabla, True), hide_index=True, width="stretch",
                          key=f"tips_tabla_{fecha_k}_{estado_tips['n_tabla']}",
                          on_select="rerun", selection_mode="single-cell", column_config=config_picks)
@@ -2286,7 +2295,7 @@ with tab_tips:
                     "Ganancia neta": st.column_config.NumberColumn(format="$%d"),
                 },
             )
-            st.caption(
+            ayuda(
                 "🧪 Experimental: el ajuste en vivo todavía no se validó contra el mercado, así que acá el "
                 f"modelo pesa solo {LIVE_MODEL_WEIGHT:.0%} y la cuota {1 - LIVE_MODEL_WEIGHT:.0%} al calcular el "
                 "valor. La cuota en vivo cambia en segundos: confirma en BWIN que siga igual o mejor antes de "
@@ -2462,7 +2471,7 @@ def _render_strengths_map(datos: pd.DataFrame) -> None:
         # Columnas angostas: que entren todos los mercados sin barra horizontal.
         column_config={"_index": st.column_config.Column("Liga", width=170),
                        **{m: st.column_config.Column(m, width=78) for m in texto.columns}})
-    st.caption("Cada celda: % de acierto real · cantidad de predicciones. Azul = acierta más de lo que el "
+    ayuda("Cada celda: % de acierto real · cantidad de predicciones. Azul = acierta más de lo que el "
                "modelo esperaba (fortaleza); rojo = menos (debilidad); gris = según lo esperado. "
                "**Haz clic en una celda** para ver abajo sus partidos.")
 
@@ -2584,7 +2593,7 @@ def _render_slip_check() -> None:
 
 def _render_my_bets(desde, hasta) -> None:
     """Cupones reales del usuario (historial de bwin) resueltos con 365scores."""
-    st.caption("Pega aquí tu historial de bwin tal como lo copias de 'Mis apuestas' (puede incluir cupones ya "
+    ayuda("Pega aquí tu historial de bwin tal como lo copias de 'Mis apuestas' (puede incluir cupones ya "
                "cargados: se actualizan, no se duplican). Cada selección se resuelve sola con el marcador y las "
                "estadísticas finales de 365scores y se compara con lo que decía el modelo. 🔒 Los cupones se "
                "guardan solo en este PC (data/tracking/my_bets.csv no se sube a GitHub: el repo es público).")
@@ -2635,7 +2644,7 @@ def _render_my_bets(desde, hasta) -> None:
     presupuesto_mb = st.number_input(
         "Presupuesto diario (COP)", min_value=5_000, value=my_bets.PLAN_DAILY_BUDGET, step=5_000,
         key="mb_presupuesto", help="Lo máximo para apostar en un día; los cupones que lo superan se marcan.")
-    st.caption(
+    ayuda(
         f"Reglas (sacadas de tu propio historial): máximo {my_bets.PLAN_MAX_LEGS} selecciones por cupón (mejor "
         f"sencillas) · máximo {my_bets.PLAN_MAX_DAILY_BETS} apuestas por día, cada una de no más de "
         f"1/{my_bets.PLAN_MAX_DAILY_BETS} del presupuesto · cada selección de 1X2 / empate no válido / doble "
@@ -2679,7 +2688,7 @@ def _render_my_bets(desde, hasta) -> None:
             "ganancia": st.column_config.NumberColumn("Ganancia neta", format="$%d"),
             "retorno_pct": st.column_config.NumberColumn("Retorno", format="%+.0f%%"),
         })
-        st.caption("La cuota de cada selección se estima como la raíz de la cuota del cupón (bwin no la muestra por "
+        ayuda("La cuota de cada selección se estima como la raíz de la cuota del cupón (bwin no la muestra por "
                    "separado): es aproximada. Las reglas del plan salieron de estos mismos cupones, así que el "
                    "resultado positivo hay que confirmarlo con las semanas siguientes — por eso conviene seguir "
                    "cargando el historial.")
@@ -2721,7 +2730,7 @@ def _render_my_bets(desde, hasta) -> None:
     tabla_m["acierto_pct"] = 100 * tabla_m["aciertos"] / tabla_m["predicciones"]
     if not tabla_m.empty:
         st.altair_chart(_bars_vs_expected(tabla_m, "mercado", "Mercado"), use_container_width=True)
-        st.caption("Barra azul: tu acierto · marca naranja: la probabilidad media que el modelo les daba a esas "
+        ayuda("Barra azul: tu acierto · marca naranja: la probabilidad media que el modelo les daba a esas "
                    "selecciones (solo 1X2, empate no válido, doble oportunidad, ambos marcan y goles 2.5; corners y "
                    "tarjetas no tienen marca).")
     # --- ¿Con o sin el modelo? ---
@@ -2890,7 +2899,7 @@ def _render_day_matches(log_pred: pd.DataFrame, log_tips: pd.DataFrame, ligas: l
                         legend=alt.Legend(orient="top")))
     texto = base.mark_text(fontSize=11, color="#ffffff").encode(text="etiqueta:N")
     st.altair_chart((celdas + texto).properties(height=alt.Step(38)), use_container_width=True)
-    st.caption(("Cada celda es el pick del modelo para ese mercado" if tipo == reports.TIPO_MODELO
+    ayuda(("Cada celda es el pick del modelo para ese mercado" if tipo == reports.TIPO_MODELO
                 else f"Cada celda es un pick que entró en boletos del plan '{tipo}' de Tips")
                + " (con su probabilidad): ✔ acertado · ✘ fallado · · pendiente. Doble oportunidad = la más "
                "probable entre 1X y X2. Corners/faltas/tarjetas: más o menos que la línea (se resuelven cuando "
@@ -2899,7 +2908,7 @@ def _render_day_matches(log_pred: pd.DataFrame, log_tips: pd.DataFrame, ligas: l
 
 with tab_reportes:
     st.title("📊 Reportes")
-    st.caption(
+    ayuda(
         "Qué tan bien acertaron las predicciones del modelo y los boletos de Tips, por día, liga, equipo y "
         "mercado. 'Esperado' es la probabilidad que el modelo le daba a su pick: si el acierto real queda por "
         "encima, es una fortaleza; por debajo, una debilidad. Corners, faltas y tarjetas se comparan contra "
@@ -3040,7 +3049,7 @@ with tab_reportes:
                 grafico = grafico.head(MAX_TEAMS_CHART).sort_values("diferencia", ascending=False)
                 st.markdown("**Acierto real − esperado por equipo** (puntos porcentuales)")
                 st.altair_chart(_diverging_bars(grafico, "equipo", "Equipo"), use_container_width=True)
-                st.caption("Azul a la derecha: con ese equipo el modelo acierta más de lo que esperaba (fortaleza). "
+                ayuda("Azul a la derecha: con ese equipo el modelo acierta más de lo que esperaba (fortaleza). "
                            "Rojo a la izquierda: acierta menos (debilidad)."
                            + (f" Se muestran los {MAX_TEAMS_CHART} con la diferencia más marcada de {len(tabla)}; "
                               "la tabla de abajo tiene todos." if len(tabla) > MAX_TEAMS_CHART else ""))
@@ -3181,7 +3190,7 @@ def _render_special_detail(picks: pd.DataFrame) -> None:
 
 def render_advanced_tab() -> None:
     st.title("🧪 Avanzada — mercados especiales")
-    st.caption(
+    ayuda(
         "Hándicap asiático y de 3 vías, empate no válido, mercados por tiempo, goles por equipo, valla invicta, "
         "primer gol, penal, tarjeta roja, tiros al arco, fueras de juego y goleadores. Cada partido se predijo "
         "solo con los partidos anteriores (sin trampa) y se compara contra lo que pasó.")
@@ -3284,7 +3293,7 @@ def render_advanced_tab() -> None:
             regla = alt.Chart(pd.DataFrame({"x": [umbral * 100]})).mark_rule(color="#e8a33a", strokeDash=[4, 3]
                                                                             ).encode(x="x:Q")
             st.altair_chart((barras + marca + regla).properties(height=alt.Step(30)), use_container_width=True)
-            st.caption("Barra azul: acierto de los picks del modelo · marca gris: con qué frecuencia sale el mercado "
+            ayuda("Barra azul: acierto de los picks del modelo · marca gris: con qué frecuencia sale el mercado "
                        "en todos los partidos · línea naranja: el umbral. Arriba, los mercados donde el modelo más aporta. "
                        "Solo mercados con 30 picks o más.")
         if not cand.empty:
@@ -3365,7 +3374,7 @@ def render_advanced_tab() -> None:
                                                                   help="Sus picks más recientes: la prueba."),
                 "piso_pct": st.column_config.NumberColumn("Piso", format="%.0f%%"),
             })
-            st.caption("El equipo puede ser el favorito o el no favorito del pick (ej. 'No favorito +1.5' cuenta "
+            ayuda("El equipo puede ser el favorito o el no favorito del pick (ej. 'No favorito +1.5' cuenta "
                        "para el equipo chico). Con muchos equipos × mercados, algunos patrones salen por azar: "
                        "por eso el filtro de consistencia y el piso.")
             if not p.empty:
@@ -3398,7 +3407,7 @@ def render_advanced_tab() -> None:
                 "anota_pct": st.column_config.NumberColumn("Anota en", format="%.0f%%",
                                                           help="Partidos con gol / partidos del EQUIPO."),
             })
-            st.caption("'Anota en' = en qué % de los partidos de su equipo marcó (temporada actual y anterior). Sin "
+            ayuda("'Anota en' = en qué % de los partidos de su equipo marcó (temporada actual y anterior). Sin "
                        "alineaciones no se sabe cuántos jugó: si se perdió partidos, su % real es mayor. Ni los "
                        "mejores pasan de ~60%: 'goles de jugador' no llega a 75% en ningún caso; sirve para "
                        "comparar contra la cuota de 'anota en cualquier momento'.")
