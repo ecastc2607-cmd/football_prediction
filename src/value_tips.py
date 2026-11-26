@@ -310,6 +310,17 @@ TEAM_STAT_TIPS_MARKET = "Tiros al arco por equipo"  # pick: "<equipo>: Más de 3
 # mercado (tipo de línea de 365) en el partido. Tiros al arco por equipo no
 # tiene línea propia en 365: se toma el total de tiros al arco como señal.
 BWIN_REQUIRED_MARKET = {"Fueras de juego": 140, "Tiros al arco": 139, TEAM_STAT_TIPS_MARKET: 139}
+# Prioridades del usuario (nov-2026), porque las casas a veces bloquean tiros al
+# arco y fueras de juego:
+#  - Goles: si ni Más ni Menos de 2.5 llega al MIN_MODEL_PROB, se ofrece Más de
+#    1.5 (probabilidad recalibrada) en cualquier liga donde Goles no esté excluido.
+#    Backtest: calibrado (78% prometido, 77% real) pero a la cuota de BWIN (~1,26)
+#    sin ganancia en general: la regla de valor decide si se apuesta.
+#  - Corners: Más de 7.5 en todas las ligas desde 70% (acierta 73% contra 70% de
+#    la frecuencia de la línea; entre 65% y 70% no le gana a la frecuencia).
+GOALS_FALLBACK_MARKET = "Más de 1.5 goles"
+CORNERS_PRIORITY_MARKET = "Corners: más de 7.5"
+CORNERS_PRIORITY_PROB = 0.70
 # Nombre del mercado en Tips / tips_log y cómo se arma el pick.
 SPECIAL_TIPS_MARKET = {
     "Favorito empate no válido (HA 0)": ("Empate no válido", "fav", None),
@@ -641,11 +652,32 @@ def special_candidates(day_predictions: pd.DataFrame, lines_for) -> pd.DataFrame
         except (TypeError, ValueError, KeyError):
             continue
         fav_local = hx >= ax
+        # "Baja confianza" es del modelo de GOLES (pocos partidos propios en la
+        # copa, típico de Europa/Conference League en fase de liga): en esos
+        # partidos no hay picks de goles, pero sí de estadísticas, que salen de
+        # otro modelo (corners, tarjetas... de match_stats_log).
+        baja = str(r.get("low_confidence", False)).lower() in ("true", "1")
+        probs_goles = [] if baja else \
+            sm.goal_market_probs(sm.Match(hx, ax, share.get(comp, sm.DEFAULT_FIRST_HALF_SHARE)))
         # Menos de 3.5 va por regla de consenso (CONSENSUS_MARKETS) en cualquier liga.
-        picks = [(merc, prob, p_dev) for _, merc, prob, p_dev in
-                 sm.goal_market_probs(sm.Match(hx, ax, share.get(comp, sm.DEFAULT_FIRST_HALF_SHARE)))
+        picks = [(merc, prob, p_dev) for _, merc, prob, p_dev in probs_goles
                  if (merc in CONSENSUS_MARKETS and prob >= CONSENSUS_MIN_PROB)
                  or (merc not in CONSENSUS_MARKETS and (comp, merc) in permitidos and prob >= sm.min_prob_for(merc))]
+        # Respaldo de goles: el 2.5 no llega al umbral -> Más de 1.5 (recalibrado).
+        respaldo = {}
+        if probs_goles and "Goles" not in EXCLUDED_MARKETS.get(comp, set()) \
+                and GOALS_FALLBACK_MARKET not in [p[0] for p in picks]:
+            from .calibration import recalibrate_over
+            try:
+                p25 = recalibrate_over(float(r["over_2_5"]) / 100)
+            except (TypeError, ValueError, KeyError):
+                p25 = None
+            if p25 is not None and max(p25, 1 - p25) < MIN_MODEL_PROB:
+                for _, merc, prob, p_dev in probs_goles:
+                    p15 = recalibrate_over(prob, 1.5) if merc == GOALS_FALLBACK_MARKET else 0
+                    if p15 >= MIN_MODEL_PROB:
+                        picks.append((merc, p15, p_dev))
+                        respaldo[merc] = p25
         # Tiros al arco / fueras de juego en las líneas que el backtest aprueba en la liga.
         stat_picks = []
         for col, nombre in STAT_TIPS.items():
@@ -655,7 +687,8 @@ def special_candidates(day_predictions: pd.DataFrame, lines_for) -> pd.DataFrame
                     break
                 for lado, prob in (("más", pr["p_mas"]), ("menos", 1 - pr["p_mas"])):
                     merc = f"{nombre}: {lado} de {linea:g}"
-                    if (comp, merc) in permitidos and prob >= sm.min_prob_for(merc):
+                    if ((comp, merc) in permitidos and prob >= sm.min_prob_for(merc)) \
+                            or (merc == CORNERS_PRIORITY_MARKET and prob >= CORNERS_PRIORITY_PROB):
                         stat_picks.append((merc, nombre, lado, linea, prob, pr["esperado"], None))
         # Por equipo (tiros al arco del local / del visitante).
         for col, (nombre, lineas_eq) in sm.TEAM_STAT_LINES.items():
@@ -713,7 +746,8 @@ def special_candidates(day_predictions: pd.DataFrame, lines_for) -> pd.DataFrame
                 pick = equipo
             else:
                 pick = extra
-            prob_cal = min(max(prob + correccion.get(merc, 0.0), 0.01), 0.99)
+            # El respaldo ya viene recalibrado: no se le suma la corrección del backtest.
+            prob_cal = min(max(prob + (0.0 if merc in respaldo else correccion.get(merc, 0.0)), 0.01), 0.99)
             filas.append({
                 "competition": r.get("competition"), "competition_name": r.get("competition_name", ""),
                 "utc_date": r["utc_date"], "home_team": r["home_team"], "away_team": r["away_team"],
@@ -726,6 +760,8 @@ def special_candidates(day_predictions: pd.DataFrame, lines_for) -> pd.DataFrame
                 + (f" (Si se devuelve: {p_dev:.0%} de probabilidad; la prob. es sin contar devolución.)"
                    if p_dev else "")
                 + (f" Regla de consenso: se apuesta solo si el modelo ({prob:.0%}) y la casa coinciden a ≤10 pts; "
-                   "monto fijo chico." if merc in CONSENSUS_MARKETS else ""),
+                   "monto fijo chico." if merc in CONSENSUS_MARKETS else "")
+                + (f" Respaldo de goles: el 2.5 no llegó al {MIN_MODEL_PROB:.0%} (más {respaldo[merc]:.0%} / menos "
+                   f"{1 - respaldo[merc]:.0%})." if merc in respaldo else ""),
             })
     return pd.DataFrame(filas)

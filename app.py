@@ -1673,10 +1673,11 @@ with tab_tips:
             candidatos = pd.concat([candidatos, totales], ignore_index=True)
         # Mercados especiales (vista Avanzada, experimental): solo los que el
         # backtest aprueba en esa liga y que BWIN ofrece, con su cuota real.
-        sin_baja = dia[~dia.get("low_confidence", False).astype(bool)] if not dia.empty else dia
+        # Todos los partidos: en los de baja confianza (modelo de goles con poca
+        # muestra, típico de Europa/Conference League) solo entran estadísticas.
         try:
             especiales = special_candidates(
-                sin_baja, lambda r: load_bwin_special_lines(r["competition"], r["home_team"], r["away_team"],
+                dia, lambda r: load_bwin_special_lines(r["competition"], r["home_team"], r["away_team"],
                                                             r["utc_date"]))
         except Exception as e:
             st.caption(f"⚠ Mercados especiales: {e}")
@@ -1690,7 +1691,7 @@ with tab_tips:
                        "otra línea): queda el de mejor valor contra su cuota, o el de más fuerza si no hay cuota.")
 
         st.caption(f"{len(dia)} partidos por jugar ese día · {len(candidatos)} picks con ≥{MIN_MODEL_PROB:.0%} "
-                   "en partidos sin baja confianza"
+                   "(goles y resultado solo en partidos sin baja confianza; estadísticas en todos)"
                    + (f" (incluye {len(totales)} de corners/tarjetas)" if not totales.empty else "")
                    + (f" (incluye {len(especiales)} de mercados especiales, ver 🧪 Avanzada)"
                       if not especiales.empty else "") + ".")

@@ -312,7 +312,7 @@ def capture_daily_tips(fecha: str) -> int:
         candidatos = pd.concat([candidatos, totales.assign(cuota=totales["cuota_auto"])], ignore_index=True)
     try:  # mercados especiales (vista Avanzada): solo los aprobados por el backtest
         from . import special_markets
-        especiales = special_candidates(sin_baja, lambda r: special_markets.bwin_lines_for(
+        especiales = special_candidates(preds, lambda r: special_markets.bwin_lines_for(
             r["competition"], r["home_team"], r["away_team"], r["utc_date"]))
         if not especiales.empty:
             candidatos = pd.concat([candidatos, especiales.assign(cuota=especiales["cuota_auto"])],
