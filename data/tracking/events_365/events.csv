@@ -40585,3 +40585,15 @@ game_id,side,minute,added_time,half,type,subtype,player
 4828886,away,84.0,0,2,Yellow Card,,Fabio Fehr
 4828886,away,88.0,0,2,Woodwork,,Furkan Dursun
 4828886,home,89.0,0,2,Goal,Field Goal,Steven Berghuis
+4828881,home,15.0,0,1,Woodwork,,Sabah Kerjota
+4828881,home,15.0,0,1,Goal,Field Goal,Jordi Altena
+4828881,away,25.0,0,1,Goal,Penalty,Folarin Balogun
+4828881,away,28.0,0,1,Yellow Card,,Matthis Abline
+4828881,away,41.0,0,1,Goal,Field Goal,Edan Diop
+4828881,away,43.0,0,1,Yellow Card,,Takumi Minamino
+4828881,home,44.0,0,1,Goal,Field Goal,Sabah Kerjota
+4828881,away,50.0,0,2,Yellow Card,,Christian Mawissa
+4828881,away,68.0,0,2,Yellow Card,,Mathys Detourbet
+4828881,home,75.0,0,2,Yellow Card,,Jordi Altena
+4828881,home,84.0,0,2,Yellow Card,,Pierre Landry Kabore
+4828881,away,90.0,4,2,Goal,Field Goal,Folarin Balogun
