@@ -309,7 +309,8 @@ TEAM_STAT_TIPS_MARKET = "Tiros al arco por equipo"  # pick: "<equipo>: Más de 3
 # juego ni tiros al arco. Esos picks entran a Tips solo si BWIN publica ese
 # mercado (tipo de línea de 365) en el partido. Tiros al arco por equipo no
 # tiene línea propia en 365: se toma el total de tiros al arco como señal.
-BWIN_REQUIRED_MARKET = {"Fueras de juego": 140, "Tiros al arco": 139, TEAM_STAT_TIPS_MARKET: 139}
+BWIN_REQUIRED_MARKET = {"Fueras de juego": 140, "Tiros al arco": 139, TEAM_STAT_TIPS_MARKET: 139,
+                        "Más tiros al arco": 139}
 # Prioridades del usuario (nov-2026), porque las casas a veces bloquean tiros al
 # arco y fueras de juego:
 #  - Goles: si ni Más ni Menos de 2.5 llega al MIN_MODEL_PROB, se ofrece Más de
@@ -327,12 +328,18 @@ MORE_CARDS_MIN_PROB = 0.48
 # special_markets.MORE_CORNERS_RECAL). Tampoco está en BWIN/365: cuota manual.
 MORE_CORNERS_MARKET = "Más corners"
 MORE_CORNERS_MIN_PROB = 0.60
+# Más tiros al arco: desde 65% (recalibrado; ver special_markets.MORE_SOT_RECAL).
+# Como los demás de tiros al arco, solo si BWIN abre tiros al arco en el partido.
+MORE_SOT_MARKET = "Más tiros al arco"
+MORE_SOT_MIN_PROB = 0.65
 # (mercado, función de special_markets, umbral, qué se cuenta, acierto y base del backtest)
 MORE_MARKETS = [
     (MORE_CARDS_MARKET, "more_cards_prediction", MORE_CARDS_MIN_PROB, "tarjetas (amarillas + rojas)",
      "recibe", "acierta ~49% cuando dice ≥48%, contra ~45% sin modelo"),
     (MORE_CORNERS_MARKET, "more_corners_prediction", MORE_CORNERS_MIN_PROB, "corners", "saca",
      "acierta ~64% cuando dice ≥60%, contra ~56% sin modelo"),
+    (MORE_SOT_MARKET, "more_sot_prediction", MORE_SOT_MIN_PROB, "tiros al arco", "hace",
+     "acierta ~72% cuando dice ≥65%, contra ~56% sin modelo"),
 ]
 GOALS_FALLBACK_MARKET = "Más de 1.5 goles"
 CORNERS_PRIORITY_MARKET = "Corners: más de 7.5"
@@ -486,7 +493,7 @@ TEAM_FORM_GAMES = 10
 TEAM_FORM_MIN = 3
 _STAT_PICK_COL = {"Corners": "cor", "Tarjetas": "tar", "Fueras de juego": "off", "Tiros al arco": "sot",
                   "Faltas": "fal", "Remates totales": "sho", TEAM_STAT_TIPS_MARKET: "sot", "Más tarjetas": "tar",
-                  "Más corners": "cor"}
+                  "Más corners": "cor", "Más tiros al arco": "sot"}
 _FORM_CACHE: dict = {}
 
 
@@ -545,7 +552,7 @@ def _form_event(mercado: str, pick: str, home: str, away: str):
             return "stats", ev, m.group(1)
         return "stats", lambda f, _: (f[f"{col}_own"] + f[f"{col}_opp"] > linea) if mas else \
             (f[f"{col}_own"] + f[f"{col}_opp"] < linea), None
-    if mercado in (MORE_CARDS_MARKET, MORE_CORNERS_MARKET):  # "<equipo> (más tarjetas que <rival>)"
+    if mercado in (MORE_CARDS_MARKET, MORE_CORNERS_MARKET, MORE_SOT_MARKET):  # "<equipo> (más X que <rival>)"
         col = _STAT_PICK_COL[mercado]
         equipo = str(pick).split(" (más ")[0]
         return "stats", lambda f, propio: (f[f"{col}_own"] > f[f"{col}_opp"]) if propio else \
@@ -723,7 +730,8 @@ def special_candidates(day_predictions: pd.DataFrame, lines_for) -> pd.DataFrame
                         merc = f"{nombre} {sm.SIDE_NAMES[side]}: {lado} de {linea:g}"
                         if (comp, merc) in permitidos and prob >= sm.min_prob_for(merc):
                             stat_picks.append((merc, TEAM_STAT_TIPS_MARKET, lado, linea, prob, pr["esperado"], equipo))
-        # Más tarjetas / Más corners: el equipo con más probabilidad de superar al rival.
+        # Más tarjetas / corners / tiros al arco: el equipo con más probabilidad de superar al rival.
+        mas_filas = []
         for mercado_mt, funcion, umbral, que, verbo, backtest in MORE_MARKETS:
             mt = getattr(sm, funcion)(comp, r["home_team"], r["away_team"])
             if not mt:
@@ -735,7 +743,7 @@ def special_candidates(day_predictions: pd.DataFrame, lines_for) -> pd.DataFrame
             equipo_mt, rival_mt = (r["home_team"], r["away_team"]) if lado_mt == "home" else (r["away_team"], r["home_team"])
             corto_mt, rival_corto = (hs, as_) if lado_mt == "home" else (as_, hs)
             corto_que = que.split(" (")[0]
-            filas.append({
+            mas_filas.append({
                 "competition": r.get("competition"), "competition_name": r.get("competition_name", ""),
                 "utc_date": r["utc_date"], "home_team": r["home_team"], "away_team": r["away_team"],
                 "home_team_short": hs, "away_team_short": as_, "partido": f"{hs} vs {as_}",
@@ -750,7 +758,7 @@ def special_candidates(day_predictions: pd.DataFrame, lines_for) -> pd.DataFrame
                     f"{mt['esp_away']:.1f}. Backtest: {backtest}. "
                     "BWIN no lo publica: escribe la cuota de tu casa en 'Cuota manual'."),
             })
-        if not picks and not stat_picks:
+        if not picks and not stat_picks and not mas_filas:
             continue
         lineas = lines_for(r)
         if lineas is None or lineas.empty:
@@ -759,6 +767,8 @@ def special_candidates(day_predictions: pd.DataFrame, lines_for) -> pd.DataFrame
         tipos = set(pd.to_numeric(lineas["line_type_id"], errors="coerce").dropna().astype(int))
         stat_picks = [s for s in stat_picks
                       if BWIN_REQUIRED_MARKET.get(s[1]) is None or BWIN_REQUIRED_MARKET[s[1]] in tipos]
+        filas += [f for f in mas_filas
+                  if BWIN_REQUIRED_MARKET.get(f["mercado"]) is None or BWIN_REQUIRED_MARKET[f["mercado"]] in tipos]
         if lineas.empty and not stat_picks:
             continue
         home_short = r.get("home_team_short") or r["home_team"]

@@ -219,12 +219,13 @@ def alarm(d: pd.DataFrame, mercado: str, pick: str, home: str, away: str,
     if mercado == "Hándicap asiático" and h:
         return por_ganar(lado_de(h.group(1)), "positivo" if float(h.group(2)) > 0 else "gana")
 
-    if mercado in ("Más tarjetas", "Más corners"):  # el equipo del pick promedia menos que el rival en 365
+    if mercado in ("Más tarjetas", "Más corners", "Más tiros al arco"):  # el del pick promedia menos en 365
         lado = lado_de(pick.split(" (más ")[0])
         if lado is None:
             return ""
         otro = "away" if lado == "home" else "home"
-        sid, margen, que = (174, 0.3, "tarjetas") if mercado == "Más tarjetas" else (171, 1.0, "corners")
+        sid, margen, que = {"Más tarjetas": (174, 0.3, "tarjetas"), "Más corners": (171, 1.0, "corners"),
+                            "Más tiros al arco": (168, 1.0, "tiros al arco")}[mercado]
         a, b = v[lado].get(sid), v[otro].get(sid)
         if a is not None and b is not None and b - a >= margen:
             return f"⚠ 365: {nombres[lado]} promedia {a:.2f} {que} por partido y {nombres[otro]} {b:.2f}"
