@@ -406,6 +406,36 @@ def load_day_predictions(fecha_iso: str) -> pd.DataFrame:
     return todo.drop_duplicates(subset=["home_team", "away_team", "utc_date"]).sort_values("utc_date")
 
 
+# Estadísticas previas de 365 (columna y detalle de la Jornada): del archivo
+# que guarda la captura automática; los partidos que aún no estén, en vivo.
+@st.cache_data(ttl=3 * 3600, show_spinner="Trayendo estadísticas de 365scores...")
+def load_pregame_stats(code: str, partidos: tuple) -> tuple[dict, pd.DataFrame]:
+    """`partidos`: ((home, away, utc_date, home_short, away_short), ...).
+    Devuelve ({(home, away, utc_date): game_id de 365}, filas de pregame_stats)."""
+    from src import pregame_stats
+    if not partidos:
+        return {}, pd.DataFrame()
+    fechas = sorted(p[2] for p in partidos)
+    desde = (pd.Timestamp(fechas[0]) - pd.Timedelta(hours=12)).strftime("%Y-%m-%dT%H:%M:%SZ")
+    hasta = (pd.Timestamp(fechas[-1]) + pd.Timedelta(hours=12)).strftime("%Y-%m-%dT%H:%M:%SZ")
+    try:
+        juegos = scores365.games(code, desde, hasta)
+    except Exception:
+        juegos = []
+    eventos = [{"game_id": g["id"], "home_team": (g.get("homeCompetitor") or {}).get("name"),
+                "away_team": (g.get("awayCompetitor") or {}).get("name"),
+                "commence_time": scores365._utc(g.get("startTime"))} for g in juegos]
+    ids = {}
+    for home, away, fecha, h_s, a_s in partidos:
+        ev = odds_api.find_event(eventos, home, away, fecha, h_s, a_s) if eventos else None
+        ids[(home, away, fecha)] = int(ev["game_id"]) if ev else None
+    guardadas = pregame_stats.load()
+    tengo = set(pd.to_numeric(guardadas["game_id"], errors="coerce").dropna().astype(int)) if not guardadas.empty else set()
+    nuevas = [pregame_stats.fetch(gid, code) for gid in ids.values() if gid is not None and gid not in tengo]
+    partes = [x for x in [guardadas, *nuevas] if not x.empty]
+    return ids, (pd.concat(partes, ignore_index=True) if partes else pd.DataFrame(columns=pregame_stats.COLUMNS))
+
+
 # Líneas de BWIN de un partido (mercados especiales; Tips y vista Avanzada).
 @st.cache_data(ttl=600, show_spinner=False)
 def load_bwin_special_lines(code: str, home: str, away: str, utc_date: str):
@@ -1152,6 +1182,19 @@ with tab_jornada:
             + f" ({pk['prob']:.0%})" for pk in especiales]
         show["_especial_mercado"] = [pk["mercado"] if pk else None for pk in especiales]
         columnas_tabla += ["Fueras de juego", "Tiros al arco", "Especial (Avanzada)"]
+
+        # --- Estadísticas de 365scores (últimos partidos de cada equipo, todas las competiciones) ---
+        from src import pregame_stats
+        try:
+            ids_365, stats_365 = load_pregame_stats(comp_code, tuple(
+                (r.home_team, r.away_team, r.utc_date, r.home_team_short, r.away_team_short)
+                for r in show.itertuples()))
+        except Exception:
+            ids_365, stats_365 = {}, pd.DataFrame()
+        filas_365 = {i: pregame_stats.for_match(stats_365, ids_365.get((r.home_team, r.away_team, r.utc_date)))
+                     for i, r in zip(show.index, show.itertuples())}
+        show["Estadísticas 365"] = [pregame_stats.compact(filas_365[i]) for i in show.index]
+        columnas_tabla += ["Estadísticas 365"]
         st.caption(
             "🚩 **Fueras de juego / 🎯 Tiros al arco**: total de los dos equipos (mismo modelo que corners/"
             "tarjetas: promedios de cada equipo + binomial negativa) contra la línea principal de BWIN; entre "
@@ -1191,8 +1234,27 @@ with tab_jornada:
             column_config={"Partido": st.column_config.Column(pinned=True),
                            "Fuerza (mayor → menor)": st.column_config.Column(
                                width="large", help="Mercados de este partido ordenados de más fuerte a más débil "
-                                                   "según Reportes (puntos de acierto real − esperado).")},
+                                                   "según Reportes (puntos de acierto real − esperado)."),
+                           "Estadísticas 365": st.column_config.Column(
+                               width="large", help="De 365scores, local/visitante, en sus últimos partidos de todas "
+                                                   "las competiciones: Gan = partidos ganados, Ambos = ambos marcaron, "
+                                                   "+2.5 = más de 2.5 goles, Invicta = valla invicta (en %); "
+                                                   "Corners y Tarj = promedio por partido. Detalle debajo de la tabla.")},
         )
+        with st.expander("📊 Estadísticas de 365scores por partido (últimos partidos, todas las competiciones)"):
+            con_365 = [i for i in show.index if not filas_365[i].empty]
+            if not con_365:
+                st.caption("365scores todavía no tiene estadísticas previas de estos partidos.")
+            else:
+                elegido = st.selectbox("Partido", con_365, format_func=lambda i: show.at[i, "Partido"],
+                                       key=f"stats365_{comp_code}_{matchday}")
+                d = filas_365[elegido]
+                txt = d.drop_duplicates("side").set_index("side")["games_text"]
+                local_lbl = f"{show.at[elegido, 'home_team_short']} ({txt.get('home', '')})"
+                visita_lbl = f"{show.at[elegido, 'away_team_short']} ({txt.get('away', '')})"
+                st.dataframe(pregame_stats.detail_table(d, local_lbl, visita_lbl), hide_index=True, width="stretch")
+                st.caption(f"Foto tomada {format_bogota(d['fetched_at'].iloc[0])} (hora Colombia). Las cifras cambian "
+                           "cada vez que el equipo juega; la captura automática guarda una por partido antes del inicio.")
         st.caption(
             "🎨 **Color = fuerza del modelo en ese mercado según Reportes**: azul = acierta más de lo que "
             "espera (fortaleza), rojo = acierta menos (debilidad), gris = según lo esperado, sin color = sin "

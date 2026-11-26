@@ -68,6 +68,7 @@ TRACKED_FILES = [
     "data/tracking/live_snapshots.csv",
     "data/tracking/events_365",  # eventos y cuotas especiales (vista Avanzada)
     "data/tracking/special_markets_backtest.csv.gz", "data/tracking/special_markets_share.csv",
+    "data/tracking/pregame_stats.csv",  # estadísticas previas de 365 (columna de la Jornada)
 ]
 
 
@@ -355,6 +356,25 @@ def capture_prematch(games: list[dict]) -> int:
     return total
 
 
+def capture_pregame_stats(games: list[dict]) -> int:
+    """Una foto de las estadísticas previas de 365 (pregame_stats) por partido
+    que empieza dentro de PREMATCH_HOURS. Devuelve cuántos partidos guardó."""
+    from . import pregame_stats
+
+    ahora = datetime.now(timezone.utc)
+    limite = ahora + timedelta(hours=PREMATCH_HOURS)
+    proximos = []
+    for g in games:
+        inicio = scores365._utc(g.get("startTime"))
+        if g.get("statusGroup") != scores365.STATUS_SCHEDULED or not inicio:
+            continue
+        t = datetime.strptime(inicio, "%Y-%m-%dT%H:%M:%SZ").replace(tzinfo=timezone.utc)
+        if ahora < t <= limite:
+            proximos.append(g)
+    ids = {v: k for k, v in scores365.COMPETITION_IDS.items()}
+    return pregame_stats.record(proximos, ids) if proximos else 0
+
+
 def commit_if_changed() -> None:
     raiz = str(config.ROOT_DIR)
     rutas = [f for f in TRACKED_FILES if (config.ROOT_DIR / f).exists()]  # git add falla con rutas inexistentes
@@ -405,6 +425,12 @@ def run_once() -> None:
     n_pre = capture_prematch(games)
     if n_pre:
         _log(f"prepartido: {n_pre} partidos con cuota")
+    try:
+        n_est = capture_pregame_stats(games)
+        if n_est:
+            _log(f"estadísticas previas 365: {n_est} partidos")
+    except Exception as e:
+        _log(f"estadísticas previas 365: error {e}")
     hoy_col = (datetime.now(timezone.utc) - timedelta(hours=5)).date().isoformat()
     from . import same_day
     if hoy_col not in _LOGGED_DAYS:  # las predicciones del día, una vez por día y antes del inicio
