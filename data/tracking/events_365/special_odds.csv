@@ -58384,3 +58384,97 @@ game_id,line_type_id,market,line,option,odds,opening_odds,won
 4828882,145,Away Team - Clean Sheet,,No,1.43,1.29,True
 4828882,13,Both Teams To Score 2nd Half,,Yes,3.25,2.95,False
 4828882,13,Both Teams To Score 2nd Half,,No,1.29,1.35,True
+4828871,1,Full Time Result,,1,1.14,1.19,True
+4828871,1,Full Time Result,,X,7.0,6.75,False
+4828871,1,Full Time Result,,2,17.0,11.0,False
+4828871,14,Double Chance,,1X,1.01,1.04,True
+4828871,14,Double Chance,,12,1.07,1.09,True
+4828871,14,Double Chance,,X2,5.75,4.4,False
+4828871,3,Total Goals In Match,3.5,Under,1.57,1.77,False
+4828871,3,Total Goals In Match,3.5,Over,2.25,1.93,True
+4828871,3,Total Goals In Match,2.5,Under,2.4,2.8,False
+4828871,3,Total Goals In Match,2.5,Over,1.49,1.38,True
+4828871,3,Total Goals In Match,4.5,Under,1.23,1.32,True
+4828871,3,Total Goals In Match,4.5,Over,3.8,3.1,False
+4828871,12,Both Teams To Score,,Yes,2.7,1.95,False
+4828871,12,Both Teams To Score,,No,1.4,1.73,True
+4828871,7,First To Score,,Home,1.21,1.26,True
+4828871,7,First To Score,,No Goal,17.0,21.0,False
+4828871,7,First To Score,,Away,4.53,3.62,False
+4828871,11,Asian Handicap,-2.25,Home,1.92,2.14,True
+4828871,11,Asian Handicap,-2.25,Away,1.87,1.67,False
+4828871,11,Asian Handicap,-2,Home,1.68,1.93,True
+4828871,11,Asian Handicap,-2,Away,2.16,1.88,False
+4828871,11,Asian Handicap,-2.5,Home,2.1,2.25,True
+4828871,11,Asian Handicap,-2.5,Away,1.7,1.57,False
+4828871,15,Draw No Bet,,Home,1.02,1.05,True
+4828871,15,Draw No Bet,,Away,14.5,9.5,False
+4828871,5,1st Half Result,,1,1.41,1.49,True
+4828871,5,1st Half Result,,X,3.25,3.2,False
+4828871,5,1st Half Result,,2,11.0,7.75,False
+4828871,6,2nd Half Result,,1,1.34,1.4,True
+4828871,6,2nd Half Result,,X,3.6,3.6,False
+4828871,6,2nd Half Result,,2,11.5,8.25,False
+4828871,9,1st Half Goals,1.5,Under,1.61,1.79,False
+4828871,9,1st Half Goals,1.5,Over,2.19,1.9,True
+4828871,9,1st Half Goals,2.5,Under,1.15,1.21,True
+4828871,9,1st Half Goals,2.5,Over,4.95,3.96,False
+4828871,9,1st Half Goals,0.5,Under,3.74,4.32,False
+4828871,9,1st Half Goals,0.5,Over,1.25,1.2,True
+4828871,137,Total Corners,9.5,Under,1.68,1.68,False
+4828871,137,Total Corners,9.5,Over,2.12,2.12,True
+4828871,137,Total Corners,8.5,Under,2.12,2.12,False
+4828871,137,Total Corners,8.5,Over,1.68,1.68,True
+4828871,144,Home Team - Clean Sheet,,Yes,1.53,1.91,True
+4828871,144,Home Team - Clean Sheet,,No,2.37,1.8,False
+4828871,145,Away Team - Clean Sheet,,Yes,13.0,13.0,False
+4828871,145,Away Team - Clean Sheet,,No,1.04,1.04,True
+4828871,13,Both Teams To Score 2nd Half,,Yes,4.8,3.5,False
+4828871,13,Both Teams To Score 2nd Half,,No,1.15,1.26,True
+4828874,1,Full Time Result,,1,8.75,9.75,True
+4828874,1,Full Time Result,,X,4.6,6.0,False
+4828874,1,Full Time Result,,2,1.33,1.23,False
+4828874,14,Double Chance,,1X,3.26,3.9,True
+4828874,14,Double Chance,,12,1.18,1.12,True
+4828874,14,Double Chance,,X2,1.07,1.05,False
+4828874,3,Total Goals In Match,2.5,Under,1.93,2.4,True
+4828874,3,Total Goals In Match,2.5,Over,1.75,1.49,False
+4828874,3,Total Goals In Match,1.5,Under,3.5,5.0,False
+4828874,3,Total Goals In Match,1.5,Over,1.28,1.15,True
+4828874,3,Total Goals In Match,3.5,Under,1.37,1.57,True
+4828874,3,Total Goals In Match,3.5,Over,2.85,2.25,False
+4828874,12,Both Teams To Score,,Yes,2.15,2.0,False
+4828874,12,Both Teams To Score,,No,1.62,1.68,True
+4828874,7,First To Score,,Home,3.63,3.78,True
+4828874,7,First To Score,,No Goal,11.0,17.0,False
+4828874,7,First To Score,,Away,1.34,1.26,False
+4828874,11,Asian Handicap,1.5,Home,1.82,2.19,True
+4828874,11,Asian Handicap,1.5,Away,1.97,1.65,False
+4828874,11,Asian Handicap,1.25,Home,2.06,2.58,True
+4828874,11,Asian Handicap,1.25,Away,1.71,1.46,False
+4828874,11,Asian Handicap,1.75,Home,1.62,1.99,True
+4828874,11,Asian Handicap,1.75,Away,2.24,1.79,False
+4828874,15,Draw No Bet,,Home,8.0,8.25,True
+4828874,15,Draw No Bet,,Away,1.09,1.06,False
+4828874,5,1st Half Result,,1,7.25,7.5,True
+4828874,5,1st Half Result,,X,2.4,2.87,False
+4828874,5,1st Half Result,,2,1.77,1.57,False
+4828874,6,2nd Half Result,,1,7.0,7.5,True
+4828874,6,2nd Half Result,,X,2.85,3.2,False
+4828874,6,2nd Half Result,,2,1.61,1.49,False
+4828874,9,1st Half Goals,1.5,Under,1.5,1.62,True
+4828874,9,1st Half Goals,1.5,Over,2.51,2.21,False
+4828874,9,1st Half Goals,2.5,Under,1.1,1.16,True
+4828874,9,1st Half Goals,2.5,Over,6.5,4.95,False
+4828874,9,1st Half Goals,0.5,Under,3.28,3.78,False
+4828874,9,1st Half Goals,0.5,Over,1.34,1.26,True
+4828874,137,Total Corners,8.5,Under,1.98,2.08,True
+4828874,137,Total Corners,8.5,Over,1.71,1.65,False
+4828874,137,Total Corners,9.5,Under,1.66,1.66,True
+4828874,137,Total Corners,9.5,Over,2.09,2.09,False
+4828874,144,Home Team - Clean Sheet,,Yes,8.0,10.0,True
+4828874,144,Home Team - Clean Sheet,,No,1.08,1.06,False
+4828874,145,Away Team - Clean Sheet,,Yes,1.83,1.9,False
+4828874,145,Away Team - Clean Sheet,,No,1.83,1.79,True
+4828874,13,Both Teams To Score 2nd Half,,Yes,4.0,3.6,False
+4828874,13,Both Teams To Score 2nd Half,,No,1.21,1.24,True
