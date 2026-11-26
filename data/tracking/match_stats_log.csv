@@ -7145,3 +7145,27 @@ ECL,2026,4.0,2026-11-26T20:00:00Z,Sporting Braga,KuPS,Sporting Braga,True,7.0,17
 ECL,2026,4.0,2026-11-26T20:00:00Z,Sporting Braga,KuPS,KuPS,False,3.0,8.0,2.0,0.0,41.0,2.0,4.0,2.0
 ECL,2026,4.0,2026-11-26T20:00:00Z,Inter Club d'Escaldes,København,Inter Club d'Escaldes,True,1.0,10.0,1.0,0.0,70.0,2.0,4.0,1.0
 ECL,2026,4.0,2026-11-26T20:00:00Z,Inter Club d'Escaldes,København,København,False,5.0,15.0,1.0,2.0,30.0,2.0,5.0,1.0
+EL,2026,5.0,2026-11-26T20:00:00Z,Olympique Lyonnais,Lillestrøm,Olympique Lyonnais,True,9.0,10.0,2.0,0.0,64.0,7.0,21.0,0.0
+EL,2026,5.0,2026-11-26T20:00:00Z,Olympique Lyonnais,Lillestrøm,Lillestrøm,False,6.0,15.0,2.0,0.0,36.0,1.0,10.0,1.0
+EL,2026,5.0,2026-11-26T20:00:00Z,Sunderland,Jagiellonia Białystok,Sunderland,True,8.0,15.0,1.0,0.0,50.0,7.0,16.0,0.0
+EL,2026,5.0,2026-11-26T20:00:00Z,Sunderland,Jagiellonia Białystok,Jagiellonia Białystok,False,3.0,11.0,2.0,0.0,50.0,5.0,12.0,1.0
+EL,2026,5.0,2026-11-26T20:00:00Z,Juventus FC,Omonia Nicosia,Juventus FC,True,5.0,8.0,1.0,0.0,60.0,9.0,23.0,2.0
+EL,2026,5.0,2026-11-26T20:00:00Z,Juventus FC,Omonia Nicosia,Omonia Nicosia,False,3.0,3.0,2.0,0.0,40.0,5.0,13.0,0.0
+EL,2026,5.0,2026-11-26T20:00:00Z,Sparta Praha,AZ,Sparta Praha,True,2.0,13.0,1.0,0.0,38.0,5.0,19.0,1.0
+EL,2026,5.0,2026-11-26T20:00:00Z,Sparta Praha,AZ,AZ,False,0.0,10.0,3.0,0.0,62.0,6.0,18.0,1.0
+EL,2026,5.0,2026-11-26T20:00:00Z,Hoffenheim,Sturm Graz,Hoffenheim,True,10.0,13.0,0.0,0.0,61.0,7.0,24.0,1.0
+EL,2026,5.0,2026-11-26T20:00:00Z,Hoffenheim,Sturm Graz,Sturm Graz,False,4.0,16.0,3.0,0.0,39.0,6.0,12.0,1.0
+EL,2026,5.0,2026-11-26T20:00:00Z,Ferencváros,Celje,Ferencváros,True,6.0,13.0,0.0,0.0,49.0,6.0,26.0,1.0
+EL,2026,5.0,2026-11-26T20:00:00Z,Ferencváros,Celje,Celje,False,2.0,16.0,1.0,0.0,51.0,2.0,6.0,3.0
+EL,2026,5.0,2026-11-26T20:00:00Z,OFI,Anderlecht,OFI,True,3.0,10.0,3.0,0.0,48.0,2.0,6.0,3.0
+EL,2026,5.0,2026-11-26T20:00:00Z,OFI,Anderlecht,Anderlecht,False,7.0,14.0,4.0,0.0,52.0,8.0,17.0,2.0
+EL,2026,5.0,2026-11-26T20:00:00Z,NEC,Rennes,NEC,True,1.0,18.0,3.0,0.0,52.0,4.0,16.0,0.0
+EL,2026,5.0,2026-11-26T20:00:00Z,NEC,Rennes,Rennes,False,5.0,11.0,3.0,0.0,48.0,8.0,21.0,2.0
+EL,2026,5.0,2026-11-26T20:00:00Z,Crystal Palace,Real Sociedad,Crystal Palace,True,2.0,10.0,2.0,0.0,43.0,4.0,16.0,0.0
+EL,2026,5.0,2026-11-26T20:00:00Z,Crystal Palace,Real Sociedad,Real Sociedad,False,7.0,10.0,4.0,1.0,57.0,7.0,19.0,1.0
+ECL,2026,4.0,2026-11-26T20:00:00Z,Gent,Crvena zvezda,Gent,True,3.0,12.0,1.0,0.0,29.0,3.0,10.0,1.0
+ECL,2026,4.0,2026-11-26T20:00:00Z,Gent,Crvena zvezda,Crvena zvezda,False,10.0,12.0,3.0,0.0,71.0,3.0,25.0,0.0
+ECL,2026,4.0,2026-11-26T20:00:00Z,Borac Banja Luka,Atalanta,Borac Banja Luka,True,4.0,15.0,2.0,2.0,36.0,2.0,13.0,0.0
+ECL,2026,4.0,2026-11-26T20:00:00Z,Borac Banja Luka,Atalanta,Atalanta,False,6.0,14.0,2.0,0.0,64.0,7.0,22.0,1.0
+ECL,2026,4.0,2026-11-26T20:00:00Z,Nordsjælland,Panathinaikos,Nordsjælland,True,5.0,15.0,2.0,0.0,41.0,2.0,12.0,3.0
+ECL,2026,4.0,2026-11-26T20:00:00Z,Nordsjælland,Panathinaikos,Panathinaikos,False,3.0,14.0,2.0,0.0,59.0,8.0,17.0,1.0

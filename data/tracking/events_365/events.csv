@@ -40618,3 +40618,90 @@ game_id,side,minute,added_time,half,type,subtype,player
 4828874,away,57.0,0,2,Red Card,,Ákos Markgráf
 4828874,home,59.0,0,2,Goal,Penalty,Faysal Chouaib
 4828874,home,83.0,0,2,Yellow Card,,Pablo Molina
+4828675,away,43.0,0,1,Yellow Card,,Felix Va
+4828675,away,49.0,0,2,Yellow Card,,Gustav Nyheim
+4828675,home,53.0,0,2,Yellow Card,,Steeve Kango
+4828675,home,86.0,0,2,Yellow Card,,Zachary Athekame
+4828676,home,37.0,0,1,Yellow Card,,Chris Rigg
+4828676,home,47.0,0,2,Goal,Field Goal,Timur Tuterov
+4828676,away,52.0,0,2,Goal,Field Goal,Kamil Jozwiak
+4828676,away,67.0,0,2,Yellow Card,,Eryk Kozlowski
+4828676,away,81.0,0,2,Yellow Card,,Jeremy Agbonifo
+4828677,away,10.0,0,1,Yellow Card,,Florin Tanase
+4828677,away,15.0,0,1,Goal,Field Goal,Lubomir Satka
+4828677,home,34.0,0,1,Yellow Card,,Jhon Lucumi
+4828677,home,37.0,0,1,Goal,Field Goal,Andrea Cambiaso
+4828677,home,43.0,0,1,Goal,Field Goal,Jeff Ekhator
+4828677,home,68.0,0,2,Goal,Field Goal,Francisco Conceição
+4828677,home,73.0,0,2,Goal,Field Goal,Jeremie Boga
+4828677,away,81.0,0,2,Yellow Card,,Jure Balkovec
+4828678,home,4.0,0,1,Goal,Field Goal,Jonatan Braut Brunes
+4828678,home,27.0,0,1,Goal,Field Goal,Patrik Vydra
+4828678,home,44.0,0,1,Yellow Card,,Josimar Alcócer
+4828678,away,52.0,0,2,Goal,Field Goal,Peer Koopmeiners
+4828678,away,58.0,0,2,Yellow Card,,Peer Koopmeiners
+4828678,away,64.0,0,2,Yellow Card,,Ayoub Oufkir
+4828678,home,67.0,0,2,Woodwork,,Ki-Jana Hoever
+4828678,away,68.0,0,2,Goal,Field Goal,Ro-Zangelo Daal
+4828678,away,73.0,0,2,Goal,Field Goal,Ayoub Oufkir
+4828678,away,84.0,0,2,Goal,Field Goal,Ayoub Oufkir
+4828678,away,90.0,2,2,Yellow Card,,Wesley Hoedt
+4828680,away,5.0,0,1,Yellow Card,,Luis Balbo
+4828680,away,43.0,0,1,Goal,Field Goal,Oumar Diakité
+4828680,away,56.0,0,2,Yellow Card,,Albert Vallci
+4828680,home,72.0,0,2,Goal,Field Goal,Adam Hložek
+4828680,home,80.0,0,2,Goal,Field Goal,Bambasé Conté
+4828680,away,89.0,0,2,Yellow Card,,Jon Stankovič
+4828680,home,90.0,0,2,Goal,Field Goal,Max Moerstedt
+4828681,away,42.0,0,1,Yellow Card,,Artemijus Tutyškinas
+4828682,home,11.0,0,1,Yellow Card,,Konstantinos Kostoulas
+4828682,away,20.0,0,1,Goal,Field Goal,Tawfik Bentayeb
+4828682,away,39.0,0,1,Goal,Field Goal,Thelo Aasgaard
+4828682,home,54.0,0,2,Goal,Penalty,Taxiarchis Fountas
+4828682,away,65.0,0,2,Yellow Card,,Ali Maamar
+4828682,away,67.0,0,2,Yellow Card,,Mihajlo Cvetković
+4828682,away,69.0,0,2,Yellow Card,,Giulian Biancone
+4828682,home,69.0,0,2,Yellow Card,,Nikos Athanasiou
+4828682,away,84.0,0,2,Yellow Card,,Mario Stroeykens
+4828682,home,90.0,4,2,Yellow Card,,Giannis Theodosoulakis
+4828682,away,90.0,5,2,Goal,Field Goal,Adriano Bertaccini
+4828683,home,15.0,0,1,Yellow Card,,Deveron Fonville
+4828683,home,29.0,0,1,Goal,Field Goal,Bryan Linssen
+4828683,away,36.0,0,1,Goal,Field Goal,Adrien Thomasson
+4828683,away,56.0,0,2,Yellow Card,,Adrien Thomasson
+4828683,away,59.0,0,2,Yellow Card,,Abdelhamid Ait Boudlal
+4828683,home,81.0,0,2,Goal,Penalty,Tjaronn Chery
+4828683,home,83.0,0,2,Yellow Card,,Willum Willumsson
+4828683,home,89.0,0,2,Goal,Field Goal,Clement Bischoff
+4828683,away,90.0,1,2,Yellow Card,,Charlie Cresswell
+4828683,home,90.0,2,2,Yellow Card,,Kevin Kers
+4828684,home,31.0,0,1,Yellow Card,,Axel Disasi
+4828684,away,64.0,0,2,Yellow Card,,Jon Martín
+4828684,away,66.0,0,2,Goal,Field Goal,Mamadou Sarr
+4828684,away,72.0,0,2,Yellow Card,,Unai Marrero
+4828684,away,72.0,0,2,Red Card,Second Yellow Card,Jon Martín
+4828684,home,73.0,0,2,Goal,Penalty,Jean Philippe Mateta
+4828684,home,75.0,0,2,Yellow Card,,Yeremy Pino
+4828684,away,75.0,0,2,Yellow Card,,Mikel Oyarzabal
+4828684,home,82.0,0,2,Goal,Field Goal,Dwight McNeil
+4828684,away,90.0,1,2,Yellow Card,,Carlos Soler
+4828684,home,90.0,3,2,Penalty Miss,,Yeremy Pino
+4828873,home,14.0,0,1,Yellow Card,,Siebe Van Der Heyden
+4828873,away,22.0,0,1,Yellow Card,,Rade Krunić
+4828873,home,26.0,0,1,Goal,Field Goal,Tiago Araujo
+4828873,away,41.0,0,1,Yellow Card,,Matej Gashtarov
+4828873,away,79.0,0,2,Yellow Card,,Stefan Gudelj
+4828873,away,85.0,0,2,Goal,Field Goal,Matej Gashtarov
+4828876,home,17.0,0,1,Yellow Card,,Bart Meijers
+4828876,home,22.0,0,1,Goal,Field Goal,Luka juricic
+4828876,home,29.0,0,1,Goal,Field Goal,Matej Deket
+4828876,home,32.0,0,1,Yellow Card,,Omar Sijaric
+4828876,away,40.0,0,1,Yellow Card,,Jonathan Rowe
+4828876,away,50.0,0,2,Yellow Card,,Mario Pasalic
+4828876,home,67.0,0,2,Woodwork,,Sandi Ogrinec
+4828876,home,75.0,0,2,Red Card,,Abel Pascual
+4828876,away,86.0,0,2,Goal,Field Goal,Nikola Krstovic
+4828876,home,88.0,0,2,Red Card,,Sebastián Herrera
+4828876,away,90.0,0,2,Goal,Field Goal,Sead Kolasinac
+4828876,away,90.0,3,2,Goal,Field Goal,Davide Zappacosta
+4828876,away,90.0,6,2,Yellow Card,,Maurizio Sarri
