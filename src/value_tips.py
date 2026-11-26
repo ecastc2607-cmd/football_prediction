@@ -323,6 +323,17 @@ BWIN_REQUIRED_MARKET = {"Fueras de juego": 140, "Tiros al arco": 139, TEAM_STAT_
 # (ver special_markets.MORE_CARDS_RECAL); BWIN no lo publica en 365: cuota manual.
 MORE_CARDS_MARKET = "Más tarjetas"
 MORE_CARDS_MIN_PROB = 0.48
+# Más corners: qué equipo saca más corners (mismo esquema; desde 60%, ver
+# special_markets.MORE_CORNERS_RECAL). Tampoco está en BWIN/365: cuota manual.
+MORE_CORNERS_MARKET = "Más corners"
+MORE_CORNERS_MIN_PROB = 0.60
+# (mercado, función de special_markets, umbral, qué se cuenta, acierto y base del backtest)
+MORE_MARKETS = [
+    (MORE_CARDS_MARKET, "more_cards_prediction", MORE_CARDS_MIN_PROB, "tarjetas (amarillas + rojas)",
+     "recibe", "acierta ~49% cuando dice ≥48%, contra ~45% sin modelo"),
+    (MORE_CORNERS_MARKET, "more_corners_prediction", MORE_CORNERS_MIN_PROB, "corners", "saca",
+     "acierta ~64% cuando dice ≥60%, contra ~56% sin modelo"),
+]
 GOALS_FALLBACK_MARKET = "Más de 1.5 goles"
 CORNERS_PRIORITY_MARKET = "Corners: más de 7.5"
 CORNERS_PRIORITY_PROB = 0.70
@@ -474,7 +485,8 @@ def drop_redundant(picks: pd.DataFrame, model_weight: float = MODEL_WEIGHT) -> p
 TEAM_FORM_GAMES = 10
 TEAM_FORM_MIN = 3
 _STAT_PICK_COL = {"Corners": "cor", "Tarjetas": "tar", "Fueras de juego": "off", "Tiros al arco": "sot",
-                  "Faltas": "fal", "Remates totales": "sho", TEAM_STAT_TIPS_MARKET: "sot", "Más tarjetas": "tar"}
+                  "Faltas": "fal", "Remates totales": "sho", TEAM_STAT_TIPS_MARKET: "sot", "Más tarjetas": "tar",
+                  "Más corners": "cor"}
 _FORM_CACHE: dict = {}
 
 
@@ -533,9 +545,11 @@ def _form_event(mercado: str, pick: str, home: str, away: str):
             return "stats", ev, m.group(1)
         return "stats", lambda f, _: (f[f"{col}_own"] + f[f"{col}_opp"] > linea) if mas else \
             (f[f"{col}_own"] + f[f"{col}_opp"] < linea), None
-    if mercado == MORE_CARDS_MARKET:  # "<equipo> (más tarjetas que <rival>)"
-        equipo = str(pick).split(" (más tarjetas")[0]
-        return "stats", lambda f, propio: (f["tar_own"] > f["tar_opp"]) if propio else (f["tar_opp"] > f["tar_own"]), equipo
+    if mercado in (MORE_CARDS_MARKET, MORE_CORNERS_MARKET):  # "<equipo> (más tarjetas que <rival>)"
+        col = _STAT_PICK_COL[mercado]
+        equipo = str(pick).split(" (más ")[0]
+        return "stats", lambda f, propio: (f[f"{col}_own"] > f[f"{col}_opp"]) if propio else \
+            (f[f"{col}_opp"] > f[f"{col}_own"]), equipo
     if mercado in ("Goles", "Goles (otra línea)") and m:
         mas, linea = m.group(2) == "Más", float(m.group(3))
         return "goles", lambda f, _: (f["g_own"] + f["g_opp"] > linea) if mas else (f["g_own"] + f["g_opp"] < linea), None
@@ -709,29 +723,33 @@ def special_candidates(day_predictions: pd.DataFrame, lines_for) -> pd.DataFrame
                         merc = f"{nombre} {sm.SIDE_NAMES[side]}: {lado} de {linea:g}"
                         if (comp, merc) in permitidos and prob >= sm.min_prob_for(merc):
                             stat_picks.append((merc, TEAM_STAT_TIPS_MARKET, lado, linea, prob, pr["esperado"], equipo))
-        # Más tarjetas: el equipo con más probabilidad de recibir más tarjetas que el rival.
-        mt = sm.more_cards_prediction(comp, r["home_team"], r["away_team"])
-        if mt:
+        # Más tarjetas / Más corners: el equipo con más probabilidad de superar al rival.
+        for mercado_mt, funcion, umbral, que, verbo, backtest in MORE_MARKETS:
+            mt = getattr(sm, funcion)(comp, r["home_team"], r["away_team"])
+            if not mt:
+                continue
             lado_mt = "home" if mt["home"] >= mt["away"] else "away"
-            if mt[lado_mt] >= MORE_CARDS_MIN_PROB:
-                hs, as_ = r.get("home_team_short") or r["home_team"], r.get("away_team_short") or r["away_team"]
-                equipo_mt, rival_mt = (r["home_team"], r["away_team"]) if lado_mt == "home" else (r["away_team"], r["home_team"])
-                corto_mt, rival_corto = (hs, as_) if lado_mt == "home" else (as_, hs)
-                filas.append({
-                    "competition": r.get("competition"), "competition_name": r.get("competition_name", ""),
-                    "utc_date": r["utc_date"], "home_team": r["home_team"], "away_team": r["away_team"],
-                    "home_team_short": hs, "away_team_short": as_, "partido": f"{hs} vs {as_}",
-                    "mercado": MORE_CARDS_MARKET, "pick": f"{equipo_mt} (más tarjetas que {rival_mt})",
-                    "odds_key": f"especial:{MORE_CARDS_MARKET}", "prob_modelo": mt[lado_mt],
-                    "cuota_justa": round(1 / mt[lado_mt], 2), "cuota_auto": None, "casa": "",
-                    "peso_modelo": SPECIAL_MODEL_WEIGHT,
-                    "explicacion": (
-                        f"Gana si {corto_mt} recibe MÁS tarjetas (amarillas + rojas) que {rival_corto}; si empatan en "
-                        f"tarjetas, pierde (el empate es otra opción). Modelo: {hs} {mt['home']:.0%} · empate "
-                        f"{mt['draw']:.0%} · {as_} {mt['away']:.0%}; tarjetas esperadas {mt['esp_home']:.1f} vs "
-                        f"{mt['esp_away']:.1f}. Ventaja chica en el backtest (acierta ~49% cuando dice ≥48%, contra "
-                        "~45% sin modelo). BWIN no lo publica: escribe la cuota de tu casa en 'Cuota manual'."),
-                })
+            if mt[lado_mt] < umbral:
+                continue
+            hs, as_ = r.get("home_team_short") or r["home_team"], r.get("away_team_short") or r["away_team"]
+            equipo_mt, rival_mt = (r["home_team"], r["away_team"]) if lado_mt == "home" else (r["away_team"], r["home_team"])
+            corto_mt, rival_corto = (hs, as_) if lado_mt == "home" else (as_, hs)
+            corto_que = que.split(" (")[0]
+            filas.append({
+                "competition": r.get("competition"), "competition_name": r.get("competition_name", ""),
+                "utc_date": r["utc_date"], "home_team": r["home_team"], "away_team": r["away_team"],
+                "home_team_short": hs, "away_team_short": as_, "partido": f"{hs} vs {as_}",
+                "mercado": mercado_mt, "pick": f"{equipo_mt} (más {corto_que} que {rival_mt})",
+                "odds_key": f"especial:{mercado_mt}", "prob_modelo": mt[lado_mt],
+                "cuota_justa": round(1 / mt[lado_mt], 2), "cuota_auto": None, "casa": "",
+                "peso_modelo": SPECIAL_MODEL_WEIGHT,
+                "explicacion": (
+                    f"Gana si {corto_mt} {verbo} MÁS {que} que {rival_corto}; si empatan, pierde (el empate es otra "
+                    f"opción). Modelo: {hs} {mt['home']:.0%} · empate {mt['draw']:.0%} · {as_} {mt['away']:.0%}; "
+                    f"{corto_que} esperad{'as' if corto_que == 'tarjetas' else 'os'} {mt['esp_home']:.1f} vs "
+                    f"{mt['esp_away']:.1f}. Backtest: {backtest}. "
+                    "BWIN no lo publica: escribe la cuota de tu casa en 'Cuota manual'."),
+            })
         if not picks and not stat_picks:
             continue
         lineas = lines_for(r)

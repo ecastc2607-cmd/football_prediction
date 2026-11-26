@@ -875,22 +875,36 @@ def stat_prediction_side(competition: str, home: str, away: str, col: str, side:
 # el local. Recalibrado, cuando dice >= 48% acierta ~49% contra ~45% de la
 # frecuencia de ese lado en la liga: ventaja chica (+3 a +4 pts).
 MORE_CARDS_RECAL = {"home": (-0.357, 0.537), "away": (-0.148, 0.543)}  # p' = sigmoide(a + b·logit p)
+# Más corners (mismo modelo, columna 'cor'): casi calibrado de por sí (pendiente
+# ~0.95, 3.248 partidos); cuando dice >= 60% acierta 64% contra 56% de la
+# frecuencia de ese lado: ventaja clara (+8 pts), mayor que en tarjetas.
+MORE_CORNERS_RECAL = {"home": (0.005, 0.923), "away": (0.036, 0.963)}
 
 
 def more_cards_prediction(competition: str, home: str, away: str) -> dict | None:
     """{"home", "draw", "away"}: prob. de que el local / ninguno / el visitante
     reciba más tarjetas (amarillas + rojas), recalibradas; más "esp_home" /
     "esp_away" (tarjetas esperadas de cada uno). None sin historial de la liga."""
+    return _more_prediction(competition, home, away, "tar", MORE_CARDS_RECAL, 21)
+
+
+def more_corners_prediction(competition: str, home: str, away: str) -> dict | None:
+    """Como more_cards_prediction, para corners: qué equipo saca MÁS corners."""
+    return _more_prediction(competition, home, away, "cor", MORE_CORNERS_RECAL, 31)
+
+
+def _more_prediction(competition: str, home: str, away: str, col: str, recal_params: dict,
+                     tope: int) -> dict | None:
     from scipy.stats import nbinom, poisson
 
-    if stat_prediction(competition, home, away, "tar") is None:  # llena la caché del ajuste
+    if stat_prediction(competition, home, away, col) is None:  # llena la caché del ajuste
         return None
     from . import match_stats_log
     from . import totals_model as tm
     path = match_stats_log.LOG_PATH
-    s = _STAT_FIT_CACHE[(competition, "tar", path.stat().st_mtime if path.exists() else 0)]
+    s = _STAT_FIT_CACHE[(competition, col, path.stat().st_mtime if path.exists() else 0)]
     mh, ma = tm.expected_sides(s, home, away)
-    k = np.arange(0, 21)
+    k = np.arange(0, tope)
 
     def pmf(mu, disp):
         return poisson.pmf(k, mu) if not np.isfinite(disp) else nbinom.pmf(k, disp, disp / (disp + mu))
@@ -898,7 +912,7 @@ def more_cards_prediction(competition: str, home: str, away: str) -> dict | None
     m = np.outer(pmf(mh, s.disp_home), pmf(ma, s.disp_away))
 
     def recal(p, lado):
-        a, b = MORE_CARDS_RECAL[lado]
+        a, b = recal_params[lado]
         p = min(max(p, 0.02), 0.98)
         return float(1 / (1 + np.exp(-(a + b * np.log(p / (1 - p))))))
 

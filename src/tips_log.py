@@ -42,7 +42,7 @@ WON_VOID = "devuelta"  # boleto con todas sus piernas devueltas
 DETAIL_MARKETS = ("Primer gol", "1er tiempo")
 # Mercados que se liquidan con las estadísticas finales de 365scores.
 STAT_MARKETS = ("Corners", "Tarjetas", "Fueras de juego", "Tiros al arco", "Faltas", "Remates totales",
-                "Tiros al arco por equipo", "Más tarjetas")
+                "Tiros al arco por equipo", "Más tarjetas", "Más corners")
 # Campo de las estadísticas de 365 (scores365.live_stats) de cada mercado; tarjetas suma amarillas + rojas.
 STAT_FIELDS = {"Corners": "corners", "Fueras de juego": "fueras_de_juego", "Tiros al arco": "remates_a_puerta",
                "Faltas": "faltas", "Remates totales": "remates_totales", "Tiros al arco por equipo": "remates_a_puerta"}
@@ -217,16 +217,21 @@ def leg_outcome(market: str, pick: str, hg: int, ag: int, stats: dict | None = N
         else:
             total = hg + ag
         return total > lp[1] if lp[0] == "Más" else total < lp[1]
-    if market == "Más tarjetas":  # "<equipo> (más tarjetas que <rival>)": empate en tarjetas = pierde
+    if market in ("Más tarjetas", "Más corners"):  # "<equipo> (más tarjetas que <rival>)": empate = pierde
         if not stats:
             return None
-        equipo = pick_txt.split(" (más tarjetas")[0]
+        equipo = pick_txt.split(" (más ")[0]
         lado = "home" if equipo == home_team else "away" if equipo == away_team else None
         if lado is None:
             return None
-        tarj = {l: ((stats.get(l) or {}).get("tarjetas_amarillas") or 0) + ((stats.get(l) or {}).get("tarjetas_rojas") or 0)
-                for l in ("home", "away")}
-        return tarj[lado] > tarj["away" if lado == "home" else "home"]
+        if market == "Más corners":
+            cuenta = {l: (stats.get(l) or {}).get("corners") for l in ("home", "away")}
+            if None in cuenta.values():
+                return None
+        else:
+            cuenta = {l: ((stats.get(l) or {}).get("tarjetas_amarillas") or 0)
+                      + ((stats.get(l) or {}).get("tarjetas_rojas") or 0) for l in ("home", "away")}
+        return cuenta[lado] > cuenta["away" if lado == "home" else "home"]
     if market in STAT_MARKETS:
         lados = ("home", "away")
         if market == "Tiros al arco por equipo":  # "<equipo>: Más de 3.5 (esp. 4.6)"
