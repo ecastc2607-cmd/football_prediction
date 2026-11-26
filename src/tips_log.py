@@ -43,7 +43,7 @@ DETAIL_MARKETS = ("Primer gol", "1er tiempo")
 # Mercados que se liquidan con las estadísticas finales de 365scores.
 STAT_MARKETS = ("Corners", "Tarjetas", "Fueras de juego", "Tiros al arco", "Faltas", "Remates totales",
                 "Tiros al arco por equipo", "Más tarjetas", "Más corners",
-                "Más tiros al arco")
+                "Más tiros al arco", "Más fueras de juego")
 # Campo de las estadísticas de 365 (scores365.live_stats) de cada mercado; tarjetas suma amarillas + rojas.
 STAT_FIELDS = {"Corners": "corners", "Fueras de juego": "fueras_de_juego", "Tiros al arco": "remates_a_puerta",
                "Faltas": "faltas", "Remates totales": "remates_totales", "Tiros al arco por equipo": "remates_a_puerta"}
@@ -218,15 +218,16 @@ def leg_outcome(market: str, pick: str, hg: int, ag: int, stats: dict | None = N
         else:
             total = hg + ag
         return total > lp[1] if lp[0] == "Más" else total < lp[1]
-    if market in ("Más tarjetas", "Más corners", "Más tiros al arco"):  # "<equipo> (más X que <rival>)": empate = pierde
+    if market in ("Más tarjetas", "Más corners", "Más tiros al arco", "Más fueras de juego"):  # "<equipo> (más X que <rival>)": empate = pierde
         if not stats:
             return None
         equipo = pick_txt.split(" (más ")[0]
         lado = "home" if equipo == home_team else "away" if equipo == away_team else None
         if lado is None:
             return None
-        if market in ("Más corners", "Más tiros al arco"):
-            campo = "corners" if market == "Más corners" else "remates_a_puerta"
+        if market in ("Más corners", "Más tiros al arco", "Más fueras de juego"):
+            campo = {"Más corners": "corners", "Más tiros al arco": "remates_a_puerta",
+                     "Más fueras de juego": "fueras_de_juego"}[market]
             cuenta = {l: (stats.get(l) or {}).get(campo) for l in ("home", "away")}
             if None in cuenta.values():
                 return None

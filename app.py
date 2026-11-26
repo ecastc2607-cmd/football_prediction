@@ -1213,13 +1213,23 @@ with tab_jornada:
         show["Más tarjetas"] = show.apply(_mas_tarjetas, axis=1)
         show["Más corners"] = show.apply(_mas_corners, axis=1)
         show["Más tiros al arco"] = show.apply(_mas_sot, axis=1)
+
+        def _mas_off(r):
+            pr = special_markets.more_off_prediction(config.strength_code(comp_code), r.home_team, r.away_team)
+            if not pr:
+                return "Sin datos"
+            return (f"{r.home_team_short} {pr['home']:.0%} · empate {pr['draw']:.0%} · {r.away_team_short} "
+                    f"{pr['away']:.0%} ({pr['esp_home']:.1f} vs {pr['esp_away']:.1f})")
+
+        show["Más fueras de juego"] = show.apply(_mas_off, axis=1)
         show["Fueras de juego"] = show.apply(lambda r: _stat_celda(r, "off"), axis=1)
         show["Tiros al arco"] = show.apply(lambda r: _stat_celda(r, "sot"), axis=1)
         show["Especial (Avanzada)"] = [
             "-" if not pk else pk["mercado"] + (f" · {cortos.get(pk['equipo'], pk['equipo'])}" if pk["equipo"] else "")
             + f" ({pk['prob']:.0%})" for pk in especiales]
         show["_especial_mercado"] = [pk["mercado"] if pk else None for pk in especiales]
-        columnas_tabla += ["Más tarjetas", "Más corners", "Más tiros al arco", "Fueras de juego", "Tiros al arco",
+        columnas_tabla += ["Más tarjetas", "Más corners", "Más tiros al arco", "Más fueras de juego",
+                           "Fueras de juego", "Tiros al arco",
                            "Especial (Avanzada)"]
 
         # --- Estadísticas de 365scores (últimos partidos de cada equipo, todas las competiciones) ---
@@ -1240,6 +1250,8 @@ with tab_jornada:
             "🚩 **Más corners**: lo mismo con corners (acá el modelo tiene más ventaja: ~64% de acierto cuando dice "
             "≥60%, contra ~56% sin modelo). 🎯 **Más tiros al arco**: lo mismo con tiros al arco (~72% cuando "
             "dice ≥65%, contra ~56% sin modelo; en Tips solo si BWIN abre tiros al arco en el partido). "
+            "🚩 **Más fueras de juego**: qué equipo cae más en fuera de juego (~58% cuando dice ≥50%, contra "
+            "~41% sin modelo; en Tips solo si BWIN abre fueras de juego). "
             "🚩 **Fueras de juego / 🎯 Tiros al arco**: total de los dos equipos (mismo modelo que corners/"
             "tarjetas: promedios de cada equipo + binomial negativa) contra la línea principal de BWIN; entre "
             "paréntesis, la probabilidad de ese lado. **Especial (Avanzada)**: el mercado especial más "
@@ -1260,6 +1272,30 @@ with tab_jornada:
         # Por tiempo y marcador más probable, justo antes de Contexto (pedido del usuario).
         columnas_tabla += ["1er tiempo", "2do tiempo", "top_score"]
         columnas_tabla += ["Contexto", "⚠"]  # al final: son avisos/contexto, no el pronóstico en sí
+
+        # "Más …" al lado de su mercado principal, plegables (pedido del usuario,
+        # nov-2026): st.dataframe no agrupa columnas, así que cada grupo se
+        # despliega o se pliega con un botón encima de la tabla.
+        grupos_mas = {"Tarjetas": ("Tarjetas (", "Más tarjetas"), "Corners": ("Corners (", "Más corners"),
+                      "Tiros al arco": ("Tiros al arco", "Más tiros al arco"),
+                      "Fueras de juego": ("Fueras de juego", "Más fueras de juego")}
+        abiertos = st.pills(
+            "➕ Desplegar 'Más …' (qué equipo supera al rival) al lado de:", list(grupos_mas),
+            selection_mode="multi", default=[], key=f"jornada_mas_{comp_code}",
+            help="Cada botón despliega, junto a su columna, la de qué equipo recibe/saca/hace MÁS que el "
+                 "rival (local · empate · visitante). Vuelve a tocarlo para plegarla.") or []
+        mas_cols = {mas for _, mas in grupos_mas.values()}
+        orden = [c for c in columnas_tabla if c not in mas_cols]
+        for grupo in abiertos:
+            principal, mas = grupos_mas[grupo]
+            if mas not in show.columns:
+                continue
+            pos = next((i for i, c in enumerate(orden) if c == principal or c.startswith(principal)), None)
+            if pos is None:
+                orden.append(mas)
+            else:
+                orden.insert(pos + 1, mas)
+        columnas_tabla = orden
 
         renombre = {"over_2_5": "Over 2.5 %", "btts": "BTTS %", "top_score": "Marcador top"}
         tabla_j = show[columnas_tabla].rename(columns=renombre)

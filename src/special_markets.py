@@ -883,6 +883,10 @@ MORE_CORNERS_RECAL = {"home": (0.005, 0.923), "away": (0.036, 0.963)}
 # 3.189 partidos: cuando decía 60-66% acertaba 71%); la recalibración lo estira.
 # Recalibrado, >= 65% acierta ~72% contra ~56% de la frecuencia de ese lado.
 MORE_SOT_RECAL = {"home": (-0.042, 1.283), "away": (0.238, 1.348)}
+# Más fueras de juego (columna 'off'): calibrado de por sí (pendiente ~1, 3.191
+# partidos); cuando dice >= 50% acierta ~58% contra ~41% de la frecuencia de ese
+# lado (mercado de 3 opciones con ~21% de empates).
+MORE_OFF_RECAL = {"home": (0.01, 0.997), "away": (0.095, 1.149)}
 
 
 def more_cards_prediction(competition: str, home: str, away: str) -> dict | None:
@@ -900,6 +904,11 @@ def more_corners_prediction(competition: str, home: str, away: str) -> dict | No
 def more_sot_prediction(competition: str, home: str, away: str) -> dict | None:
     """Como more_cards_prediction, para tiros al arco: qué equipo hace MÁS tiros al arco."""
     return _more_prediction(competition, home, away, "sot", MORE_SOT_RECAL, 31)
+
+
+def more_off_prediction(competition: str, home: str, away: str) -> dict | None:
+    """Como more_cards_prediction, para fueras de juego: qué equipo cae MÁS en fuera de juego."""
+    return _more_prediction(competition, home, away, "off", MORE_OFF_RECAL, 21)
 
 
 def _more_prediction(competition: str, home: str, away: str, col: str, recal_params: dict,

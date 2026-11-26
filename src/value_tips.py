@@ -310,7 +310,7 @@ TEAM_STAT_TIPS_MARKET = "Tiros al arco por equipo"  # pick: "<equipo>: Más de 3
 # mercado (tipo de línea de 365) en el partido. Tiros al arco por equipo no
 # tiene línea propia en 365: se toma el total de tiros al arco como señal.
 BWIN_REQUIRED_MARKET = {"Fueras de juego": 140, "Tiros al arco": 139, TEAM_STAT_TIPS_MARKET: 139,
-                        "Más tiros al arco": 139}
+                        "Más tiros al arco": 139, "Más fueras de juego": 140}
 # Prioridades del usuario (nov-2026), porque las casas a veces bloquean tiros al
 # arco y fueras de juego:
 #  - Goles: si ni Más ni Menos de 2.5 llega al MIN_MODEL_PROB, se ofrece Más de
@@ -332,6 +332,10 @@ MORE_CORNERS_MIN_PROB = 0.60
 # Como los demás de tiros al arco, solo si BWIN abre tiros al arco en el partido.
 MORE_SOT_MARKET = "Más tiros al arco"
 MORE_SOT_MIN_PROB = 0.65
+# Más fueras de juego: desde 50% (ver special_markets.MORE_OFF_RECAL); solo si
+# BWIN abre fueras de juego en el partido.
+MORE_OFF_MARKET = "Más fueras de juego"
+MORE_OFF_MIN_PROB = 0.50
 # (mercado, función de special_markets, umbral, qué se cuenta, acierto y base del backtest)
 MORE_MARKETS = [
     (MORE_CARDS_MARKET, "more_cards_prediction", MORE_CARDS_MIN_PROB, "tarjetas (amarillas + rojas)",
@@ -340,6 +344,8 @@ MORE_MARKETS = [
      "acierta ~64% cuando dice ≥60%, contra ~56% sin modelo"),
     (MORE_SOT_MARKET, "more_sot_prediction", MORE_SOT_MIN_PROB, "tiros al arco", "hace",
      "acierta ~72% cuando dice ≥65%, contra ~56% sin modelo"),
+    (MORE_OFF_MARKET, "more_off_prediction", MORE_OFF_MIN_PROB, "fueras de juego", "cae en",
+     "acierta ~58% cuando dice ≥50%, contra ~41% sin modelo"),
 ]
 GOALS_FALLBACK_MARKET = "Más de 1.5 goles"
 CORNERS_PRIORITY_MARKET = "Corners: más de 7.5"
@@ -493,7 +499,7 @@ TEAM_FORM_GAMES = 10
 TEAM_FORM_MIN = 3
 _STAT_PICK_COL = {"Corners": "cor", "Tarjetas": "tar", "Fueras de juego": "off", "Tiros al arco": "sot",
                   "Faltas": "fal", "Remates totales": "sho", TEAM_STAT_TIPS_MARKET: "sot", "Más tarjetas": "tar",
-                  "Más corners": "cor", "Más tiros al arco": "sot"}
+                  "Más corners": "cor", "Más tiros al arco": "sot", "Más fueras de juego": "off"}
 _FORM_CACHE: dict = {}
 
 
@@ -552,7 +558,7 @@ def _form_event(mercado: str, pick: str, home: str, away: str):
             return "stats", ev, m.group(1)
         return "stats", lambda f, _: (f[f"{col}_own"] + f[f"{col}_opp"] > linea) if mas else \
             (f[f"{col}_own"] + f[f"{col}_opp"] < linea), None
-    if mercado in (MORE_CARDS_MARKET, MORE_CORNERS_MARKET, MORE_SOT_MARKET):  # "<equipo> (más X que <rival>)"
+    if mercado in (MORE_CARDS_MARKET, MORE_CORNERS_MARKET, MORE_SOT_MARKET, MORE_OFF_MARKET):  # "<equipo> (más X que <rival>)"
         col = _STAT_PICK_COL[mercado]
         equipo = str(pick).split(" (más ")[0]
         return "stats", lambda f, propio: (f[f"{col}_own"] > f[f"{col}_opp"]) if propio else \
