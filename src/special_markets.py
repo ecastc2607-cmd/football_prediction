@@ -887,6 +887,10 @@ MORE_SOT_RECAL = {"home": (-0.042, 1.283), "away": (0.238, 1.348)}
 # partidos); cuando dice >= 50% acierta ~58% contra ~41% de la frecuencia de ese
 # lado (mercado de 3 opciones con ~21% de empates).
 MORE_OFF_RECAL = {"home": (0.01, 0.997), "away": (0.095, 1.149)}
+# Más faltas (columna 'fal'): calibrado de por sí (pendiente ~1, 3.204 partidos);
+# cuando dice >= 55% acierta ~61% contra ~48% de la frecuencia de ese lado
+# (empates en faltas, solo ~7%).
+MORE_FOULS_RECAL = {"home": (-0.027, 1.025), "away": (0.033, 1.01)}
 
 
 def more_cards_prediction(competition: str, home: str, away: str) -> dict | None:
@@ -909,6 +913,11 @@ def more_sot_prediction(competition: str, home: str, away: str) -> dict | None:
 def more_off_prediction(competition: str, home: str, away: str) -> dict | None:
     """Como more_cards_prediction, para fueras de juego: qué equipo cae MÁS en fuera de juego."""
     return _more_prediction(competition, home, away, "off", MORE_OFF_RECAL, 21)
+
+
+def more_fouls_prediction(competition: str, home: str, away: str) -> dict | None:
+    """Como more_cards_prediction, para faltas: qué equipo COMETE más faltas."""
+    return _more_prediction(competition, home, away, "fal", MORE_FOULS_RECAL, 46)
 
 
 def _more_prediction(competition: str, home: str, away: str, col: str, recal_params: dict,

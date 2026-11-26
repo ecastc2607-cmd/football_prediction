@@ -1222,13 +1222,22 @@ with tab_jornada:
                     f"{pr['away']:.0%} ({pr['esp_home']:.1f} vs {pr['esp_away']:.1f})")
 
         show["Más fueras de juego"] = show.apply(_mas_off, axis=1)
+
+        def _mas_faltas(r):
+            pr = special_markets.more_fouls_prediction(config.strength_code(comp_code), r.home_team, r.away_team)
+            if not pr:
+                return "Sin datos"
+            return (f"{r.home_team_short} {pr['home']:.0%} · empate {pr['draw']:.0%} · {r.away_team_short} "
+                    f"{pr['away']:.0%} ({pr['esp_home']:.1f} vs {pr['esp_away']:.1f})")
+
+        show["Más faltas"] = show.apply(_mas_faltas, axis=1)
         show["Fueras de juego"] = show.apply(lambda r: _stat_celda(r, "off"), axis=1)
         show["Tiros al arco"] = show.apply(lambda r: _stat_celda(r, "sot"), axis=1)
         show["Especial (Avanzada)"] = [
             "-" if not pk else pk["mercado"] + (f" · {cortos.get(pk['equipo'], pk['equipo'])}" if pk["equipo"] else "")
             + f" ({pk['prob']:.0%})" for pk in especiales]
         show["_especial_mercado"] = [pk["mercado"] if pk else None for pk in especiales]
-        columnas_tabla += ["Más tarjetas", "Más corners", "Más tiros al arco", "Más fueras de juego",
+        columnas_tabla += ["Más tarjetas", "Más corners", "Más tiros al arco", "Más fueras de juego", "Más faltas",
                            "Fueras de juego", "Tiros al arco",
                            "Especial (Avanzada)"]
 
@@ -1251,7 +1260,8 @@ with tab_jornada:
             "≥60%, contra ~56% sin modelo). 🎯 **Más tiros al arco**: lo mismo con tiros al arco (~72% cuando "
             "dice ≥65%, contra ~56% sin modelo; en Tips solo si BWIN abre tiros al arco en el partido). "
             "🚩 **Más fueras de juego**: qué equipo cae más en fuera de juego (~58% cuando dice ≥50%, contra "
-            "~41% sin modelo; en Tips solo si BWIN abre fueras de juego). "
+            "~41% sin modelo; en Tips solo si BWIN abre fueras de juego). ✋ **Más faltas**: qué equipo comete "
+            "más faltas (~61% cuando dice ≥55%, contra ~48% sin modelo). "
             "🚩 **Fueras de juego / 🎯 Tiros al arco**: total de los dos equipos (mismo modelo que corners/"
             "tarjetas: promedios de cada equipo + binomial negativa) contra la línea principal de BWIN; entre "
             "paréntesis, la probabilidad de ese lado. **Especial (Avanzada)**: el mercado especial más "
@@ -1277,6 +1287,7 @@ with tab_jornada:
         # nov-2026): st.dataframe no agrupa columnas, así que cada grupo se
         # despliega o se pliega con un botón encima de la tabla.
         grupos_mas = {"Tarjetas": ("Tarjetas (", "Más tarjetas"), "Corners": ("Corners (", "Más corners"),
+                      "Faltas": ("Faltas (", "Más faltas"),
                       "Tiros al arco": ("Tiros al arco", "Más tiros al arco"),
                       "Fueras de juego": ("Fueras de juego", "Más fueras de juego")}
         abiertos = st.pills(

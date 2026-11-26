@@ -336,6 +336,10 @@ MORE_SOT_MIN_PROB = 0.65
 # BWIN abre fueras de juego en el partido.
 MORE_OFF_MARKET = "Más fueras de juego"
 MORE_OFF_MIN_PROB = 0.50
+# Más faltas: desde 55% (ver special_markets.MORE_FOULS_RECAL). BWIN no publica
+# faltas en 365: cuota manual.
+MORE_FOULS_MARKET = "Más faltas"
+MORE_FOULS_MIN_PROB = 0.55
 # (mercado, función de special_markets, umbral, qué se cuenta, acierto y base del backtest)
 MORE_MARKETS = [
     (MORE_CARDS_MARKET, "more_cards_prediction", MORE_CARDS_MIN_PROB, "tarjetas (amarillas + rojas)",
@@ -346,6 +350,8 @@ MORE_MARKETS = [
      "acierta ~72% cuando dice ≥65%, contra ~56% sin modelo"),
     (MORE_OFF_MARKET, "more_off_prediction", MORE_OFF_MIN_PROB, "fueras de juego", "cae en",
      "acierta ~58% cuando dice ≥50%, contra ~41% sin modelo"),
+    (MORE_FOULS_MARKET, "more_fouls_prediction", MORE_FOULS_MIN_PROB, "faltas", "comete",
+     "acierta ~61% cuando dice ≥55%, contra ~48% sin modelo"),
 ]
 GOALS_FALLBACK_MARKET = "Más de 1.5 goles"
 CORNERS_PRIORITY_MARKET = "Corners: más de 7.5"
@@ -499,7 +505,8 @@ TEAM_FORM_GAMES = 10
 TEAM_FORM_MIN = 3
 _STAT_PICK_COL = {"Corners": "cor", "Tarjetas": "tar", "Fueras de juego": "off", "Tiros al arco": "sot",
                   "Faltas": "fal", "Remates totales": "sho", TEAM_STAT_TIPS_MARKET: "sot", "Más tarjetas": "tar",
-                  "Más corners": "cor", "Más tiros al arco": "sot", "Más fueras de juego": "off"}
+                  "Más corners": "cor", "Más tiros al arco": "sot", "Más fueras de juego": "off",
+                  "Más faltas": "fal"}
 _FORM_CACHE: dict = {}
 
 
@@ -558,7 +565,7 @@ def _form_event(mercado: str, pick: str, home: str, away: str):
             return "stats", ev, m.group(1)
         return "stats", lambda f, _: (f[f"{col}_own"] + f[f"{col}_opp"] > linea) if mas else \
             (f[f"{col}_own"] + f[f"{col}_opp"] < linea), None
-    if mercado in (MORE_CARDS_MARKET, MORE_CORNERS_MARKET, MORE_SOT_MARKET, MORE_OFF_MARKET):  # "<equipo> (más X que <rival>)"
+    if mercado in (MORE_CARDS_MARKET, MORE_CORNERS_MARKET, MORE_SOT_MARKET, MORE_OFF_MARKET, MORE_FOULS_MARKET):  # "<equipo> (más X que <rival>)"
         col = _STAT_PICK_COL[mercado]
         equipo = str(pick).split(" (más ")[0]
         return "stats", lambda f, propio: (f[f"{col}_own"] > f[f"{col}_opp"]) if propio else \
