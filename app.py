@@ -1904,12 +1904,13 @@ with tab_tips:
             if n_alertas:
                 st.warning(f"⚠ {n_alertas} pick(s) van en contra de las estadísticas de 365scores: mira la columna "
                            "'Alerta 365' antes de apostar.")
-            # "Más …" plegados bajo su mercado principal del mismo partido (pedido del
-            # usuario, nov-2026): la casilla "➕ Más" de la fila de Tarjetas / Corners /
-            # Faltas / Tiros al arco / Fueras de juego despliega debajo el "Más …" de
-            # ese partido. Un "Más …" sin fila principal en el partido se ve igual.
-            # Como abrir/cerrar cambia las filas del editor, las cuotas manuales se
-            # guardan por pick (no por posición) y el editor se rearma con ellas.
+            # "Más …" bajo su mercado principal del mismo partido (pedido del usuario,
+            # nov-2026): tres tablas. (1) Picks, solo lectura: clic en "▸ Tarjetas"
+            # (o Corners, Faltas, Tiros al arco, Fueras de juego) abre (2) una tabla
+            # de detalle debajo con el "Más …" de ese partido. (3) Cuotas de tu casa,
+            # editable (Streamlit solo detecta clics en tablas de solo lectura). Un
+            # "Más …" sin fila principal en el partido va en la tabla de picks. Las
+            # cuotas manuales se guardan por pick, no por posición de fila.
             mas_de = {"Más tarjetas": ("Tarjetas",), "Más corners": ("Corners",), "Más faltas": ("Faltas",),
                       "Más tiros al arco": ("Tiros al arco", "Tiros al arco por equipo"),
                       "Más fueras de juego": ("Fueras de juego",)}
@@ -1924,83 +1925,125 @@ with tab_tips:
             hijos: dict = {}
             for h, p in padre.items():
                 hijos.setdefault(p, []).append(h)
-            estado_tips = st.session_state.setdefault(
-                f"tips_ui_{fecha_tips.isoformat()}", {"abiertos": set(), "manual": {}, "ver": 0, "orden": []})
-            # Cambios hechos en el editor de la corrida anterior (por posición de fila).
-            clave_previa = f"tips_editor_{fecha_tips.isoformat()}_{estado_tips['ver']}"
+            fecha_k = fecha_tips.isoformat()
+            estado_tips = st.session_state.setdefault(f"tips_ui_{fecha_k}", {})
+            for k_, v_ in {"detalle": None, "manual": {}, "ver": 0, "orden": [], "orden_tabla": [],
+                           "n_tabla": 0}.items():
+                estado_tips.setdefault(k_, v_)
+            # 1) Clic en una celda de la tabla de picks (corrida anterior): en la
+            #    columna "Mercado" de una fila con ▸ abre (o cierra) su detalle abajo.
+            #    Se lee al inicio y se cambia la key: así no hace falta st.rerun()
+            #    (que devolvía la vista a la pestaña Jornada).
+            clave_tabla_prev = f"tips_tabla_{fecha_k}_{estado_tips['n_tabla']}"
+            seleccion = (st.session_state.get(clave_tabla_prev) or {}).get("selection") or {}
+            celdas = seleccion.get("cells") or []
+            if celdas:
+                fila_sel, col_sel = celdas[0][0], celdas[0][1]
+                # Solo un clic en "Mercado" cambia algo; en otras celdas la tabla
+                # sigue igual (no se pierde el orden que hayas elegido).
+                if col_sel == "Mercado" and 0 <= int(fila_sel) < len(estado_tips["orden_tabla"]):
+                    pid = estado_tips["orden_tabla"][int(fila_sel)]
+                    estado_tips["detalle"] = None if estado_tips["detalle"] == pid else pid
+                    st.session_state.pop(clave_tabla_prev, None)
+                    estado_tips["n_tabla"] += 1
+            # 2) Cuotas escritas en la tabla de cuotas de la corrida anterior (por posición de fila).
+            clave_previa = f"tips_editor_{fecha_k}_{estado_tips['ver']}"
             cambios = (st.session_state.get(clave_previa) or {}).get("edited_rows", {})
             if cambios:
                 for pos, cols in cambios.items():
                     pos = int(pos)
-                    if pos >= len(estado_tips["orden"]):
+                    if pos >= len(estado_tips["orden"]) or "Cuota manual" not in cols:
                         continue
                     pid = estado_tips["orden"][pos]
-                    if "Cuota manual" in cols:
-                        v = pd.to_numeric(cols["Cuota manual"], errors="coerce")
-                        if pd.notna(v):
-                            estado_tips["manual"][pid] = float(v)
-                        else:
-                            estado_tips["manual"].pop(pid, None)
-                    if "➕ Más" in cols:
-                        (estado_tips["abiertos"].add if cols["➕ Más"] is True else estado_tips["abiertos"].discard)(pid)
+                    v = pd.to_numeric(cols["Cuota manual"], errors="coerce")
+                    if pd.notna(v):
+                        estado_tips["manual"][pid] = float(v)
+                    else:
+                        estado_tips["manual"].pop(pid, None)
                 st.session_state.pop(clave_previa, None)
-                estado_tips["ver"] += 1  # editor nuevo, ya con las cuotas y filas al día
-            orden_filas = []
-            for i in candidatos.index:
-                if i in padre:
-                    continue
-                orden_filas.append(i)
-                if i in hijos and pick_id[i] in estado_tips["abiertos"]:
-                    orden_filas += hijos[i]
-            vis = candidatos.loc[orden_filas]
-            estado_tips["orden"] = [pick_id[i] for i in vis.index]
-            editor = pd.DataFrame({
-                "Partido": vis["partido"],
-                "Liga": vis["competition_name"],
-                "Hora": vis["utc_date"].map(format_bogota),
-                # Flecha al inicio, como en la Jornada: ▸ plegado, ▾ desplegado.
-                "➕ Más": [(pick_id[i] in estado_tips["abiertos"]) if i in hijos else None for i in vis.index],
-                "Mercado": [f"↳ {m}" if i in padre
-                            else f"{'▾' if pick_id[i] in estado_tips['abiertos'] else '▸'} {m}" if i in hijos
-                            else m for i, m in zip(vis.index, vis["mercado"])],
-                "Pick": vis["pick"],
-                "Fuerza en la liga": strength_marks(vis),
-                "Fortaleza local": forma_local.reindex(vis.index),
-                "Fortaleza visitante": forma_visita.reindex(vis.index),
-                "Alerta 365": alerta_365.reindex(vis.index),
-                "Prob. modelo": (vis["prob_modelo"] * 100).round(0),
-                "Cuota justa": vis["cuota_justa"],
-                "Mejor cuota": pd.to_numeric(vis["cuota_auto"], errors="coerce").astype(float),
-                "Casa": vis["casa"],
-                "Cuota manual": pd.Series([estado_tips["manual"].get(pick_id[i]) for i in vis.index],
-                                          index=vis.index, dtype="float"),
-                "Qué significa": (vis["explicacion"].fillna("") if "explicacion" in vis
-                                  else pd.Series([""] * len(vis), index=vis.index)),
-            }, index=vis.index)
-            st.markdown("**Picks candidatos** — corrige 'Cuota manual' con la de tu casa antes de apostar "
-                        "(decimales con coma, ej. 1,45):")
+                estado_tips["ver"] += 1  # editor nuevo, ya con las cuotas al día
+
+            tabla = candidatos.loc[[i for i in candidatos.index if i not in padre]]
+            estado_tips["orden_tabla"] = [pick_id[i] for i in tabla.index]
+            abierto = next((i for i in tabla.index if i in hijos and pick_id[i] == estado_tips["detalle"]), None)
+            if abierto is None:
+                estado_tips["detalle"] = None
+            detalle = candidatos.loc[hijos[abierto]] if abierto is not None else candidatos.iloc[0:0]
+
+            def _tabla_picks(d: pd.DataFrame, con_flechas: bool) -> pd.DataFrame:
+                return pd.DataFrame({
+                    "Partido": d["partido"],
+                    "Liga": d["competition_name"],
+                    "Hora": d["utc_date"].map(format_bogota),
+                    # Flecha al inicio, como en la Jornada: ▸ cerrado, ▾ abierto.
+                    "Mercado": [f"{'▾' if i == abierto else '▸'} {m}" if con_flechas and i in hijos else m
+                                for i, m in zip(d.index, d["mercado"])],
+                    "Pick": d["pick"],
+                    "Fuerza en la liga": strength_marks(d),
+                    "Fortaleza local": forma_local.reindex(d.index),
+                    "Fortaleza visitante": forma_visita.reindex(d.index),
+                    "Alerta 365": alerta_365.reindex(d.index),
+                    "Prob. modelo": (d["prob_modelo"] * 100).round(0),
+                    "Cuota justa": d["cuota_justa"],
+                    "Mejor cuota": pd.to_numeric(d["cuota_auto"], errors="coerce").astype(float),
+                    "Casa": d["casa"],
+                    "Cuota manual": pd.Series([estado_tips["manual"].get(pick_id[i]) for i in d.index],
+                                              index=d.index, dtype="float"),
+                    "Qué significa": (d["explicacion"].fillna("") if "explicacion" in d
+                                      else pd.Series([""] * len(d), index=d.index)),
+                }, index=d.index)
+
+            config_picks = {
+                "Partido": st.column_config.Column(pinned=True),
+                "Mercado": st.column_config.Column(
+                    help="▸ = tiene un pick 'Más …' (qué equipo supera al rival): clic en esta celda para verlo en "
+                         "una tabla debajo; otro clic (▾) la cierra."),
+                "Fuerza en la liga": st.column_config.Column(help=FUERZA_TIPS_AYUDA),
+                "Fortaleza local": st.column_config.Column(help=FORMA_TIPS_AYUDA),
+                "Fortaleza visitante": st.column_config.Column(help=FORMA_TIPS_AYUDA),
+                "Alerta 365": st.column_config.Column(width="large", help=ALERTA_365_AYUDA),
+                "Qué significa": st.column_config.Column(
+                    width="large", help="Solo en los mercados especiales (vista 🧪 Avanzada)."),
+                "Prob. modelo": st.column_config.NumberColumn(format="%.0f%%"),
+                "Mejor cuota": st.column_config.NumberColumn(format="%.2f"),
+                "Cuota manual": st.column_config.NumberColumn(
+                    format="%.2f", help="Se escribe en la tabla 'Cuotas de tu casa' de más abajo."),
+            }
+            st.markdown("**Picks candidatos**")
             if hijos:
-                st.caption("➕ Las filas con **▸** en 'Mercado' (Tarjetas, Corners, Faltas, Tiros al arco, Fueras de "
-                           "juego) tienen un pick 'Más …' plegado: marca su casilla **➕ Más** (fija a la izquierda, "
-                           "junto al partido) para verlo debajo (↳ Más …, la flecha cambia a ▾); desmárcala para "
-                           "plegarlo.")
+                st.caption("👆 Las filas con **▸** en 'Mercado' (Tarjetas, Corners, Faltas, Tiros al arco, Fueras de "
+                           "juego) tienen un pick 'Más …': haz clic en esa celda para ver debajo el detalle (qué equipo "
+                           "supera al rival); otro clic (▾) lo cierra.")
+            st.dataframe(_tabla_picks(tabla, True), hide_index=True, width="stretch",
+                         key=f"tips_tabla_{fecha_k}_{estado_tips['n_tabla']}",
+                         on_select="rerun", selection_mode="single-cell", column_config=config_picks)
+            if abierto is not None:
+                st.markdown(f"**↳ Detalle: {candidatos.at[abierto, 'partido']} · {candidatos.at[abierto, 'mercado']}** "
+                            "— qué equipo supera al rival en ese mercado")
+                st.dataframe(_tabla_picks(detalle, False), hide_index=True, width="stretch",
+                             column_config=config_picks)
+
+            # 3) Cuotas de tu casa: solo los picks a la vista (incluido el detalle abierto).
+            filas_cuota = list(tabla.index) + list(detalle.index)
+            estado_tips["orden"] = [pick_id[i] for i in filas_cuota]
+            cuotas = candidatos.loc[filas_cuota]
+            editor = pd.DataFrame({
+                "Partido": cuotas["partido"],
+                "Mercado": [f"↳ {m}" if i in padre else m for i, m in zip(cuotas.index, cuotas["mercado"])],
+                "Pick": cuotas["pick"],
+                "Mejor cuota": pd.to_numeric(cuotas["cuota_auto"], errors="coerce").astype(float),
+                "Casa": cuotas["casa"],
+                "Cuota manual": pd.Series([estado_tips["manual"].get(pick_id[i]) for i in cuotas.index],
+                                          index=cuotas.index, dtype="float"),
+            }, index=cuotas.index)
+            st.markdown("**Cuotas de tu casa** — corrige 'Cuota manual' con la de tu casa antes de apostar "
+                        "(decimales con coma, ej. 1,45):")
             st.data_editor(
                 editor, hide_index=True, width="stretch",
-                key=f"tips_editor_{fecha_tips.isoformat()}_{estado_tips['ver']}",
-                disabled=[c for c in editor.columns if c not in ("Cuota manual", "➕ Más")],
+                key=f"tips_editor_{fecha_k}_{estado_tips['ver']}",
+                disabled=[c for c in editor.columns if c != "Cuota manual"],
                 column_config={
                     "Partido": st.column_config.Column(pinned=True),
-                    # Fija junto a "Partido": siempre a la vista al desplazar la tabla.
-                    "➕ Más": st.column_config.CheckboxColumn(
-                        "➕ Más", pinned=True, help="En las filas de Tarjetas / Corners / Faltas / Tiros al arco / Fueras de juego "
-                                      "que tienen pick 'Más …' en ese partido: márcala para verlo debajo."),
-                    "Fuerza en la liga": st.column_config.Column(help=FUERZA_TIPS_AYUDA),
-                    "Fortaleza local": st.column_config.Column(help=FORMA_TIPS_AYUDA),
-                    "Fortaleza visitante": st.column_config.Column(help=FORMA_TIPS_AYUDA),
-                    "Alerta 365": st.column_config.Column(width="large", help=ALERTA_365_AYUDA),
-                    "Qué significa": st.column_config.Column(
-                        width="large", help="Solo en los mercados especiales (vista 🧪 Avanzada)."),
-                    "Prob. modelo": st.column_config.NumberColumn(format="%.0f%%"),
                     "Mejor cuota": st.column_config.NumberColumn(format="%.2f"),
                     # Sin max_value a propósito: recortaría un error de tipeo
                     # (136) a un valor que parece real (20); value_tips lo marca.
