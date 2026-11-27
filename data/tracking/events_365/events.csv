@@ -40781,3 +40781,24 @@ game_id,side,minute,added_time,half,type,subtype,player
 4735197,away,46.0,0,2,Woodwork,,Rudy Matondo
 4735197,away,60.0,0,2,Yellow Card,,Ilan Kebbal
 4735197,home,78.0,0,2,Yellow Card,,Egil Selvik
+4741983,home,5.0,0,1,Goal,Field Goal,Igor Jesus
+4741983,away,50.0,0,2,Yellow Card,,Wesley Fofana
+4741983,home,51.0,0,2,Goal,Penalty,Morgan Gibbs-White
+4741983,away,54.0,0,2,Goal,Field Goal,Emmanuel Emegha
+4741983,away,61.0,0,2,Yellow Card,,Jordan Henderson
+4741983,away,70.0,0,2,Yellow Card,,Xabi Alonso
+4741983,away,71.0,0,2,Yellow Card,,Pedro Neto
+4741983,home,72.0,0,2,Goal,Field Goal,Morgan Gibbs-White
+4741983,home,80.0,0,2,Yellow Card,,Liam Delap
+4741983,away,89.0,0,2,Goal,Field Goal,Emmanuel Emegha
+4741983,home,90.0,3,2,Yellow Card,,Ibrahim Sangare
+4750776,home,9.0,0,1,Woodwork,,Adrián De la Fuente
+4750776,away,25.0,0,1,Yellow Card,,Pedro Felipe
+4750776,home,42.0,0,1,Goal,Field Goal,Iván Romero
+4750776,home,57.0,0,2,Yellow Card,,Dani Requena
+4750776,away,66.0,0,2,Goal,Field Goal,Pablo García
+4750776,away,74.0,0,2,Yellow Card,,Iker Luque
+4750776,away,80.0,0,2,Woodwork,,Yassir Zabiri
+4750776,away,81.0,0,2,Goal,Field Goal,Yassir Zabiri
+4750776,home,90.0,3,2,Yellow Card,,Jon Ander Olasagasti
+4750776,away,90.0,5,2,Goal,Field Goal,Pablo García
