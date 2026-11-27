@@ -1189,3 +1189,37 @@ fetched_at,competition,game_id,utc_date,home_team,away_team,side,stat_id,group,n
 2026-11-26T18:00:41Z,EL,4828679,2026-11-26T20:00:00Z,Torreense,Celtic,away,171,2,Saques de Esquina,8.11,Últimos 21 partidos
 2026-11-26T18:00:41Z,EL,4828679,2026-11-26T20:00:00Z,Torreense,Celtic,away,174,2,Tarjetas,1.38,Últimos 21 partidos
 2026-11-26T18:00:41Z,EL,4828679,2026-11-26T20:00:00Z,Torreense,Celtic,away,175,2,Penales convertidos/penales ejecutados,1/2,Últimos 21 partidos
+2026-11-27T16:30:28Z,BL1,4755327,2026-11-27T19:30:00Z,Werder Bremen,Borussia Mönchengladbach,home,141,1,Partidos ganados,6 (50%),Últimos 12 partidos
+2026-11-27T16:30:28Z,BL1,4755327,2026-11-27T19:30:00Z,Werder Bremen,Borussia Mönchengladbach,home,142,1,Ambos equipos marcaron,8 (67%),Últimos 12 partidos
+2026-11-27T16:30:28Z,BL1,4755327,2026-11-27T19:30:00Z,Werder Bremen,Borussia Mönchengladbach,home,143,1,Más de 2.5 goles,9 (75%),Últimos 12 partidos
+2026-11-27T16:30:28Z,BL1,4755327,2026-11-27T19:30:00Z,Werder Bremen,Borussia Mönchengladbach,home,144,1,Marcó primero,5 (42%),Últimos 12 partidos
+2026-11-27T16:30:28Z,BL1,4755327,2026-11-27T19:30:00Z,Werder Bremen,Borussia Mönchengladbach,home,146,1,Recibió gol primero,7 (58%),Últimos 12 partidos
+2026-11-27T16:30:28Z,BL1,4755327,2026-11-27T19:30:00Z,Werder Bremen,Borussia Mönchengladbach,home,148,1,Empató o Ganó,9 (75%),Últimos 12 partidos
+2026-11-27T16:30:28Z,BL1,4755327,2026-11-27T19:30:00Z,Werder Bremen,Borussia Mönchengladbach,home,149,1,Vencedor al entretiempo,3 (25%),Últimos 12 partidos
+2026-11-27T16:30:28Z,BL1,4755327,2026-11-27T19:30:00Z,Werder Bremen,Borussia Mönchengladbach,home,150,1,Valla invicta,3 (25%),Últimos 12 partidos
+2026-11-27T16:30:28Z,BL1,4755327,2026-11-27T19:30:00Z,Werder Bremen,Borussia Mönchengladbach,home,153,2,Goles convertidos,2.17,Últimos 12 partidos
+2026-11-27T16:30:28Z,BL1,4755327,2026-11-27T19:30:00Z,Werder Bremen,Borussia Mönchengladbach,home,156,2,Goles recibidos,1.5,Últimos 12 partidos
+2026-11-27T16:30:28Z,BL1,4755327,2026-11-27T19:30:00Z,Werder Bremen,Borussia Mönchengladbach,home,159,2,Goles esperados,1.57,Últimos 12 partidos
+2026-11-27T16:30:28Z,BL1,4755327,2026-11-27T19:30:00Z,Werder Bremen,Borussia Mönchengladbach,home,162,2,Goles esperados recibidos,1.32,Últimos 12 partidos
+2026-11-27T16:30:28Z,BL1,4755327,2026-11-27T19:30:00Z,Werder Bremen,Borussia Mönchengladbach,home,165,2,Remates,16.25,Últimos 12 partidos
+2026-11-27T16:30:28Z,BL1,4755327,2026-11-27T19:30:00Z,Werder Bremen,Borussia Mönchengladbach,home,168,2,Remates al arco,6.67,Últimos 12 partidos
+2026-11-27T16:30:28Z,BL1,4755327,2026-11-27T19:30:00Z,Werder Bremen,Borussia Mönchengladbach,home,171,2,Saques de Esquina,4.33,Últimos 12 partidos
+2026-11-27T16:30:28Z,BL1,4755327,2026-11-27T19:30:00Z,Werder Bremen,Borussia Mönchengladbach,home,174,2,Tarjetas,1.75,Últimos 12 partidos
+2026-11-27T16:30:28Z,BL1,4755327,2026-11-27T19:30:00Z,Werder Bremen,Borussia Mönchengladbach,home,175,2,Penales convertidos/penales ejecutados,5/5,Últimos 12 partidos
+2026-11-27T16:30:28Z,BL1,4755327,2026-11-27T19:30:00Z,Werder Bremen,Borussia Mönchengladbach,away,141,1,Partidos ganados,3 (25%),Últimos 12 partidos
+2026-11-27T16:30:28Z,BL1,4755327,2026-11-27T19:30:00Z,Werder Bremen,Borussia Mönchengladbach,away,142,1,Ambos equipos marcaron,6 (50%),Últimos 12 partidos
+2026-11-27T16:30:28Z,BL1,4755327,2026-11-27T19:30:00Z,Werder Bremen,Borussia Mönchengladbach,away,143,1,Más de 2.5 goles,9 (75%),Últimos 12 partidos
+2026-11-27T16:30:28Z,BL1,4755327,2026-11-27T19:30:00Z,Werder Bremen,Borussia Mönchengladbach,away,144,1,Marcó primero,4 (33%),Últimos 12 partidos
+2026-11-27T16:30:28Z,BL1,4755327,2026-11-27T19:30:00Z,Werder Bremen,Borussia Mönchengladbach,away,146,1,Recibió gol primero,7 (58%),Últimos 12 partidos
+2026-11-27T16:30:28Z,BL1,4755327,2026-11-27T19:30:00Z,Werder Bremen,Borussia Mönchengladbach,away,148,1,Empató o Ganó,4 (33%),Últimos 12 partidos
+2026-11-27T16:30:28Z,BL1,4755327,2026-11-27T19:30:00Z,Werder Bremen,Borussia Mönchengladbach,away,149,1,Vencedor al entretiempo,3 (25%),Últimos 12 partidos
+2026-11-27T16:30:28Z,BL1,4755327,2026-11-27T19:30:00Z,Werder Bremen,Borussia Mönchengladbach,away,150,1,Valla invicta,3 (25%),Últimos 12 partidos
+2026-11-27T16:30:28Z,BL1,4755327,2026-11-27T19:30:00Z,Werder Bremen,Borussia Mönchengladbach,away,153,2,Goles convertidos,1.58,Últimos 12 partidos
+2026-11-27T16:30:28Z,BL1,4755327,2026-11-27T19:30:00Z,Werder Bremen,Borussia Mönchengladbach,away,156,2,Goles recibidos,2.17,Últimos 12 partidos
+2026-11-27T16:30:28Z,BL1,4755327,2026-11-27T19:30:00Z,Werder Bremen,Borussia Mönchengladbach,away,159,2,Goles esperados,1.54,Últimos 12 partidos
+2026-11-27T16:30:28Z,BL1,4755327,2026-11-27T19:30:00Z,Werder Bremen,Borussia Mönchengladbach,away,162,2,Goles esperados recibidos,1.8,Últimos 12 partidos
+2026-11-27T16:30:28Z,BL1,4755327,2026-11-27T19:30:00Z,Werder Bremen,Borussia Mönchengladbach,away,165,2,Remates,14.58,Últimos 12 partidos
+2026-11-27T16:30:28Z,BL1,4755327,2026-11-27T19:30:00Z,Werder Bremen,Borussia Mönchengladbach,away,168,2,Remates al arco,5,Últimos 12 partidos
+2026-11-27T16:30:28Z,BL1,4755327,2026-11-27T19:30:00Z,Werder Bremen,Borussia Mönchengladbach,away,171,2,Saques de Esquina,5.25,Últimos 12 partidos
+2026-11-27T16:30:28Z,BL1,4755327,2026-11-27T19:30:00Z,Werder Bremen,Borussia Mönchengladbach,away,174,2,Tarjetas,2.58,Últimos 12 partidos
+2026-11-27T16:30:28Z,BL1,4755327,2026-11-27T19:30:00Z,Werder Bremen,Borussia Mönchengladbach,away,175,2,Penales convertidos/penales ejecutados,1/1,Últimos 12 partidos
