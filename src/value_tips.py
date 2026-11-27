@@ -480,8 +480,11 @@ def drop_redundant(picks: pd.DataFrame, model_weight: float = MODEL_WEIGHT) -> p
         return picks
     d = picks[con_linea].copy()
     m = partes[con_linea]
+    # Un pick por partido, mercado y equipo, sin importar el lado (pedido del
+    # usuario, nov-2026: "Menos de 3.5" y "Más de 1.5" del mismo partido eran
+    # dos apuestas de goles redundantes).
     d["_grupo"] = (d["partido"].astype(str) + "|" + d["mercado"].map(lambda x: _FAMILIA.get(x, x)) + "|"
-                   + m.map(lambda x: x.group(1) or "") + "|" + m.map(lambda x: x.group(2)))
+                   + m.map(lambda x: x.group(1) or ""))
     d["_linea"] = m.map(lambda x: float(x.group(3)))
     cuota = pd.to_numeric(d["cuota_auto"], errors="coerce") if "cuota_auto" in d else pd.Series(float("nan"), index=d.index)
     peso = d["peso_modelo"].fillna(model_weight) if "peso_modelo" in d else model_weight
@@ -490,7 +493,9 @@ def drop_redundant(picks: pd.DataFrame, model_weight: float = MODEL_WEIGHT) -> p
     d["_fuerza"] = [market_strength(r.competition, r.mercado, r.odds_key, r.pick) for r in d.itertuples()]
     # Línea más exigente: la más alta en "Más", la más baja en "Menos".
     d["_exigencia"] = d["_linea"].where(m.map(lambda x: x.group(2)) == "Más", -d["_linea"])
-    d = d.sort_values(["_con_cuota", "_valor", "_fuerza", "_exigencia"], ascending=False, na_position="last")
+    d["_cuota"] = cuota
+    # Queda el de más fuerza en la liga y, empatados, el de mejor cuota.
+    d = d.sort_values(["_fuerza", "_cuota", "_valor", "_exigencia"], ascending=False, na_position="last")
     quedan = d.drop_duplicates("_grupo").index
     return picks[~con_linea | picks.index.isin(quedan)]
 
