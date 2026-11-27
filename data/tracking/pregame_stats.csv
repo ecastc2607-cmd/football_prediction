@@ -1291,3 +1291,71 @@ fetched_at,competition,game_id,utc_date,home_team,away_team,side,stat_id,group,n
 2026-11-27T16:45:29Z,FL1,4735197,2026-11-27T19:45:00Z,Brest,Paris FC,away,171,2,Saques de Esquina,4,Últimos 11 partidos
 2026-11-27T16:45:29Z,FL1,4735197,2026-11-27T19:45:00Z,Brest,Paris FC,away,174,2,Tarjetas,2.09,Últimos 11 partidos
 2026-11-27T16:45:29Z,FL1,4735197,2026-11-27T19:45:00Z,Brest,Paris FC,away,175,2,Penales convertidos/penales ejecutados,2/3,Últimos 11 partidos
+2026-11-27T17:00:28Z,PL,4741983,2026-11-27T20:00:00Z,Nottingham Forest,Chelsea,home,141,1,Partidos ganados,2 (17%),Últimos 12 partidos
+2026-11-27T17:00:28Z,PL,4741983,2026-11-27T20:00:00Z,Nottingham Forest,Chelsea,home,142,1,Ambos equipos marcaron,5 (42%),Últimos 12 partidos
+2026-11-27T17:00:28Z,PL,4741983,2026-11-27T20:00:00Z,Nottingham Forest,Chelsea,home,143,1,Más de 2.5 goles,4 (33%),Últimos 12 partidos
+2026-11-27T17:00:28Z,PL,4741983,2026-11-27T20:00:00Z,Nottingham Forest,Chelsea,home,144,1,Marcó primero,5 (42%),Últimos 12 partidos
+2026-11-27T17:00:28Z,PL,4741983,2026-11-27T20:00:00Z,Nottingham Forest,Chelsea,home,146,1,Recibió gol primero,6 (50%),Últimos 12 partidos
+2026-11-27T17:00:28Z,PL,4741983,2026-11-27T20:00:00Z,Nottingham Forest,Chelsea,home,148,1,Empató o Ganó,5 (42%),Últimos 12 partidos
+2026-11-27T17:00:28Z,PL,4741983,2026-11-27T20:00:00Z,Nottingham Forest,Chelsea,home,149,1,Vencedor al entretiempo,2 (17%),Últimos 12 partidos
+2026-11-27T17:00:28Z,PL,4741983,2026-11-27T20:00:00Z,Nottingham Forest,Chelsea,home,150,1,Valla invicta,1 (8%),Últimos 12 partidos
+2026-11-27T17:00:28Z,PL,4741983,2026-11-27T20:00:00Z,Nottingham Forest,Chelsea,home,153,2,Goles convertidos,0.75,Últimos 12 partidos
+2026-11-27T17:00:28Z,PL,4741983,2026-11-27T20:00:00Z,Nottingham Forest,Chelsea,home,156,2,Goles recibidos,1.42,Últimos 12 partidos
+2026-11-27T17:00:28Z,PL,4741983,2026-11-27T20:00:00Z,Nottingham Forest,Chelsea,home,159,2,Goles esperados,1.44,Últimos 12 partidos
+2026-11-27T17:00:28Z,PL,4741983,2026-11-27T20:00:00Z,Nottingham Forest,Chelsea,home,162,2,Goles esperados recibidos,1.34,Últimos 12 partidos
+2026-11-27T17:00:28Z,PL,4741983,2026-11-27T20:00:00Z,Nottingham Forest,Chelsea,home,165,2,Remates,15.83,Últimos 12 partidos
+2026-11-27T17:00:28Z,PL,4741983,2026-11-27T20:00:00Z,Nottingham Forest,Chelsea,home,168,2,Remates al arco,3.33,Últimos 12 partidos
+2026-11-27T17:00:28Z,PL,4741983,2026-11-27T20:00:00Z,Nottingham Forest,Chelsea,home,171,2,Saques de Esquina,4.25,Últimos 12 partidos
+2026-11-27T17:00:28Z,PL,4741983,2026-11-27T20:00:00Z,Nottingham Forest,Chelsea,home,174,2,Tarjetas,2.58,Últimos 12 partidos
+2026-11-27T17:00:28Z,PL,4741983,2026-11-27T20:00:00Z,Nottingham Forest,Chelsea,home,175,2,Penales convertidos/penales ejecutados,1/1,Últimos 12 partidos
+2026-11-27T17:00:28Z,PL,4741983,2026-11-27T20:00:00Z,Nottingham Forest,Chelsea,away,141,1,Partidos ganados,7 (50%),Últimos 14 partidos
+2026-11-27T17:00:28Z,PL,4741983,2026-11-27T20:00:00Z,Nottingham Forest,Chelsea,away,142,1,Ambos equipos marcaron,8 (57%),Últimos 14 partidos
+2026-11-27T17:00:28Z,PL,4741983,2026-11-27T20:00:00Z,Nottingham Forest,Chelsea,away,143,1,Más de 2.5 goles,8 (57%),Últimos 14 partidos
+2026-11-27T17:00:28Z,PL,4741983,2026-11-27T20:00:00Z,Nottingham Forest,Chelsea,away,144,1,Marcó primero,10 (71%),Últimos 14 partidos
+2026-11-27T17:00:28Z,PL,4741983,2026-11-27T20:00:00Z,Nottingham Forest,Chelsea,away,146,1,Recibió gol primero,4 (29%),Últimos 14 partidos
+2026-11-27T17:00:28Z,PL,4741983,2026-11-27T20:00:00Z,Nottingham Forest,Chelsea,away,148,1,Empató o Ganó,9 (64%),Últimos 14 partidos
+2026-11-27T17:00:28Z,PL,4741983,2026-11-27T20:00:00Z,Nottingham Forest,Chelsea,away,149,1,Vencedor al entretiempo,3 (21%),Últimos 14 partidos
+2026-11-27T17:00:28Z,PL,4741983,2026-11-27T20:00:00Z,Nottingham Forest,Chelsea,away,150,1,Valla invicta,3 (21%),Últimos 14 partidos
+2026-11-27T17:00:28Z,PL,4741983,2026-11-27T20:00:00Z,Nottingham Forest,Chelsea,away,153,2,Goles convertidos,2.07,Últimos 14 partidos
+2026-11-27T17:00:28Z,PL,4741983,2026-11-27T20:00:00Z,Nottingham Forest,Chelsea,away,156,2,Goles recibidos,1.71,Últimos 14 partidos
+2026-11-27T17:00:28Z,PL,4741983,2026-11-27T20:00:00Z,Nottingham Forest,Chelsea,away,159,2,Goles esperados,1.43,Últimos 14 partidos
+2026-11-27T17:00:28Z,PL,4741983,2026-11-27T20:00:00Z,Nottingham Forest,Chelsea,away,162,2,Goles esperados recibidos,1.59,Últimos 14 partidos
+2026-11-27T17:00:28Z,PL,4741983,2026-11-27T20:00:00Z,Nottingham Forest,Chelsea,away,165,2,Remates,14.36,Últimos 14 partidos
+2026-11-27T17:00:28Z,PL,4741983,2026-11-27T20:00:00Z,Nottingham Forest,Chelsea,away,168,2,Remates al arco,5.57,Últimos 14 partidos
+2026-11-27T17:00:28Z,PL,4741983,2026-11-27T20:00:00Z,Nottingham Forest,Chelsea,away,171,2,Saques de Esquina,5.36,Últimos 14 partidos
+2026-11-27T17:00:28Z,PL,4741983,2026-11-27T20:00:00Z,Nottingham Forest,Chelsea,away,174,2,Tarjetas,1.86,Últimos 14 partidos
+2026-11-27T17:00:28Z,PL,4741983,2026-11-27T20:00:00Z,Nottingham Forest,Chelsea,away,175,2,Penales convertidos/penales ejecutados,3/3,Últimos 14 partidos
+2026-11-27T17:00:28Z,PD,4750776,2026-11-27T20:00:00Z,Levante,Racing Santander,home,141,1,Partidos ganados,2 (14%),Últimos 14 partidos
+2026-11-27T17:00:28Z,PD,4750776,2026-11-27T20:00:00Z,Levante,Racing Santander,home,142,1,Ambos equipos marcaron,9 (64%),Últimos 14 partidos
+2026-11-27T17:00:28Z,PD,4750776,2026-11-27T20:00:00Z,Levante,Racing Santander,home,143,1,Más de 2.5 goles,7 (50%),Últimos 14 partidos
+2026-11-27T17:00:28Z,PD,4750776,2026-11-27T20:00:00Z,Levante,Racing Santander,home,144,1,Marcó primero,2 (14%),Últimos 14 partidos
+2026-11-27T17:00:28Z,PD,4750776,2026-11-27T20:00:00Z,Levante,Racing Santander,home,146,1,Recibió gol primero,9 (64%),Últimos 14 partidos
+2026-11-27T17:00:28Z,PD,4750776,2026-11-27T20:00:00Z,Levante,Racing Santander,home,148,1,Empató o Ganó,9 (64%),Últimos 14 partidos
+2026-11-27T17:00:28Z,PD,4750776,2026-11-27T20:00:00Z,Levante,Racing Santander,home,149,1,Vencedor al entretiempo,1 (7%),Últimos 14 partidos
+2026-11-27T17:00:28Z,PD,4750776,2026-11-27T20:00:00Z,Levante,Racing Santander,home,150,1,Valla invicta,3 (21%),Últimos 14 partidos
+2026-11-27T17:00:28Z,PD,4750776,2026-11-27T20:00:00Z,Levante,Racing Santander,home,153,2,Goles convertidos,1.29,Últimos 14 partidos
+2026-11-27T17:00:28Z,PD,4750776,2026-11-27T20:00:00Z,Levante,Racing Santander,home,156,2,Goles recibidos,1.64,Últimos 14 partidos
+2026-11-27T17:00:28Z,PD,4750776,2026-11-27T20:00:00Z,Levante,Racing Santander,home,159,2,Goles esperados,1.26,Últimos 14 partidos
+2026-11-27T17:00:28Z,PD,4750776,2026-11-27T20:00:00Z,Levante,Racing Santander,home,162,2,Goles esperados recibidos,1.72,Últimos 14 partidos
+2026-11-27T17:00:28Z,PD,4750776,2026-11-27T20:00:00Z,Levante,Racing Santander,home,165,2,Remates,12.5,Últimos 14 partidos
+2026-11-27T17:00:28Z,PD,4750776,2026-11-27T20:00:00Z,Levante,Racing Santander,home,168,2,Remates al arco,3.71,Últimos 14 partidos
+2026-11-27T17:00:28Z,PD,4750776,2026-11-27T20:00:00Z,Levante,Racing Santander,home,171,2,Saques de Esquina,3.86,Últimos 14 partidos
+2026-11-27T17:00:28Z,PD,4750776,2026-11-27T20:00:00Z,Levante,Racing Santander,home,174,2,Tarjetas,1.57,Últimos 14 partidos
+2026-11-27T17:00:28Z,PD,4750776,2026-11-27T20:00:00Z,Levante,Racing Santander,home,175,2,Penales convertidos/penales ejecutados,0/0,Últimos 14 partidos
+2026-11-27T17:00:28Z,PD,4750776,2026-11-27T20:00:00Z,Levante,Racing Santander,away,141,1,Partidos ganados,6 (43%),Últimos 14 partidos
+2026-11-27T17:00:28Z,PD,4750776,2026-11-27T20:00:00Z,Levante,Racing Santander,away,142,1,Ambos equipos marcaron,9 (64%),Últimos 14 partidos
+2026-11-27T17:00:28Z,PD,4750776,2026-11-27T20:00:00Z,Levante,Racing Santander,away,143,1,Más de 2.5 goles,11 (79%),Últimos 14 partidos
+2026-11-27T17:00:28Z,PD,4750776,2026-11-27T20:00:00Z,Levante,Racing Santander,away,144,1,Marcó primero,5 (36%),Últimos 14 partidos
+2026-11-27T17:00:28Z,PD,4750776,2026-11-27T20:00:00Z,Levante,Racing Santander,away,146,1,Recibió gol primero,9 (64%),Últimos 14 partidos
+2026-11-27T17:00:28Z,PD,4750776,2026-11-27T20:00:00Z,Levante,Racing Santander,away,148,1,Empató o Ganó,8 (57%),Últimos 14 partidos
+2026-11-27T17:00:28Z,PD,4750776,2026-11-27T20:00:00Z,Levante,Racing Santander,away,149,1,Vencedor al entretiempo,2 (14%),Últimos 14 partidos
+2026-11-27T17:00:28Z,PD,4750776,2026-11-27T20:00:00Z,Levante,Racing Santander,away,150,1,Valla invicta,1 (7%),Últimos 14 partidos
+2026-11-27T17:00:28Z,PD,4750776,2026-11-27T20:00:00Z,Levante,Racing Santander,away,153,2,Goles convertidos,1.57,Últimos 14 partidos
+2026-11-27T17:00:28Z,PD,4750776,2026-11-27T20:00:00Z,Levante,Racing Santander,away,156,2,Goles recibidos,2.29,Últimos 14 partidos
+2026-11-27T17:00:28Z,PD,4750776,2026-11-27T20:00:00Z,Levante,Racing Santander,away,159,2,Goles esperados,1.61,Últimos 14 partidos
+2026-11-27T17:00:28Z,PD,4750776,2026-11-27T20:00:00Z,Levante,Racing Santander,away,162,2,Goles esperados recibidos,2.05,Últimos 14 partidos
+2026-11-27T17:00:28Z,PD,4750776,2026-11-27T20:00:00Z,Levante,Racing Santander,away,165,2,Remates,14,Últimos 14 partidos
+2026-11-27T17:00:28Z,PD,4750776,2026-11-27T20:00:00Z,Levante,Racing Santander,away,168,2,Remates al arco,5.21,Últimos 14 partidos
+2026-11-27T17:00:28Z,PD,4750776,2026-11-27T20:00:00Z,Levante,Racing Santander,away,171,2,Saques de Esquina,5.29,Últimos 14 partidos
+2026-11-27T17:00:28Z,PD,4750776,2026-11-27T20:00:00Z,Levante,Racing Santander,away,174,2,Tarjetas,2.5,Últimos 14 partidos
+2026-11-27T17:00:28Z,PD,4750776,2026-11-27T20:00:00Z,Levante,Racing Santander,away,175,2,Penales convertidos/penales ejecutados,2/3,Últimos 14 partidos
