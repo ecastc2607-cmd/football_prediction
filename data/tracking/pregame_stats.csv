@@ -1393,3 +1393,37 @@ fetched_at,competition,game_id,utc_date,home_team,away_team,side,stat_id,group,n
 2026-11-27T20:35:32Z,COL,4896644,2026-11-27T23:35:00Z,Deportivo Cali,Atlético Bucaramanga,away,171,2,Saques de Esquina,3.73,Últimos 45 partidos
 2026-11-27T20:35:32Z,COL,4896644,2026-11-27T23:35:00Z,Deportivo Cali,Atlético Bucaramanga,away,174,2,Tarjetas,2.69,Últimos 45 partidos
 2026-11-27T20:35:32Z,COL,4896644,2026-11-27T23:35:00Z,Deportivo Cali,Atlético Bucaramanga,away,175,2,Penales convertidos/penales ejecutados,2/5,Últimos 45 partidos
+2026-11-27T22:40:27Z,COL,4896645,2026-11-28T01:40:00Z,Millonarios,America de Cali,home,141,1,Partidos ganados,22 (41%),Últimos 54 partidos
+2026-11-27T22:40:27Z,COL,4896645,2026-11-28T01:40:00Z,Millonarios,America de Cali,home,142,1,Ambos equipos marcaron,32 (59%),Últimos 54 partidos
+2026-11-27T22:40:27Z,COL,4896645,2026-11-28T01:40:00Z,Millonarios,America de Cali,home,143,1,Más de 2.5 goles,25 (46%),Últimos 54 partidos
+2026-11-27T22:40:27Z,COL,4896645,2026-11-28T01:40:00Z,Millonarios,America de Cali,home,144,1,Marcó primero,30 (56%),Últimos 54 partidos
+2026-11-27T22:40:27Z,COL,4896645,2026-11-28T01:40:00Z,Millonarios,America de Cali,home,146,1,Recibió gol primero,18 (33%),Últimos 54 partidos
+2026-11-27T22:40:27Z,COL,4896645,2026-11-28T01:40:00Z,Millonarios,America de Cali,home,148,1,Empató o Ganó,41 (76%),Últimos 54 partidos
+2026-11-27T22:40:27Z,COL,4896645,2026-11-28T01:40:00Z,Millonarios,America de Cali,home,149,1,Vencedor al entretiempo,16 (30%),Últimos 54 partidos
+2026-11-27T22:40:27Z,COL,4896645,2026-11-28T01:40:00Z,Millonarios,America de Cali,home,150,1,Valla invicta,18 (33%),Últimos 54 partidos
+2026-11-27T22:40:27Z,COL,4896645,2026-11-28T01:40:00Z,Millonarios,America de Cali,home,153,2,Goles convertidos,1.63,Últimos 54 partidos
+2026-11-27T22:40:27Z,COL,4896645,2026-11-28T01:40:00Z,Millonarios,America de Cali,home,156,2,Goles recibidos,1.02,Últimos 54 partidos
+2026-11-27T22:40:27Z,COL,4896645,2026-11-28T01:40:00Z,Millonarios,America de Cali,home,159,2,Goles esperados,1.29,Últimos 54 partidos
+2026-11-27T22:40:27Z,COL,4896645,2026-11-28T01:40:00Z,Millonarios,America de Cali,home,162,2,Goles esperados recibidos,0.83,Últimos 54 partidos
+2026-11-27T22:40:27Z,COL,4896645,2026-11-28T01:40:00Z,Millonarios,America de Cali,home,165,2,Remates,15.45,Últimos 54 partidos
+2026-11-27T22:40:27Z,COL,4896645,2026-11-28T01:40:00Z,Millonarios,America de Cali,home,168,2,Remates al arco,5.64,Últimos 54 partidos
+2026-11-27T22:40:27Z,COL,4896645,2026-11-28T01:40:00Z,Millonarios,America de Cali,home,171,2,Saques de Esquina,5.81,Últimos 54 partidos
+2026-11-27T22:40:27Z,COL,4896645,2026-11-28T01:40:00Z,Millonarios,America de Cali,home,174,2,Tarjetas,3.06,Últimos 54 partidos
+2026-11-27T22:40:27Z,COL,4896645,2026-11-28T01:40:00Z,Millonarios,America de Cali,home,175,2,Penales convertidos/penales ejecutados,7/9,Últimos 54 partidos
+2026-11-27T22:40:27Z,COL,4896645,2026-11-28T01:40:00Z,Millonarios,America de Cali,away,141,1,Partidos ganados,29 (52%),Últimos 56 partidos
+2026-11-27T22:40:27Z,COL,4896645,2026-11-28T01:40:00Z,Millonarios,America de Cali,away,142,1,Ambos equipos marcaron,27 (48%),Últimos 56 partidos
+2026-11-27T22:40:27Z,COL,4896645,2026-11-28T01:40:00Z,Millonarios,America de Cali,away,143,1,Más de 2.5 goles,26 (46%),Últimos 56 partidos
+2026-11-27T22:40:27Z,COL,4896645,2026-11-28T01:40:00Z,Millonarios,America de Cali,away,144,1,Marcó primero,25 (45%),Últimos 56 partidos
+2026-11-27T22:40:27Z,COL,4896645,2026-11-28T01:40:00Z,Millonarios,America de Cali,away,146,1,Recibió gol primero,26 (46%),Últimos 56 partidos
+2026-11-27T22:40:27Z,COL,4896645,2026-11-28T01:40:00Z,Millonarios,America de Cali,away,148,1,Empató o Ganó,45 (80%),Últimos 56 partidos
+2026-11-27T22:40:27Z,COL,4896645,2026-11-28T01:40:00Z,Millonarios,America de Cali,away,149,1,Vencedor al entretiempo,19 (34%),Últimos 56 partidos
+2026-11-27T22:40:27Z,COL,4896645,2026-11-28T01:40:00Z,Millonarios,America de Cali,away,150,1,Valla invicta,22 (39%),Últimos 56 partidos
+2026-11-27T22:40:27Z,COL,4896645,2026-11-28T01:40:00Z,Millonarios,America de Cali,away,153,2,Goles convertidos,1.52,Últimos 56 partidos
+2026-11-27T22:40:27Z,COL,4896645,2026-11-28T01:40:00Z,Millonarios,America de Cali,away,156,2,Goles recibidos,0.88,Últimos 56 partidos
+2026-11-27T22:40:27Z,COL,4896645,2026-11-28T01:40:00Z,Millonarios,America de Cali,away,159,2,Goles esperados,1.16,Últimos 56 partidos
+2026-11-27T22:40:27Z,COL,4896645,2026-11-28T01:40:00Z,Millonarios,America de Cali,away,162,2,Goles esperados recibidos,0.87,Últimos 56 partidos
+2026-11-27T22:40:27Z,COL,4896645,2026-11-28T01:40:00Z,Millonarios,America de Cali,away,165,2,Remates,12.68,Últimos 56 partidos
+2026-11-27T22:40:27Z,COL,4896645,2026-11-28T01:40:00Z,Millonarios,America de Cali,away,168,2,Remates al arco,4.62,Últimos 56 partidos
+2026-11-27T22:40:27Z,COL,4896645,2026-11-28T01:40:00Z,Millonarios,America de Cali,away,171,2,Saques de Esquina,4.05,Últimos 56 partidos
+2026-11-27T22:40:27Z,COL,4896645,2026-11-28T01:40:00Z,Millonarios,America de Cali,away,174,2,Tarjetas,2.88,Últimos 56 partidos
+2026-11-27T22:40:27Z,COL,4896645,2026-11-28T01:40:00Z,Millonarios,America de Cali,away,175,2,Penales convertidos/penales ejecutados,14/15,Últimos 56 partidos
