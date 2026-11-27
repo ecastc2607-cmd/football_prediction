@@ -1359,3 +1359,37 @@ fetched_at,competition,game_id,utc_date,home_team,away_team,side,stat_id,group,n
 2026-11-27T17:00:28Z,PD,4750776,2026-11-27T20:00:00Z,Levante,Racing Santander,away,171,2,Saques de Esquina,5.29,Últimos 14 partidos
 2026-11-27T17:00:28Z,PD,4750776,2026-11-27T20:00:00Z,Levante,Racing Santander,away,174,2,Tarjetas,2.5,Últimos 14 partidos
 2026-11-27T17:00:28Z,PD,4750776,2026-11-27T20:00:00Z,Levante,Racing Santander,away,175,2,Penales convertidos/penales ejecutados,2/3,Últimos 14 partidos
+2026-11-27T20:35:32Z,COL,4896644,2026-11-27T23:35:00Z,Deportivo Cali,Atlético Bucaramanga,home,141,1,Partidos ganados,20 (44%),Últimos 45 partidos
+2026-11-27T20:35:32Z,COL,4896644,2026-11-27T23:35:00Z,Deportivo Cali,Atlético Bucaramanga,home,142,1,Ambos equipos marcaron,19 (42%),Últimos 45 partidos
+2026-11-27T20:35:32Z,COL,4896644,2026-11-27T23:35:00Z,Deportivo Cali,Atlético Bucaramanga,home,143,1,Más de 2.5 goles,16 (36%),Últimos 45 partidos
+2026-11-27T20:35:32Z,COL,4896644,2026-11-27T23:35:00Z,Deportivo Cali,Atlético Bucaramanga,home,144,1,Marcó primero,26 (58%),Últimos 45 partidos
+2026-11-27T20:35:32Z,COL,4896644,2026-11-27T23:35:00Z,Deportivo Cali,Atlético Bucaramanga,home,146,1,Recibió gol primero,13 (29%),Últimos 45 partidos
+2026-11-27T20:35:32Z,COL,4896644,2026-11-27T23:35:00Z,Deportivo Cali,Atlético Bucaramanga,home,148,1,Empató o Ganó,35 (78%),Últimos 45 partidos
+2026-11-27T20:35:32Z,COL,4896644,2026-11-27T23:35:00Z,Deportivo Cali,Atlético Bucaramanga,home,149,1,Vencedor al entretiempo,19 (42%),Últimos 45 partidos
+2026-11-27T20:35:32Z,COL,4896644,2026-11-27T23:35:00Z,Deportivo Cali,Atlético Bucaramanga,home,150,1,Valla invicta,20 (44%),Últimos 45 partidos
+2026-11-27T20:35:32Z,COL,4896644,2026-11-27T23:35:00Z,Deportivo Cali,Atlético Bucaramanga,home,153,2,Goles convertidos,1.31,Últimos 45 partidos
+2026-11-27T20:35:32Z,COL,4896644,2026-11-27T23:35:00Z,Deportivo Cali,Atlético Bucaramanga,home,156,2,Goles recibidos,0.78,Últimos 45 partidos
+2026-11-27T20:35:32Z,COL,4896644,2026-11-27T23:35:00Z,Deportivo Cali,Atlético Bucaramanga,home,159,2,Goles esperados,0.96,Últimos 45 partidos
+2026-11-27T20:35:32Z,COL,4896644,2026-11-27T23:35:00Z,Deportivo Cali,Atlético Bucaramanga,home,162,2,Goles esperados recibidos,0.82,Últimos 45 partidos
+2026-11-27T20:35:32Z,COL,4896644,2026-11-27T23:35:00Z,Deportivo Cali,Atlético Bucaramanga,home,165,2,Remates,12.09,Últimos 45 partidos
+2026-11-27T20:35:32Z,COL,4896644,2026-11-27T23:35:00Z,Deportivo Cali,Atlético Bucaramanga,home,168,2,Remates al arco,4.4,Últimos 45 partidos
+2026-11-27T20:35:32Z,COL,4896644,2026-11-27T23:35:00Z,Deportivo Cali,Atlético Bucaramanga,home,171,2,Saques de Esquina,4.27,Últimos 45 partidos
+2026-11-27T20:35:32Z,COL,4896644,2026-11-27T23:35:00Z,Deportivo Cali,Atlético Bucaramanga,home,174,2,Tarjetas,2.84,Últimos 45 partidos
+2026-11-27T20:35:32Z,COL,4896644,2026-11-27T23:35:00Z,Deportivo Cali,Atlético Bucaramanga,home,175,2,Penales convertidos/penales ejecutados,6/8,Últimos 45 partidos
+2026-11-27T20:35:32Z,COL,4896644,2026-11-27T23:35:00Z,Deportivo Cali,Atlético Bucaramanga,away,141,1,Partidos ganados,15 (33%),Últimos 45 partidos
+2026-11-27T20:35:32Z,COL,4896644,2026-11-27T23:35:00Z,Deportivo Cali,Atlético Bucaramanga,away,142,1,Ambos equipos marcaron,27 (60%),Últimos 45 partidos
+2026-11-27T20:35:32Z,COL,4896644,2026-11-27T23:35:00Z,Deportivo Cali,Atlético Bucaramanga,away,143,1,Más de 2.5 goles,24 (53%),Últimos 45 partidos
+2026-11-27T20:35:32Z,COL,4896644,2026-11-27T23:35:00Z,Deportivo Cali,Atlético Bucaramanga,away,144,1,Marcó primero,21 (47%),Últimos 45 partidos
+2026-11-27T20:35:32Z,COL,4896644,2026-11-27T23:35:00Z,Deportivo Cali,Atlético Bucaramanga,away,146,1,Recibió gol primero,19 (42%),Últimos 45 partidos
+2026-11-27T20:35:32Z,COL,4896644,2026-11-27T23:35:00Z,Deportivo Cali,Atlético Bucaramanga,away,148,1,Empató o Ganó,32 (71%),Últimos 45 partidos
+2026-11-27T20:35:32Z,COL,4896644,2026-11-27T23:35:00Z,Deportivo Cali,Atlético Bucaramanga,away,149,1,Vencedor al entretiempo,13 (29%),Últimos 45 partidos
+2026-11-27T20:35:32Z,COL,4896644,2026-11-27T23:35:00Z,Deportivo Cali,Atlético Bucaramanga,away,150,1,Valla invicta,13 (29%),Últimos 45 partidos
+2026-11-27T20:35:32Z,COL,4896644,2026-11-27T23:35:00Z,Deportivo Cali,Atlético Bucaramanga,away,153,2,Goles convertidos,1.53,Últimos 45 partidos
+2026-11-27T20:35:32Z,COL,4896644,2026-11-27T23:35:00Z,Deportivo Cali,Atlético Bucaramanga,away,156,2,Goles recibidos,1.16,Últimos 45 partidos
+2026-11-27T20:35:32Z,COL,4896644,2026-11-27T23:35:00Z,Deportivo Cali,Atlético Bucaramanga,away,159,2,Goles esperados,0.98,Últimos 45 partidos
+2026-11-27T20:35:32Z,COL,4896644,2026-11-27T23:35:00Z,Deportivo Cali,Atlético Bucaramanga,away,162,2,Goles esperados recibidos,0.96,Últimos 45 partidos
+2026-11-27T20:35:32Z,COL,4896644,2026-11-27T23:35:00Z,Deportivo Cali,Atlético Bucaramanga,away,165,2,Remates,12.13,Últimos 45 partidos
+2026-11-27T20:35:32Z,COL,4896644,2026-11-27T23:35:00Z,Deportivo Cali,Atlético Bucaramanga,away,168,2,Remates al arco,4.16,Últimos 45 partidos
+2026-11-27T20:35:32Z,COL,4896644,2026-11-27T23:35:00Z,Deportivo Cali,Atlético Bucaramanga,away,171,2,Saques de Esquina,3.73,Últimos 45 partidos
+2026-11-27T20:35:32Z,COL,4896644,2026-11-27T23:35:00Z,Deportivo Cali,Atlético Bucaramanga,away,174,2,Tarjetas,2.69,Últimos 45 partidos
+2026-11-27T20:35:32Z,COL,4896644,2026-11-27T23:35:00Z,Deportivo Cali,Atlético Bucaramanga,away,175,2,Penales convertidos/penales ejecutados,2/5,Últimos 45 partidos
