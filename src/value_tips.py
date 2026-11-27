@@ -656,6 +656,15 @@ def team_form_columns(picks: pd.DataFrame) -> tuple[pd.Series, pd.Series]:
             pd.Series([p[1] for p in pares], index=picks.index))
 
 
+def strength_values(picks: pd.DataFrame) -> pd.Series:
+    """Fuerza en la liga en puntos (número), para ordenar la tabla de Tips."""
+    if picks.empty:
+        return pd.Series(dtype=float)
+    return pd.Series([market_strength(r.competition, r.mercado, r.odds_key, r.pick)
+                      for r in picks[["competition", "mercado", "odds_key", "pick"]].itertuples()],
+                     index=picks.index, dtype=float)
+
+
 def strength_marks(picks: pd.DataFrame) -> pd.Series:
     """Etiqueta de fortaleza por fila de candidatos de Tips."""
     if picks.empty:

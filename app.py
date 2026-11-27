@@ -58,7 +58,7 @@ from src.prediction_log import MARKETS
 from src.daily_plan import MAX_TICKETS, build_plans, ticket_rows
 from src.timezones import BOGOTA_TZ, format_bogota, to_bogota
 from src.value_tips import (GAP_STATE, LIVE_MODEL_WEIGHT, MAX_DAILY_EXPOSURE, MIN_MODEL_PROB, candidate_picks,
-                             drop_redundant, strength_marks, team_form_columns,
+                             drop_redundant, strength_marks, strength_values, team_form_columns,
                              day_summary, evaluate, live_candidate_picks, special_candidates, totals_candidates)
 
 st.set_page_config(page_title="Football Analytics · Jornada", page_icon="⚽", layout="wide")
@@ -2011,6 +2011,8 @@ with tab_tips:
                     estado_tips["detalle"] = None if estado_tips["detalle"] == pid else pid
                 elif col_sel == "Cuota manual":
                     estado_tips["editar"] = None if estado_tips["editar"] == pid else pid
+                elif col_sel == "Alerta 365":
+                    estado_tips["alerta"] = None if estado_tips.get("alerta") == pid else pid
                 else:
                     continue
                 st.session_state.pop(clave_prev, None)
@@ -2033,9 +2035,12 @@ with tab_tips:
                                 for i, m in zip(d.index, d["mercado"])],
                     "Pick": d["pick"],
                     "Fuerza en la liga": strength_marks(d),
+                    # Número al lado de la etiqueta: el texto con emoji no ordena bien.
+                    "Fuerza (pts)": strength_values(d).round(0),
                     "Fortaleza local": forma_local.reindex(d.index),
                     "Fortaleza visitante": forma_visita.reindex(d.index),
-                    "Alerta 365": alerta_365.reindex(d.index),
+                    # Solo el símbolo (pedido del usuario); el detalle sale al hacer clic.
+                    "Alerta 365": ["⚠" if t else "" for t in alerta_365.reindex(d.index).fillna("")],
                     "Prob. modelo": (d["prob_modelo"] * 100).round(0),
                     "Cuota justa": d["cuota_justa"],
                     "Mejor cuota": pd.to_numeric(d["cuota_auto"], errors="coerce").astype(float),
@@ -2052,9 +2057,15 @@ with tab_tips:
                     help="▸ = tiene un pick 'Más …' (qué equipo supera al rival): clic en esta celda para verlo en "
                          "una tabla debajo; otro clic (▾) la cierra."),
                 "Fuerza en la liga": st.column_config.Column(help=FUERZA_TIPS_AYUDA),
+                "Fuerza (pts)": st.column_config.NumberColumn(
+                    format="%+.0f", width="small",
+                    help="La fuerza en la liga como número: clic en este encabezado para ordenar de mayor a menor "
+                         "(o de menor a mayor)."),
                 "Fortaleza local": st.column_config.Column(help=FORMA_TIPS_AYUDA),
                 "Fortaleza visitante": st.column_config.Column(help=FORMA_TIPS_AYUDA),
-                "Alerta 365": st.column_config.Column(width="large", help=ALERTA_365_AYUDA),
+                "Alerta 365": st.column_config.Column(
+                    width="small", help="⚠ = el pick va en contra de las cifras de 365scores: clic en el ⚠ para ver "
+                                        "el detalle arriba de la tabla. " + ALERTA_365_AYUDA),
                 "Qué significa": st.column_config.Column(
                     width="large", help="Solo en los mercados especiales (vista 🧪 Avanzada)."),
                 "Prob. modelo": st.column_config.NumberColumn(format="%.0f%%"),
@@ -2068,6 +2079,12 @@ with tab_tips:
                            help="Las filas de Tarjetas, Corners, Faltas, Tiros al arco y Fueras de juego con ▸ "
                                 "tienen un pick 'Más …' (qué equipo supera al rival); otro clic en la misma celda "
                                 "cierra el detalle.")
+            # Detalle de la alerta 365 del pick elegido (clic en su ⚠).
+            alerta_i = next((i for i in candidatos.index if pick_id[i] == estado_tips.get("alerta")), None)
+            if alerta_i is not None and alerta_365.get(alerta_i):
+                r_a = candidatos.loc[alerta_i]
+                st.warning(f"**{r_a['partido']} · {r_a['mercado']} · {r_a['pick']}** — "
+                           f"{alerta_365[alerta_i].replace('⚠ ', '')} · _otro clic en el ⚠ lo cierra_")
             # Casilla para la cuota del pick elegido (clic en su celda "Cuota manual"):
             # va ANTES de la tabla para que al Guardar la tabla ya muestre la cuota.
             edit_i = next((i for i in candidatos.index if pick_id[i] == estado_tips["editar"]), None)
