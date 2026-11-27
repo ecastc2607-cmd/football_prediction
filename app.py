@@ -1993,27 +1993,28 @@ with tab_tips:
             clave_tabla_prev = f"tips_tabla_{fecha_k}_{estado_tips['n_tabla']}"
             seleccion = (st.session_state.get(clave_tabla_prev) or {}).get("selection") or {}
             celdas = [tuple(c) for c in (seleccion.get("cells") or [])]
-            if celdas and celdas[0][1] == "Mercado" and 0 <= int(celdas[0][0]) < len(estado_tips["orden_tabla"]):
-                pid = estado_tips["orden_tabla"][int(celdas[0][0])]
-                estado_tips["detalle"] = None if estado_tips["detalle"] == pid else pid
-                st.session_state.pop(clave_tabla_prev, None)
-                estado_tips["n_tabla"] += 1  # tabla sin selección; mantener_scroll restaura la posición
-            # 2) Cuotas escritas en la tabla de cuotas de la corrida anterior (por posición de fila).
-            clave_previa = f"tips_editor_{fecha_k}_{estado_tips['ver']}"
-            cambios = (st.session_state.get(clave_previa) or {}).get("edited_rows", {})
-            if cambios:
-                for pos, cols in cambios.items():
-                    pos = int(pos)
-                    if pos >= len(estado_tips["orden"]) or "Cuota manual" not in cols:
-                        continue
-                    pid = estado_tips["orden"][pos]
-                    v = pd.to_numeric(cols["Cuota manual"], errors="coerce")
-                    if pd.notna(v):
-                        estado_tips["manual"][pid] = float(v)
-                    else:
-                        estado_tips["manual"].pop(pid, None)
-                st.session_state.pop(clave_previa, None)
-                estado_tips["ver"] += 1  # editor nuevo, ya con las cuotas al día
+            # Clic en "Mercado" (▸) abre/cierra el detalle; clic en "Cuota manual"
+            # abre debajo la casilla para escribir la cuota de ese pick (pedido del
+            # usuario: sin una segunda tabla que repetía los mismos picks).
+            estado_tips.setdefault("editar", None)
+            estado_tips.setdefault("n_det", 0)
+            for clave_prev, orden_prev, contador in (
+                    (clave_tabla_prev, estado_tips["orden_tabla"], "n_tabla"),
+                    (f"tips_det_{fecha_k}_{estado_tips['n_det']}", estado_tips.get("orden_det", []), "n_det")):
+                sel_prev = (st.session_state.get(clave_prev) or {}).get("selection") or {}
+                celdas_prev = [tuple(c) for c in (sel_prev.get("cells") or [])]
+                if not celdas_prev or not (0 <= int(celdas_prev[0][0]) < len(orden_prev)):
+                    continue
+                fila_sel, col_sel = celdas_prev[0]
+                pid = orden_prev[int(fila_sel)]
+                if col_sel == "Mercado" and contador == "n_tabla":
+                    estado_tips["detalle"] = None if estado_tips["detalle"] == pid else pid
+                elif col_sel == "Cuota manual":
+                    estado_tips["editar"] = None if estado_tips["editar"] == pid else pid
+                else:
+                    continue
+                st.session_state.pop(clave_prev, None)
+                estado_tips[contador] += 1  # tabla sin selección; mantener_scroll restaura la posición
 
             tabla = candidatos.loc[[i for i in candidatos.index if i not in padre]]
             estado_tips["orden_tabla"] = [pick_id[i] for i in tabla.index]
@@ -2039,8 +2040,8 @@ with tab_tips:
                     "Cuota justa": d["cuota_justa"],
                     "Mejor cuota": pd.to_numeric(d["cuota_auto"], errors="coerce").astype(float),
                     "Casa": d["casa"],
-                    "Cuota manual": pd.Series([estado_tips["manual"].get(pick_id[i]) for i in d.index],
-                                              index=d.index, dtype="float"),
+                    "Cuota manual": [f"{estado_tips['manual'][pick_id[i]]:.2f}" if pick_id[i] in estado_tips["manual"]
+                                     else "✎" for i in d.index],
                     "Qué significa": (d["explicacion"].fillna("") if "explicacion" in d
                                       else pd.Series([""] * len(d), index=d.index)),
                 }, index=d.index)
@@ -2058,8 +2059,8 @@ with tab_tips:
                     width="large", help="Solo en los mercados especiales (vista 🧪 Avanzada)."),
                 "Prob. modelo": st.column_config.NumberColumn(format="%.0f%%"),
                 "Mejor cuota": st.column_config.NumberColumn(format="%.2f"),
-                "Cuota manual": st.column_config.NumberColumn(
-                    format="%.2f", help="Se escribe en la tabla 'Cuotas de tu casa' de más abajo."),
+                "Cuota manual": st.column_config.Column(
+                    help="Clic en esta celda para escribir la cuota de tu casa (aparece una casilla debajo)."),
             }
             st.markdown("**Picks candidatos**")
             if hijos:
@@ -2067,6 +2068,35 @@ with tab_tips:
                            help="Las filas de Tarjetas, Corners, Faltas, Tiros al arco y Fueras de juego con ▸ "
                                 "tienen un pick 'Más …' (qué equipo supera al rival); otro clic en la misma celda "
                                 "cierra el detalle.")
+            # Casilla para la cuota del pick elegido (clic en su celda "Cuota manual"):
+            # va ANTES de la tabla para que al Guardar la tabla ya muestre la cuota.
+            edit_i = next((i for i in candidatos.index if pick_id[i] == estado_tips["editar"]), None)
+            if edit_i is not None:
+                r_e = candidatos.loc[edit_i]
+                with st.container(border=True):
+                    st.markdown(f"✍️ **Cuota de tu casa** · {r_e['partido']} · {r_e['mercado']} · {r_e['pick']}")
+                    c_in, c_ok, c_del = st.columns([2, 1, 1])
+                    # Sin max_value a propósito: recortaría un error de tipeo (136)
+                    # a un valor que parece real (20); value_tips lo marca.
+                    valor_e = c_in.number_input(
+                        "Cuota decimal (ej. 1,45)", min_value=1.01, step=0.01, format="%.2f",
+                        value=float(estado_tips["manual"].get(pick_id[edit_i], 0) or
+                                    (pd.to_numeric(r_e.get("cuota_auto"), errors="coerce") if
+                                     pd.notna(pd.to_numeric(r_e.get("cuota_auto"), errors="coerce")) else 1.5)),
+                        key=f"tips_cuota_in_{pick_id[edit_i]}", label_visibility="collapsed")
+                    # on_click: el estado cambia ANTES de redibujar (la casilla se
+                    # cierra y la tabla ya muestra la cuota en el mismo clic).
+                    def _guardar_cuota(pid=pick_id[edit_i], clave_in=f"tips_cuota_in_{pick_id[edit_i]}"):
+                        estado_tips["manual"][pid] = float(st.session_state[clave_in])
+                        estado_tips["editar"] = None
+
+                    def _borrar_cuota(pid=pick_id[edit_i]):
+                        estado_tips["manual"].pop(pid, None)
+                        estado_tips["editar"] = None
+
+                    c_ok.button("Guardar", key=f"tips_cuota_ok_{pick_id[edit_i]}", type="primary",
+                                on_click=_guardar_cuota)
+                    c_del.button("Borrar", key=f"tips_cuota_del_{pick_id[edit_i]}", on_click=_borrar_cuota)
             st.dataframe(_tabla_picks(tabla, True), hide_index=True, width="stretch",
                          key=f"tips_tabla_{fecha_k}_{estado_tips['n_tabla']}",
                          on_select="rerun", selection_mode="single-cell", column_config=config_picks)
@@ -2074,40 +2104,14 @@ with tab_tips:
             if abierto is not None:
                 st.markdown(f"**↳ Detalle: {candidatos.at[abierto, 'partido']} · {candidatos.at[abierto, 'mercado']}** "
                             "— qué equipo supera al rival en ese mercado")
+                estado_tips["orden_det"] = [pick_id[i] for i in detalle.index]
                 st.dataframe(_tabla_picks(detalle, False), hide_index=True, width="stretch",
-                             column_config=config_picks)
+                             key=f"tips_det_{fecha_k}_{estado_tips['n_det']}", on_select="rerun",
+                             selection_mode="single-cell", column_config=config_picks)
 
-            # 3) Cuotas de tu casa: solo los picks a la vista (incluido el detalle abierto).
-            filas_cuota = list(tabla.index) + list(detalle.index)
-            estado_tips["orden"] = [pick_id[i] for i in filas_cuota]
-            cuotas = candidatos.loc[filas_cuota]
-            editor = pd.DataFrame({
-                "Partido": cuotas["partido"],
-                "Mercado": [f"↳ {m}" if i in padre else m for i, m in zip(cuotas.index, cuotas["mercado"])],
-                "Pick": cuotas["pick"],
-                "Mejor cuota": pd.to_numeric(cuotas["cuota_auto"], errors="coerce").astype(float),
-                "Casa": cuotas["casa"],
-                "Cuota manual": pd.Series([estado_tips["manual"].get(pick_id[i]) for i in cuotas.index],
-                                          index=cuotas.index, dtype="float"),
-            }, index=cuotas.index)
-            st.markdown("**Cuotas de tu casa** — corrige 'Cuota manual' con la de tu casa antes de apostar "
-                        "(decimales con coma, ej. 1,45):")
-            st.data_editor(
-                editor, hide_index=True, width="stretch",
-                key=f"tips_editor_{fecha_k}_{estado_tips['ver']}",
-                disabled=[c for c in editor.columns if c != "Cuota manual"],
-                column_config={
-                    "Partido": st.column_config.Column(pinned=True),
-                    "Mejor cuota": st.column_config.NumberColumn(format="%.2f"),
-                    # Sin max_value a propósito: recortaría un error de tipeo
-                    # (136) a un valor que parece real (20); value_tips lo marca.
-                    "Cuota manual": st.column_config.NumberColumn(
-                        min_value=1.01, step=0.01, format="%.2f",
-                        help="Cuota decimal de tu casa, ej. 1,45 (si tu navegador está en "
-                             "español usa coma: con punto puede guardarse como 145).",
-                    ),
-                },
-            )
+            n_escritas = sum(1 for i in candidatos.index if pick_id[i] in estado_tips["manual"])
+            if n_escritas:
+                st.caption(f"✍️ {n_escritas} cuota(s) de tu casa escrita(s): se usan en vez de la mejor cuota.")
 
             manual = pd.Series([estado_tips["manual"].get(pick_id[i]) for i in candidatos.index],
                                index=candidatos.index, dtype="float")
