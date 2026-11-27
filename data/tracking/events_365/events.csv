@@ -40765,3 +40765,19 @@ game_id,side,minute,added_time,half,type,subtype,player
 4755327,away,78.0,0,2,Goal,Field Goal,Franck Honorat
 4755327,home,85.0,0,2,Goal,Field Goal,Eren Dinkci
 4755327,home,90.0,2,2,Goal,Field Goal,Niclas Füllkrug
+4732611,home,14.0,0,1,Goal Disallowed,Var,Juan Jesus
+4732611,home,15.0,0,1,Yellow Card,,Juan Jesus
+4732611,away,16.0,0,1,Yellow Card,,Nadir Zortea
+4732611,away,22.0,0,1,Yellow Card,,Martin Vitik
+4732611,home,28.0,0,1,Yellow Card,,Antoine Hainaut
+4732611,away,49.0,0,2,Yellow Card,,Jens Odgaard
+4732611,home,65.0,0,2,Woodwork,,Juan Jesus
+4732611,home,78.0,0,2,Yellow Card,,Albion Rrahmani
+4735197,away,2.0,0,1,Yellow Card,,Pierre Lees-Melou
+4735197,home,21.0,0,1,Woodwork,,Ludovic Ajorque
+4735197,home,21.0,0,1,Goal,Field Goal,Luck Zogbé
+4735197,home,30.0,0,1,Yellow Card,,Lucas Tousart
+4735197,away,36.0,0,1,Yellow Card,,Luca Koleosho
+4735197,away,46.0,0,2,Woodwork,,Rudy Matondo
+4735197,away,60.0,0,2,Yellow Card,,Ilan Kebbal
+4735197,home,78.0,0,2,Yellow Card,,Egil Selvik

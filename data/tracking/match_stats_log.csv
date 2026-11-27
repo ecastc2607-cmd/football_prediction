@@ -7179,3 +7179,7 @@ ECL,2026,4.0,2026-11-26T20:00:00Z,Hajduk Split,Sint-Truiden,Hajduk Split,True,6.
 ECL,2026,4.0,2026-11-26T20:00:00Z,Hajduk Split,Sint-Truiden,Sint-Truiden,False,2.0,10.0,2.0,0.0,50.0,4.0,9.0,1.0
 BL1,2026,11.0,2026-11-27T19:30:00Z,SV Werder Bremen,Borussia Mönchengladbach,SV Werder Bremen,True,7.0,10.0,2.0,0.0,59.0,8.0,20.0,3.0
 BL1,2026,11.0,2026-11-27T19:30:00Z,SV Werder Bremen,Borussia Mönchengladbach,Borussia Mönchengladbach,False,4.0,11.0,3.0,0.0,41.0,6.0,20.0,2.0
+SA,2026,13.0,2026-11-27T19:45:00Z,Venezia FC,Bologna FC 1909,Venezia FC,True,3.0,11.0,3.0,0.0,50.0,5.0,14.0,4.0
+SA,2026,13.0,2026-11-27T19:45:00Z,Venezia FC,Bologna FC 1909,Bologna FC 1909,False,6.0,11.0,3.0,0.0,50.0,6.0,13.0,1.0
+FL1,2026,12.0,2026-11-27T19:45:00Z,Stade Brestois 29,Paris FC,Stade Brestois 29,True,3.0,9.0,2.0,0.0,33.0,3.0,17.0,1.0
+FL1,2026,12.0,2026-11-27T19:45:00Z,Stade Brestois 29,Paris FC,Paris FC,False,5.0,14.0,3.0,0.0,67.0,8.0,18.0,4.0
