@@ -1223,3 +1223,71 @@ fetched_at,competition,game_id,utc_date,home_team,away_team,side,stat_id,group,n
 2026-11-27T16:30:28Z,BL1,4755327,2026-11-27T19:30:00Z,Werder Bremen,Borussia Mönchengladbach,away,171,2,Saques de Esquina,5.25,Últimos 12 partidos
 2026-11-27T16:30:28Z,BL1,4755327,2026-11-27T19:30:00Z,Werder Bremen,Borussia Mönchengladbach,away,174,2,Tarjetas,2.58,Últimos 12 partidos
 2026-11-27T16:30:28Z,BL1,4755327,2026-11-27T19:30:00Z,Werder Bremen,Borussia Mönchengladbach,away,175,2,Penales convertidos/penales ejecutados,1/1,Últimos 12 partidos
+2026-11-27T16:45:29Z,SA,4732611,2026-11-27T19:45:00Z,Venezia,Bologna,home,141,1,Partidos ganados,3 (21%),Últimos 14 partidos
+2026-11-27T16:45:29Z,SA,4732611,2026-11-27T19:45:00Z,Venezia,Bologna,home,142,1,Ambos equipos marcaron,6 (43%),Últimos 14 partidos
+2026-11-27T16:45:29Z,SA,4732611,2026-11-27T19:45:00Z,Venezia,Bologna,home,143,1,Más de 2.5 goles,7 (50%),Últimos 14 partidos
+2026-11-27T16:45:29Z,SA,4732611,2026-11-27T19:45:00Z,Venezia,Bologna,home,144,1,Marcó primero,4 (29%),Últimos 14 partidos
+2026-11-27T16:45:29Z,SA,4732611,2026-11-27T19:45:00Z,Venezia,Bologna,home,146,1,Recibió gol primero,10 (71%),Últimos 14 partidos
+2026-11-27T16:45:29Z,SA,4732611,2026-11-27T19:45:00Z,Venezia,Bologna,home,148,1,Empató o Ganó,3 (21%),Últimos 14 partidos
+2026-11-27T16:45:29Z,SA,4732611,2026-11-27T19:45:00Z,Venezia,Bologna,home,149,1,Vencedor al entretiempo,0 (0%),Últimos 14 partidos
+2026-11-27T16:45:29Z,SA,4732611,2026-11-27T19:45:00Z,Venezia,Bologna,home,150,1,Valla invicta,1 (7%),Últimos 14 partidos
+2026-11-27T16:45:29Z,SA,4732611,2026-11-27T19:45:00Z,Venezia,Bologna,home,153,2,Goles convertidos,0.86,Últimos 14 partidos
+2026-11-27T16:45:29Z,SA,4732611,2026-11-27T19:45:00Z,Venezia,Bologna,home,156,2,Goles recibidos,2.07,Últimos 14 partidos
+2026-11-27T16:45:29Z,SA,4732611,2026-11-27T19:45:00Z,Venezia,Bologna,home,159,2,Goles esperados,1.42,Últimos 14 partidos
+2026-11-27T16:45:29Z,SA,4732611,2026-11-27T19:45:00Z,Venezia,Bologna,home,162,2,Goles esperados recibidos,1.76,Últimos 14 partidos
+2026-11-27T16:45:29Z,SA,4732611,2026-11-27T19:45:00Z,Venezia,Bologna,home,165,2,Remates,14.21,Últimos 14 partidos
+2026-11-27T16:45:29Z,SA,4732611,2026-11-27T19:45:00Z,Venezia,Bologna,home,168,2,Remates al arco,4.14,Últimos 14 partidos
+2026-11-27T16:45:29Z,SA,4732611,2026-11-27T19:45:00Z,Venezia,Bologna,home,171,2,Saques de Esquina,4,Últimos 14 partidos
+2026-11-27T16:45:29Z,SA,4732611,2026-11-27T19:45:00Z,Venezia,Bologna,home,174,2,Tarjetas,1.71,Últimos 14 partidos
+2026-11-27T16:45:29Z,SA,4732611,2026-11-27T19:45:00Z,Venezia,Bologna,home,175,2,Penales convertidos/penales ejecutados,0/1,Últimos 14 partidos
+2026-11-27T16:45:29Z,SA,4732611,2026-11-27T19:45:00Z,Venezia,Bologna,away,141,1,Partidos ganados,5 (42%),Últimos 12 partidos
+2026-11-27T16:45:29Z,SA,4732611,2026-11-27T19:45:00Z,Venezia,Bologna,away,142,1,Ambos equipos marcaron,8 (67%),Últimos 12 partidos
+2026-11-27T16:45:29Z,SA,4732611,2026-11-27T19:45:00Z,Venezia,Bologna,away,143,1,Más de 2.5 goles,6 (50%),Últimos 12 partidos
+2026-11-27T16:45:29Z,SA,4732611,2026-11-27T19:45:00Z,Venezia,Bologna,away,144,1,Marcó primero,7 (58%),Últimos 12 partidos
+2026-11-27T16:45:29Z,SA,4732611,2026-11-27T19:45:00Z,Venezia,Bologna,away,146,1,Recibió gol primero,5 (42%),Últimos 12 partidos
+2026-11-27T16:45:29Z,SA,4732611,2026-11-27T19:45:00Z,Venezia,Bologna,away,148,1,Empató o Ganó,8 (67%),Últimos 12 partidos
+2026-11-27T16:45:29Z,SA,4732611,2026-11-27T19:45:00Z,Venezia,Bologna,away,149,1,Vencedor al entretiempo,3 (25%),Últimos 12 partidos
+2026-11-27T16:45:29Z,SA,4732611,2026-11-27T19:45:00Z,Venezia,Bologna,away,150,1,Valla invicta,1 (8%),Últimos 12 partidos
+2026-11-27T16:45:29Z,SA,4732611,2026-11-27T19:45:00Z,Venezia,Bologna,away,153,2,Goles convertidos,1.42,Últimos 12 partidos
+2026-11-27T16:45:29Z,SA,4732611,2026-11-27T19:45:00Z,Venezia,Bologna,away,156,2,Goles recibidos,1.25,Últimos 12 partidos
+2026-11-27T16:45:29Z,SA,4732611,2026-11-27T19:45:00Z,Venezia,Bologna,away,159,2,Goles esperados,1.52,Últimos 12 partidos
+2026-11-27T16:45:29Z,SA,4732611,2026-11-27T19:45:00Z,Venezia,Bologna,away,162,2,Goles esperados recibidos,1.33,Últimos 12 partidos
+2026-11-27T16:45:29Z,SA,4732611,2026-11-27T19:45:00Z,Venezia,Bologna,away,165,2,Remates,13.92,Últimos 12 partidos
+2026-11-27T16:45:29Z,SA,4732611,2026-11-27T19:45:00Z,Venezia,Bologna,away,168,2,Remates al arco,4.5,Últimos 12 partidos
+2026-11-27T16:45:29Z,SA,4732611,2026-11-27T19:45:00Z,Venezia,Bologna,away,171,2,Saques de Esquina,5.25,Últimos 12 partidos
+2026-11-27T16:45:29Z,SA,4732611,2026-11-27T19:45:00Z,Venezia,Bologna,away,174,2,Tarjetas,1.92,Últimos 12 partidos
+2026-11-27T16:45:29Z,SA,4732611,2026-11-27T19:45:00Z,Venezia,Bologna,away,175,2,Penales convertidos/penales ejecutados,3/3,Últimos 12 partidos
+2026-11-27T16:45:29Z,FL1,4735197,2026-11-27T19:45:00Z,Brest,Paris FC,home,141,1,Partidos ganados,5 (45%),Últimos 11 partidos
+2026-11-27T16:45:29Z,FL1,4735197,2026-11-27T19:45:00Z,Brest,Paris FC,home,142,1,Ambos equipos marcaron,7 (64%),Últimos 11 partidos
+2026-11-27T16:45:29Z,FL1,4735197,2026-11-27T19:45:00Z,Brest,Paris FC,home,143,1,Más de 2.5 goles,6 (55%),Últimos 11 partidos
+2026-11-27T16:45:29Z,FL1,4735197,2026-11-27T19:45:00Z,Brest,Paris FC,home,144,1,Marcó primero,9 (82%),Últimos 11 partidos
+2026-11-27T16:45:29Z,FL1,4735197,2026-11-27T19:45:00Z,Brest,Paris FC,home,146,1,Recibió gol primero,2 (18%),Últimos 11 partidos
+2026-11-27T16:45:29Z,FL1,4735197,2026-11-27T19:45:00Z,Brest,Paris FC,home,148,1,Empató o Ganó,8 (73%),Últimos 11 partidos
+2026-11-27T16:45:29Z,FL1,4735197,2026-11-27T19:45:00Z,Brest,Paris FC,home,149,1,Vencedor al entretiempo,7 (64%),Últimos 11 partidos
+2026-11-27T16:45:29Z,FL1,4735197,2026-11-27T19:45:00Z,Brest,Paris FC,home,150,1,Valla invicta,3 (27%),Últimos 11 partidos
+2026-11-27T16:45:29Z,FL1,4735197,2026-11-27T19:45:00Z,Brest,Paris FC,home,153,2,Goles convertidos,1.73,Últimos 11 partidos
+2026-11-27T16:45:29Z,FL1,4735197,2026-11-27T19:45:00Z,Brest,Paris FC,home,156,2,Goles recibidos,1.09,Últimos 11 partidos
+2026-11-27T16:45:29Z,FL1,4735197,2026-11-27T19:45:00Z,Brest,Paris FC,home,159,2,Goles esperados,1.7,Últimos 11 partidos
+2026-11-27T16:45:29Z,FL1,4735197,2026-11-27T19:45:00Z,Brest,Paris FC,home,162,2,Goles esperados recibidos,1.14,Últimos 11 partidos
+2026-11-27T16:45:29Z,FL1,4735197,2026-11-27T19:45:00Z,Brest,Paris FC,home,165,2,Remates,15.91,Últimos 11 partidos
+2026-11-27T16:45:29Z,FL1,4735197,2026-11-27T19:45:00Z,Brest,Paris FC,home,168,2,Remates al arco,5.45,Últimos 11 partidos
+2026-11-27T16:45:29Z,FL1,4735197,2026-11-27T19:45:00Z,Brest,Paris FC,home,171,2,Saques de Esquina,3.82,Últimos 11 partidos
+2026-11-27T16:45:29Z,FL1,4735197,2026-11-27T19:45:00Z,Brest,Paris FC,home,174,2,Tarjetas,1.36,Últimos 11 partidos
+2026-11-27T16:45:29Z,FL1,4735197,2026-11-27T19:45:00Z,Brest,Paris FC,home,175,2,Penales convertidos/penales ejecutados,3/2,Últimos 11 partidos
+2026-11-27T16:45:29Z,FL1,4735197,2026-11-27T19:45:00Z,Brest,Paris FC,away,141,1,Partidos ganados,7 (64%),Últimos 11 partidos
+2026-11-27T16:45:29Z,FL1,4735197,2026-11-27T19:45:00Z,Brest,Paris FC,away,142,1,Ambos equipos marcaron,5 (45%),Últimos 11 partidos
+2026-11-27T16:45:29Z,FL1,4735197,2026-11-27T19:45:00Z,Brest,Paris FC,away,143,1,Más de 2.5 goles,7 (64%),Últimos 11 partidos
+2026-11-27T16:45:29Z,FL1,4735197,2026-11-27T19:45:00Z,Brest,Paris FC,away,144,1,Marcó primero,8 (73%),Últimos 11 partidos
+2026-11-27T16:45:29Z,FL1,4735197,2026-11-27T19:45:00Z,Brest,Paris FC,away,146,1,Recibió gol primero,1 (9%),Últimos 11 partidos
+2026-11-27T16:45:29Z,FL1,4735197,2026-11-27T19:45:00Z,Brest,Paris FC,away,148,1,Empató o Ganó,9 (82%),Últimos 11 partidos
+2026-11-27T16:45:29Z,FL1,4735197,2026-11-27T19:45:00Z,Brest,Paris FC,away,149,1,Vencedor al entretiempo,6 (55%),Últimos 11 partidos
+2026-11-27T16:45:29Z,FL1,4735197,2026-11-27T19:45:00Z,Brest,Paris FC,away,150,1,Valla invicta,5 (45%),Últimos 11 partidos
+2026-11-27T16:45:29Z,FL1,4735197,2026-11-27T19:45:00Z,Brest,Paris FC,away,153,2,Goles convertidos,1.91,Últimos 11 partidos
+2026-11-27T16:45:29Z,FL1,4735197,2026-11-27T19:45:00Z,Brest,Paris FC,away,156,2,Goles recibidos,0.91,Últimos 11 partidos
+2026-11-27T16:45:29Z,FL1,4735197,2026-11-27T19:45:00Z,Brest,Paris FC,away,159,2,Goles esperados,1.83,Últimos 11 partidos
+2026-11-27T16:45:29Z,FL1,4735197,2026-11-27T19:45:00Z,Brest,Paris FC,away,162,2,Goles esperados recibidos,0.84,Últimos 11 partidos
+2026-11-27T16:45:29Z,FL1,4735197,2026-11-27T19:45:00Z,Brest,Paris FC,away,165,2,Remates,13.73,Últimos 11 partidos
+2026-11-27T16:45:29Z,FL1,4735197,2026-11-27T19:45:00Z,Brest,Paris FC,away,168,2,Remates al arco,5.27,Últimos 11 partidos
+2026-11-27T16:45:29Z,FL1,4735197,2026-11-27T19:45:00Z,Brest,Paris FC,away,171,2,Saques de Esquina,4,Últimos 11 partidos
+2026-11-27T16:45:29Z,FL1,4735197,2026-11-27T19:45:00Z,Brest,Paris FC,away,174,2,Tarjetas,2.09,Últimos 11 partidos
+2026-11-27T16:45:29Z,FL1,4735197,2026-11-27T19:45:00Z,Brest,Paris FC,away,175,2,Penales convertidos/penales ejecutados,2/3,Últimos 11 partidos
