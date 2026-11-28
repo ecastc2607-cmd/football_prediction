@@ -1427,3 +1427,37 @@ fetched_at,competition,game_id,utc_date,home_team,away_team,side,stat_id,group,n
 2026-11-27T22:40:27Z,COL,4896645,2026-11-28T01:40:00Z,Millonarios,America de Cali,away,171,2,Saques de Esquina,4.05,Últimos 56 partidos
 2026-11-27T22:40:27Z,COL,4896645,2026-11-28T01:40:00Z,Millonarios,America de Cali,away,174,2,Tarjetas,2.88,Últimos 56 partidos
 2026-11-27T22:40:27Z,COL,4896645,2026-11-28T01:40:00Z,Millonarios,America de Cali,away,175,2,Penales convertidos/penales ejecutados,14/15,Últimos 56 partidos
+2026-11-28T10:00:26Z,PD,4750781,2026-11-28T13:00:00Z,Real Betis,Rayo Vallecano,home,141,1,Partidos ganados,11 (65%),Últimos 17 partidos
+2026-11-28T10:00:26Z,PD,4750781,2026-11-28T13:00:00Z,Real Betis,Rayo Vallecano,home,142,1,Ambos equipos marcaron,9 (53%),Últimos 17 partidos
+2026-11-28T10:00:26Z,PD,4750781,2026-11-28T13:00:00Z,Real Betis,Rayo Vallecano,home,143,1,Más de 2.5 goles,7 (41%),Últimos 17 partidos
+2026-11-28T10:00:26Z,PD,4750781,2026-11-28T13:00:00Z,Real Betis,Rayo Vallecano,home,144,1,Marcó primero,13 (76%),Últimos 17 partidos
+2026-11-28T10:00:26Z,PD,4750781,2026-11-28T13:00:00Z,Real Betis,Rayo Vallecano,home,146,1,Recibió gol primero,3 (18%),Últimos 17 partidos
+2026-11-28T10:00:26Z,PD,4750781,2026-11-28T13:00:00Z,Real Betis,Rayo Vallecano,home,148,1,Empató o Ganó,15 (88%),Últimos 17 partidos
+2026-11-28T10:00:26Z,PD,4750781,2026-11-28T13:00:00Z,Real Betis,Rayo Vallecano,home,149,1,Vencedor al entretiempo,7/17 (41%),Últimos 17 partidos
+2026-11-28T10:00:26Z,PD,4750781,2026-11-28T13:00:00Z,Real Betis,Rayo Vallecano,home,150,1,Valla invicta,8 (47%),Últimos 17 partidos
+2026-11-28T10:00:26Z,PD,4750781,2026-11-28T13:00:00Z,Real Betis,Rayo Vallecano,home,153,2,Goles convertidos,1.65,Últimos 17 partidos
+2026-11-28T10:00:26Z,PD,4750781,2026-11-28T13:00:00Z,Real Betis,Rayo Vallecano,home,156,2,Goles recibidos,1,Últimos 17 partidos
+2026-11-28T10:00:26Z,PD,4750781,2026-11-28T13:00:00Z,Real Betis,Rayo Vallecano,home,159,2,Goles esperados,1.6,Últimos 17 partidos
+2026-11-28T10:00:26Z,PD,4750781,2026-11-28T13:00:00Z,Real Betis,Rayo Vallecano,home,162,2,Goles esperados recibidos,1.58,Últimos 17 partidos
+2026-11-28T10:00:26Z,PD,4750781,2026-11-28T13:00:00Z,Real Betis,Rayo Vallecano,home,165,2,Remates,17.06,Últimos 17 partidos
+2026-11-28T10:00:26Z,PD,4750781,2026-11-28T13:00:00Z,Real Betis,Rayo Vallecano,home,168,2,Remates al arco,6.24,Últimos 17 partidos
+2026-11-28T10:00:26Z,PD,4750781,2026-11-28T13:00:00Z,Real Betis,Rayo Vallecano,home,171,2,Saques de Esquina,5.18,Últimos 17 partidos
+2026-11-28T10:00:26Z,PD,4750781,2026-11-28T13:00:00Z,Real Betis,Rayo Vallecano,home,174,2,Tarjetas,1.65,Últimos 17 partidos
+2026-11-28T10:00:26Z,PD,4750781,2026-11-28T13:00:00Z,Real Betis,Rayo Vallecano,home,175,2,Penales convertidos/penales ejecutados,3/3,Últimos 17 partidos
+2026-11-28T10:00:26Z,PD,4750781,2026-11-28T13:00:00Z,Real Betis,Rayo Vallecano,away,141,1,Partidos ganados,4 (29%),Últimos 14 partidos
+2026-11-28T10:00:26Z,PD,4750781,2026-11-28T13:00:00Z,Real Betis,Rayo Vallecano,away,142,1,Ambos equipos marcaron,9 (64%),Últimos 14 partidos
+2026-11-28T10:00:26Z,PD,4750781,2026-11-28T13:00:00Z,Real Betis,Rayo Vallecano,away,143,1,Más de 2.5 goles,8 (57%),Últimos 14 partidos
+2026-11-28T10:00:26Z,PD,4750781,2026-11-28T13:00:00Z,Real Betis,Rayo Vallecano,away,144,1,Marcó primero,6 (43%),Últimos 14 partidos
+2026-11-28T10:00:26Z,PD,4750781,2026-11-28T13:00:00Z,Real Betis,Rayo Vallecano,away,146,1,Recibió gol primero,7 (50%),Últimos 14 partidos
+2026-11-28T10:00:26Z,PD,4750781,2026-11-28T13:00:00Z,Real Betis,Rayo Vallecano,away,148,1,Empató o Ganó,8 (57%),Últimos 14 partidos
+2026-11-28T10:00:26Z,PD,4750781,2026-11-28T13:00:00Z,Real Betis,Rayo Vallecano,away,149,1,Vencedor al entretiempo,4/13 (31%),Últimos 14 partidos
+2026-11-28T10:00:26Z,PD,4750781,2026-11-28T13:00:00Z,Real Betis,Rayo Vallecano,away,150,1,Valla invicta,2 (14%),Últimos 14 partidos
+2026-11-28T10:00:26Z,PD,4750781,2026-11-28T13:00:00Z,Real Betis,Rayo Vallecano,away,153,2,Goles convertidos,1.29,Últimos 14 partidos
+2026-11-28T10:00:26Z,PD,4750781,2026-11-28T13:00:00Z,Real Betis,Rayo Vallecano,away,156,2,Goles recibidos,1.71,Últimos 14 partidos
+2026-11-28T10:00:26Z,PD,4750781,2026-11-28T13:00:00Z,Real Betis,Rayo Vallecano,away,159,2,Goles esperados,1.35,Últimos 14 partidos
+2026-11-28T10:00:26Z,PD,4750781,2026-11-28T13:00:00Z,Real Betis,Rayo Vallecano,away,162,2,Goles esperados recibidos,1.37,Últimos 14 partidos
+2026-11-28T10:00:26Z,PD,4750781,2026-11-28T13:00:00Z,Real Betis,Rayo Vallecano,away,165,2,Remates,15,Últimos 14 partidos
+2026-11-28T10:00:26Z,PD,4750781,2026-11-28T13:00:00Z,Real Betis,Rayo Vallecano,away,168,2,Remates al arco,4.64,Últimos 14 partidos
+2026-11-28T10:00:26Z,PD,4750781,2026-11-28T13:00:00Z,Real Betis,Rayo Vallecano,away,171,2,Saques de Esquina,5.71,Últimos 14 partidos
+2026-11-28T10:00:26Z,PD,4750781,2026-11-28T13:00:00Z,Real Betis,Rayo Vallecano,away,174,2,Tarjetas,2.29,Últimos 14 partidos
+2026-11-28T10:00:26Z,PD,4750781,2026-11-28T13:00:00Z,Real Betis,Rayo Vallecano,away,175,2,Penales convertidos/penales ejecutados,1/2,Últimos 14 partidos
