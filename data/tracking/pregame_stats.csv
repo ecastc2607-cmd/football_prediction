@@ -1495,3 +1495,139 @@ fetched_at,competition,game_id,utc_date,home_team,away_team,side,stat_id,group,n
 2026-11-28T11:00:34Z,SA,4732618,2026-11-28T14:00:00Z,Frosinone,Parma,away,171,2,Saques de Esquina,3.57,Últimos 14 partidos
 2026-11-28T11:00:34Z,SA,4732618,2026-11-28T14:00:00Z,Frosinone,Parma,away,174,2,Tarjetas,1.5,Últimos 14 partidos
 2026-11-28T11:00:34Z,SA,4732618,2026-11-28T14:00:00Z,Frosinone,Parma,away,175,2,Penales convertidos/penales ejecutados,1/1,Últimos 14 partidos
+2026-11-28T11:30:46Z,BL1,4755328,2026-11-28T14:30:00Z,SC Paderborn 07,Schalke 04,home,141,1,Partidos ganados,3 (25%),Últimos 12 partidos
+2026-11-28T11:30:46Z,BL1,4755328,2026-11-28T14:30:00Z,SC Paderborn 07,Schalke 04,home,142,1,Ambos equipos marcaron,4 (33%),Últimos 12 partidos
+2026-11-28T11:30:46Z,BL1,4755328,2026-11-28T14:30:00Z,SC Paderborn 07,Schalke 04,home,143,1,Más de 2.5 goles,6 (50%),Últimos 12 partidos
+2026-11-28T11:30:46Z,BL1,4755328,2026-11-28T14:30:00Z,SC Paderborn 07,Schalke 04,home,144,1,Marcó primero,4/12 (33%),Últimos 12 partidos
+2026-11-28T11:30:46Z,BL1,4755328,2026-11-28T14:30:00Z,SC Paderborn 07,Schalke 04,home,146,1,Recibió gol primero,6/12 (50%),Últimos 12 partidos
+2026-11-28T11:30:46Z,BL1,4755328,2026-11-28T14:30:00Z,SC Paderborn 07,Schalke 04,home,148,1,Empató o Ganó,7 (58%),Últimos 12 partidos
+2026-11-28T11:30:46Z,BL1,4755328,2026-11-28T14:30:00Z,SC Paderborn 07,Schalke 04,home,149,1,Vencedor al entretiempo,3/12 (25%),Últimos 12 partidos
+2026-11-28T11:30:46Z,BL1,4755328,2026-11-28T14:30:00Z,SC Paderborn 07,Schalke 04,home,150,1,Valla invicta,3 (25%),Últimos 12 partidos
+2026-11-28T11:30:46Z,BL1,4755328,2026-11-28T14:30:00Z,SC Paderborn 07,Schalke 04,home,153,2,Goles convertidos,1,Últimos 12 partidos
+2026-11-28T11:30:46Z,BL1,4755328,2026-11-28T14:30:00Z,SC Paderborn 07,Schalke 04,home,156,2,Goles recibidos,1.5,Últimos 12 partidos
+2026-11-28T11:30:46Z,BL1,4755328,2026-11-28T14:30:00Z,SC Paderborn 07,Schalke 04,home,159,2,Goles esperados,1.14,Últimos 12 partidos
+2026-11-28T11:30:46Z,BL1,4755328,2026-11-28T14:30:00Z,SC Paderborn 07,Schalke 04,home,162,2,Goles esperados recibidos,1.81,Últimos 12 partidos
+2026-11-28T11:30:46Z,BL1,4755328,2026-11-28T14:30:00Z,SC Paderborn 07,Schalke 04,home,165,2,Remates,14,Últimos 12 partidos
+2026-11-28T11:30:46Z,BL1,4755328,2026-11-28T14:30:00Z,SC Paderborn 07,Schalke 04,home,168,2,Remates al arco,3.83,Últimos 12 partidos
+2026-11-28T11:30:46Z,BL1,4755328,2026-11-28T14:30:00Z,SC Paderborn 07,Schalke 04,home,171,2,Saques de Esquina,4.67,Últimos 12 partidos
+2026-11-28T11:30:46Z,BL1,4755328,2026-11-28T14:30:00Z,SC Paderborn 07,Schalke 04,home,174,2,Tarjetas,1.42,Últimos 12 partidos
+2026-11-28T11:30:46Z,BL1,4755328,2026-11-28T14:30:00Z,SC Paderborn 07,Schalke 04,home,175,2,Penales convertidos/penales ejecutados,1/1,Últimos 12 partidos
+2026-11-28T11:30:46Z,BL1,4755328,2026-11-28T14:30:00Z,SC Paderborn 07,Schalke 04,away,141,1,Partidos ganados,1 (8%),Últimos 12 partidos
+2026-11-28T11:30:46Z,BL1,4755328,2026-11-28T14:30:00Z,SC Paderborn 07,Schalke 04,away,142,1,Ambos equipos marcaron,4 (33%),Últimos 12 partidos
+2026-11-28T11:30:46Z,BL1,4755328,2026-11-28T14:30:00Z,SC Paderborn 07,Schalke 04,away,143,1,Más de 2.5 goles,5 (42%),Últimos 12 partidos
+2026-11-28T11:30:46Z,BL1,4755328,2026-11-28T14:30:00Z,SC Paderborn 07,Schalke 04,away,144,1,Marcó primero,1/11 (9%),Últimos 12 partidos
+2026-11-28T11:30:46Z,BL1,4755328,2026-11-28T14:30:00Z,SC Paderborn 07,Schalke 04,away,146,1,Recibió gol primero,7/11 (64%),Últimos 12 partidos
+2026-11-28T11:30:46Z,BL1,4755328,2026-11-28T14:30:00Z,SC Paderborn 07,Schalke 04,away,148,1,Empató o Ganó,5 (42%),Últimos 12 partidos
+2026-11-28T11:30:46Z,BL1,4755328,2026-11-28T14:30:00Z,SC Paderborn 07,Schalke 04,away,149,1,Vencedor al entretiempo,1/11 (9%),Últimos 12 partidos
+2026-11-28T11:30:46Z,BL1,4755328,2026-11-28T14:30:00Z,SC Paderborn 07,Schalke 04,away,150,1,Valla invicta,3 (25%),Últimos 12 partidos
+2026-11-28T11:30:46Z,BL1,4755328,2026-11-28T14:30:00Z,SC Paderborn 07,Schalke 04,away,153,2,Goles convertidos,0.58,Últimos 12 partidos
+2026-11-28T11:30:46Z,BL1,4755328,2026-11-28T14:30:00Z,SC Paderborn 07,Schalke 04,away,156,2,Goles recibidos,1.25,Últimos 12 partidos
+2026-11-28T11:30:46Z,BL1,4755328,2026-11-28T14:30:00Z,SC Paderborn 07,Schalke 04,away,159,2,Goles esperados,1.23,Últimos 12 partidos
+2026-11-28T11:30:46Z,BL1,4755328,2026-11-28T14:30:00Z,SC Paderborn 07,Schalke 04,away,162,2,Goles esperados recibidos,1.69,Últimos 12 partidos
+2026-11-28T11:30:46Z,BL1,4755328,2026-11-28T14:30:00Z,SC Paderborn 07,Schalke 04,away,165,2,Remates,12.25,Últimos 12 partidos
+2026-11-28T11:30:46Z,BL1,4755328,2026-11-28T14:30:00Z,SC Paderborn 07,Schalke 04,away,168,2,Remates al arco,3.83,Últimos 12 partidos
+2026-11-28T11:30:46Z,BL1,4755328,2026-11-28T14:30:00Z,SC Paderborn 07,Schalke 04,away,171,2,Saques de Esquina,4.09,Últimos 12 partidos
+2026-11-28T11:30:46Z,BL1,4755328,2026-11-28T14:30:00Z,SC Paderborn 07,Schalke 04,away,174,2,Tarjetas,1.55,Últimos 12 partidos
+2026-11-28T11:30:46Z,BL1,4755328,2026-11-28T14:30:00Z,SC Paderborn 07,Schalke 04,away,175,2,Penales convertidos/penales ejecutados,1/1,Últimos 12 partidos
+2026-11-28T11:30:47Z,BL1,4755329,2026-11-28T14:30:00Z,1. FC Köln,SV 07 Elversberg,home,141,1,Partidos ganados,4 (33%),Últimos 12 partidos
+2026-11-28T11:30:47Z,BL1,4755329,2026-11-28T14:30:00Z,1. FC Köln,SV 07 Elversberg,home,142,1,Ambos equipos marcaron,9 (75%),Últimos 12 partidos
+2026-11-28T11:30:47Z,BL1,4755329,2026-11-28T14:30:00Z,1. FC Köln,SV 07 Elversberg,home,143,1,Más de 2.5 goles,7 (58%),Últimos 12 partidos
+2026-11-28T11:30:47Z,BL1,4755329,2026-11-28T14:30:00Z,1. FC Köln,SV 07 Elversberg,home,144,1,Marcó primero,4 (33%),Últimos 12 partidos
+2026-11-28T11:30:47Z,BL1,4755329,2026-11-28T14:30:00Z,1. FC Köln,SV 07 Elversberg,home,146,1,Recibió gol primero,7 (58%),Últimos 12 partidos
+2026-11-28T11:30:47Z,BL1,4755329,2026-11-28T14:30:00Z,1. FC Köln,SV 07 Elversberg,home,148,1,Empató o Ganó,8 (67%),Últimos 12 partidos
+2026-11-28T11:30:47Z,BL1,4755329,2026-11-28T14:30:00Z,1. FC Köln,SV 07 Elversberg,home,149,1,Vencedor al entretiempo,2 (17%),Últimos 12 partidos
+2026-11-28T11:30:47Z,BL1,4755329,2026-11-28T14:30:00Z,1. FC Köln,SV 07 Elversberg,home,150,1,Valla invicta,2 (17%),Últimos 12 partidos
+2026-11-28T11:30:47Z,BL1,4755329,2026-11-28T14:30:00Z,1. FC Köln,SV 07 Elversberg,home,153,2,Goles convertidos,1.5,Últimos 12 partidos
+2026-11-28T11:30:47Z,BL1,4755329,2026-11-28T14:30:00Z,1. FC Köln,SV 07 Elversberg,home,156,2,Goles recibidos,1.33,Últimos 12 partidos
+2026-11-28T11:30:47Z,BL1,4755329,2026-11-28T14:30:00Z,1. FC Köln,SV 07 Elversberg,home,159,2,Goles esperados,1.6,Últimos 12 partidos
+2026-11-28T11:30:47Z,BL1,4755329,2026-11-28T14:30:00Z,1. FC Köln,SV 07 Elversberg,home,162,2,Goles esperados recibidos,1.31,Últimos 12 partidos
+2026-11-28T11:30:47Z,BL1,4755329,2026-11-28T14:30:00Z,1. FC Köln,SV 07 Elversberg,home,165,2,Remates,14.17,Últimos 12 partidos
+2026-11-28T11:30:47Z,BL1,4755329,2026-11-28T14:30:00Z,1. FC Köln,SV 07 Elversberg,home,168,2,Remates al arco,5.17,Últimos 12 partidos
+2026-11-28T11:30:47Z,BL1,4755329,2026-11-28T14:30:00Z,1. FC Köln,SV 07 Elversberg,home,171,2,Saques de Esquina,4.75,Últimos 12 partidos
+2026-11-28T11:30:47Z,BL1,4755329,2026-11-28T14:30:00Z,1. FC Köln,SV 07 Elversberg,home,174,2,Tarjetas,2.17,Últimos 12 partidos
+2026-11-28T11:30:47Z,BL1,4755329,2026-11-28T14:30:00Z,1. FC Köln,SV 07 Elversberg,home,175,2,Penales convertidos/penales ejecutados,0/1,Últimos 12 partidos
+2026-11-28T11:30:47Z,BL1,4755329,2026-11-28T14:30:00Z,1. FC Köln,SV 07 Elversberg,away,141,1,Partidos ganados,5 (42%),Últimos 12 partidos
+2026-11-28T11:30:47Z,BL1,4755329,2026-11-28T14:30:00Z,1. FC Köln,SV 07 Elversberg,away,142,1,Ambos equipos marcaron,7 (58%),Últimos 12 partidos
+2026-11-28T11:30:47Z,BL1,4755329,2026-11-28T14:30:00Z,1. FC Köln,SV 07 Elversberg,away,143,1,Más de 2.5 goles,8 (67%),Últimos 12 partidos
+2026-11-28T11:30:47Z,BL1,4755329,2026-11-28T14:30:00Z,1. FC Köln,SV 07 Elversberg,away,144,1,Marcó primero,4 (33%),Últimos 12 partidos
+2026-11-28T11:30:47Z,BL1,4755329,2026-11-28T14:30:00Z,1. FC Köln,SV 07 Elversberg,away,146,1,Recibió gol primero,7 (58%),Últimos 12 partidos
+2026-11-28T11:30:47Z,BL1,4755329,2026-11-28T14:30:00Z,1. FC Köln,SV 07 Elversberg,away,148,1,Empató o Ganó,6 (50%),Últimos 12 partidos
+2026-11-28T11:30:47Z,BL1,4755329,2026-11-28T14:30:00Z,1. FC Köln,SV 07 Elversberg,away,149,1,Vencedor al entretiempo,4 (33%),Últimos 12 partidos
+2026-11-28T11:30:47Z,BL1,4755329,2026-11-28T14:30:00Z,1. FC Köln,SV 07 Elversberg,away,150,1,Valla invicta,1 (8%),Últimos 12 partidos
+2026-11-28T11:30:47Z,BL1,4755329,2026-11-28T14:30:00Z,1. FC Köln,SV 07 Elversberg,away,153,2,Goles convertidos,1.67,Últimos 12 partidos
+2026-11-28T11:30:47Z,BL1,4755329,2026-11-28T14:30:00Z,1. FC Köln,SV 07 Elversberg,away,156,2,Goles recibidos,1.83,Últimos 12 partidos
+2026-11-28T11:30:47Z,BL1,4755329,2026-11-28T14:30:00Z,1. FC Köln,SV 07 Elversberg,away,159,2,Goles esperados,1.28,Últimos 12 partidos
+2026-11-28T11:30:47Z,BL1,4755329,2026-11-28T14:30:00Z,1. FC Köln,SV 07 Elversberg,away,162,2,Goles esperados recibidos,1.67,Últimos 12 partidos
+2026-11-28T11:30:47Z,BL1,4755329,2026-11-28T14:30:00Z,1. FC Köln,SV 07 Elversberg,away,165,2,Remates,12.67,Últimos 12 partidos
+2026-11-28T11:30:47Z,BL1,4755329,2026-11-28T14:30:00Z,1. FC Köln,SV 07 Elversberg,away,168,2,Remates al arco,4.67,Últimos 12 partidos
+2026-11-28T11:30:47Z,BL1,4755329,2026-11-28T14:30:00Z,1. FC Köln,SV 07 Elversberg,away,171,2,Saques de Esquina,5.42,Últimos 12 partidos
+2026-11-28T11:30:47Z,BL1,4755329,2026-11-28T14:30:00Z,1. FC Köln,SV 07 Elversberg,away,174,2,Tarjetas,1.42,Últimos 12 partidos
+2026-11-28T11:30:47Z,BL1,4755329,2026-11-28T14:30:00Z,1. FC Köln,SV 07 Elversberg,away,175,2,Penales convertidos/penales ejecutados,0/1,Últimos 12 partidos
+2026-11-28T11:30:47Z,BL1,4755330,2026-11-28T14:30:00Z,Hamburger SV,Bayern Munich,home,141,1,Partidos ganados,5 (42%),Últimos 12 partidos
+2026-11-28T11:30:47Z,BL1,4755330,2026-11-28T14:30:00Z,Hamburger SV,Bayern Munich,home,142,1,Ambos equipos marcaron,5 (42%),Últimos 12 partidos
+2026-11-28T11:30:47Z,BL1,4755330,2026-11-28T14:30:00Z,Hamburger SV,Bayern Munich,home,143,1,Más de 2.5 goles,9 (75%),Últimos 12 partidos
+2026-11-28T11:30:47Z,BL1,4755330,2026-11-28T14:30:00Z,Hamburger SV,Bayern Munich,home,144,1,Marcó primero,5/12 (42%),Últimos 12 partidos
+2026-11-28T11:30:47Z,BL1,4755330,2026-11-28T14:30:00Z,Hamburger SV,Bayern Munich,home,146,1,Recibió gol primero,7/12 (58%),Últimos 12 partidos
+2026-11-28T11:30:47Z,BL1,4755330,2026-11-28T14:30:00Z,Hamburger SV,Bayern Munich,home,148,1,Empató o Ganó,5 (42%),Últimos 12 partidos
+2026-11-28T11:30:47Z,BL1,4755330,2026-11-28T14:30:00Z,Hamburger SV,Bayern Munich,home,149,1,Vencedor al entretiempo,2/12 (17%),Últimos 12 partidos
+2026-11-28T11:30:47Z,BL1,4755330,2026-11-28T14:30:00Z,Hamburger SV,Bayern Munich,home,150,1,Valla invicta,2 (17%),Últimos 12 partidos
+2026-11-28T11:30:47Z,BL1,4755330,2026-11-28T14:30:00Z,Hamburger SV,Bayern Munich,home,153,2,Goles convertidos,1.17,Últimos 12 partidos
+2026-11-28T11:30:47Z,BL1,4755330,2026-11-28T14:30:00Z,Hamburger SV,Bayern Munich,home,156,2,Goles recibidos,2.25,Últimos 12 partidos
+2026-11-28T11:30:47Z,BL1,4755330,2026-11-28T14:30:00Z,Hamburger SV,Bayern Munich,home,159,2,Goles esperados,1.24,Últimos 12 partidos
+2026-11-28T11:30:47Z,BL1,4755330,2026-11-28T14:30:00Z,Hamburger SV,Bayern Munich,home,162,2,Goles esperados recibidos,1.7,Últimos 12 partidos
+2026-11-28T11:30:47Z,BL1,4755330,2026-11-28T14:30:00Z,Hamburger SV,Bayern Munich,home,165,2,Remates,12.25,Últimos 12 partidos
+2026-11-28T11:30:47Z,BL1,4755330,2026-11-28T14:30:00Z,Hamburger SV,Bayern Munich,home,168,2,Remates al arco,4.08,Últimos 12 partidos
+2026-11-28T11:30:47Z,BL1,4755330,2026-11-28T14:30:00Z,Hamburger SV,Bayern Munich,home,171,2,Saques de Esquina,4.25,Últimos 12 partidos
+2026-11-28T11:30:47Z,BL1,4755330,2026-11-28T14:30:00Z,Hamburger SV,Bayern Munich,home,174,2,Tarjetas,1.58,Últimos 12 partidos
+2026-11-28T11:30:47Z,BL1,4755330,2026-11-28T14:30:00Z,Hamburger SV,Bayern Munich,home,175,2,Penales convertidos/penales ejecutados,0/0,Últimos 12 partidos
+2026-11-28T11:30:47Z,BL1,4755330,2026-11-28T14:30:00Z,Hamburger SV,Bayern Munich,away,141,1,Partidos ganados,11 (61%),Últimos 18 partidos
+2026-11-28T11:30:47Z,BL1,4755330,2026-11-28T14:30:00Z,Hamburger SV,Bayern Munich,away,142,1,Ambos equipos marcaron,14 (78%),Últimos 18 partidos
+2026-11-28T11:30:47Z,BL1,4755330,2026-11-28T14:30:00Z,Hamburger SV,Bayern Munich,away,143,1,Más de 2.5 goles,15 (83%),Últimos 18 partidos
+2026-11-28T11:30:47Z,BL1,4755330,2026-11-28T14:30:00Z,Hamburger SV,Bayern Munich,away,144,1,Marcó primero,12/17 (71%),Últimos 18 partidos
+2026-11-28T11:30:47Z,BL1,4755330,2026-11-28T14:30:00Z,Hamburger SV,Bayern Munich,away,146,1,Recibió gol primero,5/17 (29%),Últimos 18 partidos
+2026-11-28T11:30:47Z,BL1,4755330,2026-11-28T14:30:00Z,Hamburger SV,Bayern Munich,away,148,1,Empató o Ganó,16 (89%),Últimos 18 partidos
+2026-11-28T11:30:47Z,BL1,4755330,2026-11-28T14:30:00Z,Hamburger SV,Bayern Munich,away,149,1,Vencedor al entretiempo,11/17 (65%),Últimos 18 partidos
+2026-11-28T11:30:47Z,BL1,4755330,2026-11-28T14:30:00Z,Hamburger SV,Bayern Munich,away,150,1,Valla invicta,3 (17%),Últimos 18 partidos
+2026-11-28T11:30:47Z,BL1,4755330,2026-11-28T14:30:00Z,Hamburger SV,Bayern Munich,away,153,2,Goles convertidos,3.06,Últimos 18 partidos
+2026-11-28T11:30:47Z,BL1,4755330,2026-11-28T14:30:00Z,Hamburger SV,Bayern Munich,away,156,2,Goles recibidos,1.11,Últimos 18 partidos
+2026-11-28T11:30:47Z,BL1,4755330,2026-11-28T14:30:00Z,Hamburger SV,Bayern Munich,away,159,2,Goles esperados,2.87,Últimos 18 partidos
+2026-11-28T11:30:47Z,BL1,4755330,2026-11-28T14:30:00Z,Hamburger SV,Bayern Munich,away,162,2,Goles esperados recibidos,0.91,Últimos 18 partidos
+2026-11-28T11:30:47Z,BL1,4755330,2026-11-28T14:30:00Z,Hamburger SV,Bayern Munich,away,165,2,Remates,21.22,Últimos 18 partidos
+2026-11-28T11:30:47Z,BL1,4755330,2026-11-28T14:30:00Z,Hamburger SV,Bayern Munich,away,168,2,Remates al arco,8.28,Últimos 18 partidos
+2026-11-28T11:30:47Z,BL1,4755330,2026-11-28T14:30:00Z,Hamburger SV,Bayern Munich,away,171,2,Saques de Esquina,7.24,Últimos 18 partidos
+2026-11-28T11:30:47Z,BL1,4755330,2026-11-28T14:30:00Z,Hamburger SV,Bayern Munich,away,174,2,Tarjetas,1.06,Últimos 18 partidos
+2026-11-28T11:30:47Z,BL1,4755330,2026-11-28T14:30:00Z,Hamburger SV,Bayern Munich,away,175,2,Penales convertidos/penales ejecutados,5/6,Últimos 18 partidos
+2026-11-28T11:30:47Z,BL1,4755331,2026-11-28T14:30:00Z,Mainz 05,Union Berlin,home,141,1,Partidos ganados,4 (33%),Últimos 12 partidos
+2026-11-28T11:30:47Z,BL1,4755331,2026-11-28T14:30:00Z,Mainz 05,Union Berlin,home,142,1,Ambos equipos marcaron,7 (58%),Últimos 12 partidos
+2026-11-28T11:30:47Z,BL1,4755331,2026-11-28T14:30:00Z,Mainz 05,Union Berlin,home,143,1,Más de 2.5 goles,9 (75%),Últimos 12 partidos
+2026-11-28T11:30:47Z,BL1,4755331,2026-11-28T14:30:00Z,Mainz 05,Union Berlin,home,144,1,Marcó primero,3 (25%),Últimos 12 partidos
+2026-11-28T11:30:47Z,BL1,4755331,2026-11-28T14:30:00Z,Mainz 05,Union Berlin,home,146,1,Recibió gol primero,8 (67%),Últimos 12 partidos
+2026-11-28T11:30:47Z,BL1,4755331,2026-11-28T14:30:00Z,Mainz 05,Union Berlin,home,148,1,Empató o Ganó,5 (42%),Últimos 12 partidos
+2026-11-28T11:30:47Z,BL1,4755331,2026-11-28T14:30:00Z,Mainz 05,Union Berlin,home,149,1,Vencedor al entretiempo,4 (33%),Últimos 12 partidos
+2026-11-28T11:30:47Z,BL1,4755331,2026-11-28T14:30:00Z,Mainz 05,Union Berlin,home,150,1,Valla invicta,4 (33%),Últimos 12 partidos
+2026-11-28T11:30:47Z,BL1,4755331,2026-11-28T14:30:00Z,Mainz 05,Union Berlin,home,153,2,Goles convertidos,2.33,Últimos 12 partidos
+2026-11-28T11:30:47Z,BL1,4755331,2026-11-28T14:30:00Z,Mainz 05,Union Berlin,home,156,2,Goles recibidos,2,Últimos 12 partidos
+2026-11-28T11:30:47Z,BL1,4755331,2026-11-28T14:30:00Z,Mainz 05,Union Berlin,home,159,2,Goles esperados,1.83,Últimos 12 partidos
+2026-11-28T11:30:47Z,BL1,4755331,2026-11-28T14:30:00Z,Mainz 05,Union Berlin,home,162,2,Goles esperados recibidos,1.59,Últimos 12 partidos
+2026-11-28T11:30:47Z,BL1,4755331,2026-11-28T14:30:00Z,Mainz 05,Union Berlin,home,165,2,Remates,16.08,Últimos 12 partidos
+2026-11-28T11:30:47Z,BL1,4755331,2026-11-28T14:30:00Z,Mainz 05,Union Berlin,home,168,2,Remates al arco,5.58,Últimos 12 partidos
+2026-11-28T11:30:47Z,BL1,4755331,2026-11-28T14:30:00Z,Mainz 05,Union Berlin,home,171,2,Saques de Esquina,5.67,Últimos 12 partidos
+2026-11-28T11:30:47Z,BL1,4755331,2026-11-28T14:30:00Z,Mainz 05,Union Berlin,home,174,2,Tarjetas,2.17,Últimos 12 partidos
+2026-11-28T11:30:47Z,BL1,4755331,2026-11-28T14:30:00Z,Mainz 05,Union Berlin,home,175,2,Penales convertidos/penales ejecutados,0/1,Últimos 12 partidos
+2026-11-28T11:30:47Z,BL1,4755331,2026-11-28T14:30:00Z,Mainz 05,Union Berlin,away,141,1,Partidos ganados,2 (17%),Últimos 12 partidos
+2026-11-28T11:30:47Z,BL1,4755331,2026-11-28T14:30:00Z,Mainz 05,Union Berlin,away,142,1,Ambos equipos marcaron,6 (50%),Últimos 12 partidos
+2026-11-28T11:30:47Z,BL1,4755331,2026-11-28T14:30:00Z,Mainz 05,Union Berlin,away,143,1,Más de 2.5 goles,7 (58%),Últimos 12 partidos
+2026-11-28T11:30:47Z,BL1,4755331,2026-11-28T14:30:00Z,Mainz 05,Union Berlin,away,144,1,Marcó primero,3 (25%),Últimos 12 partidos
+2026-11-28T11:30:47Z,BL1,4755331,2026-11-28T14:30:00Z,Mainz 05,Union Berlin,away,146,1,Recibió gol primero,8 (67%),Últimos 12 partidos
+2026-11-28T11:30:47Z,BL1,4755331,2026-11-28T14:30:00Z,Mainz 05,Union Berlin,away,148,1,Empató o Ganó,6 (50%),Últimos 12 partidos
+2026-11-28T11:30:47Z,BL1,4755331,2026-11-28T14:30:00Z,Mainz 05,Union Berlin,away,149,1,Vencedor al entretiempo,1 (8%),Últimos 12 partidos
+2026-11-28T11:30:47Z,BL1,4755331,2026-11-28T14:30:00Z,Mainz 05,Union Berlin,away,150,1,Valla invicta,2 (17%),Últimos 12 partidos
+2026-11-28T11:30:47Z,BL1,4755331,2026-11-28T14:30:00Z,Mainz 05,Union Berlin,away,153,2,Goles convertidos,1,Últimos 12 partidos
+2026-11-28T11:30:47Z,BL1,4755331,2026-11-28T14:30:00Z,Mainz 05,Union Berlin,away,156,2,Goles recibidos,2.75,Últimos 12 partidos
+2026-11-28T11:30:47Z,BL1,4755331,2026-11-28T14:30:00Z,Mainz 05,Union Berlin,away,159,2,Goles esperados,1.12,Últimos 12 partidos
+2026-11-28T11:30:47Z,BL1,4755331,2026-11-28T14:30:00Z,Mainz 05,Union Berlin,away,162,2,Goles esperados recibidos,2.2,Últimos 12 partidos
+2026-11-28T11:30:47Z,BL1,4755331,2026-11-28T14:30:00Z,Mainz 05,Union Berlin,away,165,2,Remates,11.42,Últimos 12 partidos
+2026-11-28T11:30:47Z,BL1,4755331,2026-11-28T14:30:00Z,Mainz 05,Union Berlin,away,168,2,Remates al arco,4.17,Últimos 12 partidos
+2026-11-28T11:30:47Z,BL1,4755331,2026-11-28T14:30:00Z,Mainz 05,Union Berlin,away,171,2,Saques de Esquina,3.67,Últimos 12 partidos
+2026-11-28T11:30:47Z,BL1,4755331,2026-11-28T14:30:00Z,Mainz 05,Union Berlin,away,174,2,Tarjetas,2.75,Últimos 12 partidos
+2026-11-28T11:30:47Z,BL1,4755331,2026-11-28T14:30:00Z,Mainz 05,Union Berlin,away,175,2,Penales convertidos/penales ejecutados,0/0,Últimos 12 partidos
