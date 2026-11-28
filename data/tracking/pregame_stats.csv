@@ -1733,3 +1733,37 @@ fetched_at,competition,game_id,utc_date,home_team,away_team,side,stat_id,group,n
 2026-11-28T12:15:31Z,PD,4750775,2026-11-28T15:15:00Z,Malaga,Athletic Bilbao,away,171,2,Saques de Esquina,5.43,Últimos 14 partidos
 2026-11-28T12:15:31Z,PD,4750775,2026-11-28T15:15:00Z,Malaga,Athletic Bilbao,away,174,2,Tarjetas,1.79,Últimos 14 partidos
 2026-11-28T12:15:31Z,PD,4750775,2026-11-28T15:15:00Z,Malaga,Athletic Bilbao,away,175,2,Penales convertidos/penales ejecutados,2/3,Últimos 14 partidos
+2026-11-28T13:15:26Z,FL1,4735199,2026-11-28T16:15:00Z,Angers,Lens,home,141,1,Partidos ganados,2 (18%),Últimos 11 partidos
+2026-11-28T13:15:26Z,FL1,4735199,2026-11-28T16:15:00Z,Angers,Lens,home,142,1,Ambos equipos marcaron,4 (36%),Últimos 11 partidos
+2026-11-28T13:15:26Z,FL1,4735199,2026-11-28T16:15:00Z,Angers,Lens,home,143,1,Más de 2.5 goles,5 (45%),Últimos 11 partidos
+2026-11-28T13:15:26Z,FL1,4735199,2026-11-28T16:15:00Z,Angers,Lens,home,144,1,Marcó primero,3 (27%),Últimos 11 partidos
+2026-11-28T13:15:26Z,FL1,4735199,2026-11-28T16:15:00Z,Angers,Lens,home,146,1,Recibió gol primero,6 (55%),Últimos 11 partidos
+2026-11-28T13:15:26Z,FL1,4735199,2026-11-28T16:15:00Z,Angers,Lens,home,148,1,Empató o Ganó,4 (36%),Últimos 11 partidos
+2026-11-28T13:15:26Z,FL1,4735199,2026-11-28T16:15:00Z,Angers,Lens,home,149,1,Vencedor al entretiempo,1 (9%),Últimos 11 partidos
+2026-11-28T13:15:26Z,FL1,4735199,2026-11-28T16:15:00Z,Angers,Lens,home,150,1,Valla invicta,3 (27%),Últimos 11 partidos
+2026-11-28T13:15:26Z,FL1,4735199,2026-11-28T16:15:00Z,Angers,Lens,home,153,2,Goles convertidos,0.82,Últimos 11 partidos
+2026-11-28T13:15:26Z,FL1,4735199,2026-11-28T16:15:00Z,Angers,Lens,home,156,2,Goles recibidos,2.09,Últimos 11 partidos
+2026-11-28T13:15:26Z,FL1,4735199,2026-11-28T16:15:00Z,Angers,Lens,home,159,2,Goles esperados,1.21,Últimos 11 partidos
+2026-11-28T13:15:26Z,FL1,4735199,2026-11-28T16:15:00Z,Angers,Lens,home,162,2,Goles esperados recibidos,1.85,Últimos 11 partidos
+2026-11-28T13:15:26Z,FL1,4735199,2026-11-28T16:15:00Z,Angers,Lens,home,165,2,Remates,11.82,Últimos 11 partidos
+2026-11-28T13:15:26Z,FL1,4735199,2026-11-28T16:15:00Z,Angers,Lens,home,168,2,Remates al arco,2.91,Últimos 11 partidos
+2026-11-28T13:15:26Z,FL1,4735199,2026-11-28T16:15:00Z,Angers,Lens,home,171,2,Saques de Esquina,5.73,Últimos 11 partidos
+2026-11-28T13:15:26Z,FL1,4735199,2026-11-28T16:15:00Z,Angers,Lens,home,174,2,Tarjetas,1.73,Últimos 11 partidos
+2026-11-28T13:15:26Z,FL1,4735199,2026-11-28T16:15:00Z,Angers,Lens,home,175,2,Penales convertidos/penales ejecutados,1/1,Últimos 11 partidos
+2026-11-28T13:15:26Z,FL1,4735199,2026-11-28T16:15:00Z,Angers,Lens,away,141,1,Partidos ganados,6 (35%),Últimos 17 partidos
+2026-11-28T13:15:26Z,FL1,4735199,2026-11-28T16:15:00Z,Angers,Lens,away,142,1,Ambos equipos marcaron,12 (71%),Últimos 17 partidos
+2026-11-28T13:15:26Z,FL1,4735199,2026-11-28T16:15:00Z,Angers,Lens,away,143,1,Más de 2.5 goles,12 (71%),Últimos 17 partidos
+2026-11-28T13:15:26Z,FL1,4735199,2026-11-28T16:15:00Z,Angers,Lens,away,144,1,Marcó primero,5 (29%),Últimos 17 partidos
+2026-11-28T13:15:26Z,FL1,4735199,2026-11-28T16:15:00Z,Angers,Lens,away,146,1,Recibió gol primero,12 (71%),Últimos 17 partidos
+2026-11-28T13:15:26Z,FL1,4735199,2026-11-28T16:15:00Z,Angers,Lens,away,148,1,Empató o Ganó,8 (47%),Últimos 17 partidos
+2026-11-28T13:15:26Z,FL1,4735199,2026-11-28T16:15:00Z,Angers,Lens,away,149,1,Vencedor al entretiempo,5 (29%),Últimos 17 partidos
+2026-11-28T13:15:26Z,FL1,4735199,2026-11-28T16:15:00Z,Angers,Lens,away,150,1,Valla invicta,1 (6%),Últimos 17 partidos
+2026-11-28T13:15:26Z,FL1,4735199,2026-11-28T16:15:00Z,Angers,Lens,away,153,2,Goles convertidos,1.41,Últimos 17 partidos
+2026-11-28T13:15:26Z,FL1,4735199,2026-11-28T16:15:00Z,Angers,Lens,away,156,2,Goles recibidos,2.06,Últimos 17 partidos
+2026-11-28T13:15:26Z,FL1,4735199,2026-11-28T16:15:00Z,Angers,Lens,away,159,2,Goles esperados,1.52,Últimos 17 partidos
+2026-11-28T13:15:26Z,FL1,4735199,2026-11-28T16:15:00Z,Angers,Lens,away,162,2,Goles esperados recibidos,1.64,Últimos 17 partidos
+2026-11-28T13:15:26Z,FL1,4735199,2026-11-28T16:15:00Z,Angers,Lens,away,165,2,Remates,14.41,Últimos 17 partidos
+2026-11-28T13:15:26Z,FL1,4735199,2026-11-28T16:15:00Z,Angers,Lens,away,168,2,Remates al arco,5.29,Últimos 17 partidos
+2026-11-28T13:15:26Z,FL1,4735199,2026-11-28T16:15:00Z,Angers,Lens,away,171,2,Saques de Esquina,5.76,Últimos 17 partidos
+2026-11-28T13:15:26Z,FL1,4735199,2026-11-28T16:15:00Z,Angers,Lens,away,174,2,Tarjetas,2.06,Últimos 17 partidos
+2026-11-28T13:15:26Z,FL1,4735199,2026-11-28T16:15:00Z,Angers,Lens,away,175,2,Penales convertidos/penales ejecutados,3/3,Últimos 17 partidos
