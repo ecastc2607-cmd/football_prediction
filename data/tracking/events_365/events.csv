@@ -40812,3 +40812,17 @@ game_id,side,minute,added_time,half,type,subtype,player
 4896644,away,51.0,0,2,Goal,Field Goal,Luciano Pons
 4896644,away,56.0,0,2,Yellow Card,,Brandon Caicedo
 4896644,away,90.0,5,2,Yellow Card,,Jose Ortiz
+4896645,away,22.0,0,1,Yellow Card,,Jean
+4896645,away,25.0,0,1,Yellow Card,,Dany Rosero
+4896645,away,27.0,0,1,Yellow Card,,Edson Tortolero
+4896645,home,28.0,0,1,Yellow Card,,Rodrigo Contreras
+4896645,home,32.0,0,1,Yellow Card,,Jhomier Guerrero
+4896645,away,40.0,0,1,Yellow Card,,Josen Escobar
+4896645,home,45.0,4,1,Red Card,Second Yellow Card,Rodrigo Contreras
+4896645,away,49.0,0,2,Red Card,Second Yellow Card,Dany Rosero
+4896645,away,82.0,0,2,Yellow Card,,Marlon Torres
+4896645,away,82.0,0,2,Yellow Card,,Rafael Carrascal
+4896645,home,83.0,0,2,Yellow Card,,Darwin Quintero
+4896645,home,85.0,0,2,Yellow Card,,Sebastián Valencia
+4896645,home,90.0,3,2,Yellow Card,,Jorge Arias
+4896645,away,90.0,12,2,Red Card,,Yani Quintero
