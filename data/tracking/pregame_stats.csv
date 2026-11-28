@@ -1631,3 +1631,71 @@ fetched_at,competition,game_id,utc_date,home_team,away_team,side,stat_id,group,n
 2026-11-28T11:30:47Z,BL1,4755331,2026-11-28T14:30:00Z,Mainz 05,Union Berlin,away,171,2,Saques de Esquina,3.67,Últimos 12 partidos
 2026-11-28T11:30:47Z,BL1,4755331,2026-11-28T14:30:00Z,Mainz 05,Union Berlin,away,174,2,Tarjetas,2.75,Últimos 12 partidos
 2026-11-28T11:30:47Z,BL1,4755331,2026-11-28T14:30:00Z,Mainz 05,Union Berlin,away,175,2,Penales convertidos/penales ejecutados,0/0,Últimos 12 partidos
+2026-11-28T12:00:34Z,PL,4741984,2026-11-28T15:00:00Z,Manchester United,Brentford,home,141,1,Partidos ganados,3 (18%),Últimos 17 partidos
+2026-11-28T12:00:34Z,PL,4741984,2026-11-28T15:00:00Z,Manchester United,Brentford,home,142,1,Ambos equipos marcaron,10 (59%),Últimos 17 partidos
+2026-11-28T12:00:34Z,PL,4741984,2026-11-28T15:00:00Z,Manchester United,Brentford,home,143,1,Más de 2.5 goles,10 (59%),Últimos 17 partidos
+2026-11-28T12:00:34Z,PL,4741984,2026-11-28T15:00:00Z,Manchester United,Brentford,home,144,1,Marcó primero,5 (29%),Últimos 17 partidos
+2026-11-28T12:00:34Z,PL,4741984,2026-11-28T15:00:00Z,Manchester United,Brentford,home,146,1,Recibió gol primero,12 (71%),Últimos 17 partidos
+2026-11-28T12:00:34Z,PL,4741984,2026-11-28T15:00:00Z,Manchester United,Brentford,home,148,1,Empató o Ganó,9 (53%),Últimos 17 partidos
+2026-11-28T12:00:34Z,PL,4741984,2026-11-28T15:00:00Z,Manchester United,Brentford,home,149,1,Vencedor al entretiempo,3 (18%),Últimos 17 partidos
+2026-11-28T12:00:34Z,PL,4741984,2026-11-28T15:00:00Z,Manchester United,Brentford,home,150,1,Valla invicta,1 (6%),Últimos 17 partidos
+2026-11-28T12:00:34Z,PL,4741984,2026-11-28T15:00:00Z,Manchester United,Brentford,home,153,2,Goles convertidos,1.53,Últimos 17 partidos
+2026-11-28T12:00:34Z,PL,4741984,2026-11-28T15:00:00Z,Manchester United,Brentford,home,156,2,Goles recibidos,2.12,Últimos 17 partidos
+2026-11-28T12:00:34Z,PL,4741984,2026-11-28T15:00:00Z,Manchester United,Brentford,home,159,2,Goles esperados,1.61,Últimos 17 partidos
+2026-11-28T12:00:34Z,PL,4741984,2026-11-28T15:00:00Z,Manchester United,Brentford,home,162,2,Goles esperados recibidos,1.91,Últimos 17 partidos
+2026-11-28T12:00:34Z,PL,4741984,2026-11-28T15:00:00Z,Manchester United,Brentford,home,165,2,Remates,16.18,Últimos 17 partidos
+2026-11-28T12:00:34Z,PL,4741984,2026-11-28T15:00:00Z,Manchester United,Brentford,home,168,2,Remates al arco,5.12,Últimos 17 partidos
+2026-11-28T12:00:34Z,PL,4741984,2026-11-28T15:00:00Z,Manchester United,Brentford,home,171,2,Saques de Esquina,5.35,Últimos 17 partidos
+2026-11-28T12:00:34Z,PL,4741984,2026-11-28T15:00:00Z,Manchester United,Brentford,home,174,2,Tarjetas,2.24,Últimos 17 partidos
+2026-11-28T12:00:34Z,PL,4741984,2026-11-28T15:00:00Z,Manchester United,Brentford,home,175,2,Penales convertidos/penales ejecutados,4/4,Últimos 17 partidos
+2026-11-28T12:00:34Z,PL,4741984,2026-11-28T15:00:00Z,Manchester United,Brentford,away,141,1,Partidos ganados,6 (43%),Últimos 14 partidos
+2026-11-28T12:00:34Z,PL,4741984,2026-11-28T15:00:00Z,Manchester United,Brentford,away,142,1,Ambos equipos marcaron,9 (64%),Últimos 14 partidos
+2026-11-28T12:00:34Z,PL,4741984,2026-11-28T15:00:00Z,Manchester United,Brentford,away,143,1,Más de 2.5 goles,9 (64%),Últimos 14 partidos
+2026-11-28T12:00:34Z,PL,4741984,2026-11-28T15:00:00Z,Manchester United,Brentford,away,144,1,Marcó primero,11 (79%),Últimos 14 partidos
+2026-11-28T12:00:34Z,PL,4741984,2026-11-28T15:00:00Z,Manchester United,Brentford,away,146,1,Recibió gol primero,3 (21%),Últimos 14 partidos
+2026-11-28T12:00:34Z,PL,4741984,2026-11-28T15:00:00Z,Manchester United,Brentford,away,148,1,Empató o Ganó,11 (79%),Últimos 14 partidos
+2026-11-28T12:00:34Z,PL,4741984,2026-11-28T15:00:00Z,Manchester United,Brentford,away,149,1,Vencedor al entretiempo,7 (50%),Últimos 14 partidos
+2026-11-28T12:00:34Z,PL,4741984,2026-11-28T15:00:00Z,Manchester United,Brentford,away,150,1,Valla invicta,4 (29%),Últimos 14 partidos
+2026-11-28T12:00:34Z,PL,4741984,2026-11-28T15:00:00Z,Manchester United,Brentford,away,153,2,Goles convertidos,2.14,Últimos 14 partidos
+2026-11-28T12:00:34Z,PL,4741984,2026-11-28T15:00:00Z,Manchester United,Brentford,away,156,2,Goles recibidos,1.14,Últimos 14 partidos
+2026-11-28T12:00:34Z,PL,4741984,2026-11-28T15:00:00Z,Manchester United,Brentford,away,159,2,Goles esperados,1.84,Últimos 14 partidos
+2026-11-28T12:00:34Z,PL,4741984,2026-11-28T15:00:00Z,Manchester United,Brentford,away,162,2,Goles esperados recibidos,1.39,Últimos 14 partidos
+2026-11-28T12:00:34Z,PL,4741984,2026-11-28T15:00:00Z,Manchester United,Brentford,away,165,2,Remates,14.93,Últimos 14 partidos
+2026-11-28T12:00:34Z,PL,4741984,2026-11-28T15:00:00Z,Manchester United,Brentford,away,168,2,Remates al arco,4.71,Últimos 14 partidos
+2026-11-28T12:00:34Z,PL,4741984,2026-11-28T15:00:00Z,Manchester United,Brentford,away,171,2,Saques de Esquina,4.5,Últimos 14 partidos
+2026-11-28T12:00:34Z,PL,4741984,2026-11-28T15:00:00Z,Manchester United,Brentford,away,174,2,Tarjetas,2.14,Últimos 14 partidos
+2026-11-28T12:00:34Z,PL,4741984,2026-11-28T15:00:00Z,Manchester United,Brentford,away,175,2,Penales convertidos/penales ejecutados,0/1,Últimos 14 partidos
+2026-11-28T12:00:34Z,PL,4741985,2026-11-28T15:00:00Z,Leeds United,Coventry,home,141,1,Partidos ganados,5 (38%),Últimos 13 partidos
+2026-11-28T12:00:34Z,PL,4741985,2026-11-28T15:00:00Z,Leeds United,Coventry,home,142,1,Ambos equipos marcaron,7 (54%),Últimos 13 partidos
+2026-11-28T12:00:34Z,PL,4741985,2026-11-28T15:00:00Z,Leeds United,Coventry,home,143,1,Más de 2.5 goles,4 (31%),Últimos 13 partidos
+2026-11-28T12:00:34Z,PL,4741985,2026-11-28T15:00:00Z,Leeds United,Coventry,home,144,1,Marcó primero,7 (54%),Últimos 13 partidos
+2026-11-28T12:00:34Z,PL,4741985,2026-11-28T15:00:00Z,Leeds United,Coventry,home,146,1,Recibió gol primero,4 (31%),Últimos 13 partidos
+2026-11-28T12:00:34Z,PL,4741985,2026-11-28T15:00:00Z,Leeds United,Coventry,home,148,1,Empató o Ganó,10 (77%),Últimos 13 partidos
+2026-11-28T12:00:34Z,PL,4741985,2026-11-28T15:00:00Z,Leeds United,Coventry,home,149,1,Vencedor al entretiempo,3/13 (23%),Últimos 13 partidos
+2026-11-28T12:00:34Z,PL,4741985,2026-11-28T15:00:00Z,Leeds United,Coventry,home,150,1,Valla invicta,5 (38%),Últimos 13 partidos
+2026-11-28T12:00:34Z,PL,4741985,2026-11-28T15:00:00Z,Leeds United,Coventry,home,153,2,Goles convertidos,1.46,Últimos 13 partidos
+2026-11-28T12:00:34Z,PL,4741985,2026-11-28T15:00:00Z,Leeds United,Coventry,home,156,2,Goles recibidos,1.15,Últimos 13 partidos
+2026-11-28T12:00:34Z,PL,4741985,2026-11-28T15:00:00Z,Leeds United,Coventry,home,159,2,Goles esperados,1.56,Últimos 13 partidos
+2026-11-28T12:00:34Z,PL,4741985,2026-11-28T15:00:00Z,Leeds United,Coventry,home,162,2,Goles esperados recibidos,1.14,Últimos 13 partidos
+2026-11-28T12:00:34Z,PL,4741985,2026-11-28T15:00:00Z,Leeds United,Coventry,home,165,2,Remates,13.31,Últimos 13 partidos
+2026-11-28T12:00:34Z,PL,4741985,2026-11-28T15:00:00Z,Leeds United,Coventry,home,168,2,Remates al arco,4.31,Últimos 13 partidos
+2026-11-28T12:00:34Z,PL,4741985,2026-11-28T15:00:00Z,Leeds United,Coventry,home,171,2,Saques de Esquina,4,Últimos 13 partidos
+2026-11-28T12:00:34Z,PL,4741985,2026-11-28T15:00:00Z,Leeds United,Coventry,home,174,2,Tarjetas,1.85,Últimos 13 partidos
+2026-11-28T12:00:34Z,PL,4741985,2026-11-28T15:00:00Z,Leeds United,Coventry,home,175,2,Penales convertidos/penales ejecutados,1/1,Últimos 13 partidos
+2026-11-28T12:00:34Z,PL,4741985,2026-11-28T15:00:00Z,Leeds United,Coventry,away,141,1,Partidos ganados,6 (43%),Últimos 14 partidos
+2026-11-28T12:00:34Z,PL,4741985,2026-11-28T15:00:00Z,Leeds United,Coventry,away,142,1,Ambos equipos marcaron,7 (50%),Últimos 14 partidos
+2026-11-28T12:00:34Z,PL,4741985,2026-11-28T15:00:00Z,Leeds United,Coventry,away,143,1,Más de 2.5 goles,9 (64%),Últimos 14 partidos
+2026-11-28T12:00:34Z,PL,4741985,2026-11-28T15:00:00Z,Leeds United,Coventry,away,144,1,Marcó primero,7 (50%),Últimos 14 partidos
+2026-11-28T12:00:34Z,PL,4741985,2026-11-28T15:00:00Z,Leeds United,Coventry,away,146,1,Recibió gol primero,7 (50%),Últimos 14 partidos
+2026-11-28T12:00:34Z,PL,4741985,2026-11-28T15:00:00Z,Leeds United,Coventry,away,148,1,Empató o Ganó,6 (43%),Últimos 14 partidos
+2026-11-28T12:00:34Z,PL,4741985,2026-11-28T15:00:00Z,Leeds United,Coventry,away,149,1,Vencedor al entretiempo,3/13 (23%),Últimos 14 partidos
+2026-11-28T12:00:34Z,PL,4741985,2026-11-28T15:00:00Z,Leeds United,Coventry,away,150,1,Valla invicta,2 (14%),Últimos 14 partidos
+2026-11-28T12:00:34Z,PL,4741985,2026-11-28T15:00:00Z,Leeds United,Coventry,away,153,2,Goles convertidos,1.36,Últimos 14 partidos
+2026-11-28T12:00:34Z,PL,4741985,2026-11-28T15:00:00Z,Leeds United,Coventry,away,156,2,Goles recibidos,1.86,Últimos 14 partidos
+2026-11-28T12:00:34Z,PL,4741985,2026-11-28T15:00:00Z,Leeds United,Coventry,away,159,2,Goles esperados,1.15,Últimos 14 partidos
+2026-11-28T12:00:34Z,PL,4741985,2026-11-28T15:00:00Z,Leeds United,Coventry,away,162,2,Goles esperados recibidos,1.64,Últimos 14 partidos
+2026-11-28T12:00:34Z,PL,4741985,2026-11-28T15:00:00Z,Leeds United,Coventry,away,165,2,Remates,11.54,Últimos 14 partidos
+2026-11-28T12:00:34Z,PL,4741985,2026-11-28T15:00:00Z,Leeds United,Coventry,away,168,2,Remates al arco,3.85,Últimos 14 partidos
+2026-11-28T12:00:34Z,PL,4741985,2026-11-28T15:00:00Z,Leeds United,Coventry,away,171,2,Saques de Esquina,3.46,Últimos 14 partidos
+2026-11-28T12:00:34Z,PL,4741985,2026-11-28T15:00:00Z,Leeds United,Coventry,away,174,2,Tarjetas,1.38,Últimos 14 partidos
+2026-11-28T12:00:34Z,PL,4741985,2026-11-28T15:00:00Z,Leeds United,Coventry,away,175,2,Penales convertidos/penales ejecutados,2/2,Últimos 14 partidos
