@@ -1801,3 +1801,105 @@ fetched_at,competition,game_id,utc_date,home_team,away_team,side,stat_id,group,n
 2026-11-28T14:00:36Z,SA,4732613,2026-11-28T17:00:00Z,Torino,Lazio,away,171,2,Saques de Esquina,5.31,Últimos 13 partidos
 2026-11-28T14:00:36Z,SA,4732613,2026-11-28T17:00:00Z,Torino,Lazio,away,174,2,Tarjetas,1.62,Últimos 13 partidos
 2026-11-28T14:00:36Z,SA,4732613,2026-11-28T17:00:00Z,Torino,Lazio,away,175,2,Penales convertidos/penales ejecutados,1/3,Últimos 13 partidos
+2026-11-28T14:30:38Z,PL,4741986,2026-11-28T17:30:00Z,Ipswich,Aston Villa,home,141,1,Partidos ganados,4 (31%),Últimos 13 partidos
+2026-11-28T14:30:38Z,PL,4741986,2026-11-28T17:30:00Z,Ipswich,Aston Villa,home,142,1,Ambos equipos marcaron,10 (77%),Últimos 13 partidos
+2026-11-28T14:30:38Z,PL,4741986,2026-11-28T17:30:00Z,Ipswich,Aston Villa,home,143,1,Más de 2.5 goles,9 (69%),Últimos 13 partidos
+2026-11-28T14:30:38Z,PL,4741986,2026-11-28T17:30:00Z,Ipswich,Aston Villa,home,144,1,Marcó primero,4 (31%),Últimos 13 partidos
+2026-11-28T14:30:38Z,PL,4741986,2026-11-28T17:30:00Z,Ipswich,Aston Villa,home,146,1,Recibió gol primero,9 (69%),Últimos 13 partidos
+2026-11-28T14:30:38Z,PL,4741986,2026-11-28T17:30:00Z,Ipswich,Aston Villa,home,148,1,Empató o Ganó,6 (46%),Últimos 13 partidos
+2026-11-28T14:30:38Z,PL,4741986,2026-11-28T17:30:00Z,Ipswich,Aston Villa,home,149,1,Vencedor al entretiempo,2 (15%),Últimos 13 partidos
+2026-11-28T14:30:38Z,PL,4741986,2026-11-28T17:30:00Z,Ipswich,Aston Villa,home,150,1,Valla invicta,0 (0%),Últimos 13 partidos
+2026-11-28T14:30:38Z,PL,4741986,2026-11-28T17:30:00Z,Ipswich,Aston Villa,home,153,2,Goles convertidos,1.54,Últimos 13 partidos
+2026-11-28T14:30:38Z,PL,4741986,2026-11-28T17:30:00Z,Ipswich,Aston Villa,home,156,2,Goles recibidos,2.08,Últimos 13 partidos
+2026-11-28T14:30:38Z,PL,4741986,2026-11-28T17:30:00Z,Ipswich,Aston Villa,home,159,2,Goles esperados,1.17,Últimos 13 partidos
+2026-11-28T14:30:38Z,PL,4741986,2026-11-28T17:30:00Z,Ipswich,Aston Villa,home,162,2,Goles esperados recibidos,1.89,Últimos 13 partidos
+2026-11-28T14:30:38Z,PL,4741986,2026-11-28T17:30:00Z,Ipswich,Aston Villa,home,165,2,Remates,10.92,Últimos 13 partidos
+2026-11-28T14:30:38Z,PL,4741986,2026-11-28T17:30:00Z,Ipswich,Aston Villa,home,168,2,Remates al arco,4.15,Últimos 13 partidos
+2026-11-28T14:30:38Z,PL,4741986,2026-11-28T17:30:00Z,Ipswich,Aston Villa,home,171,2,Saques de Esquina,3.23,Últimos 13 partidos
+2026-11-28T14:30:38Z,PL,4741986,2026-11-28T17:30:00Z,Ipswich,Aston Villa,home,174,2,Tarjetas,1.92,Últimos 13 partidos
+2026-11-28T14:30:38Z,PL,4741986,2026-11-28T17:30:00Z,Ipswich,Aston Villa,home,175,2,Penales convertidos/penales ejecutados,2/2,Últimos 13 partidos
+2026-11-28T14:30:38Z,PL,4741986,2026-11-28T17:30:00Z,Ipswich,Aston Villa,away,141,1,Partidos ganados,5 (29%),Últimos 17 partidos
+2026-11-28T14:30:38Z,PL,4741986,2026-11-28T17:30:00Z,Ipswich,Aston Villa,away,142,1,Ambos equipos marcaron,9 (53%),Últimos 17 partidos
+2026-11-28T14:30:38Z,PL,4741986,2026-11-28T17:30:00Z,Ipswich,Aston Villa,away,143,1,Más de 2.5 goles,12 (71%),Últimos 17 partidos
+2026-11-28T14:30:38Z,PL,4741986,2026-11-28T17:30:00Z,Ipswich,Aston Villa,away,144,1,Marcó primero,7 (41%),Últimos 17 partidos
+2026-11-28T14:30:38Z,PL,4741986,2026-11-28T17:30:00Z,Ipswich,Aston Villa,away,146,1,Recibió gol primero,8 (47%),Últimos 17 partidos
+2026-11-28T14:30:38Z,PL,4741986,2026-11-28T17:30:00Z,Ipswich,Aston Villa,away,148,1,Empató o Ganó,10 (59%),Últimos 17 partidos
+2026-11-28T14:30:38Z,PL,4741986,2026-11-28T17:30:00Z,Ipswich,Aston Villa,away,149,1,Vencedor al entretiempo,6 (35%),Últimos 17 partidos
+2026-11-28T14:30:38Z,PL,4741986,2026-11-28T17:30:00Z,Ipswich,Aston Villa,away,150,1,Valla invicta,3 (18%),Últimos 17 partidos
+2026-11-28T14:30:38Z,PL,4741986,2026-11-28T17:30:00Z,Ipswich,Aston Villa,away,153,2,Goles convertidos,1.53,Últimos 17 partidos
+2026-11-28T14:30:38Z,PL,4741986,2026-11-28T17:30:00Z,Ipswich,Aston Villa,away,156,2,Goles recibidos,1.65,Últimos 17 partidos
+2026-11-28T14:30:38Z,PL,4741986,2026-11-28T17:30:00Z,Ipswich,Aston Villa,away,159,2,Goles esperados,1.5,Últimos 17 partidos
+2026-11-28T14:30:38Z,PL,4741986,2026-11-28T17:30:00Z,Ipswich,Aston Villa,away,162,2,Goles esperados recibidos,1.53,Últimos 17 partidos
+2026-11-28T14:30:38Z,PL,4741986,2026-11-28T17:30:00Z,Ipswich,Aston Villa,away,165,2,Remates,13.24,Últimos 17 partidos
+2026-11-28T14:30:38Z,PL,4741986,2026-11-28T17:30:00Z,Ipswich,Aston Villa,away,168,2,Remates al arco,4.53,Últimos 17 partidos
+2026-11-28T14:30:38Z,PL,4741986,2026-11-28T17:30:00Z,Ipswich,Aston Villa,away,171,2,Saques de Esquina,4.35,Últimos 17 partidos
+2026-11-28T14:30:38Z,PL,4741986,2026-11-28T17:30:00Z,Ipswich,Aston Villa,away,174,2,Tarjetas,2.18,Últimos 17 partidos
+2026-11-28T14:30:38Z,PL,4741986,2026-11-28T17:30:00Z,Ipswich,Aston Villa,away,175,2,Penales convertidos/penales ejecutados,3/4,Últimos 17 partidos
+2026-11-28T14:30:38Z,PD,4750778,2026-11-28T17:30:00Z,Elche,Atletico Madrid,home,141,1,Partidos ganados,3 (20%),Últimos 15 partidos
+2026-11-28T14:30:38Z,PD,4750778,2026-11-28T17:30:00Z,Elche,Atletico Madrid,home,142,1,Ambos equipos marcaron,9 (60%),Últimos 15 partidos
+2026-11-28T14:30:38Z,PD,4750778,2026-11-28T17:30:00Z,Elche,Atletico Madrid,home,143,1,Más de 2.5 goles,7 (47%),Últimos 15 partidos
+2026-11-28T14:30:38Z,PD,4750778,2026-11-28T17:30:00Z,Elche,Atletico Madrid,home,144,1,Marcó primero,4 (27%),Últimos 15 partidos
+2026-11-28T14:30:38Z,PD,4750778,2026-11-28T17:30:00Z,Elche,Atletico Madrid,home,146,1,Recibió gol primero,9 (60%),Últimos 15 partidos
+2026-11-28T14:30:38Z,PD,4750778,2026-11-28T17:30:00Z,Elche,Atletico Madrid,home,148,1,Empató o Ganó,9 (60%),Últimos 15 partidos
+2026-11-28T14:30:38Z,PD,4750778,2026-11-28T17:30:00Z,Elche,Atletico Madrid,home,149,1,Vencedor al entretiempo,2 (13%),Últimos 15 partidos
+2026-11-28T14:30:38Z,PD,4750778,2026-11-28T17:30:00Z,Elche,Atletico Madrid,home,150,1,Valla invicta,3 (20%),Últimos 15 partidos
+2026-11-28T14:30:38Z,PD,4750778,2026-11-28T17:30:00Z,Elche,Atletico Madrid,home,153,2,Goles convertidos,1.27,Últimos 15 partidos
+2026-11-28T14:30:38Z,PD,4750778,2026-11-28T17:30:00Z,Elche,Atletico Madrid,home,156,2,Goles recibidos,1.53,Últimos 15 partidos
+2026-11-28T14:30:38Z,PD,4750778,2026-11-28T17:30:00Z,Elche,Atletico Madrid,home,159,2,Goles esperados,1.33,Últimos 15 partidos
+2026-11-28T14:30:38Z,PD,4750778,2026-11-28T17:30:00Z,Elche,Atletico Madrid,home,162,2,Goles esperados recibidos,1.53,Últimos 15 partidos
+2026-11-28T14:30:38Z,PD,4750778,2026-11-28T17:30:00Z,Elche,Atletico Madrid,home,165,2,Remates,12.43,Últimos 15 partidos
+2026-11-28T14:30:38Z,PD,4750778,2026-11-28T17:30:00Z,Elche,Atletico Madrid,home,168,2,Remates al arco,4.21,Últimos 15 partidos
+2026-11-28T14:30:38Z,PD,4750778,2026-11-28T17:30:00Z,Elche,Atletico Madrid,home,171,2,Saques de Esquina,5.07,Últimos 15 partidos
+2026-11-28T14:30:38Z,PD,4750778,2026-11-28T17:30:00Z,Elche,Atletico Madrid,home,174,2,Tarjetas,2.67,Últimos 15 partidos
+2026-11-28T14:30:38Z,PD,4750778,2026-11-28T17:30:00Z,Elche,Atletico Madrid,home,175,2,Penales convertidos/penales ejecutados,3/3,Últimos 15 partidos
+2026-11-28T14:30:38Z,PD,4750778,2026-11-28T17:30:00Z,Elche,Atletico Madrid,away,141,1,Partidos ganados,12 (71%),Últimos 17 partidos
+2026-11-28T14:30:38Z,PD,4750778,2026-11-28T17:30:00Z,Elche,Atletico Madrid,away,142,1,Ambos equipos marcaron,6 (35%),Últimos 17 partidos
+2026-11-28T14:30:38Z,PD,4750778,2026-11-28T17:30:00Z,Elche,Atletico Madrid,away,143,1,Más de 2.5 goles,9 (53%),Últimos 17 partidos
+2026-11-28T14:30:38Z,PD,4750778,2026-11-28T17:30:00Z,Elche,Atletico Madrid,away,144,1,Marcó primero,14 (82%),Últimos 17 partidos
+2026-11-28T14:30:38Z,PD,4750778,2026-11-28T17:30:00Z,Elche,Atletico Madrid,away,146,1,Recibió gol primero,3 (18%),Últimos 17 partidos
+2026-11-28T14:30:38Z,PD,4750778,2026-11-28T17:30:00Z,Elche,Atletico Madrid,away,148,1,Empató o Ganó,14 (82%),Últimos 17 partidos
+2026-11-28T14:30:38Z,PD,4750778,2026-11-28T17:30:00Z,Elche,Atletico Madrid,away,149,1,Vencedor al entretiempo,6 (35%),Últimos 17 partidos
+2026-11-28T14:30:38Z,PD,4750778,2026-11-28T17:30:00Z,Elche,Atletico Madrid,away,150,1,Valla invicta,9 (53%),Últimos 17 partidos
+2026-11-28T14:30:38Z,PD,4750778,2026-11-28T17:30:00Z,Elche,Atletico Madrid,away,153,2,Goles convertidos,1.82,Últimos 17 partidos
+2026-11-28T14:30:38Z,PD,4750778,2026-11-28T17:30:00Z,Elche,Atletico Madrid,away,156,2,Goles recibidos,0.76,Últimos 17 partidos
+2026-11-28T14:30:38Z,PD,4750778,2026-11-28T17:30:00Z,Elche,Atletico Madrid,away,159,2,Goles esperados,1.57,Últimos 17 partidos
+2026-11-28T14:30:38Z,PD,4750778,2026-11-28T17:30:00Z,Elche,Atletico Madrid,away,162,2,Goles esperados recibidos,1.06,Últimos 17 partidos
+2026-11-28T14:30:38Z,PD,4750778,2026-11-28T17:30:00Z,Elche,Atletico Madrid,away,165,2,Remates,15.76,Últimos 17 partidos
+2026-11-28T14:30:38Z,PD,4750778,2026-11-28T17:30:00Z,Elche,Atletico Madrid,away,168,2,Remates al arco,5.94,Últimos 17 partidos
+2026-11-28T14:30:38Z,PD,4750778,2026-11-28T17:30:00Z,Elche,Atletico Madrid,away,171,2,Saques de Esquina,5.24,Últimos 17 partidos
+2026-11-28T14:30:38Z,PD,4750778,2026-11-28T17:30:00Z,Elche,Atletico Madrid,away,174,2,Tarjetas,1.94,Últimos 17 partidos
+2026-11-28T14:30:38Z,PD,4750778,2026-11-28T17:30:00Z,Elche,Atletico Madrid,away,175,2,Penales convertidos/penales ejecutados,3/3,Últimos 17 partidos
+2026-11-28T14:30:38Z,BL1,4755333,2026-11-28T17:30:00Z,Stuttgart,Eintracht Frankfurt,home,141,1,Partidos ganados,7 (47%),Últimos 15 partidos
+2026-11-28T14:30:38Z,BL1,4755333,2026-11-28T17:30:00Z,Stuttgart,Eintracht Frankfurt,home,142,1,Ambos equipos marcaron,6 (40%),Últimos 15 partidos
+2026-11-28T14:30:38Z,BL1,4755333,2026-11-28T17:30:00Z,Stuttgart,Eintracht Frankfurt,home,143,1,Más de 2.5 goles,7 (47%),Últimos 15 partidos
+2026-11-28T14:30:38Z,BL1,4755333,2026-11-28T17:30:00Z,Stuttgart,Eintracht Frankfurt,home,144,1,Marcó primero,9 (60%),Últimos 15 partidos
+2026-11-28T14:30:38Z,BL1,4755333,2026-11-28T17:30:00Z,Stuttgart,Eintracht Frankfurt,home,146,1,Recibió gol primero,5 (33%),Últimos 15 partidos
+2026-11-28T14:30:38Z,BL1,4755333,2026-11-28T17:30:00Z,Stuttgart,Eintracht Frankfurt,home,148,1,Empató o Ganó,9 (60%),Últimos 15 partidos
+2026-11-28T14:30:38Z,BL1,4755333,2026-11-28T17:30:00Z,Stuttgart,Eintracht Frankfurt,home,149,1,Vencedor al entretiempo,7 (47%),Últimos 15 partidos
+2026-11-28T14:30:38Z,BL1,4755333,2026-11-28T17:30:00Z,Stuttgart,Eintracht Frankfurt,home,150,1,Valla invicta,6 (40%),Últimos 15 partidos
+2026-11-28T14:30:38Z,BL1,4755333,2026-11-28T17:30:00Z,Stuttgart,Eintracht Frankfurt,home,153,2,Goles convertidos,1.6,Últimos 15 partidos
+2026-11-28T14:30:38Z,BL1,4755333,2026-11-28T17:30:00Z,Stuttgart,Eintracht Frankfurt,home,156,2,Goles recibidos,1.27,Últimos 15 partidos
+2026-11-28T14:30:38Z,BL1,4755333,2026-11-28T17:30:00Z,Stuttgart,Eintracht Frankfurt,home,159,2,Goles esperados,1.84,Últimos 15 partidos
+2026-11-28T14:30:38Z,BL1,4755333,2026-11-28T17:30:00Z,Stuttgart,Eintracht Frankfurt,home,162,2,Goles esperados recibidos,1.71,Últimos 15 partidos
+2026-11-28T14:30:38Z,BL1,4755333,2026-11-28T17:30:00Z,Stuttgart,Eintracht Frankfurt,home,165,2,Remates,15.47,Últimos 15 partidos
+2026-11-28T14:30:38Z,BL1,4755333,2026-11-28T17:30:00Z,Stuttgart,Eintracht Frankfurt,home,168,2,Remates al arco,5.53,Últimos 15 partidos
+2026-11-28T14:30:38Z,BL1,4755333,2026-11-28T17:30:00Z,Stuttgart,Eintracht Frankfurt,home,171,2,Saques de Esquina,5.87,Últimos 15 partidos
+2026-11-28T14:30:38Z,BL1,4755333,2026-11-28T17:30:00Z,Stuttgart,Eintracht Frankfurt,home,174,2,Tarjetas,1.87,Últimos 15 partidos
+2026-11-28T14:30:38Z,BL1,4755333,2026-11-28T17:30:00Z,Stuttgart,Eintracht Frankfurt,home,175,2,Penales convertidos/penales ejecutados,0/0,Últimos 15 partidos
+2026-11-28T14:30:38Z,BL1,4755333,2026-11-28T17:30:00Z,Stuttgart,Eintracht Frankfurt,away,141,1,Partidos ganados,6 (50%),Últimos 12 partidos
+2026-11-28T14:30:38Z,BL1,4755333,2026-11-28T17:30:00Z,Stuttgart,Eintracht Frankfurt,away,142,1,Ambos equipos marcaron,7 (58%),Últimos 12 partidos
+2026-11-28T14:30:38Z,BL1,4755333,2026-11-28T17:30:00Z,Stuttgart,Eintracht Frankfurt,away,143,1,Más de 2.5 goles,9 (75%),Últimos 12 partidos
+2026-11-28T14:30:38Z,BL1,4755333,2026-11-28T17:30:00Z,Stuttgart,Eintracht Frankfurt,away,144,1,Marcó primero,9 (75%),Últimos 12 partidos
+2026-11-28T14:30:38Z,BL1,4755333,2026-11-28T17:30:00Z,Stuttgart,Eintracht Frankfurt,away,146,1,Recibió gol primero,3 (25%),Últimos 12 partidos
+2026-11-28T14:30:38Z,BL1,4755333,2026-11-28T17:30:00Z,Stuttgart,Eintracht Frankfurt,away,148,1,Empató o Ganó,9 (75%),Últimos 12 partidos
+2026-11-28T14:30:38Z,BL1,4755333,2026-11-28T17:30:00Z,Stuttgart,Eintracht Frankfurt,away,149,1,Vencedor al entretiempo,6 (50%),Últimos 12 partidos
+2026-11-28T14:30:38Z,BL1,4755333,2026-11-28T17:30:00Z,Stuttgart,Eintracht Frankfurt,away,150,1,Valla invicta,3 (25%),Últimos 12 partidos
+2026-11-28T14:30:38Z,BL1,4755333,2026-11-28T17:30:00Z,Stuttgart,Eintracht Frankfurt,away,153,2,Goles convertidos,2.5,Últimos 12 partidos
+2026-11-28T14:30:38Z,BL1,4755333,2026-11-28T17:30:00Z,Stuttgart,Eintracht Frankfurt,away,156,2,Goles recibidos,1.75,Últimos 12 partidos
+2026-11-28T14:30:38Z,BL1,4755333,2026-11-28T17:30:00Z,Stuttgart,Eintracht Frankfurt,away,159,2,Goles esperados,1.9,Últimos 12 partidos
+2026-11-28T14:30:38Z,BL1,4755333,2026-11-28T17:30:00Z,Stuttgart,Eintracht Frankfurt,away,162,2,Goles esperados recibidos,1.87,Últimos 12 partidos
+2026-11-28T14:30:38Z,BL1,4755333,2026-11-28T17:30:00Z,Stuttgart,Eintracht Frankfurt,away,165,2,Remates,15.33,Últimos 12 partidos
+2026-11-28T14:30:38Z,BL1,4755333,2026-11-28T17:30:00Z,Stuttgart,Eintracht Frankfurt,away,168,2,Remates al arco,6.67,Últimos 12 partidos
+2026-11-28T14:30:38Z,BL1,4755333,2026-11-28T17:30:00Z,Stuttgart,Eintracht Frankfurt,away,171,2,Saques de Esquina,5.42,Últimos 12 partidos
+2026-11-28T14:30:38Z,BL1,4755333,2026-11-28T17:30:00Z,Stuttgart,Eintracht Frankfurt,away,174,2,Tarjetas,2.33,Últimos 12 partidos
+2026-11-28T14:30:38Z,BL1,4755333,2026-11-28T17:30:00Z,Stuttgart,Eintracht Frankfurt,away,175,2,Penales convertidos/penales ejecutados,0/1,Últimos 12 partidos
