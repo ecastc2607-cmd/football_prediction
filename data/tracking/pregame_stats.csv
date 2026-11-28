@@ -1767,3 +1767,37 @@ fetched_at,competition,game_id,utc_date,home_team,away_team,side,stat_id,group,n
 2026-11-28T13:15:26Z,FL1,4735199,2026-11-28T16:15:00Z,Angers,Lens,away,171,2,Saques de Esquina,5.76,Últimos 17 partidos
 2026-11-28T13:15:26Z,FL1,4735199,2026-11-28T16:15:00Z,Angers,Lens,away,174,2,Tarjetas,2.06,Últimos 17 partidos
 2026-11-28T13:15:26Z,FL1,4735199,2026-11-28T16:15:00Z,Angers,Lens,away,175,2,Penales convertidos/penales ejecutados,3/3,Últimos 17 partidos
+2026-11-28T14:00:36Z,SA,4732613,2026-11-28T17:00:00Z,Torino,Lazio,home,141,1,Partidos ganados,5 (36%),Últimos 14 partidos
+2026-11-28T14:00:36Z,SA,4732613,2026-11-28T17:00:00Z,Torino,Lazio,home,142,1,Ambos equipos marcaron,8 (57%),Últimos 14 partidos
+2026-11-28T14:00:36Z,SA,4732613,2026-11-28T17:00:00Z,Torino,Lazio,home,143,1,Más de 2.5 goles,7 (50%),Últimos 14 partidos
+2026-11-28T14:00:36Z,SA,4732613,2026-11-28T17:00:00Z,Torino,Lazio,home,144,1,Marcó primero,6 (43%),Últimos 14 partidos
+2026-11-28T14:00:36Z,SA,4732613,2026-11-28T17:00:00Z,Torino,Lazio,home,146,1,Recibió gol primero,8 (57%),Últimos 14 partidos
+2026-11-28T14:00:36Z,SA,4732613,2026-11-28T17:00:00Z,Torino,Lazio,home,148,1,Empató o Ganó,7 (50%),Últimos 14 partidos
+2026-11-28T14:00:36Z,SA,4732613,2026-11-28T17:00:00Z,Torino,Lazio,home,149,1,Vencedor al entretiempo,4 (29%),Últimos 14 partidos
+2026-11-28T14:00:36Z,SA,4732613,2026-11-28T17:00:00Z,Torino,Lazio,home,150,1,Valla invicta,2 (14%),Últimos 14 partidos
+2026-11-28T14:00:36Z,SA,4732613,2026-11-28T17:00:00Z,Torino,Lazio,home,153,2,Goles convertidos,1.14,Últimos 14 partidos
+2026-11-28T14:00:36Z,SA,4732613,2026-11-28T17:00:00Z,Torino,Lazio,home,156,2,Goles recibidos,1.36,Últimos 14 partidos
+2026-11-28T14:00:36Z,SA,4732613,2026-11-28T17:00:00Z,Torino,Lazio,home,159,2,Goles esperados,1.07,Últimos 14 partidos
+2026-11-28T14:00:36Z,SA,4732613,2026-11-28T17:00:00Z,Torino,Lazio,home,162,2,Goles esperados recibidos,1.27,Últimos 14 partidos
+2026-11-28T14:00:36Z,SA,4732613,2026-11-28T17:00:00Z,Torino,Lazio,home,165,2,Remates,11.07,Últimos 14 partidos
+2026-11-28T14:00:36Z,SA,4732613,2026-11-28T17:00:00Z,Torino,Lazio,home,168,2,Remates al arco,3.07,Últimos 14 partidos
+2026-11-28T14:00:36Z,SA,4732613,2026-11-28T17:00:00Z,Torino,Lazio,home,171,2,Saques de Esquina,4.14,Últimos 14 partidos
+2026-11-28T14:00:36Z,SA,4732613,2026-11-28T17:00:00Z,Torino,Lazio,home,174,2,Tarjetas,1,Últimos 14 partidos
+2026-11-28T14:00:36Z,SA,4732613,2026-11-28T17:00:00Z,Torino,Lazio,home,175,2,Penales convertidos/penales ejecutados,0/0,Últimos 14 partidos
+2026-11-28T14:00:36Z,SA,4732613,2026-11-28T17:00:00Z,Torino,Lazio,away,141,1,Partidos ganados,10 (77%),Últimos 13 partidos
+2026-11-28T14:00:36Z,SA,4732613,2026-11-28T17:00:00Z,Torino,Lazio,away,142,1,Ambos equipos marcaron,7 (54%),Últimos 13 partidos
+2026-11-28T14:00:36Z,SA,4732613,2026-11-28T17:00:00Z,Torino,Lazio,away,143,1,Más de 2.5 goles,8 (62%),Últimos 13 partidos
+2026-11-28T14:00:36Z,SA,4732613,2026-11-28T17:00:00Z,Torino,Lazio,away,144,1,Marcó primero,10 (77%),Últimos 13 partidos
+2026-11-28T14:00:36Z,SA,4732613,2026-11-28T17:00:00Z,Torino,Lazio,away,146,1,Recibió gol primero,3 (23%),Últimos 13 partidos
+2026-11-28T14:00:36Z,SA,4732613,2026-11-28T17:00:00Z,Torino,Lazio,away,148,1,Empató o Ganó,12 (92%),Últimos 13 partidos
+2026-11-28T14:00:36Z,SA,4732613,2026-11-28T17:00:00Z,Torino,Lazio,away,149,1,Vencedor al entretiempo,7 (54%),Últimos 13 partidos
+2026-11-28T14:00:36Z,SA,4732613,2026-11-28T17:00:00Z,Torino,Lazio,away,150,1,Valla invicta,5 (38%),Últimos 13 partidos
+2026-11-28T14:00:36Z,SA,4732613,2026-11-28T17:00:00Z,Torino,Lazio,away,153,2,Goles convertidos,2.15,Últimos 13 partidos
+2026-11-28T14:00:36Z,SA,4732613,2026-11-28T17:00:00Z,Torino,Lazio,away,156,2,Goles recibidos,0.85,Últimos 13 partidos
+2026-11-28T14:00:36Z,SA,4732613,2026-11-28T17:00:00Z,Torino,Lazio,away,159,2,Goles esperados,1.53,Últimos 13 partidos
+2026-11-28T14:00:36Z,SA,4732613,2026-11-28T17:00:00Z,Torino,Lazio,away,162,2,Goles esperados recibidos,1.18,Últimos 13 partidos
+2026-11-28T14:00:36Z,SA,4732613,2026-11-28T17:00:00Z,Torino,Lazio,away,165,2,Remates,14.08,Últimos 13 partidos
+2026-11-28T14:00:36Z,SA,4732613,2026-11-28T17:00:00Z,Torino,Lazio,away,168,2,Remates al arco,4.69,Últimos 13 partidos
+2026-11-28T14:00:36Z,SA,4732613,2026-11-28T17:00:00Z,Torino,Lazio,away,171,2,Saques de Esquina,5.31,Últimos 13 partidos
+2026-11-28T14:00:36Z,SA,4732613,2026-11-28T17:00:00Z,Torino,Lazio,away,174,2,Tarjetas,1.62,Últimos 13 partidos
+2026-11-28T14:00:36Z,SA,4732613,2026-11-28T17:00:00Z,Torino,Lazio,away,175,2,Penales convertidos/penales ejecutados,1/3,Últimos 13 partidos
