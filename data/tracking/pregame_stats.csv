@@ -1461,3 +1461,37 @@ fetched_at,competition,game_id,utc_date,home_team,away_team,side,stat_id,group,n
 2026-11-28T10:00:26Z,PD,4750781,2026-11-28T13:00:00Z,Real Betis,Rayo Vallecano,away,171,2,Saques de Esquina,5.71,Últimos 14 partidos
 2026-11-28T10:00:26Z,PD,4750781,2026-11-28T13:00:00Z,Real Betis,Rayo Vallecano,away,174,2,Tarjetas,2.29,Últimos 14 partidos
 2026-11-28T10:00:26Z,PD,4750781,2026-11-28T13:00:00Z,Real Betis,Rayo Vallecano,away,175,2,Penales convertidos/penales ejecutados,1/2,Últimos 14 partidos
+2026-11-28T11:00:34Z,SA,4732618,2026-11-28T14:00:00Z,Frosinone,Parma,home,141,1,Partidos ganados,7 (50%),Últimos 14 partidos
+2026-11-28T11:00:34Z,SA,4732618,2026-11-28T14:00:00Z,Frosinone,Parma,home,142,1,Ambos equipos marcaron,8 (57%),Últimos 14 partidos
+2026-11-28T11:00:34Z,SA,4732618,2026-11-28T14:00:00Z,Frosinone,Parma,home,143,1,Más de 2.5 goles,8 (57%),Últimos 14 partidos
+2026-11-28T11:00:34Z,SA,4732618,2026-11-28T14:00:00Z,Frosinone,Parma,home,144,1,Marcó primero,9 (64%),Últimos 14 partidos
+2026-11-28T11:00:34Z,SA,4732618,2026-11-28T14:00:00Z,Frosinone,Parma,home,146,1,Recibió gol primero,5 (36%),Últimos 14 partidos
+2026-11-28T11:00:34Z,SA,4732618,2026-11-28T14:00:00Z,Frosinone,Parma,home,148,1,Empató o Ganó,10 (71%),Últimos 14 partidos
+2026-11-28T11:00:34Z,SA,4732618,2026-11-28T14:00:00Z,Frosinone,Parma,home,149,1,Vencedor al entretiempo,7 (50%),Últimos 14 partidos
+2026-11-28T11:00:34Z,SA,4732618,2026-11-28T14:00:00Z,Frosinone,Parma,home,150,1,Valla invicta,3 (21%),Últimos 14 partidos
+2026-11-28T11:00:34Z,SA,4732618,2026-11-28T14:00:00Z,Frosinone,Parma,home,153,2,Goles convertidos,2.14,Últimos 14 partidos
+2026-11-28T11:00:34Z,SA,4732618,2026-11-28T14:00:00Z,Frosinone,Parma,home,156,2,Goles recibidos,1.57,Últimos 14 partidos
+2026-11-28T11:00:34Z,SA,4732618,2026-11-28T14:00:00Z,Frosinone,Parma,home,159,2,Goles esperados,1.76,Últimos 14 partidos
+2026-11-28T11:00:34Z,SA,4732618,2026-11-28T14:00:00Z,Frosinone,Parma,home,162,2,Goles esperados recibidos,1.89,Últimos 14 partidos
+2026-11-28T11:00:34Z,SA,4732618,2026-11-28T14:00:00Z,Frosinone,Parma,home,165,2,Remates,19.43,Últimos 14 partidos
+2026-11-28T11:00:34Z,SA,4732618,2026-11-28T14:00:00Z,Frosinone,Parma,home,168,2,Remates al arco,6.36,Últimos 14 partidos
+2026-11-28T11:00:34Z,SA,4732618,2026-11-28T14:00:00Z,Frosinone,Parma,home,171,2,Saques de Esquina,6.86,Últimos 14 partidos
+2026-11-28T11:00:34Z,SA,4732618,2026-11-28T14:00:00Z,Frosinone,Parma,home,174,2,Tarjetas,1.93,Últimos 14 partidos
+2026-11-28T11:00:34Z,SA,4732618,2026-11-28T14:00:00Z,Frosinone,Parma,home,175,2,Penales convertidos/penales ejecutados,1/1,Últimos 14 partidos
+2026-11-28T11:00:34Z,SA,4732618,2026-11-28T14:00:00Z,Frosinone,Parma,away,141,1,Partidos ganados,3 (21%),Últimos 14 partidos
+2026-11-28T11:00:34Z,SA,4732618,2026-11-28T14:00:00Z,Frosinone,Parma,away,142,1,Ambos equipos marcaron,6 (43%),Últimos 14 partidos
+2026-11-28T11:00:34Z,SA,4732618,2026-11-28T14:00:00Z,Frosinone,Parma,away,143,1,Más de 2.5 goles,8 (57%),Últimos 14 partidos
+2026-11-28T11:00:34Z,SA,4732618,2026-11-28T14:00:00Z,Frosinone,Parma,away,144,1,Marcó primero,3 (21%),Últimos 14 partidos
+2026-11-28T11:00:34Z,SA,4732618,2026-11-28T14:00:00Z,Frosinone,Parma,away,146,1,Recibió gol primero,10 (71%),Últimos 14 partidos
+2026-11-28T11:00:34Z,SA,4732618,2026-11-28T14:00:00Z,Frosinone,Parma,away,148,1,Empató o Ganó,5 (36%),Últimos 14 partidos
+2026-11-28T11:00:34Z,SA,4732618,2026-11-28T14:00:00Z,Frosinone,Parma,away,149,1,Vencedor al entretiempo,3 (21%),Últimos 14 partidos
+2026-11-28T11:00:34Z,SA,4732618,2026-11-28T14:00:00Z,Frosinone,Parma,away,150,1,Valla invicta,3 (21%),Últimos 14 partidos
+2026-11-28T11:00:34Z,SA,4732618,2026-11-28T14:00:00Z,Frosinone,Parma,away,153,2,Goles convertidos,0.86,Últimos 14 partidos
+2026-11-28T11:00:34Z,SA,4732618,2026-11-28T14:00:00Z,Frosinone,Parma,away,156,2,Goles recibidos,1.71,Últimos 14 partidos
+2026-11-28T11:00:34Z,SA,4732618,2026-11-28T14:00:00Z,Frosinone,Parma,away,159,2,Goles esperados,0.96,Últimos 14 partidos
+2026-11-28T11:00:34Z,SA,4732618,2026-11-28T14:00:00Z,Frosinone,Parma,away,162,2,Goles esperados recibidos,1.9,Últimos 14 partidos
+2026-11-28T11:00:34Z,SA,4732618,2026-11-28T14:00:00Z,Frosinone,Parma,away,165,2,Remates,10.57,Últimos 14 partidos
+2026-11-28T11:00:34Z,SA,4732618,2026-11-28T14:00:00Z,Frosinone,Parma,away,168,2,Remates al arco,3.71,Últimos 14 partidos
+2026-11-28T11:00:34Z,SA,4732618,2026-11-28T14:00:00Z,Frosinone,Parma,away,171,2,Saques de Esquina,3.57,Últimos 14 partidos
+2026-11-28T11:00:34Z,SA,4732618,2026-11-28T14:00:00Z,Frosinone,Parma,away,174,2,Tarjetas,1.5,Últimos 14 partidos
+2026-11-28T11:00:34Z,SA,4732618,2026-11-28T14:00:00Z,Frosinone,Parma,away,175,2,Penales convertidos/penales ejecutados,1/1,Últimos 14 partidos
